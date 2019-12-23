@@ -20,9 +20,8 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>
-    </PackageCertificateThumbprint>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>25C7F579E40C1F8ACED05EA07236B6286272AE98</PackageCertificateThumbprint>
     <BuildAppxSideloadPackageForUap>False</BuildAppxSideloadPackageForUap>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
