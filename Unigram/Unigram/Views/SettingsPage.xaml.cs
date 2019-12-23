@@ -43,7 +43,7 @@ namespace Unigram.Views
 
             NavigationCacheMode = NavigationCacheMode.Required;
 
-            Diagnostics.Text = $"Unigram " + GetVersion();
+            Diagnostics.Text = $"Unigram Mobile " + GetVersion();
 
             if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
             {
