@@ -177,7 +177,6 @@ namespace Unigram.Views.Host
                         service.Navigate(typeof(MainPage));
                         break;
                     case AuthorizationStateWaitPhoneNumber waitPhoneNumber:
-                    case AuthorizationStateWaitOtherDeviceConfirmation waitOtherDeviceConfirmation:
                         service.Navigate(typeof(SignInPage));
                         service.Frame.BackStack.Add(new PageStackEntry(typeof(BlankPage), null, null));
                         break;
@@ -466,7 +465,7 @@ namespace Unigram.Views.Host
             Automation.SetToolTip(Accounts, SettingsService.Current.IsAccountsSelectorExpanded ? Strings.Resources.AccDescrHideAccounts : Strings.Resources.AccDescrShowAccounts);
         }
 
-        private async void OnItemClick(object sender, ItemClickEventArgs e)
+        private void OnItemClick(object sender, ItemClickEventArgs e)
         {
             if (e.ClickedItem is ISessionService session)
             {
@@ -481,24 +480,7 @@ namespace Unigram.Views.Host
             {
                 if (destination == RootDestination.AddAccount)
                 {
-#if DEBUG
-                    var dialog = new TLMessageDialog();
-                    dialog.Title = "Environment";
-                    dialog.Message = "Choose your environment";
-                    dialog.PrimaryButtonText = "Live";
-                    dialog.SecondaryButtonText = "Test";
-                    dialog.CloseButtonText = "Cancel";
-
-                    var confirm = await dialog.ShowQueuedAsync();
-                    if (confirm == ContentDialogResult.None)
-                    {
-                        return;
-                    }
-
-                    Switch(_lifetime.Create(test: confirm == ContentDialogResult.Secondary));
-#else
                     Switch(_lifetime.Create());
-#endif
                 }
                 else if (_navigationService?.Frame?.Content is IRootContentPage content)
                 {
@@ -515,7 +497,7 @@ namespace Unigram.Views.Host
             }
         }
 
-#region Exposed
+        #region Exposed
 
         public void SetPaneToggleButtonVisibility(Visibility value)
         {
@@ -541,7 +523,7 @@ namespace Unigram.Views.Host
             SetChecked(RootDestination.Settings, value);
         }
 
-#endregion
+        #endregion
 
         public void ShowEditor(ThemeCustomInfo theme)
         {

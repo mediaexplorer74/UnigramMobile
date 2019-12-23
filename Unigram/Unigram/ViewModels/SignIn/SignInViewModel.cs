@@ -16,16 +16,13 @@ using Unigram.Views.SignIn;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Unigram.ViewModels.Delegates;
 
 namespace Unigram.ViewModels.SignIn
 {
-    public class SignInViewModel : TLViewModelBase, IDelegable<ISignInDelegate>
+    public class SignInViewModel : TLViewModelBase
     {
         private readonly ILifetimeService _lifetimeService;
         private readonly INotificationsService _notificationsService;
-
-        public ISignInDelegate Delegate { get; set; }
 
         public SignInViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator, ILifetimeService lifecycleService, INotificationsService notificationsService)
             : base(protoService, cacheService, settingsService, aggregator)
@@ -47,40 +44,7 @@ namespace Unigram.ViewModels.SignIn
                 }
             });
 
-            var authState = ProtoService.GetAuthorizationState();
-            if (authState is AuthorizationStateWaitPhoneNumber)
-            {
-                IsLoading = false;
-
-#if DEBUG
-                Delegate.UpdateQrCodeMode(QrCodeMode.Loading);
-
-                ProtoService.Send(new GetApplicationConfig(), result =>
-                {
-                    if (result is JsonValueObject json)
-                    {
-                        var camera = json.GetNamedBoolean("qr_login_camera", false);
-                        var code = json.GetNamedString("qr_login_code", "disabled");
-
-                        if (camera && Enum.TryParse(code, true, out QrCodeMode mode))
-                        {
-                            BeginOnUIThread(() => Delegate?.UpdateQrCodeMode(mode));
-
-                            if (mode != QrCodeMode.Disabled)
-                            {
-                                ProtoService.Send(new RequestQrCodeAuthentication());
-                            }
-                        }
-                    }
-                });
-#endif
-            }
-            else if (authState is AuthorizationStateWaitOtherDeviceConfirmation waitOtherDeviceConfirmation)
-            {
-                Token = waitOtherDeviceConfirmation.Link;
-                Delegate?.UpdateQrCode(waitOtherDeviceConfirmation.Link);
-            }
-
+            IsLoading = false;
             return Task.CompletedTask;
         }
 
@@ -103,13 +67,6 @@ namespace Unigram.ViewModels.SignIn
                     SelectedCountry = country;
                 });
             }
-        }
-
-        private string _token;
-        public string Token
-        {
-            get => _token;
-            set => Set(ref _token, value);
         }
 
         private Country _selectedCountry;
