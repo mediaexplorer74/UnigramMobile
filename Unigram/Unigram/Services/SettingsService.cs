@@ -219,7 +219,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _chats ??= new ChatSettingsBase(_own);
+                return _chats = _chats ?? new ChatSettingsBase(_own);
             }
         }
 
@@ -228,7 +228,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _notifications ??= new NotificationsSettings(_container);
+                return _notifications = _notifications ?? new NotificationsSettings(_container);
             }
         }
 
@@ -237,7 +237,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _stickers ??= new StickersSettings(_local);
+                return _stickers = _stickers ?? new StickersSettings(_local);
             }
         }
 
@@ -246,7 +246,8 @@ namespace Unigram.Services
         {
             get
             {
-                return _emoji ??= new EmojiSettings();
+                return _emoji = _emoji ?? new EmojiSettings();
+                // c# 8.0: return _emoji ??= new EmojiSettings();
             }
         }
 
@@ -255,7 +256,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _wallet ??= new WalletSettings(_own);
+                return _wallet = _wallet ?? new WalletSettings(_own);
             }
         }
 
@@ -264,7 +265,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _autoDownload ??= new AutoDownloadSettings(_own.CreateContainer("AutoDownload", ApplicationDataCreateDisposition.Always));
+                return _autoDownload = _autoDownload ?? new AutoDownloadSettings(_own.CreateContainer("AutoDownload", ApplicationDataCreateDisposition.Always));
             }
             set
             {
@@ -278,7 +279,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _appearance ??= new AppearanceSettings();
+                return _appearance = _appearance ?? new AppearanceSettings();
             }
         }
 
@@ -287,7 +288,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _diagnostics ??= new DiagnosticsSettings();
+                return _diagnostics = _diagnostics ?? new DiagnosticsSettings();
             }
         }
 
@@ -296,7 +297,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _wallpaper ??= new WallpaperSettings(_container);
+                return _wallpaper = _wallpaper ?? new WallpaperSettings(_container);
             }
         }
 
@@ -305,7 +306,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _passcodeLock ??= new PasscodeLockSettings();
+                return _passcodeLock = _passcodeLock ?? new PasscodeLockSettings();
             }
         }
 
@@ -314,7 +315,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _playback ??= new PlaybackSettings(_local);
+                return _playback = _playback ?? new PlaybackSettings(_local);
             }
         }
 
@@ -323,7 +324,7 @@ namespace Unigram.Services
         {
             get
             {
-                return _voip ??= new VoIPSettings();
+                return _voip = _voip ?? new VoIPSettings();
             }
         }
 
