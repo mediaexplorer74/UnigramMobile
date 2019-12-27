@@ -530,6 +530,7 @@
     <Compile Include="Services\NotificationsService.cs" />
     <Compile Include="Services\Settings\AutoDownloadSettings.cs" />
     <Compile Include="Services\Settings\DiagnosticsSettings.cs" />
+    <Compile Include="Services\Settings\EmojiSettings.cs" />
     <Compile Include="Services\Settings\NotificationsSettings.cs" />
     <Compile Include="Services\OptionsService.cs" />
     <Compile Include="Services\Settings\PasscodeLockSettings.cs" />
@@ -598,7 +599,6 @@
     <Compile Include="ViewModels\Delegates\IGalleryDelegate.cs" />
     <Compile Include="ViewModels\Delegates\ILiveLocationDelegate.cs" />
     <Compile Include="ViewModels\Delegates\ISettingsDelegate.cs" />
-    <Compile Include="ViewModels\Delegates\ISignInDelegate.cs" />
     <Compile Include="ViewModels\Delegates\ISupergroupEditDelegate.cs" />
     <Compile Include="ViewModels\Delegates\IWalletExportDelegate.cs" />
     <Compile Include="ViewModels\Delegates\IWalletTransactionDelegate.cs" />
@@ -1654,7 +1654,6 @@
     <Content Include="Assets\Images\Reply.scale-200.png" />
     <Content Include="Assets\Images\Reply.scale-400.png" />
     <Content Include="Assets\Images\WalletGem.png" />
-    <Content Include="Assets\Logo.svg" />
     <Content Include="Assets\Logos\Square44x44Logo\Square44x44Logo.targetsize-16_altform-lightunplated.png" />
     <Content Include="Assets\Logos\Square44x44Logo\Square44x44Logo.targetsize-24_altform-lightunplated.png" />
     <Content Include="Assets\Logos\Square44x44Logo\Square44x44Logo.targetsize-256_altform-lightunplated.png" />
