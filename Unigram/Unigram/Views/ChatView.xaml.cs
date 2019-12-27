@@ -2926,6 +2926,14 @@ namespace Unigram.Views
                 titlebar.ForegroundColor = maskForeground;
                 //titlebar.ButtonBackgroundColor = maskBackground;
                 titlebar.ButtonForegroundColor = maskForeground;
+
+                // Mobile Status Bar
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    var statusBar = StatusBar.GetForCurrentView();
+                    statusBar.BackgroundColor = maskBackground;
+                    statusBar.ForegroundColor = maskForeground;
+                }
             }
         }
 
