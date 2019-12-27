@@ -338,8 +338,17 @@ namespace Unigram.Services
                     ulong major = (SettingsService.CurrentVersion & 0xFFFF000000000000L) >> 48;
                     ulong minor = (SettingsService.CurrentVersion & 0x0000FFFF00000000L) >> 32;
                     ulong build = (SettingsService.CurrentVersion & 0x00000000FFFF0000L) >> 16;
-
-                    var title = $"What's new in Unigram {major}.{minor}.{build}:";
+                    
+                    string title;
+                    switch (_deviceInfoService.SystemLanguageCode)
+                    {
+                        case "de-DE":
+                            title = $"Neue Unigram Mobile Version {major}.{minor}.{build}!" + Environment.NewLine + "Änderungen (auf Englisch):";
+                            break;
+                        default:
+                            title = $"New in Unigram Mobile {major}.{minor}.{build}:";
+                            break;
+                    }
                     var message = title + Environment.NewLine + SettingsService.CurrentChangelog;
                     var formattedText = new FormattedText(message, new[] { new TextEntity { Offset = 0, Length = title.Length, Type = new TextEntityTypeBold() } });
 
