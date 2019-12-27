@@ -17,26 +17,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Unigram.Views
 {
-    public sealed partial class ChatPage : Page
+    public sealed partial class ChatScheduledPage : Page
     {
-        public DialogViewModel ViewModel
-        {
-            get
-            {
-                if (Content is ChatView view)
-                {
-                    return view.DataContext as DialogViewModel;
-                }
-
-                return null;
-            }
-        }
-
-        public ChatPage()
+        public ChatScheduledPage()
         {
             InitializeComponent();
 
-            Content = new ChatView(deleg => (DataContext = TLContainer.Current.Resolve<DialogViewModel, IDialogDelegate>(deleg)) as DialogViewModel);
+            Content = new ChatView(deleg => (DataContext = TLContainer.Current.Resolve<DialogScheduledViewModel, IDialogDelegate>(deleg)) as DialogScheduledViewModel);
             NavigationCacheMode = NavigationCacheMode.Required;
         }
     }
