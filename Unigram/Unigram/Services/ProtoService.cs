@@ -336,26 +336,14 @@ namespace Unigram.Services
 
         private async void UpdateVersion()
         {
-            if (_settings.Version < SettingsService.CurrentVersion)
+            if (_settings.VersionLastStart < SettingsService.CurrentVersion)
             {
                 var response = await SendAsync(new CreatePrivateChat(777000, false));
                 if (response is Chat chat)
                 {
-                    ulong major = (SettingsService.CurrentVersion & 0xFFFF000000000000L) >> 48;
-                    ulong minor = (SettingsService.CurrentVersion & 0x0000FFFF00000000L) >> 32;
-                    ulong build = (SettingsService.CurrentVersion & 0x00000000FFFF0000L) >> 16;
-                    
-                    string title;
-                    switch (_deviceInfoService.SystemLanguageCode)
-                    {
-                        case "de-DE":
-                            title = $"Neue Unigram Mobile Version {major}.{minor}.{build}!" + Environment.NewLine + "Änderungen (auf Englisch):";
-                            break;
-                        default:
-                            title = $"New in Unigram Mobile {major}.{minor}.{build}:";
-                            break;
-                    }
-                    var message = title + Environment.NewLine + SettingsService.CurrentChangelog;
+                    PackageVersion version = SettingsService.GetAppVersion();
+                    var title = Package.Current.DisplayName + $" Version {version.Major}.{version.Minor}";
+                    var message = title + Environment.NewLine + Environment.NewLine + SettingsService.CurrentChangelog;
                     var formattedText = new FormattedText(message, new[] { new TextEntity { Offset = 0, Length = title.Length, Type = new TextEntityTypeBold() } });
 
                     formattedText = Client.Execute(new ParseMarkdown(formattedText)) as FormattedText;

@@ -13,7 +13,7 @@ namespace Unigram.Services
     public interface ISettingsService
     {
         int Session { get; }
-        ulong Version { get; }
+        ulong VersionLastStart { get; }
 
         void UpdateVersion();
 
@@ -187,7 +187,7 @@ namespace Unigram.Services
 
         public ApplicationDataContainer Container => _container;
 
-#region App version
+        #region App version
 
         public const ulong CurrentVersion = (3UL << 48) | (15UL << 32) | (3073UL << 16);
         public const string CurrentChangelog = "Quizzes 2.0\r\n• Add explanations that appear after users respond to a quiz question. \r\n• See how much time you have left to answer a question from @QuizBot with the new countdown animation.\r\n\r\nAnimated Darts\r\n• Send a single dart 🎯 emoji to see if you hit bullseye.";
@@ -195,29 +195,46 @@ namespace Unigram.Services
 
         public int Session => _session;
 
-        private ulong? _version;
-        public ulong Version
+        private ulong? _versionLastStart;
+        public ulong VersionLastStart
         {
             get
             {
-                if (_version == null)
-                    _version = GetValueOrDefault("LongVersion", 0UL);
+                if (_versionLastStart == null)
+                    _versionLastStart = GetValueOrDefault("LongVersion", 0UL);
 
-                return _version ?? 0;
+                return _versionLastStart ?? 0;
             }
             private set
             {
-                _version = value;
+                _versionLastStart = value;
                 AddOrUpdateValue("LongVersion", value);
             }
         }
 
         public void UpdateVersion()
         {
-            Version = CurrentVersion;
+            var version = GetAppVersion();
+            VersionLastStart = ((ulong)version.Major << 48) | ((ulong)version.Minor << 32);
         }
 
-#endregion
+        public static ulong CurrentVersion
+        {
+            get
+            {
+                var version = GetAppVersion();
+                return ((ulong)version.Major << 48) | ((ulong)version.Minor << 32);
+            }
+        }
+
+        public static Windows.ApplicationModel.PackageVersion GetAppVersion()
+        {
+            Windows.ApplicationModel.Package package = Windows.ApplicationModel.Package.Current;
+            Windows.ApplicationModel.PackageId packageId = package.Id;
+            return packageId.Version;
+        }
+
+        #endregion
 
         private ChatSettingsBase _chats;
         public ChatSettingsBase Chats
