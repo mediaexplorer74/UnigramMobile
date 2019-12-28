@@ -156,9 +156,6 @@
   <data name="Formatting" xml:space="preserve">
     <value>Formatting</value>
   </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
-  </data>
   <data name="NoChatFilter" xml:space="preserve">
     <value>All Chats</value>
   </data>

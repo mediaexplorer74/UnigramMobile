@@ -13,7 +13,7 @@ namespace Unigram.Services
     public interface ISettingsService
     {
         int Session { get; }
-        ulong Version { get; }
+        ulong VersionLastStart { get; }
 
         void UpdateVersion();
 
@@ -184,32 +184,48 @@ namespace Unigram.Services
 
         #region App version
 
-        public const ulong CurrentVersion = (3UL << 48) | (13UL << 32) | (2635UL << 16);
         public const string CurrentChangelog = "SCHEDULED MESSAGES\r\n• Hold the 'Send' button and select 'Schedule Message' to automatically send something at a specified time.\r\n• Schedule reminders for yourself in the 'Saved Messages' chat.\r\n• Get a notification when any of your scheduled messages are sent.\r\n\r\nSILENT MESSAGES, GROUP ADMIN TITLES AND SLOW MODE\r\n• Hold the Send button to send any message without sound – in case the recipient is sleeping.\r\n• Enable Slow Mode in Group Permissions to control how frequently members can post.\r\n• Set custom titles for group admins – like 'Founder', 'CFO' or 'Spam Fighter'.\r\n\r\nNEW PRIVACY SETTINGS\r\n• Choose who can find you on Telegram when they add your number to their phone contacts.\r\n\r\nEMOTICONS\r\n• You can now see and use directly your last used emoticons";
         public const bool CurrentMedia = false;
 
         public int Session => _session;
 
-        private ulong? _version;
-        public ulong Version
+        private ulong? _versionLastStart;
+        public ulong VersionLastStart
         {
             get
             {
-                if (_version == null)
-                    _version = GetValueOrDefault("LongVersion", 0UL);
+                if (_versionLastStart == null)
+                    _versionLastStart = GetValueOrDefault("LongVersion", 0UL);
 
-                return _version ?? 0;
+                return _versionLastStart ?? 0;
             }
             private set
             {
-                _version = value;
+                _versionLastStart = value;
                 AddOrUpdateValue("LongVersion", value);
             }
         }
 
         public void UpdateVersion()
         {
-            Version = CurrentVersion;
+            var version = GetAppVersion();
+            VersionLastStart = ((ulong)version.Major << 48) | ((ulong)version.Minor << 32);
+        }
+
+        public static ulong CurrentVersion
+        {
+            get
+            {
+                var version = GetAppVersion();
+                return ((ulong)version.Major << 48) | ((ulong)version.Minor << 32);
+            }
+        }
+
+    public static Windows.ApplicationModel.PackageVersion GetAppVersion()
+        {
+            Windows.ApplicationModel.Package package = Windows.ApplicationModel.Package.Current;
+            Windows.ApplicationModel.PackageId packageId = package.Id;
+            return packageId.Version;
         }
 
         #endregion
