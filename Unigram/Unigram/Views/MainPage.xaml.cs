@@ -2003,57 +2003,49 @@ namespace Unigram.Views
 
         public async void NavigationView_ItemClick(RootDestination destination)
         {
-            if (destination == RootDestination.NewChat)
+            switch (destination)
             {
-                MasterDetail.NavigationService.Navigate(typeof(BasicGroupCreateStep1Page));
-            }
-            else if (destination == RootDestination.NewSecretChat)
-            {
-                MasterDetail.NavigationService.Navigate(typeof(SecretChatCreatePage));
-            }
-            else if (destination == RootDestination.NewChannel)
-            {
-                MasterDetail.NavigationService.Navigate(typeof(ChannelCreateStep1Page));
-            }
-            else if (destination == RootDestination.Chats)
-            {
-                rpMasterTitlebar.SelectedIndex = 0;
-                MasterDetail.Push(true);
-            }
-            else if (destination == RootDestination.Contacts)
-            {
-                rpMasterTitlebar.SelectedIndex = 1;
-                MasterDetail.Push(true);
-            }
-            else if (destination == RootDestination.Calls)
-            {
-                rpMasterTitlebar.SelectedIndex = 2;
-                MasterDetail.Push(true);
-            }
-            else if (destination == RootDestination.Settings)
-            {
-                rpMasterTitlebar.SelectedIndex = 3;
-                MasterDetail.Push(true);
-            }
-            else if (destination == RootDestination.InviteFriends)
-            {
-                MasterDetail.NavigationService.Navigate(typeof(InvitePage));
-            }
-            else if (destination == RootDestination.Wallet)
-            {
-                MasterDetail.NavigationService.NavigateToWallet();
-            }
-            else if (destination == RootDestination.SavedMessages)
-            {
-                var response = await ViewModel.ProtoService.SendAsync(new CreatePrivateChat(ViewModel.CacheService.Options.MyId, false));
-                if (response is Chat chat)
-                {
-                    MasterDetail.NavigationService.NavigateToChat(chat);
-                }
-            }
-            else if (destination == RootDestination.News)
-            {
-                MessageHelper.NavigateToUsername(ViewModel.ProtoService, MasterDetail.NavigationService, "unigram", null, null, null);
+                case RootDestination.NewChat:
+                    MasterDetail.NavigationService.Navigate(typeof(BasicGroupCreateStep1Page));
+                    break;
+                case RootDestination.NewSecretChat:
+                    MasterDetail.NavigationService.Navigate(typeof(SecretChatCreatePage));
+                    break;
+                case RootDestination.NewChannel:
+                    MasterDetail.NavigationService.Navigate(typeof(ChannelCreateStep1Page));
+                    break;
+                case RootDestination.Chats:
+                    rpMasterTitlebar.SelectedIndex = 0;
+                    MasterDetail.Push(true);
+                    break;
+                case RootDestination.Contacts:
+                    rpMasterTitlebar.SelectedIndex = 1;
+                    MasterDetail.Push(true);
+                    break;
+                case RootDestination.Calls:
+                    rpMasterTitlebar.SelectedIndex = 2;
+                    MasterDetail.Push(true);
+                    break;
+                case RootDestination.Settings:
+                    rpMasterTitlebar.SelectedIndex = 3;
+                    MasterDetail.Push(true);
+                    break;
+                case RootDestination.InviteFriends:
+                    MasterDetail.NavigationService.Navigate(typeof(InvitePage));
+                    break;
+                case RootDestination.Wallet:
+                    MasterDetail.NavigationService.NavigateToWallet();
+                    break;
+                case RootDestination.SavedMessages:
+                    {
+                        var response = await ViewModel.ProtoService.SendAsync(new CreatePrivateChat(ViewModel.CacheService.Options.MyId, false));
+                        if (response is Chat chat)
+                        {
+                            MasterDetail.NavigationService.NavigateToChat(chat);
+                        }
+
+                        break;
+                    }
             }
         }
 

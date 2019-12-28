@@ -70,8 +70,7 @@ namespace Unigram.Views.Host
 
                 RootDestination.Separator,
 
-                RootDestination.SavedMessages,
-                RootDestination.News
+                RootDestination.SavedMessages
             };
 
             NavigationViewList.ItemsSource = _navigationViewItems;
@@ -444,11 +443,6 @@ namespace Unigram.Views.Host
                         content.Text = Strings.Resources.SavedMessages;
                         content.Glyph = "\uE907";
                         break;
-
-                    case RootDestination.News:
-                        content.Text = "News";
-                        content.Glyph = "\uE789";
-                        break;
                 }
             }
         }
@@ -586,7 +580,6 @@ namespace Unigram.Views.Host
         Wallet,
 
         SavedMessages,
-        News,
 
         Separator
     }
