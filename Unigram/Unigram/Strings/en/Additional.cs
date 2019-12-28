@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 12/28/2019 00:01:36
+// 	Generated: 12/28/2019 03:06:59
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -149,6 +149,17 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "Ausschneiden"
+        /// </summary>
+        public static string Cut
+        {
+            get
+            {
+                return Resource.GetString("Cut");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Deleted message"
         /// </summary>
         public static string DeletedMessage
@@ -156,6 +167,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("DeletedMessage");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Edit Link"
+        /// </summary>
+        public static string EditLink
+        {
+            get
+            {
+                return Resource.GetString("EditLink");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Formatting"
+        /// </summary>
+        public static string Formatting
+        {
+            get
+            {
+                return Resource.GetString("Formatting");
             }
         }
         
@@ -193,6 +226,28 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "Paste"
+        /// </summary>
+        public static string Paste
+        {
+            get
+            {
+                return Resource.GetString("Paste");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Redo"
+        /// </summary>
+        public static string Redo
+        {
+            get
+            {
+                return Resource.GetString("Redo");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Save as..."
         /// </summary>
         public static string SaveAs
@@ -215,6 +270,17 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "Select All"
+        /// </summary>
+        public static string SelectAll
+        {
+            get
+            {
+                return Resource.GetString("SelectAll");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Show in Folder"
         /// </summary>
         public static string ShowInFolder
@@ -222,6 +288,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("ShowInFolder");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Undo"
+        /// </summary>
+        public static string Undo
+        {
+            get
+            {
+                return Resource.GetString("Undo");
             }
         }
         
