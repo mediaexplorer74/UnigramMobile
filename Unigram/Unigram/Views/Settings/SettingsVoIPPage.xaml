@@ -46,13 +46,6 @@
                             Margin="12,16,12,8"/>
                 </controls:HeaderedControl>
 
-                <controls:HeaderedControl
-                    Header="Other settings">
-                    <controls:BadgeButton
-                        Content="Open system sound preferences"
-                        Command="{x:Bind ViewModel.SystemCommand}"/>
-                </controls:HeaderedControl>
-
             </StackPanel>
         </ScrollViewer>
     </Grid>
