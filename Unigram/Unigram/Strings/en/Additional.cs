@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/10/2020 11:00:40
+// 	Generated: 05/14/2020 18:35:34
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -138,6 +138,17 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "Input volume"
+        /// </summary>
+        public static string InputVolume
+        {
+            get
+            {
+                return Resource.GetString("InputVolume");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "News"
         /// </summary>
         public static string News
@@ -156,6 +167,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("OriginalMessage");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Output volume"
+        /// </summary>
+        public static string OutputVolume
+        {
+            get
+            {
+                return Resource.GetString("OutputVolume");
             }
         }
         
@@ -222,6 +244,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("ShowInFolder");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Light"
+        /// </summary>
+        public static string ThemeLight
+        {
+            get
+            {
+                return Resource.GetString("ThemeLight");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "System Theme"
+        /// </summary>
+        public static string ThemeSystemTheme
+        {
+            get
+            {
+                return Resource.GetString("ThemeSystemTheme");
             }
         }
         

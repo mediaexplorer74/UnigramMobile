@@ -187,4 +187,40 @@
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>
   </data>
+  <data name="AdaptiveWideSetting.Header" xml:space="preserve">
+    <value>Optimiertes Layout für breite Bildschirme</value>
+    <comment>SettingsAdvancedPage</comment>
+  </data>
+  <data name="CallSettingInput.Header" xml:space="preserve">
+    <value>Eingabegerät wählen</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutput.Header" xml:space="preserve">
+    <value>Ausgabegerät wählen</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingsBtn.Content" xml:space="preserve">
+    <value>Anrufeinstellungen</value>
+    <comment>SettingsAdvancesPage</comment>
+  </data>
+  <data name="InputVolume" xml:space="preserve">
+    <value>Eingangslautstärke</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="OutputVolume" xml:space="preserve">
+    <value>Ausgangslautstärke</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="ReplaceEmoji.Header" xml:space="preserve">
+    <value>Emoji ersetzen</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Hell</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="ThemeSystemTheme" xml:space="preserve">
+    <value>Windows-Standard</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
 </root>
