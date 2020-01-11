@@ -107,7 +107,7 @@ Windows::Foundation::Size PlaceholderImageHelper::DrawSvg(String^ path, IRandomA
 
 void PlaceholderImageHelper::DrawQr(String^ data, IRandomAccessStream^ randomAccessStream)
 {
-	ThrowIfFailed(InternalDrawQR(data, randomAccessStream));
+	ThrowIfFailed(InternalDrawQr(data, randomAccessStream));
 }
 
 void PlaceholderImageHelper::DrawIdenticon(IVector<uint8>^ hash, int side, IRandomAccessStream^ randomAccessStream)
@@ -324,7 +324,7 @@ inline int ReplaceSize(const QrData& data, int pixel) {
 	return ReplaceElements(data) * pixel;
 }
 
-HRESULT PlaceholderImageHelper::InternalDrawQR(String^ text, IRandomAccessStream^ randomAccessStream)
+HRESULT PlaceholderImageHelper::InternalDrawQr(String^ text, IRandomAccessStream^ randomAccessStream)
 {
 	auto lock = m_criticalSection.Lock();
 
@@ -509,7 +509,7 @@ HRESULT PlaceholderImageHelper::InternalDrawQR(String^ text, IRandomAccessStream
 	if ((result = m_d2dContext->EndDraw()) == D2DERR_RECREATE_TARGET)
 	{
 		ReturnIfFailed(result, CreateDeviceResources());
-		return InternalDrawQR(text, randomAccessStream);
+		return InternalDrawQr(text, randomAccessStream);
 	}
 
 	return SaveImageToStream(targetBitmap.Get(), GUID_ContainerFormatPng, randomAccessStream);
