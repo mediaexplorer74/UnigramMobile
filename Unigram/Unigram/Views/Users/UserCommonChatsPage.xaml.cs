@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unigram.Views;
@@ -19,10 +18,12 @@ using Telegram.Td.Api;
 using Unigram.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Unigram.Services;
+using Unigram.Views.Chats;
+using Unigram.ViewModels.Delegates;
 
 namespace Unigram.Views.Users
 {
-    public sealed partial class UserCommonChatsPage : Page, IHandle<UpdateFile>
+    public sealed partial class UserCommonChatsPage : Page, IProfileTab, IFileDelegate
     {
         public UserCommonChatsViewModel ViewModel => DataContext as UserCommonChatsViewModel;
 
@@ -30,6 +31,41 @@ namespace Unigram.Views.Users
         {
             InitializeComponent();
             DataContext = TLContainer.Current.Resolve<UserCommonChatsViewModel>();
+        }
+
+        public int Index { get => 5; }
+        public string Text { get => Strings.Resources.SharedGroupsTab2; }
+
+        public ListViewBase GetSelector()
+        {
+            return List;
+        }
+
+        public ScrollViewer GetScrollViewer()
+        {
+            return List.GetScrollViewer();
+        }
+
+        private bool _isLocked;
+
+        private bool _isEmbedded;
+        public bool IsEmbedded
+        {
+            get => _isEmbedded;
+            set
+            {
+                Update(value, _isLocked);
+            }
+        }
+
+        public void Update(bool embedded, bool locked)
+        {
+            _isEmbedded = embedded;
+            _isLocked = locked;
+
+            Header.Visibility = embedded ? Visibility.Collapsed : Visibility.Visible;
+            ListHeader.Height = embedded && !locked ? 12 : embedded ? 12 + 16 : 16;
+            List.ItemsPanelCornerRadius = new CornerRadius(embedded && !locked ? 0 : 8, embedded && !locked ? 0 : 8, 8, 8);
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -86,7 +122,7 @@ namespace Unigram.Views.Users
             args.Handled = true;
         }
 
-        public void Handle(UpdateFile update)
+        public void UpdateFile(File file)
         {
             this.BeginOnUIThread(() =>
             {
@@ -105,7 +141,7 @@ namespace Unigram.Views.Users
                 for (int i = 0; i < ViewModel.Items.Count; i++)
                 {
                     var chat = ViewModel.Items[i];
-                    if (chat.UpdateFile(update.File))
+                    if (chat.UpdateFile(file))
                     {
                         var container = List.ContainerFromItem(chat) as ListViewItem;
                         if (container == null)

@@ -21,7 +21,9 @@ namespace Unigram.Services
         NotificationsSettings Notifications { get; }
         StickersSettings Stickers { get; }
         EmojiSettings Emoji { get; }
+#if INCLUDE_WALLET
         WalletSettings Wallet { get; }
+#endif
         AutoDownloadSettings AutoDownload { get; set; }
         AppearanceSettings Appearance { get; }
         WallpaperSettings Wallpaper { get; }
@@ -41,6 +43,7 @@ namespace Unigram.Services
         bool IsTrayVisible { get; set; }
         bool IsLaunchMinimized { get; set; }
         bool IsSendByEnterEnabled { get; set; }
+        bool IsTextFormattingVisible { get; set; }
         bool IsReplaceEmojiEnabled { get; set; }
         bool IsLargeEmojiEnabled { get; set; }
         bool IsContactsSyncEnabled { get; set; }
@@ -182,9 +185,9 @@ namespace Unigram.Services
 
         public ApplicationDataContainer Container => _container;
 
-        #region App version
+#region App version
 
-        public const string CurrentChangelog = "SCHEDULED MESSAGES\r\n• Hold the 'Send' button and select 'Schedule Message' to automatically send something at a specified time.\r\n• Schedule reminders for yourself in the 'Saved Messages' chat.\r\n• Get a notification when any of your scheduled messages are sent.\r\n\r\nSILENT MESSAGES, GROUP ADMIN TITLES AND SLOW MODE\r\n• Hold the Send button to send any message without sound – in case the recipient is sleeping.\r\n• Enable Slow Mode in Group Permissions to control how frequently members can post.\r\n• Set custom titles for group admins – like 'Founder', 'CFO' or 'Spam Fighter'.\r\n\r\nNEW PRIVACY SETTINGS\r\n• Choose who can find you on Telegram when they add your number to their phone contacts.\r\n\r\nEMOTICONS\r\n• You can now see and use directly your last used emoticons";
+        public const string CurrentChangelog = "â€¢ Enjoy rich text editing capabilites by right clicking on Chat input > Formatting > Show formatting";
         public const bool CurrentMedia = false;
 
         public int Session => _session;
@@ -228,7 +231,7 @@ namespace Unigram.Services
             return packageId.Version;
         }
 
-        #endregion
+#endregion
 
         private ChatSettingsBase _chats;
         public ChatSettingsBase Chats
@@ -267,6 +270,7 @@ namespace Unigram.Services
             }
         }
 
+#if INCLUDE_WALLET
         private WalletSettings _wallet;
         public WalletSettings Wallet
         {
@@ -275,6 +279,7 @@ namespace Unigram.Services
                 return _wallet = _wallet ?? new WalletSettings(_own);
             }
         }
+#endif
 
         private AutoDownloadSettings _autoDownload;
         public AutoDownloadSettings AutoDownload
@@ -603,6 +608,23 @@ namespace Unigram.Services
             {
                 _isSendByEnterEnabled = value;
                 AddOrUpdateValue("IsSendByEnterEnabled", value);
+            }
+        }
+
+        private bool? _isTextFormattingVisible;
+        public bool IsTextFormattingVisible
+        {
+            get
+            {
+                if (_isTextFormattingVisible == null)
+                    _isTextFormattingVisible = GetValueOrDefault("IsTextFormattingVisible", false);
+
+                return _isTextFormattingVisible ?? false;
+            }
+            set
+            {
+                _isTextFormattingVisible = value;
+                AddOrUpdateValue("IsTextFormattingVisible", value);
             }
         }
 

@@ -17,35 +17,32 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 01/11/2020 03:33:55
+// 	Generated: 02/20/2020 11:52:08
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
 {
-    using Windows.ApplicationModel.Resources;
-    
-    
+    using Unigram.Services;
+
+
     public sealed partial class Resources
     {
-        
-        private static ResourceLoader resourceLoader;
-        
+
+        private static ILocaleService resourceLoader;
+
+        static Resources()
+        {
+            resourceLoader = LocaleService.Current;
+        }
+
         /// <summary>
-        /// Get or set ResourceLoader implementation
+        /// Localized resource similar to "Abort"
         /// </summary>
-        public static ResourceLoader Resource
+        public static string Abort
         {
             get
             {
-                if ((resourceLoader == null))
-                {
-                    Resources.Initialize();
-                }
-                return resourceLoader;
-            }
-            set
-            {
-                resourceLoader = value;
+                return resourceLoader.GetString("Abort");
             }
         }
         
@@ -56,7 +53,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AbortEmail");
+                return resourceLoader.GetString("AbortEmail");
             }
         }
         
@@ -67,7 +64,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AbortPassword");
+                return resourceLoader.GetString("AbortPassword");
             }
         }
         
@@ -78,7 +75,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionCancelDownload");
+                return resourceLoader.GetString("AccActionCancelDownload");
             }
         }
         
@@ -89,7 +86,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionDownload");
+                return resourceLoader.GetString("AccActionDownload");
             }
         }
         
@@ -100,7 +97,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionEnterSelectionMode");
+                return resourceLoader.GetString("AccActionEnterSelectionMode");
             }
         }
         
@@ -111,7 +108,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionMessageOptions");
+                return resourceLoader.GetString("AccActionMessageOptions");
             }
         }
         
@@ -122,7 +119,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionOpenFile");
+                return resourceLoader.GetString("AccActionOpenFile");
             }
         }
         
@@ -133,7 +130,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionPause");
+                return resourceLoader.GetString("AccActionPause");
             }
         }
         
@@ -144,7 +141,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionPlay");
+                return resourceLoader.GetString("AccActionPlay");
             }
         }
         
@@ -155,7 +152,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionRecordVideo");
+                return resourceLoader.GetString("AccActionRecordVideo");
             }
         }
         
@@ -166,7 +163,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccActionTakePicture");
+                return resourceLoader.GetString("AccActionTakePicture");
             }
         }
         
@@ -177,7 +174,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrAspectRatio");
+                return resourceLoader.GetString("AccDescrAspectRatio");
             }
         }
         
@@ -188,7 +185,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrAttachButton");
+                return resourceLoader.GetString("AccDescrAttachButton");
             }
         }
         
@@ -199,7 +196,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrBackspace");
+                return resourceLoader.GetString("AccDescrBackspace");
             }
         }
         
@@ -210,7 +207,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrBotCommands");
+                return resourceLoader.GetString("AccDescrBotCommands");
             }
         }
         
@@ -221,7 +218,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrBotKeyboard");
+                return resourceLoader.GetString("AccDescrBotKeyboard");
             }
         }
         
@@ -232,7 +229,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCameraFlashAuto");
+                return resourceLoader.GetString("AccDescrCameraFlashAuto");
             }
         }
         
@@ -243,7 +240,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCameraFlashOff");
+                return resourceLoader.GetString("AccDescrCameraFlashOff");
             }
         }
         
@@ -254,7 +251,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCameraFlashOn");
+                return resourceLoader.GetString("AccDescrCameraFlashOn");
             }
         }
         
@@ -265,7 +262,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCancelEdit");
+                return resourceLoader.GetString("AccDescrCancelEdit");
             }
         }
         
@@ -276,7 +273,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCancelForward");
+                return resourceLoader.GetString("AccDescrCancelForward");
             }
         }
         
@@ -287,7 +284,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCancelReply");
+                return resourceLoader.GetString("AccDescrCancelReply");
             }
         }
         
@@ -298,7 +295,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrChangeProfilePicture");
+                return resourceLoader.GetString("AccDescrChangeProfilePicture");
             }
         }
         
@@ -309,7 +306,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrChannel");
+                return resourceLoader.GetString("AccDescrChannel");
             }
         }
         
@@ -320,7 +317,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrChanSilentOff");
+                return resourceLoader.GetString("AccDescrChanSilentOff");
             }
         }
         
@@ -331,7 +328,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrChanSilentOn");
+                return resourceLoader.GetString("AccDescrChanSilentOn");
             }
         }
         
@@ -342,7 +339,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrClosePlayer");
+                return resourceLoader.GetString("AccDescrClosePlayer");
             }
         }
         
@@ -353,7 +350,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrCollapsePanel");
+                return resourceLoader.GetString("AccDescrCollapsePanel");
             }
         }
         
@@ -364,7 +361,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrContactSorting");
+                return resourceLoader.GetString("AccDescrContactSorting");
             }
         }
         
@@ -375,7 +372,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrEditing");
+                return resourceLoader.GetString("AccDescrEditing");
             }
         }
         
@@ -386,7 +383,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrEmojiButton");
+                return resourceLoader.GetString("AccDescrEmojiButton");
             }
         }
         
@@ -397,7 +394,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrExpandPanel");
+                return resourceLoader.GetString("AccDescrExpandPanel");
             }
         }
         
@@ -408,7 +405,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrForwarding");
+                return resourceLoader.GetString("AccDescrForwarding");
             }
         }
         
@@ -419,7 +416,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrGIFs");
+                return resourceLoader.GetString("AccDescrGIFs");
             }
         }
         
@@ -430,7 +427,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrGoBack");
+                return resourceLoader.GetString("AccDescrGoBack");
             }
         }
         
@@ -441,7 +438,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrGoToMessage");
+                return resourceLoader.GetString("AccDescrGoToMessage");
             }
         }
         
@@ -452,7 +449,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrGroup");
+                return resourceLoader.GetString("AccDescrGroup");
             }
         }
         
@@ -463,7 +460,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrHideAccounts");
+                return resourceLoader.GetString("AccDescrHideAccounts");
             }
         }
         
@@ -474,7 +471,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrInstantCamera");
+                return resourceLoader.GetString("AccDescrInstantCamera");
             }
         }
         
@@ -485,7 +482,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrIVHeading");
+                return resourceLoader.GetString("AccDescrIVHeading");
             }
         }
         
@@ -496,7 +493,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrIVTitle");
+                return resourceLoader.GetString("AccDescrIVTitle");
             }
         }
         
@@ -507,7 +504,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMentionDown");
+                return resourceLoader.GetString("AccDescrMentionDown");
             }
         }
         
@@ -518,7 +515,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMoreOptions");
+                return resourceLoader.GetString("AccDescrMoreOptions");
             }
         }
         
@@ -529,7 +526,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMsgNotPlayed");
+                return resourceLoader.GetString("AccDescrMsgNotPlayed");
             }
         }
         
@@ -540,7 +537,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMsgRead");
+                return resourceLoader.GetString("AccDescrMsgRead");
             }
         }
         
@@ -551,7 +548,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMsgUnread");
+                return resourceLoader.GetString("AccDescrMsgUnread");
             }
         }
         
@@ -562,7 +559,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMusicInfo");
+                return resourceLoader.GetString("AccDescrMusicInfo");
             }
         }
         
@@ -573,7 +570,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMuteMic");
+                return resourceLoader.GetString("AccDescrMuteMic");
             }
         }
         
@@ -584,7 +581,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrMyLocation");
+                return resourceLoader.GetString("AccDescrMyLocation");
             }
         }
         
@@ -595,7 +592,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrOpenChat");
+                return resourceLoader.GetString("AccDescrOpenChat");
             }
         }
         
@@ -606,7 +603,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrOpenMenu");
+                return resourceLoader.GetString("AccDescrOpenMenu");
             }
         }
         
@@ -617,7 +614,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPageDown");
+                return resourceLoader.GetString("AccDescrPageDown");
             }
         }
         
@@ -628,7 +625,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPasscodeLock");
+                return resourceLoader.GetString("AccDescrPasscodeLock");
             }
         }
         
@@ -639,7 +636,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPasscodeUnlock");
+                return resourceLoader.GetString("AccDescrPasscodeUnlock");
             }
         }
         
@@ -650,7 +647,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPhotoAdjust");
+                return resourceLoader.GetString("AccDescrPhotoAdjust");
             }
         }
         
@@ -661,7 +658,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPhotoEditor");
+                return resourceLoader.GetString("AccDescrPhotoEditor");
             }
         }
         
@@ -672,7 +669,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPhotoViewer");
+                return resourceLoader.GetString("AccDescrPhotoViewer");
             }
         }
         
@@ -683,7 +680,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPlayerSpeed");
+                return resourceLoader.GetString("AccDescrPlayerSpeed");
             }
         }
         
@@ -694,7 +691,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrPrevious");
+                return resourceLoader.GetString("AccDescrPrevious");
             }
         }
         
@@ -705,7 +702,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrProfilePicture");
+                return resourceLoader.GetString("AccDescrProfilePicture");
             }
         }
         
@@ -716,7 +713,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrReceivedDate");
+                return resourceLoader.GetString("AccDescrReceivedDate");
             }
         }
         
@@ -727,7 +724,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrRepeatList");
+                return resourceLoader.GetString("AccDescrRepeatList");
             }
         }
         
@@ -738,7 +735,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrRepeatOff");
+                return resourceLoader.GetString("AccDescrRepeatOff");
             }
         }
         
@@ -749,7 +746,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrRepeatOne");
+                return resourceLoader.GetString("AccDescrRepeatOne");
             }
         }
         
@@ -760,7 +757,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrReplying");
+                return resourceLoader.GetString("AccDescrReplying");
             }
         }
         
@@ -771,7 +768,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrRotate");
+                return resourceLoader.GetString("AccDescrRotate");
             }
         }
         
@@ -782,7 +779,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSearchByUser");
+                return resourceLoader.GetString("AccDescrSearchByUser");
             }
         }
         
@@ -793,7 +790,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSearchNext");
+                return resourceLoader.GetString("AccDescrSearchNext");
             }
         }
         
@@ -804,7 +801,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSearchPrev");
+                return resourceLoader.GetString("AccDescrSearchPrev");
             }
         }
         
@@ -815,7 +812,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSecretChat");
+                return resourceLoader.GetString("AccDescrSecretChat");
             }
         }
         
@@ -826,7 +823,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSentDate");
+                return resourceLoader.GetString("AccDescrSentDate");
             }
         }
         
@@ -837,7 +834,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrShowAccounts");
+                return resourceLoader.GetString("AccDescrShowAccounts");
             }
         }
         
@@ -848,7 +845,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrShowKeyboard");
+                return resourceLoader.GetString("AccDescrShowKeyboard");
             }
         }
         
@@ -859,7 +856,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrShutter");
+                return resourceLoader.GetString("AccDescrShutter");
             }
         }
         
@@ -870,7 +867,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrStickers");
+                return resourceLoader.GetString("AccDescrStickers");
             }
         }
         
@@ -881,7 +878,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrStickerSet");
+                return resourceLoader.GetString("AccDescrStickerSet");
             }
         }
         
@@ -892,7 +889,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrStopLiveLocation");
+                return resourceLoader.GetString("AccDescrStopLiveLocation");
             }
         }
         
@@ -903,7 +900,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrSwitchCamera");
+                return resourceLoader.GetString("AccDescrSwitchCamera");
             }
         }
         
@@ -914,7 +911,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrTakeMorePics");
+                return resourceLoader.GetString("AccDescrTakeMorePics");
             }
         }
         
@@ -925,7 +922,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrUserOptions");
+                return resourceLoader.GetString("AccDescrUserOptions");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Higher quality"
+        /// </summary>
+        public static string AccDescrVideoCompressHigh
+        {
+            get
+            {
+                return resourceLoader.GetString("AccDescrVideoCompressHigh");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Smaller size"
+        /// </summary>
+        public static string AccDescrVideoCompressLow
+        {
+            get
+            {
+                return resourceLoader.GetString("AccDescrVideoCompressLow");
             }
         }
         
@@ -936,7 +955,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrVideoMessage");
+                return resourceLoader.GetString("AccDescrVideoMessage");
             }
         }
         
@@ -947,7 +966,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrVideoQuality");
+                return resourceLoader.GetString("AccDescrVideoQuality");
             }
         }
         
@@ -958,7 +977,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccDescrVoiceMessage");
+                return resourceLoader.GetString("AccDescrVoiceMessage");
             }
         }
         
@@ -969,7 +988,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Accept");
+                return resourceLoader.GetString("Accept");
             }
         }
         
@@ -980,7 +999,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccessError");
+                return resourceLoader.GetString("AccessError");
             }
         }
         
@@ -991,7 +1010,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Account");
+                return resourceLoader.GetString("Account");
             }
         }
         
@@ -1002,7 +1021,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccountAlreadyLoggedIn");
+                return resourceLoader.GetString("AccountAlreadyLoggedIn");
             }
         }
         
@@ -1013,7 +1032,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccountSettings");
+                return resourceLoader.GetString("AccountSettings");
             }
         }
         
@@ -1024,7 +1043,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccountSwitch");
+                return resourceLoader.GetString("AccountSwitch");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Release for archive"
+        /// </summary>
+        public static string AccReleaseForArchive
+        {
+            get
+            {
+                return resourceLoader.GetString("AccReleaseForArchive");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Swipe down for archive"
+        /// </summary>
+        public static string AccSwipeForArchive
+        {
+            get
+            {
+                return resourceLoader.GetString("AccSwipeForArchive");
             }
         }
         
@@ -1035,7 +1076,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AccurateTo");
+                return resourceLoader.GetString("AccurateTo");
             }
         }
         
@@ -1046,7 +1087,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionAddUser");
+                return resourceLoader.GetString("ActionAddUser");
             }
         }
         
@@ -1057,7 +1098,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionAddUserSelf");
+                return resourceLoader.GetString("ActionAddUserSelf");
             }
         }
         
@@ -1068,7 +1109,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionAddUserSelfMega");
+                return resourceLoader.GetString("ActionAddUserSelfMega");
             }
         }
         
@@ -1079,7 +1120,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionAddUserSelfYou");
+                return resourceLoader.GetString("ActionAddUserSelfYou");
             }
         }
         
@@ -1090,7 +1131,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionAddUserYou");
+                return resourceLoader.GetString("ActionAddUserYou");
             }
         }
         
@@ -1101,7 +1142,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotAllowed");
+                return resourceLoader.GetString("ActionBotAllowed");
             }
         }
         
@@ -1112,7 +1153,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentAddress");
+                return resourceLoader.GetString("ActionBotDocumentAddress");
             }
         }
         
@@ -1123,7 +1164,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentBankStatement");
+                return resourceLoader.GetString("ActionBotDocumentBankStatement");
             }
         }
         
@@ -1134,7 +1175,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentDriverLicence");
+                return resourceLoader.GetString("ActionBotDocumentDriverLicence");
             }
         }
         
@@ -1145,7 +1186,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentEmail");
+                return resourceLoader.GetString("ActionBotDocumentEmail");
             }
         }
         
@@ -1156,7 +1197,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentIdentity");
+                return resourceLoader.GetString("ActionBotDocumentIdentity");
             }
         }
         
@@ -1167,7 +1208,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentIdentityCard");
+                return resourceLoader.GetString("ActionBotDocumentIdentityCard");
             }
         }
         
@@ -1178,7 +1219,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentInternalPassport");
+                return resourceLoader.GetString("ActionBotDocumentInternalPassport");
             }
         }
         
@@ -1189,7 +1230,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentPassport");
+                return resourceLoader.GetString("ActionBotDocumentPassport");
             }
         }
         
@@ -1200,7 +1241,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentPassportRegistration");
+                return resourceLoader.GetString("ActionBotDocumentPassportRegistration");
             }
         }
         
@@ -1211,7 +1252,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentPhone");
+                return resourceLoader.GetString("ActionBotDocumentPhone");
             }
         }
         
@@ -1222,7 +1263,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentRentalAgreement");
+                return resourceLoader.GetString("ActionBotDocumentRentalAgreement");
             }
         }
         
@@ -1233,7 +1274,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocuments");
+                return resourceLoader.GetString("ActionBotDocuments");
             }
         }
         
@@ -1244,7 +1285,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentTemporaryRegistration");
+                return resourceLoader.GetString("ActionBotDocumentTemporaryRegistration");
             }
         }
         
@@ -1255,7 +1296,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionBotDocumentUtilityBill");
+                return resourceLoader.GetString("ActionBotDocumentUtilityBill");
             }
         }
         
@@ -1266,7 +1307,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionChangedPhoto");
+                return resourceLoader.GetString("ActionChangedPhoto");
             }
         }
         
@@ -1277,7 +1318,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionChangedTitle");
+                return resourceLoader.GetString("ActionChangedTitle");
             }
         }
         
@@ -1288,7 +1329,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionChannelChangedPhoto");
+                return resourceLoader.GetString("ActionChannelChangedPhoto");
             }
         }
         
@@ -1299,7 +1340,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionChannelChangedTitle");
+                return resourceLoader.GetString("ActionChannelChangedTitle");
             }
         }
         
@@ -1310,7 +1351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionChannelRemovedPhoto");
+                return resourceLoader.GetString("ActionChannelRemovedPhoto");
             }
         }
         
@@ -1321,7 +1362,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionCreateChannel");
+                return resourceLoader.GetString("ActionCreateChannel");
             }
         }
         
@@ -1332,7 +1373,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionCreateGroup");
+                return resourceLoader.GetString("ActionCreateGroup");
             }
         }
         
@@ -1343,7 +1384,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionCreateMega");
+                return resourceLoader.GetString("ActionCreateMega");
             }
         }
         
@@ -1354,7 +1395,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionInviteUser");
+                return resourceLoader.GetString("ActionInviteUser");
             }
         }
         
@@ -1365,7 +1406,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionInviteYou");
+                return resourceLoader.GetString("ActionInviteYou");
             }
         }
         
@@ -1376,7 +1417,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionKickUser");
+                return resourceLoader.GetString("ActionKickUser");
             }
         }
         
@@ -1387,7 +1428,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionKickUserYou");
+                return resourceLoader.GetString("ActionKickUserYou");
             }
         }
         
@@ -1398,7 +1439,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionLeftUser");
+                return resourceLoader.GetString("ActionLeftUser");
             }
         }
         
@@ -1409,7 +1450,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionMigrateFromGroup");
+                return resourceLoader.GetString("ActionMigrateFromGroup");
             }
         }
         
@@ -1420,7 +1461,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionMigrateFromGroupNotify");
+                return resourceLoader.GetString("ActionMigrateFromGroupNotify");
             }
         }
         
@@ -1431,7 +1472,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedContact");
+                return resourceLoader.GetString("ActionPinnedContact");
             }
         }
         
@@ -1442,7 +1483,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedFile");
+                return resourceLoader.GetString("ActionPinnedFile");
             }
         }
         
@@ -1453,7 +1494,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedGame");
+                return resourceLoader.GetString("ActionPinnedGame");
             }
         }
         
@@ -1464,7 +1505,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedGeo");
+                return resourceLoader.GetString("ActionPinnedGeo");
             }
         }
         
@@ -1475,7 +1516,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedGeoLive");
+                return resourceLoader.GetString("ActionPinnedGeoLive");
             }
         }
         
@@ -1486,7 +1527,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedGif");
+                return resourceLoader.GetString("ActionPinnedGif");
             }
         }
         
@@ -1497,7 +1538,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedMusic");
+                return resourceLoader.GetString("ActionPinnedMusic");
             }
         }
         
@@ -1508,7 +1549,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedNoText");
+                return resourceLoader.GetString("ActionPinnedNoText");
             }
         }
         
@@ -1519,7 +1560,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedPhoto");
+                return resourceLoader.GetString("ActionPinnedPhoto");
             }
         }
         
@@ -1530,7 +1571,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedPoll");
+                return resourceLoader.GetString("ActionPinnedPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "un1 pinned a quiz"
+        /// </summary>
+        public static string ActionPinnedQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("ActionPinnedQuiz");
             }
         }
         
@@ -1541,7 +1593,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedRound");
+                return resourceLoader.GetString("ActionPinnedRound");
             }
         }
         
@@ -1552,7 +1604,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedSticker");
+                return resourceLoader.GetString("ActionPinnedSticker");
             }
         }
         
@@ -1563,7 +1615,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedText");
+                return resourceLoader.GetString("ActionPinnedText");
             }
         }
         
@@ -1574,7 +1626,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedVideo");
+                return resourceLoader.GetString("ActionPinnedVideo");
             }
         }
         
@@ -1585,7 +1637,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionPinnedVoice");
+                return resourceLoader.GetString("ActionPinnedVoice");
             }
         }
         
@@ -1596,7 +1648,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionRemovedPhoto");
+                return resourceLoader.GetString("ActionRemovedPhoto");
             }
         }
         
@@ -1607,7 +1659,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionTakeScreenshoot");
+                return resourceLoader.GetString("ActionTakeScreenshoot");
             }
         }
         
@@ -1618,7 +1670,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionTakeScreenshootYou");
+                return resourceLoader.GetString("ActionTakeScreenshootYou");
             }
         }
         
@@ -1629,7 +1681,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionUserScored");
+                return resourceLoader.GetString("ActionUserScored");
             }
         }
         
@@ -1640,7 +1692,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionUserScoredInGame");
+                return resourceLoader.GetString("ActionUserScoredInGame");
             }
         }
         
@@ -1651,7 +1703,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouAddUser");
+                return resourceLoader.GetString("ActionYouAddUser");
             }
         }
         
@@ -1662,7 +1714,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouChangedPhoto");
+                return resourceLoader.GetString("ActionYouChangedPhoto");
             }
         }
         
@@ -1673,7 +1725,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouChangedTitle");
+                return resourceLoader.GetString("ActionYouChangedTitle");
             }
         }
         
@@ -1684,7 +1736,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouCreateGroup");
+                return resourceLoader.GetString("ActionYouCreateGroup");
             }
         }
         
@@ -1695,7 +1747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouKickUser");
+                return resourceLoader.GetString("ActionYouKickUser");
             }
         }
         
@@ -1706,7 +1758,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouLeftUser");
+                return resourceLoader.GetString("ActionYouLeftUser");
             }
         }
         
@@ -1717,7 +1769,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouRemovedPhoto");
+                return resourceLoader.GetString("ActionYouRemovedPhoto");
             }
         }
         
@@ -1728,7 +1780,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouScored");
+                return resourceLoader.GetString("ActionYouScored");
             }
         }
         
@@ -1739,7 +1791,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ActionYouScoredInGame");
+                return resourceLoader.GetString("ActionYouScoredInGame");
             }
         }
         
@@ -1750,7 +1802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Add");
+                return resourceLoader.GetString("Add");
             }
         }
         
@@ -1761,7 +1813,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAccount");
+                return resourceLoader.GetString("AddAccount");
             }
         }
         
@@ -1772,7 +1824,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAdminErrorBlacklisted");
+                return resourceLoader.GetString("AddAdminErrorBlacklisted");
             }
         }
         
@@ -1783,18 +1835,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAdminErrorNotAMember");
+                return resourceLoader.GetString("AddAdminErrorNotAMember");
             }
         }
         
         /// <summary>
-        /// Localized resource similar to "Add an option..."
+        /// Localized resource similar to "Add an Option..."
         /// </summary>
         public static string AddAnOption
         {
             get
             {
-                return Resource.GetString("AddAnOption");
+                return resourceLoader.GetString("AddAnOption");
             }
         }
         
@@ -1805,7 +1857,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAnOptionInfo");
+                return resourceLoader.GetString("AddAnOptionInfo");
             }
         }
         
@@ -1816,7 +1868,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAnOptionInfoMax");
+                return resourceLoader.GetString("AddAnOptionInfoMax");
             }
         }
         
@@ -1827,7 +1879,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAnotherAccount");
+                return resourceLoader.GetString("AddAnotherAccount");
             }
         }
         
@@ -1838,7 +1890,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddAnotherAccountInfo");
+                return resourceLoader.GetString("AddAnotherAccountInfo");
             }
         }
         
@@ -1849,7 +1901,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddBannedErrorAdmin");
+                return resourceLoader.GetString("AddBannedErrorAdmin");
             }
         }
         
@@ -1860,7 +1912,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddBotAsAdmin");
+                return resourceLoader.GetString("AddBotAsAdmin");
             }
         }
         
@@ -1871,7 +1923,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddCaption");
+                return resourceLoader.GetString("AddCaption");
             }
         }
         
@@ -1882,7 +1934,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddContact");
+                return resourceLoader.GetString("AddContact");
             }
         }
         
@@ -1893,7 +1945,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddContactByPhone");
+                return resourceLoader.GetString("AddContactByPhone");
             }
         }
         
@@ -1904,7 +1956,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddContactChat");
+                return resourceLoader.GetString("AddContactChat");
             }
         }
         
@@ -1915,7 +1967,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddContactFullChat");
+                return resourceLoader.GetString("AddContactFullChat");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Add Contact"
+        /// </summary>
+        public static string AddContactPhonebookTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AddContactPhonebookTitle");
             }
         }
         
@@ -1926,7 +1989,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddContactTitle");
+                return resourceLoader.GetString("AddContactTitle");
             }
         }
         
@@ -1937,7 +2000,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddedToFavorites");
+                return resourceLoader.GetString("AddedToFavorites");
             }
         }
         
@@ -1948,7 +2011,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddExceptions");
+                return resourceLoader.GetString("AddExceptions");
             }
         }
         
@@ -1959,7 +2022,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMasks");
+                return resourceLoader.GetString("AddMasks");
             }
         }
         
@@ -1970,7 +2033,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMasksInstalled");
+                return resourceLoader.GetString("AddMasksInstalled");
             }
         }
         
@@ -1981,7 +2044,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMember");
+                return resourceLoader.GetString("AddMember");
             }
         }
         
@@ -1992,7 +2055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMembersAlertCountText");
+                return resourceLoader.GetString("AddMembersAlertCountText");
             }
         }
         
@@ -2003,7 +2066,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMembersAlertNamesText");
+                return resourceLoader.GetString("AddMembersAlertNamesText");
             }
         }
         
@@ -2014,7 +2077,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMembersAlertTitle");
+                return resourceLoader.GetString("AddMembersAlertTitle");
             }
         }
         
@@ -2025,7 +2088,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMembersForwardMessages");
+                return resourceLoader.GetString("AddMembersForwardMessages");
             }
         }
         
@@ -2036,7 +2099,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddMutual");
+                return resourceLoader.GetString("AddMutual");
             }
         }
         
@@ -2047,7 +2110,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddOneMemberAlertTitle");
+                return resourceLoader.GetString("AddOneMemberAlertTitle");
             }
         }
         
@@ -2058,7 +2121,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddOneMemberForwardMessages");
+                return resourceLoader.GetString("AddOneMemberForwardMessages");
             }
         }
         
@@ -2069,7 +2132,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddPeopleNearby");
+                return resourceLoader.GetString("AddPeopleNearby");
             }
         }
         
@@ -2080,7 +2143,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddProxy");
+                return resourceLoader.GetString("AddProxy");
             }
         }
         
@@ -2091,7 +2154,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddRecipient");
+                return resourceLoader.GetString("AddRecipient");
             }
         }
         
@@ -2102,7 +2165,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddShortcut");
+                return resourceLoader.GetString("AddShortcut");
             }
         }
         
@@ -2113,7 +2176,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddStickers");
+                return resourceLoader.GetString("AddStickers");
             }
         }
         
@@ -2124,7 +2187,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddStickersCount");
+                return resourceLoader.GetString("AddStickersCount");
             }
         }
         
@@ -2135,7 +2198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddStickersInstalled");
+                return resourceLoader.GetString("AddStickersInstalled");
             }
         }
         
@@ -2146,7 +2209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddStickersNotFound");
+                return resourceLoader.GetString("AddStickersNotFound");
             }
         }
         
@@ -2157,7 +2220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddSubscriber");
+                return resourceLoader.GetString("AddSubscriber");
             }
         }
         
@@ -2168,7 +2231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToContacts");
+                return resourceLoader.GetString("AddToContacts");
             }
         }
         
@@ -2179,7 +2242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToExceptions");
+                return resourceLoader.GetString("AddToExceptions");
             }
         }
         
@@ -2190,7 +2253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToExistingContact");
+                return resourceLoader.GetString("AddToExistingContact");
             }
         }
         
@@ -2201,7 +2264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToFavorites");
+                return resourceLoader.GetString("AddToFavorites");
             }
         }
         
@@ -2212,7 +2275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToMasks");
+                return resourceLoader.GetString("AddToMasks");
             }
         }
         
@@ -2223,7 +2286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToStickers");
+                return resourceLoader.GetString("AddToStickers");
             }
         }
         
@@ -2234,7 +2297,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToTheGroup");
+                return resourceLoader.GetString("AddToTheGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to add **{0}** to the group **{1}**?"
+        /// </summary>
+        public static string AddToTheGroupAlertText
+        {
+            get
+            {
+                return resourceLoader.GetString("AddToTheGroupAlertText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Add bot"
+        /// </summary>
+        public static string AddToTheGroupAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AddToTheGroupAlertTitle");
             }
         }
         
@@ -2245,7 +2330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToTheGroupForwardCount");
+                return resourceLoader.GetString("AddToTheGroupForwardCount");
             }
         }
         
@@ -2256,7 +2341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AddToTheGroupTitle");
+                return resourceLoader.GetString("AddToTheGroupTitle");
             }
         }
         
@@ -2267,7 +2352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AdminWillBeRemoved");
+                return resourceLoader.GetString("AdminWillBeRemoved");
             }
         }
         
@@ -2278,7 +2363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Agree");
+                return resourceLoader.GetString("Agree");
             }
         }
         
@@ -2289,7 +2374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Alert");
+                return resourceLoader.GetString("Alert");
             }
         }
         
@@ -2300,7 +2385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllAccounts");
+                return resourceLoader.GetString("AllAccounts");
             }
         }
         
@@ -2311,7 +2396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllMedia");
+                return resourceLoader.GetString("AllMedia");
             }
         }
         
@@ -2322,7 +2407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowCustomQuickReply");
+                return resourceLoader.GetString("AllowCustomQuickReply");
             }
         }
         
@@ -2333,7 +2418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowFillNumber");
+                return resourceLoader.GetString("AllowFillNumber");
             }
         }
         
@@ -2344,7 +2429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowReadCall");
+                return resourceLoader.GetString("AllowReadCall");
             }
         }
         
@@ -2355,7 +2440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowReadCallAndLog");
+                return resourceLoader.GetString("AllowReadCallAndLog");
             }
         }
         
@@ -2366,7 +2451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowReadCallAndSms");
+                return resourceLoader.GetString("AllowReadCallAndSms");
             }
         }
         
@@ -2377,7 +2462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowReadCallLog");
+                return resourceLoader.GetString("AllowReadCallLog");
             }
         }
         
@@ -2388,7 +2473,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllowReadSms");
+                return resourceLoader.GetString("AllowReadSms");
             }
         }
         
@@ -2399,7 +2484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllPhotos");
+                return resourceLoader.GetString("AllPhotos");
             }
         }
         
@@ -2410,7 +2495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllVideo");
+                return resourceLoader.GetString("AllVideo");
             }
         }
         
@@ -2421,7 +2506,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AllVideos");
+                return resourceLoader.GetString("AllVideos");
             }
         }
         
@@ -2432,7 +2517,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ALongTimeAgo");
+                return resourceLoader.GetString("ALongTimeAgo");
             }
         }
         
@@ -2443,7 +2528,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlternativeOptions");
+                return resourceLoader.GetString("AlternativeOptions");
             }
         }
         
@@ -2454,7 +2539,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysAllow");
+                return resourceLoader.GetString("AlwaysAllow");
             }
         }
         
@@ -2465,7 +2550,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysAllowPlaceholder");
+                return resourceLoader.GetString("AlwaysAllowPlaceholder");
             }
         }
         
@@ -2476,7 +2561,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysShareWith");
+                return resourceLoader.GetString("AlwaysShareWith");
             }
         }
         
@@ -2487,7 +2572,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysShareWithPlaceholder");
+                return resourceLoader.GetString("AlwaysShareWithPlaceholder");
             }
         }
         
@@ -2498,7 +2583,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysShareWithTitle");
+                return resourceLoader.GetString("AlwaysShareWithTitle");
             }
         }
         
@@ -2509,7 +2594,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AlwaysShowPopup");
+                return resourceLoader.GetString("AlwaysShowPopup");
             }
         }
         
@@ -2520,7 +2605,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingFew");
+                return resourceLoader.GetString("AndMoreTypingFew");
             }
         }
         
@@ -2531,7 +2616,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupFew");
+                return resourceLoader.GetString("AndMoreTypingGroupFew");
             }
         }
         
@@ -2542,7 +2627,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupMany");
+                return resourceLoader.GetString("AndMoreTypingGroupMany");
             }
         }
         
@@ -2553,7 +2638,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupOne");
+                return resourceLoader.GetString("AndMoreTypingGroupOne");
             }
         }
         
@@ -2564,7 +2649,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupOther");
+                return resourceLoader.GetString("AndMoreTypingGroupOther");
             }
         }
         
@@ -2575,7 +2660,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupTwo");
+                return resourceLoader.GetString("AndMoreTypingGroupTwo");
             }
         }
         
@@ -2586,7 +2671,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingGroupZero");
+                return resourceLoader.GetString("AndMoreTypingGroupZero");
             }
         }
         
@@ -2597,7 +2682,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingMany");
+                return resourceLoader.GetString("AndMoreTypingMany");
             }
         }
         
@@ -2608,7 +2693,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingOne");
+                return resourceLoader.GetString("AndMoreTypingOne");
             }
         }
         
@@ -2619,7 +2704,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingOther");
+                return resourceLoader.GetString("AndMoreTypingOther");
             }
         }
         
@@ -2630,7 +2715,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingTwo");
+                return resourceLoader.GetString("AndMoreTypingTwo");
             }
         }
         
@@ -2641,7 +2726,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndMoreTypingZero");
+                return resourceLoader.GetString("AndMoreTypingZero");
             }
         }
         
@@ -2652,7 +2737,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherFew");
+                return resourceLoader.GetString("AndOtherFew");
             }
         }
         
@@ -2663,7 +2748,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherMany");
+                return resourceLoader.GetString("AndOtherMany");
             }
         }
         
@@ -2674,7 +2759,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherOne");
+                return resourceLoader.GetString("AndOtherOne");
             }
         }
         
@@ -2685,7 +2770,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherOther");
+                return resourceLoader.GetString("AndOtherOther");
             }
         }
         
@@ -2696,7 +2781,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherTwo");
+                return resourceLoader.GetString("AndOtherTwo");
             }
         }
         
@@ -2707,7 +2792,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AndOtherZero");
+                return resourceLoader.GetString("AndOtherZero");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Animated Stickers"
+        /// </summary>
+        public static string AnimatedStickers
+        {
+            get
+            {
+                return resourceLoader.GetString("AnimatedStickers");
             }
         }
         
@@ -2718,7 +2814,84 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AnonymousPoll");
+                return resourceLoader.GetString("AnonymousPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Anonymous Quiz"
+        /// </summary>
+        public static string AnonymousQuizPoll
+        {
+            get
+            {
+                return resourceLoader.GetString("AnonymousQuizPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string AnswerFew
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string AnswerMany
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} answer"
+        /// </summary>
+        public static string AnswerOne
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} answers"
+        /// </summary>
+        public static string AnswerOther
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string AnswerTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string AnswerZero
+        {
+            get
+            {
+                return resourceLoader.GetString("AnswerZero");
             }
         }
         
@@ -2729,7 +2902,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ApkRestricted");
+                return resourceLoader.GetString("ApkRestricted");
             }
         }
         
@@ -2740,7 +2913,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Appearance");
+                return resourceLoader.GetString("Appearance");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Browse the app's folder"
+        /// </summary>
+        public static string AppFolderInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("AppFolderInfo");
             }
         }
         
@@ -2751,7 +2935,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ApplyLocalizationFile");
+                return resourceLoader.GetString("ApplyLocalizationFile");
             }
         }
         
@@ -2762,7 +2946,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ApplyTheme");
+                return resourceLoader.GetString("ApplyTheme");
             }
         }
         
@@ -2773,7 +2957,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ApplyThemeFile");
+                return resourceLoader.GetString("ApplyThemeFile");
             }
         }
         
@@ -2784,7 +2968,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AppName");
+                return resourceLoader.GetString("AppName");
             }
         }
         
@@ -2795,7 +2979,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AppNameBeta");
+                return resourceLoader.GetString("AppNameBeta");
             }
         }
         
@@ -2806,7 +2990,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("April");
+                return resourceLoader.GetString("April");
             }
         }
         
@@ -2817,7 +3001,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Archive");
+                return resourceLoader.GetString("Archive");
             }
         }
         
@@ -2828,7 +3012,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedChats");
+                return resourceLoader.GetString("ArchivedChats");
             }
         }
         
@@ -2839,7 +3023,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedMasks");
+                return resourceLoader.GetString("ArchivedMasks");
             }
         }
         
@@ -2850,7 +3034,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedMasksAlertInfo");
+                return resourceLoader.GetString("ArchivedMasksAlertInfo");
             }
         }
         
@@ -2861,7 +3045,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedMasksAlertTitle");
+                return resourceLoader.GetString("ArchivedMasksAlertTitle");
             }
         }
         
@@ -2872,7 +3056,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedMasksEmpty");
+                return resourceLoader.GetString("ArchivedMasksEmpty");
             }
         }
         
@@ -2884,7 +3068,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedMasksInfo");
+                return resourceLoader.GetString("ArchivedMasksInfo");
             }
         }
         
@@ -2895,7 +3079,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedStickers");
+                return resourceLoader.GetString("ArchivedStickers");
             }
         }
         
@@ -2906,7 +3090,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedStickersAlertInfo");
+                return resourceLoader.GetString("ArchivedStickersAlertInfo");
             }
         }
         
@@ -2917,7 +3101,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedStickersAlertTitle");
+                return resourceLoader.GetString("ArchivedStickersAlertTitle");
             }
         }
         
@@ -2928,7 +3112,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedStickersEmpty");
+                return resourceLoader.GetString("ArchivedStickersEmpty");
             }
         }
         
@@ -2940,7 +3124,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivedStickersInfo");
+                return resourceLoader.GetString("ArchivedStickersInfo");
             }
         }
         
@@ -2951,7 +3135,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHidden");
+                return resourceLoader.GetString("ArchiveHidden");
             }
         }
         
@@ -2962,7 +3146,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHiddenInfo");
+                return resourceLoader.GetString("ArchiveHiddenInfo");
             }
         }
         
@@ -2973,7 +3157,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintHeader1");
+                return resourceLoader.GetString("ArchiveHintHeader1");
             }
         }
         
@@ -2984,7 +3168,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintHeader2");
+                return resourceLoader.GetString("ArchiveHintHeader2");
             }
         }
         
@@ -2995,7 +3179,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintHeader3");
+                return resourceLoader.GetString("ArchiveHintHeader3");
             }
         }
         
@@ -3006,7 +3190,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintText1");
+                return resourceLoader.GetString("ArchiveHintText1");
             }
         }
         
@@ -3017,7 +3201,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintText2");
+                return resourceLoader.GetString("ArchiveHintText2");
             }
         }
         
@@ -3028,7 +3212,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchiveHintText3");
+                return resourceLoader.GetString("ArchiveHintText3");
             }
         }
         
@@ -3039,7 +3223,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivePinned");
+                return resourceLoader.GetString("ArchivePinned");
             }
         }
         
@@ -3050,7 +3234,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArchivePinnedInfo");
+                return resourceLoader.GetString("ArchivePinnedInfo");
             }
         }
         
@@ -3061,7 +3245,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreTyping");
+                return resourceLoader.GetString("AreTyping");
             }
         }
         
@@ -3072,7 +3256,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreTypingGroup");
+                return resourceLoader.GetString("AreTypingGroup");
             }
         }
         
@@ -3083,7 +3267,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSure");
+                return resourceLoader.GetString("AreYouSure");
             }
         }
         
@@ -3094,7 +3278,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureBlockContact");
+                return resourceLoader.GetString("AreYouSureBlockContact");
             }
         }
         
@@ -3105,7 +3289,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureBlockContact2");
+                return resourceLoader.GetString("AreYouSureBlockContact2");
             }
         }
         
@@ -3116,7 +3300,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearDrafts");
+                return resourceLoader.GetString("AreYouSureClearDrafts");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete cloud drafts"
+        /// </summary>
+        public static string AreYouSureClearDraftsTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureClearDraftsTitle");
             }
         }
         
@@ -3127,7 +3322,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistory");
+                return resourceLoader.GetString("AreYouSureClearHistory");
             }
         }
         
@@ -3138,7 +3333,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryCacheFewChats");
+                return resourceLoader.GetString("AreYouSureClearHistoryCacheFewChats");
             }
         }
         
@@ -3149,7 +3344,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryChannel");
+                return resourceLoader.GetString("AreYouSureClearHistoryChannel");
             }
         }
         
@@ -3160,7 +3355,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryFewChats");
+                return resourceLoader.GetString("AreYouSureClearHistoryFewChats");
             }
         }
         
@@ -3171,7 +3366,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryGroup");
+                return resourceLoader.GetString("AreYouSureClearHistoryGroup");
             }
         }
         
@@ -3182,7 +3377,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistorySavedMessages");
+                return resourceLoader.GetString("AreYouSureClearHistorySavedMessages");
             }
         }
         
@@ -3193,7 +3388,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryWithChat");
+                return resourceLoader.GetString("AreYouSureClearHistoryWithChat");
             }
         }
         
@@ -3204,7 +3399,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryWithSecretUser");
+                return resourceLoader.GetString("AreYouSureClearHistoryWithSecretUser");
             }
         }
         
@@ -3215,7 +3410,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureClearHistoryWithUser");
+                return resourceLoader.GetString("AreYouSureClearHistoryWithUser");
             }
         }
         
@@ -3226,7 +3421,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteAndExit");
+                return resourceLoader.GetString("AreYouSureDeleteAndExit");
             }
         }
         
@@ -3237,7 +3432,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteAndExitName");
+                return resourceLoader.GetString("AreYouSureDeleteAndExitName");
             }
         }
         
@@ -3248,7 +3443,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteContact");
+                return resourceLoader.GetString("AreYouSureDeleteContact");
             }
         }
         
@@ -3259,7 +3454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteFewChats");
+                return resourceLoader.GetString("AreYouSureDeleteFewChats");
             }
         }
         
@@ -3270,7 +3465,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteFewMessages");
+                return resourceLoader.GetString("AreYouSureDeleteFewMessages");
             }
         }
         
@@ -3281,7 +3476,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteFewMessagesMega");
+                return resourceLoader.GetString("AreYouSureDeleteFewMessagesMega");
             }
         }
         
@@ -3292,7 +3487,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteGIF");
+                return resourceLoader.GetString("AreYouSureDeleteGIF");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete GIF"
+        /// </summary>
+        public static string AreYouSureDeleteGIFTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureDeleteGIFTitle");
             }
         }
         
@@ -3303,7 +3509,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteMessages");
+                return resourceLoader.GetString("AreYouSureDeleteMessages");
             }
         }
         
@@ -3314,7 +3520,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeletePhoto");
+                return resourceLoader.GetString("AreYouSureDeletePhoto");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete photo"
+        /// </summary>
+        public static string AreYouSureDeletePhotoTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureDeletePhotoTitle");
             }
         }
         
@@ -3325,7 +3542,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteSingleMessage");
+                return resourceLoader.GetString("AreYouSureDeleteSingleMessage");
             }
         }
         
@@ -3336,7 +3553,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteSingleMessageMega");
+                return resourceLoader.GetString("AreYouSureDeleteSingleMessageMega");
             }
         }
         
@@ -3347,7 +3564,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteThisChat");
+                return resourceLoader.GetString("AreYouSureDeleteThisChat");
             }
         }
         
@@ -3358,7 +3575,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteThisChatSavedMessages");
+                return resourceLoader.GetString("AreYouSureDeleteThisChatSavedMessages");
             }
         }
         
@@ -3369,7 +3586,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteThisChatWithGroup");
+                return resourceLoader.GetString("AreYouSureDeleteThisChatWithGroup");
             }
         }
         
@@ -3380,7 +3597,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteThisChatWithSecretUser");
+                return resourceLoader.GetString("AreYouSureDeleteThisChatWithSecretUser");
             }
         }
         
@@ -3391,7 +3608,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteThisChatWithUser");
+                return resourceLoader.GetString("AreYouSureDeleteThisChatWithUser");
             }
         }
         
@@ -3402,7 +3619,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureDeleteVideo");
+                return resourceLoader.GetString("AreYouSureDeleteVideo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete video"
+        /// </summary>
+        public static string AreYouSureDeleteVideoTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureDeleteVideoTitle");
             }
         }
         
@@ -3417,7 +3645,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureLogout");
+                return resourceLoader.GetString("AreYouSureLogout");
             }
         }
         
@@ -3428,7 +3656,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureRegistration");
+                return resourceLoader.GetString("AreYouSureRegistration");
             }
         }
         
@@ -3439,7 +3667,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureSecretChat");
+                return resourceLoader.GetString("AreYouSureSecretChat");
             }
         }
         
@@ -3450,7 +3678,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureSecretChatTitle");
+                return resourceLoader.GetString("AreYouSureSecretChatTitle");
             }
         }
         
@@ -3461,7 +3689,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureSessions");
+                return resourceLoader.GetString("AreYouSureSessions");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Terminate sessions"
+        /// </summary>
+        public static string AreYouSureSessionsTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureSessionsTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Terminate session"
+        /// </summary>
+        public static string AreYouSureSessionTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("AreYouSureSessionTitle");
             }
         }
         
@@ -3472,7 +3722,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureShareMyContactInfo");
+                return resourceLoader.GetString("AreYouSureShareMyContactInfo");
             }
         }
         
@@ -3483,18 +3733,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureShareMyContactInfoBot");
+                return resourceLoader.GetString("AreYouSureShareMyContactInfoBot");
             }
         }
         
         /// <summary>
-        /// Localized resource similar to "Are you sure you want to share your phone number {0} with **{1}**?"
+        /// Localized resource similar to "Do you want to share your phone number {0} with **{1}**?"
         /// </summary>
         public static string AreYouSureShareMyContactInfoUser
         {
             get
             {
-                return Resource.GetString("AreYouSureShareMyContactInfoUser");
+                return resourceLoader.GetString("AreYouSureShareMyContactInfoUser");
             }
         }
         
@@ -3505,7 +3755,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureUnblockContact");
+                return resourceLoader.GetString("AreYouSureUnblockContact");
             }
         }
         
@@ -3516,7 +3766,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AreYouSureWebSessions");
+                return resourceLoader.GetString("AreYouSureWebSessions");
             }
         }
         
@@ -3527,7 +3777,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArticleByAuthor");
+                return resourceLoader.GetString("ArticleByAuthor");
             }
         }
         
@@ -3538,7 +3788,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ArticleDateByAuthor");
+                return resourceLoader.GetString("ArticleDateByAuthor");
             }
         }
         
@@ -3549,7 +3799,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AskAQuestion");
+                return resourceLoader.GetString("AskAQuestion");
             }
         }
         
@@ -3562,7 +3812,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AskAQuestionInfo");
+                return resourceLoader.GetString("AskAQuestionInfo");
             }
         }
         
@@ -3573,7 +3823,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AskButton");
+                return resourceLoader.GetString("AskButton");
             }
         }
         
@@ -3584,7 +3834,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachAudio");
+                return resourceLoader.GetString("AttachAudio");
             }
         }
         
@@ -3595,7 +3845,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachBotsHelp");
+                return resourceLoader.GetString("AttachBotsHelp");
             }
         }
         
@@ -3606,7 +3856,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachContact");
+                return resourceLoader.GetString("AttachContact");
             }
         }
         
@@ -3617,7 +3867,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachDestructingPhoto");
+                return resourceLoader.GetString("AttachDestructingPhoto");
             }
         }
         
@@ -3628,7 +3878,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachDestructingVideo");
+                return resourceLoader.GetString("AttachDestructingVideo");
             }
         }
         
@@ -3639,7 +3889,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachDocument");
+                return resourceLoader.GetString("AttachDocument");
             }
         }
         
@@ -3650,7 +3900,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachGame");
+                return resourceLoader.GetString("AttachGame");
             }
         }
         
@@ -3661,7 +3911,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachGif");
+                return resourceLoader.GetString("AttachGif");
             }
         }
         
@@ -3672,7 +3922,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachGifRestricted");
+                return resourceLoader.GetString("AttachGifRestricted");
             }
         }
         
@@ -3683,7 +3933,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachGifRestrictedForever");
+                return resourceLoader.GetString("AttachGifRestrictedForever");
             }
         }
         
@@ -3694,7 +3944,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachInlineRestricted");
+                return resourceLoader.GetString("AttachInlineRestricted");
             }
         }
         
@@ -3705,7 +3955,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachInlineRestrictedForever");
+                return resourceLoader.GetString("AttachInlineRestrictedForever");
             }
         }
         
@@ -3716,7 +3966,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachLiveLocation");
+                return resourceLoader.GetString("AttachLiveLocation");
             }
         }
         
@@ -3727,7 +3977,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachLiveLocationIsSharing");
+                return resourceLoader.GetString("AttachLiveLocationIsSharing");
             }
         }
         
@@ -3738,7 +3988,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachLocation");
+                return resourceLoader.GetString("AttachLocation");
             }
         }
         
@@ -3749,7 +3999,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachMediaRestricted");
+                return resourceLoader.GetString("AttachMediaRestricted");
             }
         }
         
@@ -3760,7 +4010,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachMediaRestrictedForever");
+                return resourceLoader.GetString("AttachMediaRestrictedForever");
             }
         }
         
@@ -3771,7 +4021,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachMusic");
+                return resourceLoader.GetString("AttachMusic");
             }
         }
         
@@ -3782,7 +4032,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachPhoto");
+                return resourceLoader.GetString("AttachPhoto");
             }
         }
         
@@ -3793,7 +4043,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachPhotoExpired");
+                return resourceLoader.GetString("AttachPhotoExpired");
             }
         }
         
@@ -3804,7 +4054,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachRound");
+                return resourceLoader.GetString("AttachRound");
             }
         }
         
@@ -3815,7 +4065,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachSticker");
+                return resourceLoader.GetString("AttachSticker");
             }
         }
         
@@ -3826,7 +4076,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachStickersRestricted");
+                return resourceLoader.GetString("AttachStickersRestricted");
             }
         }
         
@@ -3837,7 +4087,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachStickersRestrictedForever");
+                return resourceLoader.GetString("AttachStickersRestrictedForever");
             }
         }
         
@@ -3848,7 +4098,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachVideo");
+                return resourceLoader.GetString("AttachVideo");
             }
         }
         
@@ -3859,7 +4109,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AttachVideoExpired");
+                return resourceLoader.GetString("AttachVideoExpired");
             }
         }
         
@@ -3870,7 +4120,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AudioAutodownload");
+                return resourceLoader.GetString("AudioAutodownload");
             }
         }
         
@@ -3881,7 +4131,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AudioTitle");
+                return resourceLoader.GetString("AudioTitle");
             }
         }
         
@@ -3892,7 +4142,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AudioUnknownArtist");
+                return resourceLoader.GetString("AudioUnknownArtist");
             }
         }
         
@@ -3903,7 +4153,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AudioUnknownTitle");
+                return resourceLoader.GetString("AudioUnknownTitle");
             }
         }
         
@@ -3914,7 +4164,119 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("August");
+                return resourceLoader.GetString("August");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Scan QR Code"
+        /// </summary>
+        public static string AuthAnotherClient
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClient");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "https://desktop.telegram.org/"
+        /// </summary>
+        public static string AuthAnotherClientDownloadClientUrl
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientDownloadClientUrl");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Download Telegram on your computer from *desktop.telegram.org*."
+        /// </summary>
+        public static string AuthAnotherClientInfo1
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientInfo1");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Run Telegram Desktop to get the QR code."
+        /// </summary>
+        public static string AuthAnotherClientInfo2
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientInfo2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Scan the QR code to connect your account."
+        /// </summary>
+        public static string AuthAnotherClientInfo3
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientInfo3");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No auth token found"
+        /// </summary>
+        public static string AuthAnotherClientNotFound
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientNotFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Auth successful"
+        /// </summary>
+        public static string AuthAnotherClientOk
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientOk");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Scan QR Code"
+        /// </summary>
+        public static string AuthAnotherClientScan
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientScan");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Token invalid or already expired."
+        /// </summary>
+        public static string AuthAnotherClientTokenError
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientTokenError");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "This code can be used to allow someone to log in to your Telegram account.
+        ///
+        ///To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code."
+        /// </summary>
+        public static string AuthAnotherClientUrl
+        {
+            get
+            {
+                return resourceLoader.GetString("AuthAnotherClientUrl");
             }
         }
         
@@ -3925,7 +4287,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadAudioInfo");
+                return resourceLoader.GetString("AutoDownloadAudioInfo");
             }
         }
         
@@ -3936,7 +4298,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadChannels");
+                return resourceLoader.GetString("AutoDownloadChannels");
             }
         }
         
@@ -3947,7 +4309,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadContacts");
+                return resourceLoader.GetString("AutoDownloadContacts");
             }
         }
         
@@ -3958,7 +4320,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadCustom");
+                return resourceLoader.GetString("AutoDownloadCustom");
             }
         }
         
@@ -3969,7 +4331,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadDataUsage");
+                return resourceLoader.GetString("AutoDownloadDataUsage");
             }
         }
         
@@ -3980,7 +4342,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadFiles");
+                return resourceLoader.GetString("AutoDownloadFiles");
             }
         }
         
@@ -3991,7 +4353,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadFilesOn");
+                return resourceLoader.GetString("AutoDownloadFilesOn");
             }
         }
         
@@ -4002,7 +4364,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadFilesTitle");
+                return resourceLoader.GetString("AutoDownloadFilesTitle");
             }
         }
         
@@ -4013,7 +4375,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutodownloadGroupChats");
+                return resourceLoader.GetString("AutodownloadGroupChats");
             }
         }
         
@@ -4024,7 +4386,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadGroups");
+                return resourceLoader.GetString("AutoDownloadGroups");
             }
         }
         
@@ -4035,7 +4397,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadHigh");
+                return resourceLoader.GetString("AutoDownloadHigh");
             }
         }
         
@@ -4046,7 +4408,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadLow");
+                return resourceLoader.GetString("AutoDownloadLow");
             }
         }
         
@@ -4057,7 +4419,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadMaxFileSize");
+                return resourceLoader.GetString("AutoDownloadMaxFileSize");
             }
         }
         
@@ -4068,7 +4430,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadMaxVideoSize");
+                return resourceLoader.GetString("AutoDownloadMaxVideoSize");
             }
         }
         
@@ -4079,7 +4441,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadMedia");
+                return resourceLoader.GetString("AutoDownloadMedia");
             }
         }
         
@@ -4090,7 +4452,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadMedium");
+                return resourceLoader.GetString("AutoDownloadMedium");
             }
         }
         
@@ -4101,7 +4463,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOff");
+                return resourceLoader.GetString("AutoDownloadOff");
             }
         }
         
@@ -4112,7 +4474,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnAllChats");
+                return resourceLoader.GetString("AutoDownloadOnAllChats");
             }
         }
         
@@ -4123,7 +4485,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnFor");
+                return resourceLoader.GetString("AutoDownloadOnFor");
             }
         }
         
@@ -4134,7 +4496,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnMobileData");
+                return resourceLoader.GetString("AutoDownloadOnMobileData");
             }
         }
         
@@ -4145,7 +4507,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnMobileDataInfo");
+                return resourceLoader.GetString("AutoDownloadOnMobileDataInfo");
             }
         }
         
@@ -4156,7 +4518,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnRoamingData");
+                return resourceLoader.GetString("AutoDownloadOnRoamingData");
             }
         }
         
@@ -4167,7 +4529,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnRoamingDataInfo");
+                return resourceLoader.GetString("AutoDownloadOnRoamingDataInfo");
             }
         }
         
@@ -4178,7 +4540,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnUpToFor");
+                return resourceLoader.GetString("AutoDownloadOnUpToFor");
             }
         }
         
@@ -4189,7 +4551,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnWiFiData");
+                return resourceLoader.GetString("AutoDownloadOnWiFiData");
             }
         }
         
@@ -4200,7 +4562,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadOnWiFiDataInfo");
+                return resourceLoader.GetString("AutoDownloadOnWiFiDataInfo");
             }
         }
         
@@ -4211,7 +4573,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPhotos");
+                return resourceLoader.GetString("AutoDownloadPhotos");
             }
         }
         
@@ -4222,7 +4584,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPhotosOn");
+                return resourceLoader.GetString("AutoDownloadPhotosOn");
             }
         }
         
@@ -4233,7 +4595,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPhotosTitle");
+                return resourceLoader.GetString("AutoDownloadPhotosTitle");
             }
         }
         
@@ -4244,7 +4606,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPm");
+                return resourceLoader.GetString("AutoDownloadPm");
             }
         }
         
@@ -4255,7 +4617,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPreloadMusic");
+                return resourceLoader.GetString("AutoDownloadPreloadMusic");
             }
         }
         
@@ -4266,7 +4628,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPreloadMusicInfo");
+                return resourceLoader.GetString("AutoDownloadPreloadMusicInfo");
             }
         }
         
@@ -4277,7 +4639,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPreloadVideo");
+                return resourceLoader.GetString("AutoDownloadPreloadVideo");
             }
         }
         
@@ -4288,7 +4650,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadPreloadVideoInfo");
+                return resourceLoader.GetString("AutoDownloadPreloadVideoInfo");
             }
         }
         
@@ -4299,7 +4661,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutodownloadPrivateChats");
+                return resourceLoader.GetString("AutodownloadPrivateChats");
             }
         }
         
@@ -4310,7 +4672,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutodownloadSizeLimit");
+                return resourceLoader.GetString("AutodownloadSizeLimit");
             }
         }
         
@@ -4321,7 +4683,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutodownloadSizeLimitUpTo");
+                return resourceLoader.GetString("AutodownloadSizeLimitUpTo");
             }
         }
         
@@ -4332,7 +4694,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadTypes");
+                return resourceLoader.GetString("AutoDownloadTypes");
             }
         }
         
@@ -4343,7 +4705,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadUpToOnAllChats");
+                return resourceLoader.GetString("AutoDownloadUpToOnAllChats");
             }
         }
         
@@ -4354,7 +4716,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadVideos");
+                return resourceLoader.GetString("AutoDownloadVideos");
             }
         }
         
@@ -4365,7 +4727,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadVideosOn");
+                return resourceLoader.GetString("AutoDownloadVideosOn");
             }
         }
         
@@ -4376,7 +4738,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoDownloadVideosTitle");
+                return resourceLoader.GetString("AutoDownloadVideosTitle");
             }
         }
         
@@ -4387,7 +4749,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoLock");
+                return resourceLoader.GetString("AutoLock");
             }
         }
         
@@ -4398,7 +4760,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoLockDisabled");
+                return resourceLoader.GetString("AutoLockDisabled");
             }
         }
         
@@ -4409,7 +4771,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoLockInfo");
+                return resourceLoader.GetString("AutoLockInfo");
             }
         }
         
@@ -4420,7 +4782,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoLockInTime");
+                return resourceLoader.GetString("AutoLockInTime");
             }
         }
         
@@ -4431,7 +4793,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutomaticMediaDownload");
+                return resourceLoader.GetString("AutomaticMediaDownload");
             }
         }
         
@@ -4442,7 +4804,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightAdaptive");
+                return resourceLoader.GetString("AutoNightAdaptive");
             }
         }
         
@@ -4453,7 +4815,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightAutomatic");
+                return resourceLoader.GetString("AutoNightAutomatic");
             }
         }
         
@@ -4464,7 +4826,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightBrightness");
+                return resourceLoader.GetString("AutoNightBrightness");
             }
         }
         
@@ -4475,7 +4837,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightBrightnessInfo");
+                return resourceLoader.GetString("AutoNightBrightnessInfo");
             }
         }
         
@@ -4486,7 +4848,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightDisabled");
+                return resourceLoader.GetString("AutoNightDisabled");
             }
         }
         
@@ -4497,7 +4859,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightFrom");
+                return resourceLoader.GetString("AutoNightFrom");
             }
         }
         
@@ -4508,7 +4870,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightLocation");
+                return resourceLoader.GetString("AutoNightLocation");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Auto-Night Mode is off"
+        /// </summary>
+        public static string AutoNightModeOff
+        {
+            get
+            {
+                return resourceLoader.GetString("AutoNightModeOff");
             }
         }
         
@@ -4519,7 +4892,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightPreferred");
+                return resourceLoader.GetString("AutoNightPreferred");
             }
         }
         
@@ -4530,7 +4903,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightSchedule");
+                return resourceLoader.GetString("AutoNightSchedule");
             }
         }
         
@@ -4541,7 +4914,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightScheduled");
+                return resourceLoader.GetString("AutoNightScheduled");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "System Default"
+        /// </summary>
+        public static string AutoNightSystemDefault
+        {
+            get
+            {
+                return resourceLoader.GetString("AutoNightSystemDefault");
             }
         }
         
@@ -4552,7 +4936,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightTheme");
+                return resourceLoader.GetString("AutoNightTheme");
             }
         }
         
@@ -4563,7 +4947,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightThemeOff");
+                return resourceLoader.GetString("AutoNightThemeOff");
             }
         }
         
@@ -4574,7 +4958,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightTo");
+                return resourceLoader.GetString("AutoNightTo");
             }
         }
         
@@ -4585,7 +4969,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightUpdateLocation");
+                return resourceLoader.GetString("AutoNightUpdateLocation");
             }
         }
         
@@ -4599,7 +4983,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoNightUpdateLocationInfo");
+                return resourceLoader.GetString("AutoNightUpdateLocationInfo");
             }
         }
         
@@ -4610,7 +4994,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoplayGIF");
+                return resourceLoader.GetString("AutoplayGIF");
             }
         }
         
@@ -4621,7 +5005,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoplayGifs");
+                return resourceLoader.GetString("AutoplayGifs");
             }
         }
         
@@ -4632,7 +5016,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoplayMedia");
+                return resourceLoader.GetString("AutoplayMedia");
             }
         }
         
@@ -4643,7 +5027,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoplayVideo");
+                return resourceLoader.GetString("AutoplayVideo");
             }
         }
         
@@ -4654,7 +5038,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AutoplayVideoInfo");
+                return resourceLoader.GetString("AutoplayVideoInfo");
             }
         }
         
@@ -4665,7 +5049,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Available");
+                return resourceLoader.GetString("Available");
             }
         }
         
@@ -4676,7 +5060,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AwaitingEncryption");
+                return resourceLoader.GetString("AwaitingEncryption");
             }
         }
         
@@ -4687,7 +5071,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("AwayTo");
+                return resourceLoader.GetString("AwayTo");
             }
         }
         
@@ -4698,7 +5082,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Back");
+                return resourceLoader.GetString("Back");
             }
         }
         
@@ -4709,7 +5093,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundBlurred");
+                return resourceLoader.GetString("BackgroundBlurred");
             }
         }
         
@@ -4720,7 +5104,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundBrightness");
+                return resourceLoader.GetString("BackgroundBrightness");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Choose pattern"
+        /// </summary>
+        public static string BackgroundChoosePattern
+        {
+            get
+            {
+                return resourceLoader.GetString("BackgroundChoosePattern");
             }
         }
         
@@ -4731,7 +5126,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundColor");
+                return resourceLoader.GetString("BackgroundColor");
             }
         }
         
@@ -4742,7 +5137,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundColorPreviewLine1");
+                return resourceLoader.GetString("BackgroundColorPreviewLine1");
             }
         }
         
@@ -4753,7 +5148,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundColorPreviewLine2");
+                return resourceLoader.GetString("BackgroundColorPreviewLine2");
             }
         }
         
@@ -4764,7 +5159,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundColorSinglePreviewLine1");
+                return resourceLoader.GetString("BackgroundColorSinglePreviewLine1");
             }
         }
         
@@ -4775,7 +5170,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundColorSinglePreviewLine2");
+                return resourceLoader.GetString("BackgroundColorSinglePreviewLine2");
             }
         }
         
@@ -4786,7 +5181,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundHexColorCode");
+                return resourceLoader.GetString("BackgroundHexColorCode");
             }
         }
         
@@ -4797,7 +5192,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundIntensity");
+                return resourceLoader.GetString("BackgroundIntensity");
             }
         }
         
@@ -4808,7 +5203,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundMotion");
+                return resourceLoader.GetString("BackgroundMotion");
             }
         }
         
@@ -4819,7 +5214,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundPattern");
+                return resourceLoader.GetString("BackgroundPattern");
             }
         }
         
@@ -4830,7 +5225,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundPreview");
+                return resourceLoader.GetString("BackgroundPreview");
             }
         }
         
@@ -4841,7 +5236,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundPreviewLine1");
+                return resourceLoader.GetString("BackgroundPreviewLine1");
             }
         }
         
@@ -4852,7 +5247,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundPreviewLine2");
+                return resourceLoader.GetString("BackgroundPreviewLine2");
             }
         }
         
@@ -4863,7 +5258,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundRestricted");
+                return resourceLoader.GetString("BackgroundRestricted");
             }
         }
         
@@ -4874,7 +5269,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BackgroundSearchColor");
+                return resourceLoader.GetString("BackgroundSearchColor");
             }
         }
         
@@ -4885,7 +5280,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BadgeNumber");
+                return resourceLoader.GetString("BadgeNumber");
             }
         }
         
@@ -4896,7 +5291,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BadgeNumberMutedChats");
+                return resourceLoader.GetString("BadgeNumberMutedChats");
             }
         }
         
@@ -4907,7 +5302,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BadgeNumberShow");
+                return resourceLoader.GetString("BadgeNumberShow");
             }
         }
         
@@ -4918,7 +5313,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BadgeNumberUnread");
+                return resourceLoader.GetString("BadgeNumberUnread");
             }
         }
         
@@ -4929,7 +5324,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BanFromTheGroup");
+                return resourceLoader.GetString("BanFromTheGroup");
             }
         }
         
@@ -4940,7 +5335,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BannedPhoneNumber");
+                return resourceLoader.GetString("BannedPhoneNumber");
             }
         }
         
@@ -4951,7 +5346,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Black");
+                return resourceLoader.GetString("Black");
             }
         }
         
@@ -4962,7 +5357,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockContact");
+                return resourceLoader.GetString("BlockContact");
             }
         }
         
@@ -4973,7 +5368,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedEmpty");
+                return resourceLoader.GetString("BlockedEmpty");
             }
         }
         
@@ -4984,7 +5379,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsers");
+                return resourceLoader.GetString("BlockedUsers");
             }
         }
         
@@ -4995,7 +5390,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountFew");
+                return resourceLoader.GetString("BlockedUsersCountFew");
             }
         }
         
@@ -5006,7 +5401,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountMany");
+                return resourceLoader.GetString("BlockedUsersCountMany");
             }
         }
         
@@ -5017,7 +5412,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountOne");
+                return resourceLoader.GetString("BlockedUsersCountOne");
             }
         }
         
@@ -5028,7 +5423,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountOther");
+                return resourceLoader.GetString("BlockedUsersCountOther");
             }
         }
         
@@ -5039,7 +5434,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountTwo");
+                return resourceLoader.GetString("BlockedUsersCountTwo");
             }
         }
         
@@ -5050,7 +5445,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersCountZero");
+                return resourceLoader.GetString("BlockedUsersCountZero");
             }
         }
         
@@ -5061,7 +5456,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockedUsersInfo");
+                return resourceLoader.GetString("BlockedUsersInfo");
             }
         }
         
@@ -5072,7 +5467,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUser");
+                return resourceLoader.GetString("BlockUser");
             }
         }
         
@@ -5083,7 +5478,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUserAlert");
+                return resourceLoader.GetString("BlockUserAlert");
             }
         }
         
@@ -5094,7 +5489,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUserChatsTitle");
+                return resourceLoader.GetString("BlockUserChatsTitle");
             }
         }
         
@@ -5105,7 +5500,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUserContactsTitle");
+                return resourceLoader.GetString("BlockUserContactsTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to block **{0}** from messaging and calling you on Telegram?"
+        /// </summary>
+        public static string BlockUserMessage
+        {
+            get
+            {
+                return resourceLoader.GetString("BlockUserMessage");
             }
         }
         
@@ -5116,7 +5522,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUserMultiTitle");
+                return resourceLoader.GetString("BlockUserMultiTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Block users"
+        /// </summary>
+        public static string BlockUsers
+        {
+            get
+            {
+                return resourceLoader.GetString("BlockUsers");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to block **{0}** from messaging and calling you on Telegram?"
+        /// </summary>
+        public static string BlockUsersMessage
+        {
+            get
+            {
+                return resourceLoader.GetString("BlockUsersMessage");
             }
         }
         
@@ -5127,7 +5555,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlockUserTitle");
+                return resourceLoader.GetString("BlockUserTitle");
             }
         }
         
@@ -5138,7 +5566,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Blue");
+                return resourceLoader.GetString("Blue");
             }
         }
         
@@ -5149,7 +5577,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlurLinear");
+                return resourceLoader.GetString("BlurLinear");
             }
         }
         
@@ -5160,7 +5588,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlurOff");
+                return resourceLoader.GetString("BlurOff");
             }
         }
         
@@ -5171,7 +5599,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BlurRadial");
+                return resourceLoader.GetString("BlurRadial");
             }
         }
         
@@ -5182,7 +5610,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Bold");
+                return resourceLoader.GetString("Bold");
             }
         }
         
@@ -5193,7 +5621,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Bot");
+                return resourceLoader.GetString("Bot");
             }
         }
         
@@ -5204,7 +5632,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotCantJoinGroups");
+                return resourceLoader.GetString("BotCantJoinGroups");
             }
         }
         
@@ -5215,7 +5643,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotHelp");
+                return resourceLoader.GetString("BotHelp");
             }
         }
         
@@ -5226,7 +5654,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotInfoTitle");
+                return resourceLoader.GetString("BotInfoTitle");
             }
         }
         
@@ -5237,7 +5665,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotInvite");
+                return resourceLoader.GetString("BotInvite");
             }
         }
         
@@ -5248,7 +5676,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotPermissionGameAlert");
+                return resourceLoader.GetString("BotPermissionGameAlert");
             }
         }
         
@@ -5259,7 +5687,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotRestart");
+                return resourceLoader.GetString("BotRestart");
             }
         }
         
@@ -5270,7 +5698,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotSettings");
+                return resourceLoader.GetString("BotSettings");
             }
         }
         
@@ -5281,7 +5709,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotShare");
+                return resourceLoader.GetString("BotShare");
             }
         }
         
@@ -5292,7 +5720,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotStart");
+                return resourceLoader.GetString("BotStart");
             }
         }
         
@@ -5303,7 +5731,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotStatusCantRead");
+                return resourceLoader.GetString("BotStatusCantRead");
             }
         }
         
@@ -5314,7 +5742,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotStatusRead");
+                return resourceLoader.GetString("BotStatusRead");
             }
         }
         
@@ -5325,7 +5753,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotStop");
+                return resourceLoader.GetString("BotStop");
             }
         }
         
@@ -5336,7 +5764,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BotUnblock");
+                return resourceLoader.GetString("BotUnblock");
             }
         }
         
@@ -5347,7 +5775,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Brown");
+                return resourceLoader.GetString("Brown");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Message corners"
+        /// </summary>
+        public static string BubbleRadius
+        {
+            get
+            {
+                return resourceLoader.GetString("BubbleRadius");
             }
         }
         
@@ -5358,7 +5797,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BuiltInThemes");
+                return resourceLoader.GetString("BuiltInThemes");
             }
         }
         
@@ -5369,7 +5808,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BytesReceived");
+                return resourceLoader.GetString("BytesReceived");
             }
         }
         
@@ -5380,7 +5819,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("BytesSent");
+                return resourceLoader.GetString("BytesSent");
             }
         }
         
@@ -5391,7 +5830,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CacheClear");
+                return resourceLoader.GetString("CacheClear");
             }
         }
         
@@ -5402,7 +5841,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CacheEmpty");
+                return resourceLoader.GetString("CacheEmpty");
             }
         }
         
@@ -5413,7 +5852,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CalculatingSize");
+                return resourceLoader.GetString("CalculatingSize");
             }
         }
         
@@ -5424,7 +5863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Call");
+                return resourceLoader.GetString("Call");
             }
         }
         
@@ -5435,7 +5874,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallAgain");
+                return resourceLoader.GetString("CallAgain");
             }
         }
         
@@ -5446,7 +5885,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallBack");
+                return resourceLoader.GetString("CallBack");
             }
         }
         
@@ -5457,7 +5896,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallEmojiKeyTooltip");
+                return resourceLoader.GetString("CallEmojiKeyTooltip");
             }
         }
         
@@ -5468,7 +5907,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Calling");
+                return resourceLoader.GetString("Calling");
             }
         }
         
@@ -5479,7 +5918,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageIncoming");
+                return resourceLoader.GetString("CallMessageIncoming");
             }
         }
         
@@ -5490,7 +5929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageIncomingDeclined");
+                return resourceLoader.GetString("CallMessageIncomingDeclined");
             }
         }
         
@@ -5501,7 +5940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageIncomingMissed");
+                return resourceLoader.GetString("CallMessageIncomingMissed");
             }
         }
         
@@ -5512,7 +5951,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageOutgoing");
+                return resourceLoader.GetString("CallMessageOutgoing");
             }
         }
         
@@ -5523,7 +5962,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageOutgoingMissed");
+                return resourceLoader.GetString("CallMessageOutgoingMissed");
             }
         }
         
@@ -5534,7 +5973,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageReportProblem");
+                return resourceLoader.GetString("CallMessageReportProblem");
             }
         }
         
@@ -5545,7 +5984,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallMessageWithDuration");
+                return resourceLoader.GetString("CallMessageWithDuration");
             }
         }
         
@@ -5556,7 +5995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallNotAvailable");
+                return resourceLoader.GetString("CallNotAvailable");
             }
         }
         
@@ -5567,7 +6006,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallReportHint");
+                return resourceLoader.GetString("CallReportHint");
             }
         }
         
@@ -5578,7 +6017,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallReportIncludeLogs");
+                return resourceLoader.GetString("CallReportIncludeLogs");
             }
         }
         
@@ -5589,7 +6028,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallReportLogsExplain");
+                return resourceLoader.GetString("CallReportLogsExplain");
             }
         }
         
@@ -5600,7 +6039,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallReportSent");
+                return resourceLoader.GetString("CallReportSent");
             }
         }
         
@@ -5611,7 +6050,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Calls");
+                return resourceLoader.GetString("Calls");
             }
         }
         
@@ -5622,7 +6061,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallsDataUsage");
+                return resourceLoader.GetString("CallsDataUsage");
             }
         }
         
@@ -5633,7 +6072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallsTotalTime");
+                return resourceLoader.GetString("CallsTotalTime");
             }
         }
         
@@ -5644,7 +6083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallText");
+                return resourceLoader.GetString("CallText");
             }
         }
         
@@ -5655,7 +6094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CallViaTelegram");
+                return resourceLoader.GetString("CallViaTelegram");
             }
         }
         
@@ -5666,7 +6105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CameraPermissionText");
+                return resourceLoader.GetString("CameraPermissionText");
             }
         }
         
@@ -5677,7 +6116,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Cancel");
+                return resourceLoader.GetString("Cancel");
             }
         }
         
@@ -5688,7 +6127,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelAccountReset");
+                return resourceLoader.GetString("CancelAccountReset");
             }
         }
         
@@ -5701,7 +6140,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelAccountResetInfo");
+                return resourceLoader.GetString("CancelAccountResetInfo");
             }
         }
         
@@ -5712,7 +6151,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelEmailQuestion");
+                return resourceLoader.GetString("CancelEmailQuestion");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Abort setup"
+        /// </summary>
+        public static string CancelEmailQuestionTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("CancelEmailQuestionTitle");
             }
         }
         
@@ -5723,7 +6173,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelLinkExpired");
+                return resourceLoader.GetString("CancelLinkExpired");
             }
         }
         
@@ -5734,7 +6184,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelLinkSuccess");
+                return resourceLoader.GetString("CancelLinkSuccess");
             }
         }
         
@@ -5745,7 +6195,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelPasswordQuestion");
+                return resourceLoader.GetString("CancelPasswordQuestion");
             }
         }
         
@@ -5756,7 +6206,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelPollAlertText");
+                return resourceLoader.GetString("CancelPollAlertText");
             }
         }
         
@@ -5767,7 +6217,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelPollAlertTitle");
+                return resourceLoader.GetString("CancelPollAlertTitle");
             }
         }
         
@@ -5778,7 +6228,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelRegistration");
+                return resourceLoader.GetString("CancelRegistration");
             }
         }
         
@@ -5789,7 +6239,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CancelSending");
+                return resourceLoader.GetString("CancelSending");
             }
         }
         
@@ -5800,7 +6250,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CantAddBotAsAdmin");
+                return resourceLoader.GetString("CantAddBotAsAdmin");
             }
         }
         
@@ -5811,7 +6261,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CantPlayVideo");
+                return resourceLoader.GetString("CantPlayVideo");
             }
         }
         
@@ -5822,7 +6272,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Caption");
+                return resourceLoader.GetString("Caption");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Card number copied to clipboard"
+        /// </summary>
+        public static string CardNumberCopied
+        {
+            get
+            {
+                return resourceLoader.GetString("CardNumberCopied");
             }
         }
         
@@ -5833,7 +6294,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Change");
+                return resourceLoader.GetString("Change");
             }
         }
         
@@ -5844,7 +6305,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangeChatBackground");
+                return resourceLoader.GetString("ChangeChatBackground");
             }
         }
         
@@ -5855,7 +6316,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangeLanguageLater");
+                return resourceLoader.GetString("ChangeLanguageLater");
             }
         }
         
@@ -5866,7 +6327,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePasscode");
+                return resourceLoader.GetString("ChangePasscode");
             }
         }
         
@@ -5879,7 +6340,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePasscodeInfo");
+                return resourceLoader.GetString("ChangePasscodeInfo");
             }
         }
         
@@ -5890,7 +6351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePassword");
+                return resourceLoader.GetString("ChangePassword");
             }
         }
         
@@ -5901,7 +6362,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePermissions");
+                return resourceLoader.GetString("ChangePermissions");
             }
         }
         
@@ -5912,7 +6373,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePhoneHelp");
+                return resourceLoader.GetString("ChangePhoneHelp");
             }
         }
         
@@ -5923,7 +6384,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePhoneNewNumber");
+                return resourceLoader.GetString("ChangePhoneNewNumber");
             }
         }
         
@@ -5934,7 +6395,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePhoneNumber");
+                return resourceLoader.GetString("ChangePhoneNumber");
             }
         }
         
@@ -5945,7 +6406,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePhoneNumberInfo");
+                return resourceLoader.GetString("ChangePhoneNumberInfo");
             }
         }
         
@@ -5956,7 +6417,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePhoneNumberOccupied");
+                return resourceLoader.GetString("ChangePhoneNumberOccupied");
             }
         }
         
@@ -5967,7 +6428,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangePublicLimitReached");
+                return resourceLoader.GetString("ChangePublicLimitReached");
             }
         }
         
@@ -5978,7 +6439,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChangeRecoveryEmail");
+                return resourceLoader.GetString("ChangeRecoveryEmail");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to change your chat wallpaper to a color?"
+        /// </summary>
+        public static string ChangeWallpaperToColor
+        {
+            get
+            {
+                return resourceLoader.GetString("ChangeWallpaperToColor");
             }
         }
         
@@ -5989,7 +6461,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddAdmin");
+                return resourceLoader.GetString("ChannelAddAdmin");
             }
         }
         
@@ -6000,7 +6472,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddedBy");
+                return resourceLoader.GetString("ChannelAddedBy");
             }
         }
         
@@ -6011,7 +6483,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddedByNotification");
+                return resourceLoader.GetString("ChannelAddedByNotification");
             }
         }
         
@@ -6022,7 +6494,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddException");
+                return resourceLoader.GetString("ChannelAddException");
             }
         }
         
@@ -6033,7 +6505,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddMembers");
+                return resourceLoader.GetString("ChannelAddMembers");
             }
         }
         
@@ -6044,7 +6516,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddTo");
+                return resourceLoader.GetString("ChannelAddTo");
             }
         }
         
@@ -6055,7 +6527,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddToChannel");
+                return resourceLoader.GetString("ChannelAddToChannel");
             }
         }
         
@@ -6066,7 +6538,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAddToGroup");
+                return resourceLoader.GetString("ChannelAddToGroup");
             }
         }
         
@@ -6077,7 +6549,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAdmin");
+                return resourceLoader.GetString("ChannelAdmin");
             }
         }
         
@@ -6088,7 +6560,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAdministrator");
+                return resourceLoader.GetString("ChannelAdministrator");
             }
         }
         
@@ -6099,7 +6571,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAdministrators");
+                return resourceLoader.GetString("ChannelAdministrators");
             }
         }
         
@@ -6110,7 +6582,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAdminsInfo");
+                return resourceLoader.GetString("ChannelAdminsInfo");
             }
         }
         
@@ -6121,7 +6593,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAlertCreate");
+                return resourceLoader.GetString("ChannelAlertCreate");
             }
         }
         
@@ -6132,7 +6604,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAlertCreate2");
+                return resourceLoader.GetString("ChannelAlertCreate2");
             }
         }
         
@@ -6143,7 +6615,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAlertText");
+                return resourceLoader.GetString("ChannelAlertText");
             }
         }
         
@@ -6154,7 +6626,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelAlertTitle");
+                return resourceLoader.GetString("ChannelAlertTitle");
             }
         }
         
@@ -6165,7 +6637,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelBlacklist");
+                return resourceLoader.GetString("ChannelBlacklist");
             }
         }
         
@@ -6176,7 +6648,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelBlockedUsers");
+                return resourceLoader.GetString("ChannelBlockedUsers");
             }
         }
         
@@ -6187,7 +6659,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelBlockUser");
+                return resourceLoader.GetString("ChannelBlockUser");
             }
         }
         
@@ -6198,7 +6670,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelBots");
+                return resourceLoader.GetString("ChannelBots");
             }
         }
         
@@ -6209,7 +6681,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelBroadcast");
+                return resourceLoader.GetString("ChannelBroadcast");
             }
         }
         
@@ -6220,7 +6692,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelCantOpenBanned");
+                return resourceLoader.GetString("ChannelCantOpenBanned");
             }
         }
         
@@ -6231,7 +6703,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelCantOpenNa");
+                return resourceLoader.GetString("ChannelCantOpenNa");
             }
         }
         
@@ -6242,7 +6714,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelCantOpenPrivate");
+                return resourceLoader.GetString("ChannelCantOpenPrivate");
             }
         }
         
@@ -6253,7 +6725,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelCantSendMessage");
+                return resourceLoader.GetString("ChannelCantSendMessage");
             }
         }
         
@@ -6264,7 +6736,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelContacts");
+                return resourceLoader.GetString("ChannelContacts");
             }
         }
         
@@ -6275,7 +6747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelCreator");
+                return resourceLoader.GetString("ChannelCreator");
             }
         }
         
@@ -6286,7 +6758,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDelete");
+                return resourceLoader.GetString("ChannelDelete");
             }
         }
         
@@ -6297,7 +6769,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDeleteAlert");
+                return resourceLoader.GetString("ChannelDeleteAlert");
             }
         }
         
@@ -6308,7 +6780,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDeletedUndo");
+                return resourceLoader.GetString("ChannelDeletedUndo");
             }
         }
         
@@ -6319,7 +6791,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDeleteFromList");
+                return resourceLoader.GetString("ChannelDeleteFromList");
             }
         }
         
@@ -6330,7 +6802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDeleteInfo");
+                return resourceLoader.GetString("ChannelDeleteInfo");
             }
         }
         
@@ -6341,7 +6813,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDeleteMenu");
+                return resourceLoader.GetString("ChannelDeleteMenu");
             }
         }
         
@@ -6352,7 +6824,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelDiscuss");
+                return resourceLoader.GetString("ChannelDiscuss");
             }
         }
         
@@ -6363,7 +6835,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelEdit");
+                return resourceLoader.GetString("ChannelEdit");
             }
         }
         
@@ -6374,7 +6846,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelEditPermissions");
+                return resourceLoader.GetString("ChannelEditPermissions");
             }
         }
         
@@ -6385,7 +6857,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelInviteLinkTitle");
+                return resourceLoader.GetString("ChannelInviteLinkTitle");
             }
         }
         
@@ -6396,7 +6868,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelInviteViaLink");
+                return resourceLoader.GetString("ChannelInviteViaLink");
             }
         }
         
@@ -6407,7 +6879,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelJoin");
+                return resourceLoader.GetString("ChannelJoin");
             }
         }
         
@@ -6418,7 +6890,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelJoined");
+                return resourceLoader.GetString("ChannelJoined");
             }
         }
         
@@ -6429,7 +6901,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelJoinTo");
+                return resourceLoader.GetString("ChannelJoinTo");
             }
         }
         
@@ -6440,7 +6912,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelLeaveAlert");
+                return resourceLoader.GetString("ChannelLeaveAlert");
             }
         }
         
@@ -6451,7 +6923,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelLeaveAlertWithName");
+                return resourceLoader.GetString("ChannelLeaveAlertWithName");
             }
         }
         
@@ -6462,7 +6934,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelLinkInfo");
+                return resourceLoader.GetString("ChannelLinkInfo");
             }
         }
         
@@ -6473,7 +6945,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelLinkTitle");
+                return resourceLoader.GetString("ChannelLinkTitle");
             }
         }
         
@@ -6484,7 +6956,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMegaJoined");
+                return resourceLoader.GetString("ChannelMegaJoined");
             }
         }
         
@@ -6495,7 +6967,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMembers");
+                return resourceLoader.GetString("ChannelMembers");
             }
         }
         
@@ -6506,7 +6978,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMembersInfo");
+                return resourceLoader.GetString("ChannelMembersInfo");
             }
         }
         
@@ -6517,7 +6989,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageAlbum");
+                return resourceLoader.GetString("ChannelMessageAlbum");
             }
         }
         
@@ -6528,7 +7000,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageAudio");
+                return resourceLoader.GetString("ChannelMessageAudio");
             }
         }
         
@@ -6539,7 +7011,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageContact");
+                return resourceLoader.GetString("ChannelMessageContact");
             }
         }
         
@@ -6550,7 +7022,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageContact2");
+                return resourceLoader.GetString("ChannelMessageContact2");
             }
         }
         
@@ -6561,7 +7033,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageDocument");
+                return resourceLoader.GetString("ChannelMessageDocument");
             }
         }
         
@@ -6572,7 +7044,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageFew");
+                return resourceLoader.GetString("ChannelMessageFew");
             }
         }
         
@@ -6583,7 +7055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageGIF");
+                return resourceLoader.GetString("ChannelMessageGIF");
             }
         }
         
@@ -6594,7 +7066,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageLiveLocation");
+                return resourceLoader.GetString("ChannelMessageLiveLocation");
             }
         }
         
@@ -6605,7 +7077,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageMap");
+                return resourceLoader.GetString("ChannelMessageMap");
             }
         }
         
@@ -6616,7 +7088,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageMusic");
+                return resourceLoader.GetString("ChannelMessageMusic");
             }
         }
         
@@ -6627,7 +7099,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageNoText");
+                return resourceLoader.GetString("ChannelMessageNoText");
             }
         }
         
@@ -6638,7 +7110,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessagePhoto");
+                return resourceLoader.GetString("ChannelMessagePhoto");
             }
         }
         
@@ -6649,7 +7121,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessagePoll");
+                return resourceLoader.GetString("ChannelMessagePoll");
             }
         }
         
@@ -6660,7 +7132,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessagePoll2");
+                return resourceLoader.GetString("ChannelMessagePoll2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} posted the quiz "{1}""
+        /// </summary>
+        public static string ChannelMessageQuiz2
+        {
+            get
+            {
+                return resourceLoader.GetString("ChannelMessageQuiz2");
             }
         }
         
@@ -6671,7 +7154,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageRound");
+                return resourceLoader.GetString("ChannelMessageRound");
             }
         }
         
@@ -6682,7 +7165,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageSticker");
+                return resourceLoader.GetString("ChannelMessageSticker");
             }
         }
         
@@ -6693,7 +7176,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageStickerEmoji");
+                return resourceLoader.GetString("ChannelMessageStickerEmoji");
             }
         }
         
@@ -6704,7 +7187,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMessageVideo");
+                return resourceLoader.GetString("ChannelMessageVideo");
             }
         }
         
@@ -6715,7 +7198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelModerator");
+                return resourceLoader.GetString("ChannelModerator");
             }
         }
         
@@ -6726,7 +7209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelMute");
+                return resourceLoader.GetString("ChannelMute");
             }
         }
         
@@ -6737,7 +7220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelNotifyMembersInfoOff");
+                return resourceLoader.GetString("ChannelNotifyMembersInfoOff");
             }
         }
         
@@ -6748,7 +7231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelNotifyMembersInfoOn");
+                return resourceLoader.GetString("ChannelNotifyMembersInfoOn");
             }
         }
         
@@ -6759,7 +7242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelOtherMembers");
+                return resourceLoader.GetString("ChannelOtherMembers");
             }
         }
         
@@ -6770,7 +7253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelOtherSubscribers");
+                return resourceLoader.GetString("ChannelOtherSubscribers");
             }
         }
         
@@ -6781,7 +7264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPermissions");
+                return resourceLoader.GetString("ChannelPermissions");
             }
         }
         
@@ -6792,7 +7275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPermissionsHeader");
+                return resourceLoader.GetString("ChannelPermissionsHeader");
             }
         }
         
@@ -6803,7 +7286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPhotoEditNotification");
+                return resourceLoader.GetString("ChannelPhotoEditNotification");
             }
         }
         
@@ -6814,7 +7297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPrivate");
+                return resourceLoader.GetString("ChannelPrivate");
             }
         }
         
@@ -6825,7 +7308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPrivateInfo");
+                return resourceLoader.GetString("ChannelPrivateInfo");
             }
         }
         
@@ -6836,7 +7319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPrivateLinkHelp");
+                return resourceLoader.GetString("ChannelPrivateLinkHelp");
             }
         }
         
@@ -6847,7 +7330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPublic");
+                return resourceLoader.GetString("ChannelPublic");
             }
         }
         
@@ -6860,7 +7343,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPublicEmptyUsername");
+                return resourceLoader.GetString("ChannelPublicEmptyUsername");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Choose a link"
+        /// </summary>
+        public static string ChannelPublicEmptyUsernameTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ChannelPublicEmptyUsernameTitle");
             }
         }
         
@@ -6871,7 +7365,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelPublicInfo");
+                return resourceLoader.GetString("ChannelPublicInfo");
             }
         }
         
@@ -6882,7 +7376,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelRemoveUser");
+                return resourceLoader.GetString("ChannelRemoveUser");
             }
         }
         
@@ -6893,7 +7387,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelRemoveUserAdmin");
+                return resourceLoader.GetString("ChannelRemoveUserAdmin");
             }
         }
         
@@ -6904,7 +7398,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelRestrictedUsers");
+                return resourceLoader.GetString("ChannelRestrictedUsers");
             }
         }
         
@@ -6915,7 +7409,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSearchException");
+                return resourceLoader.GetString("ChannelSearchException");
             }
         }
         
@@ -6926,7 +7420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSettings");
+                return resourceLoader.GetString("ChannelSettings");
             }
         }
         
@@ -6937,7 +7431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSettingsChangedAlert");
+                return resourceLoader.GetString("ChannelSettingsChangedAlert");
             }
         }
         
@@ -6948,7 +7442,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSettingsTitle");
+                return resourceLoader.GetString("ChannelSettingsTitle");
             }
         }
         
@@ -6959,7 +7453,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsFew");
+                return resourceLoader.GetString("ChannelsFew");
             }
         }
         
@@ -6970,7 +7464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSignMessages");
+                return resourceLoader.GetString("ChannelSignMessages");
             }
         }
         
@@ -6981,7 +7475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSignMessagesInfo");
+                return resourceLoader.GetString("ChannelSignMessagesInfo");
             }
         }
         
@@ -6992,7 +7486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSilentBroadcast");
+                return resourceLoader.GetString("ChannelSilentBroadcast");
             }
         }
         
@@ -7003,7 +7497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsMany");
+                return resourceLoader.GetString("ChannelsMany");
             }
         }
         
@@ -7014,7 +7508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsOne");
+                return resourceLoader.GetString("ChannelsOne");
             }
         }
         
@@ -7025,7 +7519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsOther");
+                return resourceLoader.GetString("ChannelsOther");
             }
         }
         
@@ -7036,7 +7530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsTwo");
+                return resourceLoader.GetString("ChannelsTwo");
             }
         }
         
@@ -7047,7 +7541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelSubscribers");
+                return resourceLoader.GetString("ChannelSubscribers");
             }
         }
         
@@ -7058,7 +7552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelsZero");
+                return resourceLoader.GetString("ChannelsZero");
             }
         }
         
@@ -7069,7 +7563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelTooMuch");
+                return resourceLoader.GetString("ChannelTooMuch");
             }
         }
         
@@ -7080,7 +7574,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelTooMuchJoin");
+                return resourceLoader.GetString("ChannelTooMuchJoin");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Too many communities"
+        /// </summary>
+        public static string ChannelTooMuchTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ChannelTooMuchTitle");
             }
         }
         
@@ -7091,7 +7596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelType");
+                return resourceLoader.GetString("ChannelType");
             }
         }
         
@@ -7102,7 +7607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelTypeHeader");
+                return resourceLoader.GetString("ChannelTypeHeader");
             }
         }
         
@@ -7113,7 +7618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUnmute");
+                return resourceLoader.GetString("ChannelUnmute");
             }
         }
         
@@ -7124,7 +7629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUserAddLimit");
+                return resourceLoader.GetString("ChannelUserAddLimit");
             }
         }
         
@@ -7135,7 +7640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUserCantAdd");
+                return resourceLoader.GetString("ChannelUserCantAdd");
             }
         }
         
@@ -7146,7 +7651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUserCantAdmin");
+                return resourceLoader.GetString("ChannelUserCantAdmin");
             }
         }
         
@@ -7157,7 +7662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUserCantBot");
+                return resourceLoader.GetString("ChannelUserCantBot");
             }
         }
         
@@ -7170,7 +7675,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUserLeftError");
+                return resourceLoader.GetString("ChannelUserLeftError");
             }
         }
         
@@ -7184,7 +7689,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUsernameHelp");
+                return resourceLoader.GetString("ChannelUsernameHelp");
             }
         }
         
@@ -7195,7 +7700,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChannelUsernamePlaceholder");
+                return resourceLoader.GetString("ChannelUsernamePlaceholder");
             }
         }
         
@@ -7206,7 +7711,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatAdmin");
+                return resourceLoader.GetString("ChatAdmin");
             }
         }
         
@@ -7217,7 +7722,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatArchived");
+                return resourceLoader.GetString("ChatArchived");
             }
         }
         
@@ -7228,7 +7733,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatArchivedInfo");
+                return resourceLoader.GetString("ChatArchivedInfo");
             }
         }
         
@@ -7239,7 +7744,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatBackground");
+                return resourceLoader.GetString("ChatBackground");
             }
         }
         
@@ -7250,7 +7755,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatCamera");
+                return resourceLoader.GetString("ChatCamera");
             }
         }
         
@@ -7261,7 +7766,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatDate");
+                return resourceLoader.GetString("ChatDate");
             }
         }
         
@@ -7272,7 +7777,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatDeletedUndo");
+                return resourceLoader.GetString("ChatDeletedUndo");
             }
         }
         
@@ -7283,7 +7788,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatDocument");
+                return resourceLoader.GetString("ChatDocument");
             }
         }
         
@@ -7294,7 +7799,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatFullDate");
+                return resourceLoader.GetString("ChatFullDate");
             }
         }
         
@@ -7305,7 +7810,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatGallery");
+                return resourceLoader.GetString("ChatGallery");
             }
         }
         
@@ -7316,7 +7821,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHints");
+                return resourceLoader.GetString("ChatHints");
             }
         }
         
@@ -7327,7 +7832,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHintsDelete");
+                return resourceLoader.GetString("ChatHintsDelete");
             }
         }
         
@@ -7338,7 +7843,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHintsDeleteAlert");
+                return resourceLoader.GetString("ChatHintsDeleteAlert");
             }
         }
         
@@ -7349,7 +7854,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHintsDeleteAlertTitle");
+                return resourceLoader.GetString("ChatHintsDeleteAlertTitle");
             }
         }
         
@@ -7360,7 +7865,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistory");
+                return resourceLoader.GetString("ChatHistory");
             }
         }
         
@@ -7371,7 +7876,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistoryHidden");
+                return resourceLoader.GetString("ChatHistoryHidden");
             }
         }
         
@@ -7382,7 +7887,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistoryHiddenInfo");
+                return resourceLoader.GetString("ChatHistoryHiddenInfo");
             }
         }
         
@@ -7393,7 +7898,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistoryHiddenInfo2");
+                return resourceLoader.GetString("ChatHistoryHiddenInfo2");
             }
         }
         
@@ -7404,7 +7909,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistoryVisible");
+                return resourceLoader.GetString("ChatHistoryVisible");
             }
         }
         
@@ -7415,7 +7920,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatHistoryVisibleInfo");
+                return resourceLoader.GetString("ChatHistoryVisibleInfo");
             }
         }
         
@@ -7426,7 +7931,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatList");
+                return resourceLoader.GetString("ChatList");
             }
         }
         
@@ -7437,7 +7942,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatListDefault");
+                return resourceLoader.GetString("ChatListDefault");
             }
         }
         
@@ -7448,7 +7953,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatListExpanded");
+                return resourceLoader.GetString("ChatListExpanded");
             }
         }
         
@@ -7459,7 +7964,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatLocation");
+                return resourceLoader.GetString("ChatLocation");
             }
         }
         
@@ -7470,7 +7975,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsArchived");
+                return resourceLoader.GetString("ChatsArchived");
             }
         }
         
@@ -7481,7 +7986,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatSetLocation");
+                return resourceLoader.GetString("ChatSetLocation");
             }
         }
         
@@ -7492,7 +7997,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatSetLocationInfo");
+                return resourceLoader.GetString("ChatSetLocationInfo");
             }
         }
         
@@ -7503,7 +8008,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatSetThisLocation");
+                return resourceLoader.GetString("ChatSetThisLocation");
             }
         }
         
@@ -7514,7 +8019,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatSettings");
+                return resourceLoader.GetString("ChatSettings");
             }
         }
         
@@ -7525,7 +8030,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionFew");
+                return resourceLoader.GetString("ChatsExceptionFew");
             }
         }
         
@@ -7536,7 +8041,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionMany");
+                return resourceLoader.GetString("ChatsExceptionMany");
             }
         }
         
@@ -7547,7 +8052,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionOne");
+                return resourceLoader.GetString("ChatsExceptionOne");
             }
         }
         
@@ -7558,7 +8063,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionOther");
+                return resourceLoader.GetString("ChatsExceptionOther");
             }
         }
         
@@ -7569,7 +8074,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionTwo");
+                return resourceLoader.GetString("ChatsExceptionTwo");
             }
         }
         
@@ -7580,7 +8085,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsExceptionZero");
+                return resourceLoader.GetString("ChatsExceptionZero");
             }
         }
         
@@ -7591,7 +8096,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsFew");
+                return resourceLoader.GetString("ChatsFew");
             }
         }
         
@@ -7602,7 +8107,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsMany");
+                return resourceLoader.GetString("ChatsMany");
             }
         }
         
@@ -7613,7 +8118,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsMute");
+                return resourceLoader.GetString("ChatsMute");
             }
         }
         
@@ -7624,7 +8129,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsNearbyHeader");
+                return resourceLoader.GetString("ChatsNearbyHeader");
             }
         }
         
@@ -7635,7 +8140,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsOne");
+                return resourceLoader.GetString("ChatsOne");
             }
         }
         
@@ -7646,7 +8151,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsOther");
+                return resourceLoader.GetString("ChatsOther");
             }
         }
         
@@ -7657,7 +8162,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheFew");
+                return resourceLoader.GetString("ChatsSelectedClearCacheFew");
             }
         }
         
@@ -7668,7 +8173,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheMany");
+                return resourceLoader.GetString("ChatsSelectedClearCacheMany");
             }
         }
         
@@ -7679,7 +8184,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheOne");
+                return resourceLoader.GetString("ChatsSelectedClearCacheOne");
             }
         }
         
@@ -7690,7 +8195,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheOther");
+                return resourceLoader.GetString("ChatsSelectedClearCacheOther");
             }
         }
         
@@ -7701,7 +8206,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheTwo");
+                return resourceLoader.GetString("ChatsSelectedClearCacheTwo");
             }
         }
         
@@ -7712,7 +8217,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearCacheZero");
+                return resourceLoader.GetString("ChatsSelectedClearCacheZero");
             }
         }
         
@@ -7723,7 +8228,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearFew");
+                return resourceLoader.GetString("ChatsSelectedClearFew");
             }
         }
         
@@ -7734,7 +8239,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearMany");
+                return resourceLoader.GetString("ChatsSelectedClearMany");
             }
         }
         
@@ -7745,7 +8250,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearOne");
+                return resourceLoader.GetString("ChatsSelectedClearOne");
             }
         }
         
@@ -7756,7 +8261,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearOther");
+                return resourceLoader.GetString("ChatsSelectedClearOther");
             }
         }
         
@@ -7767,7 +8272,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearTwo");
+                return resourceLoader.GetString("ChatsSelectedClearTwo");
             }
         }
         
@@ -7778,7 +8283,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedClearZero");
+                return resourceLoader.GetString("ChatsSelectedClearZero");
             }
         }
         
@@ -7789,7 +8294,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedFew");
+                return resourceLoader.GetString("ChatsSelectedFew");
             }
         }
         
@@ -7800,7 +8305,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedMany");
+                return resourceLoader.GetString("ChatsSelectedMany");
             }
         }
         
@@ -7811,7 +8316,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedOne");
+                return resourceLoader.GetString("ChatsSelectedOne");
             }
         }
         
@@ -7822,7 +8327,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedOther");
+                return resourceLoader.GetString("ChatsSelectedOther");
             }
         }
         
@@ -7833,7 +8338,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedTwo");
+                return resourceLoader.GetString("ChatsSelectedTwo");
             }
         }
         
@@ -7844,7 +8349,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsSelectedZero");
+                return resourceLoader.GetString("ChatsSelectedZero");
             }
         }
         
@@ -7855,7 +8360,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsTwo");
+                return resourceLoader.GetString("ChatsTwo");
             }
         }
         
@@ -7866,7 +8371,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsUnmute");
+                return resourceLoader.GetString("ChatsUnmute");
             }
         }
         
@@ -7877,7 +8382,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatsZero");
+                return resourceLoader.GetString("ChatsZero");
             }
         }
         
@@ -7888,7 +8393,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatVideo");
+                return resourceLoader.GetString("ChatVideo");
             }
         }
         
@@ -7899,7 +8404,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelf");
+                return resourceLoader.GetString("ChatYourSelf");
             }
         }
         
@@ -7910,7 +8415,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfDescription1");
+                return resourceLoader.GetString("ChatYourSelfDescription1");
             }
         }
         
@@ -7921,7 +8426,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfDescription2");
+                return resourceLoader.GetString("ChatYourSelfDescription2");
             }
         }
         
@@ -7932,7 +8437,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfDescription3");
+                return resourceLoader.GetString("ChatYourSelfDescription3");
             }
         }
         
@@ -7943,7 +8448,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfDescription4");
+                return resourceLoader.GetString("ChatYourSelfDescription4");
             }
         }
         
@@ -7954,7 +8459,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfName");
+                return resourceLoader.GetString("ChatYourSelfName");
             }
         }
         
@@ -7965,7 +8470,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChatYourSelfTitle");
+                return resourceLoader.GetString("ChatYourSelfTitle");
             }
         }
         
@@ -7976,7 +8481,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Checking");
+                return resourceLoader.GetString("Checking");
             }
         }
         
@@ -7987,7 +8492,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseCountry");
+                return resourceLoader.GetString("ChooseCountry");
             }
         }
         
@@ -7998,7 +8503,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseFromGallery");
+                return resourceLoader.GetString("ChooseFromGallery");
             }
         }
         
@@ -8009,7 +8514,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseFromSearch");
+                return resourceLoader.GetString("ChooseFromSearch");
             }
         }
         
@@ -8020,7 +8525,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseFromYourStickers");
+                return resourceLoader.GetString("ChooseFromYourStickers");
             }
         }
         
@@ -8031,7 +8536,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseMapPreviewProvider");
+                return resourceLoader.GetString("ChooseMapPreviewProvider");
             }
         }
         
@@ -8042,7 +8547,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChoosePhoto");
+                return resourceLoader.GetString("ChoosePhoto");
             }
         }
         
@@ -8053,7 +8558,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseStickerSet");
+                return resourceLoader.GetString("ChooseStickerSet");
             }
         }
         
@@ -8064,7 +8569,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseStickerSetMy");
+                return resourceLoader.GetString("ChooseStickerSetMy");
             }
         }
         
@@ -8075,7 +8580,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseStickerSetNotFound");
+                return resourceLoader.GetString("ChooseStickerSetNotFound");
             }
         }
         
@@ -8086,7 +8591,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseStickerSetNotFoundInfo");
+                return resourceLoader.GetString("ChooseStickerSetNotFoundInfo");
             }
         }
         
@@ -8097,7 +8602,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseStickerSetPlaceholder");
+                return resourceLoader.GetString("ChooseStickerSetPlaceholder");
             }
         }
         
@@ -8108,7 +8613,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseTakePhoto");
+                return resourceLoader.GetString("ChooseTakePhoto");
             }
         }
         
@@ -8119,7 +8624,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseTheme");
+                return resourceLoader.GetString("ChooseTheme");
             }
         }
         
@@ -8130,7 +8635,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseYourLanguage");
+                return resourceLoader.GetString("ChooseYourLanguage");
             }
         }
         
@@ -8141,7 +8646,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChooseYourLanguageOther");
+                return resourceLoader.GetString("ChooseYourLanguageOther");
             }
         }
         
@@ -8152,7 +8657,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChromeCustomTabs");
+                return resourceLoader.GetString("ChromeCustomTabs");
             }
         }
         
@@ -8163,7 +8668,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ChromeCustomTabsInfo");
+                return resourceLoader.GetString("ChromeCustomTabsInfo");
             }
         }
         
@@ -8174,7 +8679,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearButton");
+                return resourceLoader.GetString("ClearButton");
             }
         }
         
@@ -8185,7 +8690,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearCache");
+                return resourceLoader.GetString("ClearCache");
             }
         }
         
@@ -8196,7 +8701,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearCacheFewChatsTitle");
+                return resourceLoader.GetString("ClearCacheFewChatsTitle");
             }
         }
         
@@ -8207,7 +8712,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearCacheInfo");
+                return resourceLoader.GetString("ClearCacheInfo");
             }
         }
         
@@ -8218,7 +8723,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearFewChatsTitle");
+                return resourceLoader.GetString("ClearFewChatsTitle");
             }
         }
         
@@ -8229,7 +8734,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearHistory");
+                return resourceLoader.GetString("ClearHistory");
             }
         }
         
@@ -8240,7 +8745,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearHistoryCache");
+                return resourceLoader.GetString("ClearHistoryCache");
             }
         }
         
@@ -8251,7 +8756,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearHistoryOptionAlso");
+                return resourceLoader.GetString("ClearHistoryOptionAlso");
             }
         }
         
@@ -8262,7 +8767,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearMediaCache");
+                return resourceLoader.GetString("ClearMediaCache");
             }
         }
         
@@ -8273,7 +8778,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearOtherSessionsHelp");
+                return resourceLoader.GetString("ClearOtherSessionsHelp");
             }
         }
         
@@ -8284,7 +8789,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearOtherWebSessionsHelp");
+                return resourceLoader.GetString("ClearOtherWebSessionsHelp");
             }
         }
         
@@ -8295,7 +8800,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearRecentEmoji");
+                return resourceLoader.GetString("ClearRecentEmoji");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Clear history"
+        /// </summary>
+        public static string ClearRecentHistory
+        {
+            get
+            {
+                return resourceLoader.GetString("ClearRecentHistory");
             }
         }
         
@@ -8306,7 +8822,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearSearch");
+                return resourceLoader.GetString("ClearSearch");
             }
         }
         
@@ -8317,7 +8833,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearSearchAlert");
+                return resourceLoader.GetString("ClearSearchAlert");
             }
         }
         
@@ -8328,7 +8844,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ClearSearchAlertTitle");
+                return resourceLoader.GetString("ClearSearchAlertTitle");
             }
         }
         
@@ -8339,7 +8855,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Close");
+                return resourceLoader.GetString("Close");
             }
         }
         
@@ -8350,7 +8866,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CloseEditor");
+                return resourceLoader.GetString("CloseEditor");
             }
         }
         
@@ -8361,7 +8877,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Code");
+                return resourceLoader.GetString("Code");
             }
         }
         
@@ -8372,7 +8888,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CodeExpired");
+                return resourceLoader.GetString("CodeExpired");
             }
         }
         
@@ -8383,7 +8899,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorBlue");
+                return resourceLoader.GetString("ColorBlue");
             }
         }
         
@@ -8394,7 +8910,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorCyan");
+                return resourceLoader.GetString("ColorCyan");
             }
         }
         
@@ -8405,7 +8921,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorDark");
+                return resourceLoader.GetString("ColorDark");
             }
         }
         
@@ -8416,7 +8932,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorGreen");
+                return resourceLoader.GetString("ColorGreen");
             }
         }
         
@@ -8427,7 +8943,62 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorOrange");
+                return resourceLoader.GetString("ColorOrange");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Background"
+        /// </summary>
+        public static string ColorPickerBackground
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorPickerBackground");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Accent Color"
+        /// </summary>
+        public static string ColorPickerMainColor
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorPickerMainColor");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "My Messages"
+        /// </summary>
+        public static string ColorPickerMyMessages
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorPickerMyMessages");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "RESET"
+        /// </summary>
+        public static string ColorPickerReset
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorPickerReset");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "RESET ALL"
+        /// </summary>
+        public static string ColorPickerResetAll
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorPickerResetAll");
             }
         }
         
@@ -8438,7 +9009,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorPink");
+                return resourceLoader.GetString("ColorPink");
             }
         }
         
@@ -8449,7 +9020,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorRed");
+                return resourceLoader.GetString("ColorRed");
             }
         }
         
@@ -8460,7 +9031,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorSepia");
+                return resourceLoader.GetString("ColorSepia");
             }
         }
         
@@ -8471,7 +9042,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorTheme");
+                return resourceLoader.GetString("ColorTheme");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Color theme changed."
+        /// </summary>
+        public static string ColorThemeChanged
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorThemeChanged");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "You can change it back in *Chat Settings*."
+        /// </summary>
+        public static string ColorThemeChangedInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("ColorThemeChangedInfo");
             }
         }
         
@@ -8482,7 +9075,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorThemes");
+                return resourceLoader.GetString("ColorThemes");
             }
         }
         
@@ -8493,7 +9086,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorViolet");
+                return resourceLoader.GetString("ColorViolet");
             }
         }
         
@@ -8504,7 +9097,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorWhite");
+                return resourceLoader.GetString("ColorWhite");
             }
         }
         
@@ -8515,7 +9108,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ColorYellow");
+                return resourceLoader.GetString("ColorYellow");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CommonGroupsFew
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CommonGroupsMany
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} group in common"
+        /// </summary>
+        public static string CommonGroupsOne
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} groups in common"
+        /// </summary>
+        public static string CommonGroupsOther
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CommonGroupsTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CommonGroupsZero
+        {
+            get
+            {
+                return resourceLoader.GetString("CommonGroupsZero");
             }
         }
         
@@ -8528,7 +9187,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CompatibilityChat");
+                return resourceLoader.GetString("CompatibilityChat");
             }
         }
         
@@ -8539,7 +9198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConfirmDeleteCallLog");
+                return resourceLoader.GetString("ConfirmDeleteCallLog");
             }
         }
         
@@ -8550,7 +9209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Connected");
+                return resourceLoader.GetString("Connected");
             }
         }
         
@@ -8561,7 +9220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Connecting");
+                return resourceLoader.GetString("Connecting");
             }
         }
         
@@ -8572,7 +9231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingConnectProxy");
+                return resourceLoader.GetString("ConnectingConnectProxy");
             }
         }
         
@@ -8583,7 +9242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingToProxy");
+                return resourceLoader.GetString("ConnectingToProxy");
             }
         }
         
@@ -8594,7 +9253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingToProxyDisable");
+                return resourceLoader.GetString("ConnectingToProxyDisable");
             }
         }
         
@@ -8605,7 +9264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingToProxyDisableAlert");
+                return resourceLoader.GetString("ConnectingToProxyDisableAlert");
             }
         }
         
@@ -8616,7 +9275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingToProxyEnable");
+                return resourceLoader.GetString("ConnectingToProxyEnable");
             }
         }
         
@@ -8627,7 +9286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConnectingToProxyTapToDisable");
+                return resourceLoader.GetString("ConnectingToProxyTapToDisable");
             }
         }
         
@@ -8638,7 +9297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactBirthday");
+                return resourceLoader.GetString("ContactBirthday");
             }
         }
         
@@ -8649,7 +9308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactJob");
+                return resourceLoader.GetString("ContactJob");
             }
         }
         
@@ -8660,7 +9319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactJobTitle");
+                return resourceLoader.GetString("ContactJobTitle");
             }
         }
         
@@ -8671,7 +9330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactJoined");
+                return resourceLoader.GetString("ContactJoined");
             }
         }
         
@@ -8682,7 +9341,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactNotRegistered");
+                return resourceLoader.GetString("ContactNotRegistered");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Invite to Telegram"
+        /// </summary>
+        public static string ContactNotRegisteredTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ContactNotRegisteredTitle");
             }
         }
         
@@ -8693,7 +9363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Contacts");
+                return resourceLoader.GetString("Contacts");
             }
         }
         
@@ -8704,7 +9374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactShare");
+                return resourceLoader.GetString("ContactShare");
             }
         }
         
@@ -8715,7 +9385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactsPermissionAlert");
+                return resourceLoader.GetString("ContactsPermissionAlert");
             }
         }
         
@@ -8726,7 +9396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactsPermissionAlertContinue");
+                return resourceLoader.GetString("ContactsPermissionAlertContinue");
             }
         }
         
@@ -8737,7 +9407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactsPermissionAlertNotNow");
+                return resourceLoader.GetString("ContactsPermissionAlertNotNow");
             }
         }
         
@@ -8748,7 +9418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactSupport");
+                return resourceLoader.GetString("ContactSupport");
             }
         }
         
@@ -8759,7 +9429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContactSupportInfo");
+                return resourceLoader.GetString("ContactSupportInfo");
             }
         }
         
@@ -8770,7 +9440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Continue");
+                return resourceLoader.GetString("Continue");
             }
         }
         
@@ -8781,7 +9451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ContinueOnThisLanguage");
+                return resourceLoader.GetString("ContinueOnThisLanguage");
             }
         }
         
@@ -8792,7 +9462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Contrast");
+                return resourceLoader.GetString("Contrast");
             }
         }
         
@@ -8803,7 +9473,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroup");
+                return resourceLoader.GetString("ConvertGroup");
             }
         }
         
@@ -8814,7 +9484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupAlert");
+                return resourceLoader.GetString("ConvertGroupAlert");
             }
         }
         
@@ -8825,7 +9495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupAlertWarning");
+                return resourceLoader.GetString("ConvertGroupAlertWarning");
             }
         }
         
@@ -8844,7 +9514,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupInfo");
+                return resourceLoader.GetString("ConvertGroupInfo");
             }
         }
         
@@ -8860,7 +9530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupInfo2");
+                return resourceLoader.GetString("ConvertGroupInfo2");
             }
         }
         
@@ -8871,7 +9541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupInfo3");
+                return resourceLoader.GetString("ConvertGroupInfo3");
             }
         }
         
@@ -8882,7 +9552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ConvertGroupMenu");
+                return resourceLoader.GetString("ConvertGroupMenu");
             }
         }
         
@@ -8893,7 +9563,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Copy");
+                return resourceLoader.GetString("Copy");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Copy"
+        /// </summary>
+        public static string CopyCardNumber
+        {
+            get
+            {
+                return resourceLoader.GetString("CopyCardNumber");
             }
         }
         
@@ -8904,7 +9585,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CopyLink");
+                return resourceLoader.GetString("CopyLink");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CountOfResultsFew
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CountOfResultsMany
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} of {1} results"
+        /// </summary>
+        public static string CountOfResultsOne
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} of {1} results"
+        /// </summary>
+        public static string CountOfResultsOther
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CountOfResultsTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string CountOfResultsZero
+        {
+            get
+            {
+                return resourceLoader.GetString("CountOfResultsZero");
             }
         }
         
@@ -8915,7 +9662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CountReceived");
+                return resourceLoader.GetString("CountReceived");
             }
         }
         
@@ -8926,7 +9673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CountSent");
+                return resourceLoader.GetString("CountSent");
             }
         }
         
@@ -8937,7 +9684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Create");
+                return resourceLoader.GetString("Create");
             }
         }
         
@@ -8948,7 +9695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateEncryptedChatError");
+                return resourceLoader.GetString("CreateEncryptedChatError");
             }
         }
         
@@ -8959,7 +9706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateGroupError");
+                return resourceLoader.GetString("CreateGroupError");
             }
         }
         
@@ -8970,7 +9717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateLink");
+                return resourceLoader.GetString("CreateLink");
             }
         }
         
@@ -8981,7 +9728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewContact");
+                return resourceLoader.GetString("CreateNewContact");
             }
         }
         
@@ -8992,7 +9739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewTheme");
+                return resourceLoader.GetString("CreateNewTheme");
             }
         }
         
@@ -9005,7 +9752,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewThemeAlert");
+                return resourceLoader.GetString("CreateNewThemeAlert");
             }
         }
         
@@ -9016,7 +9763,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewThemeHelp");
+                return resourceLoader.GetString("CreateNewThemeHelp");
             }
         }
         
@@ -9027,7 +9774,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewThemeInfo");
+                return resourceLoader.GetString("CreateNewThemeInfo");
             }
         }
         
@@ -9038,7 +9785,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateNewThemeMenu");
+                return resourceLoader.GetString("CreateNewThemeMenu");
             }
         }
         
@@ -9049,7 +9796,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateTheme");
+                return resourceLoader.GetString("CreateTheme");
             }
         }
         
@@ -9060,7 +9807,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Crop");
+                return resourceLoader.GetString("Crop");
             }
         }
         
@@ -9071,7 +9818,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CropImage");
+                return resourceLoader.GetString("CropImage");
             }
         }
         
@@ -9082,7 +9829,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CropOriginal");
+                return resourceLoader.GetString("CropOriginal");
             }
         }
         
@@ -9093,7 +9840,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CropReset");
+                return resourceLoader.GetString("CropReset");
             }
         }
         
@@ -9104,7 +9851,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CropSquare");
+                return resourceLoader.GetString("CropSquare");
             }
         }
         
@@ -9115,7 +9862,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurrentGroupStickers");
+                return resourceLoader.GetString("CurrentGroupStickers");
             }
         }
         
@@ -9126,7 +9873,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurrentSession");
+                return resourceLoader.GetString("CurrentSession");
             }
         }
         
@@ -9137,7 +9884,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurvesAll");
+                return resourceLoader.GetString("CurvesAll");
             }
         }
         
@@ -9148,7 +9895,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurvesBlue");
+                return resourceLoader.GetString("CurvesBlue");
             }
         }
         
@@ -9159,7 +9906,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurvesGreen");
+                return resourceLoader.GetString("CurvesGreen");
             }
         }
         
@@ -9170,7 +9917,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CurvesRed");
+                return resourceLoader.GetString("CurvesRed");
             }
         }
         
@@ -9181,7 +9928,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomCallInfo");
+                return resourceLoader.GetString("CustomCallInfo");
             }
         }
         
@@ -9192,7 +9939,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomHelp");
+                return resourceLoader.GetString("CustomHelp");
             }
         }
         
@@ -9203,7 +9950,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomNotifications");
+                return resourceLoader.GetString("CustomNotifications");
             }
         }
         
@@ -9214,7 +9961,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomP2PInfo");
+                return resourceLoader.GetString("CustomP2PInfo");
             }
         }
         
@@ -9225,7 +9972,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomShareInfo");
+                return resourceLoader.GetString("CustomShareInfo");
             }
         }
         
@@ -9236,7 +9983,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomShareSettingsHelp");
+                return resourceLoader.GetString("CustomShareSettingsHelp");
             }
         }
         
@@ -9247,7 +9994,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CustomThemes");
+                return resourceLoader.GetString("CustomThemes");
             }
         }
         
@@ -9258,7 +10005,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DataSettings");
+                return resourceLoader.GetString("DataSettings");
             }
         }
         
@@ -9269,7 +10016,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DataUsage");
+                return resourceLoader.GetString("DataUsage");
             }
         }
         
@@ -9280,7 +10027,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldFew");
+                return resourceLoader.GetString("DaysBoldFew");
             }
         }
         
@@ -9291,7 +10038,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldMany");
+                return resourceLoader.GetString("DaysBoldMany");
             }
         }
         
@@ -9302,7 +10049,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldOne");
+                return resourceLoader.GetString("DaysBoldOne");
             }
         }
         
@@ -9313,7 +10060,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldOther");
+                return resourceLoader.GetString("DaysBoldOther");
             }
         }
         
@@ -9324,7 +10071,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldTwo");
+                return resourceLoader.GetString("DaysBoldTwo");
             }
         }
         
@@ -9335,7 +10082,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysBoldZero");
+                return resourceLoader.GetString("DaysBoldZero");
             }
         }
         
@@ -9346,7 +10093,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysFew");
+                return resourceLoader.GetString("DaysFew");
             }
         }
         
@@ -9357,7 +10104,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysMany");
+                return resourceLoader.GetString("DaysMany");
             }
         }
         
@@ -9368,7 +10115,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysOne");
+                return resourceLoader.GetString("DaysOne");
             }
         }
         
@@ -9379,7 +10126,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysOther");
+                return resourceLoader.GetString("DaysOther");
             }
         }
         
@@ -9390,7 +10137,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysTwo");
+                return resourceLoader.GetString("DaysTwo");
             }
         }
         
@@ -9401,7 +10148,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DaysZero");
+                return resourceLoader.GetString("DaysZero");
             }
         }
         
@@ -9412,7 +10159,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Deactivate");
+                return resourceLoader.GetString("Deactivate");
             }
         }
         
@@ -9423,7 +10170,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugClearLogs");
+                return resourceLoader.GetString("DebugClearLogs");
             }
         }
         
@@ -9434,7 +10181,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenu");
+                return resourceLoader.GetString("DebugMenu");
             }
         }
         
@@ -9445,7 +10192,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuCallSettings");
+                return resourceLoader.GetString("DebugMenuCallSettings");
             }
         }
         
@@ -9456,7 +10203,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuClearMediaCache");
+                return resourceLoader.GetString("DebugMenuClearMediaCache");
             }
         }
         
@@ -9467,7 +10214,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuDisableCamera");
+                return resourceLoader.GetString("DebugMenuDisableCamera");
             }
         }
         
@@ -9478,7 +10225,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuDisableLogs");
+                return resourceLoader.GetString("DebugMenuDisableLogs");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disable pause music when recording"
+        /// </summary>
+        public static string DebugMenuDisablePauseMusic
+        {
+            get
+            {
+                return resourceLoader.GetString("DebugMenuDisablePauseMusic");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disable smooth keyboard"
+        /// </summary>
+        public static string DebugMenuDisableSmoothKeyboard
+        {
+            get
+            {
+                return resourceLoader.GetString("DebugMenuDisableSmoothKeyboard");
             }
         }
         
@@ -9489,7 +10258,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuEnableCamera");
+                return resourceLoader.GetString("DebugMenuEnableCamera");
             }
         }
         
@@ -9500,7 +10269,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuEnableLogs");
+                return resourceLoader.GetString("DebugMenuEnableLogs");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Enable pause music when recording"
+        /// </summary>
+        public static string DebugMenuEnablePauseMusic
+        {
+            get
+            {
+                return resourceLoader.GetString("DebugMenuEnablePauseMusic");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Enable smooth keyboard"
+        /// </summary>
+        public static string DebugMenuEnableSmoothKeyboard
+        {
+            get
+            {
+                return resourceLoader.GetString("DebugMenuEnableSmoothKeyboard");
             }
         }
         
@@ -9511,7 +10302,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuImportContacts");
+                return resourceLoader.GetString("DebugMenuImportContacts");
             }
         }
         
@@ -9522,7 +10313,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuReadAllDialogs");
+                return resourceLoader.GetString("DebugMenuReadAllDialogs");
             }
         }
         
@@ -9533,7 +10324,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuReloadContacts");
+                return resourceLoader.GetString("DebugMenuReloadContacts");
             }
         }
         
@@ -9544,18 +10335,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugMenuResetContacts");
+                return resourceLoader.GetString("DebugMenuResetContacts");
             }
         }
         
         /// <summary>
-        /// Localized resource similar to "Reset Dialogs"
+        /// Localized resource similar to "Reset Chats"
         /// </summary>
         public static string DebugMenuResetDialogs
         {
             get
             {
-                return Resource.GetString("DebugMenuResetDialogs");
+                return resourceLoader.GetString("DebugMenuResetDialogs");
             }
         }
         
@@ -9566,7 +10357,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DebugSendLogs");
+                return resourceLoader.GetString("DebugSendLogs");
             }
         }
         
@@ -9577,7 +10368,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("December");
+                return resourceLoader.GetString("December");
             }
         }
         
@@ -9588,7 +10379,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Decline");
+                return resourceLoader.GetString("Decline");
             }
         }
         
@@ -9599,7 +10390,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeclineDeactivate");
+                return resourceLoader.GetString("DeclineDeactivate");
             }
         }
         
@@ -9610,7 +10401,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Default");
+                return resourceLoader.GetString("Default");
             }
         }
         
@@ -9621,7 +10412,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DefaultRingtone");
+                return resourceLoader.GetString("DefaultRingtone");
             }
         }
         
@@ -9632,7 +10423,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Delete");
+                return resourceLoader.GetString("Delete");
             }
         }
         
@@ -9643,7 +10434,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAccountHelp");
+                return resourceLoader.GetString("DeleteAccountHelp");
             }
         }
         
@@ -9654,7 +10445,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAccountIfAwayFor");
+                return resourceLoader.GetString("DeleteAccountIfAwayFor");
             }
         }
         
@@ -9665,7 +10456,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAccountIfAwayFor2");
+                return resourceLoader.GetString("DeleteAccountIfAwayFor2");
             }
         }
         
@@ -9676,7 +10467,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAccountTitle");
+                return resourceLoader.GetString("DeleteAccountTitle");
             }
         }
         
@@ -9687,7 +10478,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAll");
+                return resourceLoader.GetString("DeleteAll");
             }
         }
         
@@ -9698,7 +10489,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAllFrom");
+                return resourceLoader.GetString("DeleteAllFrom");
             }
         }
         
@@ -9709,7 +10500,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAllMessagesAlert");
+                return resourceLoader.GetString("DeleteAllMessagesAlert");
             }
         }
         
@@ -9720,7 +10511,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAndExit");
+                return resourceLoader.GetString("DeleteAndExit");
             }
         }
         
@@ -9731,7 +10522,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAndExitButton");
+                return resourceLoader.GetString("DeleteAndExitButton");
             }
         }
         
@@ -9742,7 +10533,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteAndStop");
+                return resourceLoader.GetString("DeleteAndStop");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string DeleteBackgroundFew
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string DeleteBackgroundMany
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete background"
+        /// </summary>
+        public static string DeleteBackgroundOne
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete {0} backgrounds"
+        /// </summary>
+        public static string DeleteBackgroundOther
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string DeleteBackgroundTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string DeleteBackgroundZero
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteBackgroundZero");
             }
         }
         
@@ -9753,7 +10610,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteBanUser");
+                return resourceLoader.GetString("DeleteBanUser");
             }
         }
         
@@ -9764,7 +10621,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteChat");
+                return resourceLoader.GetString("DeleteChat");
             }
         }
         
@@ -9775,7 +10632,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteChatBackgroundsAlert");
+                return resourceLoader.GetString("DeleteChatBackgroundsAlert");
             }
         }
         
@@ -9786,7 +10643,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteChatUser");
+                return resourceLoader.GetString("DeleteChatUser");
             }
         }
         
@@ -9797,7 +10654,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteContact");
+                return resourceLoader.GetString("DeleteContact");
             }
         }
         
@@ -9808,7 +10665,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteFewChatsTitle");
+                return resourceLoader.GetString("DeleteFewChatsTitle");
             }
         }
         
@@ -9819,7 +10676,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteForAll");
+                return resourceLoader.GetString("DeleteForAll");
             }
         }
         
@@ -9830,7 +10687,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteForUser");
+                return resourceLoader.GetString("DeleteForUser");
             }
         }
         
@@ -9841,7 +10698,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteFromFavorites");
+                return resourceLoader.GetString("DeleteFromFavorites");
             }
         }
         
@@ -9852,7 +10709,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteGif");
+                return resourceLoader.GetString("DeleteGif");
             }
         }
         
@@ -9863,7 +10720,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteLocalization");
+                return resourceLoader.GetString("DeleteLocalization");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to delete **{0}** language pack?"
+        /// </summary>
+        public static string DeleteLocalizationText
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteLocalizationText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete language pack"
+        /// </summary>
+        public static string DeleteLocalizationTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteLocalizationTitle");
             }
         }
         
@@ -9874,7 +10753,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMega");
+                return resourceLoader.GetString("DeleteMega");
             }
         }
         
@@ -9885,7 +10764,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMegaMenu");
+                return resourceLoader.GetString("DeleteMegaMenu");
             }
         }
         
@@ -9896,7 +10775,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesOption");
+                return resourceLoader.GetString("DeleteMessagesOption");
             }
         }
         
@@ -9907,7 +10786,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesOptionAlso");
+                return resourceLoader.GetString("DeleteMessagesOptionAlso");
             }
         }
         
@@ -9918,7 +10797,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesText");
+                return resourceLoader.GetString("DeleteMessagesText");
             }
         }
         
@@ -9929,7 +10808,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesTextGroup");
+                return resourceLoader.GetString("DeleteMessagesTextGroup");
             }
         }
         
@@ -9940,7 +10819,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesTextGroupPart");
+                return resourceLoader.GetString("DeleteMessagesTextGroupPart");
             }
         }
         
@@ -9951,7 +10830,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteMessagesTitle");
+                return resourceLoader.GetString("DeleteMessagesTitle");
             }
         }
         
@@ -9962,7 +10841,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeletePhoto");
+                return resourceLoader.GetString("DeletePhoto");
             }
         }
         
@@ -9973,7 +10852,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteProxy");
+                return resourceLoader.GetString("DeleteProxy");
             }
         }
         
@@ -9984,7 +10863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteReportSpam");
+                return resourceLoader.GetString("DeleteReportSpam");
             }
         }
         
@@ -9995,7 +10874,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteSingleMessagesTitle");
+                return resourceLoader.GetString("DeleteSingleMessagesTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete theme"
+        /// </summary>
+        public static string DeleteTheme
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteTheme");
             }
         }
         
@@ -10006,7 +10896,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteThemeAlert");
+                return resourceLoader.GetString("DeleteThemeAlert");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete theme"
+        /// </summary>
+        public static string DeleteThemeTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteThemeTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete chats"
+        /// </summary>
+        public static string DeleteTheseChats
+        {
+            get
+            {
+                return resourceLoader.GetString("DeleteTheseChats");
             }
         }
         
@@ -10017,7 +10929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteThisChat");
+                return resourceLoader.GetString("DeleteThisChat");
             }
         }
         
@@ -10028,7 +10940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DeleteThisGroup");
+                return resourceLoader.GetString("DeleteThisGroup");
             }
         }
         
@@ -10039,7 +10951,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DescriptionInfo");
+                return resourceLoader.GetString("DescriptionInfo");
             }
         }
         
@@ -10050,7 +10962,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DescriptionOptionalPlaceholder");
+                return resourceLoader.GetString("DescriptionOptionalPlaceholder");
             }
         }
         
@@ -10061,7 +10973,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DescriptionPlaceholder");
+                return resourceLoader.GetString("DescriptionPlaceholder");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Devices"
+        /// </summary>
+        public static string Devices
+        {
+            get
+            {
+                return resourceLoader.GetString("Devices");
             }
         }
         
@@ -10072,7 +10995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DidNotGetTheCode");
+                return resourceLoader.GetString("DidNotGetTheCode");
             }
         }
         
@@ -10083,7 +11006,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DidNotGetTheCodeSms");
+                return resourceLoader.GetString("DidNotGetTheCodeSms");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Directions"
+        /// </summary>
+        public static string Directions
+        {
+            get
+            {
+                return resourceLoader.GetString("Directions");
             }
         }
         
@@ -10094,7 +11028,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DirectShare");
+                return resourceLoader.GetString("DirectShare");
             }
         }
         
@@ -10105,7 +11039,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DirectShareInfo");
+                return resourceLoader.GetString("DirectShareInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disable"
+        /// </summary>
+        public static string Disable
+        {
+            get
+            {
+                return resourceLoader.GetString("Disable");
             }
         }
         
@@ -10116,7 +11061,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DisappearingGif");
+                return resourceLoader.GetString("DisappearingGif");
             }
         }
         
@@ -10127,7 +11072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DisappearingPhoto");
+                return resourceLoader.GetString("DisappearingPhoto");
             }
         }
         
@@ -10138,7 +11083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DisappearingVideo");
+                return resourceLoader.GetString("DisappearingVideo");
             }
         }
         
@@ -10149,7 +11094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardChanges");
+                return resourceLoader.GetString("DiscardChanges");
             }
         }
         
@@ -10160,7 +11105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardVideoMessageDescription");
+                return resourceLoader.GetString("DiscardVideoMessageDescription");
             }
         }
         
@@ -10171,7 +11116,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardVideoMessageTitle");
+                return resourceLoader.GetString("DiscardVideoMessageTitle");
             }
         }
         
@@ -10182,7 +11127,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardVoiceMessageAction");
+                return resourceLoader.GetString("DiscardVoiceMessageAction");
             }
         }
         
@@ -10193,7 +11138,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardVoiceMessageDescription");
+                return resourceLoader.GetString("DiscardVoiceMessageDescription");
             }
         }
         
@@ -10204,7 +11149,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscardVoiceMessageTitle");
+                return resourceLoader.GetString("DiscardVoiceMessageTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disconnect"
+        /// </summary>
+        public static string Disconnect
+        {
+            get
+            {
+                return resourceLoader.GetString("Disconnect");
             }
         }
         
@@ -10215,7 +11171,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussChannel");
+                return resourceLoader.GetString("DiscussChannel");
             }
         }
         
@@ -10226,7 +11182,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Discussion");
+                return resourceLoader.GetString("Discussion");
             }
         }
         
@@ -10237,7 +11193,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionChannelGroupSetHelp");
+                return resourceLoader.GetString("DiscussionChannelGroupSetHelp");
             }
         }
         
@@ -10248,7 +11204,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionChannelHelp");
+                return resourceLoader.GetString("DiscussionChannelHelp");
             }
         }
         
@@ -10259,7 +11215,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionChannelHelp2");
+                return resourceLoader.GetString("DiscussionChannelHelp2");
             }
         }
         
@@ -10270,7 +11226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionCreateGroup");
+                return resourceLoader.GetString("DiscussionCreateGroup");
             }
         }
         
@@ -10281,7 +11237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionGroupHelp");
+                return resourceLoader.GetString("DiscussionGroupHelp");
             }
         }
         
@@ -10292,7 +11248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionGroupHelp2");
+                return resourceLoader.GetString("DiscussionGroupHelp2");
             }
         }
         
@@ -10303,7 +11259,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionInfo");
+                return resourceLoader.GetString("DiscussionInfo");
             }
         }
         
@@ -10314,7 +11270,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionLinkGroup");
+                return resourceLoader.GetString("DiscussionLinkGroup");
             }
         }
         
@@ -10325,7 +11281,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionLinkGroupAlertHistory");
+                return resourceLoader.GetString("DiscussionLinkGroupAlertHistory");
             }
         }
         
@@ -10338,7 +11294,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionLinkGroupPrivateAlert");
+                return resourceLoader.GetString("DiscussionLinkGroupPrivateAlert");
             }
         }
         
@@ -10349,7 +11305,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionLinkGroupPublicAlert");
+                return resourceLoader.GetString("DiscussionLinkGroupPublicAlert");
             }
         }
         
@@ -10362,7 +11318,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionLinkGroupPublicPrivateAlert");
+                return resourceLoader.GetString("DiscussionLinkGroupPublicPrivateAlert");
             }
         }
         
@@ -10373,7 +11329,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionUnlink");
+                return resourceLoader.GetString("DiscussionUnlink");
             }
         }
         
@@ -10384,7 +11340,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionUnlinkChannel");
+                return resourceLoader.GetString("DiscussionUnlinkChannel");
             }
         }
         
@@ -10395,7 +11351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionUnlinkChannelAlert");
+                return resourceLoader.GetString("DiscussionUnlinkChannelAlert");
             }
         }
         
@@ -10406,7 +11362,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionUnlinkGroup");
+                return resourceLoader.GetString("DiscussionUnlinkGroup");
             }
         }
         
@@ -10417,7 +11373,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DiscussionUnlinkGroupAlert");
+                return resourceLoader.GetString("DiscussionUnlinkGroupAlert");
             }
         }
         
@@ -10428,7 +11384,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DistanceUnits");
+                return resourceLoader.GetString("DistanceUnits");
             }
         }
         
@@ -10439,7 +11395,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DistanceUnitsAutomatic");
+                return resourceLoader.GetString("DistanceUnitsAutomatic");
             }
         }
         
@@ -10450,7 +11406,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DistanceUnitsKilometers");
+                return resourceLoader.GetString("DistanceUnitsKilometers");
             }
         }
         
@@ -10461,7 +11417,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DistanceUnitsMiles");
+                return resourceLoader.GetString("DistanceUnitsMiles");
             }
         }
         
@@ -10472,7 +11428,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DistanceUnitsTitle");
+                return resourceLoader.GetString("DistanceUnitsTitle");
             }
         }
         
@@ -10483,7 +11439,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DocumentsTitle");
+                return resourceLoader.GetString("DocumentsTitle");
             }
         }
         
@@ -10494,7 +11450,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Done");
+                return resourceLoader.GetString("Done");
             }
         }
         
@@ -10505,7 +11461,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("DownloadTelegramText");
+                return resourceLoader.GetString("DownloadTelegramText");
             }
         }
         
@@ -10516,7 +11472,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Draft");
+                return resourceLoader.GetString("Draft");
             }
         }
         
@@ -10527,7 +11483,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Edit");
+                return resourceLoader.GetString("Edit");
             }
         }
         
@@ -10538,7 +11494,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdmin");
+                return resourceLoader.GetString("EditAdmin");
             }
         }
         
@@ -10549,7 +11505,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminAddAdmins");
+                return resourceLoader.GetString("EditAdminAddAdmins");
             }
         }
         
@@ -10560,7 +11516,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminAddUsers");
+                return resourceLoader.GetString("EditAdminAddUsers");
             }
         }
         
@@ -10571,7 +11527,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminAddUsersViaLink");
+                return resourceLoader.GetString("EditAdminAddUsersViaLink");
             }
         }
         
@@ -10582,7 +11538,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminBanUsers");
+                return resourceLoader.GetString("EditAdminBanUsers");
             }
         }
         
@@ -10593,7 +11549,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminCantEdit");
+                return resourceLoader.GetString("EditAdminCantEdit");
             }
         }
         
@@ -10604,7 +11560,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminChangeChannelInfo");
+                return resourceLoader.GetString("EditAdminChangeChannelInfo");
             }
         }
         
@@ -10615,7 +11571,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminChangeGroupInfo");
+                return resourceLoader.GetString("EditAdminChangeGroupInfo");
             }
         }
         
@@ -10626,7 +11582,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminChannelTransfer");
+                return resourceLoader.GetString("EditAdminChannelTransfer");
             }
         }
         
@@ -10637,7 +11593,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminDeleteMessages");
+                return resourceLoader.GetString("EditAdminDeleteMessages");
             }
         }
         
@@ -10648,7 +11604,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminEditMessages");
+                return resourceLoader.GetString("EditAdminEditMessages");
             }
         }
         
@@ -10659,7 +11615,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminGroupDeleteMessages");
+                return resourceLoader.GetString("EditAdminGroupDeleteMessages");
             }
         }
         
@@ -10670,7 +11626,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminGroupTransfer");
+                return resourceLoader.GetString("EditAdminGroupTransfer");
             }
         }
         
@@ -10681,7 +11637,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminPinMessages");
+                return resourceLoader.GetString("EditAdminPinMessages");
             }
         }
         
@@ -10692,7 +11648,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminPostMessages");
+                return resourceLoader.GetString("EditAdminPostMessages");
             }
         }
         
@@ -10703,7 +11659,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminPromotedBy");
+                return resourceLoader.GetString("EditAdminPromotedBy");
             }
         }
         
@@ -10714,7 +11670,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminRank");
+                return resourceLoader.GetString("EditAdminRank");
             }
         }
         
@@ -10725,7 +11681,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminRankInfo");
+                return resourceLoader.GetString("EditAdminRankInfo");
             }
         }
         
@@ -10736,7 +11692,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminRemoveAdmin");
+                return resourceLoader.GetString("EditAdminRemoveAdmin");
             }
         }
         
@@ -10747,7 +11703,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminRights");
+                return resourceLoader.GetString("EditAdminRights");
             }
         }
         
@@ -10758,7 +11714,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferAlertText");
+                return resourceLoader.GetString("EditAdminTransferAlertText");
             }
         }
         
@@ -10769,7 +11725,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferAlertText1");
+                return resourceLoader.GetString("EditAdminTransferAlertText1");
             }
         }
         
@@ -10780,7 +11736,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferAlertText2");
+                return resourceLoader.GetString("EditAdminTransferAlertText2");
             }
         }
         
@@ -10791,7 +11747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferAlertText3");
+                return resourceLoader.GetString("EditAdminTransferAlertText3");
             }
         }
         
@@ -10802,7 +11758,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferAlertTitle");
+                return resourceLoader.GetString("EditAdminTransferAlertTitle");
             }
         }
         
@@ -10813,7 +11769,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferChangeOwner");
+                return resourceLoader.GetString("EditAdminTransferChangeOwner");
             }
         }
         
@@ -10824,7 +11780,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferChannelToast");
+                return resourceLoader.GetString("EditAdminTransferChannelToast");
             }
         }
         
@@ -10835,7 +11791,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferGroupToast");
+                return resourceLoader.GetString("EditAdminTransferGroupToast");
             }
         }
         
@@ -10846,7 +11802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferReadyAlertText");
+                return resourceLoader.GetString("EditAdminTransferReadyAlertText");
             }
         }
         
@@ -10857,7 +11813,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminTransferSetPassword");
+                return resourceLoader.GetString("EditAdminTransferSetPassword");
             }
         }
         
@@ -10868,7 +11824,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditAdminWhatCanDo");
+                return resourceLoader.GetString("EditAdminWhatCanDo");
             }
         }
         
@@ -10879,7 +11835,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditCantEditPermissions");
+                return resourceLoader.GetString("EditCantEditPermissions");
             }
         }
         
@@ -10890,7 +11846,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditCantEditPermissionsPublic");
+                return resourceLoader.GetString("EditCantEditPermissionsPublic");
             }
         }
         
@@ -10901,7 +11857,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditCaption");
+                return resourceLoader.GetString("EditCaption");
             }
         }
         
@@ -10912,7 +11868,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditChannelAdminTransferAlertText");
+                return resourceLoader.GetString("EditChannelAdminTransferAlertText");
             }
         }
         
@@ -10923,7 +11879,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditContact");
+                return resourceLoader.GetString("EditContact");
             }
         }
         
@@ -10934,7 +11890,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditedMessage");
+                return resourceLoader.GetString("EditedMessage");
             }
         }
         
@@ -10945,7 +11901,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditMessage");
+                return resourceLoader.GetString("EditMessage");
             }
         }
         
@@ -10956,7 +11912,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditMessageError");
+                return resourceLoader.GetString("EditMessageError");
             }
         }
         
@@ -10967,7 +11923,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditMessageMedia");
+                return resourceLoader.GetString("EditMessageMedia");
             }
         }
         
@@ -10978,7 +11934,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditName");
+                return resourceLoader.GetString("EditName");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Edit colors"
+        /// </summary>
+        public static string EditThemeColors
+        {
+            get
+            {
+                return resourceLoader.GetString("EditThemeColors");
             }
         }
         
@@ -10989,7 +11956,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EditThemeTitle");
+                return resourceLoader.GetString("EditThemeTitle");
             }
         }
         
@@ -11000,7 +11967,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmailCopied");
+                return resourceLoader.GetString("EmailCopied");
             }
         }
         
@@ -11016,7 +11983,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmailPasswordConfirmText");
+                return resourceLoader.GetString("EmailPasswordConfirmText");
             }
         }
         
@@ -11027,7 +11994,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmailPasswordConfirmText2");
+                return resourceLoader.GetString("EmailPasswordConfirmText2");
             }
         }
         
@@ -11038,7 +12005,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmailPasswordConfirmText3");
+                return resourceLoader.GetString("EmailPasswordConfirmText3");
             }
         }
         
@@ -11049,7 +12016,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji");
+                return resourceLoader.GetString("Emoji");
             }
         }
         
@@ -11060,7 +12027,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji1");
+                return resourceLoader.GetString("Emoji1");
             }
         }
         
@@ -11071,7 +12038,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji2");
+                return resourceLoader.GetString("Emoji2");
             }
         }
         
@@ -11082,7 +12049,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji3");
+                return resourceLoader.GetString("Emoji3");
             }
         }
         
@@ -11093,7 +12060,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji4");
+                return resourceLoader.GetString("Emoji4");
             }
         }
         
@@ -11104,7 +12071,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji5");
+                return resourceLoader.GetString("Emoji5");
             }
         }
         
@@ -11115,7 +12082,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji6");
+                return resourceLoader.GetString("Emoji6");
             }
         }
         
@@ -11126,7 +12093,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji7");
+                return resourceLoader.GetString("Emoji7");
             }
         }
         
@@ -11137,7 +12104,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Emoji8");
+                return resourceLoader.GetString("Emoji8");
             }
         }
         
@@ -11148,7 +12115,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmojiBigSize");
+                return resourceLoader.GetString("EmojiBigSize");
             }
         }
         
@@ -11159,7 +12126,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmojiSuggestions");
+                return resourceLoader.GetString("EmojiSuggestions");
             }
         }
         
@@ -11170,7 +12137,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmojiSuggestionsInfo");
+                return resourceLoader.GetString("EmojiSuggestionsInfo");
             }
         }
         
@@ -11181,7 +12148,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmojiSuggestionsUrl");
+                return resourceLoader.GetString("EmojiSuggestionsUrl");
             }
         }
         
@@ -11192,7 +12159,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmojiUseDefault");
+                return resourceLoader.GetString("EmojiUseDefault");
             }
         }
         
@@ -11203,7 +12170,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmpryUsersPlaceholder");
+                return resourceLoader.GetString("EmpryUsersPlaceholder");
             }
         }
         
@@ -11214,7 +12181,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EmptyExceptions");
+                return resourceLoader.GetString("EmptyExceptions");
             }
         }
         
@@ -11226,7 +12193,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnableAllStreamingInfo");
+                return resourceLoader.GetString("EnableAllStreamingInfo");
             }
         }
         
@@ -11237,7 +12204,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnableAnimations");
+                return resourceLoader.GetString("EnableAnimations");
             }
         }
         
@@ -11249,7 +12216,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnabledPasswordText");
+                return resourceLoader.GetString("EnabledPasswordText");
             }
         }
         
@@ -11260,7 +12227,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnableProxyAlert");
+                return resourceLoader.GetString("EnableProxyAlert");
             }
         }
         
@@ -11271,7 +12238,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnableProxyAlert2");
+                return resourceLoader.GetString("EnableProxyAlert2");
             }
         }
         
@@ -11282,7 +12249,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnableStreaming");
+                return resourceLoader.GetString("EnableStreaming");
             }
         }
         
@@ -11293,7 +12260,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedChatStartedIncoming");
+                return resourceLoader.GetString("EncryptedChatStartedIncoming");
             }
         }
         
@@ -11304,7 +12271,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedChatStartedOutgoing");
+                return resourceLoader.GetString("EncryptedChatStartedOutgoing");
             }
         }
         
@@ -11315,7 +12282,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedDescription1");
+                return resourceLoader.GetString("EncryptedDescription1");
             }
         }
         
@@ -11326,7 +12293,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedDescription2");
+                return resourceLoader.GetString("EncryptedDescription2");
             }
         }
         
@@ -11337,7 +12304,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedDescription3");
+                return resourceLoader.GetString("EncryptedDescription3");
             }
         }
         
@@ -11348,7 +12315,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedDescription4");
+                return resourceLoader.GetString("EncryptedDescription4");
             }
         }
         
@@ -11359,7 +12326,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedDescriptionTitle");
+                return resourceLoader.GetString("EncryptedDescriptionTitle");
             }
         }
         
@@ -11370,7 +12337,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedPlaceholderTitleIncoming");
+                return resourceLoader.GetString("EncryptedPlaceholderTitleIncoming");
             }
         }
         
@@ -11381,7 +12348,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptedPlaceholderTitleOutgoing");
+                return resourceLoader.GetString("EncryptedPlaceholderTitleOutgoing");
             }
         }
         
@@ -11392,7 +12359,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptionKey");
+                return resourceLoader.GetString("EncryptionKey");
             }
         }
         
@@ -11407,7 +12374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptionKeyDescription");
+                return resourceLoader.GetString("EncryptionKeyDescription");
             }
         }
         
@@ -11418,7 +12385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptionKeyLink");
+                return resourceLoader.GetString("EncryptionKeyLink");
             }
         }
         
@@ -11429,7 +12396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptionProcessing");
+                return resourceLoader.GetString("EncryptionProcessing");
             }
         }
         
@@ -11440,7 +12407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EncryptionRejected");
+                return resourceLoader.GetString("EncryptionRejected");
             }
         }
         
@@ -11451,7 +12418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("English");
+                return resourceLoader.GetString("English");
             }
         }
         
@@ -11462,7 +12429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Enhance");
+                return resourceLoader.GetString("Enhance");
             }
         }
         
@@ -11473,7 +12440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterChannelName");
+                return resourceLoader.GetString("EnterChannelName");
             }
         }
         
@@ -11484,7 +12451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterCurrentPasscode");
+                return resourceLoader.GetString("EnterCurrentPasscode");
             }
         }
         
@@ -11495,7 +12462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterGroupNamePlaceholder");
+                return resourceLoader.GetString("EnterGroupNamePlaceholder");
             }
         }
         
@@ -11506,7 +12473,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterListName");
+                return resourceLoader.GetString("EnterListName");
             }
         }
         
@@ -11517,7 +12484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterNewFirstPasscode");
+                return resourceLoader.GetString("EnterNewFirstPasscode");
             }
         }
         
@@ -11528,7 +12495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterNewPasscode");
+                return resourceLoader.GetString("EnterNewPasscode");
             }
         }
         
@@ -11539,7 +12506,20 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterThemeName");
+                return resourceLoader.GetString("EnterThemeName");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Tap **Create** if you want to share your theme with others or customize each color manually.
+        ///
+        ///Please enter theme name:"
+        /// </summary>
+        public static string EnterThemeNameEdit
+        {
+            get
+            {
+                return resourceLoader.GetString("EnterThemeNameEdit");
             }
         }
         
@@ -11550,7 +12530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EnterYourPasscode");
+                return resourceLoader.GetString("EnterYourPasscode");
             }
         }
         
@@ -11561,7 +12541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorOccurred");
+                return resourceLoader.GetString("ErrorOccurred");
             }
         }
         
@@ -11572,7 +12552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedMedia");
+                return resourceLoader.GetString("ErrorSendRestrictedMedia");
             }
         }
         
@@ -11583,7 +12563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedMediaAll");
+                return resourceLoader.GetString("ErrorSendRestrictedMediaAll");
             }
         }
         
@@ -11594,7 +12574,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedPolls");
+                return resourceLoader.GetString("ErrorSendRestrictedPolls");
             }
         }
         
@@ -11605,7 +12585,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedPollsAll");
+                return resourceLoader.GetString("ErrorSendRestrictedPollsAll");
             }
         }
         
@@ -11616,7 +12596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedStickers");
+                return resourceLoader.GetString("ErrorSendRestrictedStickers");
             }
         }
         
@@ -11627,7 +12607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ErrorSendRestrictedStickersAll");
+                return resourceLoader.GetString("ErrorSendRestrictedStickersAll");
             }
         }
         
@@ -11638,7 +12618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLog");
+                return resourceLoader.GetString("EventLog");
             }
         }
         
@@ -11649,7 +12629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogAdded");
+                return resourceLoader.GetString("EventLogAdded");
             }
         }
         
@@ -11660,7 +12640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogAllAdmins");
+                return resourceLoader.GetString("EventLogAllAdmins");
             }
         }
         
@@ -11671,7 +12651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogAllEvents");
+                return resourceLoader.GetString("EventLogAllEvents");
             }
         }
         
@@ -11682,7 +12662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedChannelLink");
+                return resourceLoader.GetString("EventLogChangedChannelLink");
             }
         }
         
@@ -11693,7 +12673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedGroupLink");
+                return resourceLoader.GetString("EventLogChangedGroupLink");
             }
         }
         
@@ -11704,7 +12684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedLinkedChannel");
+                return resourceLoader.GetString("EventLogChangedLinkedChannel");
             }
         }
         
@@ -11715,7 +12695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedLinkedGroup");
+                return resourceLoader.GetString("EventLogChangedLinkedGroup");
             }
         }
         
@@ -11726,7 +12706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedLocation");
+                return resourceLoader.GetString("EventLogChangedLocation");
             }
         }
         
@@ -11737,7 +12717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedOwnership");
+                return resourceLoader.GetString("EventLogChangedOwnership");
             }
         }
         
@@ -11748,7 +12728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChangedStickersSet");
+                return resourceLoader.GetString("EventLogChangedStickersSet");
             }
         }
         
@@ -11759,7 +12739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChannelJoined");
+                return resourceLoader.GetString("EventLogChannelJoined");
             }
         }
         
@@ -11770,7 +12750,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChannelRestricted");
+                return resourceLoader.GetString("EventLogChannelRestricted");
             }
         }
         
@@ -11781,7 +12761,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogChannelUnrestricted");
+                return resourceLoader.GetString("EventLogChannelUnrestricted");
             }
         }
         
@@ -11792,7 +12772,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogDefaultPermissions");
+                return resourceLoader.GetString("EventLogDefaultPermissions");
             }
         }
         
@@ -11803,7 +12783,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogDeletedMessages");
+                return resourceLoader.GetString("EventLogDeletedMessages");
             }
         }
         
@@ -11814,7 +12794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedCaption");
+                return resourceLoader.GetString("EventLogEditedCaption");
             }
         }
         
@@ -11825,7 +12805,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedChannelDescription");
+                return resourceLoader.GetString("EventLogEditedChannelDescription");
             }
         }
         
@@ -11836,7 +12816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedChannelPhoto");
+                return resourceLoader.GetString("EventLogEditedChannelPhoto");
             }
         }
         
@@ -11847,7 +12827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedChannelTitle");
+                return resourceLoader.GetString("EventLogEditedChannelTitle");
             }
         }
         
@@ -11858,7 +12838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedGroupDescription");
+                return resourceLoader.GetString("EventLogEditedGroupDescription");
             }
         }
         
@@ -11869,7 +12849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedGroupPhoto");
+                return resourceLoader.GetString("EventLogEditedGroupPhoto");
             }
         }
         
@@ -11880,7 +12860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedGroupTitle");
+                return resourceLoader.GetString("EventLogEditedGroupTitle");
             }
         }
         
@@ -11891,7 +12871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedMedia");
+                return resourceLoader.GetString("EventLogEditedMedia");
             }
         }
         
@@ -11902,7 +12882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedMediaCaption");
+                return resourceLoader.GetString("EventLogEditedMediaCaption");
             }
         }
         
@@ -11913,7 +12893,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedMessages");
+                return resourceLoader.GetString("EventLogEditedMessages");
             }
         }
         
@@ -11924,7 +12904,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedYouChannelPhoto");
+                return resourceLoader.GetString("EventLogEditedYouChannelPhoto");
             }
         }
         
@@ -11935,7 +12915,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedYouChannelTitle");
+                return resourceLoader.GetString("EventLogEditedYouChannelTitle");
             }
         }
         
@@ -11946,7 +12926,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedYouGroupPhoto");
+                return resourceLoader.GetString("EventLogEditedYouGroupPhoto");
             }
         }
         
@@ -11957,7 +12937,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEditedYouGroupTitle");
+                return resourceLoader.GetString("EventLogEditedYouGroupTitle");
             }
         }
         
@@ -11972,7 +12952,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEmpty");
+                return resourceLoader.GetString("EventLogEmpty");
             }
         }
         
@@ -11987,7 +12967,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEmptyChannel");
+                return resourceLoader.GetString("EventLogEmptyChannel");
             }
         }
         
@@ -12001,7 +12981,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEmptySearch");
+                return resourceLoader.GetString("EventLogEmptySearch");
             }
         }
         
@@ -12012,7 +12992,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogEmptyTextSearch");
+                return resourceLoader.GetString("EventLogEmptyTextSearch");
             }
         }
         
@@ -12023,7 +13003,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterAll");
+                return resourceLoader.GetString("EventLogFilterAll");
             }
         }
         
@@ -12034,7 +13014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterChannelInfo");
+                return resourceLoader.GetString("EventLogFilterChannelInfo");
             }
         }
         
@@ -12045,7 +13025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterChannelSettings");
+                return resourceLoader.GetString("EventLogFilterChannelSettings");
             }
         }
         
@@ -12056,7 +13036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterDeletedMessages");
+                return resourceLoader.GetString("EventLogFilterDeletedMessages");
             }
         }
         
@@ -12067,7 +13047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterEditedMessages");
+                return resourceLoader.GetString("EventLogFilterEditedMessages");
             }
         }
         
@@ -12078,7 +13058,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterGroupInfo");
+                return resourceLoader.GetString("EventLogFilterGroupInfo");
             }
         }
         
@@ -12089,7 +13069,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterLeavingMembers");
+                return resourceLoader.GetString("EventLogFilterLeavingMembers");
             }
         }
         
@@ -12100,7 +13080,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterNewAdmins");
+                return resourceLoader.GetString("EventLogFilterNewAdmins");
             }
         }
         
@@ -12111,7 +13091,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterNewMembers");
+                return resourceLoader.GetString("EventLogFilterNewMembers");
             }
         }
         
@@ -12122,7 +13102,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterNewRestrictions");
+                return resourceLoader.GetString("EventLogFilterNewRestrictions");
             }
         }
         
@@ -12133,7 +13113,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogFilterPinnedMessages");
+                return resourceLoader.GetString("EventLogFilterPinnedMessages");
             }
         }
         
@@ -12144,7 +13124,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogGroupJoined");
+                return resourceLoader.GetString("EventLogGroupJoined");
             }
         }
         
@@ -12155,7 +13135,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogInfoDetail");
+                return resourceLoader.GetString("EventLogInfoDetail");
             }
         }
         
@@ -12166,7 +13146,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogInfoDetailChannel");
+                return resourceLoader.GetString("EventLogInfoDetailChannel");
             }
         }
         
@@ -12177,7 +13157,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogInfoTitle");
+                return resourceLoader.GetString("EventLogInfoTitle");
             }
         }
         
@@ -12188,7 +13168,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogLeft");
+                return resourceLoader.GetString("EventLogLeft");
             }
         }
         
@@ -12199,7 +13179,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogLeftChannel");
+                return resourceLoader.GetString("EventLogLeftChannel");
             }
         }
         
@@ -12210,7 +13190,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogLeftGroup");
+                return resourceLoader.GetString("EventLogLeftGroup");
             }
         }
         
@@ -12221,7 +13201,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogOriginalCaption");
+                return resourceLoader.GetString("EventLogOriginalCaption");
             }
         }
         
@@ -12232,7 +13212,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogOriginalCaptionEmpty");
+                return resourceLoader.GetString("EventLogOriginalCaptionEmpty");
             }
         }
         
@@ -12243,7 +13223,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogOriginalMessages");
+                return resourceLoader.GetString("EventLogOriginalMessages");
             }
         }
         
@@ -12254,7 +13234,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPinnedMessages");
+                return resourceLoader.GetString("EventLogPinnedMessages");
             }
         }
         
@@ -12265,7 +13245,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPreviousChannelLink");
+                return resourceLoader.GetString("EventLogPreviousChannelLink");
             }
         }
         
@@ -12276,7 +13256,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPreviousGroupDescription");
+                return resourceLoader.GetString("EventLogPreviousGroupDescription");
             }
         }
         
@@ -12287,7 +13267,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPreviousGroupLink");
+                return resourceLoader.GetString("EventLogPreviousGroupLink");
             }
         }
         
@@ -12298,7 +13278,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPreviousLink");
+                return resourceLoader.GetString("EventLogPreviousLink");
             }
         }
         
@@ -12309,7 +13289,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromoted");
+                return resourceLoader.GetString("EventLogPromoted");
             }
         }
         
@@ -12320,7 +13300,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedAddAdmins");
+                return resourceLoader.GetString("EventLogPromotedAddAdmins");
             }
         }
         
@@ -12331,7 +13311,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedAddUsers");
+                return resourceLoader.GetString("EventLogPromotedAddUsers");
             }
         }
         
@@ -12342,7 +13322,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedBanUsers");
+                return resourceLoader.GetString("EventLogPromotedBanUsers");
             }
         }
         
@@ -12353,7 +13333,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedChangeChannelInfo");
+                return resourceLoader.GetString("EventLogPromotedChangeChannelInfo");
             }
         }
         
@@ -12364,7 +13344,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedChangeGroupInfo");
+                return resourceLoader.GetString("EventLogPromotedChangeGroupInfo");
             }
         }
         
@@ -12375,7 +13355,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedDeleteMessages");
+                return resourceLoader.GetString("EventLogPromotedDeleteMessages");
             }
         }
         
@@ -12386,7 +13366,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedEditMessages");
+                return resourceLoader.GetString("EventLogPromotedEditMessages");
             }
         }
         
@@ -12397,7 +13377,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedInviteLink");
+                return resourceLoader.GetString("EventLogPromotedInviteLink");
             }
         }
         
@@ -12408,7 +13388,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedPinMessages");
+                return resourceLoader.GetString("EventLogPromotedPinMessages");
             }
         }
         
@@ -12419,7 +13399,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedPostMessages");
+                return resourceLoader.GetString("EventLogPromotedPostMessages");
             }
         }
         
@@ -12430,7 +13410,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedRemovedTitle");
+                return resourceLoader.GetString("EventLogPromotedRemovedTitle");
             }
         }
         
@@ -12441,7 +13421,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogPromotedTitle");
+                return resourceLoader.GetString("EventLogPromotedTitle");
             }
         }
         
@@ -12452,7 +13432,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemoved");
+                return resourceLoader.GetString("EventLogRemoved");
             }
         }
         
@@ -12463,7 +13443,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedChannelLink");
+                return resourceLoader.GetString("EventLogRemovedChannelLink");
             }
         }
         
@@ -12474,7 +13454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedChannelPhoto");
+                return resourceLoader.GetString("EventLogRemovedChannelPhoto");
             }
         }
         
@@ -12485,7 +13465,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedGroupLink");
+                return resourceLoader.GetString("EventLogRemovedGroupLink");
             }
         }
         
@@ -12496,7 +13476,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedLinkedChannel");
+                return resourceLoader.GetString("EventLogRemovedLinkedChannel");
             }
         }
         
@@ -12507,7 +13487,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedLinkedGroup");
+                return resourceLoader.GetString("EventLogRemovedLinkedGroup");
             }
         }
         
@@ -12518,7 +13498,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedLocation");
+                return resourceLoader.GetString("EventLogRemovedLocation");
             }
         }
         
@@ -12529,7 +13509,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedStickersSet");
+                return resourceLoader.GetString("EventLogRemovedStickersSet");
             }
         }
         
@@ -12540,7 +13520,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedWGroupPhoto");
+                return resourceLoader.GetString("EventLogRemovedWGroupPhoto");
             }
         }
         
@@ -12551,7 +13531,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedYouChannelPhoto");
+                return resourceLoader.GetString("EventLogRemovedYouChannelPhoto");
             }
         }
         
@@ -12562,7 +13542,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRemovedYouGroupPhoto");
+                return resourceLoader.GetString("EventLogRemovedYouGroupPhoto");
             }
         }
         
@@ -12573,7 +13553,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestricted");
+                return resourceLoader.GetString("EventLogRestricted");
             }
         }
         
@@ -12584,7 +13564,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedChangeInfo");
+                return resourceLoader.GetString("EventLogRestrictedChangeInfo");
             }
         }
         
@@ -12595,7 +13575,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedInviteUsers");
+                return resourceLoader.GetString("EventLogRestrictedInviteUsers");
             }
         }
         
@@ -12606,7 +13586,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedPinMessages");
+                return resourceLoader.GetString("EventLogRestrictedPinMessages");
             }
         }
         
@@ -12617,7 +13597,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedReadMessages");
+                return resourceLoader.GetString("EventLogRestrictedReadMessages");
             }
         }
         
@@ -12628,7 +13608,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedSendEmbed");
+                return resourceLoader.GetString("EventLogRestrictedSendEmbed");
             }
         }
         
@@ -12639,7 +13619,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedSendMedia");
+                return resourceLoader.GetString("EventLogRestrictedSendMedia");
             }
         }
         
@@ -12650,7 +13630,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedSendMessages");
+                return resourceLoader.GetString("EventLogRestrictedSendMessages");
             }
         }
         
@@ -12661,7 +13641,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedSendPolls");
+                return resourceLoader.GetString("EventLogRestrictedSendPolls");
             }
         }
         
@@ -12672,7 +13652,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedSendStickers");
+                return resourceLoader.GetString("EventLogRestrictedSendStickers");
             }
         }
         
@@ -12685,7 +13665,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogRestrictedUntil");
+                return resourceLoader.GetString("EventLogRestrictedUntil");
             }
         }
         
@@ -12696,7 +13676,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogSelectedEvents");
+                return resourceLoader.GetString("EventLogSelectedEvents");
             }
         }
         
@@ -12707,7 +13687,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogStopPoll");
+                return resourceLoader.GetString("EventLogStopPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "un1 stopped the quiz:"
+        /// </summary>
+        public static string EventLogStopQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("EventLogStopQuiz");
             }
         }
         
@@ -12718,7 +13709,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledInvitesHistoryOff");
+                return resourceLoader.GetString("EventLogToggledInvitesHistoryOff");
             }
         }
         
@@ -12729,7 +13720,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledInvitesHistoryOn");
+                return resourceLoader.GetString("EventLogToggledInvitesHistoryOn");
             }
         }
         
@@ -12740,7 +13731,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledInvitesOff");
+                return resourceLoader.GetString("EventLogToggledInvitesOff");
             }
         }
         
@@ -12751,7 +13742,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledInvitesOn");
+                return resourceLoader.GetString("EventLogToggledInvitesOn");
             }
         }
         
@@ -12762,7 +13753,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledSignaturesOff");
+                return resourceLoader.GetString("EventLogToggledSignaturesOff");
             }
         }
         
@@ -12773,7 +13764,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledSignaturesOn");
+                return resourceLoader.GetString("EventLogToggledSignaturesOn");
             }
         }
         
@@ -12784,7 +13775,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledSlowmodeOff");
+                return resourceLoader.GetString("EventLogToggledSlowmodeOff");
             }
         }
         
@@ -12795,7 +13786,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogToggledSlowmodeOn");
+                return resourceLoader.GetString("EventLogToggledSlowmodeOn");
             }
         }
         
@@ -12806,7 +13797,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogUnpinnedMessages");
+                return resourceLoader.GetString("EventLogUnpinnedMessages");
             }
         }
         
@@ -12817,7 +13808,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogYouChannelJoined");
+                return resourceLoader.GetString("EventLogYouChannelJoined");
             }
         }
         
@@ -12828,7 +13819,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogYouGroupJoined");
+                return resourceLoader.GetString("EventLogYouGroupJoined");
             }
         }
         
@@ -12839,7 +13830,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogYouLeft");
+                return resourceLoader.GetString("EventLogYouLeft");
             }
         }
         
@@ -12850,7 +13841,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogYouPromoted");
+                return resourceLoader.GetString("EventLogYouPromoted");
             }
         }
         
@@ -12861,7 +13852,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("EventLogYouRestricted");
+                return resourceLoader.GetString("EventLogYouRestricted");
             }
         }
         
@@ -12872,7 +13863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Events");
+                return resourceLoader.GetString("Events");
             }
         }
         
@@ -12883,7 +13874,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionFew");
+                return resourceLoader.GetString("ExceptionFew");
             }
         }
         
@@ -12894,7 +13885,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionMany");
+                return resourceLoader.GetString("ExceptionMany");
             }
         }
         
@@ -12905,7 +13896,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionOne");
+                return resourceLoader.GetString("ExceptionOne");
             }
         }
         
@@ -12916,7 +13907,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionOther");
+                return resourceLoader.GetString("ExceptionOther");
             }
         }
         
@@ -12927,7 +13918,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionTwo");
+                return resourceLoader.GetString("ExceptionTwo");
             }
         }
         
@@ -12938,7 +13929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExceptionZero");
+                return resourceLoader.GetString("ExceptionZero");
             }
         }
         
@@ -12949,7 +13940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExportTheme");
+                return resourceLoader.GetString("ExportTheme");
             }
         }
         
@@ -12960,7 +13951,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Exposure");
+                return resourceLoader.GetString("Exposure");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Browse your external storage"
+        /// </summary>
+        public static string ExternalFolderInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("ExternalFolderInfo");
             }
         }
         
@@ -12971,7 +13973,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ExternalStorage");
+                return resourceLoader.GetString("ExternalStorage");
             }
         }
         
@@ -12982,7 +13984,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Fade");
+                return resourceLoader.GetString("Fade");
             }
         }
         
@@ -12993,7 +13995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FavoriteStickers");
+                return resourceLoader.GetString("FavoriteStickers");
             }
         }
         
@@ -13004,7 +14006,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FeaturedStickers");
+                return resourceLoader.GetString("FeaturedStickers");
             }
         }
         
@@ -13015,7 +14017,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FeaturedStickersInfo");
+                return resourceLoader.GetString("FeaturedStickersInfo");
             }
         }
         
@@ -13026,7 +14028,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("February");
+                return resourceLoader.GetString("February");
             }
         }
         
@@ -13037,7 +14039,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesDataUsage");
+                return resourceLoader.GetString("FilesDataUsage");
             }
         }
         
@@ -13048,7 +14050,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesFew");
+                return resourceLoader.GetString("FilesFew");
             }
         }
         
@@ -13059,7 +14061,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesMany");
+                return resourceLoader.GetString("FilesMany");
             }
         }
         
@@ -13070,7 +14072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesOne");
+                return resourceLoader.GetString("FilesOne");
             }
         }
         
@@ -13081,7 +14083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesOther");
+                return resourceLoader.GetString("FilesOther");
             }
         }
         
@@ -13092,7 +14094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesTwo");
+                return resourceLoader.GetString("FilesTwo");
             }
         }
         
@@ -13103,7 +14105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FilesZero");
+                return resourceLoader.GetString("FilesZero");
             }
         }
         
@@ -13114,7 +14116,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FileUploadLimit");
+                return resourceLoader.GetString("FileUploadLimit");
             }
         }
         
@@ -13125,7 +14127,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FinalResults");
+                return resourceLoader.GetString("FinalResults");
             }
         }
         
@@ -13136,7 +14138,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FingerprintHelp");
+                return resourceLoader.GetString("FingerprintHelp");
             }
         }
         
@@ -13147,7 +14149,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FingerprintInfo");
+                return resourceLoader.GetString("FingerprintInfo");
             }
         }
         
@@ -13158,7 +14160,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FingerprintNotRecognized");
+                return resourceLoader.GetString("FingerprintNotRecognized");
             }
         }
         
@@ -13169,7 +14171,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FirstName");
+                return resourceLoader.GetString("FirstName");
             }
         }
         
@@ -13180,7 +14182,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FloodWait");
+                return resourceLoader.GetString("FloodWait");
             }
         }
         
@@ -13191,7 +14193,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FloodWaitTime");
+                return resourceLoader.GetString("FloodWaitTime");
             }
         }
         
@@ -13202,7 +14204,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Folder");
+                return resourceLoader.GetString("Folder");
             }
         }
         
@@ -13213,7 +14215,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FontSize");
+                return resourceLoader.GetString("FontSize");
             }
         }
         
@@ -13224,7 +14226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FontSizePreviewLine1");
+                return resourceLoader.GetString("FontSizePreviewLine1");
             }
         }
         
@@ -13235,7 +14237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FontSizePreviewLine2");
+                return resourceLoader.GetString("FontSizePreviewLine2");
             }
         }
         
@@ -13246,7 +14248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FontSizePreviewName");
+                return resourceLoader.GetString("FontSizePreviewName");
             }
         }
         
@@ -13257,7 +14259,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FontSizePreviewReply");
+                return resourceLoader.GetString("FontSizePreviewReply");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Font Type"
+        /// </summary>
+        public static string FontType
+        {
+            get
+            {
+                return resourceLoader.GetString("FontType");
             }
         }
         
@@ -13268,7 +14281,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FootsAway");
+                return resourceLoader.GetString("FootsAway");
             }
         }
         
@@ -13279,7 +14292,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForgotPassword");
+                return resourceLoader.GetString("ForgotPassword");
             }
         }
         
@@ -13290,7 +14303,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatDateAtTime");
+                return resourceLoader.GetString("FormatDateAtTime");
             }
         }
         
@@ -13301,7 +14314,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatDateSchedule");
+                return resourceLoader.GetString("FormatDateSchedule");
             }
         }
         
@@ -13312,7 +14325,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatDateScheduleDay");
+                return resourceLoader.GetString("FormatDateScheduleDay");
             }
         }
         
@@ -13323,7 +14336,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatDateScheduleYear");
+                return resourceLoader.GetString("FormatDateScheduleYear");
             }
         }
         
@@ -13334,7 +14347,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterBannedUntil12H");
+                return resourceLoader.GetString("FormatterBannedUntil12H");
             }
         }
         
@@ -13345,7 +14358,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterBannedUntil24H");
+                return resourceLoader.GetString("FormatterBannedUntil24H");
             }
         }
         
@@ -13356,7 +14369,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterBannedUntilThisYear12H");
+                return resourceLoader.GetString("FormatterBannedUntilThisYear12H");
             }
         }
         
@@ -13367,7 +14380,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterBannedUntilThisYear24H");
+                return resourceLoader.GetString("FormatterBannedUntilThisYear24H");
             }
         }
         
@@ -13378,7 +14391,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterDay12H");
+                return resourceLoader.GetString("FormatterDay12H");
             }
         }
         
@@ -13389,7 +14402,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterDay24H");
+                return resourceLoader.GetString("FormatterDay24H");
             }
         }
         
@@ -13400,7 +14413,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterMonth");
+                return resourceLoader.GetString("FormatterMonth");
             }
         }
         
@@ -13411,7 +14424,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterMonthName");
+                return resourceLoader.GetString("FormatterMonthName");
             }
         }
         
@@ -13422,7 +14435,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterMonthYear");
+                return resourceLoader.GetString("FormatterMonthYear");
             }
         }
         
@@ -13433,7 +14446,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterMonthYear2");
+                return resourceLoader.GetString("FormatterMonthYear2");
             }
         }
         
@@ -13444,7 +14457,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterStats12H");
+                return resourceLoader.GetString("FormatterStats12H");
             }
         }
         
@@ -13455,7 +14468,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterStats24H");
+                return resourceLoader.GetString("FormatterStats24H");
             }
         }
         
@@ -13466,7 +14479,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterWeek");
+                return resourceLoader.GetString("FormatterWeek");
             }
         }
         
@@ -13477,7 +14490,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterYear");
+                return resourceLoader.GetString("FormatterYear");
             }
         }
         
@@ -13488,7 +14501,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FormatterYearMax");
+                return resourceLoader.GetString("FormatterYearMax");
             }
         }
         
@@ -13499,7 +14512,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Forward");
+                return resourceLoader.GetString("Forward");
             }
         }
         
@@ -13510,7 +14523,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioFew");
+                return resourceLoader.GetString("ForwardedAudioFew");
             }
         }
         
@@ -13521,7 +14534,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioMany");
+                return resourceLoader.GetString("ForwardedAudioMany");
             }
         }
         
@@ -13532,7 +14545,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioOne");
+                return resourceLoader.GetString("ForwardedAudioOne");
             }
         }
         
@@ -13543,7 +14556,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioOther");
+                return resourceLoader.GetString("ForwardedAudioOther");
             }
         }
         
@@ -13554,7 +14567,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioTwo");
+                return resourceLoader.GetString("ForwardedAudioTwo");
             }
         }
         
@@ -13565,7 +14578,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedAudioZero");
+                return resourceLoader.GetString("ForwardedAudioZero");
             }
         }
         
@@ -13576,7 +14589,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactFew");
+                return resourceLoader.GetString("ForwardedContactFew");
             }
         }
         
@@ -13587,7 +14600,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactMany");
+                return resourceLoader.GetString("ForwardedContactMany");
             }
         }
         
@@ -13598,7 +14611,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactOne");
+                return resourceLoader.GetString("ForwardedContactOne");
             }
         }
         
@@ -13609,7 +14622,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactOther");
+                return resourceLoader.GetString("ForwardedContactOther");
             }
         }
         
@@ -13620,7 +14633,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactTwo");
+                return resourceLoader.GetString("ForwardedContactTwo");
             }
         }
         
@@ -13631,7 +14644,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedContactZero");
+                return resourceLoader.GetString("ForwardedContactZero");
             }
         }
         
@@ -13642,7 +14655,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileFew");
+                return resourceLoader.GetString("ForwardedFileFew");
             }
         }
         
@@ -13653,7 +14666,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileMany");
+                return resourceLoader.GetString("ForwardedFileMany");
             }
         }
         
@@ -13664,7 +14677,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileOne");
+                return resourceLoader.GetString("ForwardedFileOne");
             }
         }
         
@@ -13675,7 +14688,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileOther");
+                return resourceLoader.GetString("ForwardedFileOther");
             }
         }
         
@@ -13686,7 +14699,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileTwo");
+                return resourceLoader.GetString("ForwardedFileTwo");
             }
         }
         
@@ -13697,7 +14710,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedFileZero");
+                return resourceLoader.GetString("ForwardedFileZero");
             }
         }
         
@@ -13708,7 +14721,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationFew");
+                return resourceLoader.GetString("ForwardedLocationFew");
             }
         }
         
@@ -13719,7 +14732,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationMany");
+                return resourceLoader.GetString("ForwardedLocationMany");
             }
         }
         
@@ -13730,7 +14743,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationOne");
+                return resourceLoader.GetString("ForwardedLocationOne");
             }
         }
         
@@ -13741,7 +14754,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationOther");
+                return resourceLoader.GetString("ForwardedLocationOther");
             }
         }
         
@@ -13752,7 +14765,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationTwo");
+                return resourceLoader.GetString("ForwardedLocationTwo");
             }
         }
         
@@ -13763,7 +14776,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedLocationZero");
+                return resourceLoader.GetString("ForwardedLocationZero");
             }
         }
         
@@ -13774,7 +14787,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessage");
+                return resourceLoader.GetString("ForwardedMessage");
             }
         }
         
@@ -13785,7 +14798,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountFew");
+                return resourceLoader.GetString("ForwardedMessageCountFew");
             }
         }
         
@@ -13796,7 +14809,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountMany");
+                return resourceLoader.GetString("ForwardedMessageCountMany");
             }
         }
         
@@ -13807,7 +14820,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountOne");
+                return resourceLoader.GetString("ForwardedMessageCountOne");
             }
         }
         
@@ -13818,7 +14831,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountOther");
+                return resourceLoader.GetString("ForwardedMessageCountOther");
             }
         }
         
@@ -13829,7 +14842,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountTwo");
+                return resourceLoader.GetString("ForwardedMessageCountTwo");
             }
         }
         
@@ -13840,7 +14853,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMessageCountZero");
+                return resourceLoader.GetString("ForwardedMessageCountZero");
             }
         }
         
@@ -13851,7 +14864,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicFew");
+                return resourceLoader.GetString("ForwardedMusicFew");
             }
         }
         
@@ -13862,7 +14875,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicMany");
+                return resourceLoader.GetString("ForwardedMusicMany");
             }
         }
         
@@ -13873,7 +14886,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicOne");
+                return resourceLoader.GetString("ForwardedMusicOne");
             }
         }
         
@@ -13884,7 +14897,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicOther");
+                return resourceLoader.GetString("ForwardedMusicOther");
             }
         }
         
@@ -13895,7 +14908,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicTwo");
+                return resourceLoader.GetString("ForwardedMusicTwo");
             }
         }
         
@@ -13906,7 +14919,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedMusicZero");
+                return resourceLoader.GetString("ForwardedMusicZero");
             }
         }
         
@@ -13917,7 +14930,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoFew");
+                return resourceLoader.GetString("ForwardedPhotoFew");
             }
         }
         
@@ -13928,7 +14941,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoMany");
+                return resourceLoader.GetString("ForwardedPhotoMany");
             }
         }
         
@@ -13939,7 +14952,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoOne");
+                return resourceLoader.GetString("ForwardedPhotoOne");
             }
         }
         
@@ -13950,7 +14963,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoOther");
+                return resourceLoader.GetString("ForwardedPhotoOther");
             }
         }
         
@@ -13961,7 +14974,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoTwo");
+                return resourceLoader.GetString("ForwardedPhotoTwo");
             }
         }
         
@@ -13972,7 +14985,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPhotoZero");
+                return resourceLoader.GetString("ForwardedPhotoZero");
             }
         }
         
@@ -13983,7 +14996,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollFew");
+                return resourceLoader.GetString("ForwardedPollFew");
             }
         }
         
@@ -13994,7 +15007,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollMany");
+                return resourceLoader.GetString("ForwardedPollMany");
             }
         }
         
@@ -14005,7 +15018,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollOne");
+                return resourceLoader.GetString("ForwardedPollOne");
             }
         }
         
@@ -14016,7 +15029,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollOther");
+                return resourceLoader.GetString("ForwardedPollOther");
             }
         }
         
@@ -14027,7 +15040,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollTwo");
+                return resourceLoader.GetString("ForwardedPollTwo");
             }
         }
         
@@ -14038,7 +15051,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedPollZero");
+                return resourceLoader.GetString("ForwardedPollZero");
             }
         }
         
@@ -14049,7 +15062,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundFew");
+                return resourceLoader.GetString("ForwardedRoundFew");
             }
         }
         
@@ -14060,7 +15073,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundMany");
+                return resourceLoader.GetString("ForwardedRoundMany");
             }
         }
         
@@ -14071,7 +15084,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundOne");
+                return resourceLoader.GetString("ForwardedRoundOne");
             }
         }
         
@@ -14082,7 +15095,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundOther");
+                return resourceLoader.GetString("ForwardedRoundOther");
             }
         }
         
@@ -14093,7 +15106,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundTwo");
+                return resourceLoader.GetString("ForwardedRoundTwo");
             }
         }
         
@@ -14104,7 +15117,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedRoundZero");
+                return resourceLoader.GetString("ForwardedRoundZero");
             }
         }
         
@@ -14115,7 +15128,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerFew");
+                return resourceLoader.GetString("ForwardedStickerFew");
             }
         }
         
@@ -14126,7 +15139,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerMany");
+                return resourceLoader.GetString("ForwardedStickerMany");
             }
         }
         
@@ -14137,7 +15150,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerOne");
+                return resourceLoader.GetString("ForwardedStickerOne");
             }
         }
         
@@ -14148,7 +15161,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerOther");
+                return resourceLoader.GetString("ForwardedStickerOther");
             }
         }
         
@@ -14159,7 +15172,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerTwo");
+                return resourceLoader.GetString("ForwardedStickerTwo");
             }
         }
         
@@ -14170,7 +15183,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedStickerZero");
+                return resourceLoader.GetString("ForwardedStickerZero");
             }
         }
         
@@ -14181,7 +15194,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoFew");
+                return resourceLoader.GetString("ForwardedVideoFew");
             }
         }
         
@@ -14192,7 +15205,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoMany");
+                return resourceLoader.GetString("ForwardedVideoMany");
             }
         }
         
@@ -14203,7 +15216,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoOne");
+                return resourceLoader.GetString("ForwardedVideoOne");
             }
         }
         
@@ -14214,7 +15227,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoOther");
+                return resourceLoader.GetString("ForwardedVideoOther");
             }
         }
         
@@ -14225,7 +15238,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoTwo");
+                return resourceLoader.GetString("ForwardedVideoTwo");
             }
         }
         
@@ -14236,7 +15249,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardedVideoZero");
+                return resourceLoader.GetString("ForwardedVideoZero");
             }
         }
         
@@ -14247,7 +15260,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ForwardTo");
+                return resourceLoader.GetString("ForwardTo");
             }
         }
         
@@ -14258,7 +15271,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FreeOfTotal");
+                return resourceLoader.GetString("FreeOfTotal");
             }
         }
         
@@ -14269,7 +15282,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("From");
+                return resourceLoader.GetString("From");
             }
         }
         
@@ -14280,7 +15293,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromCamera");
+                return resourceLoader.GetString("FromCamera");
             }
         }
         
@@ -14291,7 +15304,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsFew");
+                return resourceLoader.GetString("FromChatsFew");
             }
         }
         
@@ -14302,7 +15315,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsMany");
+                return resourceLoader.GetString("FromChatsMany");
             }
         }
         
@@ -14313,7 +15326,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsOne");
+                return resourceLoader.GetString("FromChatsOne");
             }
         }
         
@@ -14324,7 +15337,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsOther");
+                return resourceLoader.GetString("FromChatsOther");
             }
         }
         
@@ -14335,7 +15348,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsTwo");
+                return resourceLoader.GetString("FromChatsTwo");
             }
         }
         
@@ -14346,7 +15359,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromChatsZero");
+                return resourceLoader.GetString("FromChatsZero");
             }
         }
         
@@ -14357,7 +15370,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromFormatted");
+                return resourceLoader.GetString("FromFormatted");
             }
         }
         
@@ -14368,7 +15381,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromGalley");
+                return resourceLoader.GetString("FromGalley");
             }
         }
         
@@ -14379,7 +15392,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("FromYou");
+                return resourceLoader.GetString("FromYou");
             }
         }
         
@@ -14390,7 +15403,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Gallery");
+                return resourceLoader.GetString("Gallery");
             }
         }
         
@@ -14401,7 +15414,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GalleryInfo");
+                return resourceLoader.GetString("GalleryInfo");
             }
         }
         
@@ -14412,7 +15425,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GalleryPermissionText");
+                return resourceLoader.GetString("GalleryPermissionText");
             }
         }
         
@@ -14423,7 +15436,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("General");
+                return resourceLoader.GetString("General");
             }
         }
         
@@ -14434,7 +15447,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GettingLinkInfo");
+                return resourceLoader.GetString("GettingLinkInfo");
             }
         }
         
@@ -14445,7 +15458,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GifCaption");
+                return resourceLoader.GetString("GifCaption");
             }
         }
         
@@ -14456,7 +15469,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GifsTab");
+                return resourceLoader.GetString("GifsTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "GIFs"
+        /// </summary>
+        public static string GifsTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("GifsTab2");
             }
         }
         
@@ -14467,7 +15491,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalAttachGifRestricted");
+                return resourceLoader.GetString("GlobalAttachGifRestricted");
             }
         }
         
@@ -14478,7 +15502,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalAttachInlineRestricted");
+                return resourceLoader.GetString("GlobalAttachInlineRestricted");
             }
         }
         
@@ -14489,7 +15513,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalAttachMediaRestricted");
+                return resourceLoader.GetString("GlobalAttachMediaRestricted");
             }
         }
         
@@ -14500,7 +15524,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalAttachStickersRestricted");
+                return resourceLoader.GetString("GlobalAttachStickersRestricted");
             }
         }
         
@@ -14511,7 +15535,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalSearch");
+                return resourceLoader.GetString("GlobalSearch");
             }
         }
         
@@ -14522,7 +15546,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GlobalSendMessageRestricted");
+                return resourceLoader.GetString("GlobalSendMessageRestricted");
             }
         }
         
@@ -14534,7 +15558,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GotAQuestion");
+                return resourceLoader.GetString("GotAQuestion");
             }
         }
         
@@ -14545,7 +15569,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GpsDisabledAlert");
+                return resourceLoader.GetString("GpsDisabledAlert");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Please enable your GPS to access location-based features."
+        /// </summary>
+        public static string GpsDisabledAlertText
+        {
+            get
+            {
+                return resourceLoader.GetString("GpsDisabledAlertText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Enable GPS"
+        /// </summary>
+        public static string GpsDisabledAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("GpsDisabledAlertTitle");
             }
         }
         
@@ -14556,7 +15602,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Grain");
+                return resourceLoader.GetString("Grain");
             }
         }
         
@@ -14567,7 +15613,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Gray");
+                return resourceLoader.GetString("Gray");
             }
         }
         
@@ -14578,7 +15624,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Green");
+                return resourceLoader.GetString("Green");
             }
         }
         
@@ -14589,7 +15635,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupAddMembers");
+                return resourceLoader.GetString("GroupAddMembers");
             }
         }
         
@@ -14600,7 +15646,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupContacts");
+                return resourceLoader.GetString("GroupContacts");
             }
         }
         
@@ -14611,7 +15657,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupDeletedUndo");
+                return resourceLoader.GetString("GroupDeletedUndo");
             }
         }
         
@@ -14622,7 +15668,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupDescription1");
+                return resourceLoader.GetString("GroupDescription1");
             }
         }
         
@@ -14633,7 +15679,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupDescription2");
+                return resourceLoader.GetString("GroupDescription2");
             }
         }
         
@@ -14644,7 +15690,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupDescription3");
+                return resourceLoader.GetString("GroupDescription3");
             }
         }
         
@@ -14655,7 +15701,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupDescription4");
+                return resourceLoader.GetString("GroupDescription4");
             }
         }
         
@@ -14666,7 +15712,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupEmptyTitle1");
+                return resourceLoader.GetString("GroupEmptyTitle1");
             }
         }
         
@@ -14677,7 +15723,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupEmptyTitle2");
+                return resourceLoader.GetString("GroupEmptyTitle2");
             }
         }
         
@@ -14688,7 +15734,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupMembers");
+                return resourceLoader.GetString("GroupMembers");
             }
         }
         
@@ -14699,7 +15745,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupName");
+                return resourceLoader.GetString("GroupName");
             }
         }
         
@@ -14710,7 +15756,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupNotifications");
+                return resourceLoader.GetString("GroupNotifications");
             }
         }
         
@@ -14721,7 +15767,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupPhotosHelp");
+                return resourceLoader.GetString("GroupPhotosHelp");
             }
         }
         
@@ -14732,7 +15778,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsAndChannels");
+                return resourceLoader.GetString("GroupsAndChannels");
             }
         }
         
@@ -14743,7 +15789,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsAndChannelsHelp");
+                return resourceLoader.GetString("GroupsAndChannelsHelp");
             }
         }
         
@@ -14754,7 +15800,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupSettingsChangedAlert");
+                return resourceLoader.GetString("GroupSettingsChangedAlert");
             }
         }
         
@@ -14765,7 +15811,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupSettingsTitle");
+                return resourceLoader.GetString("GroupSettingsTitle");
             }
         }
         
@@ -14776,7 +15822,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsFew");
+                return resourceLoader.GetString("GroupsFew");
             }
         }
         
@@ -14787,7 +15833,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsInCommon");
+                return resourceLoader.GetString("GroupsInCommon");
             }
         }
         
@@ -14798,7 +15844,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsInCommonTitle");
+                return resourceLoader.GetString("GroupsInCommonTitle");
             }
         }
         
@@ -14809,7 +15855,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsMany");
+                return resourceLoader.GetString("GroupsMany");
             }
         }
         
@@ -14820,7 +15866,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsOne");
+                return resourceLoader.GetString("GroupsOne");
             }
         }
         
@@ -14831,7 +15877,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsOther");
+                return resourceLoader.GetString("GroupsOther");
             }
         }
         
@@ -14842,7 +15888,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupStickers");
+                return resourceLoader.GetString("GroupStickers");
             }
         }
         
@@ -14853,7 +15899,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupStickersInfo");
+                return resourceLoader.GetString("GroupStickersInfo");
             }
         }
         
@@ -14864,7 +15910,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsTwo");
+                return resourceLoader.GetString("GroupsTwo");
             }
         }
         
@@ -14875,7 +15921,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupsZero");
+                return resourceLoader.GetString("GroupsZero");
             }
         }
         
@@ -14886,7 +15932,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupType");
+                return resourceLoader.GetString("GroupType");
             }
         }
         
@@ -14897,7 +15943,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupTypeHeader");
+                return resourceLoader.GetString("GroupTypeHeader");
             }
         }
         
@@ -14908,7 +15954,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupUserAddLimit");
+                return resourceLoader.GetString("GroupUserAddLimit");
             }
         }
         
@@ -14919,7 +15965,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupUserCantAdd");
+                return resourceLoader.GetString("GroupUserCantAdd");
             }
         }
         
@@ -14930,7 +15976,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupUserCantAdmin");
+                return resourceLoader.GetString("GroupUserCantAdmin");
             }
         }
         
@@ -14941,7 +15987,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupUserCantBot");
+                return resourceLoader.GetString("GroupUserCantBot");
             }
         }
         
@@ -14954,7 +16000,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GroupUserLeftError");
+                return resourceLoader.GetString("GroupUserLeftError");
             }
         }
         
@@ -14965,7 +16011,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Hashtags");
+                return resourceLoader.GetString("Hashtags");
             }
         }
         
@@ -14976,7 +16022,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HidAccount");
+                return resourceLoader.GetString("HidAccount");
             }
         }
         
@@ -14987,7 +16033,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HiddenName");
+                return resourceLoader.GetString("HiddenName");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Hide above the list"
+        /// </summary>
+        public static string HideAboveTheList
+        {
+            get
+            {
+                return resourceLoader.GetString("HideAboveTheList");
             }
         }
         
@@ -14998,7 +16055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HideOnTop");
+                return resourceLoader.GetString("HideOnTop");
             }
         }
         
@@ -15009,7 +16066,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Highlights");
+                return resourceLoader.GetString("Highlights");
             }
         }
         
@@ -15020,7 +16077,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HistoryCleared");
+                return resourceLoader.GetString("HistoryCleared");
             }
         }
         
@@ -15031,7 +16088,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HistoryClearedUndo");
+                return resourceLoader.GetString("HistoryClearedUndo");
             }
         }
         
@@ -15042,7 +16099,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoldToAudio");
+                return resourceLoader.GetString("HoldToAudio");
             }
         }
         
@@ -15053,7 +16110,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoldToVideo");
+                return resourceLoader.GetString("HoldToVideo");
             }
         }
         
@@ -15064,7 +16121,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldFew");
+                return resourceLoader.GetString("HoursBoldFew");
             }
         }
         
@@ -15075,7 +16132,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldMany");
+                return resourceLoader.GetString("HoursBoldMany");
             }
         }
         
@@ -15086,7 +16143,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldOne");
+                return resourceLoader.GetString("HoursBoldOne");
             }
         }
         
@@ -15097,7 +16154,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldOther");
+                return resourceLoader.GetString("HoursBoldOther");
             }
         }
         
@@ -15108,7 +16165,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldTwo");
+                return resourceLoader.GetString("HoursBoldTwo");
             }
         }
         
@@ -15119,7 +16176,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursBoldZero");
+                return resourceLoader.GetString("HoursBoldZero");
             }
         }
         
@@ -15130,7 +16187,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursFew");
+                return resourceLoader.GetString("HoursFew");
             }
         }
         
@@ -15141,7 +16198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursMany");
+                return resourceLoader.GetString("HoursMany");
             }
         }
         
@@ -15152,7 +16209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursOne");
+                return resourceLoader.GetString("HoursOne");
             }
         }
         
@@ -15163,7 +16220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursOther");
+                return resourceLoader.GetString("HoursOther");
             }
         }
         
@@ -15174,7 +16231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursTwo");
+                return resourceLoader.GetString("HoursTwo");
             }
         }
         
@@ -15185,7 +16242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("HoursZero");
+                return resourceLoader.GetString("HoursZero");
             }
         }
         
@@ -15196,7 +16253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Hybrid");
+                return resourceLoader.GetString("Hybrid");
             }
         }
         
@@ -15207,7 +16264,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ImagesTab");
+                return resourceLoader.GetString("ImagesTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Images"
+        /// </summary>
+        public static string ImagesTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("ImagesTab2");
             }
         }
         
@@ -15218,7 +16286,40 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ImportContacts");
+                return resourceLoader.GetString("ImportContacts");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "channel, inactive for {0}"
+        /// </summary>
+        public static string InactiveChannelSignature
+        {
+            get
+            {
+                return resourceLoader.GetString("InactiveChannelSignature");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Inactive chats"
+        /// </summary>
+        public static string InactiveChats
+        {
+            get
+            {
+                return resourceLoader.GetString("InactiveChats");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0}, inactive for {1}"
+        /// </summary>
+        public static string InactiveChatSignature
+        {
+            get
+            {
+                return resourceLoader.GetString("InactiveChatSignature");
             }
         }
         
@@ -15229,7 +16330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InAppNotifications");
+                return resourceLoader.GetString("InAppNotifications");
             }
         }
         
@@ -15240,7 +16341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InAppPreview");
+                return resourceLoader.GetString("InAppPreview");
             }
         }
         
@@ -15251,7 +16352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InAppSounds");
+                return resourceLoader.GetString("InAppSounds");
             }
         }
         
@@ -15262,7 +16363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InAppVibrate");
+                return resourceLoader.GetString("InAppVibrate");
             }
         }
         
@@ -15273,7 +16374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InChatSound");
+                return resourceLoader.GetString("InChatSound");
             }
         }
         
@@ -15284,7 +16385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IncomingCalls");
+                return resourceLoader.GetString("IncomingCalls");
             }
         }
         
@@ -15295,7 +16396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IncorrectLocalization");
+                return resourceLoader.GetString("IncorrectLocalization");
             }
         }
         
@@ -15306,7 +16407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IncorrectTheme");
+                return resourceLoader.GetString("IncorrectTheme");
             }
         }
         
@@ -15317,7 +16418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Info");
+                return resourceLoader.GetString("Info");
             }
         }
         
@@ -15328,7 +16429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InstallGoogleMaps");
+                return resourceLoader.GetString("InstallGoogleMaps");
             }
         }
         
@@ -15339,7 +16440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InstantView");
+                return resourceLoader.GetString("InstantView");
             }
         }
         
@@ -15350,7 +16451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InstantViewNightMode");
+                return resourceLoader.GetString("InstantViewNightMode");
             }
         }
         
@@ -15361,7 +16462,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InstantViewReference");
+                return resourceLoader.GetString("InstantViewReference");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Browse your file system"
+        /// </summary>
+        public static string InternalFolderInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("InternalFolderInfo");
             }
         }
         
@@ -15372,7 +16484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InternalStorage");
+                return resourceLoader.GetString("InternalStorage");
             }
         }
         
@@ -15383,7 +16495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InvalidCode");
+                return resourceLoader.GetString("InvalidCode");
             }
         }
         
@@ -15394,7 +16506,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InvalidFirstName");
+                return resourceLoader.GetString("InvalidFirstName");
             }
         }
         
@@ -15405,7 +16517,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InvalidLastName");
+                return resourceLoader.GetString("InvalidLastName");
             }
         }
         
@@ -15416,7 +16528,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InvalidPhoneNumber");
+                return resourceLoader.GetString("InvalidPhoneNumber");
             }
         }
         
@@ -15427,7 +16539,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Invisible");
+                return resourceLoader.GetString("Invisible");
             }
         }
         
@@ -15438,7 +16550,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Invite");
+                return resourceLoader.GetString("Invite");
             }
         }
         
@@ -15449,7 +16561,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteFriends");
+                return resourceLoader.GetString("InviteFriends");
             }
         }
         
@@ -15460,7 +16572,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteFriendsHelp");
+                return resourceLoader.GetString("InviteFriendsHelp");
             }
         }
         
@@ -15471,7 +16583,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteLink");
+                return resourceLoader.GetString("InviteLink");
             }
         }
         
@@ -15482,7 +16594,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteText2");
+                return resourceLoader.GetString("InviteText2");
             }
         }
         
@@ -15493,7 +16605,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumFew");
+                return resourceLoader.GetString("InviteTextNumFew");
             }
         }
         
@@ -15504,7 +16616,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumMany");
+                return resourceLoader.GetString("InviteTextNumMany");
             }
         }
         
@@ -15515,7 +16627,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumOne");
+                return resourceLoader.GetString("InviteTextNumOne");
             }
         }
         
@@ -15526,7 +16638,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumOther");
+                return resourceLoader.GetString("InviteTextNumOther");
             }
         }
         
@@ -15537,7 +16649,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumTwo");
+                return resourceLoader.GetString("InviteTextNumTwo");
             }
         }
         
@@ -15548,7 +16660,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteTextNumZero");
+                return resourceLoader.GetString("InviteTextNumZero");
             }
         }
         
@@ -15559,7 +16671,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteToChannelError");
+                return resourceLoader.GetString("InviteToChannelError");
             }
         }
         
@@ -15570,7 +16682,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteToGroupByLink");
+                return resourceLoader.GetString("InviteToGroupByLink");
             }
         }
         
@@ -15581,7 +16693,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteToGroupError");
+                return resourceLoader.GetString("InviteToGroupError");
             }
         }
         
@@ -15592,7 +16704,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteToTelegram");
+                return resourceLoader.GetString("InviteToTelegram");
             }
         }
         
@@ -15603,7 +16715,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("InviteUser");
+                return resourceLoader.GetString("InviteUser");
             }
         }
         
@@ -15614,7 +16726,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsRecordingAudio");
+                return resourceLoader.GetString("IsRecordingAudio");
             }
         }
         
@@ -15625,7 +16737,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsRecordingRound");
+                return resourceLoader.GetString("IsRecordingRound");
             }
         }
         
@@ -15636,7 +16748,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsSendingAudio");
+                return resourceLoader.GetString("IsSendingAudio");
             }
         }
         
@@ -15647,7 +16759,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsSendingFile");
+                return resourceLoader.GetString("IsSendingFile");
             }
         }
         
@@ -15658,7 +16770,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsSendingGame");
+                return resourceLoader.GetString("IsSendingGame");
             }
         }
         
@@ -15669,7 +16781,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsSendingPhoto");
+                return resourceLoader.GetString("IsSendingPhoto");
             }
         }
         
@@ -15680,7 +16792,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsSendingVideo");
+                return resourceLoader.GetString("IsSendingVideo");
             }
         }
         
@@ -15691,7 +16803,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsTyping");
+                return resourceLoader.GetString("IsTyping");
             }
         }
         
@@ -15702,7 +16814,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("IsTypingGroup");
+                return resourceLoader.GetString("IsTypingGroup");
             }
         }
         
@@ -15713,7 +16825,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Italic");
+                return resourceLoader.GetString("Italic");
             }
         }
         
@@ -15724,7 +16836,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsFew");
+                return resourceLoader.GetString("ItemsFew");
             }
         }
         
@@ -15735,7 +16847,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsMany");
+                return resourceLoader.GetString("ItemsMany");
             }
         }
         
@@ -15746,7 +16858,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsOne");
+                return resourceLoader.GetString("ItemsOne");
             }
         }
         
@@ -15757,7 +16869,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsOther");
+                return resourceLoader.GetString("ItemsOther");
             }
         }
         
@@ -15768,7 +16880,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsTwo");
+                return resourceLoader.GetString("ItemsTwo");
             }
         }
         
@@ -15779,7 +16891,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ItemsZero");
+                return resourceLoader.GetString("ItemsZero");
             }
         }
         
@@ -15790,7 +16902,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("January");
+                return resourceLoader.GetString("January");
             }
         }
         
@@ -15801,7 +16913,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("JoinGroup");
+                return resourceLoader.GetString("JoinGroup");
             }
         }
         
@@ -15812,7 +16924,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("JoinToGroupErrorFull");
+                return resourceLoader.GetString("JoinToGroupErrorFull");
             }
         }
         
@@ -15823,7 +16935,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("JoinToGroupErrorNotExist");
+                return resourceLoader.GetString("JoinToGroupErrorNotExist");
             }
         }
         
@@ -15834,7 +16946,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("July");
+                return resourceLoader.GetString("July");
             }
         }
         
@@ -15845,7 +16957,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("JumpToDate");
+                return resourceLoader.GetString("JumpToDate");
             }
         }
         
@@ -15856,7 +16968,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("June");
+                return resourceLoader.GetString("June");
             }
         }
         
@@ -15867,7 +16979,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KeepMedia");
+                return resourceLoader.GetString("KeepMedia");
             }
         }
         
@@ -15878,7 +16990,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KeepMediaForever");
+                return resourceLoader.GetString("KeepMediaForever");
             }
         }
         
@@ -15891,7 +17003,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KeepMediaInfo");
+                return resourceLoader.GetString("KeepMediaInfo");
             }
         }
         
@@ -15902,7 +17014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KickFromBroadcast");
+                return resourceLoader.GetString("KickFromBroadcast");
             }
         }
         
@@ -15913,7 +17025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KickFromGroup");
+                return resourceLoader.GetString("KickFromGroup");
             }
         }
         
@@ -15924,7 +17036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KickFromSupergroup");
+                return resourceLoader.GetString("KickFromSupergroup");
             }
         }
         
@@ -15935,7 +17047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KMetersAway");
+                return resourceLoader.GetString("KMetersAway");
             }
         }
         
@@ -15946,7 +17058,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("KMetersAway2");
+                return resourceLoader.GetString("KMetersAway2");
             }
         }
         
@@ -15957,7 +17069,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Language");
+                return resourceLoader.GetString("Language");
             }
         }
         
@@ -15972,7 +17084,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageAlert");
+                return resourceLoader.GetString("LanguageAlert");
             }
         }
         
@@ -15983,7 +17095,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageCode");
+                return resourceLoader.GetString("LanguageCode");
             }
         }
         
@@ -15994,7 +17106,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageCustom");
+                return resourceLoader.GetString("LanguageCustom");
             }
         }
         
@@ -16009,7 +17121,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageCustomAlert");
+                return resourceLoader.GetString("LanguageCustomAlert");
             }
         }
         
@@ -16020,7 +17132,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageName");
+                return resourceLoader.GetString("LanguageName");
             }
         }
         
@@ -16031,7 +17143,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageNameInEnglish");
+                return resourceLoader.GetString("LanguageNameInEnglish");
             }
         }
         
@@ -16042,7 +17154,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageSame");
+                return resourceLoader.GetString("LanguageSame");
             }
         }
         
@@ -16053,7 +17165,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageSuggested");
+                return resourceLoader.GetString("LanguageSuggested");
             }
         }
         
@@ -16064,7 +17176,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageTitle");
+                return resourceLoader.GetString("LanguageTitle");
             }
         }
         
@@ -16075,7 +17187,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageUnknownCustomAlert");
+                return resourceLoader.GetString("LanguageUnknownCustomAlert");
             }
         }
         
@@ -16086,7 +17198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageUnknownTitle");
+                return resourceLoader.GetString("LanguageUnknownTitle");
             }
         }
         
@@ -16097,7 +17209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageUnofficial");
+                return resourceLoader.GetString("LanguageUnofficial");
             }
         }
         
@@ -16108,7 +17220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LanguageUnsupportedError");
+                return resourceLoader.GetString("LanguageUnsupportedError");
             }
         }
         
@@ -16119,7 +17231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LargeEmoji");
+                return resourceLoader.GetString("LargeEmoji");
             }
         }
         
@@ -16130,7 +17242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastName");
+                return resourceLoader.GetString("LastName");
             }
         }
         
@@ -16141,7 +17253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeen");
+                return resourceLoader.GetString("LastSeen");
             }
         }
         
@@ -16152,7 +17264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenContacts");
+                return resourceLoader.GetString("LastSeenContacts");
             }
         }
         
@@ -16163,7 +17275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenContactsMinus");
+                return resourceLoader.GetString("LastSeenContactsMinus");
             }
         }
         
@@ -16174,7 +17286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenContactsMinusPlus");
+                return resourceLoader.GetString("LastSeenContactsMinusPlus");
             }
         }
         
@@ -16185,7 +17297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenContactsPlus");
+                return resourceLoader.GetString("LastSeenContactsPlus");
             }
         }
         
@@ -16196,7 +17308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenDate");
+                return resourceLoader.GetString("LastSeenDate");
             }
         }
         
@@ -16207,7 +17319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenDateFormatted");
+                return resourceLoader.GetString("LastSeenDateFormatted");
             }
         }
         
@@ -16218,7 +17330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenEverybody");
+                return resourceLoader.GetString("LastSeenEverybody");
             }
         }
         
@@ -16229,7 +17341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenEverybodyMinus");
+                return resourceLoader.GetString("LastSeenEverybodyMinus");
             }
         }
         
@@ -16240,7 +17352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenFormatted");
+                return resourceLoader.GetString("LastSeenFormatted");
             }
         }
         
@@ -16251,7 +17363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenNobody");
+                return resourceLoader.GetString("LastSeenNobody");
             }
         }
         
@@ -16262,7 +17374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenNobodyPlus");
+                return resourceLoader.GetString("LastSeenNobodyPlus");
             }
         }
         
@@ -16273,7 +17385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LastSeenTitle");
+                return resourceLoader.GetString("LastSeenTitle");
             }
         }
         
@@ -16284,7 +17396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Lately");
+                return resourceLoader.GetString("Lately");
             }
         }
         
@@ -16295,7 +17407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Later");
+                return resourceLoader.GetString("Later");
             }
         }
         
@@ -16306,7 +17418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LeaveChannel");
+                return resourceLoader.GetString("LeaveChannel");
             }
         }
         
@@ -16317,7 +17429,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LeaveChannelMenu");
+                return resourceLoader.GetString("LeaveChannelMenu");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Leave {0}"
+        /// </summary>
+        public static string LeaveChats
+        {
+            get
+            {
+                return resourceLoader.GetString("LeaveChats");
             }
         }
         
@@ -16328,7 +17451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LeaveMegaMenu");
+                return resourceLoader.GetString("LeaveMegaMenu");
             }
         }
         
@@ -16339,7 +17462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LedColor");
+                return resourceLoader.GetString("LedColor");
             }
         }
         
@@ -16350,7 +17473,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LedDisabled");
+                return resourceLoader.GetString("LedDisabled");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Limit Reached"
+        /// </summary>
+        public static string LimitReached
+        {
+            get
+            {
+                return resourceLoader.GetString("LimitReached");
             }
         }
         
@@ -16361,7 +17495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkAvailable");
+                return resourceLoader.GetString("LinkAvailable");
             }
         }
         
@@ -16372,7 +17506,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkChecking");
+                return resourceLoader.GetString("LinkChecking");
             }
         }
         
@@ -16383,7 +17517,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkCopied");
+                return resourceLoader.GetString("LinkCopied");
             }
         }
         
@@ -16395,7 +17529,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkCopiedPrivate");
+                return resourceLoader.GetString("LinkCopiedPrivate");
             }
         }
         
@@ -16406,7 +17540,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkedChannel");
+                return resourceLoader.GetString("LinkedChannel");
             }
         }
         
@@ -16417,7 +17551,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInfo");
+                return resourceLoader.GetString("LinkInfo");
             }
         }
         
@@ -16428,7 +17562,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInUse");
+                return resourceLoader.GetString("LinkInUse");
             }
         }
         
@@ -16439,7 +17573,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalid");
+                return resourceLoader.GetString("LinkInvalid");
             }
         }
         
@@ -16450,7 +17584,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalidLong");
+                return resourceLoader.GetString("LinkInvalidLong");
             }
         }
         
@@ -16461,7 +17595,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalidShort");
+                return resourceLoader.GetString("LinkInvalidShort");
             }
         }
         
@@ -16472,7 +17606,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalidShortMega");
+                return resourceLoader.GetString("LinkInvalidShortMega");
             }
         }
         
@@ -16483,7 +17617,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalidStartNumber");
+                return resourceLoader.GetString("LinkInvalidStartNumber");
             }
         }
         
@@ -16494,7 +17628,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkInvalidStartNumberMega");
+                return resourceLoader.GetString("LinkInvalidStartNumberMega");
             }
         }
         
@@ -16505,7 +17639,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkNotFound");
+                return resourceLoader.GetString("LinkNotFound");
             }
         }
         
@@ -16516,7 +17650,51 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinkPreview");
+                return resourceLoader.GetString("LinkPreview");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string LinksFew
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string LinksMany
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} link"
+        /// </summary>
+        public static string LinksOne
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} links"
+        /// </summary>
+        public static string LinksOther
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksOther");
             }
         }
         
@@ -16527,7 +17705,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LinksTitle");
+                return resourceLoader.GetString("LinksTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string LinksTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string LinksZero
+        {
+            get
+            {
+                return resourceLoader.GetString("LinksZero");
             }
         }
         
@@ -16538,7 +17738,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LiveLocationAlertGroup");
+                return resourceLoader.GetString("LiveLocationAlertGroup");
             }
         }
         
@@ -16549,7 +17749,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LiveLocationAlertPrivate");
+                return resourceLoader.GetString("LiveLocationAlertPrivate");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Live Location"
+        /// </summary>
+        public static string LiveLocationContext
+        {
+            get
+            {
+                return resourceLoader.GetString("LiveLocationContext");
             }
         }
         
@@ -16560,7 +17771,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LiveLocations");
+                return resourceLoader.GetString("LiveLocations");
             }
         }
         
@@ -16571,7 +17782,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Loading");
+                return resourceLoader.GetString("Loading");
             }
         }
         
@@ -16582,7 +17793,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoadingFullImage");
+                return resourceLoader.GetString("LoadingFullImage");
             }
         }
         
@@ -16593,7 +17804,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalAudioCache");
+                return resourceLoader.GetString("LocalAudioCache");
             }
         }
         
@@ -16604,7 +17815,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalCache");
+                return resourceLoader.GetString("LocalCache");
             }
         }
         
@@ -16615,7 +17826,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalDatabase");
+                return resourceLoader.GetString("LocalDatabase");
             }
         }
         
@@ -16626,7 +17837,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalDatabaseClear");
+                return resourceLoader.GetString("LocalDatabaseClear");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to clear cached text messages?"
+        /// </summary>
+        public static string LocalDatabaseClearText
+        {
+            get
+            {
+                return resourceLoader.GetString("LocalDatabaseClearText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Clear local database"
+        /// </summary>
+        public static string LocalDatabaseClearTextTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("LocalDatabaseClearTextTitle");
             }
         }
         
@@ -16639,7 +17872,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalDatabaseInfo");
+                return resourceLoader.GetString("LocalDatabaseInfo");
             }
         }
         
@@ -16650,7 +17883,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalDocumentCache");
+                return resourceLoader.GetString("LocalDocumentCache");
             }
         }
         
@@ -16661,7 +17894,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalGifCache");
+                return resourceLoader.GetString("LocalGifCache");
             }
         }
         
@@ -16672,7 +17905,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalMusicCache");
+                return resourceLoader.GetString("LocalMusicCache");
             }
         }
         
@@ -16683,7 +17916,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalPhotoCache");
+                return resourceLoader.GetString("LocalPhotoCache");
             }
         }
         
@@ -16694,7 +17927,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocalVideoCache");
+                return resourceLoader.GetString("LocalVideoCache");
             }
         }
         
@@ -16705,7 +17938,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocatedChannelsTooMuch");
+                return resourceLoader.GetString("LocatedChannelsTooMuch");
             }
         }
         
@@ -16716,7 +17949,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocationUpdated");
+                return resourceLoader.GetString("LocationUpdated");
             }
         }
         
@@ -16727,7 +17960,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocationUpdatedFormatted");
+                return resourceLoader.GetString("LocationUpdatedFormatted");
             }
         }
         
@@ -16738,7 +17971,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LocationUpdatedJustNow");
+                return resourceLoader.GetString("LocationUpdatedJustNow");
             }
         }
         
@@ -16749,7 +17982,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoginAttempts");
+                return resourceLoader.GetString("LoginAttempts");
             }
         }
         
@@ -16760,7 +17993,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoginAttemptsInfo");
+                return resourceLoader.GetString("LoginAttemptsInfo");
             }
         }
         
@@ -16771,7 +18004,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoginPassword");
+                return resourceLoader.GetString("LoginPassword");
             }
         }
         
@@ -16782,7 +18015,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoginPasswordText");
+                return resourceLoader.GetString("LoginPasswordText");
             }
         }
         
@@ -16793,7 +18026,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoginWithTelegram");
+                return resourceLoader.GetString("LoginWithTelegram");
             }
         }
         
@@ -16804,7 +18037,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LogOut");
+                return resourceLoader.GetString("LogOut");
             }
         }
         
@@ -16815,7 +18048,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LogOutInfo");
+                return resourceLoader.GetString("LogOutInfo");
             }
         }
         
@@ -16826,7 +18059,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LogOutTitle");
+                return resourceLoader.GetString("LogOutTitle");
             }
         }
         
@@ -16837,7 +18070,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Long");
+                return resourceLoader.GetString("Long");
             }
         }
         
@@ -16848,7 +18081,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LoopAnimatedStickers");
+                return resourceLoader.GetString("LoopAnimatedStickers");
             }
         }
         
@@ -16859,7 +18092,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LowDiskSpaceMessage");
+                return resourceLoader.GetString("LowDiskSpaceMessage");
             }
         }
         
@@ -16870,7 +18103,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LowDiskSpaceNeverRemove");
+                return resourceLoader.GetString("LowDiskSpaceNeverRemove");
             }
         }
         
@@ -16881,7 +18114,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LowDiskSpaceTitle");
+                return resourceLoader.GetString("LowDiskSpaceTitle");
             }
         }
         
@@ -16892,7 +18125,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("LowDiskSpaceTitle2");
+                return resourceLoader.GetString("LowDiskSpaceTitle2");
             }
         }
         
@@ -16903,7 +18136,42 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MakeAdmin");
+                return resourceLoader.GetString("MakeAdmin");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Make Myself Visible"
+        /// </summary>
+        public static string MakeMyselfVisible
+        {
+            get
+            {
+                return resourceLoader.GetString("MakeMyselfVisible");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Users nearby will be able to view your profile and send you messages. This may help you find new friends, but could also attract excessive attention. You can stop sharing your profile at any time.
+        ///
+        ///Your phone number will remain hidden."
+        /// </summary>
+        public static string MakeMyselfVisibleInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("MakeMyselfVisibleInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show Your Profile?"
+        /// </summary>
+        public static string MakeMyselfVisibleTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("MakeMyselfVisibleTitle");
             }
         }
         
@@ -16914,7 +18182,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ManageChannel");
+                return resourceLoader.GetString("ManageChannel");
             }
         }
         
@@ -16925,7 +18193,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ManageChannelMenu");
+                return resourceLoader.GetString("ManageChannelMenu");
             }
         }
         
@@ -16936,7 +18204,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ManageGroup");
+                return resourceLoader.GetString("ManageGroup");
             }
         }
         
@@ -16947,7 +18215,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ManageGroupMenu");
+                return resourceLoader.GetString("ManageGroupMenu");
             }
         }
         
@@ -16958,7 +18226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Map");
+                return resourceLoader.GetString("Map");
             }
         }
         
@@ -16969,7 +18237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MapPreviewProvider");
+                return resourceLoader.GetString("MapPreviewProvider");
             }
         }
         
@@ -16980,7 +18248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MapPreviewProviderGoogle");
+                return resourceLoader.GetString("MapPreviewProviderGoogle");
             }
         }
         
@@ -16991,7 +18259,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MapPreviewProviderNobody");
+                return resourceLoader.GetString("MapPreviewProviderNobody");
             }
         }
         
@@ -17002,7 +18270,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MapPreviewProviderTelegram");
+                return resourceLoader.GetString("MapPreviewProviderTelegram");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Map preview provider"
+        /// </summary>
+        public static string MapPreviewProviderTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("MapPreviewProviderTitle");
             }
         }
         
@@ -17013,7 +18292,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MapPreviewProviderYandex");
+                return resourceLoader.GetString("MapPreviewProviderYandex");
             }
         }
         
@@ -17024,7 +18303,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("March");
+                return resourceLoader.GetString("March");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Mark all as read"
+        /// </summary>
+        public static string MarkAllAsRead
+        {
+            get
+            {
+                return resourceLoader.GetString("MarkAllAsRead");
             }
         }
         
@@ -17035,7 +18325,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MarkAsRead");
+                return resourceLoader.GetString("MarkAsRead");
             }
         }
         
@@ -17046,7 +18336,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MarkAsUnread");
+                return resourceLoader.GetString("MarkAsUnread");
             }
         }
         
@@ -17057,7 +18347,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Masks");
+                return resourceLoader.GetString("Masks");
             }
         }
         
@@ -17068,7 +18358,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountFew");
+                return resourceLoader.GetString("MasksCountFew");
             }
         }
         
@@ -17079,7 +18369,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountMany");
+                return resourceLoader.GetString("MasksCountMany");
             }
         }
         
@@ -17090,7 +18380,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountOne");
+                return resourceLoader.GetString("MasksCountOne");
             }
         }
         
@@ -17101,7 +18391,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountOther");
+                return resourceLoader.GetString("MasksCountOther");
             }
         }
         
@@ -17112,7 +18402,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountTwo");
+                return resourceLoader.GetString("MasksCountTwo");
             }
         }
         
@@ -17123,7 +18413,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksCountZero");
+                return resourceLoader.GetString("MasksCountZero");
             }
         }
         
@@ -17134,7 +18424,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksInfo");
+                return resourceLoader.GetString("MasksInfo");
             }
         }
         
@@ -17145,7 +18435,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MasksRemoved");
+                return resourceLoader.GetString("MasksRemoved");
             }
         }
         
@@ -17156,7 +18446,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("May");
+                return resourceLoader.GetString("May");
             }
         }
         
@@ -17167,7 +18457,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaFew");
+                return resourceLoader.GetString("MediaFew");
             }
         }
         
@@ -17178,7 +18468,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaMany");
+                return resourceLoader.GetString("MediaMany");
             }
         }
         
@@ -17189,7 +18479,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaOne");
+                return resourceLoader.GetString("MediaOne");
             }
         }
         
@@ -17200,7 +18490,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaOther");
+                return resourceLoader.GetString("MediaOther");
             }
         }
         
@@ -17211,7 +18501,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedFew");
+                return resourceLoader.GetString("MediaSelectedFew");
             }
         }
         
@@ -17222,7 +18512,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedMany");
+                return resourceLoader.GetString("MediaSelectedMany");
             }
         }
         
@@ -17233,7 +18523,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedOne");
+                return resourceLoader.GetString("MediaSelectedOne");
             }
         }
         
@@ -17244,7 +18534,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedOther");
+                return resourceLoader.GetString("MediaSelectedOther");
             }
         }
         
@@ -17255,7 +18545,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedTwo");
+                return resourceLoader.GetString("MediaSelectedTwo");
             }
         }
         
@@ -17266,7 +18556,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaSelectedZero");
+                return resourceLoader.GetString("MediaSelectedZero");
             }
         }
         
@@ -17277,7 +18567,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaTwo");
+                return resourceLoader.GetString("MediaTwo");
             }
         }
         
@@ -17288,7 +18578,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MediaZero");
+                return resourceLoader.GetString("MediaZero");
             }
         }
         
@@ -17299,7 +18589,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaAddedBy");
+                return resourceLoader.GetString("MegaAddedBy");
             }
         }
         
@@ -17310,7 +18600,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaAdminsInfo");
+                return resourceLoader.GetString("MegaAdminsInfo");
             }
         }
         
@@ -17321,7 +18611,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaDeleteAlert");
+                return resourceLoader.GetString("MegaDeleteAlert");
             }
         }
         
@@ -17332,7 +18622,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaDeleteInfo");
+                return resourceLoader.GetString("MegaDeleteInfo");
             }
         }
         
@@ -17343,7 +18633,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaLeaveAlert");
+                return resourceLoader.GetString("MegaLeaveAlert");
             }
         }
         
@@ -17354,7 +18644,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaLeaveAlertWithName");
+                return resourceLoader.GetString("MegaLeaveAlertWithName");
             }
         }
         
@@ -17365,7 +18655,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaLocation");
+                return resourceLoader.GetString("MegaLocation");
             }
         }
         
@@ -17376,7 +18666,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaPrivate");
+                return resourceLoader.GetString("MegaPrivate");
             }
         }
         
@@ -17387,7 +18677,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaPrivateInfo");
+                return resourceLoader.GetString("MegaPrivateInfo");
             }
         }
         
@@ -17398,7 +18688,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaPrivateLinkHelp");
+                return resourceLoader.GetString("MegaPrivateLinkHelp");
             }
         }
         
@@ -17409,7 +18699,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaPublic");
+                return resourceLoader.GetString("MegaPublic");
             }
         }
         
@@ -17420,7 +18710,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaPublicInfo");
+                return resourceLoader.GetString("MegaPublicInfo");
             }
         }
         
@@ -17434,7 +18724,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MegaUsernameHelp");
+                return resourceLoader.GetString("MegaUsernameHelp");
             }
         }
         
@@ -17445,7 +18735,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersCount");
+                return resourceLoader.GetString("MembersCount");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MembersCountSelectedFew
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MembersCountSelectedMany
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} of {1} selected"
+        /// </summary>
+        public static string MembersCountSelectedOne
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} of {1} selected"
+        /// </summary>
+        public static string MembersCountSelectedOther
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MembersCountSelectedTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MembersCountSelectedZero
+        {
+            get
+            {
+                return resourceLoader.GetString("MembersCountSelectedZero");
             }
         }
         
@@ -17456,7 +18812,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersCountZero");
+                return resourceLoader.GetString("MembersCountZero");
             }
         }
         
@@ -17467,7 +18823,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersFew");
+                return resourceLoader.GetString("MembersFew");
             }
         }
         
@@ -17478,7 +18834,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersMany");
+                return resourceLoader.GetString("MembersMany");
             }
         }
         
@@ -17489,7 +18845,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersOne");
+                return resourceLoader.GetString("MembersOne");
             }
         }
         
@@ -17500,7 +18856,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersOther");
+                return resourceLoader.GetString("MembersOther");
             }
         }
         
@@ -17511,7 +18867,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersTwo");
+                return resourceLoader.GetString("MembersTwo");
             }
         }
         
@@ -17522,7 +18878,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MembersZero");
+                return resourceLoader.GetString("MembersZero");
             }
         }
         
@@ -17533,7 +18889,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Message");
+                return resourceLoader.GetString("Message");
             }
         }
         
@@ -17544,7 +18900,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetime");
+                return resourceLoader.GetString("MessageLifetime");
             }
         }
         
@@ -17555,7 +18911,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimeChanged");
+                return resourceLoader.GetString("MessageLifetimeChanged");
             }
         }
         
@@ -17566,7 +18922,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimeChangedOutgoing");
+                return resourceLoader.GetString("MessageLifetimeChangedOutgoing");
             }
         }
         
@@ -17577,7 +18933,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimePhoto");
+                return resourceLoader.GetString("MessageLifetimePhoto");
             }
         }
         
@@ -17588,7 +18944,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimeRemoved");
+                return resourceLoader.GetString("MessageLifetimeRemoved");
             }
         }
         
@@ -17599,7 +18955,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimeVideo");
+                return resourceLoader.GetString("MessageLifetimeVideo");
             }
         }
         
@@ -17610,7 +18966,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageLifetimeYouRemoved");
+                return resourceLoader.GetString("MessageLifetimeYouRemoved");
             }
         }
         
@@ -17621,7 +18977,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageNotFound");
+                return resourceLoader.GetString("MessageNotFound");
             }
         }
         
@@ -17632,7 +18988,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageNotifications");
+                return resourceLoader.GetString("MessageNotifications");
             }
         }
         
@@ -17643,7 +18999,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagePreview");
+                return resourceLoader.GetString("MessagePreview");
             }
         }
         
@@ -17654,7 +19010,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduledBotAction");
+                return resourceLoader.GetString("MessageScheduledBotAction");
             }
         }
         
@@ -17665,7 +19021,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduledLimitReached");
+                return resourceLoader.GetString("MessageScheduledLimitReached");
             }
         }
         
@@ -17676,7 +19032,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduledOn");
+                return resourceLoader.GetString("MessageScheduledOn");
             }
         }
         
@@ -17687,7 +19043,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduledReminderNotification");
+                return resourceLoader.GetString("MessageScheduledReminderNotification");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Scheduled until online"
+        /// </summary>
+        public static string MessageScheduledUntilOnline
+        {
+            get
+            {
+                return resourceLoader.GetString("MessageScheduledUntilOnline");
             }
         }
         
@@ -17698,7 +19065,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduledVote");
+                return resourceLoader.GetString("MessageScheduledVote");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Poll results will become available after the message is published."
+        /// </summary>
+        public static string MessageScheduledVoteResults
+        {
+            get
+            {
+                return resourceLoader.GetString("MessageScheduledVoteResults");
             }
         }
         
@@ -17709,7 +19087,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduleEditTime");
+                return resourceLoader.GetString("MessageScheduleEditTime");
             }
         }
         
@@ -17720,7 +19098,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduleSend");
+                return resourceLoader.GetString("MessageScheduleSend");
             }
         }
         
@@ -17731,7 +19109,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessageScheduleToday");
+                return resourceLoader.GetString("MessageScheduleToday");
             }
         }
         
@@ -17742,7 +19120,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesDataUsage");
+                return resourceLoader.GetString("MessagesDataUsage");
             }
         }
         
@@ -17753,7 +19131,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesFew");
+                return resourceLoader.GetString("MessagesFew");
             }
         }
         
@@ -17764,7 +19142,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesMany");
+                return resourceLoader.GetString("MessagesMany");
             }
         }
         
@@ -17775,7 +19153,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesOne");
+                return resourceLoader.GetString("MessagesOne");
             }
         }
         
@@ -17786,7 +19164,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesOther");
+                return resourceLoader.GetString("MessagesOther");
             }
         }
         
@@ -17797,7 +19175,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesSettings");
+                return resourceLoader.GetString("MessagesSettings");
             }
         }
         
@@ -17808,7 +19186,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesTwo");
+                return resourceLoader.GetString("MessagesTwo");
             }
         }
         
@@ -17819,7 +19197,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MessagesZero");
+                return resourceLoader.GetString("MessagesZero");
             }
         }
         
@@ -17830,7 +19208,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersAway");
+                return resourceLoader.GetString("MetersAway");
             }
         }
         
@@ -17841,7 +19219,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersAway2");
+                return resourceLoader.GetString("MetersAway2");
             }
         }
         
@@ -17852,7 +19230,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersFew");
+                return resourceLoader.GetString("MetersFew");
             }
         }
         
@@ -17863,7 +19241,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersMany");
+                return resourceLoader.GetString("MetersMany");
             }
         }
         
@@ -17874,7 +19252,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersOne");
+                return resourceLoader.GetString("MetersOne");
             }
         }
         
@@ -17885,7 +19263,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersOther");
+                return resourceLoader.GetString("MetersOther");
             }
         }
         
@@ -17896,7 +19274,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersTwo");
+                return resourceLoader.GetString("MetersTwo");
             }
         }
         
@@ -17907,7 +19285,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MetersZero");
+                return resourceLoader.GetString("MetersZero");
             }
         }
         
@@ -17918,7 +19296,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MilesAway");
+                return resourceLoader.GetString("MilesAway");
             }
         }
         
@@ -17929,7 +19307,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldFew");
+                return resourceLoader.GetString("MinutesBoldFew");
             }
         }
         
@@ -17940,7 +19318,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldMany");
+                return resourceLoader.GetString("MinutesBoldMany");
             }
         }
         
@@ -17951,7 +19329,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldOne");
+                return resourceLoader.GetString("MinutesBoldOne");
             }
         }
         
@@ -17962,7 +19340,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldOther");
+                return resourceLoader.GetString("MinutesBoldOther");
             }
         }
         
@@ -17973,7 +19351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldTwo");
+                return resourceLoader.GetString("MinutesBoldTwo");
             }
         }
         
@@ -17984,7 +19362,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesBoldZero");
+                return resourceLoader.GetString("MinutesBoldZero");
             }
         }
         
@@ -17995,7 +19373,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesFew");
+                return resourceLoader.GetString("MinutesFew");
             }
         }
         
@@ -18006,7 +19384,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesMany");
+                return resourceLoader.GetString("MinutesMany");
             }
         }
         
@@ -18017,7 +19395,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesOne");
+                return resourceLoader.GetString("MinutesOne");
             }
         }
         
@@ -18028,7 +19406,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesOther");
+                return resourceLoader.GetString("MinutesOther");
             }
         }
         
@@ -18039,7 +19417,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesTwo");
+                return resourceLoader.GetString("MinutesTwo");
             }
         }
         
@@ -18050,7 +19428,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MinutesZero");
+                return resourceLoader.GetString("MinutesZero");
             }
         }
         
@@ -18061,7 +19439,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MobileHidden");
+                return resourceLoader.GetString("MobileHidden");
             }
         }
         
@@ -18072,7 +19450,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MobileHiddenExceptionInfo");
+                return resourceLoader.GetString("MobileHiddenExceptionInfo");
             }
         }
         
@@ -18083,7 +19461,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MobileUsage");
+                return resourceLoader.GetString("MobileUsage");
             }
         }
         
@@ -18094,7 +19472,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MobileVisibleInfo");
+                return resourceLoader.GetString("MobileVisibleInfo");
             }
         }
         
@@ -18105,7 +19483,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Mono");
+                return resourceLoader.GetString("Mono");
             }
         }
         
@@ -18116,7 +19494,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsFew");
+                return resourceLoader.GetString("MonthsFew");
             }
         }
         
@@ -18127,7 +19505,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsMany");
+                return resourceLoader.GetString("MonthsMany");
             }
         }
         
@@ -18138,7 +19516,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsOne");
+                return resourceLoader.GetString("MonthsOne");
             }
         }
         
@@ -18149,7 +19527,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsOther");
+                return resourceLoader.GetString("MonthsOther");
             }
         }
         
@@ -18160,7 +19538,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsTwo");
+                return resourceLoader.GetString("MonthsTwo");
             }
         }
         
@@ -18171,7 +19549,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MonthsZero");
+                return resourceLoader.GetString("MonthsZero");
             }
         }
         
@@ -18182,7 +19560,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MoreInfo");
+                return resourceLoader.GetString("MoreInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MusicFilesFew
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MusicFilesMany
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} music file"
+        /// </summary>
+        public static string MusicFilesOne
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} music files"
+        /// </summary>
+        public static string MusicFilesOther
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MusicFilesTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string MusicFilesZero
+        {
+            get
+            {
+                return resourceLoader.GetString("MusicFilesZero");
             }
         }
         
@@ -18193,7 +19637,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MusicInfo");
+                return resourceLoader.GetString("MusicInfo");
             }
         }
         
@@ -18204,7 +19648,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MuteDisable");
+                return resourceLoader.GetString("MuteDisable");
             }
         }
         
@@ -18215,7 +19659,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MuteFor");
+                return resourceLoader.GetString("MuteFor");
             }
         }
         
@@ -18226,7 +19670,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("MuteNotifications");
+                return resourceLoader.GetString("MuteNotifications");
             }
         }
         
@@ -18237,7 +19681,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NearbyCreateGroup");
+                return resourceLoader.GetString("NearbyCreateGroup");
             }
         }
         
@@ -18248,7 +19692,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NearbyCreateGroupInfo");
+                return resourceLoader.GetString("NearbyCreateGroupInfo");
             }
         }
         
@@ -18259,7 +19703,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NearbyCreateGroupInfo2");
+                return resourceLoader.GetString("NearbyCreateGroupInfo2");
             }
         }
         
@@ -18270,7 +19714,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NearbyPlaces");
+                return resourceLoader.GetString("NearbyPlaces");
             }
         }
         
@@ -18281,7 +19725,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NearbyStartGroup");
+                return resourceLoader.GetString("NearbyStartGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Or choose a venue"
+        /// </summary>
+        public static string NearbyVenue
+        {
+            get
+            {
+                return resourceLoader.GetString("NearbyVenue");
             }
         }
         
@@ -18292,7 +19747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NetworkUsage");
+                return resourceLoader.GetString("NetworkUsage");
             }
         }
         
@@ -18303,7 +19758,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NetworkUsageMobile");
+                return resourceLoader.GetString("NetworkUsageMobile");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Mobile"
+        /// </summary>
+        public static string NetworkUsageMobileTab
+        {
+            get
+            {
+                return resourceLoader.GetString("NetworkUsageMobileTab");
             }
         }
         
@@ -18314,7 +19780,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NetworkUsageRoaming");
+                return resourceLoader.GetString("NetworkUsageRoaming");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Roaming"
+        /// </summary>
+        public static string NetworkUsageRoamingTab
+        {
+            get
+            {
+                return resourceLoader.GetString("NetworkUsageRoamingTab");
             }
         }
         
@@ -18325,7 +19802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NetworkUsageSince");
+                return resourceLoader.GetString("NetworkUsageSince");
             }
         }
         
@@ -18336,7 +19813,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NetworkUsageWiFi");
+                return resourceLoader.GetString("NetworkUsageWiFi");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Wi-Fi"
+        /// </summary>
+        public static string NetworkUsageWiFiTab
+        {
+            get
+            {
+                return resourceLoader.GetString("NetworkUsageWiFiTab");
             }
         }
         
@@ -18347,7 +19835,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NeverAllow");
+                return resourceLoader.GetString("NeverAllow");
             }
         }
         
@@ -18358,7 +19846,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NeverAllowPlaceholder");
+                return resourceLoader.GetString("NeverAllowPlaceholder");
             }
         }
         
@@ -18369,7 +19857,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NeverShareWith");
+                return resourceLoader.GetString("NeverShareWith");
             }
         }
         
@@ -18380,7 +19868,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NeverShareWithPlaceholder");
+                return resourceLoader.GetString("NeverShareWithPlaceholder");
             }
         }
         
@@ -18391,7 +19879,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NeverShareWithTitle");
+                return resourceLoader.GetString("NeverShareWithTitle");
             }
         }
         
@@ -18402,7 +19890,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewBroadcastList");
+                return resourceLoader.GetString("NewBroadcastList");
             }
         }
         
@@ -18413,7 +19901,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewChannel");
+                return resourceLoader.GetString("NewChannel");
             }
         }
         
@@ -18424,7 +19912,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewContact");
+                return resourceLoader.GetString("NewContact");
             }
         }
         
@@ -18435,7 +19923,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewConversationShortcut");
+                return resourceLoader.GetString("NewConversationShortcut");
             }
         }
         
@@ -18446,7 +19934,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewGroup");
+                return resourceLoader.GetString("NewGroup");
             }
         }
         
@@ -18457,7 +19945,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesFew");
+                return resourceLoader.GetString("NewMessagesFew");
             }
         }
         
@@ -18468,7 +19956,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesMany");
+                return resourceLoader.GetString("NewMessagesMany");
             }
         }
         
@@ -18479,7 +19967,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesOne");
+                return resourceLoader.GetString("NewMessagesOne");
             }
         }
         
@@ -18490,7 +19978,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesOther");
+                return resourceLoader.GetString("NewMessagesOther");
             }
         }
         
@@ -18501,7 +19989,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesTwo");
+                return resourceLoader.GetString("NewMessagesTwo");
             }
         }
         
@@ -18512,7 +20000,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessagesZero");
+                return resourceLoader.GetString("NewMessagesZero");
             }
         }
         
@@ -18523,7 +20011,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewMessageTitle");
+                return resourceLoader.GetString("NewMessageTitle");
             }
         }
         
@@ -18534,7 +20022,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewPoll");
+                return resourceLoader.GetString("NewPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "New Quiz"
+        /// </summary>
+        public static string NewQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("NewQuiz");
             }
         }
         
@@ -18545,7 +20044,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewSecretChat");
+                return resourceLoader.GetString("NewSecretChat");
             }
         }
         
@@ -18556,7 +20055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewTheme");
+                return resourceLoader.GetString("NewTheme");
             }
         }
         
@@ -18567,7 +20066,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewThemePreviewLine1");
+                return resourceLoader.GetString("NewThemePreviewLine1");
             }
         }
         
@@ -18578,7 +20077,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewThemePreviewLine2");
+                return resourceLoader.GetString("NewThemePreviewLine2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "It's morning in *Tokyo* ??"
+        /// </summary>
+        public static string NewThemePreviewLine3
+        {
+            get
+            {
+                return resourceLoader.GetString("NewThemePreviewLine3");
             }
         }
         
@@ -18589,7 +20099,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewThemePreviewName");
+                return resourceLoader.GetString("NewThemePreviewName");
             }
         }
         
@@ -18600,7 +20110,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewThemePreviewReply");
+                return resourceLoader.GetString("NewThemePreviewReply");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Good morning"
+        /// </summary>
+        public static string NewThemePreviewReply2
+        {
+            get
+            {
+                return resourceLoader.GetString("NewThemePreviewReply2");
             }
         }
         
@@ -18611,7 +20132,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NewThemeTitle");
+                return resourceLoader.GetString("NewThemeTitle");
             }
         }
         
@@ -18622,7 +20143,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Next");
+                return resourceLoader.GetString("Next");
             }
         }
         
@@ -18633,7 +20154,51 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoAudio");
+                return resourceLoader.GetString("NoAudio");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No audio files"
+        /// </summary>
+        public static string NoAudioFiles
+        {
+            get
+            {
+                return resourceLoader.GetString("NoAudioFiles");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Your music library is empty."
+        /// </summary>
+        public static string NoAudioFilesInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("NoAudioFilesInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No results found"
+        /// </summary>
+        public static string NoAudioFound
+        {
+            get
+            {
+                return resourceLoader.GetString("NoAudioFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "There are no matches with **{0}** in your music library."
+        /// </summary>
+        public static string NoAudioFoundInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("NoAudioFoundInfo");
             }
         }
         
@@ -18644,7 +20209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlocked");
+                return resourceLoader.GetString("NoBlocked");
             }
         }
         
@@ -18655,7 +20220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlockedChannel");
+                return resourceLoader.GetString("NoBlockedChannel");
             }
         }
         
@@ -18666,7 +20231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlockedChannel2");
+                return resourceLoader.GetString("NoBlockedChannel2");
             }
         }
         
@@ -18677,7 +20242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlockedGroup");
+                return resourceLoader.GetString("NoBlockedGroup");
             }
         }
         
@@ -18688,7 +20253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlockedGroup2");
+                return resourceLoader.GetString("NoBlockedGroup2");
             }
         }
         
@@ -18699,7 +20264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoBlockedUsers");
+                return resourceLoader.GetString("NoBlockedUsers");
             }
         }
         
@@ -18710,7 +20275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NobodyLikesSpam1");
+                return resourceLoader.GetString("NobodyLikesSpam1");
             }
         }
         
@@ -18721,7 +20286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NobodyLikesSpam2");
+                return resourceLoader.GetString("NobodyLikesSpam2");
             }
         }
         
@@ -18732,7 +20297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NobodyLikesSpam3");
+                return resourceLoader.GetString("NobodyLikesSpam3");
             }
         }
         
@@ -18743,7 +20308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoCallLog");
+                return resourceLoader.GetString("NoCallLog");
             }
         }
         
@@ -18754,7 +20319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoChats");
+                return resourceLoader.GetString("NoChats");
             }
         }
         
@@ -18765,7 +20330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoChatsContactsHelp");
+                return resourceLoader.GetString("NoChatsContactsHelp");
             }
         }
         
@@ -18776,7 +20341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoChatsHelp");
+                return resourceLoader.GetString("NoChatsHelp");
             }
         }
         
@@ -18787,7 +20352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoContacts");
+                return resourceLoader.GetString("NoContacts");
             }
         }
         
@@ -18798,7 +20363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoEmojiFound");
+                return resourceLoader.GetString("NoEmojiFound");
             }
         }
         
@@ -18811,7 +20376,40 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoExceptions");
+                return resourceLoader.GetString("NoExceptions");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No results found"
+        /// </summary>
+        public static string NoFilesFound
+        {
+            get
+            {
+                return resourceLoader.GetString("NoFilesFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "There are no matches with **{0}** in current directory."
+        /// </summary>
+        public static string NoFilesFoundInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("NoFilesFoundInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "This folder is empty."
+        /// </summary>
+        public static string NoFilesInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("NoFilesInfo");
             }
         }
         
@@ -18822,7 +20420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoGIFsFound");
+                return resourceLoader.GetString("NoGIFsFound");
             }
         }
         
@@ -18833,7 +20431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoGroupsInCommon");
+                return resourceLoader.GetString("NoGroupsInCommon");
             }
         }
         
@@ -18844,7 +20442,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoHandleAppInstalled");
+                return resourceLoader.GetString("NoHandleAppInstalled");
             }
         }
         
@@ -18855,7 +20453,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMailInstalled");
+                return resourceLoader.GetString("NoMailInstalled");
             }
         }
         
@@ -18866,7 +20464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMasks");
+                return resourceLoader.GetString("NoMasks");
             }
         }
         
@@ -18877,7 +20475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMedia");
+                return resourceLoader.GetString("NoMedia");
             }
         }
         
@@ -18888,7 +20486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMediaAutoDownload");
+                return resourceLoader.GetString("NoMediaAutoDownload");
             }
         }
         
@@ -18899,7 +20497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMediaSecret");
+                return resourceLoader.GetString("NoMediaSecret");
             }
         }
         
@@ -18910,7 +20508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoMessages");
+                return resourceLoader.GetString("NoMessages");
             }
         }
         
@@ -18921,7 +20519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoOtherSessions");
+                return resourceLoader.GetString("NoOtherSessions");
             }
         }
         
@@ -18932,7 +20530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoOtherSessionsInfo");
+                return resourceLoader.GetString("NoOtherSessionsInfo");
             }
         }
         
@@ -18943,7 +20541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoOtherWebSessions");
+                return resourceLoader.GetString("NoOtherWebSessions");
             }
         }
         
@@ -18954,7 +20552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoOtherWebSessionsInfo");
+                return resourceLoader.GetString("NoOtherWebSessionsInfo");
             }
         }
         
@@ -18965,7 +20563,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoPhotos");
+                return resourceLoader.GetString("NoPhotos");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No places found"
+        /// </summary>
+        public static string NoPlacesFound
+        {
+            get
+            {
+                return resourceLoader.GetString("NoPlacesFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "There are no matches with **{0}** near you."
+        /// </summary>
+        public static string NoPlacesFoundInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("NoPlacesFoundInfo");
             }
         }
         
@@ -18976,7 +20596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoPlayerInstalled");
+                return resourceLoader.GetString("NoPlayerInstalled");
             }
         }
         
@@ -18987,7 +20607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoPopup");
+                return resourceLoader.GetString("NoPopup");
             }
         }
         
@@ -18998,7 +20618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoRecent");
+                return resourceLoader.GetString("NoRecent");
             }
         }
         
@@ -19009,7 +20629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoRecentGIFs");
+                return resourceLoader.GetString("NoRecentGIFs");
             }
         }
         
@@ -19020,7 +20640,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoRecentPhotos");
+                return resourceLoader.GetString("NoRecentPhotos");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "No recent searches"
+        /// </summary>
+        public static string NoRecentSearches
+        {
+            get
+            {
+                return resourceLoader.GetString("NoRecentSearches");
             }
         }
         
@@ -19031,7 +20662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoResult");
+                return resourceLoader.GetString("NoResult");
             }
         }
         
@@ -19042,7 +20673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoScheduledMessages");
+                return resourceLoader.GetString("NoScheduledMessages");
             }
         }
         
@@ -19053,7 +20684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedAudio");
+                return resourceLoader.GetString("NoSharedAudio");
             }
         }
         
@@ -19064,7 +20695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedAudioSecret");
+                return resourceLoader.GetString("NoSharedAudioSecret");
             }
         }
         
@@ -19075,7 +20706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedFiles");
+                return resourceLoader.GetString("NoSharedFiles");
             }
         }
         
@@ -19086,7 +20717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedFilesSecret");
+                return resourceLoader.GetString("NoSharedFilesSecret");
             }
         }
         
@@ -19097,7 +20728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedLinks");
+                return resourceLoader.GetString("NoSharedLinks");
             }
         }
         
@@ -19108,7 +20739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedLinksSecret");
+                return resourceLoader.GetString("NoSharedLinksSecret");
             }
         }
         
@@ -19119,7 +20750,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedVoice");
+                return resourceLoader.GetString("NoSharedVoice");
             }
         }
         
@@ -19130,7 +20761,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSharedVoiceSecret");
+                return resourceLoader.GetString("NoSharedVoiceSecret");
             }
         }
         
@@ -19141,7 +20772,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoSound");
+                return resourceLoader.GetString("NoSound");
             }
         }
         
@@ -19152,7 +20783,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoStickers");
+                return resourceLoader.GetString("NoStickers");
             }
         }
         
@@ -19163,7 +20794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoStickersFound");
+                return resourceLoader.GetString("NoStickersFound");
             }
         }
         
@@ -19174,7 +20805,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedContact");
+                return resourceLoader.GetString("NotificationActionPinnedContact");
             }
         }
         
@@ -19185,7 +20816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedContact2");
+                return resourceLoader.GetString("NotificationActionPinnedContact2");
             }
         }
         
@@ -19196,7 +20827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedContactChannel");
+                return resourceLoader.GetString("NotificationActionPinnedContactChannel");
             }
         }
         
@@ -19207,7 +20838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedContactChannel2");
+                return resourceLoader.GetString("NotificationActionPinnedContactChannel2");
             }
         }
         
@@ -19218,7 +20849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedFile");
+                return resourceLoader.GetString("NotificationActionPinnedFile");
             }
         }
         
@@ -19229,7 +20860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedFileChannel");
+                return resourceLoader.GetString("NotificationActionPinnedFileChannel");
             }
         }
         
@@ -19240,7 +20871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGame");
+                return resourceLoader.GetString("NotificationActionPinnedGame");
             }
         }
         
@@ -19251,7 +20882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGameChannel");
+                return resourceLoader.GetString("NotificationActionPinnedGameChannel");
             }
         }
         
@@ -19262,7 +20893,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGameScore");
+                return resourceLoader.GetString("NotificationActionPinnedGameScore");
             }
         }
         
@@ -19273,7 +20904,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGameScoreChannel");
+                return resourceLoader.GetString("NotificationActionPinnedGameScoreChannel");
             }
         }
         
@@ -19284,7 +20915,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGeo");
+                return resourceLoader.GetString("NotificationActionPinnedGeo");
             }
         }
         
@@ -19295,7 +20926,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGeoChannel");
+                return resourceLoader.GetString("NotificationActionPinnedGeoChannel");
             }
         }
         
@@ -19306,7 +20937,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGeoLive");
+                return resourceLoader.GetString("NotificationActionPinnedGeoLive");
             }
         }
         
@@ -19317,7 +20948,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGeoLiveChannel");
+                return resourceLoader.GetString("NotificationActionPinnedGeoLiveChannel");
             }
         }
         
@@ -19328,7 +20959,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGif");
+                return resourceLoader.GetString("NotificationActionPinnedGif");
             }
         }
         
@@ -19339,7 +20970,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedGifChannel");
+                return resourceLoader.GetString("NotificationActionPinnedGifChannel");
             }
         }
         
@@ -19350,7 +20981,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedInvoice");
+                return resourceLoader.GetString("NotificationActionPinnedInvoice");
             }
         }
         
@@ -19361,7 +20992,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedInvoiceChannel");
+                return resourceLoader.GetString("NotificationActionPinnedInvoiceChannel");
             }
         }
         
@@ -19372,7 +21003,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedMusic");
+                return resourceLoader.GetString("NotificationActionPinnedMusic");
             }
         }
         
@@ -19383,7 +21014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedMusicChannel");
+                return resourceLoader.GetString("NotificationActionPinnedMusicChannel");
             }
         }
         
@@ -19394,7 +21025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedNoText");
+                return resourceLoader.GetString("NotificationActionPinnedNoText");
             }
         }
         
@@ -19405,7 +21036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedNoTextChannel");
+                return resourceLoader.GetString("NotificationActionPinnedNoTextChannel");
             }
         }
         
@@ -19416,7 +21047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPhoto");
+                return resourceLoader.GetString("NotificationActionPinnedPhoto");
             }
         }
         
@@ -19427,7 +21058,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPhotoChannel");
+                return resourceLoader.GetString("NotificationActionPinnedPhotoChannel");
             }
         }
         
@@ -19438,7 +21069,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPoll");
+                return resourceLoader.GetString("NotificationActionPinnedPoll");
             }
         }
         
@@ -19449,7 +21080,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPoll2");
+                return resourceLoader.GetString("NotificationActionPinnedPoll2");
             }
         }
         
@@ -19460,7 +21091,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPollChannel");
+                return resourceLoader.GetString("NotificationActionPinnedPollChannel");
             }
         }
         
@@ -19471,7 +21102,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedPollChannel2");
+                return resourceLoader.GetString("NotificationActionPinnedPollChannel2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} pinned the quiz "{2}" in the group {1}"
+        /// </summary>
+        public static string NotificationActionPinnedQuiz2
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationActionPinnedQuiz2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} pinned the quiz "{1}""
+        /// </summary>
+        public static string NotificationActionPinnedQuizChannel2
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationActionPinnedQuizChannel2");
             }
         }
         
@@ -19482,7 +21135,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedRound");
+                return resourceLoader.GetString("NotificationActionPinnedRound");
             }
         }
         
@@ -19493,7 +21146,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedRoundChannel");
+                return resourceLoader.GetString("NotificationActionPinnedRoundChannel");
             }
         }
         
@@ -19504,7 +21157,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedSticker");
+                return resourceLoader.GetString("NotificationActionPinnedSticker");
             }
         }
         
@@ -19515,7 +21168,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedStickerChannel");
+                return resourceLoader.GetString("NotificationActionPinnedStickerChannel");
             }
         }
         
@@ -19526,7 +21179,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedStickerEmoji");
+                return resourceLoader.GetString("NotificationActionPinnedStickerEmoji");
             }
         }
         
@@ -19537,7 +21190,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedStickerEmojiChannel");
+                return resourceLoader.GetString("NotificationActionPinnedStickerEmojiChannel");
             }
         }
         
@@ -19548,7 +21201,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedText");
+                return resourceLoader.GetString("NotificationActionPinnedText");
             }
         }
         
@@ -19559,7 +21212,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedTextChannel");
+                return resourceLoader.GetString("NotificationActionPinnedTextChannel");
             }
         }
         
@@ -19570,7 +21223,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedVideo");
+                return resourceLoader.GetString("NotificationActionPinnedVideo");
             }
         }
         
@@ -19581,7 +21234,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedVideoChannel");
+                return resourceLoader.GetString("NotificationActionPinnedVideoChannel");
             }
         }
         
@@ -19592,7 +21245,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedVoice");
+                return resourceLoader.GetString("NotificationActionPinnedVoice");
             }
         }
         
@@ -19603,7 +21256,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationActionPinnedVoiceChannel");
+                return resourceLoader.GetString("NotificationActionPinnedVoiceChannel");
             }
         }
         
@@ -19614,7 +21267,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationContactJoined");
+                return resourceLoader.GetString("NotificationContactJoined");
             }
         }
         
@@ -19625,7 +21278,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationContactNewPhoto");
+                return resourceLoader.GetString("NotificationContactNewPhoto");
             }
         }
         
@@ -19636,7 +21289,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationEditedGroupName");
+                return resourceLoader.GetString("NotificationEditedGroupName");
             }
         }
         
@@ -19647,7 +21300,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationEditedGroupPhoto");
+                return resourceLoader.GetString("NotificationEditedGroupPhoto");
             }
         }
         
@@ -19658,7 +21311,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupAddMember");
+                return resourceLoader.GetString("NotificationGroupAddMember");
             }
         }
         
@@ -19669,7 +21322,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupAddSelf");
+                return resourceLoader.GetString("NotificationGroupAddSelf");
             }
         }
         
@@ -19680,7 +21333,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupAddSelfMega");
+                return resourceLoader.GetString("NotificationGroupAddSelfMega");
             }
         }
         
@@ -19691,7 +21344,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupAlbum");
+                return resourceLoader.GetString("NotificationGroupAlbum");
             }
         }
         
@@ -19702,7 +21355,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupFew");
+                return resourceLoader.GetString("NotificationGroupFew");
             }
         }
         
@@ -19713,7 +21366,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupForwardedFew");
+                return resourceLoader.GetString("NotificationGroupForwardedFew");
             }
         }
         
@@ -19724,7 +21377,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupKickMember");
+                return resourceLoader.GetString("NotificationGroupKickMember");
             }
         }
         
@@ -19735,7 +21388,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupKickYou");
+                return resourceLoader.GetString("NotificationGroupKickYou");
             }
         }
         
@@ -19746,7 +21399,51 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationGroupLeftMember");
+                return resourceLoader.GetString("NotificationGroupLeftMember");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Telegram"
+        /// </summary>
+        public static string NotificationHiddenChatName
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationHiddenChatName");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "User"
+        /// </summary>
+        public static string NotificationHiddenChatUserName
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationHiddenChatUserName");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "New message"
+        /// </summary>
+        public static string NotificationHiddenMessage
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationHiddenMessage");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Telegram"
+        /// </summary>
+        public static string NotificationHiddenName
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationHiddenName");
             }
         }
         
@@ -19757,7 +21454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationInvitedToGroup");
+                return resourceLoader.GetString("NotificationInvitedToGroup");
             }
         }
         
@@ -19768,7 +21465,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationInvitedToGroupByLink");
+                return resourceLoader.GetString("NotificationInvitedToGroupByLink");
             }
         }
         
@@ -19779,7 +21476,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageAlbum");
+                return resourceLoader.GetString("NotificationMessageAlbum");
             }
         }
         
@@ -19790,7 +21487,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageAudio");
+                return resourceLoader.GetString("NotificationMessageAudio");
             }
         }
         
@@ -19801,7 +21498,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageContact");
+                return resourceLoader.GetString("NotificationMessageContact");
             }
         }
         
@@ -19812,7 +21509,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageContact2");
+                return resourceLoader.GetString("NotificationMessageContact2");
             }
         }
         
@@ -19823,7 +21520,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageDocument");
+                return resourceLoader.GetString("NotificationMessageDocument");
             }
         }
         
@@ -19834,7 +21531,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageFew");
+                return resourceLoader.GetString("NotificationMessageFew");
             }
         }
         
@@ -19845,7 +21542,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageForwardFew");
+                return resourceLoader.GetString("NotificationMessageForwardFew");
             }
         }
         
@@ -19856,7 +21553,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGame");
+                return resourceLoader.GetString("NotificationMessageGame");
             }
         }
         
@@ -19867,7 +21564,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGameScored");
+                return resourceLoader.GetString("NotificationMessageGameScored");
             }
         }
         
@@ -19878,7 +21575,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGif");
+                return resourceLoader.GetString("NotificationMessageGif");
             }
         }
         
@@ -19889,7 +21586,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupAudio");
+                return resourceLoader.GetString("NotificationMessageGroupAudio");
             }
         }
         
@@ -19900,7 +21597,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupContact");
+                return resourceLoader.GetString("NotificationMessageGroupContact");
             }
         }
         
@@ -19911,7 +21608,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupContact2");
+                return resourceLoader.GetString("NotificationMessageGroupContact2");
             }
         }
         
@@ -19922,7 +21619,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupDocument");
+                return resourceLoader.GetString("NotificationMessageGroupDocument");
             }
         }
         
@@ -19933,7 +21630,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupGame");
+                return resourceLoader.GetString("NotificationMessageGroupGame");
             }
         }
         
@@ -19944,7 +21641,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupGameScored");
+                return resourceLoader.GetString("NotificationMessageGroupGameScored");
             }
         }
         
@@ -19955,7 +21652,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupGif");
+                return resourceLoader.GetString("NotificationMessageGroupGif");
             }
         }
         
@@ -19966,7 +21663,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupInvoice");
+                return resourceLoader.GetString("NotificationMessageGroupInvoice");
             }
         }
         
@@ -19977,7 +21674,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupLiveLocation");
+                return resourceLoader.GetString("NotificationMessageGroupLiveLocation");
             }
         }
         
@@ -19988,7 +21685,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupMap");
+                return resourceLoader.GetString("NotificationMessageGroupMap");
             }
         }
         
@@ -19999,7 +21696,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupMusic");
+                return resourceLoader.GetString("NotificationMessageGroupMusic");
             }
         }
         
@@ -20010,7 +21707,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupNoText");
+                return resourceLoader.GetString("NotificationMessageGroupNoText");
             }
         }
         
@@ -20021,7 +21718,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupPhoto");
+                return resourceLoader.GetString("NotificationMessageGroupPhoto");
             }
         }
         
@@ -20032,7 +21729,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupPoll");
+                return resourceLoader.GetString("NotificationMessageGroupPoll");
             }
         }
         
@@ -20043,7 +21740,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupPoll2");
+                return resourceLoader.GetString("NotificationMessageGroupPoll2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} sent the quiz "{2}" to the group {1}"
+        /// </summary>
+        public static string NotificationMessageGroupQuiz2
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationMessageGroupQuiz2");
             }
         }
         
@@ -20054,7 +21762,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupRound");
+                return resourceLoader.GetString("NotificationMessageGroupRound");
             }
         }
         
@@ -20065,7 +21773,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupSticker");
+                return resourceLoader.GetString("NotificationMessageGroupSticker");
             }
         }
         
@@ -20076,7 +21784,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupStickerEmoji");
+                return resourceLoader.GetString("NotificationMessageGroupStickerEmoji");
             }
         }
         
@@ -20087,7 +21795,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupText");
+                return resourceLoader.GetString("NotificationMessageGroupText");
             }
         }
         
@@ -20098,7 +21806,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageGroupVideo");
+                return resourceLoader.GetString("NotificationMessageGroupVideo");
             }
         }
         
@@ -20109,7 +21817,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageInvoice");
+                return resourceLoader.GetString("NotificationMessageInvoice");
             }
         }
         
@@ -20120,7 +21828,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageLiveLocation");
+                return resourceLoader.GetString("NotificationMessageLiveLocation");
             }
         }
         
@@ -20131,7 +21839,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageMap");
+                return resourceLoader.GetString("NotificationMessageMap");
             }
         }
         
@@ -20142,7 +21850,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageMusic");
+                return resourceLoader.GetString("NotificationMessageMusic");
             }
         }
         
@@ -20153,7 +21861,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageNoText");
+                return resourceLoader.GetString("NotificationMessageNoText");
             }
         }
         
@@ -20164,7 +21872,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessagePhoto");
+                return resourceLoader.GetString("NotificationMessagePhoto");
             }
         }
         
@@ -20175,7 +21883,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessagePoll");
+                return resourceLoader.GetString("NotificationMessagePoll");
             }
         }
         
@@ -20186,7 +21894,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessagePoll2");
+                return resourceLoader.GetString("NotificationMessagePoll2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} sent you the quiz "{1}""
+        /// </summary>
+        public static string NotificationMessageQuiz2
+        {
+            get
+            {
+                return resourceLoader.GetString("NotificationMessageQuiz2");
             }
         }
         
@@ -20197,7 +21916,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageRound");
+                return resourceLoader.GetString("NotificationMessageRound");
             }
         }
         
@@ -20208,7 +21927,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageScheduled");
+                return resourceLoader.GetString("NotificationMessageScheduled");
             }
         }
         
@@ -20219,7 +21938,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageScheduledName");
+                return resourceLoader.GetString("NotificationMessageScheduledName");
             }
         }
         
@@ -20230,7 +21949,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageSDPhoto");
+                return resourceLoader.GetString("NotificationMessageSDPhoto");
             }
         }
         
@@ -20241,7 +21960,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageSDVideo");
+                return resourceLoader.GetString("NotificationMessageSDVideo");
             }
         }
         
@@ -20252,7 +21971,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessagesPeopleDisplayOrder");
+                return resourceLoader.GetString("NotificationMessagesPeopleDisplayOrder");
             }
         }
         
@@ -20263,7 +21982,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageSticker");
+                return resourceLoader.GetString("NotificationMessageSticker");
             }
         }
         
@@ -20274,7 +21993,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageStickerEmoji");
+                return resourceLoader.GetString("NotificationMessageStickerEmoji");
             }
         }
         
@@ -20285,7 +22004,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageText");
+                return resourceLoader.GetString("NotificationMessageText");
             }
         }
         
@@ -20296,7 +22015,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationMessageVideo");
+                return resourceLoader.GetString("NotificationMessageVideo");
             }
         }
         
@@ -20307,7 +22026,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Notifications");
+                return resourceLoader.GetString("Notifications");
             }
         }
         
@@ -20318,7 +22037,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsAddAnException");
+                return resourceLoader.GetString("NotificationsAddAnException");
             }
         }
         
@@ -20329,7 +22048,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsAndSounds");
+                return resourceLoader.GetString("NotificationsAndSounds");
             }
         }
         
@@ -20340,7 +22059,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsChannels");
+                return resourceLoader.GetString("NotificationsChannels");
             }
         }
         
@@ -20351,7 +22070,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsCustom");
+                return resourceLoader.GetString("NotificationsCustom");
             }
         }
         
@@ -20362,7 +22081,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsCustomize");
+                return resourceLoader.GetString("NotificationsCustomize");
             }
         }
         
@@ -20373,7 +22092,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsDefaultOff");
+                return resourceLoader.GetString("NotificationsDefaultOff");
             }
         }
         
@@ -20384,7 +22103,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsDefaultOn");
+                return resourceLoader.GetString("NotificationsDefaultOn");
             }
         }
         
@@ -20395,7 +22114,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsDeleteAllException");
+                return resourceLoader.GetString("NotificationsDeleteAllException");
             }
         }
         
@@ -20406,7 +22125,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsDeleteAllExceptionAlert");
+                return resourceLoader.GetString("NotificationsDeleteAllExceptionAlert");
             }
         }
         
@@ -20417,7 +22136,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsDeleteAllExceptionTitle");
+                return resourceLoader.GetString("NotificationsDeleteAllExceptionTitle");
             }
         }
         
@@ -20428,7 +22147,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsEnableCustom");
+                return resourceLoader.GetString("NotificationsEnableCustom");
             }
         }
         
@@ -20439,7 +22158,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsExceptions");
+                return resourceLoader.GetString("NotificationsExceptions");
             }
         }
         
@@ -20450,7 +22169,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsExceptionsAlert");
+                return resourceLoader.GetString("NotificationsExceptionsAlert");
             }
         }
         
@@ -20461,7 +22180,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsExceptionsSingleAlert");
+                return resourceLoader.GetString("NotificationsExceptionsSingleAlert");
             }
         }
         
@@ -20472,7 +22191,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsForChannels");
+                return resourceLoader.GetString("NotificationsForChannels");
             }
         }
         
@@ -20483,7 +22202,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsForChats");
+                return resourceLoader.GetString("NotificationsForChats");
             }
         }
         
@@ -20494,7 +22213,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsForGroups");
+                return resourceLoader.GetString("NotificationsForGroups");
             }
         }
         
@@ -20505,7 +22224,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsForPrivateChats");
+                return resourceLoader.GetString("NotificationsForPrivateChats");
             }
         }
         
@@ -20516,7 +22235,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsGroups");
+                return resourceLoader.GetString("NotificationsGroups");
             }
         }
         
@@ -20527,7 +22246,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsImportance");
+                return resourceLoader.GetString("NotificationsImportance");
             }
         }
         
@@ -20538,7 +22257,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsLed");
+                return resourceLoader.GetString("NotificationsLed");
             }
         }
         
@@ -20549,7 +22268,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsLedColor");
+                return resourceLoader.GetString("NotificationsLedColor");
             }
         }
         
@@ -20560,7 +22279,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsLedInfo");
+                return resourceLoader.GetString("NotificationsLedInfo");
             }
         }
         
@@ -20571,7 +22290,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsMuted");
+                return resourceLoader.GetString("NotificationsMuted");
             }
         }
         
@@ -20582,7 +22301,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsNewException");
+                return resourceLoader.GetString("NotificationsNewException");
             }
         }
         
@@ -20593,7 +22312,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsOff");
+                return resourceLoader.GetString("NotificationsOff");
             }
         }
         
@@ -20604,7 +22323,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsOffUntil");
+                return resourceLoader.GetString("NotificationsOffUntil");
             }
         }
         
@@ -20615,7 +22334,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsOn");
+                return resourceLoader.GetString("NotificationsOn");
             }
         }
         
@@ -20626,7 +22345,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsOther");
+                return resourceLoader.GetString("NotificationsOther");
             }
         }
         
@@ -20637,7 +22356,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriority");
+                return resourceLoader.GetString("NotificationsPriority");
             }
         }
         
@@ -20648,7 +22367,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityDefault");
+                return resourceLoader.GetString("NotificationsPriorityDefault");
             }
         }
         
@@ -20659,7 +22378,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityHigh");
+                return resourceLoader.GetString("NotificationsPriorityHigh");
             }
         }
         
@@ -20670,7 +22389,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityLow");
+                return resourceLoader.GetString("NotificationsPriorityLow");
             }
         }
         
@@ -20681,7 +22400,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityMax");
+                return resourceLoader.GetString("NotificationsPriorityMax");
             }
         }
         
@@ -20692,7 +22411,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityMedium");
+                return resourceLoader.GetString("NotificationsPriorityMedium");
             }
         }
         
@@ -20703,7 +22422,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPrioritySettings");
+                return resourceLoader.GetString("NotificationsPrioritySettings");
             }
         }
         
@@ -20714,7 +22433,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPriorityUrgent");
+                return resourceLoader.GetString("NotificationsPriorityUrgent");
             }
         }
         
@@ -20725,7 +22444,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsPrivateChats");
+                return resourceLoader.GetString("NotificationsPrivateChats");
             }
         }
         
@@ -20736,7 +22455,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsService");
+                return resourceLoader.GetString("NotificationsService");
             }
         }
         
@@ -20747,7 +22466,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsServiceConnection");
+                return resourceLoader.GetString("NotificationsServiceConnection");
             }
         }
         
@@ -20758,7 +22477,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsServiceConnectionInfo");
+                return resourceLoader.GetString("NotificationsServiceConnectionInfo");
             }
         }
         
@@ -20769,7 +22488,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsServiceInfo");
+                return resourceLoader.GetString("NotificationsServiceInfo");
             }
         }
         
@@ -20780,7 +22499,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsTurnOff");
+                return resourceLoader.GetString("NotificationsTurnOff");
             }
         }
         
@@ -20791,7 +22510,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsTurnOn");
+                return resourceLoader.GetString("NotificationsTurnOn");
             }
         }
         
@@ -20802,7 +22521,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationsUnmuted");
+                return resourceLoader.GetString("NotificationsUnmuted");
             }
         }
         
@@ -20824,7 +22543,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotificationUnrecognizedDevice");
+                return resourceLoader.GetString("NotificationUnrecognizedDevice");
             }
         }
         
@@ -20835,7 +22554,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NotMounted");
+                return resourceLoader.GetString("NotMounted");
             }
         }
         
@@ -20846,7 +22565,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoUsernameFound");
+                return resourceLoader.GetString("NoUsernameFound");
             }
         }
         
@@ -20857,7 +22576,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("November");
+                return resourceLoader.GetString("November");
             }
         }
         
@@ -20868,7 +22587,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NoVotes");
+                return resourceLoader.GetString("NoVotes");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Nobody answered"
+        /// </summary>
+        public static string NoVotesQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("NoVotesQuiz");
             }
         }
         
@@ -20879,7 +22609,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NowInContacts");
+                return resourceLoader.GetString("NowInContacts");
             }
         }
         
@@ -20890,7 +22620,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("NumberUnknown");
+                return resourceLoader.GetString("NumberUnknown");
             }
         }
         
@@ -20901,7 +22631,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("October");
+                return resourceLoader.GetString("October");
             }
         }
         
@@ -20912,7 +22642,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Of");
+                return resourceLoader.GetString("Of");
             }
         }
         
@@ -20923,7 +22653,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OK");
+                return resourceLoader.GetString("OK");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "1 result"
+        /// </summary>
+        public static string OneResult
+        {
+            get
+            {
+                return resourceLoader.GetString("OneResult");
             }
         }
         
@@ -20934,7 +22675,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Online");
+                return resourceLoader.GetString("Online");
             }
         }
         
@@ -20945,7 +22686,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountFew");
+                return resourceLoader.GetString("OnlineCountFew");
             }
         }
         
@@ -20956,7 +22697,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountMany");
+                return resourceLoader.GetString("OnlineCountMany");
             }
         }
         
@@ -20967,7 +22708,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountOne");
+                return resourceLoader.GetString("OnlineCountOne");
             }
         }
         
@@ -20978,7 +22719,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountOther");
+                return resourceLoader.GetString("OnlineCountOther");
             }
         }
         
@@ -20989,7 +22730,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountTwo");
+                return resourceLoader.GetString("OnlineCountTwo");
             }
         }
         
@@ -21000,7 +22741,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlineCountZero");
+                return resourceLoader.GetString("OnlineCountZero");
             }
         }
         
@@ -21011,7 +22752,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlyIfSilent");
+                return resourceLoader.GetString("OnlyIfSilent");
             }
         }
         
@@ -21022,7 +22763,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlyWhenScreenOff");
+                return resourceLoader.GetString("OnlyWhenScreenOff");
             }
         }
         
@@ -21033,7 +22774,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OnlyWhenScreenOn");
+                return resourceLoader.GetString("OnlyWhenScreenOn");
             }
         }
         
@@ -21044,7 +22785,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Open");
+                return resourceLoader.GetString("Open");
             }
         }
         
@@ -21055,7 +22796,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenBackground");
+                return resourceLoader.GetString("OpenBackground");
             }
         }
         
@@ -21066,7 +22807,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenChannel");
+                return resourceLoader.GetString("OpenChannel");
             }
         }
         
@@ -21077,7 +22818,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenFile");
+                return resourceLoader.GetString("OpenFile");
             }
         }
         
@@ -21088,7 +22829,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenGroup");
+                return resourceLoader.GetString("OpenGroup");
             }
         }
         
@@ -21099,7 +22840,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenInBrowser");
+                return resourceLoader.GetString("OpenInBrowser");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Open in editor"
+        /// </summary>
+        public static string OpenInEditor
+        {
+            get
+            {
+                return resourceLoader.GetString("OpenInEditor");
             }
         }
         
@@ -21110,7 +22862,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenInExternalApp");
+                return resourceLoader.GetString("OpenInExternalApp");
             }
         }
         
@@ -21121,7 +22873,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenMessage");
+                return resourceLoader.GetString("OpenMessage");
             }
         }
         
@@ -21132,7 +22884,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenTheme");
+                return resourceLoader.GetString("OpenTheme");
             }
         }
         
@@ -21143,7 +22895,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenUrlAlert");
+                return resourceLoader.GetString("OpenUrlAlert");
             }
         }
         
@@ -21154,7 +22906,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenUrlAlert2");
+                return resourceLoader.GetString("OpenUrlAlert2");
             }
         }
         
@@ -21165,7 +22917,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenUrlOption1");
+                return resourceLoader.GetString("OpenUrlOption1");
             }
         }
         
@@ -21176,7 +22928,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenUrlOption2");
+                return resourceLoader.GetString("OpenUrlOption2");
             }
         }
         
@@ -21187,7 +22939,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OpenUrlTitle");
+                return resourceLoader.GetString("OpenUrlTitle");
             }
         }
         
@@ -21198,7 +22950,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionFew");
+                return resourceLoader.GetString("OptionFew");
             }
         }
         
@@ -21209,7 +22961,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionHint");
+                return resourceLoader.GetString("OptionHint");
             }
         }
         
@@ -21220,7 +22972,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionMany");
+                return resourceLoader.GetString("OptionMany");
             }
         }
         
@@ -21231,7 +22983,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionOne");
+                return resourceLoader.GetString("OptionOne");
             }
         }
         
@@ -21242,7 +22994,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionOther");
+                return resourceLoader.GetString("OptionOther");
             }
         }
         
@@ -21253,7 +23005,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionTwo");
+                return resourceLoader.GetString("OptionTwo");
             }
         }
         
@@ -21264,7 +23016,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OptionZero");
+                return resourceLoader.GetString("OptionZero");
             }
         }
         
@@ -21275,7 +23027,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Orange");
+                return resourceLoader.GetString("Orange");
             }
         }
         
@@ -21288,7 +23040,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OtherLoginCode");
+                return resourceLoader.GetString("OtherLoginCode");
             }
         }
         
@@ -21299,7 +23051,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OtherSessions");
+                return resourceLoader.GetString("OtherSessions");
             }
         }
         
@@ -21310,7 +23062,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OtherWebSessions");
+                return resourceLoader.GetString("OtherWebSessions");
             }
         }
         
@@ -21321,7 +23073,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("OutgoingCalls");
+                return resourceLoader.GetString("OutgoingCalls");
             }
         }
         
@@ -21332,7 +23084,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PContacts");
+                return resourceLoader.GetString("P2PContacts");
             }
         }
         
@@ -21343,7 +23095,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PContactsMinus");
+                return resourceLoader.GetString("P2PContactsMinus");
             }
         }
         
@@ -21354,7 +23106,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PContactsMinusPlus");
+                return resourceLoader.GetString("P2PContactsMinusPlus");
             }
         }
         
@@ -21365,7 +23117,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PContactsPlus");
+                return resourceLoader.GetString("P2PContactsPlus");
             }
         }
         
@@ -21376,7 +23128,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PEnabledWith");
+                return resourceLoader.GetString("P2PEnabledWith");
             }
         }
         
@@ -21387,7 +23139,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PEverybody");
+                return resourceLoader.GetString("P2PEverybody");
             }
         }
         
@@ -21398,7 +23150,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PEverybodyMinus");
+                return resourceLoader.GetString("P2PEverybodyMinus");
             }
         }
         
@@ -21409,7 +23161,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PNobody");
+                return resourceLoader.GetString("P2PNobody");
             }
         }
         
@@ -21420,7 +23172,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("P2PNobodyPlus");
+                return resourceLoader.GetString("P2PNobodyPlus");
             }
         }
         
@@ -21432,7 +23184,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page1Message");
+                return resourceLoader.GetString("Page1Message");
             }
         }
         
@@ -21443,7 +23195,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page1Title");
+                return resourceLoader.GetString("Page1Title");
             }
         }
         
@@ -21455,7 +23207,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page2Message");
+                return resourceLoader.GetString("Page2Message");
             }
         }
         
@@ -21466,7 +23218,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page2Title");
+                return resourceLoader.GetString("Page2Title");
             }
         }
         
@@ -21478,7 +23230,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page3Message");
+                return resourceLoader.GetString("Page3Message");
             }
         }
         
@@ -21489,7 +23241,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page3Title");
+                return resourceLoader.GetString("Page3Title");
             }
         }
         
@@ -21501,7 +23253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page4Message");
+                return resourceLoader.GetString("Page4Message");
             }
         }
         
@@ -21512,7 +23264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page4Title");
+                return resourceLoader.GetString("Page4Title");
             }
         }
         
@@ -21524,7 +23276,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page5Message");
+                return resourceLoader.GetString("Page5Message");
             }
         }
         
@@ -21535,7 +23287,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page5Title");
+                return resourceLoader.GetString("Page5Title");
             }
         }
         
@@ -21547,7 +23299,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page6Message");
+                return resourceLoader.GetString("Page6Message");
             }
         }
         
@@ -21558,7 +23310,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Page6Title");
+                return resourceLoader.GetString("Page6Title");
             }
         }
         
@@ -21569,7 +23321,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaintDelete");
+                return resourceLoader.GetString("PaintDelete");
             }
         }
         
@@ -21580,7 +23332,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaintDuplicate");
+                return resourceLoader.GetString("PaintDuplicate");
             }
         }
         
@@ -21591,7 +23343,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaintEdit");
+                return resourceLoader.GetString("PaintEdit");
             }
         }
         
@@ -21602,7 +23354,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaintOutlined");
+                return resourceLoader.GetString("PaintOutlined");
             }
         }
         
@@ -21613,7 +23365,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaintRegular");
+                return resourceLoader.GetString("PaintRegular");
             }
         }
         
@@ -21624,7 +23376,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Passcode");
+                return resourceLoader.GetString("Passcode");
             }
         }
         
@@ -21635,7 +23387,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasscodeDoNotMatch");
+                return resourceLoader.GetString("PasscodeDoNotMatch");
             }
         }
         
@@ -21646,7 +23398,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasscodePassword");
+                return resourceLoader.GetString("PasscodePassword");
             }
         }
         
@@ -21657,7 +23409,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasscodePIN");
+                return resourceLoader.GetString("PasscodePIN");
             }
         }
         
@@ -21668,7 +23420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddAddressUploadInfo");
+                return resourceLoader.GetString("PassportAddAddressUploadInfo");
             }
         }
         
@@ -21679,7 +23431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddAgreement");
+                return resourceLoader.GetString("PassportAddAgreement");
             }
         }
         
@@ -21690,7 +23442,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddAgreementInfo");
+                return resourceLoader.GetString("PassportAddAgreementInfo");
             }
         }
         
@@ -21701,7 +23453,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddBank");
+                return resourceLoader.GetString("PassportAddBank");
             }
         }
         
@@ -21712,7 +23464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddBankInfo");
+                return resourceLoader.GetString("PassportAddBankInfo");
             }
         }
         
@@ -21723,7 +23475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddBill");
+                return resourceLoader.GetString("PassportAddBill");
             }
         }
         
@@ -21734,7 +23486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddBillInfo");
+                return resourceLoader.GetString("PassportAddBillInfo");
             }
         }
         
@@ -21745,7 +23497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddCard");
+                return resourceLoader.GetString("PassportAddCard");
             }
         }
         
@@ -21756,7 +23508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddDriverLicenceInfo");
+                return resourceLoader.GetString("PassportAddDriverLicenceInfo");
             }
         }
         
@@ -21767,7 +23519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddIdentityCardInfo");
+                return resourceLoader.GetString("PassportAddIdentityCardInfo");
             }
         }
         
@@ -21778,7 +23530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddInternalPassport");
+                return resourceLoader.GetString("PassportAddInternalPassport");
             }
         }
         
@@ -21789,7 +23541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddInternalPassportInfo");
+                return resourceLoader.GetString("PassportAddInternalPassportInfo");
             }
         }
         
@@ -21800,7 +23552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddLicence");
+                return resourceLoader.GetString("PassportAddLicence");
             }
         }
         
@@ -21811,7 +23563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddPassport");
+                return resourceLoader.GetString("PassportAddPassport");
             }
         }
         
@@ -21822,7 +23574,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddPassportInfo");
+                return resourceLoader.GetString("PassportAddPassportInfo");
             }
         }
         
@@ -21833,7 +23585,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddPassportRegistration");
+                return resourceLoader.GetString("PassportAddPassportRegistration");
             }
         }
         
@@ -21844,7 +23596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddPassportRegistrationInfo");
+                return resourceLoader.GetString("PassportAddPassportRegistrationInfo");
             }
         }
         
@@ -21855,7 +23607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddress");
+                return resourceLoader.GetString("PassportAddress");
             }
         }
         
@@ -21866,7 +23618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddressHeader");
+                return resourceLoader.GetString("PassportAddressHeader");
             }
         }
         
@@ -21877,7 +23629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddressInfo");
+                return resourceLoader.GetString("PassportAddressInfo");
             }
         }
         
@@ -21888,7 +23640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddressNoUploadInfo");
+                return resourceLoader.GetString("PassportAddressNoUploadInfo");
             }
         }
         
@@ -21899,7 +23651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTemporaryRegistration");
+                return resourceLoader.GetString("PassportAddTemporaryRegistration");
             }
         }
         
@@ -21910,7 +23662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTemporaryRegistrationInfo");
+                return resourceLoader.GetString("PassportAddTemporaryRegistrationInfo");
             }
         }
         
@@ -21921,7 +23673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationAgreementInfo");
+                return resourceLoader.GetString("PassportAddTranslationAgreementInfo");
             }
         }
         
@@ -21932,7 +23684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationBankInfo");
+                return resourceLoader.GetString("PassportAddTranslationBankInfo");
             }
         }
         
@@ -21943,7 +23695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationBillInfo");
+                return resourceLoader.GetString("PassportAddTranslationBillInfo");
             }
         }
         
@@ -21954,7 +23706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationPassportRegistrationInfo");
+                return resourceLoader.GetString("PassportAddTranslationPassportRegistrationInfo");
             }
         }
         
@@ -21965,7 +23717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationTemporaryRegistrationInfo");
+                return resourceLoader.GetString("PassportAddTranslationTemporaryRegistrationInfo");
             }
         }
         
@@ -21976,7 +23728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAddTranslationUploadInfo");
+                return resourceLoader.GetString("PassportAddTranslationUploadInfo");
             }
         }
         
@@ -21987,7 +23739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportAuthorize");
+                return resourceLoader.GetString("PassportAuthorize");
             }
         }
         
@@ -21998,7 +23750,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportBirthdate");
+                return resourceLoader.GetString("PassportBirthdate");
             }
         }
         
@@ -22009,7 +23761,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportCitizenship");
+                return resourceLoader.GetString("PassportCitizenship");
             }
         }
         
@@ -22020,7 +23772,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportCity");
+                return resourceLoader.GetString("PassportCity");
             }
         }
         
@@ -22031,7 +23783,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportCorrectErrors");
+                return resourceLoader.GetString("PassportCorrectErrors");
             }
         }
         
@@ -22042,7 +23794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportCountry");
+                return resourceLoader.GetString("PassportCountry");
             }
         }
         
@@ -22053,7 +23805,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteAddressAlert");
+                return resourceLoader.GetString("PassportDeleteAddressAlert");
             }
         }
         
@@ -22064,7 +23816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteDocument");
+                return resourceLoader.GetString("PassportDeleteDocument");
             }
         }
         
@@ -22075,7 +23827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteDocumentAddress");
+                return resourceLoader.GetString("PassportDeleteDocumentAddress");
             }
         }
         
@@ -22086,7 +23838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteDocumentAlert");
+                return resourceLoader.GetString("PassportDeleteDocumentAlert");
             }
         }
         
@@ -22097,7 +23849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteDocumentPersonal");
+                return resourceLoader.GetString("PassportDeleteDocumentPersonal");
             }
         }
         
@@ -22108,7 +23860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteEmailAlert");
+                return resourceLoader.GetString("PassportDeleteEmailAlert");
             }
         }
         
@@ -22119,7 +23871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteInfo");
+                return resourceLoader.GetString("PassportDeleteInfo");
             }
         }
         
@@ -22130,7 +23882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeletePersonalAlert");
+                return resourceLoader.GetString("PassportDeletePersonalAlert");
             }
         }
         
@@ -22141,7 +23893,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeletePhoneAlert");
+                return resourceLoader.GetString("PassportDeletePhoneAlert");
             }
         }
         
@@ -22152,7 +23904,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteScan");
+                return resourceLoader.GetString("PassportDeleteScan");
             }
         }
         
@@ -22163,7 +23915,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteScanAlert");
+                return resourceLoader.GetString("PassportDeleteScanAlert");
             }
         }
         
@@ -22174,7 +23926,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteSelfie");
+                return resourceLoader.GetString("PassportDeleteSelfie");
             }
         }
         
@@ -22185,7 +23937,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDeleteSelfieAlert");
+                return resourceLoader.GetString("PassportDeleteSelfieAlert");
             }
         }
         
@@ -22196,7 +23948,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDiscard");
+                return resourceLoader.GetString("PassportDiscard");
             }
         }
         
@@ -22207,7 +23959,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDiscardChanges");
+                return resourceLoader.GetString("PassportDiscardChanges");
             }
         }
         
@@ -22218,7 +23970,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDocument");
+                return resourceLoader.GetString("PassportDocument");
             }
         }
         
@@ -22229,7 +23981,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDocumentNumber");
+                return resourceLoader.GetString("PassportDocumentNumber");
             }
         }
         
@@ -22240,7 +23992,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportDocuments");
+                return resourceLoader.GetString("PassportDocuments");
             }
         }
         
@@ -22251,7 +24003,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportEmail");
+                return resourceLoader.GetString("PassportEmail");
             }
         }
         
@@ -22262,7 +24014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportEmailCode");
+                return resourceLoader.GetString("PassportEmailCode");
             }
         }
         
@@ -22273,7 +24025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportEmailInfo");
+                return resourceLoader.GetString("PassportEmailInfo");
             }
         }
         
@@ -22284,7 +24036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportEmailUploadInfo");
+                return resourceLoader.GetString("PassportEmailUploadInfo");
             }
         }
         
@@ -22295,7 +24047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportEmailVerifyInfo");
+                return resourceLoader.GetString("PassportEmailVerifyInfo");
             }
         }
         
@@ -22306,7 +24058,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportExpired");
+                return resourceLoader.GetString("PassportExpired");
             }
         }
         
@@ -22317,7 +24069,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportFemale");
+                return resourceLoader.GetString("PassportFemale");
             }
         }
         
@@ -22328,7 +24080,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportFrontSide");
+                return resourceLoader.GetString("PassportFrontSide");
             }
         }
         
@@ -22339,7 +24091,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportFrontSideInfo");
+                return resourceLoader.GetString("PassportFrontSideInfo");
             }
         }
         
@@ -22350,7 +24102,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportGender");
+                return resourceLoader.GetString("PassportGender");
             }
         }
         
@@ -22361,7 +24113,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityDocument");
+                return resourceLoader.GetString("PassportIdentityDocument");
             }
         }
         
@@ -22372,7 +24124,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityDocumentInfo");
+                return resourceLoader.GetString("PassportIdentityDocumentInfo");
             }
         }
         
@@ -22383,7 +24135,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityDriverLicence");
+                return resourceLoader.GetString("PassportIdentityDriverLicence");
             }
         }
         
@@ -22394,7 +24146,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityID");
+                return resourceLoader.GetString("PassportIdentityID");
             }
         }
         
@@ -22405,7 +24157,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityInternalPassport");
+                return resourceLoader.GetString("PassportIdentityInternalPassport");
             }
         }
         
@@ -22416,7 +24168,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportIdentityPassport");
+                return resourceLoader.GetString("PassportIdentityPassport");
             }
         }
         
@@ -22431,7 +24183,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportInfo");
+                return resourceLoader.GetString("PassportInfo");
             }
         }
         
@@ -22446,7 +24198,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportInfo2");
+                return resourceLoader.GetString("PassportInfo2");
             }
         }
         
@@ -22457,7 +24209,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportInfoTitle");
+                return resourceLoader.GetString("PassportInfoTitle");
             }
         }
         
@@ -22468,7 +24220,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportInfoUrl");
+                return resourceLoader.GetString("PassportInfoUrl");
             }
         }
         
@@ -22479,7 +24231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageAR");
+                return resourceLoader.GetString("PassportLanguageAR");
             }
         }
         
@@ -22490,7 +24242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageAZ");
+                return resourceLoader.GetString("PassportLanguageAZ");
             }
         }
         
@@ -22501,7 +24253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageBG");
+                return resourceLoader.GetString("PassportLanguageBG");
             }
         }
         
@@ -22512,7 +24264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageBN");
+                return resourceLoader.GetString("PassportLanguageBN");
             }
         }
         
@@ -22523,7 +24275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageCS");
+                return resourceLoader.GetString("PassportLanguageCS");
             }
         }
         
@@ -22534,7 +24286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageDA");
+                return resourceLoader.GetString("PassportLanguageDA");
             }
         }
         
@@ -22545,7 +24297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageDE");
+                return resourceLoader.GetString("PassportLanguageDE");
             }
         }
         
@@ -22556,7 +24308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageDV");
+                return resourceLoader.GetString("PassportLanguageDV");
             }
         }
         
@@ -22567,7 +24319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageDZ");
+                return resourceLoader.GetString("PassportLanguageDZ");
             }
         }
         
@@ -22578,7 +24330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageEL");
+                return resourceLoader.GetString("PassportLanguageEL");
             }
         }
         
@@ -22589,7 +24341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageES");
+                return resourceLoader.GetString("PassportLanguageES");
             }
         }
         
@@ -22600,7 +24352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageET");
+                return resourceLoader.GetString("PassportLanguageET");
             }
         }
         
@@ -22611,7 +24363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageFA");
+                return resourceLoader.GetString("PassportLanguageFA");
             }
         }
         
@@ -22622,7 +24374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageFR");
+                return resourceLoader.GetString("PassportLanguageFR");
             }
         }
         
@@ -22633,7 +24385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageHE");
+                return resourceLoader.GetString("PassportLanguageHE");
             }
         }
         
@@ -22644,7 +24396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageHR");
+                return resourceLoader.GetString("PassportLanguageHR");
             }
         }
         
@@ -22655,7 +24407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageHU");
+                return resourceLoader.GetString("PassportLanguageHU");
             }
         }
         
@@ -22666,7 +24418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageHY");
+                return resourceLoader.GetString("PassportLanguageHY");
             }
         }
         
@@ -22677,7 +24429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageID");
+                return resourceLoader.GetString("PassportLanguageID");
             }
         }
         
@@ -22688,7 +24440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageIS");
+                return resourceLoader.GetString("PassportLanguageIS");
             }
         }
         
@@ -22699,7 +24451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageIT");
+                return resourceLoader.GetString("PassportLanguageIT");
             }
         }
         
@@ -22710,7 +24462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageJA");
+                return resourceLoader.GetString("PassportLanguageJA");
             }
         }
         
@@ -22721,7 +24473,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageKA");
+                return resourceLoader.GetString("PassportLanguageKA");
             }
         }
         
@@ -22732,7 +24484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageKM");
+                return resourceLoader.GetString("PassportLanguageKM");
             }
         }
         
@@ -22743,7 +24495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageKO");
+                return resourceLoader.GetString("PassportLanguageKO");
             }
         }
         
@@ -22754,7 +24506,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageLO");
+                return resourceLoader.GetString("PassportLanguageLO");
             }
         }
         
@@ -22765,7 +24517,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageLT");
+                return resourceLoader.GetString("PassportLanguageLT");
             }
         }
         
@@ -22776,7 +24528,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageLV");
+                return resourceLoader.GetString("PassportLanguageLV");
             }
         }
         
@@ -22787,7 +24539,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageMK");
+                return resourceLoader.GetString("PassportLanguageMK");
             }
         }
         
@@ -22798,7 +24550,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageMN");
+                return resourceLoader.GetString("PassportLanguageMN");
             }
         }
         
@@ -22809,7 +24561,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageMS");
+                return resourceLoader.GetString("PassportLanguageMS");
             }
         }
         
@@ -22820,7 +24572,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageMY");
+                return resourceLoader.GetString("PassportLanguageMY");
             }
         }
         
@@ -22831,7 +24583,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageNE");
+                return resourceLoader.GetString("PassportLanguageNE");
             }
         }
         
@@ -22842,7 +24594,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageNL");
+                return resourceLoader.GetString("PassportLanguageNL");
             }
         }
         
@@ -22853,7 +24605,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguagePL");
+                return resourceLoader.GetString("PassportLanguagePL");
             }
         }
         
@@ -22864,7 +24616,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguagePT");
+                return resourceLoader.GetString("PassportLanguagePT");
             }
         }
         
@@ -22875,7 +24627,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageRO");
+                return resourceLoader.GetString("PassportLanguageRO");
             }
         }
         
@@ -22886,7 +24638,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageRU");
+                return resourceLoader.GetString("PassportLanguageRU");
             }
         }
         
@@ -22897,7 +24649,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageSK");
+                return resourceLoader.GetString("PassportLanguageSK");
             }
         }
         
@@ -22908,7 +24660,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageSL");
+                return resourceLoader.GetString("PassportLanguageSL");
             }
         }
         
@@ -22919,7 +24671,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageTH");
+                return resourceLoader.GetString("PassportLanguageTH");
             }
         }
         
@@ -22930,7 +24682,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageTK");
+                return resourceLoader.GetString("PassportLanguageTK");
             }
         }
         
@@ -22941,7 +24693,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageTR");
+                return resourceLoader.GetString("PassportLanguageTR");
             }
         }
         
@@ -22952,7 +24704,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageUK");
+                return resourceLoader.GetString("PassportLanguageUK");
             }
         }
         
@@ -22963,7 +24715,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageUZ");
+                return resourceLoader.GetString("PassportLanguageUZ");
             }
         }
         
@@ -22974,7 +24726,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportLanguageVI");
+                return resourceLoader.GetString("PassportLanguageVI");
             }
         }
         
@@ -22985,7 +24737,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMainPage");
+                return resourceLoader.GetString("PassportMainPage");
             }
         }
         
@@ -22996,7 +24748,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMainPageInfo");
+                return resourceLoader.GetString("PassportMainPageInfo");
             }
         }
         
@@ -23007,7 +24759,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMale");
+                return resourceLoader.GetString("PassportMale");
             }
         }
         
@@ -23018,7 +24770,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMidname");
+                return resourceLoader.GetString("PassportMidname");
             }
         }
         
@@ -23029,7 +24781,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMidnameCountry");
+                return resourceLoader.GetString("PassportMidnameCountry");
             }
         }
         
@@ -23040,7 +24792,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportMidnameLatin");
+                return resourceLoader.GetString("PassportMidnameLatin");
             }
         }
         
@@ -23051,7 +24803,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportName");
+                return resourceLoader.GetString("PassportName");
             }
         }
         
@@ -23064,7 +24816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNameCheckAlert");
+                return resourceLoader.GetString("PassportNameCheckAlert");
             }
         }
         
@@ -23075,7 +24827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNameCountry");
+                return resourceLoader.GetString("PassportNameCountry");
             }
         }
         
@@ -23086,7 +24838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNameLatin");
+                return resourceLoader.GetString("PassportNameLatin");
             }
         }
         
@@ -23097,7 +24849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNativeHeader");
+                return resourceLoader.GetString("PassportNativeHeader");
             }
         }
         
@@ -23108,7 +24860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNativeHeaderLang");
+                return resourceLoader.GetString("PassportNativeHeaderLang");
             }
         }
         
@@ -23119,7 +24871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNativeInfo");
+                return resourceLoader.GetString("PassportNativeInfo");
             }
         }
         
@@ -23130,7 +24882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNoDocuments");
+                return resourceLoader.GetString("PassportNoDocuments");
             }
         }
         
@@ -23141,7 +24893,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNoDocumentsAdd");
+                return resourceLoader.GetString("PassportNoDocumentsAdd");
             }
         }
         
@@ -23152,7 +24904,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNoDocumentsInfo");
+                return resourceLoader.GetString("PassportNoDocumentsInfo");
             }
         }
         
@@ -23163,7 +24915,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNoExpireDate");
+                return resourceLoader.GetString("PassportNoExpireDate");
             }
         }
         
@@ -23174,7 +24926,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportNoPolicy");
+                return resourceLoader.GetString("PassportNoPolicy");
             }
         }
         
@@ -23185,7 +24937,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPersonal");
+                return resourceLoader.GetString("PassportPersonal");
             }
         }
         
@@ -23196,7 +24948,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPersonalDetails");
+                return resourceLoader.GetString("PassportPersonalDetails");
             }
         }
         
@@ -23207,7 +24959,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPersonalDetailsInfo");
+                return resourceLoader.GetString("PassportPersonalDetailsInfo");
             }
         }
         
@@ -23218,7 +24970,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPersonalUploadInfo");
+                return resourceLoader.GetString("PassportPersonalUploadInfo");
             }
         }
         
@@ -23229,7 +24981,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhone");
+                return resourceLoader.GetString("PassportPhone");
             }
         }
         
@@ -23240,7 +24992,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneInfo");
+                return resourceLoader.GetString("PassportPhoneInfo");
             }
         }
         
@@ -23251,7 +25003,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneUploadInfo");
+                return resourceLoader.GetString("PassportPhoneUploadInfo");
             }
         }
         
@@ -23262,7 +25014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneUseOther");
+                return resourceLoader.GetString("PassportPhoneUseOther");
             }
         }
         
@@ -23273,7 +25025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneUseSame");
+                return resourceLoader.GetString("PassportPhoneUseSame");
             }
         }
         
@@ -23284,7 +25036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneUseSameEmailInfo");
+                return resourceLoader.GetString("PassportPhoneUseSameEmailInfo");
             }
         }
         
@@ -23295,7 +25047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPhoneUseSameInfo");
+                return resourceLoader.GetString("PassportPhoneUseSameInfo");
             }
         }
         
@@ -23306,7 +25058,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPolicy");
+                return resourceLoader.GetString("PassportPolicy");
             }
         }
         
@@ -23317,7 +25069,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportPostcode");
+                return resourceLoader.GetString("PassportPostcode");
             }
         }
         
@@ -23328,7 +25080,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportProvidedInformation");
+                return resourceLoader.GetString("PassportProvidedInformation");
             }
         }
         
@@ -23339,7 +25091,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportRequest");
+                return resourceLoader.GetString("PassportRequest");
             }
         }
         
@@ -23350,7 +25102,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportRequestedInformation");
+                return resourceLoader.GetString("PassportRequestedInformation");
             }
         }
         
@@ -23361,7 +25113,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportRequestPasswordInfo");
+                return resourceLoader.GetString("PassportRequestPasswordInfo");
             }
         }
         
@@ -23372,7 +25124,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportRequiredDocuments");
+                return resourceLoader.GetString("PassportRequiredDocuments");
             }
         }
         
@@ -23383,7 +25135,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportResidence");
+                return resourceLoader.GetString("PassportResidence");
             }
         }
         
@@ -23394,7 +25146,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportResidentialAddress");
+                return resourceLoader.GetString("PassportResidentialAddress");
             }
         }
         
@@ -23405,7 +25157,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportReverseSide");
+                return resourceLoader.GetString("PassportReverseSide");
             }
         }
         
@@ -23416,7 +25168,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportReverseSideInfo");
+                return resourceLoader.GetString("PassportReverseSideInfo");
             }
         }
         
@@ -23427,7 +25179,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportScanPassport");
+                return resourceLoader.GetString("PassportScanPassport");
             }
         }
         
@@ -23438,7 +25190,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportScanPassportInfo");
+                return resourceLoader.GetString("PassportScanPassportInfo");
             }
         }
         
@@ -23449,7 +25201,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSDKCancel");
+                return resourceLoader.GetString("PassportSDKCancel");
             }
         }
         
@@ -23460,7 +25212,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSDKDownloadTelegram");
+                return resourceLoader.GetString("PassportSDKDownloadTelegram");
             }
         }
         
@@ -23471,7 +25223,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSDKLogInWithTelegram");
+                return resourceLoader.GetString("PassportSDKLogInWithTelegram");
             }
         }
         
@@ -23482,7 +25234,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSDKOpenGooglePlay");
+                return resourceLoader.GetString("PassportSDKOpenGooglePlay");
             }
         }
         
@@ -23493,7 +25245,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSDKTelegramPassport");
+                return resourceLoader.GetString("PassportSDKTelegramPassport");
             }
         }
         
@@ -23504,7 +25256,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelectBithdayDate");
+                return resourceLoader.GetString("PassportSelectBithdayDate");
             }
         }
         
@@ -23515,7 +25267,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelectExpiredDate");
+                return resourceLoader.GetString("PassportSelectExpiredDate");
             }
         }
         
@@ -23526,7 +25278,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelectGender");
+                return resourceLoader.GetString("PassportSelectGender");
             }
         }
         
@@ -23537,7 +25289,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelectNotExpire");
+                return resourceLoader.GetString("PassportSelectNotExpire");
             }
         }
         
@@ -23548,7 +25300,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelfie");
+                return resourceLoader.GetString("PassportSelfie");
             }
         }
         
@@ -23559,7 +25311,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelfieInfo");
+                return resourceLoader.GetString("PassportSelfieInfo");
             }
         }
         
@@ -23570,7 +25322,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSelfRequest");
+                return resourceLoader.GetString("PassportSelfRequest");
             }
         }
         
@@ -23581,7 +25333,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportState");
+                return resourceLoader.GetString("PassportState");
             }
         }
         
@@ -23592,7 +25344,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportStreet1");
+                return resourceLoader.GetString("PassportStreet1");
             }
         }
         
@@ -23603,7 +25355,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportStreet2");
+                return resourceLoader.GetString("PassportStreet2");
             }
         }
         
@@ -23614,7 +25366,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSurname");
+                return resourceLoader.GetString("PassportSurname");
             }
         }
         
@@ -23625,7 +25377,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSurnameCountry");
+                return resourceLoader.GetString("PassportSurnameCountry");
             }
         }
         
@@ -23636,7 +25388,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportSurnameLatin");
+                return resourceLoader.GetString("PassportSurnameLatin");
             }
         }
         
@@ -23647,7 +25399,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportTranslation");
+                return resourceLoader.GetString("PassportTranslation");
             }
         }
         
@@ -23658,7 +25410,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportTwoDocuments");
+                return resourceLoader.GetString("PassportTwoDocuments");
             }
         }
         
@@ -23669,7 +25421,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportUploadAdditinalDocument");
+                return resourceLoader.GetString("PassportUploadAdditinalDocument");
             }
         }
         
@@ -23680,7 +25432,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportUploadDocument");
+                return resourceLoader.GetString("PassportUploadDocument");
             }
         }
         
@@ -23691,7 +25443,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportUploadMaxReached");
+                return resourceLoader.GetString("PassportUploadMaxReached");
             }
         }
         
@@ -23702,7 +25454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportUploadNotImage");
+                return resourceLoader.GetString("PassportUploadNotImage");
             }
         }
         
@@ -23713,7 +25465,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PassportUseLatinOnly");
+                return resourceLoader.GetString("PassportUseLatinOnly");
             }
         }
         
@@ -23724,7 +25476,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordAsHintError");
+                return resourceLoader.GetString("PasswordAsHintError");
             }
         }
         
@@ -23735,7 +25487,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordCode");
+                return resourceLoader.GetString("PasswordCode");
             }
         }
         
@@ -23746,7 +25498,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordDoNotMatch");
+                return resourceLoader.GetString("PasswordDoNotMatch");
             }
         }
         
@@ -23757,7 +25509,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordEmailInvalid");
+                return resourceLoader.GetString("PasswordEmailInvalid");
             }
         }
         
@@ -23768,7 +25520,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordHint");
+                return resourceLoader.GetString("PasswordHint");
             }
         }
         
@@ -23779,7 +25531,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordHintText");
+                return resourceLoader.GetString("PasswordHintText");
             }
         }
         
@@ -23790,7 +25542,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordRecovery");
+                return resourceLoader.GetString("PasswordRecovery");
             }
         }
         
@@ -23801,7 +25553,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PasswordReset");
+                return resourceLoader.GetString("PasswordReset");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Paste from clipboard"
+        /// </summary>
+        public static string PasteFromClipboard
+        {
+            get
+            {
+                return resourceLoader.GetString("PasteFromClipboard");
             }
         }
         
@@ -23812,7 +25575,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentBillingAddress");
+                return resourceLoader.GetString("PaymentBillingAddress");
             }
         }
         
@@ -23823,7 +25586,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardCvv");
+                return resourceLoader.GetString("PaymentCardCvv");
             }
         }
         
@@ -23834,7 +25597,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardExpireDate");
+                return resourceLoader.GetString("PaymentCardExpireDate");
             }
         }
         
@@ -23845,7 +25608,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardInfo");
+                return resourceLoader.GetString("PaymentCardInfo");
             }
         }
         
@@ -23856,7 +25619,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardName");
+                return resourceLoader.GetString("PaymentCardName");
             }
         }
         
@@ -23867,7 +25630,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardNumber");
+                return resourceLoader.GetString("PaymentCardNumber");
             }
         }
         
@@ -23878,7 +25641,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardSavePaymentInformation");
+                return resourceLoader.GetString("PaymentCardSavePaymentInformation");
             }
         }
         
@@ -23889,7 +25652,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardSavePaymentInformationInfoLine1");
+                return resourceLoader.GetString("PaymentCardSavePaymentInformationInfoLine1");
             }
         }
         
@@ -23900,7 +25663,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardSavePaymentInformationInfoLine2");
+                return resourceLoader.GetString("PaymentCardSavePaymentInformationInfoLine2");
             }
         }
         
@@ -23911,7 +25674,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCardTitle");
+                return resourceLoader.GetString("PaymentCardTitle");
             }
         }
         
@@ -23922,7 +25685,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckout");
+                return resourceLoader.GetString("PaymentCheckout");
             }
         }
         
@@ -23933,7 +25696,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutEmail");
+                return resourceLoader.GetString("PaymentCheckoutEmail");
             }
         }
         
@@ -23944,7 +25707,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutMethod");
+                return resourceLoader.GetString("PaymentCheckoutMethod");
             }
         }
         
@@ -23955,7 +25718,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutName");
+                return resourceLoader.GetString("PaymentCheckoutName");
             }
         }
         
@@ -23966,7 +25729,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutPay");
+                return resourceLoader.GetString("PaymentCheckoutPay");
             }
         }
         
@@ -23977,7 +25740,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutPhoneNumber");
+                return resourceLoader.GetString("PaymentCheckoutPhoneNumber");
             }
         }
         
@@ -23988,7 +25751,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutProvider");
+                return resourceLoader.GetString("PaymentCheckoutProvider");
             }
         }
         
@@ -23999,7 +25762,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentCheckoutShippingMethod");
+                return resourceLoader.GetString("PaymentCheckoutShippingMethod");
             }
         }
         
@@ -24010,7 +25773,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentConfirmationMessage");
+                return resourceLoader.GetString("PaymentConfirmationMessage");
             }
         }
         
@@ -24021,7 +25784,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentConfirmationNewCard");
+                return resourceLoader.GetString("PaymentConfirmationNewCard");
             }
         }
         
@@ -24032,7 +25795,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentConnectionFailed");
+                return resourceLoader.GetString("PaymentConnectionFailed");
             }
         }
         
@@ -24043,7 +25806,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentEmailToProvider");
+                return resourceLoader.GetString("PaymentEmailToProvider");
             }
         }
         
@@ -24054,7 +25817,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentFailed");
+                return resourceLoader.GetString("PaymentFailed");
             }
         }
         
@@ -24065,7 +25828,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentInvoice");
+                return resourceLoader.GetString("PaymentInvoice");
             }
         }
         
@@ -24076,7 +25839,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentNoShippingMethod");
+                return resourceLoader.GetString("PaymentNoShippingMethod");
             }
         }
         
@@ -24087,7 +25850,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPassword");
+                return resourceLoader.GetString("PaymentPassword");
             }
         }
         
@@ -24098,7 +25861,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordEmail");
+                return resourceLoader.GetString("PaymentPasswordEmail");
             }
         }
         
@@ -24109,7 +25872,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordEmailInfo");
+                return resourceLoader.GetString("PaymentPasswordEmailInfo");
             }
         }
         
@@ -24120,7 +25883,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordEmailTitle");
+                return resourceLoader.GetString("PaymentPasswordEmailTitle");
             }
         }
         
@@ -24131,7 +25894,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordEnter");
+                return resourceLoader.GetString("PaymentPasswordEnter");
             }
         }
         
@@ -24142,7 +25905,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordInfo");
+                return resourceLoader.GetString("PaymentPasswordInfo");
             }
         }
         
@@ -24153,7 +25916,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordReEnter");
+                return resourceLoader.GetString("PaymentPasswordReEnter");
             }
         }
         
@@ -24164,7 +25927,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPasswordTitle");
+                return resourceLoader.GetString("PaymentPasswordTitle");
             }
         }
         
@@ -24175,7 +25938,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPhoneEmailToProvider");
+                return resourceLoader.GetString("PaymentPhoneEmailToProvider");
             }
         }
         
@@ -24186,7 +25949,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPhoneToProvider");
+                return resourceLoader.GetString("PaymentPhoneToProvider");
             }
         }
         
@@ -24197,7 +25960,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentPrecheckoutFailed");
+                return resourceLoader.GetString("PaymentPrecheckoutFailed");
             }
         }
         
@@ -24208,7 +25971,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentReceipt");
+                return resourceLoader.GetString("PaymentReceipt");
             }
         }
         
@@ -24219,7 +25982,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingAddress");
+                return resourceLoader.GetString("PaymentShippingAddress");
             }
         }
         
@@ -24230,7 +25993,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingAddress1Placeholder");
+                return resourceLoader.GetString("PaymentShippingAddress1Placeholder");
             }
         }
         
@@ -24241,7 +26004,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingAddress2Placeholder");
+                return resourceLoader.GetString("PaymentShippingAddress2Placeholder");
             }
         }
         
@@ -24252,7 +26015,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingCityPlaceholder");
+                return resourceLoader.GetString("PaymentShippingCityPlaceholder");
             }
         }
         
@@ -24263,7 +26026,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingCountry");
+                return resourceLoader.GetString("PaymentShippingCountry");
             }
         }
         
@@ -24274,7 +26037,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingEmailPlaceholder");
+                return resourceLoader.GetString("PaymentShippingEmailPlaceholder");
             }
         }
         
@@ -24285,7 +26048,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingInfo");
+                return resourceLoader.GetString("PaymentShippingInfo");
             }
         }
         
@@ -24296,7 +26059,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingMethod");
+                return resourceLoader.GetString("PaymentShippingMethod");
             }
         }
         
@@ -24307,7 +26070,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingName");
+                return resourceLoader.GetString("PaymentShippingName");
             }
         }
         
@@ -24318,7 +26081,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingPhoneNumber");
+                return resourceLoader.GetString("PaymentShippingPhoneNumber");
             }
         }
         
@@ -24329,7 +26092,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingReceiver");
+                return resourceLoader.GetString("PaymentShippingReceiver");
             }
         }
         
@@ -24340,7 +26103,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingSave");
+                return resourceLoader.GetString("PaymentShippingSave");
             }
         }
         
@@ -24351,7 +26114,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingSaveInfo");
+                return resourceLoader.GetString("PaymentShippingSaveInfo");
             }
         }
         
@@ -24362,7 +26125,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingStatePlaceholder");
+                return resourceLoader.GetString("PaymentShippingStatePlaceholder");
             }
         }
         
@@ -24373,7 +26136,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentShippingZipPlaceholder");
+                return resourceLoader.GetString("PaymentShippingZipPlaceholder");
             }
         }
         
@@ -24384,7 +26147,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentSuccessfullyPaid");
+                return resourceLoader.GetString("PaymentSuccessfullyPaid");
             }
         }
         
@@ -24395,7 +26158,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentSuccessfullyPaidNoItem");
+                return resourceLoader.GetString("PaymentSuccessfullyPaidNoItem");
             }
         }
         
@@ -24406,7 +26169,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentTestInvoice");
+                return resourceLoader.GetString("PaymentTestInvoice");
             }
         }
         
@@ -24417,7 +26180,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentTransactionMessage");
+                return resourceLoader.GetString("PaymentTransactionMessage");
             }
         }
         
@@ -24428,7 +26191,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentTransactionReview");
+                return resourceLoader.GetString("PaymentTransactionReview");
             }
         }
         
@@ -24439,7 +26202,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentTransactionTotal");
+                return resourceLoader.GetString("PaymentTransactionTotal");
             }
         }
         
@@ -24450,7 +26213,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentWarning");
+                return resourceLoader.GetString("PaymentWarning");
             }
         }
         
@@ -24463,7 +26226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PaymentWarningText");
+                return resourceLoader.GetString("PaymentWarningText");
             }
         }
         
@@ -24474,7 +26237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PendingEmailText");
+                return resourceLoader.GetString("PendingEmailText");
             }
         }
         
@@ -24485,7 +26248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearby");
+                return resourceLoader.GetString("PeopleNearby");
             }
         }
         
@@ -24498,7 +26261,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyAccessInfo");
+                return resourceLoader.GetString("PeopleNearbyAccessInfo");
             }
         }
         
@@ -24509,7 +26272,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyAllowAccess");
+                return resourceLoader.GetString("PeopleNearbyAllowAccess");
             }
         }
         
@@ -24520,7 +26283,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyEmpty");
+                return resourceLoader.GetString("PeopleNearbyEmpty");
             }
         }
         
@@ -24531,7 +26294,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyGps");
+                return resourceLoader.GetString("PeopleNearbyGps");
             }
         }
         
@@ -24544,7 +26307,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyGpsInfo");
+                return resourceLoader.GetString("PeopleNearbyGpsInfo");
             }
         }
         
@@ -24555,7 +26318,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyHeader");
+                return resourceLoader.GetString("PeopleNearbyHeader");
             }
         }
         
@@ -24566,7 +26329,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PeopleNearbyInfo");
+                return resourceLoader.GetString("PeopleNearbyInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Exchange contact info with people nearby and find new friends."
+        /// </summary>
+        public static string PeopleNearbyInfo2
+        {
+            get
+            {
+                return resourceLoader.GetString("PeopleNearbyInfo2");
             }
         }
         
@@ -24577,7 +26351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionContacts");
+                return resourceLoader.GetString("PermissionContacts");
             }
         }
         
@@ -24588,7 +26362,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionDrawAboveOtherApps");
+                return resourceLoader.GetString("PermissionDrawAboveOtherApps");
             }
         }
         
@@ -24599,7 +26373,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionNoAudio");
+                return resourceLoader.GetString("PermissionNoAudio");
             }
         }
         
@@ -24610,7 +26384,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionNoAudioVideo");
+                return resourceLoader.GetString("PermissionNoAudioVideo");
             }
         }
         
@@ -24621,7 +26395,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionNoCamera");
+                return resourceLoader.GetString("PermissionNoCamera");
             }
         }
         
@@ -24632,7 +26406,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionNoLocation");
+                return resourceLoader.GetString("PermissionNoLocation");
             }
         }
         
@@ -24643,7 +26417,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionNoLocationPosition");
+                return resourceLoader.GetString("PermissionNoLocationPosition");
             }
         }
         
@@ -24654,7 +26428,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionOpenSettings");
+                return resourceLoader.GetString("PermissionOpenSettings");
             }
         }
         
@@ -24665,7 +26439,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionStorage");
+                return resourceLoader.GetString("PermissionStorage");
             }
         }
         
@@ -24676,7 +26450,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PermissionXiaomiLockscreen");
+                return resourceLoader.GetString("PermissionXiaomiLockscreen");
             }
         }
         
@@ -24687,7 +26461,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Phone");
+                return resourceLoader.GetString("Phone");
             }
         }
         
@@ -24698,7 +26472,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneCopied");
+                return resourceLoader.GetString("PhoneCopied");
             }
         }
         
@@ -24709,7 +26483,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneHidden");
+                return resourceLoader.GetString("PhoneHidden");
             }
         }
         
@@ -24720,7 +26494,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneHome");
+                return resourceLoader.GetString("PhoneHome");
             }
         }
         
@@ -24731,7 +26505,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneMain");
+                return resourceLoader.GetString("PhoneMain");
             }
         }
         
@@ -24742,7 +26516,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneMobile");
+                return resourceLoader.GetString("PhoneMobile");
             }
         }
         
@@ -24753,7 +26527,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberAlert");
+                return resourceLoader.GetString("PhoneNumberAlert");
             }
         }
         
@@ -24764,7 +26538,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberChange");
+                return resourceLoader.GetString("PhoneNumberChange");
             }
         }
         
@@ -24775,7 +26549,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberChange2");
+                return resourceLoader.GetString("PhoneNumberChange2");
             }
         }
         
@@ -24786,7 +26560,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberChangeTitle");
+                return resourceLoader.GetString("PhoneNumberChangeTitle");
             }
         }
         
@@ -24797,7 +26571,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberFlood");
+                return resourceLoader.GetString("PhoneNumberFlood");
             }
         }
         
@@ -24808,7 +26582,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberHelp");
+                return resourceLoader.GetString("PhoneNumberHelp");
             }
         }
         
@@ -24819,7 +26593,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneNumberSearch");
+                return resourceLoader.GetString("PhoneNumberSearch");
             }
         }
         
@@ -24830,7 +26604,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneOther");
+                return resourceLoader.GetString("PhoneOther");
             }
         }
         
@@ -24841,7 +26615,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhoneWork");
+                return resourceLoader.GetString("PhoneWork");
             }
         }
         
@@ -24852,7 +26626,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotoCaption");
+                return resourceLoader.GetString("PhotoCaption");
             }
         }
         
@@ -24863,7 +26637,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosFew");
+                return resourceLoader.GetString("PhotosFew");
             }
         }
         
@@ -24874,7 +26648,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosMany");
+                return resourceLoader.GetString("PhotosMany");
             }
         }
         
@@ -24885,7 +26659,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosOne");
+                return resourceLoader.GetString("PhotosOne");
             }
         }
         
@@ -24896,7 +26670,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosOther");
+                return resourceLoader.GetString("PhotosOther");
             }
         }
         
@@ -24907,7 +26681,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedFew");
+                return resourceLoader.GetString("PhotosSelectedFew");
             }
         }
         
@@ -24918,7 +26692,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedMany");
+                return resourceLoader.GetString("PhotosSelectedMany");
             }
         }
         
@@ -24929,7 +26703,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedOne");
+                return resourceLoader.GetString("PhotosSelectedOne");
             }
         }
         
@@ -24940,7 +26714,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedOther");
+                return resourceLoader.GetString("PhotosSelectedOther");
             }
         }
         
@@ -24951,7 +26725,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedTwo");
+                return resourceLoader.GetString("PhotosSelectedTwo");
             }
         }
         
@@ -24962,7 +26736,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosSelectedZero");
+                return resourceLoader.GetString("PhotosSelectedZero");
             }
         }
         
@@ -24973,7 +26747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosTwo");
+                return resourceLoader.GetString("PhotosTwo");
             }
         }
         
@@ -24984,7 +26758,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PhotosZero");
+                return resourceLoader.GetString("PhotosZero");
             }
         }
         
@@ -24995,7 +26769,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Ping");
+                return resourceLoader.GetString("Ping");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Pin in the list"
+        /// </summary>
+        public static string PinInTheList
+        {
+            get
+            {
+                return resourceLoader.GetString("PinInTheList");
             }
         }
         
@@ -25006,7 +26791,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Pink");
+                return resourceLoader.GetString("Pink");
             }
         }
         
@@ -25017,7 +26802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinMessage");
+                return resourceLoader.GetString("PinMessage");
             }
         }
         
@@ -25028,7 +26813,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinMessageAlert");
+                return resourceLoader.GetString("PinMessageAlert");
             }
         }
         
@@ -25039,7 +26824,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinMessageAlertChannel");
+                return resourceLoader.GetString("PinMessageAlertChannel");
             }
         }
         
@@ -25050,7 +26835,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinMessageAlertChat");
+                return resourceLoader.GetString("PinMessageAlertChat");
             }
         }
         
@@ -25061,7 +26846,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinMessageAlertTitle");
+                return resourceLoader.GetString("PinMessageAlertTitle");
             }
         }
         
@@ -25072,7 +26857,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinnedMessage");
+                return resourceLoader.GetString("PinnedMessage");
             }
         }
         
@@ -25083,7 +26868,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinnedMessages");
+                return resourceLoader.GetString("PinnedMessages");
             }
         }
         
@@ -25094,7 +26879,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinnedPoll");
+                return resourceLoader.GetString("PinnedPoll");
             }
         }
         
@@ -25105,7 +26890,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinNotify");
+                return resourceLoader.GetString("PinNotify");
             }
         }
         
@@ -25116,7 +26901,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinToTop");
+                return resourceLoader.GetString("PinToTop");
             }
         }
         
@@ -25127,7 +26912,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PinToTopLimitReached");
+                return resourceLoader.GetString("PinToTopLimitReached");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Places in this area"
+        /// </summary>
+        public static string PlacesInThisArea
+        {
+            get
+            {
+                return resourceLoader.GetString("PlacesInThisArea");
             }
         }
         
@@ -25138,7 +26934,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseDownload");
+                return resourceLoader.GetString("PleaseDownload");
             }
         }
         
@@ -25149,7 +26945,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseEnterCurrentPassword");
+                return resourceLoader.GetString("PleaseEnterCurrentPassword");
             }
         }
         
@@ -25160,7 +26956,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseEnterCurrentPasswordTransfer");
+                return resourceLoader.GetString("PleaseEnterCurrentPasswordTransfer");
             }
         }
         
@@ -25171,7 +26967,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseEnterFirstPassword");
+                return resourceLoader.GetString("PleaseEnterFirstPassword");
             }
         }
         
@@ -25182,7 +26978,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseEnterPassword");
+                return resourceLoader.GetString("PleaseEnterPassword");
             }
         }
         
@@ -25193,7 +26989,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseLoginPassport");
+                return resourceLoader.GetString("PleaseLoginPassport");
             }
         }
         
@@ -25204,7 +27000,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseReEnterPassword");
+                return resourceLoader.GetString("PleaseReEnterPassword");
             }
         }
         
@@ -25215,7 +27011,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PleaseStreamDownload");
+                return resourceLoader.GetString("PleaseStreamDownload");
             }
         }
         
@@ -25226,7 +27022,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsFew");
+                return resourceLoader.GetString("PointsFew");
             }
         }
         
@@ -25237,7 +27033,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsMany");
+                return resourceLoader.GetString("PointsMany");
             }
         }
         
@@ -25248,7 +27044,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsOne");
+                return resourceLoader.GetString("PointsOne");
             }
         }
         
@@ -25259,7 +27055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsOther");
+                return resourceLoader.GetString("PointsOther");
             }
         }
         
@@ -25270,7 +27066,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsTwo");
+                return resourceLoader.GetString("PointsTwo");
             }
         }
         
@@ -25281,7 +27077,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PointsZero");
+                return resourceLoader.GetString("PointsZero");
             }
         }
         
@@ -25292,7 +27088,62 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Poll");
+                return resourceLoader.GetString("Poll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Anonymous Voting"
+        /// </summary>
+        public static string PollAnonymous
+        {
+            get
+            {
+                return resourceLoader.GetString("PollAnonymous");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, polls can’t be forwarded to secret chats."
+        /// </summary>
+        public static string PollCantForwardSecretChat
+        {
+            get
+            {
+                return resourceLoader.GetString("PollCantForwardSecretChat");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Collapse"
+        /// </summary>
+        public static string PollCollapse
+        {
+            get
+            {
+                return resourceLoader.GetString("PollCollapse");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Expand"
+        /// </summary>
+        public static string PollExpand
+        {
+            get
+            {
+                return resourceLoader.GetString("PollExpand");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Multiple Answers"
+        /// </summary>
+        public static string PollMultiple
+        {
+            get
+            {
+                return resourceLoader.GetString("PollMultiple");
             }
         }
         
@@ -25303,7 +27154,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PollOptions");
+                return resourceLoader.GetString("PollOptions");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Quiz Mode"
+        /// </summary>
+        public static string PollQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("PollQuiz");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Poll Results"
+        /// </summary>
+        public static string PollResults
+        {
+            get
+            {
+                return resourceLoader.GetString("PollResults");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Select an option first"
+        /// </summary>
+        public static string PollSelectOption
+        {
+            get
+            {
+                return resourceLoader.GetString("PollSelectOption");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "VOTE"
+        /// </summary>
+        public static string PollSubmitVotes
+        {
+            get
+            {
+                return resourceLoader.GetString("PollSubmitVotes");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Tap to choose the correct answer"
+        /// </summary>
+        public static string PollTapToSelect
+        {
+            get
+            {
+                return resourceLoader.GetString("PollTapToSelect");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "VIEW RESULTS"
+        /// </summary>
+        public static string PollViewResults
+        {
+            get
+            {
+                return resourceLoader.GetString("PollViewResults");
             }
         }
         
@@ -25314,7 +27231,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PopupDisabled");
+                return resourceLoader.GetString("PopupDisabled");
             }
         }
         
@@ -25325,7 +27242,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PopupEnabled");
+                return resourceLoader.GetString("PopupEnabled");
             }
         }
         
@@ -25336,7 +27253,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PopupNotification");
+                return resourceLoader.GetString("PopupNotification");
             }
         }
         
@@ -25347,7 +27264,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PreviewFeedback");
+                return resourceLoader.GetString("PreviewFeedback");
             }
         }
         
@@ -25358,7 +27275,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PriorityInfo");
+                return resourceLoader.GetString("PriorityInfo");
             }
         }
         
@@ -25369,7 +27286,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyAddAnException");
+                return resourceLoader.GetString("PrivacyAddAnException");
             }
         }
         
@@ -25380,7 +27297,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyAdvanced");
+                return resourceLoader.GetString("PrivacyAdvanced");
             }
         }
         
@@ -25391,7 +27308,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyBots");
+                return resourceLoader.GetString("PrivacyBots");
             }
         }
         
@@ -25402,7 +27319,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyBotsInfo");
+                return resourceLoader.GetString("PrivacyBotsInfo");
             }
         }
         
@@ -25413,7 +27330,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyCallsP2PHelp");
+                return resourceLoader.GetString("PrivacyCallsP2PHelp");
             }
         }
         
@@ -25424,7 +27341,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyCallsP2PTitle");
+                return resourceLoader.GetString("PrivacyCallsP2PTitle");
             }
         }
         
@@ -25435,7 +27352,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyClearPayment");
+                return resourceLoader.GetString("PrivacyClearPayment");
             }
         }
         
@@ -25446,7 +27363,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyClearShipping");
+                return resourceLoader.GetString("PrivacyClearShipping");
             }
         }
         
@@ -25457,7 +27374,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyDeleteCloudDrafts");
+                return resourceLoader.GetString("PrivacyDeleteCloudDrafts");
             }
         }
         
@@ -25468,7 +27385,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyExceptions");
+                return resourceLoader.GetString("PrivacyExceptions");
             }
         }
         
@@ -25479,7 +27396,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyFloodControlError");
+                return resourceLoader.GetString("PrivacyFloodControlError");
             }
         }
         
@@ -25490,7 +27407,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwards");
+                return resourceLoader.GetString("PrivacyForwards");
             }
         }
         
@@ -25501,7 +27418,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsContacts");
+                return resourceLoader.GetString("PrivacyForwardsContacts");
             }
         }
         
@@ -25512,7 +27429,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsEverybody");
+                return resourceLoader.GetString("PrivacyForwardsEverybody");
             }
         }
         
@@ -25523,7 +27440,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsInfo");
+                return resourceLoader.GetString("PrivacyForwardsInfo");
             }
         }
         
@@ -25534,7 +27451,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsInfo2");
+                return resourceLoader.GetString("PrivacyForwardsInfo2");
             }
         }
         
@@ -25545,7 +27462,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsMessageLine");
+                return resourceLoader.GetString("PrivacyForwardsMessageLine");
             }
         }
         
@@ -25556,7 +27473,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsNobody");
+                return resourceLoader.GetString("PrivacyForwardsNobody");
             }
         }
         
@@ -25567,7 +27484,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyForwardsTitle");
+                return resourceLoader.GetString("PrivacyForwardsTitle");
             }
         }
         
@@ -25578,7 +27495,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyLastSeen");
+                return resourceLoader.GetString("PrivacyLastSeen");
             }
         }
         
@@ -25589,7 +27506,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyP2P");
+                return resourceLoader.GetString("PrivacyP2P");
             }
         }
         
@@ -25600,7 +27517,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyP2P2");
+                return resourceLoader.GetString("PrivacyP2P2");
             }
         }
         
@@ -25611,7 +27528,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyP2PHeader");
+                return resourceLoader.GetString("PrivacyP2PHeader");
             }
         }
         
@@ -25622,7 +27539,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPayments");
+                return resourceLoader.GetString("PrivacyPayments");
             }
         }
         
@@ -25633,7 +27550,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPaymentsClear");
+                return resourceLoader.GetString("PrivacyPaymentsClear");
             }
         }
         
@@ -25644,7 +27561,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPaymentsClearAlert");
+                return resourceLoader.GetString("PrivacyPaymentsClearAlert");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to clear your payment and shipping info?"
+        /// </summary>
+        public static string PrivacyPaymentsClearAlertText
+        {
+            get
+            {
+                return resourceLoader.GetString("PrivacyPaymentsClearAlertText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Clear payment info"
+        /// </summary>
+        public static string PrivacyPaymentsClearAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("PrivacyPaymentsClearAlertTitle");
             }
         }
         
@@ -25655,7 +27594,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPaymentsClearInfo");
+                return resourceLoader.GetString("PrivacyPaymentsClearInfo");
             }
         }
         
@@ -25666,7 +27605,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhone");
+                return resourceLoader.GetString("PrivacyPhone");
             }
         }
         
@@ -25677,7 +27616,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhoneInfo");
+                return resourceLoader.GetString("PrivacyPhoneInfo");
             }
         }
         
@@ -25688,7 +27627,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhoneInfo2");
+                return resourceLoader.GetString("PrivacyPhoneInfo2");
             }
         }
         
@@ -25699,7 +27638,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhoneInfo3");
+                return resourceLoader.GetString("PrivacyPhoneInfo3");
             }
         }
         
@@ -25710,7 +27649,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhoneTitle");
+                return resourceLoader.GetString("PrivacyPhoneTitle");
             }
         }
         
@@ -25721,7 +27660,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPhoneTitle2");
+                return resourceLoader.GetString("PrivacyPhoneTitle2");
             }
         }
         
@@ -25732,7 +27671,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPolicy");
+                return resourceLoader.GetString("PrivacyPolicy");
             }
         }
         
@@ -25743,7 +27682,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPolicyAndTerms");
+                return resourceLoader.GetString("PrivacyPolicyAndTerms");
             }
         }
         
@@ -25754,7 +27693,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyPolicyUrl");
+                return resourceLoader.GetString("PrivacyPolicyUrl");
             }
         }
         
@@ -25765,7 +27704,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyProfilePhoto");
+                return resourceLoader.GetString("PrivacyProfilePhoto");
             }
         }
         
@@ -25776,7 +27715,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyProfilePhotoInfo");
+                return resourceLoader.GetString("PrivacyProfilePhotoInfo");
             }
         }
         
@@ -25787,7 +27726,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyProfilePhotoInfo2");
+                return resourceLoader.GetString("PrivacyProfilePhotoInfo2");
             }
         }
         
@@ -25798,7 +27737,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyProfilePhotoTitle");
+                return resourceLoader.GetString("PrivacyProfilePhotoTitle");
             }
         }
         
@@ -25809,7 +27748,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacySettings");
+                return resourceLoader.GetString("PrivacySettings");
             }
         }
         
@@ -25820,7 +27759,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacySettingsChangedAlert");
+                return resourceLoader.GetString("PrivacySettingsChangedAlert");
             }
         }
         
@@ -25831,7 +27770,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PrivacyTitle");
+                return resourceLoader.GetString("PrivacyTitle");
             }
         }
         
@@ -25842,7 +27781,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProfileJoinChannel");
+                return resourceLoader.GetString("ProfileJoinChannel");
             }
         }
         
@@ -25853,7 +27792,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProfileJoinGroup");
+                return resourceLoader.GetString("ProfileJoinGroup");
             }
         }
         
@@ -25864,7 +27803,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProfilePopupNotification");
+                return resourceLoader.GetString("ProfilePopupNotification");
             }
         }
         
@@ -25875,7 +27814,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProfilePopupNotificationInfo");
+                return resourceLoader.GetString("ProfilePopupNotificationInfo");
             }
         }
         
@@ -25886,7 +27825,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Proxy");
+                return resourceLoader.GetString("Proxy");
             }
         }
         
@@ -25897,7 +27836,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProxyConnections");
+                return resourceLoader.GetString("ProxyConnections");
             }
         }
         
@@ -25908,7 +27847,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProxyDetails");
+                return resourceLoader.GetString("ProxyDetails");
             }
         }
         
@@ -25919,7 +27858,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ProxySettings");
+                return resourceLoader.GetString("ProxySettings");
             }
         }
         
@@ -25930,7 +27869,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("PublicChannelsTooMuch");
+                return resourceLoader.GetString("PublicChannelsTooMuch");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Poll"
+        /// </summary>
+        public static string PublicPoll
+        {
+            get
+            {
+                return resourceLoader.GetString("PublicPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, polls with visible votes can’t be forwarded to channels."
+        /// </summary>
+        public static string PublicPollCantForward
+        {
+            get
+            {
+                return resourceLoader.GetString("PublicPollCantForward");
             }
         }
         
@@ -25941,7 +27902,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Purple");
+                return resourceLoader.GetString("Purple");
             }
         }
         
@@ -25952,7 +27913,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Question");
+                return resourceLoader.GetString("Question");
             }
         }
         
@@ -25963,7 +27924,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuestionHint");
+                return resourceLoader.GetString("QuestionHint");
             }
         }
         
@@ -25974,7 +27935,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuickReplyCustom");
+                return resourceLoader.GetString("QuickReplyCustom");
             }
         }
         
@@ -25985,7 +27946,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuickReplyDefault1");
+                return resourceLoader.GetString("QuickReplyDefault1");
             }
         }
         
@@ -25996,7 +27957,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuickReplyDefault2");
+                return resourceLoader.GetString("QuickReplyDefault2");
             }
         }
         
@@ -26007,7 +27968,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuickReplyDefault3");
+                return resourceLoader.GetString("QuickReplyDefault3");
             }
         }
         
@@ -26018,7 +27979,84 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("QuickReplyDefault4");
+                return resourceLoader.GetString("QuickReplyDefault4");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Quiz answers"
+        /// </summary>
+        public static string QuizAnswers
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizAnswers");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Polls in Quiz Mode have one correct answer. Users can't revoke their answers."
+        /// </summary>
+        public static string QuizInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Quiz"
+        /// </summary>
+        public static string QuizPoll
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizPoll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Well done!"
+        /// </summary>
+        public static string QuizWellDone
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizWellDone");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "You chose the right answer."
+        /// </summary>
+        public static string QuizWellDoneInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizWellDoneInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Wrong answer!"
+        /// </summary>
+        public static string QuizWrongAnswer
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizWrongAnswer");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "You missed the correct option."
+        /// </summary>
+        public static string QuizWrongAnswerInfo
+        {
+            get
+            {
+                return resourceLoader.GetString("QuizWrongAnswerInfo");
             }
         }
         
@@ -26029,7 +28067,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RaiseToSpeak");
+                return resourceLoader.GetString("RaiseToSpeak");
             }
         }
         
@@ -26040,7 +28078,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallDistorted");
+                return resourceLoader.GetString("RateCallDistorted");
             }
         }
         
@@ -26051,7 +28089,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallDropped");
+                return resourceLoader.GetString("RateCallDropped");
             }
         }
         
@@ -26062,7 +28100,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallEcho");
+                return resourceLoader.GetString("RateCallEcho");
             }
         }
         
@@ -26073,7 +28111,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallInterruptions");
+                return resourceLoader.GetString("RateCallInterruptions");
             }
         }
         
@@ -26084,7 +28122,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallNoise");
+                return resourceLoader.GetString("RateCallNoise");
             }
         }
         
@@ -26095,7 +28133,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallSilentLocal");
+                return resourceLoader.GetString("RateCallSilentLocal");
             }
         }
         
@@ -26106,7 +28144,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RateCallSilentRemote");
+                return resourceLoader.GetString("RateCallSilentRemote");
             }
         }
         
@@ -26117,7 +28155,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Recent");
+                return resourceLoader.GetString("Recent");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Recent files"
+        /// </summary>
+        public static string RecentFiles
+        {
+            get
+            {
+                return resourceLoader.GetString("RecentFiles");
             }
         }
         
@@ -26128,7 +28177,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecentlyViewed");
+                return resourceLoader.GetString("RecentlyViewed");
             }
         }
         
@@ -26139,7 +28188,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecentlyViewedHide");
+                return resourceLoader.GetString("RecentlyViewedHide");
             }
         }
         
@@ -26150,7 +28199,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecentStickers");
+                return resourceLoader.GetString("RecentStickers");
             }
         }
         
@@ -26161,7 +28210,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientFew");
+                return resourceLoader.GetString("RecipientFew");
             }
         }
         
@@ -26172,7 +28221,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientMany");
+                return resourceLoader.GetString("RecipientMany");
             }
         }
         
@@ -26183,7 +28232,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientOne");
+                return resourceLoader.GetString("RecipientOne");
             }
         }
         
@@ -26194,7 +28243,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientOther");
+                return resourceLoader.GetString("RecipientOther");
             }
         }
         
@@ -26205,7 +28254,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientTwo");
+                return resourceLoader.GetString("RecipientTwo");
             }
         }
         
@@ -26216,7 +28265,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecipientZero");
+                return resourceLoader.GetString("RecipientZero");
             }
         }
         
@@ -26227,7 +28276,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecordingAudio");
+                return resourceLoader.GetString("RecordingAudio");
             }
         }
         
@@ -26238,7 +28287,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecordingRound");
+                return resourceLoader.GetString("RecordingRound");
             }
         }
         
@@ -26249,7 +28298,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RecoveryEmail");
+                return resourceLoader.GetString("RecoveryEmail");
             }
         }
         
@@ -26260,7 +28309,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Red");
+                return resourceLoader.GetString("Red");
             }
         }
         
@@ -26271,7 +28320,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReEnterYourPasscode");
+                return resourceLoader.GetString("ReEnterYourPasscode");
             }
         }
         
@@ -26282,7 +28331,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RegisterText");
+                return resourceLoader.GetString("RegisterText");
             }
         }
         
@@ -26293,7 +28342,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RegisterText2");
+                return resourceLoader.GetString("RegisterText2");
             }
         }
         
@@ -26304,7 +28353,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Regular");
+                return resourceLoader.GetString("Regular");
             }
         }
         
@@ -26315,7 +28364,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemindDayAt");
+                return resourceLoader.GetString("RemindDayAt");
             }
         }
         
@@ -26326,7 +28375,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemindDayYearAt");
+                return resourceLoader.GetString("RemindDayYearAt");
             }
         }
         
@@ -26337,7 +28386,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Reminders");
+                return resourceLoader.GetString("Reminders");
             }
         }
         
@@ -26348,7 +28397,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemindTodayAt");
+                return resourceLoader.GetString("RemindTodayAt");
             }
         }
         
@@ -26359,7 +28408,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedFromFavorites");
+                return resourceLoader.GetString("RemovedFromFavorites");
             }
         }
         
@@ -26370,7 +28419,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserFew");
+                return resourceLoader.GetString("RemovedUserFew");
             }
         }
         
@@ -26381,7 +28430,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserMany");
+                return resourceLoader.GetString("RemovedUserMany");
             }
         }
         
@@ -26392,7 +28441,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserOne");
+                return resourceLoader.GetString("RemovedUserOne");
             }
         }
         
@@ -26403,7 +28452,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserOther");
+                return resourceLoader.GetString("RemovedUserOther");
             }
         }
         
@@ -26414,7 +28463,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserTwo");
+                return resourceLoader.GetString("RemovedUserTwo");
             }
         }
         
@@ -26425,7 +28474,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemovedUserZero");
+                return resourceLoader.GetString("RemovedUserZero");
             }
         }
         
@@ -26436,7 +28485,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemoveFromListText");
+                return resourceLoader.GetString("RemoveFromListText");
             }
         }
         
@@ -26447,7 +28496,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RemoveStickersCount");
+                return resourceLoader.GetString("RemoveStickersCount");
             }
         }
         
@@ -26458,7 +28507,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RepeatDisabled");
+                return resourceLoader.GetString("RepeatDisabled");
             }
         }
         
@@ -26469,7 +28518,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RepeatNotifications");
+                return resourceLoader.GetString("RepeatNotifications");
             }
         }
         
@@ -26480,7 +28529,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RepeatNotificationsNever");
+                return resourceLoader.GetString("RepeatNotificationsNever");
             }
         }
         
@@ -26491,7 +28540,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Reply");
+                return resourceLoader.GetString("Reply");
             }
         }
         
@@ -26502,7 +28551,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReplyToGroup");
+                return resourceLoader.GetString("ReplyToGroup");
             }
         }
         
@@ -26513,7 +28562,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReplyToUser");
+                return resourceLoader.GetString("ReplyToUser");
             }
         }
         
@@ -26524,7 +28573,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChat");
+                return resourceLoader.GetString("ReportChat");
             }
         }
         
@@ -26535,7 +28584,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatChild");
+                return resourceLoader.GetString("ReportChatChild");
             }
         }
         
@@ -26546,7 +28595,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatDescription");
+                return resourceLoader.GetString("ReportChatDescription");
             }
         }
         
@@ -26557,7 +28606,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatOther");
+                return resourceLoader.GetString("ReportChatOther");
             }
         }
         
@@ -26568,7 +28617,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatPornography");
+                return resourceLoader.GetString("ReportChatPornography");
             }
         }
         
@@ -26579,7 +28628,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatSent");
+                return resourceLoader.GetString("ReportChatSent");
             }
         }
         
@@ -26590,7 +28639,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatSpam");
+                return resourceLoader.GetString("ReportChatSpam");
             }
         }
         
@@ -26601,7 +28650,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportChatViolence");
+                return resourceLoader.GetString("ReportChatViolence");
             }
         }
         
@@ -26612,7 +28661,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpam");
+                return resourceLoader.GetString("ReportSpam");
             }
         }
         
@@ -26623,7 +28672,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamAlert");
+                return resourceLoader.GetString("ReportSpamAlert");
             }
         }
         
@@ -26634,7 +28683,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamAlertChannel");
+                return resourceLoader.GetString("ReportSpamAlertChannel");
             }
         }
         
@@ -26645,7 +28694,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamAlertGroup");
+                return resourceLoader.GetString("ReportSpamAlertGroup");
             }
         }
         
@@ -26656,7 +28705,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamAndLeave");
+                return resourceLoader.GetString("ReportSpamAndLeave");
             }
         }
         
@@ -26667,7 +28716,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamLocation");
+                return resourceLoader.GetString("ReportSpamLocation");
             }
         }
         
@@ -26678,7 +28727,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamTitle");
+                return resourceLoader.GetString("ReportSpamTitle");
             }
         }
         
@@ -26689,7 +28738,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportSpamUser");
+                return resourceLoader.GetString("ReportSpamUser");
             }
         }
         
@@ -26700,7 +28749,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportUnrelatedGroup");
+                return resourceLoader.GetString("ReportUnrelatedGroup");
             }
         }
         
@@ -26713,7 +28762,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportUnrelatedGroupText");
+                return resourceLoader.GetString("ReportUnrelatedGroupText");
             }
         }
         
@@ -26724,7 +28773,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReportUnrelatedGroupTextNoAddress");
+                return resourceLoader.GetString("ReportUnrelatedGroupTextNoAddress");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Report"
+        /// </summary>
+        public static string ReportUserLocation
+        {
+            get
+            {
+                return resourceLoader.GetString("ReportUserLocation");
             }
         }
         
@@ -26735,7 +28795,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResendCode");
+                return resourceLoader.GetString("ResendCode");
             }
         }
         
@@ -26746,7 +28806,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResendCodeInfo");
+                return resourceLoader.GetString("ResendCodeInfo");
             }
         }
         
@@ -26757,7 +28817,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Reset");
+                return resourceLoader.GetString("Reset");
             }
         }
         
@@ -26768,7 +28828,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAccount");
+                return resourceLoader.GetString("ResetAccount");
             }
         }
         
@@ -26779,7 +28839,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAccountButton");
+                return resourceLoader.GetString("ResetAccountButton");
             }
         }
         
@@ -26790,7 +28850,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAccountCancelledAlert");
+                return resourceLoader.GetString("ResetAccountCancelledAlert");
             }
         }
         
@@ -26803,7 +28863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAccountInfo");
+                return resourceLoader.GetString("ResetAccountInfo");
             }
         }
         
@@ -26814,7 +28874,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAccountStatus");
+                return resourceLoader.GetString("ResetAccountStatus");
             }
         }
         
@@ -26825,7 +28885,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAllNotifications");
+                return resourceLoader.GetString("ResetAllNotifications");
             }
         }
         
@@ -26836,7 +28896,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAutomaticMediaDownload");
+                return resourceLoader.GetString("ResetAutomaticMediaDownload");
             }
         }
         
@@ -26847,7 +28907,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAutomaticMediaDownloadAlert");
+                return resourceLoader.GetString("ResetAutomaticMediaDownloadAlert");
             }
         }
         
@@ -26858,7 +28918,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetAutomaticMediaDownloadAlertTitle");
+                return resourceLoader.GetString("ResetAutomaticMediaDownloadAlertTitle");
             }
         }
         
@@ -26869,7 +28929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetChatBackgrounds");
+                return resourceLoader.GetString("ResetChatBackgrounds");
             }
         }
         
@@ -26880,7 +28940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetChatBackgroundsAlert");
+                return resourceLoader.GetString("ResetChatBackgroundsAlert");
             }
         }
         
@@ -26891,7 +28951,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetChatBackgroundsAlertTitle");
+                return resourceLoader.GetString("ResetChatBackgroundsAlertTitle");
             }
         }
         
@@ -26902,7 +28962,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetChatBackgroundsInfo");
+                return resourceLoader.GetString("ResetChatBackgroundsInfo");
             }
         }
         
@@ -26913,7 +28973,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetMyAccount");
+                return resourceLoader.GetString("ResetMyAccount");
             }
         }
         
@@ -26924,7 +28984,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetMyAccountText");
+                return resourceLoader.GetString("ResetMyAccountText");
             }
         }
         
@@ -26935,7 +28995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetMyAccountWarning");
+                return resourceLoader.GetString("ResetMyAccountWarning");
             }
         }
         
@@ -26946,7 +29006,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetMyAccountWarningReset");
+                return resourceLoader.GetString("ResetMyAccountWarningReset");
             }
         }
         
@@ -26959,7 +29019,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetMyAccountWarningText");
+                return resourceLoader.GetString("ResetMyAccountWarningText");
             }
         }
         
@@ -26970,7 +29030,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetNotificationsAlert");
+                return resourceLoader.GetString("ResetNotificationsAlert");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Reset all notifications"
+        /// </summary>
+        public static string ResetNotificationsAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ResetNotificationsAlertTitle");
             }
         }
         
@@ -26981,7 +29052,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetNotificationsText");
+                return resourceLoader.GetString("ResetNotificationsText");
             }
         }
         
@@ -26992,7 +29063,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetStatistics");
+                return resourceLoader.GetString("ResetStatistics");
             }
         }
         
@@ -27003,7 +29074,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetStatisticsAlert");
+                return resourceLoader.GetString("ResetStatisticsAlert");
             }
         }
         
@@ -27014,7 +29085,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ResetStatisticsAlertTitle");
+                return resourceLoader.GetString("ResetStatisticsAlertTitle");
             }
         }
         
@@ -27027,7 +29098,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestoreEmailSent");
+                return resourceLoader.GetString("RestoreEmailSent");
             }
         }
         
@@ -27038,7 +29109,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestoreEmailSentInfo");
+                return resourceLoader.GetString("RestoreEmailSentInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Recovery code"
+        /// </summary>
+        public static string RestoreEmailSentTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("RestoreEmailSentTitle");
             }
         }
         
@@ -27049,7 +29131,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestoreEmailTrouble");
+                return resourceLoader.GetString("RestoreEmailTrouble");
             }
         }
         
@@ -27060,7 +29142,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestoreEmailTroubleText");
+                return resourceLoader.GetString("RestoreEmailTroubleText");
             }
         }
         
@@ -27071,7 +29153,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestorePasswordNoEmailText");
+                return resourceLoader.GetString("RestorePasswordNoEmailText");
             }
         }
         
@@ -27082,7 +29164,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestorePasswordNoEmailTitle");
+                return resourceLoader.GetString("RestorePasswordNoEmailTitle");
             }
         }
         
@@ -27093,7 +29175,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RestorePasswordResetAccount");
+                return resourceLoader.GetString("RestorePasswordResetAccount");
             }
         }
         
@@ -27104,7 +29186,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Retry");
+                return resourceLoader.GetString("Retry");
             }
         }
         
@@ -27115,7 +29197,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReturnToCall");
+                return resourceLoader.GetString("ReturnToCall");
             }
         }
         
@@ -27126,7 +29208,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ReverseOrder");
+                return resourceLoader.GetString("ReverseOrder");
             }
         }
         
@@ -27137,7 +29219,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeAlert");
+                return resourceLoader.GetString("RevokeAlert");
             }
         }
         
@@ -27148,7 +29230,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeAlertNewLink");
+                return resourceLoader.GetString("RevokeAlertNewLink");
             }
         }
         
@@ -27159,7 +29241,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeButton");
+                return resourceLoader.GetString("RevokeButton");
             }
         }
         
@@ -27170,7 +29252,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeLink");
+                return resourceLoader.GetString("RevokeLink");
             }
         }
         
@@ -27183,7 +29265,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeLinkAlert");
+                return resourceLoader.GetString("RevokeLinkAlert");
             }
         }
         
@@ -27196,7 +29278,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RevokeLinkAlertChannel");
+                return resourceLoader.GetString("RevokeLinkAlertChannel");
             }
         }
         
@@ -27207,7 +29289,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("RoamingUsage");
+                return resourceLoader.GetString("RoamingUsage");
             }
         }
         
@@ -27218,7 +29300,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Satellite");
+                return resourceLoader.GetString("Satellite");
             }
         }
         
@@ -27229,7 +29311,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Saturation");
+                return resourceLoader.GetString("Saturation");
             }
         }
         
@@ -27240,7 +29322,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Save");
+                return resourceLoader.GetString("Save");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to apply the new colors you chose?"
+        /// </summary>
+        public static string SaveChangesAlertText
+        {
+            get
+            {
+                return resourceLoader.GetString("SaveChangesAlertText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Save changes?"
+        /// </summary>
+        public static string SaveChangesAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("SaveChangesAlertTitle");
             }
         }
         
@@ -27251,7 +29355,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SavedMessages");
+                return resourceLoader.GetString("SavedMessages");
             }
         }
         
@@ -27262,7 +29366,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SavedMessagesInfo");
+                return resourceLoader.GetString("SavedMessagesInfo");
             }
         }
         
@@ -27273,7 +29377,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveTheme");
+                return resourceLoader.GetString("SaveTheme");
             }
         }
         
@@ -27284,7 +29388,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveToDownloads");
+                return resourceLoader.GetString("SaveToDownloads");
             }
         }
         
@@ -27295,7 +29399,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveToGallery");
+                return resourceLoader.GetString("SaveToGallery");
             }
         }
         
@@ -27306,7 +29410,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveToGallerySettings");
+                return resourceLoader.GetString("SaveToGallerySettings");
             }
         }
         
@@ -27317,7 +29421,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveToGIFs");
+                return resourceLoader.GetString("SaveToGIFs");
             }
         }
         
@@ -27328,7 +29432,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SaveToMusic");
+                return resourceLoader.GetString("SaveToMusic");
             }
         }
         
@@ -27339,7 +29443,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScamMessage");
+                return resourceLoader.GetString("ScamMessage");
             }
         }
         
@@ -27350,7 +29454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Schedule");
+                return resourceLoader.GetString("Schedule");
             }
         }
         
@@ -27361,7 +29465,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScheduledMessages");
+                return resourceLoader.GetString("ScheduledMessages");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Hold this button to schedule your message or send it without sound."
+        /// </summary>
+        public static string ScheduledOrNoSoundHint
+        {
+            get
+            {
+                return resourceLoader.GetString("ScheduledOrNoSoundHint");
             }
         }
         
@@ -27372,7 +29487,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScheduleMessage");
+                return resourceLoader.GetString("ScheduleMessage");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Send when {0} comes online"
+        /// </summary>
+        public static string ScheduleWhenOnline
+        {
+            get
+            {
+                return resourceLoader.GetString("ScheduleWhenOnline");
             }
         }
         
@@ -27383,7 +29509,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScreenCapture");
+                return resourceLoader.GetString("ScreenCapture");
             }
         }
         
@@ -27396,7 +29522,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScreenCaptureAlert");
+                return resourceLoader.GetString("ScreenCaptureAlert");
             }
         }
         
@@ -27407,7 +29533,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ScreenCaptureInfo");
+                return resourceLoader.GetString("ScreenCaptureInfo");
             }
         }
         
@@ -27418,7 +29544,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SdCard");
+                return resourceLoader.GetString("SdCard");
             }
         }
         
@@ -27429,7 +29555,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Search");
+                return resourceLoader.GetString("Search");
             }
         }
         
@@ -27440,7 +29566,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchBackgrounds");
+                return resourceLoader.GetString("SearchBackgrounds");
             }
         }
         
@@ -27451,7 +29577,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchByColor");
+                return resourceLoader.GetString("SearchByColor");
             }
         }
         
@@ -27462,7 +29588,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchEmojiHint");
+                return resourceLoader.GetString("SearchEmojiHint");
             }
         }
         
@@ -27473,7 +29599,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchForPeople");
+                return resourceLoader.GetString("SearchForPeople");
             }
         }
         
@@ -27484,7 +29610,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchForPeopleAndGroups");
+                return resourceLoader.GetString("SearchForPeopleAndGroups");
             }
         }
         
@@ -27495,7 +29621,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchFriends");
+                return resourceLoader.GetString("SearchFriends");
             }
         }
         
@@ -27506,7 +29632,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchFrom");
+                return resourceLoader.GetString("SearchFrom");
             }
         }
         
@@ -27517,7 +29643,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchGifs");
+                return resourceLoader.GetString("SearchGifs");
             }
         }
         
@@ -27528,7 +29654,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchGifsTitle");
+                return resourceLoader.GetString("SearchGifsTitle");
             }
         }
         
@@ -27539,7 +29665,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchImages");
+                return resourceLoader.GetString("SearchImages");
             }
         }
         
@@ -27550,7 +29676,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchImagesInfo");
+                return resourceLoader.GetString("SearchImagesInfo");
             }
         }
         
@@ -27561,7 +29687,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchImagesTitle");
+                return resourceLoader.GetString("SearchImagesTitle");
             }
         }
         
@@ -27572,7 +29698,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchInSettings");
+                return resourceLoader.GetString("SearchInSettings");
             }
         }
         
@@ -27583,7 +29709,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchMembers");
+                return resourceLoader.GetString("SearchMembers");
             }
         }
         
@@ -27594,7 +29720,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchMessages");
+                return resourceLoader.GetString("SearchMessages");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Search Recent Files"
+        /// </summary>
+        public static string SearchRecentFiles
+        {
+            get
+            {
+                return resourceLoader.GetString("SearchRecentFiles");
             }
         }
         
@@ -27605,7 +29742,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SearchStickersHint");
+                return resourceLoader.GetString("SearchStickersHint");
             }
         }
         
@@ -27616,7 +29753,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldFew");
+                return resourceLoader.GetString("SecondsBoldFew");
             }
         }
         
@@ -27627,7 +29764,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldMany");
+                return resourceLoader.GetString("SecondsBoldMany");
             }
         }
         
@@ -27638,7 +29775,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldOne");
+                return resourceLoader.GetString("SecondsBoldOne");
             }
         }
         
@@ -27649,7 +29786,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldOther");
+                return resourceLoader.GetString("SecondsBoldOther");
             }
         }
         
@@ -27660,7 +29797,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldTwo");
+                return resourceLoader.GetString("SecondsBoldTwo");
             }
         }
         
@@ -27671,7 +29808,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsBoldZero");
+                return resourceLoader.GetString("SecondsBoldZero");
             }
         }
         
@@ -27682,7 +29819,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsFew");
+                return resourceLoader.GetString("SecondsFew");
             }
         }
         
@@ -27693,7 +29830,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsMany");
+                return resourceLoader.GetString("SecondsMany");
             }
         }
         
@@ -27704,7 +29841,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsOne");
+                return resourceLoader.GetString("SecondsOne");
             }
         }
         
@@ -27715,7 +29852,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsOther");
+                return resourceLoader.GetString("SecondsOther");
             }
         }
         
@@ -27726,7 +29863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsTwo");
+                return resourceLoader.GetString("SecondsTwo");
             }
         }
         
@@ -27737,7 +29874,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecondsZero");
+                return resourceLoader.GetString("SecondsZero");
             }
         }
         
@@ -27748,7 +29885,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretChat");
+                return resourceLoader.GetString("SecretChat");
             }
         }
         
@@ -27759,7 +29896,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretChatContextBotAlert");
+                return resourceLoader.GetString("SecretChatContextBotAlert");
             }
         }
         
@@ -27770,7 +29907,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretChatName");
+                return resourceLoader.GetString("SecretChatName");
             }
         }
         
@@ -27781,7 +29918,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretLinkPreviewAlert");
+                return resourceLoader.GetString("SecretLinkPreviewAlert");
             }
         }
         
@@ -27792,7 +29929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretWebPage");
+                return resourceLoader.GetString("SecretWebPage");
             }
         }
         
@@ -27803,7 +29940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecretWebPageInfo");
+                return resourceLoader.GetString("SecretWebPageInfo");
             }
         }
         
@@ -27814,7 +29951,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SecurityTitle");
+                return resourceLoader.GetString("SecurityTitle");
             }
         }
         
@@ -27825,7 +29962,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectAccount");
+                return resourceLoader.GetString("SelectAccount");
             }
         }
         
@@ -27836,7 +29973,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectChat");
+                return resourceLoader.GetString("SelectChat");
             }
         }
         
@@ -27847,7 +29984,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectColor");
+                return resourceLoader.GetString("SelectColor");
             }
         }
         
@@ -27858,7 +29995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectColorTitle");
+                return resourceLoader.GetString("SelectColorTitle");
             }
         }
         
@@ -27869,7 +30006,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectContact");
+                return resourceLoader.GetString("SelectContact");
             }
         }
         
@@ -27880,7 +30017,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectContacts");
+                return resourceLoader.GetString("SelectContacts");
             }
         }
         
@@ -27891,7 +30028,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectFile");
+                return resourceLoader.GetString("SelectFile");
             }
         }
         
@@ -27902,7 +30039,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectFromGallery");
+                return resourceLoader.GetString("SelectFromGallery");
             }
         }
         
@@ -27913,7 +30050,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SelectImage");
+                return resourceLoader.GetString("SelectImage");
             }
         }
         
@@ -27924,7 +30061,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Send");
+                return resourceLoader.GetString("Send");
             }
         }
         
@@ -27935,7 +30072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendAsFile");
+                return resourceLoader.GetString("SendAsFile");
             }
         }
         
@@ -27946,7 +30083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendAsFiles");
+                return resourceLoader.GetString("SendAsFiles");
             }
         }
         
@@ -27957,7 +30094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendByEnter");
+                return resourceLoader.GetString("SendByEnter");
             }
         }
         
@@ -27968,7 +30105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendContactTo");
+                return resourceLoader.GetString("SendContactTo");
             }
         }
         
@@ -27979,7 +30116,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendContactToGroup");
+                return resourceLoader.GetString("SendContactToGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to send this contact to **{0}**?"
+        /// </summary>
+        public static string SendContactToGroupText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendContactToGroupText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to send this contact to **{0}**?"
+        /// </summary>
+        public static string SendContactToText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendContactToText");
             }
         }
         
@@ -27990,7 +30149,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendDayAt");
+                return resourceLoader.GetString("SendDayAt");
             }
         }
         
@@ -28001,7 +30160,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendDayYearAt");
+                return resourceLoader.GetString("SendDayYearAt");
             }
         }
         
@@ -28012,7 +30171,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendGameTo");
+                return resourceLoader.GetString("SendGameTo");
             }
         }
         
@@ -28023,7 +30182,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendGameToGroup");
+                return resourceLoader.GetString("SendGameToGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to share this game to **{0}**?"
+        /// </summary>
+        public static string SendGameToGroupText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendGameToGroupText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to share this game to **{0}**?"
+        /// </summary>
+        public static string SendGameToText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendGameToText");
             }
         }
         
@@ -28034,7 +30215,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendGifPreview");
+                return resourceLoader.GetString("SendGifPreview");
             }
         }
         
@@ -28045,7 +30226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingAudio");
+                return resourceLoader.GetString("SendingAudio");
             }
         }
         
@@ -28056,7 +30237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingFile");
+                return resourceLoader.GetString("SendingFile");
             }
         }
         
@@ -28067,7 +30248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingGame");
+                return resourceLoader.GetString("SendingGame");
             }
         }
         
@@ -28078,7 +30259,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingGif");
+                return resourceLoader.GetString("SendingGif");
             }
         }
         
@@ -28089,7 +30270,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingPhoto");
+                return resourceLoader.GetString("SendingPhoto");
             }
         }
         
@@ -28100,7 +30281,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingSms");
+                return resourceLoader.GetString("SendingSms");
             }
         }
         
@@ -28111,7 +30292,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingVideo");
+                return resourceLoader.GetString("SendingVideo");
             }
         }
         
@@ -28122,7 +30303,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendingVideoStatus");
+                return resourceLoader.GetString("SendingVideoStatus");
             }
         }
         
@@ -28133,7 +30314,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendItems");
+                return resourceLoader.GetString("SendItems");
             }
         }
         
@@ -28144,7 +30325,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLiveLocation");
+                return resourceLoader.GetString("SendLiveLocation");
             }
         }
         
@@ -28155,7 +30336,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLiveLocationFor15m");
+                return resourceLoader.GetString("SendLiveLocationFor15m");
             }
         }
         
@@ -28166,7 +30347,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLiveLocationFor1h");
+                return resourceLoader.GetString("SendLiveLocationFor1h");
             }
         }
         
@@ -28177,7 +30358,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLiveLocationFor8h");
+                return resourceLoader.GetString("SendLiveLocationFor8h");
             }
         }
         
@@ -28188,7 +30369,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLiveLocationInfo");
+                return resourceLoader.GetString("SendLiveLocationInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Share my Live Location"
+        /// </summary>
+        public static string SendLiveLocationMenu
+        {
+            get
+            {
+                return resourceLoader.GetString("SendLiveLocationMenu");
             }
         }
         
@@ -28199,7 +30391,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendLocation");
+                return resourceLoader.GetString("SendLocation");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Send Message"
+        /// </summary>
+        public static string SendMessageLocation
+        {
+            get
+            {
+                return resourceLoader.GetString("SendMessageLocation");
             }
         }
         
@@ -28210,7 +30413,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendMessageRestricted");
+                return resourceLoader.GetString("SendMessageRestricted");
             }
         }
         
@@ -28221,7 +30424,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendMessageRestrictedForever");
+                return resourceLoader.GetString("SendMessageRestrictedForever");
             }
         }
         
@@ -28232,7 +30435,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendMessagesTo");
+                return resourceLoader.GetString("SendMessagesTo");
             }
         }
         
@@ -28243,7 +30446,40 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendMessagesToGroup");
+                return resourceLoader.GetString("SendMessagesToGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to send this message to **{0}**?"
+        /// </summary>
+        public static string SendMessagesToGroupText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendMessagesToGroupText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to send this message to **{0}**?"
+        /// </summary>
+        public static string SendMessagesToText
+        {
+            get
+            {
+                return resourceLoader.GetString("SendMessagesToText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Send message"
+        /// </summary>
+        public static string SendMessageTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("SendMessageTitle");
             }
         }
         
@@ -28254,7 +30490,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendMessageTo");
+                return resourceLoader.GetString("SendMessageTo");
             }
         }
         
@@ -28265,7 +30501,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendSelectedLocation");
+                return resourceLoader.GetString("SendSelectedLocation");
             }
         }
         
@@ -28276,7 +30512,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendSticker");
+                return resourceLoader.GetString("SendSticker");
             }
         }
         
@@ -28287,7 +30523,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendStickerPreview");
+                return resourceLoader.GetString("SendStickerPreview");
             }
         }
         
@@ -28298,7 +30534,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendTodayAt");
+                return resourceLoader.GetString("SendTodayAt");
             }
         }
         
@@ -28309,7 +30545,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendWithoutCompression");
+                return resourceLoader.GetString("SendWithoutCompression");
             }
         }
         
@@ -28320,7 +30556,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendWithoutGrouping");
+                return resourceLoader.GetString("SendWithoutGrouping");
             }
         }
         
@@ -28331,7 +30567,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SendWithoutSound");
+                return resourceLoader.GetString("SendWithoutSound");
             }
         }
         
@@ -28342,7 +30578,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentAppCode");
+                return resourceLoader.GetString("SentAppCode");
             }
         }
         
@@ -28353,7 +30589,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentAppCodeTitle");
+                return resourceLoader.GetString("SentAppCodeTitle");
             }
         }
         
@@ -28366,7 +30602,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentCallCode");
+                return resourceLoader.GetString("SentCallCode");
             }
         }
         
@@ -28377,7 +30613,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentCallOnly");
+                return resourceLoader.GetString("SentCallOnly");
             }
         }
         
@@ -28388,7 +30624,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentSmsCode");
+                return resourceLoader.GetString("SentSmsCode");
             }
         }
         
@@ -28399,7 +30635,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SentSmsCodeTitle");
+                return resourceLoader.GetString("SentSmsCodeTitle");
             }
         }
         
@@ -28410,7 +30646,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("September");
+                return resourceLoader.GetString("September");
             }
         }
         
@@ -28421,7 +30657,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ServiceNotifications");
+                return resourceLoader.GetString("ServiceNotifications");
             }
         }
         
@@ -28432,7 +30668,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SessionsInfo");
+                return resourceLoader.GetString("SessionsInfo");
             }
         }
         
@@ -28443,7 +30679,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SessionsTitle");
+                return resourceLoader.GetString("SessionsTitle");
             }
         }
         
@@ -28454,7 +30690,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Set");
+                return resourceLoader.GetString("Set");
             }
         }
         
@@ -28465,7 +30701,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdditionalPassword");
+                return resourceLoader.GetString("SetAdditionalPassword");
             }
         }
         
@@ -28476,7 +30712,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdditionalPasswordInfo");
+                return resourceLoader.GetString("SetAdditionalPasswordInfo");
             }
         }
         
@@ -28487,7 +30723,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdmins");
+                return resourceLoader.GetString("SetAdmins");
             }
         }
         
@@ -28498,7 +30734,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdminsAll");
+                return resourceLoader.GetString("SetAdminsAll");
             }
         }
         
@@ -28509,7 +30745,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdminsAllInfo");
+                return resourceLoader.GetString("SetAdminsAllInfo");
             }
         }
         
@@ -28520,7 +30756,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdminsNotAllInfo");
+                return resourceLoader.GetString("SetAdminsNotAllInfo");
             }
         }
         
@@ -28531,7 +30767,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAdminsTitle");
+                return resourceLoader.GetString("SetAdminsTitle");
             }
         }
         
@@ -28542,7 +30778,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetAsAdmin");
+                return resourceLoader.GetString("SetAsAdmin");
             }
         }
         
@@ -28553,7 +30789,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetBackground");
+                return resourceLoader.GetString("SetBackground");
             }
         }
         
@@ -28564,7 +30800,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetColor");
+                return resourceLoader.GetString("SetColor");
             }
         }
         
@@ -28575,7 +30811,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetPasscode");
+                return resourceLoader.GetString("SetPasscode");
             }
         }
         
@@ -28586,7 +30822,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetPasscodeInfo");
+                return resourceLoader.GetString("SetPasscodeInfo");
             }
         }
         
@@ -28597,7 +30833,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetRecoveryEmail");
+                return resourceLoader.GetString("SetRecoveryEmail");
             }
         }
         
@@ -28608,7 +30844,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetReminder");
+                return resourceLoader.GetString("SetReminder");
             }
         }
         
@@ -28619,7 +30855,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetTimer");
+                return resourceLoader.GetString("SetTimer");
             }
         }
         
@@ -28630,7 +30866,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Settings");
+                return resourceLoader.GetString("Settings");
             }
         }
         
@@ -28641,7 +30877,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsFaqSearchTitle");
+                return resourceLoader.GetString("SettingsFaqSearchTitle");
             }
         }
         
@@ -28652,7 +30888,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsHelp");
+                return resourceLoader.GetString("SettingsHelp");
             }
         }
         
@@ -28663,7 +30899,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsNoRecent");
+                return resourceLoader.GetString("SettingsNoRecent");
             }
         }
         
@@ -28674,7 +30910,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsNoResults");
+                return resourceLoader.GetString("SettingsNoResults");
             }
         }
         
@@ -28685,7 +30921,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsRecent");
+                return resourceLoader.GetString("SettingsRecent");
             }
         }
         
@@ -28696,7 +30932,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SettingsSearchFaq");
+                return resourceLoader.GetString("SettingsSearchFaq");
             }
         }
         
@@ -28707,7 +30943,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlAvailable");
+                return resourceLoader.GetString("SetUrlAvailable");
             }
         }
         
@@ -28718,7 +30954,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlChecking");
+                return resourceLoader.GetString("SetUrlChecking");
             }
         }
         
@@ -28729,7 +30965,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlInUse");
+                return resourceLoader.GetString("SetUrlInUse");
             }
         }
         
@@ -28740,7 +30976,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlInvalid");
+                return resourceLoader.GetString("SetUrlInvalid");
             }
         }
         
@@ -28751,7 +30987,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlInvalidLong");
+                return resourceLoader.GetString("SetUrlInvalidLong");
             }
         }
         
@@ -28762,7 +30998,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlInvalidShort");
+                return resourceLoader.GetString("SetUrlInvalidShort");
             }
         }
         
@@ -28773,7 +31009,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlInvalidStartNumber");
+                return resourceLoader.GetString("SetUrlInvalidStartNumber");
             }
         }
         
@@ -28784,7 +31020,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SetUrlPlaceholder");
+                return resourceLoader.GetString("SetUrlPlaceholder");
             }
         }
         
@@ -28795,7 +31031,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Shadows");
+                return resourceLoader.GetString("Shadows");
             }
         }
         
@@ -28806,7 +31042,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareComment");
+                return resourceLoader.GetString("ShareComment");
             }
         }
         
@@ -28817,7 +31053,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareContact");
+                return resourceLoader.GetString("ShareContact");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Share Contact"
+        /// </summary>
+        public static string ShareContactTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ShareContactTitle");
             }
         }
         
@@ -28828,7 +31075,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedAudioFiles");
+                return resourceLoader.GetString("SharedAudioFiles");
             }
         }
         
@@ -28839,7 +31086,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedContent");
+                return resourceLoader.GetString("SharedContent");
             }
         }
         
@@ -28850,7 +31097,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedContentTitle");
+                return resourceLoader.GetString("SharedContentTitle");
             }
         }
         
@@ -28861,7 +31108,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedFilesTab");
+                return resourceLoader.GetString("SharedFilesTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Files"
+        /// </summary>
+        public static string SharedFilesTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedFilesTab2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Groups"
+        /// </summary>
+        public static string SharedGroupsTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedGroupsTab2");
             }
         }
         
@@ -28872,7 +31141,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedLinks");
+                return resourceLoader.GetString("SharedLinks");
             }
         }
         
@@ -28883,7 +31152,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedLinksTab");
+                return resourceLoader.GetString("SharedLinksTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Links"
+        /// </summary>
+        public static string SharedLinksTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedLinksTab2");
             }
         }
         
@@ -28894,7 +31174,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedMedia");
+                return resourceLoader.GetString("SharedMedia");
             }
         }
         
@@ -28905,7 +31185,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedMediaTab");
+                return resourceLoader.GetString("SharedMediaTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Media"
+        /// </summary>
+        public static string SharedMediaTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedMediaTab2");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Shared Media"
+        /// </summary>
+        public static string SharedMediaTabFull2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedMediaTabFull2");
             }
         }
         
@@ -28916,7 +31218,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedMediaTitle");
+                return resourceLoader.GetString("SharedMediaTitle");
             }
         }
         
@@ -28927,7 +31229,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedMusicTab");
+                return resourceLoader.GetString("SharedMusicTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Audio"
+        /// </summary>
+        public static string SharedMusicTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedMusicTab2");
             }
         }
         
@@ -28938,7 +31251,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedPhotosAndVideos");
+                return resourceLoader.GetString("SharedPhotosAndVideos");
             }
         }
         
@@ -28949,7 +31262,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedPlace");
+                return resourceLoader.GetString("SharedPlace");
             }
         }
         
@@ -28960,7 +31273,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharedVoiceTab");
+                return resourceLoader.GetString("SharedVoiceTab");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Voice Messages"
+        /// </summary>
+        public static string SharedVoiceTab2
+        {
+            get
+            {
+                return resourceLoader.GetString("SharedVoiceTab2");
             }
         }
         
@@ -28971,7 +31295,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareFile");
+                return resourceLoader.GetString("ShareFile");
             }
         }
         
@@ -28982,7 +31306,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareLink");
+                return resourceLoader.GetString("ShareLink");
             }
         }
         
@@ -28993,7 +31317,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareLocation");
+                return resourceLoader.GetString("ShareLocation");
             }
         }
         
@@ -29004,7 +31328,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareMyContactInfo");
+                return resourceLoader.GetString("ShareMyContactInfo");
             }
         }
         
@@ -29015,7 +31339,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareMyPhone");
+                return resourceLoader.GetString("ShareMyPhone");
             }
         }
         
@@ -29026,7 +31350,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharePhoneNumberWith");
+                return resourceLoader.GetString("SharePhoneNumberWith");
             }
         }
         
@@ -29037,7 +31361,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareSendTo");
+                return resourceLoader.GetString("ShareSendTo");
             }
         }
         
@@ -29048,7 +31372,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareTelegram");
+                return resourceLoader.GetString("ShareTelegram");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Share theme"
+        /// </summary>
+        public static string ShareTheme
+        {
+            get
+            {
+                return resourceLoader.GetString("ShareTheme");
             }
         }
         
@@ -29059,7 +31394,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareYouLocationInfo");
+                return resourceLoader.GetString("ShareYouLocationInfo");
             }
         }
         
@@ -29070,18 +31405,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareYouLocationInline");
+                return resourceLoader.GetString("ShareYouLocationInline");
             }
         }
         
         /// <summary>
-        /// Localized resource similar to "Share your location?"
+        /// Localized resource similar to "Share Your Location?"
         /// </summary>
         public static string ShareYouLocationTitle
         {
             get
             {
-                return Resource.GetString("ShareYouLocationTitle");
+                return resourceLoader.GetString("ShareYouLocationTitle");
             }
         }
         
@@ -29092,7 +31427,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareYouLocationUnable");
+                return resourceLoader.GetString("ShareYouLocationUnable");
             }
         }
         
@@ -29103,7 +31438,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareYouLocationUnableManually");
+                return resourceLoader.GetString("ShareYouLocationUnableManually");
             }
         }
         
@@ -29114,7 +31449,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShareYouPhoneNumberTitle");
+                return resourceLoader.GetString("ShareYouPhoneNumberTitle");
             }
         }
         
@@ -29125,7 +31460,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharingLiveLocationTitle");
+                return resourceLoader.GetString("SharingLiveLocationTitle");
             }
         }
         
@@ -29136,7 +31471,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SharingYouAndOtherName");
+                return resourceLoader.GetString("SharingYouAndOtherName");
             }
         }
         
@@ -29147,7 +31482,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Sharpen");
+                return resourceLoader.GetString("Sharpen");
             }
         }
         
@@ -29158,7 +31493,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Short");
+                return resourceLoader.GetString("Short");
             }
         }
         
@@ -29169,7 +31504,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShortMessageLifetimeForever");
+                return resourceLoader.GetString("ShortMessageLifetimeForever");
             }
         }
         
@@ -29180,7 +31515,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowAllFiles");
+                return resourceLoader.GetString("ShowAllFiles");
             }
         }
         
@@ -29191,7 +31526,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowAllMedia");
+                return resourceLoader.GetString("ShowAllMedia");
             }
         }
         
@@ -29202,7 +31537,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowAllThemes");
+                return resourceLoader.GetString("ShowAllThemes");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show as grid"
+        /// </summary>
+        public static string ShowAsGrid
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowAsGrid");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show as list"
+        /// </summary>
+        public static string ShowAsList
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowAsList");
             }
         }
         
@@ -29213,7 +31570,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowInChat");
+                return resourceLoader.GetString("ShowInChat");
             }
         }
         
@@ -29224,7 +31581,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowNearbyPlaces");
+                return resourceLoader.GetString("ShowNearbyPlaces");
             }
         }
         
@@ -29235,7 +31592,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowNotificationsFor");
+                return resourceLoader.GetString("ShowNotificationsFor");
             }
         }
         
@@ -29246,7 +31603,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ShowNotificationsForInfo");
+                return resourceLoader.GetString("ShowNotificationsForInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string ShowVotesFew
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string ShowVotesMany
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show More ({0})"
+        /// </summary>
+        public static string ShowVotesOne
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show More ({0})"
+        /// </summary>
+        public static string ShowVotesOther
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string ShowVotesTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string ShowVotesZero
+        {
+            get
+            {
+                return resourceLoader.GetString("ShowVotesZero");
             }
         }
         
@@ -29257,7 +31680,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Shuffle");
+                return resourceLoader.GetString("Shuffle");
             }
         }
         
@@ -29268,7 +31691,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SignUp");
+                return resourceLoader.GetString("SignUp");
             }
         }
         
@@ -29279,7 +31702,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SinglePhotosHelp");
+                return resourceLoader.GetString("SinglePhotosHelp");
             }
         }
         
@@ -29290,7 +31713,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlideToCancel");
+                return resourceLoader.GetString("SlideToCancel");
             }
         }
         
@@ -29301,7 +31724,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Slowmode");
+                return resourceLoader.GetString("Slowmode");
             }
         }
         
@@ -29313,7 +31736,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowModeHint");
+                return resourceLoader.GetString("SlowModeHint");
             }
         }
         
@@ -29324,7 +31747,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeHours");
+                return resourceLoader.GetString("SlowmodeHours");
             }
         }
         
@@ -29335,7 +31758,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeInfoOff");
+                return resourceLoader.GetString("SlowmodeInfoOff");
             }
         }
         
@@ -29346,7 +31769,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeInfoSelected");
+                return resourceLoader.GetString("SlowmodeInfoSelected");
             }
         }
         
@@ -29357,7 +31780,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeMinutes");
+                return resourceLoader.GetString("SlowmodeMinutes");
             }
         }
         
@@ -29368,7 +31791,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeOff");
+                return resourceLoader.GetString("SlowmodeOff");
             }
         }
         
@@ -29379,7 +31802,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeSeconds");
+                return resourceLoader.GetString("SlowmodeSeconds");
             }
         }
         
@@ -29390,7 +31813,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeSelectSendError");
+                return resourceLoader.GetString("SlowmodeSelectSendError");
             }
         }
         
@@ -29401,7 +31824,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeSendError");
+                return resourceLoader.GetString("SlowmodeSendError");
             }
         }
         
@@ -29414,7 +31837,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SlowmodeSendErrorTooLong");
+                return resourceLoader.GetString("SlowmodeSendErrorTooLong");
             }
         }
         
@@ -29425,7 +31848,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmartNotifications");
+                return resourceLoader.GetString("SmartNotifications");
             }
         }
         
@@ -29436,7 +31859,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmartNotificationsAlert");
+                return resourceLoader.GetString("SmartNotificationsAlert");
             }
         }
         
@@ -29447,7 +31870,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmartNotificationsDetail");
+                return resourceLoader.GetString("SmartNotificationsDetail");
             }
         }
         
@@ -29458,7 +31881,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmartNotificationsDisabled");
+                return resourceLoader.GetString("SmartNotificationsDisabled");
             }
         }
         
@@ -29469,7 +31892,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmartNotificationsInfo");
+                return resourceLoader.GetString("SmartNotificationsInfo");
             }
         }
         
@@ -29480,7 +31903,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SmsText");
+                return resourceLoader.GetString("SmsText");
             }
         }
         
@@ -29491,7 +31914,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SoftUserLimitAlert");
+                return resourceLoader.GetString("SoftUserLimitAlert");
             }
         }
         
@@ -29502,7 +31925,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SortBy");
+                return resourceLoader.GetString("SortBy");
             }
         }
         
@@ -29513,7 +31936,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SortedByLastSeen");
+                return resourceLoader.GetString("SortedByLastSeen");
             }
         }
         
@@ -29524,7 +31947,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SortedByName");
+                return resourceLoader.GetString("SortedByName");
             }
         }
         
@@ -29535,7 +31958,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SortFirstName");
+                return resourceLoader.GetString("SortFirstName");
             }
         }
         
@@ -29546,7 +31969,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SortLastName");
+                return resourceLoader.GetString("SortLastName");
             }
         }
         
@@ -29557,7 +31980,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Sound");
+                return resourceLoader.GetString("Sound");
             }
         }
         
@@ -29568,7 +31991,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SoundDefault");
+                return resourceLoader.GetString("SoundDefault");
             }
         }
         
@@ -29579,7 +32002,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Start");
+                return resourceLoader.GetString("Start");
             }
         }
         
@@ -29590,7 +32013,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StartEncryptedChat");
+                return resourceLoader.GetString("StartEncryptedChat");
             }
         }
         
@@ -29601,7 +32024,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StartMessaging");
+                return resourceLoader.GetString("StartMessaging");
             }
         }
         
@@ -29612,7 +32035,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StartText");
+                return resourceLoader.GetString("StartText");
             }
         }
         
@@ -29623,7 +32046,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Statistics");
+                return resourceLoader.GetString("Statistics");
             }
         }
         
@@ -29634,7 +32057,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersAndMasks");
+                return resourceLoader.GetString("StickersAndMasks");
             }
         }
         
@@ -29645,7 +32068,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersCopy");
+                return resourceLoader.GetString("StickersCopy");
             }
         }
         
@@ -29656,7 +32079,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersFew");
+                return resourceLoader.GetString("StickersFew");
             }
         }
         
@@ -29667,7 +32090,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersHide");
+                return resourceLoader.GetString("StickersHide");
             }
         }
         
@@ -29678,7 +32101,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersMany");
+                return resourceLoader.GetString("StickersMany");
             }
         }
         
@@ -29689,7 +32112,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersName");
+                return resourceLoader.GetString("StickersName");
             }
         }
         
@@ -29700,7 +32123,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersOne");
+                return resourceLoader.GetString("StickersOne");
             }
         }
         
@@ -29711,7 +32134,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersOther");
+                return resourceLoader.GetString("StickersOther");
             }
         }
         
@@ -29722,7 +32145,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersRemove");
+                return resourceLoader.GetString("StickersRemove");
             }
         }
         
@@ -29733,7 +32156,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersRemoved");
+                return resourceLoader.GetString("StickersRemoved");
             }
         }
         
@@ -29744,7 +32167,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersShare");
+                return resourceLoader.GetString("StickersShare");
             }
         }
         
@@ -29755,7 +32178,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersTwo");
+                return resourceLoader.GetString("StickersTwo");
             }
         }
         
@@ -29766,7 +32189,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StickersZero");
+                return resourceLoader.GetString("StickersZero");
             }
         }
         
@@ -29777,7 +32200,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Stop");
+                return resourceLoader.GetString("Stop");
             }
         }
         
@@ -29788,7 +32211,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopAllLocationSharings");
+                return resourceLoader.GetString("StopAllLocationSharings");
             }
         }
         
@@ -29799,7 +32222,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopDownload");
+                return resourceLoader.GetString("StopDownload");
             }
         }
         
@@ -29810,7 +32233,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopLiveLocation");
+                return resourceLoader.GetString("StopLiveLocation");
             }
         }
         
@@ -29821,7 +32244,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopLiveLocationAlertAll");
+                return resourceLoader.GetString("StopLiveLocationAlertAll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to stop sharing your live location?"
+        /// </summary>
+        public static string StopLiveLocationAlertAllText
+        {
+            get
+            {
+                return resourceLoader.GetString("StopLiveLocationAlertAllText");
             }
         }
         
@@ -29832,7 +32266,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopLiveLocationAlertToGroup");
+                return resourceLoader.GetString("StopLiveLocationAlertToGroup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to stop sharing your live location with **{0}**?"
+        /// </summary>
+        public static string StopLiveLocationAlertToGroupText
+        {
+            get
+            {
+                return resourceLoader.GetString("StopLiveLocationAlertToGroupText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Stop location sharing"
+        /// </summary>
+        public static string StopLiveLocationAlertToTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("StopLiveLocationAlertToTitle");
             }
         }
         
@@ -29843,7 +32299,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopLiveLocationAlertToUser");
+                return resourceLoader.GetString("StopLiveLocationAlertToUser");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Do you want to stop sharing your live location with **{0}**?"
+        /// </summary>
+        public static string StopLiveLocationAlertToUserText
+        {
+            get
+            {
+                return resourceLoader.GetString("StopLiveLocationAlertToUserText");
             }
         }
         
@@ -29854,7 +32321,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopLoading");
+                return resourceLoader.GetString("StopLoading");
             }
         }
         
@@ -29865,7 +32332,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopPoll");
+                return resourceLoader.GetString("StopPoll");
             }
         }
         
@@ -29876,7 +32343,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopPollAlertText");
+                return resourceLoader.GetString("StopPollAlertText");
             }
         }
         
@@ -29887,7 +32354,51 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopPollAlertTitle");
+                return resourceLoader.GetString("StopPollAlertTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Stop Quiz"
+        /// </summary>
+        public static string StopQuiz
+        {
+            get
+            {
+                return resourceLoader.GetString("StopQuiz");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "If you stop this quiz now, nobody will be able to submit answers. This action cannot be undone."
+        /// </summary>
+        public static string StopQuizAlertText
+        {
+            get
+            {
+                return resourceLoader.GetString("StopQuizAlertText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Stop quiz?"
+        /// </summary>
+        public static string StopQuizAlertTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("StopQuizAlertTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Stop Showing Me"
+        /// </summary>
+        public static string StopShowingMe
+        {
+            get
+            {
+                return resourceLoader.GetString("StopShowingMe");
             }
         }
         
@@ -29898,7 +32409,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StopVerification");
+                return resourceLoader.GetString("StopVerification");
             }
         }
         
@@ -29909,7 +32420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("StorageUsage");
+                return resourceLoader.GetString("StorageUsage");
             }
         }
         
@@ -29920,7 +32431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Streaming");
+                return resourceLoader.GetString("Streaming");
             }
         }
         
@@ -29931,7 +32442,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Strike");
+                return resourceLoader.GetString("Strike");
             }
         }
         
@@ -29942,7 +32453,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersFew");
+                return resourceLoader.GetString("SubscribersFew");
             }
         }
         
@@ -29953,7 +32464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersMany");
+                return resourceLoader.GetString("SubscribersMany");
             }
         }
         
@@ -29964,7 +32475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersOne");
+                return resourceLoader.GetString("SubscribersOne");
             }
         }
         
@@ -29975,7 +32486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersOther");
+                return resourceLoader.GetString("SubscribersOther");
             }
         }
         
@@ -29986,7 +32497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersTwo");
+                return resourceLoader.GetString("SubscribersTwo");
             }
         }
         
@@ -29997,7 +32508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SubscribersZero");
+                return resourceLoader.GetString("SubscribersZero");
             }
         }
         
@@ -30008,7 +32519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestContacts");
+                return resourceLoader.GetString("SuggestContacts");
             }
         }
         
@@ -30019,7 +32530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestContactsAlert");
+                return resourceLoader.GetString("SuggestContactsAlert");
             }
         }
         
@@ -30030,7 +32541,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestContactsInfo");
+                return resourceLoader.GetString("SuggestContactsInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disable suggestions"
+        /// </summary>
+        public static string SuggestContactsTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("SuggestContactsTitle");
             }
         }
         
@@ -30041,7 +32563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestStickers");
+                return resourceLoader.GetString("SuggestStickers");
             }
         }
         
@@ -30052,7 +32574,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestStickersAll");
+                return resourceLoader.GetString("SuggestStickersAll");
             }
         }
         
@@ -30063,7 +32585,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestStickersInstalled");
+                return resourceLoader.GetString("SuggestStickersInstalled");
             }
         }
         
@@ -30074,7 +32596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SuggestStickersNone");
+                return resourceLoader.GetString("SuggestStickersNone");
             }
         }
         
@@ -30085,7 +32607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Support");
+                return resourceLoader.GetString("Support");
             }
         }
         
@@ -30096,7 +32618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SupportStatus");
+                return resourceLoader.GetString("SupportStatus");
             }
         }
         
@@ -30107,7 +32629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContacts");
+                return resourceLoader.GetString("SyncContacts");
             }
         }
         
@@ -30118,7 +32640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsAdded");
+                return resourceLoader.GetString("SyncContactsAdded");
             }
         }
         
@@ -30129,7 +32651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsDelete");
+                return resourceLoader.GetString("SyncContactsDelete");
             }
         }
         
@@ -30140,7 +32662,31 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsDeleteInfo");
+                return resourceLoader.GetString("SyncContactsDeleteInfo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "This will remove your contacts from the Telegram servers.
+        ///
+        ///If '**Sync Contacts**' is enabled, contacts will be re-synced."
+        /// </summary>
+        public static string SyncContactsDeleteText
+        {
+            get
+            {
+                return resourceLoader.GetString("SyncContactsDeleteText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete contacts"
+        /// </summary>
+        public static string SyncContactsDeleteTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("SyncContactsDeleteTitle");
             }
         }
         
@@ -30151,7 +32697,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsInfoOff");
+                return resourceLoader.GetString("SyncContactsInfoOff");
             }
         }
         
@@ -30162,7 +32708,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsInfoOn");
+                return resourceLoader.GetString("SyncContactsInfoOn");
             }
         }
         
@@ -30173,7 +32719,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsOff");
+                return resourceLoader.GetString("SyncContactsOff");
             }
         }
         
@@ -30184,7 +32730,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SyncContactsOn");
+                return resourceLoader.GetString("SyncContactsOn");
             }
         }
         
@@ -30195,7 +32741,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("SystemRoot");
+                return resourceLoader.GetString("SystemRoot");
             }
         }
         
@@ -30206,7 +32752,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TapForVideo");
+                return resourceLoader.GetString("TapForVideo");
             }
         }
         
@@ -30217,7 +32763,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TapHereGifs");
+                return resourceLoader.GetString("TapHereGifs");
             }
         }
         
@@ -30228,7 +32774,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TapToChange");
+                return resourceLoader.GetString("TapToChange");
             }
         }
         
@@ -30239,7 +32785,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TapToChangePhone");
+                return resourceLoader.GetString("TapToChangePhone");
             }
         }
         
@@ -30250,7 +32796,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TapToDownload");
+                return resourceLoader.GetString("TapToDownload");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Tap to send this location"
+        /// </summary>
+        public static string TapToSendLocation
+        {
+            get
+            {
+                return resourceLoader.GetString("TapToSendLocation");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Tap to view as a list."
+        /// </summary>
+        public static string TapToViewAsList
+        {
+            get
+            {
+                return resourceLoader.GetString("TapToViewAsList");
             }
         }
         
@@ -30261,7 +32829,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Teal");
+                return resourceLoader.GetString("Teal");
             }
         }
         
@@ -30272,7 +32840,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsFew");
+                return resourceLoader.GetString("TelegramContactsFew");
             }
         }
         
@@ -30283,7 +32851,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsMany");
+                return resourceLoader.GetString("TelegramContactsMany");
             }
         }
         
@@ -30294,7 +32862,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsOne");
+                return resourceLoader.GetString("TelegramContactsOne");
             }
         }
         
@@ -30305,7 +32873,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsOther");
+                return resourceLoader.GetString("TelegramContactsOther");
             }
         }
         
@@ -30316,7 +32884,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsTwo");
+                return resourceLoader.GetString("TelegramContactsTwo");
             }
         }
         
@@ -30327,7 +32895,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramContactsZero");
+                return resourceLoader.GetString("TelegramContactsZero");
             }
         }
         
@@ -30338,7 +32906,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramFAQ");
+                return resourceLoader.GetString("TelegramFAQ");
             }
         }
         
@@ -30349,7 +32917,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramFaqUrl");
+                return resourceLoader.GetString("TelegramFaqUrl");
             }
         }
         
@@ -30360,7 +32928,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramPassport");
+                return resourceLoader.GetString("TelegramPassport");
             }
         }
         
@@ -30371,7 +32939,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramPassportCreatePassword");
+                return resourceLoader.GetString("TelegramPassportCreatePassword");
             }
         }
         
@@ -30384,7 +32952,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramPassportCreatePasswordInfo");
+                return resourceLoader.GetString("TelegramPassportCreatePasswordInfo");
             }
         }
         
@@ -30395,7 +32963,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramPassportDelete");
+                return resourceLoader.GetString("TelegramPassportDelete");
             }
         }
         
@@ -30406,7 +32974,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramPassportDeleteAlert");
+                return resourceLoader.GetString("TelegramPassportDeleteAlert");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Delete Telegram passport"
+        /// </summary>
+        public static string TelegramPassportDeleteTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("TelegramPassportDeleteTitle");
             }
         }
         
@@ -30417,7 +32996,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TelegramVersion");
+                return resourceLoader.GetString("TelegramVersion");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Terminate"
+        /// </summary>
+        public static string Terminate
+        {
+            get
+            {
+                return resourceLoader.GetString("Terminate");
             }
         }
         
@@ -30428,7 +33018,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateAllSessions");
+                return resourceLoader.GetString("TerminateAllSessions");
             }
         }
         
@@ -30439,7 +33029,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateAllWebSessions");
+                return resourceLoader.GetString("TerminateAllWebSessions");
             }
         }
         
@@ -30450,7 +33040,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateSessionInfo");
+                return resourceLoader.GetString("TerminateSessionInfo");
             }
         }
         
@@ -30461,7 +33051,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateSessionQuestion");
+                return resourceLoader.GetString("TerminateSessionQuestion");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to terminate this session?"
+        /// </summary>
+        public static string TerminateSessionText
+        {
+            get
+            {
+                return resourceLoader.GetString("TerminateSessionText");
             }
         }
         
@@ -30472,7 +33073,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateWebSessionInfo");
+                return resourceLoader.GetString("TerminateWebSessionInfo");
             }
         }
         
@@ -30483,7 +33084,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateWebSessionQuestion");
+                return resourceLoader.GetString("TerminateWebSessionQuestion");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disconnect websites"
+        /// </summary>
+        public static string TerminateWebSessionsTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("TerminateWebSessionsTitle");
             }
         }
         
@@ -30494,7 +33106,29 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TerminateWebSessionStop");
+                return resourceLoader.GetString("TerminateWebSessionStop");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to disconnect {0}?"
+        /// </summary>
+        public static string TerminateWebSessionText
+        {
+            get
+            {
+                return resourceLoader.GetString("TerminateWebSessionText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disconnect website"
+        /// </summary>
+        public static string TerminateWebSessionTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("TerminateWebSessionTitle");
             }
         }
         
@@ -30505,7 +33139,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TermsOfService");
+                return resourceLoader.GetString("TermsOfService");
             }
         }
         
@@ -30517,7 +33151,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TermsOfServiceLogin");
+                return resourceLoader.GetString("TermsOfServiceLogin");
             }
         }
         
@@ -30528,7 +33162,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TextCopied");
+                return resourceLoader.GetString("TextCopied");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Hold the **word**, then move the cursor to select more text to copy."
+        /// </summary>
+        public static string TextSelectionHit
+        {
+            get
+            {
+                return resourceLoader.GetString("TextSelectionHit");
             }
         }
         
@@ -30539,7 +33184,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TextSize");
+                return resourceLoader.GetString("TextSize");
             }
         }
         
@@ -30550,7 +33195,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TextSizeHeader");
+                return resourceLoader.GetString("TextSizeHeader");
             }
         }
         
@@ -30561,7 +33206,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TgCancel");
+                return resourceLoader.GetString("TgCancel");
             }
         }
         
@@ -30572,7 +33217,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TgOpenGooglePlay");
+                return resourceLoader.GetString("TgOpenGooglePlay");
             }
         }
         
@@ -30583,7 +33228,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Theme");
+                return resourceLoader.GetString("Theme");
             }
         }
         
@@ -30594,7 +33239,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeArcticBlue");
+                return resourceLoader.GetString("ThemeArcticBlue");
             }
         }
         
@@ -30605,7 +33250,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeBlue");
+                return resourceLoader.GetString("ThemeBlue");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Classic"
+        /// </summary>
+        public static string ThemeClassic
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeClassic");
             }
         }
         
@@ -30618,7 +33274,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeCreateHelp");
+                return resourceLoader.GetString("ThemeCreateHelp");
             }
         }
         
@@ -30631,7 +33287,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeCreateHelp2");
+                return resourceLoader.GetString("ThemeCreateHelp2");
             }
         }
         
@@ -30642,7 +33298,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeDark");
+                return resourceLoader.GetString("ThemeDark");
             }
         }
         
@@ -30653,7 +33309,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeDarkBlue");
+                return resourceLoader.GetString("ThemeDarkBlue");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Day"
+        /// </summary>
+        public static string ThemeDay
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeDay");
             }
         }
         
@@ -30664,7 +33331,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeGraphite");
+                return resourceLoader.GetString("ThemeGraphite");
             }
         }
         
@@ -30676,7 +33343,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeHelpLink");
+                return resourceLoader.GetString("ThemeHelpLink");
             }
         }
         
@@ -30687,7 +33354,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInfo");
+                return resourceLoader.GetString("ThemeInfo");
             }
         }
         
@@ -30698,7 +33365,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountFew");
+                return resourceLoader.GetString("ThemeInstallCountFew");
             }
         }
         
@@ -30709,7 +33376,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountMany");
+                return resourceLoader.GetString("ThemeInstallCountMany");
             }
         }
         
@@ -30720,7 +33387,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountOne");
+                return resourceLoader.GetString("ThemeInstallCountOne");
             }
         }
         
@@ -30731,7 +33398,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountOther");
+                return resourceLoader.GetString("ThemeInstallCountOther");
             }
         }
         
@@ -30742,7 +33409,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountTwo");
+                return resourceLoader.GetString("ThemeInstallCountTwo");
             }
         }
         
@@ -30753,7 +33420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeInstallCountZero");
+                return resourceLoader.GetString("ThemeInstallCountZero");
             }
         }
         
@@ -30764,7 +33431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeNameInvalid");
+                return resourceLoader.GetString("ThemeNameInvalid");
             }
         }
         
@@ -30775,7 +33442,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeNamePlaceholder");
+                return resourceLoader.GetString("ThemeNamePlaceholder");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Night"
+        /// </summary>
+        public static string ThemeNight
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeNight");
             }
         }
         
@@ -30786,7 +33464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeNotFound");
+                return resourceLoader.GetString("ThemeNotFound");
             }
         }
         
@@ -30797,7 +33475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeNotSupported");
+                return resourceLoader.GetString("ThemeNotSupported");
             }
         }
         
@@ -30808,7 +33486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreview");
+                return resourceLoader.GetString("ThemePreview");
             }
         }
         
@@ -30819,7 +33497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog1");
+                return resourceLoader.GetString("ThemePreviewDialog1");
             }
         }
         
@@ -30830,7 +33508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog2");
+                return resourceLoader.GetString("ThemePreviewDialog2");
             }
         }
         
@@ -30841,7 +33519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog3");
+                return resourceLoader.GetString("ThemePreviewDialog3");
             }
         }
         
@@ -30852,7 +33530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog4");
+                return resourceLoader.GetString("ThemePreviewDialog4");
             }
         }
         
@@ -30863,7 +33541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog5");
+                return resourceLoader.GetString("ThemePreviewDialog5");
             }
         }
         
@@ -30874,7 +33552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog6");
+                return resourceLoader.GetString("ThemePreviewDialog6");
             }
         }
         
@@ -30885,7 +33563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog7");
+                return resourceLoader.GetString("ThemePreviewDialog7");
             }
         }
         
@@ -30896,7 +33574,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialog8");
+                return resourceLoader.GetString("ThemePreviewDialog8");
             }
         }
         
@@ -30907,7 +33585,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage1");
+                return resourceLoader.GetString("ThemePreviewDialogMessage1");
             }
         }
         
@@ -30918,7 +33596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage2");
+                return resourceLoader.GetString("ThemePreviewDialogMessage2");
             }
         }
         
@@ -30929,7 +33607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage3");
+                return resourceLoader.GetString("ThemePreviewDialogMessage3");
             }
         }
         
@@ -30940,7 +33618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage4");
+                return resourceLoader.GetString("ThemePreviewDialogMessage4");
             }
         }
         
@@ -30951,7 +33629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage5");
+                return resourceLoader.GetString("ThemePreviewDialogMessage5");
             }
         }
         
@@ -30962,7 +33640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage6");
+                return resourceLoader.GetString("ThemePreviewDialogMessage6");
             }
         }
         
@@ -30973,7 +33651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage7");
+                return resourceLoader.GetString("ThemePreviewDialogMessage7");
             }
         }
         
@@ -30984,7 +33662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewDialogMessage8");
+                return resourceLoader.GetString("ThemePreviewDialogMessage8");
             }
         }
         
@@ -30995,7 +33673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewLine1");
+                return resourceLoader.GetString("ThemePreviewLine1");
             }
         }
         
@@ -31006,7 +33684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewLine2");
+                return resourceLoader.GetString("ThemePreviewLine2");
             }
         }
         
@@ -31017,7 +33695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewLine3");
+                return resourceLoader.GetString("ThemePreviewLine3");
             }
         }
         
@@ -31028,7 +33706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewLine3Reply");
+                return resourceLoader.GetString("ThemePreviewLine3Reply");
             }
         }
         
@@ -31039,7 +33717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewLine4");
+                return resourceLoader.GetString("ThemePreviewLine4");
             }
         }
         
@@ -31050,7 +33728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewSongPerformer");
+                return resourceLoader.GetString("ThemePreviewSongPerformer");
             }
         }
         
@@ -31061,7 +33739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewSongTitle");
+                return resourceLoader.GetString("ThemePreviewSongTitle");
             }
         }
         
@@ -31072,7 +33750,40 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemePreviewTitle");
+                return resourceLoader.GetString("ThemePreviewTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Reset to default"
+        /// </summary>
+        public static string ThemeResetToDefaults
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeResetToDefaults");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Are you sure you want to reset text size and color settings?"
+        /// </summary>
+        public static string ThemeResetToDefaultsText
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeResetToDefaultsText");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Reset settings"
+        /// </summary>
+        public static string ThemeResetToDefaultsTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("ThemeResetToDefaultsTitle");
             }
         }
         
@@ -31083,7 +33794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeSetUrl");
+                return resourceLoader.GetString("ThemeSetUrl");
             }
         }
         
@@ -31095,7 +33806,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeSetUrlHelp");
+                return resourceLoader.GetString("ThemeSetUrlHelp");
             }
         }
         
@@ -31106,7 +33817,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ThemeUrl");
+                return resourceLoader.GetString("ThemeUrl");
             }
         }
         
@@ -31117,7 +33828,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesFew");
+                return resourceLoader.GetString("TimesFew");
             }
         }
         
@@ -31128,7 +33839,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesMany");
+                return resourceLoader.GetString("TimesMany");
             }
         }
         
@@ -31139,7 +33850,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesOne");
+                return resourceLoader.GetString("TimesOne");
             }
         }
         
@@ -31150,7 +33861,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesOther");
+                return resourceLoader.GetString("TimesOther");
             }
         }
         
@@ -31161,7 +33872,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesTwo");
+                return resourceLoader.GetString("TimesTwo");
             }
         }
         
@@ -31172,7 +33883,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimesZero");
+                return resourceLoader.GetString("TimesZero");
             }
         }
         
@@ -31183,7 +33894,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimeToEdit");
+                return resourceLoader.GetString("TimeToEdit");
             }
         }
         
@@ -31194,7 +33905,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TimeToEditExpired");
+                return resourceLoader.GetString("TimeToEditExpired");
             }
         }
         
@@ -31205,7 +33916,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TintHighlights");
+                return resourceLoader.GetString("TintHighlights");
             }
         }
         
@@ -31216,7 +33927,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TintShadows");
+                return resourceLoader.GetString("TintShadows");
             }
         }
         
@@ -31227,7 +33938,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TodayAt");
+                return resourceLoader.GetString("TodayAt");
             }
         }
         
@@ -31238,7 +33949,51 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TodayAtFormatted");
+                return resourceLoader.GetString("TodayAtFormatted");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Too Many Communities"
+        /// </summary>
+        public static string TooManyCommunities
+        {
+            get
+            {
+                return resourceLoader.GetString("TooManyCommunities");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, you are a member of too many groups or channels. Please leave some before creating a new one."
+        /// </summary>
+        public static string TooManyCommunitiesHintCreate
+        {
+            get
+            {
+                return resourceLoader.GetString("TooManyCommunitiesHintCreate");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, you are a member of too many groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups."
+        /// </summary>
+        public static string TooManyCommunitiesHintEdit
+        {
+            get
+            {
+                return resourceLoader.GetString("TooManyCommunitiesHintEdit");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, you are a member of too many groups or channels. Please leave some before joining a new one."
+        /// </summary>
+        public static string TooManyCommunitiesHintJoin
+        {
+            get
+            {
+                return resourceLoader.GetString("TooManyCommunitiesHintJoin");
             }
         }
         
@@ -31250,7 +34005,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TooManyTries");
+                return resourceLoader.GetString("TooManyTries");
             }
         }
         
@@ -31261,7 +34016,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TosAgeText");
+                return resourceLoader.GetString("TosAgeText");
             }
         }
         
@@ -31272,7 +34027,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TosAgeTitle");
+                return resourceLoader.GetString("TosAgeTitle");
             }
         }
         
@@ -31287,7 +34042,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TosDecline");
+                return resourceLoader.GetString("TosDecline");
             }
         }
         
@@ -31300,7 +34055,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TosDeclineDeleteAccount");
+                return resourceLoader.GetString("TosDeclineDeleteAccount");
             }
         }
         
@@ -31313,7 +34068,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TosUpdateDecline");
+                return resourceLoader.GetString("TosUpdateDecline");
             }
         }
         
@@ -31324,7 +34079,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TotalDataUsage");
+                return resourceLoader.GetString("TotalDataUsage");
             }
         }
         
@@ -31335,7 +34090,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TurnPasswordOff");
+                return resourceLoader.GetString("TurnPasswordOff");
             }
         }
         
@@ -31346,7 +34101,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TurnPasswordOffPassport");
+                return resourceLoader.GetString("TurnPasswordOffPassport");
             }
         }
         
@@ -31357,7 +34112,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TurnPasswordOffQuestion");
+                return resourceLoader.GetString("TurnPasswordOffQuestion");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Disable password"
+        /// </summary>
+        public static string TurnPasswordOffQuestionTitle
+        {
+            get
+            {
+                return resourceLoader.GetString("TurnPasswordOffQuestionTitle");
             }
         }
         
@@ -31368,7 +34134,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TwoStepVerification");
+                return resourceLoader.GetString("TwoStepVerification");
             }
         }
         
@@ -31379,7 +34145,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TwoStepVerificationTitle");
+                return resourceLoader.GetString("TwoStepVerificationTitle");
             }
         }
         
@@ -31390,7 +34156,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypeLocationGroup");
+                return resourceLoader.GetString("TypeLocationGroup");
             }
         }
         
@@ -31401,7 +34167,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypeLocationGroupEdit");
+                return resourceLoader.GetString("TypeLocationGroupEdit");
             }
         }
         
@@ -31412,7 +34178,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypeMessage");
+                return resourceLoader.GetString("TypeMessage");
             }
         }
         
@@ -31423,7 +34189,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypePrivate");
+                return resourceLoader.GetString("TypePrivate");
             }
         }
         
@@ -31434,7 +34200,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypePrivateGroup");
+                return resourceLoader.GetString("TypePrivateGroup");
             }
         }
         
@@ -31445,7 +34211,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypePublic");
+                return resourceLoader.GetString("TypePublic");
             }
         }
         
@@ -31456,7 +34222,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypePublicGroup");
+                return resourceLoader.GetString("TypePublicGroup");
             }
         }
         
@@ -31467,7 +34233,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("TypeScheduleMessage");
+                return resourceLoader.GetString("TypeScheduleMessage");
             }
         }
         
@@ -31478,7 +34244,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Typing");
+                return resourceLoader.GetString("Typing");
             }
         }
         
@@ -31489,7 +34255,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Unarchive");
+                return resourceLoader.GetString("Unarchive");
             }
         }
         
@@ -31500,7 +34266,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Unavailable");
+                return resourceLoader.GetString("Unavailable");
             }
         }
         
@@ -31511,7 +34277,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Unban");
+                return resourceLoader.GetString("Unban");
             }
         }
         
@@ -31522,7 +34288,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnbanText");
+                return resourceLoader.GetString("UnbanText");
             }
         }
         
@@ -31533,7 +34299,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Unblock");
+                return resourceLoader.GetString("Unblock");
             }
         }
         
@@ -31544,7 +34310,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnblockText");
+                return resourceLoader.GetString("UnblockText");
             }
         }
         
@@ -31555,7 +34321,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Underline");
+                return resourceLoader.GetString("Underline");
             }
         }
         
@@ -31566,7 +34332,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Undo");
+                return resourceLoader.GetString("Undo");
             }
         }
         
@@ -31577,7 +34343,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UndoAllCustom");
+                return resourceLoader.GetString("UndoAllCustom");
             }
         }
         
@@ -31588,7 +34354,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnhideFromTop");
+                return resourceLoader.GetString("UnhideFromTop");
             }
         }
         
@@ -31599,7 +34365,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnknownError");
+                return resourceLoader.GetString("UnknownError");
             }
         }
         
@@ -31610,7 +34376,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnlockFingerprint");
+                return resourceLoader.GetString("UnlockFingerprint");
             }
         }
         
@@ -31621,7 +34387,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnmuteNotifications");
+                return resourceLoader.GetString("UnmuteNotifications");
             }
         }
         
@@ -31632,7 +34398,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnofficialApp");
+                return resourceLoader.GetString("UnofficialApp");
             }
         }
         
@@ -31643,7 +34409,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnpinFromTop");
+                return resourceLoader.GetString("UnpinFromTop");
             }
         }
         
@@ -31654,7 +34420,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnpinMessage");
+                return resourceLoader.GetString("UnpinMessage");
             }
         }
         
@@ -31665,7 +34431,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnpinMessageAlert");
+                return resourceLoader.GetString("UnpinMessageAlert");
             }
         }
         
@@ -31676,7 +34442,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnpinMessageAlertTitle");
+                return resourceLoader.GetString("UnpinMessageAlertTitle");
             }
         }
         
@@ -31687,7 +34453,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnreadMessages");
+                return resourceLoader.GetString("UnreadMessages");
             }
         }
         
@@ -31698,7 +34464,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnsupportedAttachment");
+                return resourceLoader.GetString("UnsupportedAttachment");
             }
         }
         
@@ -31709,7 +34475,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UnsupportedMedia");
+                return resourceLoader.GetString("UnsupportedMedia");
             }
         }
         
@@ -31720,7 +34486,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Unvote");
+                return resourceLoader.GetString("Unvote");
             }
         }
         
@@ -31731,7 +34497,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Update");
+                return resourceLoader.GetString("Update");
             }
         }
         
@@ -31742,7 +34508,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateApp");
+                return resourceLoader.GetString("UpdateApp");
             }
         }
         
@@ -31753,7 +34519,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateAppAlert");
+                return resourceLoader.GetString("UpdateAppAlert");
             }
         }
         
@@ -31764,7 +34530,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateContactsMessage");
+                return resourceLoader.GetString("UpdateContactsMessage");
             }
         }
         
@@ -31775,7 +34541,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateContactsTitle");
+                return resourceLoader.GetString("UpdateContactsTitle");
             }
         }
         
@@ -31786,7 +34552,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesFew");
+                return resourceLoader.GetString("UpdatedMinutesFew");
             }
         }
         
@@ -31797,7 +34563,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesMany");
+                return resourceLoader.GetString("UpdatedMinutesMany");
             }
         }
         
@@ -31808,7 +34574,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesOne");
+                return resourceLoader.GetString("UpdatedMinutesOne");
             }
         }
         
@@ -31819,7 +34585,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesOther");
+                return resourceLoader.GetString("UpdatedMinutesOther");
             }
         }
         
@@ -31830,7 +34596,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesTwo");
+                return resourceLoader.GetString("UpdatedMinutesTwo");
             }
         }
         
@@ -31841,7 +34607,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdatedMinutesZero");
+                return resourceLoader.GetString("UpdatedMinutesZero");
             }
         }
         
@@ -31852,7 +34618,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateNow");
+                return resourceLoader.GetString("UpdateNow");
             }
         }
         
@@ -31863,7 +34629,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpdateTelegram");
+                return resourceLoader.GetString("UpdateTelegram");
             }
         }
         
@@ -31874,7 +34640,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Updating");
+                return resourceLoader.GetString("Updating");
             }
         }
         
@@ -31885,7 +34651,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UpgradeGroup");
+                return resourceLoader.GetString("UpgradeGroup");
             }
         }
         
@@ -31896,7 +34662,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UploadImage");
+                return resourceLoader.GetString("UploadImage");
             }
         }
         
@@ -31907,7 +34673,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UploadItems");
+                return resourceLoader.GetString("UploadItems");
             }
         }
         
@@ -31918,7 +34684,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("URL");
+                return resourceLoader.GetString("URL");
             }
         }
         
@@ -31929,7 +34695,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsbActive");
+                return resourceLoader.GetString("UsbActive");
             }
         }
         
@@ -31940,7 +34706,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseDifferentTheme");
+                return resourceLoader.GetString("UseDifferentTheme");
             }
         }
         
@@ -31951,7 +34717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseDifferentThemeInfo");
+                return resourceLoader.GetString("UseDifferentThemeInfo");
             }
         }
         
@@ -31962,7 +34728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseLessDataAlways");
+                return resourceLoader.GetString("UseLessDataAlways");
             }
         }
         
@@ -31973,7 +34739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseLessDataNever");
+                return resourceLoader.GetString("UseLessDataNever");
             }
         }
         
@@ -31984,7 +34750,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseLessDataOnMobile");
+                return resourceLoader.GetString("UseLessDataOnMobile");
             }
         }
         
@@ -31995,7 +34761,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseLessDataOnRoaming");
+                return resourceLoader.GetString("UseLessDataOnRoaming");
             }
         }
         
@@ -32006,7 +34772,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyAddress");
+                return resourceLoader.GetString("UseProxyAddress");
             }
         }
         
@@ -32017,7 +34783,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyForCalls");
+                return resourceLoader.GetString("UseProxyForCalls");
             }
         }
         
@@ -32028,7 +34794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyForCallsInfo");
+                return resourceLoader.GetString("UseProxyForCallsInfo");
             }
         }
         
@@ -32039,7 +34805,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyInfo");
+                return resourceLoader.GetString("UseProxyInfo");
             }
         }
         
@@ -32050,7 +34816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyPassword");
+                return resourceLoader.GetString("UseProxyPassword");
             }
         }
         
@@ -32061,7 +34827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyPort");
+                return resourceLoader.GetString("UseProxyPort");
             }
         }
         
@@ -32072,7 +34838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxySecret");
+                return resourceLoader.GetString("UseProxySecret");
             }
         }
         
@@ -32083,7 +34849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxySettings");
+                return resourceLoader.GetString("UseProxySettings");
             }
         }
         
@@ -32094,7 +34860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxySocks5");
+                return resourceLoader.GetString("UseProxySocks5");
             }
         }
         
@@ -32105,7 +34871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxySponsor");
+                return resourceLoader.GetString("UseProxySponsor");
             }
         }
         
@@ -32116,7 +34882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxySponsorInfo");
+                return resourceLoader.GetString("UseProxySponsorInfo");
             }
         }
         
@@ -32127,7 +34893,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyTelegram");
+                return resourceLoader.GetString("UseProxyTelegram");
             }
         }
         
@@ -32138,7 +34904,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyTelegramError");
+                return resourceLoader.GetString("UseProxyTelegramError");
             }
         }
         
@@ -32149,7 +34915,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyTelegramInfo");
+                return resourceLoader.GetString("UseProxyTelegramInfo");
             }
         }
         
@@ -32160,7 +34926,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyTelegramInfo2");
+                return resourceLoader.GetString("UseProxyTelegramInfo2");
             }
         }
         
@@ -32171,7 +34937,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UseProxyUsername");
+                return resourceLoader.GetString("UseProxyUsername");
             }
         }
         
@@ -32182,7 +34948,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserBio");
+                return resourceLoader.GetString("UserBio");
             }
         }
         
@@ -32193,7 +34959,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserBioDetail");
+                return resourceLoader.GetString("UserBioDetail");
             }
         }
         
@@ -32204,7 +34970,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserBioEmpty");
+                return resourceLoader.GetString("UserBioEmpty");
             }
         }
         
@@ -32215,7 +34981,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserBioInfo");
+                return resourceLoader.GetString("UserBioInfo");
             }
         }
         
@@ -32226,7 +34992,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserBlocked");
+                return resourceLoader.GetString("UserBlocked");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Sorry, the target user is a member of too many groups and channels. Please ask them to leave some first."
+        /// </summary>
+        public static string UserChannelTooMuchJoin
+        {
+            get
+            {
+                return resourceLoader.GetString("UserChannelTooMuchJoin");
             }
         }
         
@@ -32237,7 +35014,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Username");
+                return resourceLoader.GetString("Username");
             }
         }
         
@@ -32248,7 +35025,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameAvailable");
+                return resourceLoader.GetString("UsernameAvailable");
             }
         }
         
@@ -32259,7 +35036,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameChecking");
+                return resourceLoader.GetString("UsernameChecking");
             }
         }
         
@@ -32270,7 +35047,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameEmpty");
+                return resourceLoader.GetString("UsernameEmpty");
             }
         }
         
@@ -32283,7 +35060,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameHelp");
+                return resourceLoader.GetString("UsernameHelp");
             }
         }
         
@@ -32295,7 +35072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameHelpLink");
+                return resourceLoader.GetString("UsernameHelpLink");
             }
         }
         
@@ -32306,7 +35083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameInUse");
+                return resourceLoader.GetString("UsernameInUse");
             }
         }
         
@@ -32317,7 +35094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameInvalid");
+                return resourceLoader.GetString("UsernameInvalid");
             }
         }
         
@@ -32328,7 +35105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameInvalidLong");
+                return resourceLoader.GetString("UsernameInvalidLong");
             }
         }
         
@@ -32339,7 +35116,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameInvalidShort");
+                return resourceLoader.GetString("UsernameInvalidShort");
             }
         }
         
@@ -32350,7 +35127,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernameInvalidStartNumber");
+                return resourceLoader.GetString("UsernameInvalidStartNumber");
             }
         }
         
@@ -32361,7 +35138,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsernamePlaceholder");
+                return resourceLoader.GetString("UsernamePlaceholder");
             }
         }
         
@@ -32372,7 +35149,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRemovedBy");
+                return resourceLoader.GetString("UserRemovedBy");
             }
         }
         
@@ -32383,7 +35160,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestricted");
+                return resourceLoader.GetString("UserRestricted");
             }
         }
         
@@ -32394,7 +35171,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictions");
+                return resourceLoader.GetString("UserRestrictions");
             }
         }
         
@@ -32405,7 +35182,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsApplyChanges");
+                return resourceLoader.GetString("UserRestrictionsApplyChanges");
             }
         }
         
@@ -32416,7 +35193,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsApplyChangesText");
+                return resourceLoader.GetString("UserRestrictionsApplyChangesText");
             }
         }
         
@@ -32427,7 +35204,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsBlock");
+                return resourceLoader.GetString("UserRestrictionsBlock");
             }
         }
         
@@ -32438,7 +35215,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsBy");
+                return resourceLoader.GetString("UserRestrictionsBy");
             }
         }
         
@@ -32449,7 +35226,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsCanDo");
+                return resourceLoader.GetString("UserRestrictionsCanDo");
             }
         }
         
@@ -32460,7 +35237,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsChangeInfo");
+                return resourceLoader.GetString("UserRestrictionsChangeInfo");
             }
         }
         
@@ -32471,7 +35248,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsCustom");
+                return resourceLoader.GetString("UserRestrictionsCustom");
             }
         }
         
@@ -32482,7 +35259,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsDisabled");
+                return resourceLoader.GetString("UserRestrictionsDisabled");
             }
         }
         
@@ -32493,7 +35270,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsDuration");
+                return resourceLoader.GetString("UserRestrictionsDuration");
             }
         }
         
@@ -32504,7 +35281,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsEmbedLinks");
+                return resourceLoader.GetString("UserRestrictionsEmbedLinks");
             }
         }
         
@@ -32515,7 +35292,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsInviteUsers");
+                return resourceLoader.GetString("UserRestrictionsInviteUsers");
             }
         }
         
@@ -32526,7 +35303,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoChangeInfo");
+                return resourceLoader.GetString("UserRestrictionsNoChangeInfo");
             }
         }
         
@@ -32537,7 +35314,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoEmbedLinks");
+                return resourceLoader.GetString("UserRestrictionsNoEmbedLinks");
             }
         }
         
@@ -32548,7 +35325,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoInviteUsers");
+                return resourceLoader.GetString("UserRestrictionsNoInviteUsers");
             }
         }
         
@@ -32559,7 +35336,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoPinMessages");
+                return resourceLoader.GetString("UserRestrictionsNoPinMessages");
             }
         }
         
@@ -32570,7 +35347,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoRead");
+                return resourceLoader.GetString("UserRestrictionsNoRead");
             }
         }
         
@@ -32581,7 +35358,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoSend");
+                return resourceLoader.GetString("UserRestrictionsNoSend");
             }
         }
         
@@ -32592,7 +35369,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoSendMedia");
+                return resourceLoader.GetString("UserRestrictionsNoSendMedia");
             }
         }
         
@@ -32603,7 +35380,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoSendPolls");
+                return resourceLoader.GetString("UserRestrictionsNoSendPolls");
             }
         }
         
@@ -32614,7 +35391,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsNoSendStickers");
+                return resourceLoader.GetString("UserRestrictionsNoSendStickers");
             }
         }
         
@@ -32625,7 +35402,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsPinMessages");
+                return resourceLoader.GetString("UserRestrictionsPinMessages");
             }
         }
         
@@ -32636,7 +35413,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsRead");
+                return resourceLoader.GetString("UserRestrictionsRead");
             }
         }
         
@@ -32647,7 +35424,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsSend");
+                return resourceLoader.GetString("UserRestrictionsSend");
             }
         }
         
@@ -32658,7 +35435,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsSendMedia");
+                return resourceLoader.GetString("UserRestrictionsSendMedia");
             }
         }
         
@@ -32669,7 +35446,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsSendPolls");
+                return resourceLoader.GetString("UserRestrictionsSendPolls");
             }
         }
         
@@ -32680,7 +35457,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsSendStickers");
+                return resourceLoader.GetString("UserRestrictionsSendStickers");
             }
         }
         
@@ -32691,7 +35468,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsUntil");
+                return resourceLoader.GetString("UserRestrictionsUntil");
             }
         }
         
@@ -32702,7 +35479,139 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserRestrictionsUntilForever");
+                return resourceLoader.GetString("UserRestrictionsUntilForever");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountFew
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountMany
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} user"
+        /// </summary>
+        public static string UsersCountOne
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} users"
+        /// </summary>
+        public static string UsersCountOther
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountTitleFew
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountTitleMany
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} user"
+        /// </summary>
+        public static string UsersCountTitleOne
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} users"
+        /// </summary>
+        public static string UsersCountTitleOther
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountTitleTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountTitleZero
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTitleZero");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string UsersCountZero
+        {
+            get
+            {
+                return resourceLoader.GetString("UsersCountZero");
             }
         }
         
@@ -32713,7 +35622,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersFew");
+                return resourceLoader.GetString("UsersFew");
             }
         }
         
@@ -32724,7 +35633,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersMany");
+                return resourceLoader.GetString("UsersMany");
             }
         }
         
@@ -32735,7 +35644,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersOne");
+                return resourceLoader.GetString("UsersOne");
             }
         }
         
@@ -32746,7 +35655,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersOther");
+                return resourceLoader.GetString("UsersOther");
             }
         }
         
@@ -32757,7 +35666,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedFew");
+                return resourceLoader.GetString("UsersPluralizedFew");
             }
         }
         
@@ -32768,7 +35677,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedMany");
+                return resourceLoader.GetString("UsersPluralizedMany");
             }
         }
         
@@ -32779,7 +35688,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedOne");
+                return resourceLoader.GetString("UsersPluralizedOne");
             }
         }
         
@@ -32790,7 +35699,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedOther");
+                return resourceLoader.GetString("UsersPluralizedOther");
             }
         }
         
@@ -32801,7 +35710,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedTwo");
+                return resourceLoader.GetString("UsersPluralizedTwo");
             }
         }
         
@@ -32812,7 +35721,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersPluralizedZero");
+                return resourceLoader.GetString("UsersPluralizedZero");
             }
         }
         
@@ -32823,7 +35732,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersTwo");
+                return resourceLoader.GetString("UsersTwo");
             }
         }
         
@@ -32834,7 +35743,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UsersZero");
+                return resourceLoader.GetString("UsersZero");
             }
         }
         
@@ -32845,7 +35754,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("UserUnblocked");
+                return resourceLoader.GetString("UserUnblocked");
             }
         }
         
@@ -32856,7 +35765,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ViaBot");
+                return resourceLoader.GetString("ViaBot");
             }
         }
         
@@ -32867,7 +35776,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Vibrate");
+                return resourceLoader.GetString("Vibrate");
             }
         }
         
@@ -32878,7 +35787,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VibrationDefault");
+                return resourceLoader.GetString("VibrationDefault");
             }
         }
         
@@ -32889,7 +35798,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VibrationDisabled");
+                return resourceLoader.GetString("VibrationDisabled");
             }
         }
         
@@ -32900,7 +35809,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideoCaption");
+                return resourceLoader.GetString("VideoCaption");
             }
         }
         
@@ -32911,7 +35820,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideoDoesNotSupportStreaming");
+                return resourceLoader.GetString("VideoDoesNotSupportStreaming");
             }
         }
         
@@ -32922,7 +35831,18 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideoMessagesAutodownload");
+                return resourceLoader.GetString("VideoMessagesAutodownload");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Video quality is too low to change compression settings."
+        /// </summary>
+        public static string VideoQualityIsTooLow
+        {
+            get
+            {
+                return resourceLoader.GetString("VideoQualityIsTooLow");
             }
         }
         
@@ -32933,7 +35853,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosFew");
+                return resourceLoader.GetString("VideosFew");
             }
         }
         
@@ -32944,7 +35864,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosMany");
+                return resourceLoader.GetString("VideosMany");
             }
         }
         
@@ -32955,7 +35875,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosOne");
+                return resourceLoader.GetString("VideosOne");
             }
         }
         
@@ -32966,7 +35886,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosOther");
+                return resourceLoader.GetString("VideosOther");
             }
         }
         
@@ -32977,7 +35897,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedFew");
+                return resourceLoader.GetString("VideosSelectedFew");
             }
         }
         
@@ -32988,7 +35908,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedMany");
+                return resourceLoader.GetString("VideosSelectedMany");
             }
         }
         
@@ -32999,7 +35919,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedOne");
+                return resourceLoader.GetString("VideosSelectedOne");
             }
         }
         
@@ -33010,7 +35930,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedOther");
+                return resourceLoader.GetString("VideosSelectedOther");
             }
         }
         
@@ -33021,7 +35941,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedTwo");
+                return resourceLoader.GetString("VideosSelectedTwo");
             }
         }
         
@@ -33032,7 +35952,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosSelectedZero");
+                return resourceLoader.GetString("VideosSelectedZero");
             }
         }
         
@@ -33043,7 +35963,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosTwo");
+                return resourceLoader.GetString("VideosTwo");
             }
         }
         
@@ -33054,7 +35974,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VideosZero");
+                return resourceLoader.GetString("VideosZero");
             }
         }
         
@@ -33065,7 +35985,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ViewContact");
+                return resourceLoader.GetString("ViewContact");
             }
         }
         
@@ -33076,7 +35996,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ViewDetails");
+                return resourceLoader.GetString("ViewDetails");
             }
         }
         
@@ -33087,7 +36007,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ViewExceptions");
+                return resourceLoader.GetString("ViewExceptions");
             }
         }
         
@@ -33098,7 +36018,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ViewPackPreview");
+                return resourceLoader.GetString("ViewPackPreview");
             }
         }
         
@@ -33109,7 +36029,73 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Vignette");
+                return resourceLoader.GetString("Vignette");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string VoiceFew
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceFew");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string VoiceMany
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceMany");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} voice message"
+        /// </summary>
+        public static string VoiceOne
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceOne");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "{0} voice messages"
+        /// </summary>
+        public static string VoiceOther
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceOther");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string VoiceTwo
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceTwo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to ""
+        /// </summary>
+        public static string VoiceZero
+        {
+            get
+            {
+                return resourceLoader.GetString("VoiceZero");
             }
         }
         
@@ -33120,7 +36106,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipAnswerCall");
+                return resourceLoader.GetString("VoipAnswerCall");
             }
         }
         
@@ -33131,7 +36117,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipAnsweringAsAccount");
+                return resourceLoader.GetString("VoipAnsweringAsAccount");
             }
         }
         
@@ -33142,7 +36128,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipAudioRoutingBluetooth");
+                return resourceLoader.GetString("VoipAudioRoutingBluetooth");
             }
         }
         
@@ -33153,7 +36139,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipAudioRoutingEarpiece");
+                return resourceLoader.GetString("VoipAudioRoutingEarpiece");
             }
         }
         
@@ -33164,7 +36150,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipAudioRoutingSpeaker");
+                return resourceLoader.GetString("VoipAudioRoutingSpeaker");
             }
         }
         
@@ -33175,7 +36161,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipBusy");
+                return resourceLoader.GetString("VoipBusy");
             }
         }
         
@@ -33186,7 +36172,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipCallEnded");
+                return resourceLoader.GetString("VoipCallEnded");
             }
         }
         
@@ -33197,7 +36183,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipConnecting");
+                return resourceLoader.GetString("VoipConnecting");
             }
         }
         
@@ -33208,7 +36194,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipDeclineCall");
+                return resourceLoader.GetString("VoipDeclineCall");
             }
         }
         
@@ -33219,7 +36205,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipEndCall");
+                return resourceLoader.GetString("VoipEndCall");
             }
         }
         
@@ -33230,7 +36216,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipErrorUnknown");
+                return resourceLoader.GetString("VoipErrorUnknown");
             }
         }
         
@@ -33241,7 +36227,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipExchangingKeys");
+                return resourceLoader.GetString("VoipExchangingKeys");
             }
         }
         
@@ -33252,7 +36238,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipFailed");
+                return resourceLoader.GetString("VoipFailed");
             }
         }
         
@@ -33263,7 +36249,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipFeedbackCommentHint");
+                return resourceLoader.GetString("VoipFeedbackCommentHint");
             }
         }
         
@@ -33274,7 +36260,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipHangingUp");
+                return resourceLoader.GetString("VoipHangingUp");
             }
         }
         
@@ -33285,7 +36271,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipInCallBranding");
+                return resourceLoader.GetString("VoipInCallBranding");
             }
         }
         
@@ -33296,7 +36282,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipInCallBrandingWithName");
+                return resourceLoader.GetString("VoipInCallBrandingWithName");
             }
         }
         
@@ -33307,7 +36293,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipIncoming");
+                return resourceLoader.GetString("VoipIncoming");
             }
         }
         
@@ -33318,7 +36304,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipNeedMicPermission");
+                return resourceLoader.GetString("VoipNeedMicPermission");
             }
         }
         
@@ -33329,7 +36315,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipNotificationSettings");
+                return resourceLoader.GetString("VoipNotificationSettings");
             }
         }
         
@@ -33340,7 +36326,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOffline");
+                return resourceLoader.GetString("VoipOffline");
             }
         }
         
@@ -33351,7 +36337,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOfflineAirplane");
+                return resourceLoader.GetString("VoipOfflineAirplane");
             }
         }
         
@@ -33362,7 +36348,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOfflineAirplaneTitle");
+                return resourceLoader.GetString("VoipOfflineAirplaneTitle");
             }
         }
         
@@ -33373,7 +36359,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOfflineOpenSettings");
+                return resourceLoader.GetString("VoipOfflineOpenSettings");
             }
         }
         
@@ -33384,7 +36370,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOfflineTitle");
+                return resourceLoader.GetString("VoipOfflineTitle");
             }
         }
         
@@ -33395,7 +36381,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOngoingAlert");
+                return resourceLoader.GetString("VoipOngoingAlert");
             }
         }
         
@@ -33406,7 +36392,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOngoingAlertTitle");
+                return resourceLoader.GetString("VoipOngoingAlertTitle");
             }
         }
         
@@ -33417,7 +36403,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipOutgoingCall");
+                return resourceLoader.GetString("VoipOutgoingCall");
             }
         }
         
@@ -33428,7 +36414,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipPeerIncompatible");
+                return resourceLoader.GetString("VoipPeerIncompatible");
             }
         }
         
@@ -33439,7 +36425,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipPeerOutdated");
+                return resourceLoader.GetString("VoipPeerOutdated");
             }
         }
         
@@ -33450,7 +36436,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipQuickReplies");
+                return resourceLoader.GetString("VoipQuickReplies");
             }
         }
         
@@ -33461,7 +36447,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipQuickRepliesExplain");
+                return resourceLoader.GetString("VoipQuickRepliesExplain");
             }
         }
         
@@ -33472,7 +36458,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipRateCallAlert");
+                return resourceLoader.GetString("VoipRateCallAlert");
             }
         }
         
@@ -33483,7 +36469,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipRequesting");
+                return resourceLoader.GetString("VoipRequesting");
             }
         }
         
@@ -33494,7 +36480,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipRinging");
+                return resourceLoader.GetString("VoipRinging");
             }
         }
         
@@ -33505,7 +36491,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipRingtoneInfo");
+                return resourceLoader.GetString("VoipRingtoneInfo");
             }
         }
         
@@ -33516,7 +36502,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipSettingsRingtone");
+                return resourceLoader.GetString("VoipSettingsRingtone");
             }
         }
         
@@ -33527,7 +36513,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipUseLessData");
+                return resourceLoader.GetString("VoipUseLessData");
             }
         }
         
@@ -33538,7 +36524,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoipWaiting");
+                return resourceLoader.GetString("VoipWaiting");
             }
         }
         
@@ -33549,7 +36535,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteFew");
+                return resourceLoader.GetString("VoteFew");
             }
         }
         
@@ -33560,7 +36546,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteMany");
+                return resourceLoader.GetString("VoteMany");
             }
         }
         
@@ -33571,7 +36557,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteOne");
+                return resourceLoader.GetString("VoteOne");
             }
         }
         
@@ -33582,7 +36568,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteOther");
+                return resourceLoader.GetString("VoteOther");
             }
         }
         
@@ -33593,7 +36579,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteTwo");
+                return resourceLoader.GetString("VoteTwo");
             }
         }
         
@@ -33604,7 +36590,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("VoteZero");
+                return resourceLoader.GetString("VoteZero");
             }
         }
         
@@ -33615,7 +36601,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WaitingForNetwork");
+                return resourceLoader.GetString("WaitingForNetwork");
             }
         }
         
@@ -33626,7 +36612,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WaitMore");
+                return resourceLoader.GetString("WaitMore");
             }
         }
         
@@ -33637,7 +36623,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Warmth");
+                return resourceLoader.GetString("Warmth");
             }
         }
         
@@ -33648,7 +36634,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WebSessionsTitle");
+                return resourceLoader.GetString("WebSessionsTitle");
             }
         }
         
@@ -33659,7 +36645,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksFew");
+                return resourceLoader.GetString("WeeksFew");
             }
         }
         
@@ -33670,7 +36656,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksMany");
+                return resourceLoader.GetString("WeeksMany");
             }
         }
         
@@ -33681,7 +36667,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksOne");
+                return resourceLoader.GetString("WeeksOne");
             }
         }
         
@@ -33692,7 +36678,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksOther");
+                return resourceLoader.GetString("WeeksOther");
             }
         }
         
@@ -33703,7 +36689,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksTwo");
+                return resourceLoader.GetString("WeeksTwo");
             }
         }
         
@@ -33714,7 +36700,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WeeksZero");
+                return resourceLoader.GetString("WeeksZero");
             }
         }
         
@@ -33725,7 +36711,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhenConnectedOnWiFi");
+                return resourceLoader.GetString("WhenConnectedOnWiFi");
             }
         }
         
@@ -33736,7 +36722,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhenRoaming");
+                return resourceLoader.GetString("WhenRoaming");
             }
         }
         
@@ -33747,7 +36733,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhenUsingMobileData");
+                return resourceLoader.GetString("WhenUsingMobileData");
             }
         }
         
@@ -33758,7 +36744,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("White");
+                return resourceLoader.GetString("White");
             }
         }
         
@@ -33769,7 +36755,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanAddMe");
+                return resourceLoader.GetString("WhoCanAddMe");
             }
         }
         
@@ -33780,7 +36766,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanAddMeInfo");
+                return resourceLoader.GetString("WhoCanAddMeInfo");
             }
         }
         
@@ -33791,7 +36777,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanAddMembers");
+                return resourceLoader.GetString("WhoCanAddMembers");
             }
         }
         
@@ -33802,7 +36788,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanAddMembersAdmins");
+                return resourceLoader.GetString("WhoCanAddMembersAdmins");
             }
         }
         
@@ -33813,7 +36799,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanAddMembersAllMembers");
+                return resourceLoader.GetString("WhoCanAddMembersAllMembers");
             }
         }
         
@@ -33824,7 +36810,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanCallMe");
+                return resourceLoader.GetString("WhoCanCallMe");
             }
         }
         
@@ -33835,7 +36821,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WhoCanCallMeInfo");
+                return resourceLoader.GetString("WhoCanCallMeInfo");
             }
         }
         
@@ -33846,7 +36832,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WiFiUsage");
+                return resourceLoader.GetString("WiFiUsage");
             }
         }
         
@@ -33857,7 +36843,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WillUnmuteIn");
+                return resourceLoader.GetString("WillUnmuteIn");
             }
         }
         
@@ -33868,7 +36854,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WithinAMonth");
+                return resourceLoader.GetString("WithinAMonth");
             }
         }
         
@@ -33879,7 +36865,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WithinAWeek");
+                return resourceLoader.GetString("WithinAWeek");
             }
         }
         
@@ -33890,7 +36876,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WrongCountry");
+                return resourceLoader.GetString("WrongCountry");
             }
         }
         
@@ -33901,7 +36887,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WrongNumber");
+                return resourceLoader.GetString("WrongNumber");
             }
         }
         
@@ -33912,7 +36898,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsFew");
+                return resourceLoader.GetString("YearsFew");
             }
         }
         
@@ -33923,7 +36909,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsMany");
+                return resourceLoader.GetString("YearsMany");
             }
         }
         
@@ -33934,7 +36920,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsOne");
+                return resourceLoader.GetString("YearsOne");
             }
         }
         
@@ -33945,7 +36931,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsOther");
+                return resourceLoader.GetString("YearsOther");
             }
         }
         
@@ -33956,7 +36942,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsTwo");
+                return resourceLoader.GetString("YearsTwo");
             }
         }
         
@@ -33967,7 +36953,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YearsZero");
+                return resourceLoader.GetString("YearsZero");
             }
         }
         
@@ -33978,7 +36964,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Yellow");
+                return resourceLoader.GetString("Yellow");
             }
         }
         
@@ -33989,7 +36975,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Yesterday");
+                return resourceLoader.GetString("Yesterday");
             }
         }
         
@@ -34000,7 +36986,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YesterdayAt");
+                return resourceLoader.GetString("YesterdayAt");
             }
         }
         
@@ -34011,7 +36997,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YesterdayAtFormatted");
+                return resourceLoader.GetString("YesterdayAtFormatted");
             }
         }
         
@@ -34022,7 +37008,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YouBlockedUser");
+                return resourceLoader.GetString("YouBlockedUser");
             }
         }
         
@@ -34033,7 +37019,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YouCreatedBroadcastList");
+                return resourceLoader.GetString("YouCreatedBroadcastList");
             }
         }
         
@@ -34044,7 +37030,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YouHaveNewMessage");
+                return resourceLoader.GetString("YouHaveNewMessage");
             }
         }
         
@@ -34055,7 +37041,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YouLeft");
+                return resourceLoader.GetString("YouLeft");
             }
         }
         
@@ -34066,7 +37052,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourCode");
+                return resourceLoader.GetString("YourCode");
             }
         }
         
@@ -34077,7 +37063,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourContacts");
+                return resourceLoader.GetString("YourContacts");
             }
         }
         
@@ -34088,7 +37074,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmail");
+                return resourceLoader.GetString("YourEmail");
             }
         }
         
@@ -34099,7 +37085,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailAlmostThere");
+                return resourceLoader.GetString("YourEmailAlmostThere");
             }
         }
         
@@ -34110,7 +37096,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailAlmostThereText");
+                return resourceLoader.GetString("YourEmailAlmostThereText");
             }
         }
         
@@ -34121,7 +37107,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailCode");
+                return resourceLoader.GetString("YourEmailCode");
             }
         }
         
@@ -34132,7 +37118,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailCodeInfo");
+                return resourceLoader.GetString("YourEmailCodeInfo");
             }
         }
         
@@ -34143,7 +37129,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailInfo");
+                return resourceLoader.GetString("YourEmailInfo");
             }
         }
         
@@ -34154,7 +37140,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailSkip");
+                return resourceLoader.GetString("YourEmailSkip");
             }
         }
         
@@ -34165,7 +37151,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailSkipWarning");
+                return resourceLoader.GetString("YourEmailSkipWarning");
             }
         }
         
@@ -34178,7 +37164,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailSkipWarningText");
+                return resourceLoader.GetString("YourEmailSkipWarningText");
             }
         }
         
@@ -34189,7 +37175,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourEmailSuccessText");
+                return resourceLoader.GetString("YourEmailSuccessText");
             }
         }
         
@@ -34200,7 +37186,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourLocatedChannelsTooMuch");
+                return resourceLoader.GetString("YourLocatedChannelsTooMuch");
             }
         }
         
@@ -34211,7 +37197,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourName");
+                return resourceLoader.GetString("YourName");
             }
         }
         
@@ -34222,7 +37208,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourPassword");
+                return resourceLoader.GetString("YourPassword");
             }
         }
         
@@ -34233,7 +37219,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourPasswordSuccess");
+                return resourceLoader.GetString("YourPasswordSuccess");
             }
         }
         
@@ -34244,7 +37230,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourPasswordSuccessText");
+                return resourceLoader.GetString("YourPasswordSuccessText");
             }
         }
         
@@ -34255,7 +37241,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YourPhone");
+                return resourceLoader.GetString("YourPhone");
             }
         }
         
@@ -34266,29 +37252,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("YouWereKicked");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Scheduled until online"
-        /// </summary>
-        public static string MessageScheduledUntilOnline
-        {
-            get
-            {
-                return Resource.GetString("MessageScheduledUntilOnline");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Send when {0} comes online"
-        /// </summary>
-        public static string ScheduleWhenOnline
-        {
-            get
-            {
-                return Resource.GetString("ScheduleWhenOnline");
+                return resourceLoader.GetString("YouWereKicked");
             }
         }
         
@@ -34299,7 +37263,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("Wallet");
+                return resourceLoader.GetString("Wallet");
             }
         }
         
@@ -34310,7 +37274,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletScanCode");
+                return resourceLoader.GetString("WalletScanCode");
             }
         }
         
@@ -34321,7 +37285,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletQRCode");
+                return resourceLoader.GetString("WalletQRCode");
             }
         }
         
@@ -34332,7 +37296,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletScanImageNotFound");
+                return resourceLoader.GetString("WalletScanImageNotFound");
             }
         }
         
@@ -34343,7 +37307,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletScanCodeNotFound");
+                return resourceLoader.GetString("WalletScanCodeNotFound");
             }
         }
         
@@ -34354,7 +37318,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GramWallet");
+                return resourceLoader.GetString("GramWallet");
             }
         }
         
@@ -34365,7 +37329,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateMyWallet");
+                return resourceLoader.GetString("CreateMyWallet");
             }
         }
         
@@ -34376,7 +37340,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("ImportExistingWallet");
+                return resourceLoader.GetString("ImportExistingWallet");
             }
         }
         
@@ -34387,7 +37351,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCongratulations");
+                return resourceLoader.GetString("WalletCongratulations");
             }
         }
         
@@ -34400,7 +37364,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCongratulationsinfo");
+                return resourceLoader.GetString("WalletCongratulationsinfo");
             }
         }
         
@@ -34411,7 +37375,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletContinue");
+                return resourceLoader.GetString("WalletContinue");
             }
         }
         
@@ -34422,7 +37386,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletClose");
+                return resourceLoader.GetString("WalletClose");
             }
         }
         
@@ -34433,7 +37397,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWords");
+                return resourceLoader.GetString("WalletSecretWords");
             }
         }
         
@@ -34444,7 +37408,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWordsTitle");
+                return resourceLoader.GetString("WalletSecretWordsTitle");
             }
         }
         
@@ -34457,7 +37421,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWordsInfo");
+                return resourceLoader.GetString("WalletSecretWordsInfo");
             }
         }
         
@@ -34468,7 +37432,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletDone");
+                return resourceLoader.GetString("WalletDone");
             }
         }
         
@@ -34479,7 +37443,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWordsAlertTitle");
+                return resourceLoader.GetString("WalletSecretWordsAlertTitle");
             }
         }
         
@@ -34490,7 +37454,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWordsAlertText");
+                return resourceLoader.GetString("WalletSecretWordsAlertText");
             }
         }
         
@@ -34501,7 +37465,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecretWordsAlertButton");
+                return resourceLoader.GetString("WalletSecretWordsAlertButton");
             }
         }
         
@@ -34512,7 +37476,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTime");
+                return resourceLoader.GetString("WalletTestTime");
             }
         }
         
@@ -34523,7 +37487,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeTitle");
+                return resourceLoader.GetString("WalletTestTimeTitle");
             }
         }
         
@@ -34536,7 +37500,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeInfo");
+                return resourceLoader.GetString("WalletTestTimeInfo");
             }
         }
         
@@ -34547,7 +37511,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeAlertTitle");
+                return resourceLoader.GetString("WalletTestTimeAlertTitle");
             }
         }
         
@@ -34558,7 +37522,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeAlertText");
+                return resourceLoader.GetString("WalletTestTimeAlertText");
             }
         }
         
@@ -34569,7 +37533,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeAlertButtonSee");
+                return resourceLoader.GetString("WalletTestTimeAlertButtonSee");
             }
         }
         
@@ -34580,7 +37544,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestTimeAlertButtonTry");
+                return resourceLoader.GetString("WalletTestTimeAlertButtonTry");
             }
         }
         
@@ -34591,7 +37555,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletReady");
+                return resourceLoader.GetString("WalletReady");
             }
         }
         
@@ -34602,7 +37566,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletReadyInfo");
+                return resourceLoader.GetString("WalletReadyInfo");
             }
         }
         
@@ -34613,7 +37577,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletView");
+                return resourceLoader.GetString("WalletView");
             }
         }
         
@@ -34624,7 +37588,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletImportInfo");
+                return resourceLoader.GetString("WalletImportInfo");
             }
         }
         
@@ -34635,7 +37599,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletImportDontHave");
+                return resourceLoader.GetString("WalletImportDontHave");
             }
         }
         
@@ -34646,7 +37610,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletImportAlertTitle");
+                return resourceLoader.GetString("WalletImportAlertTitle");
             }
         }
         
@@ -34657,7 +37621,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletImportAlertText");
+                return resourceLoader.GetString("WalletImportAlertText");
             }
         }
         
@@ -34668,7 +37632,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTooBad");
+                return resourceLoader.GetString("WalletTooBad");
             }
         }
         
@@ -34679,7 +37643,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTooBadInfo");
+                return resourceLoader.GetString("WalletTooBadInfo");
             }
         }
         
@@ -34690,7 +37654,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTooBadEnter");
+                return resourceLoader.GetString("WalletTooBadEnter");
             }
         }
         
@@ -34701,7 +37665,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTooBadCreate");
+                return resourceLoader.GetString("WalletTooBadCreate");
             }
         }
         
@@ -34712,7 +37676,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPerfect");
+                return resourceLoader.GetString("WalletPerfect");
             }
         }
         
@@ -34723,7 +37687,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPerfectInfo");
+                return resourceLoader.GetString("WalletPerfectInfo");
             }
         }
         
@@ -34734,7 +37698,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPerfectSetPasscode");
+                return resourceLoader.GetString("WalletPerfectSetPasscode");
             }
         }
         
@@ -34745,7 +37709,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscode");
+                return resourceLoader.GetString("WalletSetPasscode");
             }
         }
         
@@ -34756,7 +37720,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeRepeat");
+                return resourceLoader.GetString("WalletSetPasscodeRepeat");
             }
         }
         
@@ -34767,7 +37731,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeOptions");
+                return resourceLoader.GetString("WalletSetPasscodeOptions");
             }
         }
         
@@ -34778,7 +37742,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeEnterCode");
+                return resourceLoader.GetString("WalletSetPasscodeEnterCode");
             }
         }
         
@@ -34789,7 +37753,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeChooseType");
+                return resourceLoader.GetString("WalletSetPasscodeChooseType");
             }
         }
         
@@ -34800,7 +37764,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscode4Digit");
+                return resourceLoader.GetString("WalletSetPasscode4Digit");
             }
         }
         
@@ -34811,7 +37775,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscode6Digit");
+                return resourceLoader.GetString("WalletSetPasscode6Digit");
             }
         }
         
@@ -34822,7 +37786,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeCustom");
+                return resourceLoader.GetString("WalletSetPasscodeCustom");
             }
         }
         
@@ -34833,7 +37797,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeError");
+                return resourceLoader.GetString("WalletSetPasscodeError");
             }
         }
         
@@ -34844,7 +37808,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSetPasscodeMinLength");
+                return resourceLoader.GetString("WalletSetPasscodeMinLength");
             }
         }
         
@@ -34855,7 +37819,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendDone");
+                return resourceLoader.GetString("WalletSendDone");
             }
         }
         
@@ -34866,7 +37830,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendDoneText");
+                return resourceLoader.GetString("WalletSendDoneText");
             }
         }
         
@@ -34877,7 +37841,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletYourBalance");
+                return resourceLoader.GetString("WalletYourBalance");
             }
         }
         
@@ -34888,7 +37852,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletReceive");
+                return resourceLoader.GetString("WalletReceive");
             }
         }
         
@@ -34899,7 +37863,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSend");
+                return resourceLoader.GetString("WalletSend");
             }
         }
         
@@ -34910,7 +37874,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCreated");
+                return resourceLoader.GetString("WalletCreated");
             }
         }
         
@@ -34921,7 +37885,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletYourAddress");
+                return resourceLoader.GetString("WalletYourAddress");
             }
         }
         
@@ -34932,7 +37896,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletFrom");
+                return resourceLoader.GetString("WalletFrom");
             }
         }
         
@@ -34943,7 +37907,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTo");
+                return resourceLoader.GetString("WalletTo");
             }
         }
         
@@ -34954,7 +37918,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletReceiveYourAddress");
+                return resourceLoader.GetString("WalletReceiveYourAddress");
             }
         }
         
@@ -34965,7 +37929,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCopyAddress");
+                return resourceLoader.GetString("WalletCopyAddress");
             }
         }
         
@@ -34976,7 +37940,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCreateInvoice");
+                return resourceLoader.GetString("WalletCreateInvoice");
             }
         }
         
@@ -34987,7 +37951,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletShareAddress");
+                return resourceLoader.GetString("WalletShareAddress");
             }
         }
         
@@ -34998,7 +37962,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletUpdatedFewSecondsAgo");
+                return resourceLoader.GetString("WalletUpdatedFewSecondsAgo");
             }
         }
         
@@ -35009,7 +37973,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletUpdatedTimeAgo");
+                return resourceLoader.GetString("WalletUpdatedTimeAgo");
             }
         }
         
@@ -35020,7 +37984,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSwipeToRefresh");
+                return resourceLoader.GetString("WalletSwipeToRefresh");
             }
         }
         
@@ -35031,7 +37995,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletReleaseToRefresh");
+                return resourceLoader.GetString("WalletReleaseToRefresh");
             }
         }
         
@@ -35042,7 +38006,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletUpdating");
+                return resourceLoader.GetString("WalletUpdating");
             }
         }
         
@@ -35053,7 +38017,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletUpdatingProgress");
+                return resourceLoader.GetString("WalletUpdatingProgress");
             }
         }
         
@@ -35064,7 +38028,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendGrams");
+                return resourceLoader.GetString("WalletSendGrams");
             }
         }
         
@@ -35075,7 +38039,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendRecipient");
+                return resourceLoader.GetString("WalletSendRecipient");
             }
         }
         
@@ -35086,7 +38050,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletEnterWalletAddress");
+                return resourceLoader.GetString("WalletEnterWalletAddress");
             }
         }
         
@@ -35097,7 +38061,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletAddressCopy");
+                return resourceLoader.GetString("WalletAddressCopy");
             }
         }
         
@@ -35108,7 +38072,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletAmount");
+                return resourceLoader.GetString("WalletAmount");
             }
         }
         
@@ -35119,7 +38083,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletComment");
+                return resourceLoader.GetString("WalletComment");
             }
         }
         
@@ -35130,7 +38094,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletInvoiceInfo");
+                return resourceLoader.GetString("WalletInvoiceInfo");
             }
         }
         
@@ -35141,7 +38105,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletShareInvoiceUrl");
+                return resourceLoader.GetString("WalletShareInvoiceUrl");
             }
         }
         
@@ -35153,7 +38117,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletShareInfo");
+                return resourceLoader.GetString("WalletShareInfo");
             }
         }
         
@@ -35165,7 +38129,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestShareInfo");
+                return resourceLoader.GetString("WalletTestShareInfo");
             }
         }
         
@@ -35176,7 +38140,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletShareInvoiceUrlInfo");
+                return resourceLoader.GetString("WalletShareInvoiceUrlInfo");
             }
         }
         
@@ -35188,7 +38152,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTestShareInvoiceUrlInfo");
+                return resourceLoader.GetString("WalletTestShareInvoiceUrlInfo");
             }
         }
         
@@ -35199,7 +38163,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCreateInvoiceTitle");
+                return resourceLoader.GetString("WalletCreateInvoiceTitle");
             }
         }
         
@@ -35210,7 +38174,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletYourInvoice");
+                return resourceLoader.GetString("WalletYourInvoice");
             }
         }
         
@@ -35221,7 +38185,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfirmation");
+                return resourceLoader.GetString("WalletConfirmation");
             }
         }
         
@@ -35232,7 +38196,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfirmationText");
+                return resourceLoader.GetString("WalletConfirmationText");
             }
         }
         
@@ -35243,7 +38207,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfirm");
+                return resourceLoader.GetString("WalletConfirm");
             }
         }
         
@@ -35254,7 +38218,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletEnterPasscode");
+                return resourceLoader.GetString("WalletEnterPasscode");
             }
         }
         
@@ -35265,7 +38229,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPasscodeLength");
+                return resourceLoader.GetString("WalletPasscodeLength");
             }
         }
         
@@ -35276,7 +38240,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendingGrams");
+                return resourceLoader.GetString("WalletSendingGrams");
             }
         }
         
@@ -35287,7 +38251,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendingGramsInfo");
+                return resourceLoader.GetString("WalletSendingGramsInfo");
             }
         }
         
@@ -35298,7 +38262,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendConfirmCredentials");
+                return resourceLoader.GetString("WalletSendConfirmCredentials");
             }
         }
         
@@ -35309,7 +38273,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletExportConfirmContinue");
+                return resourceLoader.GetString("WalletExportConfirmContinue");
             }
         }
         
@@ -35320,7 +38284,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletExportConfirmCredentials");
+                return resourceLoader.GetString("WalletExportConfirmCredentials");
             }
         }
         
@@ -35331,7 +38295,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletExport");
+                return resourceLoader.GetString("WalletExport");
             }
         }
         
@@ -35342,7 +38306,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletDelete");
+                return resourceLoader.GetString("WalletDelete");
             }
         }
         
@@ -35353,7 +38317,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSettings");
+                return resourceLoader.GetString("WalletSettings");
             }
         }
         
@@ -35364,7 +38328,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletServerSettings");
+                return resourceLoader.GetString("WalletServerSettings");
             }
         }
         
@@ -35375,7 +38339,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletChangePasscode");
+                return resourceLoader.GetString("WalletChangePasscode");
             }
         }
         
@@ -35386,7 +38350,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletDeleteTitle");
+                return resourceLoader.GetString("WalletDeleteTitle");
             }
         }
         
@@ -35397,7 +38361,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletKeystoreInvalidated");
+                return resourceLoader.GetString("WalletKeystoreInvalidated");
             }
         }
         
@@ -35408,7 +38372,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPermissionNoCamera");
+                return resourceLoader.GetString("WalletPermissionNoCamera");
             }
         }
         
@@ -35419,7 +38383,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertTitle");
+                return resourceLoader.GetString("WalletSecurityAlertTitle");
             }
         }
         
@@ -35430,7 +38394,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertTextBiometric");
+                return resourceLoader.GetString("WalletSecurityAlertTextBiometric");
             }
         }
         
@@ -35441,7 +38405,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertTextLockscreenBiometric");
+                return resourceLoader.GetString("WalletSecurityAlertTextLockscreenBiometric");
             }
         }
         
@@ -35452,7 +38416,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertTextLockscreen");
+                return resourceLoader.GetString("WalletSecurityAlertTextLockscreen");
             }
         }
         
@@ -35463,7 +38427,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertCreateContinue");
+                return resourceLoader.GetString("WalletSecurityAlertCreateContinue");
             }
         }
         
@@ -35474,7 +38438,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertImportContinue");
+                return resourceLoader.GetString("WalletSecurityAlertImportContinue");
             }
         }
         
@@ -35485,7 +38449,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSecurityAlertSetup");
+                return resourceLoader.GetString("WalletSecurityAlertSetup");
             }
         }
         
@@ -35496,7 +38460,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTouchFingerprint");
+                return resourceLoader.GetString("WalletTouchFingerprint");
             }
         }
         
@@ -35507,7 +38471,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTouchFingerprintNotRecognized");
+                return resourceLoader.GetString("WalletTouchFingerprintNotRecognized");
             }
         }
         
@@ -35518,7 +38482,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBiometricTooManyAttempts");
+                return resourceLoader.GetString("WalletBiometricTooManyAttempts");
             }
         }
         
@@ -35529,7 +38493,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendWarningTitle");
+                return resourceLoader.GetString("WalletSendWarningTitle");
             }
         }
         
@@ -35540,7 +38504,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendWarningText");
+                return resourceLoader.GetString("WalletSendWarningText");
             }
         }
         
@@ -35551,7 +38515,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendWarningSendAnyway");
+                return resourceLoader.GetString("WalletSendWarningSendAnyway");
             }
         }
         
@@ -35562,7 +38526,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendBalance");
+                return resourceLoader.GetString("WalletSendBalance");
             }
         }
         
@@ -35573,7 +38537,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletShareQr");
+                return resourceLoader.GetString("WalletShareQr");
             }
         }
         
@@ -35584,7 +38548,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransaction");
+                return resourceLoader.GetString("WalletTransaction");
             }
         }
         
@@ -35595,7 +38559,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionComment");
+                return resourceLoader.GetString("WalletTransactionComment");
             }
         }
         
@@ -35606,7 +38570,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionRecipient");
+                return resourceLoader.GetString("WalletTransactionRecipient");
             }
         }
         
@@ -35617,7 +38581,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionSender");
+                return resourceLoader.GetString("WalletTransactionSender");
             }
         }
         
@@ -35628,7 +38592,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionSendGrams");
+                return resourceLoader.GetString("WalletTransactionSendGrams");
             }
         }
         
@@ -35639,7 +38603,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionAddressCopied");
+                return resourceLoader.GetString("WalletTransactionAddressCopied");
             }
         }
         
@@ -35650,7 +38614,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletStorageFee");
+                return resourceLoader.GetString("WalletStorageFee");
             }
         }
         
@@ -35661,7 +38625,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTransactionFee");
+                return resourceLoader.GetString("WalletTransactionFee");
             }
         }
         
@@ -35672,7 +38636,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainFees");
+                return resourceLoader.GetString("WalletBlockchainFees");
             }
         }
         
@@ -35683,7 +38647,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletInsufficientGramsTitle");
+                return resourceLoader.GetString("WalletInsufficientGramsTitle");
             }
         }
         
@@ -35694,7 +38658,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletInsufficientGramsText");
+                return resourceLoader.GetString("WalletInsufficientGramsText");
             }
         }
         
@@ -35705,7 +38669,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendSameWalletText");
+                return resourceLoader.GetString("WalletSendSameWalletText");
             }
         }
         
@@ -35716,7 +38680,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendSameWalletProceed");
+                return resourceLoader.GetString("WalletSendSameWalletProceed");
             }
         }
         
@@ -35727,7 +38691,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTonLinkNoWalletText");
+                return resourceLoader.GetString("WalletTonLinkNoWalletText");
             }
         }
         
@@ -35738,7 +38702,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTonLinkNoWalletCreateWallet");
+                return resourceLoader.GetString("WalletTonLinkNoWalletCreateWallet");
             }
         }
         
@@ -35753,7 +38717,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTelegramLogout");
+                return resourceLoader.GetString("WalletTelegramLogout");
             }
         }
         
@@ -35764,7 +38728,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPendingTransactions");
+                return resourceLoader.GetString("WalletPendingTransactions");
             }
         }
         
@@ -35775,7 +38739,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletDate");
+                return resourceLoader.GetString("WalletDate");
             }
         }
         
@@ -35786,7 +38750,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletFee");
+                return resourceLoader.GetString("WalletFee");
             }
         }
         
@@ -35797,7 +38761,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletPendingWait");
+                return resourceLoader.GetString("WalletPendingWait");
             }
         }
         
@@ -35808,7 +38772,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainName");
+                return resourceLoader.GetString("WalletBlockchainName");
             }
         }
         
@@ -35819,7 +38783,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigType");
+                return resourceLoader.GetString("WalletConfigType");
             }
         }
         
@@ -35830,7 +38794,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeInfo");
+                return resourceLoader.GetString("WalletConfigTypeInfo");
             }
         }
         
@@ -35841,7 +38805,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeUrl");
+                return resourceLoader.GetString("WalletConfigTypeUrl");
             }
         }
         
@@ -35852,7 +38816,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeJson");
+                return resourceLoader.GetString("WalletConfigTypeJson");
             }
         }
         
@@ -35863,7 +38827,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeJsonHeader");
+                return resourceLoader.GetString("WalletConfigTypeJsonHeader");
             }
         }
         
@@ -35874,7 +38838,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeUrlHeader");
+                return resourceLoader.GetString("WalletConfigTypeUrlHeader");
             }
         }
         
@@ -35885,7 +38849,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeJsonHint");
+                return resourceLoader.GetString("WalletConfigTypeJsonHint");
             }
         }
         
@@ -35896,7 +38860,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletConfigTypeUrlHint");
+                return resourceLoader.GetString("WalletConfigTypeUrlHint");
             }
         }
         
@@ -35907,7 +38871,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainNameHint");
+                return resourceLoader.GetString("WalletBlockchainNameHint");
             }
         }
         
@@ -35918,7 +38882,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainNameInfo");
+                return resourceLoader.GetString("WalletBlockchainNameInfo");
             }
         }
         
@@ -35931,7 +38895,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainNameWarning");
+                return resourceLoader.GetString("WalletBlockchainNameWarning");
             }
         }
         
@@ -35942,7 +38906,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletError");
+                return resourceLoader.GetString("WalletError");
             }
         }
         
@@ -35953,7 +38917,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainConfigLoadError");
+                return resourceLoader.GetString("WalletBlockchainConfigLoadError");
             }
         }
         
@@ -35964,7 +38928,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletBlockchainConfigInvalid");
+                return resourceLoader.GetString("WalletBlockchainConfigInvalid");
             }
         }
         
@@ -35975,7 +38939,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletCreateBlockchainConfigLoadError");
+                return resourceLoader.GetString("WalletCreateBlockchainConfigLoadError");
             }
         }
         
@@ -35986,7 +38950,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletSendSyncInProgress");
+                return resourceLoader.GetString("WalletSendSyncInProgress");
             }
         }
         
@@ -35997,7 +38961,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("GramWalletInfo");
+                return resourceLoader.GetString("GramWalletInfo");
             }
         }
         
@@ -36010,7 +38974,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletDeleteInfo");
+                return resourceLoader.GetString("WalletDeleteInfo");
             }
         }
         
@@ -36021,7 +38985,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("WalletTosUrl");
+                return resourceLoader.GetString("WalletTosUrl");
             }
         }
         
@@ -36033,73 +38997,7 @@ namespace Unigram.Strings
         {
             get
             {
-                return Resource.GetString("CreateMyWalletTerms");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Input volume"
-        /// </summary>
-        public static string InputVolume
-        {
-            get
-            {
-                return Resource.GetString("InputVolume");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Output volume"
-        /// </summary>
-        public static string OutputVolume
-        {
-            get
-            {
-                return Resource.GetString("OutputVolume");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Light"
-        /// </summary>
-        public static string ThemeLight
-        {
-            get
-            {
-                return Resource.GetString("ThemeLight");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "System Theme"
-        /// </summary>
-        public static string ThemeSystemTheme
-        {
-            get
-            {
-                return Resource.GetString("ThemeSystemTheme");
-            }
-        }
-        
-        public static void Initialize()
-        {
-            string executingAssemblyName;
-            executingAssemblyName = Windows.UI.Xaml.Application.Current.GetType().AssemblyQualifiedName;
-            string[] executingAssemblySplit;
-            executingAssemblySplit = executingAssemblyName.Split(',');
-            executingAssemblyName = executingAssemblySplit[1];
-            string currentAssemblyName;
-            currentAssemblyName = typeof(Resources).AssemblyQualifiedName;
-            string[] currentAssemblySplit;
-            currentAssemblySplit = currentAssemblyName.Split(',');
-            currentAssemblyName = currentAssemblySplit[1];
-            if (executingAssemblyName.Equals(currentAssemblyName))
-            {
-                resourceLoader = ResourceLoader.GetForCurrentView("Resources");
-            }
-            else
-            {
-                resourceLoader = ResourceLoader.GetForCurrentView(currentAssemblyName + "/Resources");
+                return resourceLoader.GetString("CreateMyWalletTerms");
             }
         }
     }

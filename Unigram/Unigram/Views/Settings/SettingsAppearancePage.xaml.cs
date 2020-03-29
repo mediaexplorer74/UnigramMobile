@@ -55,7 +55,7 @@ namespace Unigram.Views.Settings
 
         private void Wallpaper_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingsWallpapersPage));
+            Frame.Navigate(typeof(SettingsBackgroundsPage));
         }
 
         private void NightMode_Click(object sender, RoutedEventArgs e)
@@ -104,6 +104,11 @@ namespace Unigram.Views.Settings
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals("FontSize"))
+            {
+                Message1.UpdateMockup();
+                Message2.UpdateMockup();
+            }
+            else if (e.PropertyName.Equals("BubbleRadius"))
             {
                 Message1.UpdateMockup();
                 Message2.UpdateMockup();

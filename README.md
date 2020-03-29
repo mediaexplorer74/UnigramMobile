@@ -10,6 +10,8 @@
     <br>
     <br>
     <a href="https://www.microsoft.com/store/apps/9NSD4T15QLFX">Download</a>
+    &middot;
+    [UnigramMobile Group on Telegram](https://t.me/UnigramMobile)
   </p>
 </p>
 
@@ -26,14 +28,22 @@ Thanks to the [Universal Windows Platform](https://docs.microsoft.com/en-us/wind
 
 <a name="features"></a>
 ## Features
-- Based on [TDLib](https://github.com/tdlib/td)
-- Secret chats
-- Instant view
-- Multi-account
-- Filter chats (users, bots, groups, channels, unread chats and unmuted chats)
-- Polls
-- Built-in app lock (fingerprint and Windows Hello authentication available)
-- Contiuum support
+- Based on [TDLib](https://github.com/tdlib/td) and [Unigram](https://github.com/UnigramDev/Unigram)
+- Contiuum Support
+- Built-in App Lock (e.g. Windows Hello Authentication)
+- Secret Chats
+- Instant View
+- Multi-Account
+- Filter Chats (Users, Bots, Groups, Channels, Unread Chats and Unmuted Chats)
+- Calls
+- Replace Sent Media Content
+- Polls 2.0
+- Backgrounds 2.0
+- Advanced Markdown Editor for Messages
+- In-App Music Player
+- Animated Stickers and Emojis
+- Scheduled and Silent Messages
+
 
 <a name="contributing"></a>
 ## Contributing

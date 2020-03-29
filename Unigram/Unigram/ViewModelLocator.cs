@@ -14,14 +14,15 @@ using Unigram.ViewModels.Chats;
 using Unigram.ViewModels.Dialogs;
 using Unigram.ViewModels.Passport;
 using Unigram.ViewModels.Payments;
-using Unigram.ViewModels.SecretChats;
 using Unigram.ViewModels.Settings;
 using Unigram.ViewModels.Settings.Password;
 using Unigram.ViewModels.Settings.Privacy;
 using Unigram.ViewModels.SignIn;
 using Unigram.ViewModels.Supergroups;
 using Unigram.ViewModels.Users;
+#if INCLUDE_WALLET
 using Unigram.ViewModels.Wallet;
+#endif
 using Unigram.Views;
 using Windows.Foundation.Metadata;
 using Windows.Storage;
@@ -97,10 +98,12 @@ namespace Unigram
                     .WithParameter("online", session == SettingsService.Current.ActiveSession)
                     .As<IProtoService, ICacheService>()
                     .SingleInstance();
+#if INCLUDE_WALLET
                 builder.RegisterType<TonService>()
                     .WithParameter("session", session)
                     .As<ITonService>()
                     .SingleInstance();
+#endif
                 builder.RegisterType<EncryptionService>()
                     .WithParameter("session", session)
                     .As<IEncryptionService>()
@@ -182,7 +185,7 @@ namespace Unigram
                 builder.RegisterType<SignInRecoveryViewModel>();
                 builder.RegisterType<MainViewModel>();//.SingleInstance();
                 builder.RegisterType<ShareViewModel>();//.SingleInstance();
-                builder.RegisterType<DialogShareLocationViewModel>().SingleInstance();
+                builder.RegisterType<SendLocationViewModel>().SingleInstance();
                 builder.RegisterType<ChatsViewModel>();//.SingleInstance();
                 builder.RegisterType<DialogViewModel>(); //.WithParameter((a, b) => a.Name == "dispatcher", (a, b) => WindowWrapper.Current().Dispatcher);
                 builder.RegisterType<DialogScheduledViewModel>();
@@ -199,20 +202,15 @@ namespace Unigram
                 builder.RegisterType<SupergroupAddAdministratorViewModel>();
                 builder.RegisterType<SupergroupAddRestrictedViewModel>();
                 builder.RegisterType<LiveLocationViewModel>();
-                builder.RegisterType<ChatInviteViewModel>();// .SingleInstance();
                 builder.RegisterType<ChatInviteLinkViewModel>();// .SingleInstance();
                 builder.RegisterType<SupergroupAdministratorsViewModel>();// .SingleInstance();
                 builder.RegisterType<SupergroupBannedViewModel>();// .SingleInstance();
                 builder.RegisterType<SupergroupPermissionsViewModel>();// .SingleInstance();
                 builder.RegisterType<SupergroupMembersViewModel>();// .SingleInstance();
                 builder.RegisterType<ChatSharedMediaViewModel>(); // .SingleInstance();
-                builder.RegisterType<UsersSelectionViewModel>(); //.SingleInstance();
                 builder.RegisterType<ChannelCreateStep1ViewModel>(); //.SingleInstance();
                 builder.RegisterType<ChannelCreateStep2ViewModel>(); //.SingleInstance();
-                builder.RegisterType<ChannelCreateStep3ViewModel>(); //.SingleInstance();
                 builder.RegisterType<BasicGroupCreateStep1ViewModel>(); //.SingleInstance();
-                builder.RegisterType<BasicGroupCreateStep2ViewModel>(); //.SingleInstance();
-                builder.RegisterType<SecretChatCreateViewModel>();
                 builder.RegisterType<InstantViewModel>(); //.SingleInstance();
                 builder.RegisterType<LogOutViewModel>().SingleInstance();
                 builder.RegisterType<SettingsViewModel>();//.SingleInstance();
@@ -226,7 +224,6 @@ namespace Unigram
                 builder.RegisterType<SettingsSessionsViewModel>();
                 builder.RegisterType<SettingsWebSessionsViewModel>();
                 builder.RegisterType<SettingsBlockedUsersViewModel>();
-                builder.RegisterType<SettingsBlockUserViewModel>();
                 builder.RegisterType<SettingsNotificationsViewModel>().SingleInstance();
                 builder.RegisterType<SettingsNotificationsExceptionsViewModel>();
                 builder.RegisterType<SettingsDataAndStorageViewModel>().SingleInstance();
@@ -259,9 +256,9 @@ namespace Unigram
                 builder.RegisterType<SettingsAppearanceViewModel>().SingleInstance();
                 builder.RegisterType<SettingsThemesViewModel>().SingleInstance();
                 builder.RegisterType<SettingsNightModeViewModel>().SingleInstance();
-                builder.RegisterType<SettingsWallpapersViewModel>();//.SingleInstance();
+                builder.RegisterType<SettingsBackgroundsViewModel>();//.SingleInstance();
                 builder.RegisterType<SettingsVoIPViewModel>();
-                builder.RegisterType<WallpaperViewModel>();
+                builder.RegisterType<BackgroundViewModel>();
                 builder.RegisterType<AttachedStickersViewModel>();
                 builder.RegisterType<ViewModels.StickerSetViewModel>();
                 builder.RegisterType<PaymentFormStep1ViewModel>();
@@ -276,6 +273,7 @@ namespace Unigram
                 builder.RegisterType<InviteViewModel>();
                 builder.RegisterType<ChatsNearbyViewModel>();
 
+#if INCLUDE_WALLET
                 builder.RegisterType<WalletViewModel>();
                 builder.RegisterType<WalletSettingsViewModel>();
                 builder.RegisterType<WalletCreateViewModel>();
@@ -288,6 +286,7 @@ namespace Unigram
                 builder.RegisterType<WalletSendingViewModel>();
                 builder.RegisterType<WalletTransactionViewModel>();
                 builder.RegisterType<WalletInfoViewModel>();
+#endif
 
                 return builder.Build();
             });

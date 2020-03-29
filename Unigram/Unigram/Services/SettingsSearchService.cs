@@ -10,7 +10,6 @@ using Unigram.ViewModels.Settings;
 using Unigram.Views;
 using Unigram.Views.Settings;
 using Unigram.Views.Settings.Privacy;
-using Unigram.Views.Wallet;
 
 namespace Unigram.Services
 {
@@ -95,7 +94,7 @@ namespace Unigram.Services
                 new SettingsSearchPage(null, Strings.Resources.Language, "\uE164"),
                 new SettingsSearchPage(null, Strings.Resources.AskAQuestion, "\uED15"),
 
-                new SettingsSearchPage(typeof(WalletPage), Strings.Resources.Wallet, "\uD83D\uDC8E")
+                //new SettingsSearchPage(typeof(WalletPage), Strings.Resources.Wallet, "\uD83D\uDC8E")
             };
 
             // FAQ indexing is done asyncronously
@@ -275,10 +274,10 @@ namespace Unigram.Services
             {
                 new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Resources.TextSizeHeader),
 
-                new SettingsSearchPage(typeof(SettingsWallpapersPage), Strings.Resources.ChatBackground, "\uE2B1", new SettingsSearchEntry[]
+                new SettingsSearchPage(typeof(SettingsBackgroundsPage), Strings.Resources.ChatBackground, "\uE2B1", new SettingsSearchEntry[]
                 {
-                    new SettingsSearchPage(typeof(SettingsWallpapersPage), Strings.Resources.SelectFromGallery),
-                    new SettingsSearchPage(typeof(SettingsWallpapersPage), Strings.Resources.SetColor)
+                    new SettingsSearchPage(typeof(SettingsBackgroundsPage), Strings.Resources.SelectFromGallery),
+                    new SettingsSearchPage(typeof(SettingsBackgroundsPage), Strings.Resources.SetColor)
                 }),
 
                 new SettingsSearchPage(typeof(SettingsNightModePage), Strings.Resources.AutoNightTheme)

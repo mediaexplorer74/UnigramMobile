@@ -115,6 +115,110 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
+  <ItemGroup Condition="$(DefineConstants.Contains('INCLUDE_WALLET'))">
+    <Compile Include="Common\TonExtensions.cs" />
+    <Compile Include="Services\TonService.cs" />
+    <Compile Include="Services\Settings\WalletSettings.cs" />
+    <Compile Include="ViewModels\Delegates\IWalletExportDelegate.cs" />
+    <Compile Include="ViewModels\Delegates\IWalletTransactionDelegate.cs" />
+    <Compile Include="ViewModels\Wallet\WalletCreateViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletExportViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletImportViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletInfoViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletReceiveViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletSendingViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletSendViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletTestViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletTransactionViewModel.cs" />
+    <Compile Include="ViewModels\Wallet\WalletViewModel.cs" />
+    <Compile Include="Selectors\RawTransactionTemplateSelector.cs" />
+    <Compile Include="Views\Wallet\WalletCreatePage.xaml.cs">
+      <DependentUpon>WalletCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletExportPage.xaml.cs">
+      <DependentUpon>WalletExportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletImportPage.xaml.cs">
+      <DependentUpon>WalletImportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletInfoPage.xaml.cs">
+      <DependentUpon>WalletInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletInvoicePage.xaml.cs">
+      <DependentUpon>WalletInvoicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletPage.xaml.cs">
+      <DependentUpon>WalletPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletReceivePage.xaml.cs">
+      <DependentUpon>WalletReceivePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletSendingPage.xaml.cs">
+      <DependentUpon>WalletSendingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletSendPage.xaml.cs">
+      <DependentUpon>WalletSendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletSettingsPage.xaml.cs">
+      <DependentUpon>WalletSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletTestPage.xaml.cs">
+      <DependentUpon>WalletTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Wallet\WalletTransactionPage.xaml.cs">
+      <DependentUpon>WalletTransactionPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\Wallet\WalletCreatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletExportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletInvoicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletReceivePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletSendingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletSendPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wallet\WalletTransactionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Animations\ChatArchivedAnimation.cs" />
     <Compile Include="Collections\IncrementalCollection.cs" />
@@ -157,7 +261,6 @@
     <Compile Include="Common\TLNavigationService.cs" />
     <Compile Include="Common\TLRootNavigationService.cs" />
     <Compile Include="Common\Toast.cs" />
-    <Compile Include="Common\TonExtensions.cs" />
     <Compile Include="Common\UniqueList.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Common\VisualUtilities.cs" />
@@ -213,6 +316,12 @@
     <Compile Include="Controls\Chats\ChatSearchTextBox.cs" />
     <Compile Include="Controls\Chats\ChatSendButton.cs" />
     <Compile Include="Controls\Chats\ChatTextBox.cs" />
+    <Compile Include="Controls\Chats\ChatTextFormatting.xaml.cs">
+      <DependentUpon>ChatTextFormatting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPicker.cs" />
+    <Compile Include="Controls\ColorTextBox.cs" />
+    <Compile Include="Controls\ConfettiView.cs" />
     <Compile Include="Controls\DialogListView.cs" />
     <Compile Include="Controls\FileButton.cs" />
     <Compile Include="Controls\FormattedTextBox.cs" />
@@ -417,8 +526,17 @@
     <Compile Include="Controls\Views\JoinChatView.xaml.cs">
       <DependentUpon>JoinChatView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Views\PollResultsView.xaml.cs">
+      <DependentUpon>PollResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Views\ScheduleMessageView.xaml.cs">
       <DependentUpon>ScheduleMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\SelectRadioView.xaml.cs">
+      <DependentUpon>SelectRadioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\SendLocationView.xaml.cs">
+      <DependentUpon>SendLocationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\SettingsEmojiSetView.xaml.cs">
       <DependentUpon>SettingsEmojiSetView.xaml</DependentUpon>
@@ -462,12 +580,6 @@
     <Compile Include="Controls\Views\SupergroupEventLogFiltersView.xaml.cs">
       <DependentUpon>SupergroupEventLogFiltersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Views\UsersPickerView.xaml.cs">
-      <DependentUpon>UsersPickerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Views\UsersSelectionView.xaml.cs">
-      <DependentUpon>UsersSelectionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\WalkthroughControl.cs" />
     <Compile Include="Controls\WebPageButton.cs" />
     <Compile Include="Controls\WrapPanel.cs" />
@@ -505,7 +617,6 @@
     <Compile Include="Selectors\ConnectionTemplateSelector.cs" />
     <Compile Include="Selectors\MemberTemplateSelector.cs" />
     <Compile Include="Selectors\MessageContentTemplateSelector.cs" />
-    <Compile Include="Selectors\RawTransactionTemplateSelector.cs" />
     <Compile Include="Selectors\StatsDataTemplateSelector.cs" />
     <Compile Include="Selectors\StickerSetTemplateSelector.cs" />
     <Compile Include="Selectors\StorageMediaTemplateSelector.cs" />
@@ -542,7 +653,6 @@
     <Compile Include="Services\Settings\PlaybackSettings.cs" />
     <Compile Include="Services\Settings\StickersSettings.cs" />
     <Compile Include="Services\Settings\VoIPSettings.cs" />
-    <Compile Include="Services\Settings\WalletSettings.cs" />
     <Compile Include="Services\Settings\WallpaperSettings.cs" />
     <Compile Include="Services\Stripe\Card.cs" />
     <Compile Include="Services\Stripe\CardUtils.cs" />
@@ -553,12 +663,11 @@
     <Compile Include="Services\Stripe\StripeToken.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\TLSerializationService.cs" />
-    <Compile Include="Services\TonService.cs" />
     <Compile Include="Services\Updates\UpdateCallDialog.cs" />
     <Compile Include="Services\Updates\UpdateChatListLayout.cs" />
+    <Compile Include="Services\Updates\UpdateConfetti.cs" />
     <Compile Include="Services\Updates\UpdatePasscodeLock.cs" />
     <Compile Include="Services\Updates\UpdatePlaybackItem.cs" />
-    <Compile Include="Services\Updates\UpdateWallpaper.cs" />
     <Compile Include="Services\VibrationService.cs" />
     <Compile Include="Services\VoIPService.cs" />
     <Compile Include="Strings\en\Additional.cs">
@@ -578,21 +687,20 @@
     <Compile Include="Triggers\FullExperienceTrigger.cs" />
     <Compile Include="Triggers\UserInteractionTrigger.cs" />
     <Compile Include="ViewModels\AttachedStickersViewModel.cs" />
+    <Compile Include="ViewModels\BackgroundViewModel.cs" />
     <Compile Include="ViewModels\BasicGroups\BasicGroupCreateStep1ViewModel.cs" />
-    <Compile Include="ViewModels\BasicGroups\BasicGroupCreateStep2ViewModel.cs" />
     <Compile Include="ViewModels\CallsViewModel.cs" />
     <Compile Include="ViewModels\Channels\ChannelCreateStep1ViewModel.cs" />
     <Compile Include="ViewModels\Channels\ChannelCreateStep2ViewModel.cs" />
-    <Compile Include="ViewModels\Channels\ChannelCreateStep3ViewModel.cs" />
     <Compile Include="ViewModels\ChatsNearbyViewModel.cs" />
     <Compile Include="ViewModels\ChatsViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatGalleryViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatInviteLinkViewModel.cs" />
-    <Compile Include="ViewModels\Chats\ChatInviteViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatPhotosViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatSearchViewModel.cs" />
     <Compile Include="ViewModels\Chats\ChatSharedMediaViewModel.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
+    <Compile Include="ViewModels\Delegates\IBackgroundDelegate.cs" />
     <Compile Include="ViewModels\Delegates\IBasicAndSupergroupDelegate.cs" />
     <Compile Include="ViewModels\Delegates\IChatsDelegate.cs" />
     <Compile Include="ViewModels\Delegates\IDelegable.cs" />
@@ -600,11 +708,7 @@
     <Compile Include="ViewModels\Delegates\ILiveLocationDelegate.cs" />
     <Compile Include="ViewModels\Delegates\ISettingsDelegate.cs" />
     <Compile Include="ViewModels\Delegates\ISupergroupEditDelegate.cs" />
-    <Compile Include="ViewModels\Delegates\IWalletExportDelegate.cs" />
-    <Compile Include="ViewModels\Delegates\IWalletTransactionDelegate.cs" />
-    <Compile Include="ViewModels\Delegates\IWallpaperDelegate.cs" />
     <Compile Include="ViewModels\DialogScheduledViewModel.cs" />
-    <Compile Include="ViewModels\Dialogs\DialogShareLocationViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\DialogStickersViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.Delegate.cs" />
     <Compile Include="ViewModels\DialogViewModel.Media.cs" />
@@ -641,7 +745,7 @@
     <Compile Include="ViewModels\Payments\PaymentFormViewModelBase.cs" />
     <Compile Include="ViewModels\Payments\PaymentReceiptViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\SecretChats\SecretChatCreateViewModel.cs" />
+    <Compile Include="ViewModels\SendLocationViewModel.cs" />
     <Compile Include="ViewModels\Settings\Password\SettingsPasswordConfirmViewModel.cs" />
     <Compile Include="ViewModels\Settings\Password\SettingsPasswordCreateViewModel.cs" />
     <Compile Include="ViewModels\Settings\Password\SettingsPasswordDoneViewModel.cs" />
@@ -655,8 +759,6 @@
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyAllowChatInvitesViewModel.cs" />
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyAllowFindingByPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyAllowP2PCallsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyAlwaysViewModel.cs" />
-    <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyNeverViewModel.cs" />
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyPhoneViewModel.cs" />
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyShowForwardedViewModel.cs" />
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyShowPhoneViewModel.cs" />
@@ -665,6 +767,7 @@
     <Compile Include="ViewModels\Settings\Privacy\SettingsPrivacyViewModelBase.cs" />
     <Compile Include="ViewModels\Settings\SettingsAdvancedViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsAppearanceViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsBackgroundsViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsDataAndStorageViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsDataAutoViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsLanguageViewModel.cs" />
@@ -678,13 +781,11 @@
     <Compile Include="ViewModels\Settings\SettingsStickersTrendingViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsThemesViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsVoIPViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingsWallpapersViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsWebSessionsViewModel.cs" />
     <Compile Include="ViewModels\ShareViewModel.cs" />
     <Compile Include="ViewModels\SignIn\SignInRecoveryViewModel.cs" />
     <Compile Include="ViewModels\SignIn\SignUpViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsBlockedUsersViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingsBlockUserViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsMasksArchivedViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsMasksViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsNotificationsViewModel.cs" />
@@ -712,36 +813,19 @@
     <Compile Include="ViewModels\Supergroups\SupergroupPermissionsViewModel.cs" />
     <Compile Include="ViewModels\TLMultipleViewModelBase.cs" />
     <Compile Include="ViewModels\TLViewModelBase.cs" />
-    <Compile Include="ViewModels\UsersSelectionViewModel.cs" />
     <Compile Include="ViewModels\Users\UserCommonChatsViewModel.cs" />
     <Compile Include="ViewModels\Users\UserCreateViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletCreateViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletExportViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletImportViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletInfoViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletInvoiceViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletReceiveViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletSendingViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletSendViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletTestViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletTransactionViewModel.cs" />
-    <Compile Include="ViewModels\Wallet\WalletViewModel.cs" />
-    <Compile Include="ViewModels\WallpaperViewModel.cs" />
+    <Compile Include="Views\BackgroundPage.xaml.cs">
+      <DependentUpon>BackgroundPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BasicGroups\BasicGroupCreateStep1Page.xaml.cs">
       <DependentUpon>BasicGroupCreateStep1Page.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BasicGroups\BasicGroupCreateStep2Page.xaml.cs">
-      <DependentUpon>BasicGroupCreateStep2Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Channels\ChannelCreateStep1Page.xaml.cs">
       <DependentUpon>ChannelCreateStep1Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Channels\ChannelCreateStep2Page.xaml.cs">
       <DependentUpon>ChannelCreateStep2Page.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Channels\ChannelCreateStep3Page.xaml.cs">
-      <DependentUpon>ChannelCreateStep3Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
@@ -754,9 +838,6 @@
     </Compile>
     <Compile Include="Views\Chats\ChatInviteLinkPage.xaml.cs">
       <DependentUpon>ChatInviteLinkPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Chats\ChatInvitePage.xaml.cs">
-      <DependentUpon>ChatInvitePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Chats\ChatSharedMediaPage.xaml.cs">
       <DependentUpon>ChatSharedMediaPage.xaml</DependentUpon>
@@ -772,9 +853,6 @@
     </Compile>
     <Compile Include="Views\DiagnosticsPage.xaml.cs">
       <DependentUpon>DiagnosticsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dialogs\DialogShareLocationPage.xaml.cs">
-      <DependentUpon>DialogShareLocationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Host\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
@@ -840,9 +918,6 @@
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SecretChats\SecretChatCreatePage.xaml.cs">
-      <DependentUpon>SecretChatCreatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Settings\Password\SettingsPasswordConfirmPage.xaml.cs">
       <DependentUpon>SettingsPasswordConfirmPage.xaml</DependentUpon>
     </Compile>
@@ -897,6 +972,9 @@
     <Compile Include="Views\Settings\SettingsAppearancePage.xaml.cs">
       <DependentUpon>SettingsAppearancePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\SettingsBackgroundsPage.xaml.cs">
+      <DependentUpon>SettingsBackgroundsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\SettingsDataAutoPage.xaml.cs">
       <DependentUpon>SettingsDataAutoPage.xaml</DependentUpon>
     </Compile>
@@ -933,9 +1011,6 @@
     <Compile Include="Views\Settings\SettingsVoIPPage.xaml.cs">
       <DependentUpon>SettingsVoIPPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings\SettingsWallpapersPage.xaml.cs">
-      <DependentUpon>SettingsWallpapersPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Settings\SettingsWebSessionsPage.xaml.cs">
       <DependentUpon>SettingsWebSessionsPage.xaml</DependentUpon>
     </Compile>
@@ -947,9 +1022,6 @@
     </Compile>
     <Compile Include="Views\Settings\SettingsBlockedUsersPage.xaml.cs">
       <DependentUpon>SettingsBlockedUsersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\SettingsBlockUserPage.xaml.cs">
-      <DependentUpon>SettingsBlockUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\SettingsMasksArchivedPage.xaml.cs">
       <DependentUpon>SettingsMasksArchivedPage.xaml</DependentUpon>
@@ -1005,45 +1077,7 @@
     <Compile Include="Views\VoIPPage.xaml.cs">
       <DependentUpon>VoIPPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Wallet\WalletCreatePage.xaml.cs">
-      <DependentUpon>WalletCreatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletExportPage.xaml.cs">
-      <DependentUpon>WalletExportPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletImportPage.xaml.cs">
-      <DependentUpon>WalletImportPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletInfoPage.xaml.cs">
-      <DependentUpon>WalletInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletInvoicePage.xaml.cs">
-      <DependentUpon>WalletInvoicePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletPage.xaml.cs">
-      <DependentUpon>WalletPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletReceivePage.xaml.cs">
-      <DependentUpon>WalletReceivePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletSendingPage.xaml.cs">
-      <DependentUpon>WalletSendingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletSendPage.xaml.cs">
-      <DependentUpon>WalletSendPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletSettingsPage.xaml.cs">
-      <DependentUpon>WalletSettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletTestPage.xaml.cs">
-      <DependentUpon>WalletTestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Wallet\WalletTransactionPage.xaml.cs">
-      <DependentUpon>WalletTransactionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WallpaperPage.xaml.cs">
-      <DependentUpon>WallpaperPage.xaml</DependentUpon>
-    </Compile>
+    <Content Include="Assets\Audio\sent.mp3" />
     <Content Include="Assets\Audio\silence.mp3" />
     <Content Include="Assets\Audio\voip_busy.mp3" />
     <Content Include="Assets\Audio\voip_connecting.mp3" />
@@ -1560,6 +1594,7 @@
     <Content Include="Assets\Animations\WalletApologiesAccepted.tgs" />
     <Content Include="Assets\Animations\WalletInitializing.tgs" />
     <Content Include="Assets\Animations\WalletSynchronization.tgs" />
+    <Content Include="Assets\Animations\Compass.tgs" />
     <None Include="Assets\Fonts\Telegram.json" />
     <PRIResource Include="Strings\uk\Additional.resw">
       <SubType>Designer</SubType>
@@ -1839,6 +1874,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\Chats\ChatTextFormatting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Gallery\EmbedUrlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2063,9 +2102,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Views\PollResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Views\ScheduleMessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\SelectRadioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\SendLocationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Views\SettingsEmojiSetView.xaml">
       <SubType>Designer</SubType>
@@ -2127,14 +2178,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Views\UsersPickerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Views\UsersSelectionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ZoomableGridViewPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2167,6 +2210,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Themes\TeachingTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ThemeGreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2179,11 +2226,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BasicGroups\BasicGroupCreateStep1Page.xaml">
+    <Page Include="Views\BackgroundPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BasicGroups\BasicGroupCreateStep2Page.xaml">
+    <Page Include="Views\BasicGroups\BasicGroupCreateStep1Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2192,10 +2239,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Channels\ChannelCreateStep2Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Channels\ChannelCreateStep3Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2215,10 +2258,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Chats\ChatInvitePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Chats\ChatSharedMediaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2234,10 +2273,6 @@
     <Page Include="Views\DiagnosticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dialogs\DialogShareLocationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Host\RootPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -2335,10 +2370,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SecretChats\SecretChatCreatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Settings\Password\SettingsPasswordConfirmPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2411,6 +2442,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Settings\SettingsBackgroundsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Settings\SettingsDataAutoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2459,10 +2494,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Settings\SettingsWallpapersPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Settings\SettingsWebSessionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2500,10 +2531,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\SettingsBlockedUsersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings\SettingsBlockUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2615,58 +2642,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Wallet\WalletCreatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletExportPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletImportPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletInvoicePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletReceivePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletSendingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletSendPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletSettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletTestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Wallet\WalletTransactionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\WallpaperPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
@@ -2676,10 +2651,10 @@
       <Version>4.1.2.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>2.5.0</Version>
+      <Version>2.6.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>2.5.0</Version>
+      <Version>2.6.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
@@ -2688,7 +2663,7 @@
       <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.3.191129002</Version>
+      <Version>2.3.191211002</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml.Core.Direct">
       <Version>2.0.180924001-prerelease</Version>
@@ -2731,7 +2706,7 @@
     <SDKReference Include="Telegram.Td.UWP, Version=1.0">
       <Name>TDLib for Universal Windows Platform</Name>
     </SDKReference>
-    <SDKReference Include="Ton.Tonlib.UWP, Version=1.0">
+    <SDKReference Include="Ton.Tonlib.UWP, Version=1.0" Condition="$(DefineConstants.Contains('INCLUDE_WALLET'))">
       <Name>Tonlib for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.18362.0">

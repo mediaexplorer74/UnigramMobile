@@ -1,4 +1,5 @@
-﻿using Telegram.Td.Api;
+﻿using System.Collections.Generic;
+using Telegram.Td.Api;
 using Windows.UI.Xaml;
 
 namespace Unigram.ViewModels.Delegates
@@ -23,7 +24,7 @@ namespace Unigram.ViewModels.Delegates
 
         void Call(MessageViewModel message);
 
-        void VotePoll(MessageViewModel message, PollOption option);
+        void VotePoll(MessageViewModel message, IList<PollOption> option);
 
         void OpenUsername(string username);
         void OpenUser(int userId);
@@ -33,6 +34,7 @@ namespace Unigram.ViewModels.Delegates
 
         void OpenUrl(string url, bool untrust);
         void OpenHashtag(string hashtag);
+        void OpenBankCardNumber(string number);
 
         void SendBotCommand(string command);
 

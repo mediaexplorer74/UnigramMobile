@@ -43,19 +43,32 @@ namespace Unigram.Controls
 
         #endregion
 
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            var size = base.ArrangeOverride(finalSize);
-            if (size.Width > 640)
-            {
-                VisualStateManager.GoToState(this, "WideState", false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, "NarrowState", false);
-            }
+        #region Radius
 
-            return size;
+        public CornerRadius Radius
+        {
+            get { return (CornerRadius)GetValue(RadiusProperty); }
+            set { SetValue(RadiusProperty, value); }
         }
+
+        public static readonly DependencyProperty RadiusProperty =
+            DependencyProperty.Register("Radius", typeof(CornerRadius), typeof(HeaderedControl), new PropertyMetadata(default));
+
+        #endregion
+
+        //protected override Size ArrangeOverride(Size finalSize)
+        //{
+        //    var size = base.ArrangeOverride(finalSize);
+        //    if (size.Width > 640)
+        //    {
+        //        VisualStateManager.GoToState(this, "WideState", false);
+        //    }
+        //    else
+        //    {
+        //        VisualStateManager.GoToState(this, "NarrowState", false);
+        //    }
+
+        //    return size;
+        //}
     }
 }

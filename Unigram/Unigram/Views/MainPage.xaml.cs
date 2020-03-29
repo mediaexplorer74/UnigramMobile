@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Telegram.Td.Api;
 using Template10.Common;
-using Template10.Services.NavigationService;
 using Unigram.Collections;
 using Unigram.Common;
 using Unigram.Controls;
@@ -23,16 +20,12 @@ using Unigram.ViewModels;
 using Unigram.ViewModels.Delegates;
 using Unigram.Views.BasicGroups;
 using Unigram.Views.Channels;
-using Unigram.Views.Chats;
 using Unigram.Views.Host;
-using Unigram.Views.Passport;
-using Unigram.Views.SecretChats;
 using Unigram.Views.Settings;
 using Unigram.Views.Supergroups;
 using Unigram.Views.Users;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Composition;
@@ -77,7 +70,8 @@ namespace Unigram.Views
         IHandle<UpdateConnectionState>,
         IHandle<UpdateOption>,
         IHandle<UpdateCallDialog>,
-        IHandle<UpdateChatListLayout>
+        IHandle<UpdateChatListLayout>,
+        IHandle<UpdateConfetti>
     {
         public MainViewModel ViewModel => DataContext as MainViewModel;
         public RootPage Root { get; set; }
@@ -116,13 +110,13 @@ namespace Unigram.Views
 
             InputPane.GetForCurrentView().Showing += (s, args) => args.EnsuredFocusedElementInView = true;
 
-            var separator = ElementCompositionPreview.GetElementVisual(Separator);
-            var visual = DropShadowEx.Attach(Separator, 20, 0.25f, separator.Compositor.CreateInsetClip(-100, 0, 19, 0));
+            //var separator = ElementCompositionPreview.GetElementVisual(Separator);
+            //var visual = DropShadowEx.Attach(Separator, 20, 0.25f, separator.Compositor.CreateInsetClip(-100, 0, 19, 0));
 
-            Separator.SizeChanged += (s, args) =>
-            {
-                visual.Size = new Vector2(20, (float)args.NewSize.Height);
-            };
+            //Separator.SizeChanged += (s, args) =>
+            //{
+            //    visual.Size = new Vector2(20, (float)args.NewSize.Height);
+            //};
 
             var folderShadow = DropShadowEx.Attach(FolderShadow, 20, 0.25f);
             FolderShadow.SizeChanged += (s, args) =>
@@ -157,6 +151,11 @@ namespace Unigram.Views
             //         StatusLabel.Text = "None";
             //     }
             // };
+
+            var show = !((TLViewModelBase)ViewModel).Settings.CollapseArchivedChats;
+
+            ArchivedChatsPanel.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+            ArchivedChatsCompactPanel.Visibility = show ? Visibility.Collapsed : Visibility.Visible;
         }
 
         ~MainPage()
@@ -443,6 +442,15 @@ namespace Unigram.Views
                 }
 
                 SettingsView.UpdateFile(update.File);
+            });
+        }
+
+        public void Handle(UpdateConfetti update)
+        {
+            this.BeginOnUIThread(() =>
+            {
+                FindName(nameof(Confetti));
+                Confetti.Start();
             });
         }
 
@@ -2009,7 +2017,7 @@ namespace Unigram.Views
                     MasterDetail.NavigationService.Navigate(typeof(BasicGroupCreateStep1Page));
                     break;
                 case RootDestination.NewSecretChat:
-                    MasterDetail.NavigationService.Navigate(typeof(SecretChatCreatePage));
+                    ViewModel.CreateSecretChatCommand.Execute();
                     break;
                 case RootDestination.NewChannel:
                     MasterDetail.NavigationService.Navigate(typeof(ChannelCreateStep1Page));
@@ -2225,14 +2233,77 @@ namespace Unigram.Views
 
             if (((TLViewModelBase)ViewModel).Settings.CollapseArchivedChats)
             {
-                flyout.CreateFlyoutItem(viewModel.ToggleArchiveCommand, Strings.Resources.AccDescrExpandPanel, new FontIcon { Glyph = "\uF164" });
+                flyout.CreateFlyoutItem(new RelayCommand(ToggleArchive), Strings.Resources.AccDescrExpandPanel, new FontIcon { Glyph = "\uF164" });
             }
             else
             {
-                flyout.CreateFlyoutItem(viewModel.ToggleArchiveCommand, Strings.Resources.AccDescrCollapsePanel, new FontIcon { Glyph = "\uF166" });
+                flyout.CreateFlyoutItem(new RelayCommand(ToggleArchive), Strings.Resources.AccDescrCollapsePanel, new FontIcon { Glyph = "\uF166" });
             }
 
             args.ShowAt(flyout, element);
+        }
+
+        private async void ToggleArchive()
+        {
+            ViewModel.ToggleArchiveCommand.Execute();
+
+            ArchivedChatsPanel.Visibility = Visibility.Visible;
+            ArchivedChatsCompactPanel.Visibility = Visibility.Visible;
+
+            await ArchivedChatsPanel.UpdateLayoutAsync();
+
+            var show = !((TLViewModelBase)ViewModel).Settings.CollapseArchivedChats;
+
+            var chats = ElementCompositionPreview.GetElementVisual(ChatsList);
+            var panel = ElementCompositionPreview.GetElementVisual(ArchivedChatsPanel);
+            var compact = ElementCompositionPreview.GetElementVisual(ArchivedChatsCompactPanel);
+
+            var batch = chats.Compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+            batch.Completed += (s, args) =>
+            {
+                chats.Offset = new Vector3();
+                panel.Offset = new Vector3();
+                compact.Offset = new Vector3();
+
+                ArchivedChatsPanel.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+                ArchivedChatsCompactPanel.Visibility = show ? Visibility.Collapsed : Visibility.Visible;
+                ChatsList.Margin = new Thickness();
+            };
+
+            var panelY = (float)ArchivedChatsPanel.ActualHeight;
+            var compactY = (float)ArchivedChatsCompactPanel.ActualHeight;
+
+            ChatsList.Margin = new Thickness(0, 0, 0, -(panelY - compactY));
+
+            float y0, y1;
+
+            if (show)
+            {
+                y0 = -(panelY - compactY);
+                y1 = 0;
+            }
+            else
+            {
+                y0 = 0;
+                y1 = -(panelY - compactY);
+            }
+
+            var offset0 = chats.Compositor.CreateVector3KeyFrameAnimation();
+            offset0.InsertKeyFrame(0, new Vector3(0, y0, 0));
+            offset0.InsertKeyFrame(1, new Vector3(0, y1, 0));
+            chats.StartAnimation("Offset", offset0);
+
+            var offset1 = chats.Compositor.CreateVector3KeyFrameAnimation();
+            offset1.InsertKeyFrame(0, new Vector3(0, show ? 0 : compactY, 0));
+            offset1.InsertKeyFrame(1, new Vector3(0, show ? compactY : 0, 0));
+            compact.StartAnimation("Offset", offset1);
+
+            var offset2 = chats.Compositor.CreateVector3KeyFrameAnimation();
+            offset2.InsertKeyFrame(0, new Vector3(0, show ? -compactY : 0, 0));
+            offset2.InsertKeyFrame(1, new Vector3(0, show ? 0 : -compactY, 0));
+            panel.StartAnimation("Offset", offset2);
+
+            batch.End();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -2426,5 +2497,13 @@ namespace Unigram.Views
         }
 
         #endregion
+
+        private void Confetti_Completed(object sender, EventArgs e)
+        {
+            this.BeginOnUIThread(() =>
+            {
+                UnloadObject(Confetti);
+            });
+        }
     }
 }

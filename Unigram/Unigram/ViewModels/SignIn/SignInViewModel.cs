@@ -21,12 +21,14 @@ namespace Unigram.ViewModels.SignIn
 {
     public class SignInViewModel : TLViewModelBase
     {
+        private readonly ISessionService _sessionService;
         private readonly ILifetimeService _lifetimeService;
         private readonly INotificationsService _notificationsService;
 
-        public SignInViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator, ILifetimeService lifecycleService, INotificationsService notificationsService)
+        public SignInViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator, ISessionService sessionService, ILifetimeService lifecycleService, INotificationsService notificationsService)
             : base(protoService, cacheService, settingsService, aggregator)
         {
+            _sessionService = sessionService;
             _lifetimeService = lifecycleService;
             _notificationsService = notificationsService;
 
@@ -180,7 +182,19 @@ namespace Unigram.ViewModels.SignIn
 
             await _notificationsService.CloseAsync();
 
-            var response = await ProtoService.SendAsync(new SetAuthenticationPhoneNumber(phoneNumber, new PhoneNumberAuthenticationSettings(false, false, false)));
+            var function = new SetAuthenticationPhoneNumber(phoneNumber, new PhoneNumberAuthenticationSettings(false, false, false));
+            var request = default(Task<BaseObject>);
+
+            if (ProtoService.AuthorizationState is AuthorizationStateWaitOtherDeviceConfirmation)
+            {
+                request = _sessionService.SetAuthenticationPhoneNumberAsync(function);
+            }
+            else
+            {
+                request = ProtoService.SendAsync(function);
+            }
+
+            var response = await request;
             if (response is Error error)
             {
                 IsLoading = false;

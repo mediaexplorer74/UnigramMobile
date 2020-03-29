@@ -48,8 +48,8 @@ namespace Unigram.Common
                 : owner.Padding.Bottom;
 
             var parentLength = reference.Orientation == Orientation.Horizontal
-                ? owner.ActualWidth
-                : owner.ActualHeight;
+                ? owner.ItemsPanelRoot.ActualWidth
+                : owner.ItemsPanelRoot.ActualHeight;
 
             FluidGridViewTriggerBase trigger = null;
 
@@ -61,9 +61,8 @@ namespace Unigram.Common
 
             if (trigger != null)
             {
-                //var itemLength = (parentLength - paddingNear - paddingFar) / itemsPerLine;
-                //var finalLength = windowSize ? windowLength : (parentLength - paddingNear - paddingFar);
-                var itemLength = trigger.GetItemLength(parentLength - paddingNear - paddingFar);
+                //var itemLength = trigger.GetItemLength(parentLength - paddingNear - paddingFar);
+                var itemLength = trigger.GetItemLength(parentLength);
 
                 if (reference.Orientation == Orientation.Horizontal)
                     reference.ItemWidth = itemLength;

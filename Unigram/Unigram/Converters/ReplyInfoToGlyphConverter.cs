@@ -46,6 +46,8 @@ namespace Unigram.Converters
         public const string Bold = "\uE8DD";
         public const string Italic = "\uE8DB";
         public const string Underline = "\uE8DC";
+        public const string Strikethrough = "\uE8DE";
+        public const string Monospace = "\uE943";
         public const string Link = "\uE71B";
 
         public const string BasicGroup = "\uE125";
@@ -108,5 +110,7 @@ namespace Unigram.Converters
         public const string Photo = "\uEB9F";
 
         public const string Statistics = "\uE9D2";
+
+        public const string Add = "\uE710";
     }
 }

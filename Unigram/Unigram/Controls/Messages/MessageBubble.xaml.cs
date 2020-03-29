@@ -166,10 +166,17 @@ namespace Unigram.Controls.Messages
 
         public void UpdateAttach(MessageViewModel message, bool wide = false)
         {
-            var topLeft = 15d;
-            var topRight = 15d;
-            var bottomRight = 15d;
-            var bottomLeft = 15d;
+            //var topLeft = 15d;
+            //var topRight = 15d;
+            //var bottomRight = 15d;
+            //var bottomLeft = 15d;
+            var radius = SettingsService.Current.Appearance.BubbleRadius;
+            var small = radius < 4 ? radius : 4;
+
+            var topLeft = radius;
+            var topRight = radius;
+            var bottomRight = radius;
+            var bottomLeft = radius;
 
             if (message.IsOutgoing && !wide)
             {
@@ -178,16 +185,16 @@ namespace Unigram.Controls.Messages
                 }
                 else if (message.IsFirst)
                 {
-                    bottomRight = 4;
+                    bottomRight = small;
                 }
                 else if (message.IsLast)
                 {
-                    topRight = 4;
+                    topRight = small;
                 }
                 else
                 {
-                    topRight = 4;
-                    bottomRight = 4;
+                    topRight = small;
+                    bottomRight = small;
                 }
             }
             else
@@ -197,16 +204,16 @@ namespace Unigram.Controls.Messages
                 }
                 else if (message.IsFirst)
                 {
-                    bottomLeft = 4;
+                    bottomLeft = small;
                 }
                 else if (message.IsLast)
                 {
-                    topLeft = 4;
+                    topLeft = small;
                 }
                 else
                 {
-                    topLeft = 4;
-                    bottomLeft = 4;
+                    topLeft = small;
+                    bottomLeft = small;
                 }
             }
 
@@ -219,10 +226,10 @@ namespace Unigram.Controls.Messages
                 }
                 else
                 {
-                    ContentPanel.CornerRadius = new CornerRadius(topLeft, topRight, 4, 4);
+                    ContentPanel.CornerRadius = new CornerRadius(topLeft, topRight, small, small);
                 }
 
-                Markup.CornerRadius = new CornerRadius(4, 4, bottomRight, bottomLeft);
+                Markup.CornerRadius = new CornerRadius(small, small, bottomRight, bottomLeft);
             }
             else if (content is MessageSticker || content is MessageVideoNote || _knockout)
             {
@@ -487,7 +494,7 @@ namespace Unigram.Controls.Messages
             message.Delegate.OpenViaBot(message.ViaBotUserId);
         }
 
-        private async void FwdFrom_Click(MessageViewModel message)
+        private void FwdFrom_Click(MessageViewModel message)
         {
             if (message.ForwardInfo?.Origin is MessageForwardOriginUser fromUser)
             {
@@ -500,7 +507,8 @@ namespace Unigram.Controls.Messages
             }
             else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
             {
-                await TLMessageDialog.ShowAsync(Strings.Resources.HidAccount, Strings.Resources.AppName, Strings.Resources.OK);
+                Window.Current.ShowTeachingTip(HeaderLabel, Strings.Resources.HidAccount);
+                //await TLMessageDialog.ShowAsync(Strings.Resources.HidAccount, Strings.Resources.AppName, Strings.Resources.OK);
             }
         }
 
@@ -948,7 +956,9 @@ namespace Unigram.Controls.Messages
                             if (entity.Type is TextEntityTypeTextUrl textUrl)
                             {
                                 data = textUrl.Url;
-                                MessageHelper.SetEntity(hyperlink, textUrl.Url);
+                                MessageHelper.SetEntityData(hyperlink, textUrl.Url);
+                                MessageHelper.SetEntityType(hyperlink, entity.Type);
+
                                 ToolTipService.SetToolTip(hyperlink, textUrl.Url);
                             }
                             else if (entity.Type is TextEntityTypeMentionName mentionName)
@@ -972,9 +982,10 @@ namespace Unigram.Controls.Messages
                             hyperlink.Foreground = GetBrush("MessageForegroundLinkBrush");
                             //hyperlink.Foreground = foreground;
 
-                            if (entity.Type is TextEntityTypeUrl || entity.Type is TextEntityTypeEmailAddress)
+                            //if (entity.Type is TextEntityTypeUrl || entity.Type is TextEntityTypeEmailAddress || entity.Type is TextEntityTypeBankCardNumber)
                             {
-                                MessageHelper.SetEntity(hyperlink, data);
+                                MessageHelper.SetEntityData(hyperlink, data);
+                                MessageHelper.SetEntityType(hyperlink, entity.Type);
                             }
 
                             span.Inlines.Add(hyperlink);
@@ -1145,6 +1156,10 @@ namespace Unigram.Controls.Messages
             else if (type is TextEntityTypeUrl)
             {
                 message.Delegate.OpenUrl(data, false);
+            }
+            else if (type is TextEntityTypeBankCardNumber)
+            {
+                message.Delegate.OpenBankCardNumber(data);
             }
         }
 
@@ -1475,6 +1490,7 @@ namespace Unigram.Controls.Messages
         public void UpdateMockup()
         {
             Span.FontSize = (double)App.Current.Resources["MessageFontSize"];
+            ContentPanel.CornerRadius = new CornerRadius(SettingsService.Current.Appearance.BubbleRadius);
         }
 
         private void UpdateMockup(bool outgoing, bool first, bool last)
@@ -1763,6 +1779,35 @@ namespace Unigram.Controls.Messages
             KnockoutMask.Segments.Add(new LineSegment { Point = new Point(bottomLeft + left, height - bottom) });
             KnockoutMask.Segments.Add(new ArcSegment { Point = new Point(left, height - bottomLeft - bottom), Size = new Size(bottomLeft, bottomLeft), SweepDirection = SweepDirection.Clockwise });
             //KnockoutMask.Segments.Add(new LineSegment { Point = new Point(1, topLeft + 1) });
+        }
+
+        private ScrollViewer _scrollingHost;
+        private FrameworkElement _background;
+
+        public void UpdateKnockout(ScrollViewer scrollingHost, FrameworkElement background)
+        {
+            _scrollingHost = scrollingHost;
+            _background = background;
+        }
+
+        private void OnLayoutUpdated(object sender, object e)
+        {
+            if (_background == null)
+            {
+                return;
+            }
+
+            var transform = this.TransformToVisual(_background);
+            var point = transform.TransformPoint(new Point());
+
+            var properties = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(_scrollingHost);
+            var visual = ElementCompositionPreview.GetElementVisual(ContentPanel);
+
+            var offset = Window.Current.Compositor.CreateExpressionAnimation(point.Y + " + scrollViewer.Translation.Y");
+            offset.SetReferenceParameter("scrollViewer", properties);
+
+            visual.StopAnimation("Offset.Y");
+            visual.StartAnimation("Offset.Y", offset);
         }
     }
 }

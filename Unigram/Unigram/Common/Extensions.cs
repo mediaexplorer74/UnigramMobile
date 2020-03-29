@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -47,9 +48,39 @@ namespace Unigram.Common
             return result.TrimEnd('&');
         }
 
+        public static Vector2 GetActualSize(this FrameworkElement element)
+        {
+            return new Vector2((float)element.ActualWidth, (float)element.ActualHeight);
+        }
+
+        public static void ShowTeachingTip(this Window app, FrameworkElement target, string text, Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode placement = Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode.TopRight)
+        {
+            var tip = new Microsoft.UI.Xaml.Controls.TeachingTip
+            {
+                Target = target,
+                PreferredPlacement = placement,
+                IsLightDismissEnabled = true,
+                Subtitle = text
+            };
+            if (app.Content is FrameworkElement element)
+            {
+                element.Resources["TeachingTip"] = tip;
+            }
+            else
+            {
+                target.Resources["TeachinTip"] = tip;
+            }
+            tip.IsOpen = true;
+        }
+
         public static Color ToColor(this int color)
         {
             return Color.FromArgb(0xFF, (byte)((color >> 16) & 0xFF), (byte)((color >> 8) & 0xFF), (byte)(color & 0xFF));
+        }
+
+        public static int ToValue(this Color color)
+        {
+            return (color.R << 16) + (color.G << 8) + color.B;
         }
 
         public static int ToTimestamp(this DateTime dateTime)

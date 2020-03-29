@@ -35,6 +35,7 @@ using Windows.UI.Xaml.Automation.Provider;
 using Unigram.Controls.Cells;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Unigram.Services;
 
 namespace Unigram.Controls.Views
 {
@@ -51,6 +52,8 @@ namespace Unigram.Controls.Views
             PrimaryButtonText = Strings.Resources.Send;
             SecondaryButtonText = Strings.Resources.Close;
 
+            ViewModel.PropertyChanged += OnPropertyChanged;
+
             var observable = Observable.FromEventPattern<TextChangedEventArgs>(SearchField, "TextChanged");
             var throttled = observable.Throttle(TimeSpan.FromMilliseconds(Constants.TypingTimeout)).ObserveOnDispatcher().Subscribe(async x =>
             {
@@ -65,6 +68,15 @@ namespace Unigram.Controls.Views
             if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
             {
                 MenuFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
+            }
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (string.Equals(e.PropertyName, "PreSelectedItems", StringComparison.OrdinalIgnoreCase))
+            {
+                ChatsPanel.SelectedItems.Clear();
+                ChatsPanel.SelectedItems.AddRange(ViewModel.SelectedItems);
             }
         }
 
@@ -87,12 +99,51 @@ namespace Unigram.Controls.Views
             return context;
         }
 
+        public static async Task<Chat> PickChatAsync(string title)
+        {
+            var dialog = GetForCurrentView();
+            dialog.ViewModel.Title = title;
+
+            var confirm = await dialog.PickAsync(new long[0], SearchChatsType.Private, ListViewSelectionMode.Single);
+            if (confirm != ContentDialogResult.Primary)
+            {
+                return null;
+            }
+
+            return dialog.ViewModel.SelectedItems.FirstOrDefault();
+        }
+
+        public static async Task<User> PickUserAsync(ICacheService cacheService, string title)
+        {
+            return cacheService.GetUser(await PickChatAsync(title));
+        }
+
+        public static async Task<IList<Chat>> PickChatsAsync(string title, long[] selected)
+        {
+            var dialog = GetForCurrentView();
+            dialog.ViewModel.Title = title;
+
+            var confirm = await dialog.PickAsync(selected, SearchChatsType.Private);
+            if (confirm != ContentDialogResult.Primary)
+            {
+                return null;
+            }
+
+            return dialog.ViewModel.SelectedItems.ToList();
+        }
+
+        public static async Task<IList<User>> PickUsersAsync(ICacheService cacheService, string title)
+        {
+            return (await PickChatsAsync(title, new long[0]))?.Select(x => cacheService.GetUser(x)).Where(x => x != null).ToList();
+        }
+
         public Task<ContentDialogResult> ShowAsync(DataPackageView package)
         {
             ChatsPanel.SelectionMode = ListViewSelectionMode.Single;
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = false;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.Package = package;
@@ -106,6 +157,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = false;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.SwitchInline = switchInline;
@@ -120,6 +172,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = true;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.SendMessage = message;
@@ -134,6 +187,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = true;
             ViewModel.IsSendAsCopyEnabled = true;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.Messages = new[] { message };
@@ -181,6 +235,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = true;
             ViewModel.IsSendAsCopyEnabled = true;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.Messages = messages;
@@ -195,6 +250,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = true;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.ShareLink = link;
@@ -209,6 +265,7 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.Post;
             ViewModel.IsCommentEnabled = true;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.InputMedia = inputMedia;
@@ -227,10 +284,25 @@ namespace Unigram.Controls.Views
             ViewModel.SearchType = SearchChatsType.BasicAndSupergroups;
             ViewModel.IsCommentEnabled = false;
             ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = false;
 
             ViewModel.Clear();
             ViewModel.InviteBot = bot;
             ViewModel.InviteToken = token;
+
+            return ShowAsync();
+        }
+
+        public Task<ContentDialogResult> PickAsync(IList<long> selectedItems, SearchChatsType type, ListViewSelectionMode selectionMode = ListViewSelectionMode.Multiple)
+        {
+            ChatsPanel.SelectionMode = selectionMode;
+            ViewModel.SearchType = type;
+            ViewModel.IsCommentEnabled = false;
+            ViewModel.IsSendAsCopyEnabled = false;
+            ViewModel.IsChatSelection = true;
+
+            ViewModel.Clear();
+            ViewModel.PreSelectedItems = selectedItems;
 
             return ShowAsync();
         }
@@ -258,7 +330,7 @@ namespace Unigram.Controls.Views
         {
             if (args.ItemContainer == null)
             {
-                args.ItemContainer = new TextGridViewItem();
+                args.ItemContainer = new TextListViewItem();
                 args.ItemContainer.Style = ChatsPanel.ItemContainerStyle;
                 args.ItemContainer.ContentTemplate = ChatsPanel.ItemTemplate;
             }
@@ -273,13 +345,13 @@ namespace Unigram.Controls.Views
                 return;
             }
 
-            var content = args.ItemContainer.ContentTemplateRoot as StackPanel;
+            var content = args.ItemContainer.ContentTemplateRoot as Grid;
             var chat = args.Item as Chat;
 
             var photo = content.Children[0] as ProfilePicture;
             var title = content.Children[1] as TextBlock;
 
-            photo.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, chat, 48);
+            photo.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, chat, 36);
             title.Text = ViewModel.ProtoService.GetTitle(chat);
         }
 
@@ -542,8 +614,6 @@ namespace Unigram.Controls.Views
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ViewModel.SelectedItems = new MvxObservableCollection<Chat>(ChatsPanel.SelectedItems.Cast<Chat>());
-            Subtitle.Visibility = ViewModel.SelectedItems.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-            Subtitle.Text = string.Join(", ", ViewModel.SelectedItems.Select(x => ViewModel.CacheService.GetTitle(x)));
 
             CommentPanel.Visibility = ViewModel.SelectedItems.Count > 0 && ViewModel.IsCommentEnabled ? Visibility.Visible : Visibility.Collapsed;
 
