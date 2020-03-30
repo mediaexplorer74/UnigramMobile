@@ -598,12 +598,12 @@ namespace Unigram.Views
             var opacity1 = visual.Compositor.CreateScalarKeyFrameAnimation();
             opacity1.InsertKeyFrame(show ? 0 : 1, 0);
             opacity1.InsertKeyFrame(show ? 1 : 0, 1);
-            opacity1.Duration /= 2;
+            opacity1.Duration = TimeSpan.FromTicks(opacity1.Duration.Ticks / 2); // newer Framework / language is able to do that: opacity1.Duration /= 2; 
 
             var opacity2 = visual.Compositor.CreateScalarKeyFrameAnimation();
             opacity2.InsertKeyFrame(show ? 0 : 1, 1);
             opacity2.InsertKeyFrame(show ? 1 : 0, 0);
-            opacity2.Duration /= 2;
+            opacity2.Duration = TimeSpan.FromTicks(opacity2.Duration.Ticks / 2); //opacity2.Duration /= 2;
 
             header.StartAnimation("Offset", offset);
             visual.StartAnimation("Offset", offset);
