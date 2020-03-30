@@ -17,6 +17,8 @@
         public const string WallpaperColorFileName = "wallpaper.color.jpg";
         public const int WallpaperLocalId = -1;
 
+        public const int ChatListFilterAll = -1;
+
         public static readonly string[] TelegramHosts = new string[]
         {
             "telegram.me",

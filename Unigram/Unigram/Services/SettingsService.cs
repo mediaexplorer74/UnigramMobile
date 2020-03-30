@@ -26,7 +26,7 @@ namespace Unigram.Services
 #endif
         AutoDownloadSettings AutoDownload { get; set; }
         AppearanceSettings Appearance { get; }
-        WallpaperSettings Wallpaper { get; }
+        FiltersSettings Filters { get; }
         PasscodeLockSettings PasscodeLock { get; }
         PlaybackSettings Playback { get; }
 
@@ -313,12 +313,12 @@ namespace Unigram.Services
             }
         }
 
-        private WallpaperSettings _wallpaper;
-        public WallpaperSettings Wallpaper
+        private FiltersSettings _filters;
+        public FiltersSettings Filters
         {
             get
             {
-                return _wallpaper = _wallpaper ?? new WallpaperSettings(_container);
+                return _filters = _filters ?? new FiltersSettings(_container);
             }
         }
 

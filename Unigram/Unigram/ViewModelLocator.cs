@@ -12,6 +12,7 @@ using Unigram.ViewModels.BasicGroups;
 using Unigram.ViewModels.Channels;
 using Unigram.ViewModels.Chats;
 using Unigram.ViewModels.Dialogs;
+using Unigram.ViewModels.Filters;
 using Unigram.ViewModels.Passport;
 using Unigram.ViewModels.Payments;
 using Unigram.ViewModels.Settings;
@@ -143,7 +144,6 @@ namespace Unigram
                 builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
                 builder.RegisterType<ContactsService>().As<IContactsService>().SingleInstance();
-                builder.RegisterType<LiveLocationService>().As<ILiveLocationService>().SingleInstance();
                 builder.RegisterType<LocationService>().As<ILocationService>().SingleInstance();
                 //builder.RegisterType<HardwareService>().As<IHardwareService>().SingleInstance();
                 builder.RegisterType<PlaybackService>().As<IPlaybackService>().SingleInstance();
@@ -272,6 +272,8 @@ namespace Unigram
                 builder.RegisterType<PassportAddressViewModel>();
                 builder.RegisterType<InviteViewModel>();
                 builder.RegisterType<ChatsNearbyViewModel>();
+                builder.RegisterType<FiltersViewModel>();
+                builder.RegisterType<FilterViewModel>();
 
 #if INCLUDE_WALLET
                 builder.RegisterType<WalletViewModel>();
