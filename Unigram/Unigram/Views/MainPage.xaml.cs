@@ -2722,7 +2722,7 @@ namespace Unigram.Views
             }
             else if (filter == ChatListFilterFlags.IncludeNonContacts)
             {
-                return Icons.Help;
+                return Icons.Admin; //TODO Help;
             }
             else if (filter == ChatListFilterFlags.IncludeLargeGroups)
             {
