@@ -7,7 +7,7 @@ using Telegram.Td.Api;
 using Unigram.Common;
 using Unigram.Controls;
 using Unigram.Converters;
-using Unigram.ViewModels.Filters;
+using Unigram.ViewModels.Folders;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,16 +18,16 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Unigram.Views.Filters
+namespace Unigram.Views.Folders
 {
-    public sealed partial class FilterPage : Page
+    public sealed partial class FolderPage : Page
     {
-        public FilterViewModel ViewModel => DataContext as FilterViewModel;
+        public FolderViewModel ViewModel => DataContext as FolderViewModel;
 
-        public FilterPage()
+        public FolderPage()
         {
             InitializeComponent();
-            DataContext = TLContainer.Current.Resolve<FilterViewModel>();
+            DataContext = TLContainer.Current.Resolve<FolderViewModel>();
         }
 
         private void OnElementPrepared(Microsoft.UI.Xaml.Controls.ItemsRepeater sender, Microsoft.UI.Xaml.Controls.ItemsRepeaterElementPreparedEventArgs args)
@@ -48,7 +48,35 @@ namespace Unigram.Views.Filters
             }
             else if (element is FilterFlag flag)
             {
-                title.Text = Enum.GetName(typeof(ChatListFilterFlags), flag.Flag);
+                switch (flag.Flag)
+                {
+                    case ChatListFilterFlags.IncludeContacts:
+                        title.Text = Strings.Resources.FilterContacts;
+                        break;
+                    case ChatListFilterFlags.IncludeNonContacts:
+                        title.Text = Strings.Resources.FilterNonContacts;
+                        break;
+                    case ChatListFilterFlags.IncludeGroups:
+                        title.Text = Strings.Resources.FilterGroups;
+                        break;
+                    case ChatListFilterFlags.IncludeChannels:
+                        title.Text = Strings.Resources.FilterChannels;
+                        break;
+                    case ChatListFilterFlags.IncludeBots:
+                        title.Text = Strings.Resources.FilterBots;
+                        break;
+
+                    case ChatListFilterFlags.ExcludeMuted:
+                        title.Text = Strings.Resources.FilterMuted;
+                        break;
+                    case ChatListFilterFlags.ExcludeRead:
+                        title.Text = Strings.Resources.FilterRead;
+                        break;
+                    case ChatListFilterFlags.ExcludeArchived:
+                        title.Text = Strings.Resources.FilterArchived;
+                        break;
+                }
+
                 photo.Source = PlaceholderHelper.GetGlyph(MainPage.GetFilterIcon(flag.Flag), (int)flag.Flag, 36);
             }
 
