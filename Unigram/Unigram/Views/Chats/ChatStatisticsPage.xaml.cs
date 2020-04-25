@@ -150,7 +150,7 @@ namespace Unigram.Views.Chats
             border.Children.Add(chartView);
             checks.Children.Clear();
 
-            chartView.Loaded += (s, args) =>
+            chartView.Loaded += (s, myargs) =>
             {
                 chartView.SetDataPublic(data.chartData);
 
