@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using Unigram.Common;
@@ -30,11 +30,13 @@ namespace Unigram.Services
         PasscodeLockSettings PasscodeLock { get; }
         PlaybackSettings Playback { get; }
 
+        DiagnosticsSettings Diagnostics { get; }
+
         int UserId { get; set; }
 
         string FilesDirectory { get; set; }
 
-        int VerbosityLevel { get; }
+        int VerbosityLevel { get; set; }
         bool UseTestDC { get; set; }
 
         bool UseThreeLinesLayout { get; set; }
@@ -187,8 +189,8 @@ namespace Unigram.Services
 
 #region App version
 
-        public const ulong CurrentVersion = (3UL << 48) | (14UL << 32) | (2665UL << 16);
-        public const string CurrentChangelog = "� Enjoy rich text editing capabilites by right clicking on Chat input > Formatting > Show formatting";
+        public const ulong CurrentVersion = (3UL << 48) | (15UL << 32) | (3073UL << 16);
+        public const string CurrentChangelog = "Quizzes 2.0\r\n• Add explanations that appear after users respond to a quiz question. \r\n• See how much time you have left to answer a question from @QuizBot with the new countdown animation.\r\n\r\nAnimated Darts\r\n• Send a single dart 🎯 emoji to see if you hit bullseye.";
         public const bool CurrentMedia = false;
 
         public int Session => _session;
@@ -488,7 +490,7 @@ namespace Unigram.Services
             set
             {
                 _isLaunchMinimized = value;
-                AddOrUpdateValue(_local, "IsTrayVisible", value);
+                AddOrUpdateValue(_local, "IsLaunchMinimized", value);
             }
         }
 
