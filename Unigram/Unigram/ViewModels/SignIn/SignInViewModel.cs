@@ -64,11 +64,11 @@ namespace Unigram.ViewModels.SignIn
                         var camera = json.GetNamedBoolean("qr_login_camera", false);
                         var code = json.GetNamedString("qr_login_code", "disabled");
 
-                        if (camera && Enum.TryParse(code, true, out QrCodeMode mode))
+                        if (camera && Enum.TryParse(code, true, out QrCodeMode qrmode))
                         {
-                            BeginOnUIThread(() => Delegate?.UpdateQrCodeMode(mode));
+                            BeginOnUIThread(() => Delegate?.UpdateQrCodeMode(qrmode));
 
-                            if (mode == QrCodeMode.Primary)
+                            if (qrmode == QrCodeMode.Primary)
                             {
                                 ProtoService.Send(new RequestQrCodeAuthentication());
                             }
