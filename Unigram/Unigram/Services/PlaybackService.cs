@@ -14,6 +14,7 @@ using Windows.Foundation.Metadata;
 using Windows.Media;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.Phone.Media.Devices;
 using Windows.Storage;
 
 namespace Unigram.Services

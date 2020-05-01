@@ -22,6 +22,7 @@ using Unigram.ViewModels.Users;
 using Unigram.ViewModels.Wallet;
 #endif
 using Unigram.Views;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 
 namespace Unigram

@@ -8,6 +8,7 @@ using Unigram.Services.Navigation;
 using Unigram.Services.ViewService;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
