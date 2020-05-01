@@ -507,10 +507,10 @@
                                                                       MaxWidth="{Binding ActualWidth, ElementName=ChatTabs}"
                                                                       IsBackButtonVisible="Collapsed" IsBackEnabled="False" IsSettingsVisible="False">
                                                 <microsoft:NavigationView.MenuItemTemplate>
-                                                    <DataTemplate x:DataType="td:ChatListFilter">
+                                                    <DataTemplate x:DataType="td:ChatListFolder">
                                                         <TextBlock
                                                             Text="{x:Bind Title}"
-                                                            ContextRequested="ChatListFilter_ContextRequested"/>
+                                                            ContextRequested="ChatListFolder_ContextRequested"/>
                                                     </DataTemplate>
                                                 </microsoft:NavigationView.MenuItemTemplate>
                                             </microsoft:NavigationView>

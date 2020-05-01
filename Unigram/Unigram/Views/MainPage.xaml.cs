@@ -2156,7 +2156,7 @@ namespace Unigram.Views
             SettingsView.EditName_Click(sender, e);
         }
 
-        private void SetFilter(ChatListFilter filter)
+        private void SetFilter(ChatListFolder filter)
         {
             ViewModel.SelectedFilter = filter;
 
@@ -2236,7 +2236,7 @@ namespace Unigram.Views
             SetFolder(new ChatListArchive());
         }
 
-        private void ChatListFilter_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
+        private void ChatListFolder_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
             var viewModel = ViewModel;
             if (viewModel == null)
@@ -2247,7 +2247,7 @@ namespace Unigram.Views
             var flyout = new MenuFlyout();
 
             var element = sender as FrameworkElement;
-            var filter = element.Tag as ChatListFilter;
+            var filter = element.Tag as ChatListFolder;
 
             if (filter.Id == Constants.ChatListFilterAll)
             {
@@ -2659,7 +2659,7 @@ namespace Unigram.Views
 //            flyout.ShowAt(ChatsFilters);
 //        }
 
-        public static string GetFilterIcon(ChatListFilter filter)
+        public static string GetFilterIcon(ChatListFolder filter)
         {
             if (filter.ExcludeMuted && filter.IncludeAll())
             {
@@ -2730,7 +2730,7 @@ namespace Unigram.Views
         private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (//Works only as intended without More-Menu: args.SelectedItemContainer != null && // filter DataBinding (OneWay)
-                args.SelectedItem is ChatListFilter filter)
+                args.SelectedItem is ChatListFolder filter)
             {
                 SetFilter(filter.Id == Constants.ChatListFilterAll ? null : filter);
             }
