@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using Unigram.Common;
 using Unigram.Navigation;
 using Unigram.Services;
 using Unigram.Services.Navigation;
@@ -75,7 +75,7 @@ namespace Unigram.Controls
             }
         }
 
-        private void OnBackRequested(object sender, HandledEventArgs args)
+        private void OnBackRequested(object sender, HandledRoutedEventArgs args)
         {
             //var type = BackStackType.Navigation;
             //if (_backStack.Count > 0)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using Unigram.Common;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Telegram.Td.Api;
 using Unigram.Navigation;
@@ -127,7 +127,7 @@ namespace Unigram.Controls.Gallery
             Presenter.Child = _surface = new WebView { Source = new Uri(webPage.EmbedUrl) };
         }
 
-        public void OnBackRequesting(HandledEventArgs e)
+        public void OnBackRequesting(HandledRoutedEventArgs e)
         {
             //Unload();
             //Dispose();
@@ -135,7 +135,7 @@ namespace Unigram.Controls.Gallery
             e.Handled = true;
         }
 
-        protected override void OnBackRequestedOverride(object sender, HandledEventArgs e)
+        protected override void OnBackRequestedOverride(object sender, HandledRoutedEventArgs e)
         {
             //var container = GetContainer(0);
             //var root = container.Presenter;
@@ -240,7 +240,7 @@ namespace Unigram.Controls.Gallery
         {
             if (_window == null)
             {
-                OnBackRequestedOverride(this, new HandledEventArgs());
+                OnBackRequestedOverride(this, new HandledRoutedEventArgs());
 
                 // Create a new AppWindow
                 _window = await AppWindow.TryCreateAsync();

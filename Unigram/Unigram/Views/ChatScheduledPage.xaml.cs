@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
+using Unigram.Common;
 using Unigram.Navigation;
 using Unigram.ViewModels;
 using Unigram.ViewModels.Delegates;
@@ -22,7 +22,7 @@ namespace Unigram.Views
         }
 
 
-        public void OnBackRequested(HandledEventArgs args)
+        public void OnBackRequested(HandledRoutedEventArgs args)
         {
             View.OnBackRequested(args);
         }

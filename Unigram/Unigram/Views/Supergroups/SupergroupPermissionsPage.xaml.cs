@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Reactive.Linq;
 using Telegram.Td.Api;
 using Unigram.Common;
@@ -62,7 +61,7 @@ namespace Unigram.Views.Supergroups
             Grid.SetColumnSpan(Slowmode, SlowmodeTicks.ColumnDefinitions.Count);
         }
 
-        public void OnBackRequested(HandledEventArgs args)
+        public void OnBackRequested(HandledRoutedEventArgs args)
         {
             if (ContentPanel.Visibility == Visibility.Collapsed)
             {

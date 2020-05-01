@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unigram.Navigation;
-using Unigram.Services.Settings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Unigram.Services.Serialization;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml.Media;
 using System.Diagnostics;
-using System.ComponentModel;
+using Unigram.Common;
 
 namespace Unigram.Services.Navigation
 {
@@ -43,8 +41,8 @@ namespace Unigram.Services.Navigation
             FrameId = id;
         }
 
-        public event EventHandler<HandledEventArgs> BackRequested;
-        public void RaiseBackRequested(HandledEventArgs args)
+        public event EventHandler<HandledRoutedEventArgs> BackRequested;
+        public void RaiseBackRequested(HandledRoutedEventArgs args)
         {
             BackRequested?.Invoke(this, args);
 
@@ -54,8 +52,8 @@ namespace Unigram.Services.Navigation
             }
         }
 
-        public event EventHandler<HandledEventArgs> ForwardRequested;
-        public void RaiseForwardRequested(HandledEventArgs args)
+        public event EventHandler<HandledRoutedEventArgs> ForwardRequested;
+        public void RaiseForwardRequested(HandledRoutedEventArgs args)
         {
             ForwardRequested?.Invoke(this, args);
 

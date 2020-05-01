@@ -278,19 +278,18 @@ namespace Unigram.Navigation
         {
             DebugWrite();
 
-            //var handled = false;
-            //if (ApiInformation.IsApiContractPresent(nameof(Windows.Phone.PhoneContract), 1, 0))
-            //{
-            //    if (NavigationService?.CanGoBack == true)
-            //    {
-            //        handled = true;
-            //    }
-            //}
-            //else
-            //{
-            //    handled = (NavigationService?.CanGoBack == false);
-            //}
-            var handled = NavigationService?.CanGoBack == false;
+            var handled = false;
+            if (ApiInformation.IsApiContractPresent(nameof(Windows.Phone.PhoneContract), 1, 0))
+            {
+                if (NavigationService?.CanGoBack == true)
+                {
+                    handled = true;
+                }
+            }
+            else
+            {
+                handled = (NavigationService?.CanGoBack == false);
+            }
 
             RaiseBackRequested(Windows.System.VirtualKey.GoBack, ref handled);
             args.Handled = handled;
@@ -314,7 +313,7 @@ namespace Unigram.Navigation
         {
             DebugWrite();
 
-            var args = new HandledEventArgs();
+            var args = new HandledRoutedEventArgs();
             BackRequested?.Invoke(null, args);
             if (handled = args.Handled)
                 return;
@@ -368,13 +367,13 @@ namespace Unigram.Navigation
         }
 
         // this event precedes the in-frame event by the same name
-        public static event EventHandler<HandledEventArgs> BackRequested;
+        public static event EventHandler<HandledRoutedEventArgs> BackRequested;
 
         private void RaiseForwardRequested()
         {
             DebugWrite();
 
-            var args = new HandledEventArgs();
+            var args = new HandledRoutedEventArgs();
             ForwardRequested?.Invoke(null, args);
             if (args.Handled)
                 return;
@@ -402,7 +401,7 @@ namespace Unigram.Navigation
         public event EventHandler ShellBackButtonUpdated;
 
         // this event precedes the in-frame event by the same name
-        public static event EventHandler<HandledEventArgs> ForwardRequested;
+        public static event EventHandler<HandledRoutedEventArgs> ForwardRequested;
 
         #region overrides
 
@@ -872,12 +871,12 @@ namespace Unigram.Navigation
 
     public interface INavigablePage
     {
-        void OnBackRequested(HandledEventArgs args);
+        void OnBackRequested(HandledRoutedEventArgs args);
     }
 
     public interface INavigatingPage : INavigablePage
     {
-        void OnBackRequesting(HandledEventArgs args);
+        void OnBackRequesting(HandledRoutedEventArgs args);
     }
 
     public interface ISearchablePage
