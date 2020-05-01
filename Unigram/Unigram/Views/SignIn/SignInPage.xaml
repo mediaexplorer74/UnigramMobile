@@ -6,7 +6,6 @@
     xmlns:common="using:Unigram.Common"
     xmlns:controls="using:Unigram.Controls"
     xmlns:models="using:Unigram.Entities"
-    xmlns:microsoft="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="OnLoaded"
@@ -107,7 +106,7 @@
                         Grid.Column="1"/>
                 </Grid>
 
-                <microsoft:ProgressBar IsIndeterminate="{x:Bind ViewModel.IsLoading, Mode=OneWay}" Background="Transparent" Grid.Row="5"/>
+                <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsLoading, Mode=OneWay}" Background="Transparent" Grid.Row="5"/>
 
                 <Button x:Name="NextButton"
                         Content="{CustomResource OK}"

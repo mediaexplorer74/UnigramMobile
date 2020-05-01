@@ -92,7 +92,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <microsoft:ProgressBar x:Name="Status" VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2"/>
+                    <ProgressBar x:Name="Status" VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2"/>
                     <TextBlock x:Name="StatusLabel"
                                VerticalAlignment="Center"
                                TextLineBounds="TrimToCapHeight"
