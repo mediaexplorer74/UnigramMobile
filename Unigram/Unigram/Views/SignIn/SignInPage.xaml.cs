@@ -59,7 +59,7 @@ namespace Unigram.Views.SignIn
             switch (e.PropertyName)
             {
                 case "PHONE_CODE_INVALID":
-                    VisualUtilities.ShakeView(PhoneCode);
+                    VisualUtilities.ShakeView(PhoneCodeTextBox);
                     break;
                 case "PHONE_NUMBER_INVALID":
                     VisualUtilities.ShakeView(PrimaryInput);
@@ -81,8 +81,8 @@ namespace Unigram.Views.SignIn
             }
             else if (e.Key == Windows.System.VirtualKey.Back && string.IsNullOrEmpty(PrimaryInput.Text))
             {
-                PhoneCode.Focus(FocusState.Keyboard);
-                PhoneCode.SelectionStart = PhoneCode.Text.Length;
+                PhoneCodeTextBox.Focus(FocusState.Keyboard);
+                PhoneCodeTextBox.SelectionStart = PhoneCodeTextBox.Text.Length;
                 e.Handled = true;
             }
         }
