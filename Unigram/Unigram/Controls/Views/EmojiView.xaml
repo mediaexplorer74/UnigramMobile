@@ -330,7 +330,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         IsColorFontEnabled="False"
-                                        TextLineBounds="TrimToBaseline,TrimToCapHeight"/>
+                                        TextLineBounds="Tight"/>
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
