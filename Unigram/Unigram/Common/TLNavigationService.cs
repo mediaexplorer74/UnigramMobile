@@ -72,6 +72,7 @@ namespace Unigram.Common
             //else
             {
                 Navigate(typeof(InstantPage), url);
+                await Task.CompletedTask;
             }
         }
 
@@ -164,6 +165,8 @@ namespace Unigram.Common
 
                 await ApplicationViewSwitcher.TryShowAsStandaloneAsync(_walletLifetime.Id, ViewSizePreference.Default, ApplicationView.GetApplicationViewIdForWindow(Window.Current.CoreWindow), ViewSizePreference.UseHalf);
             }
+#else
+            await Task.CompletedTask;
 #endif
         }
 

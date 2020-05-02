@@ -282,7 +282,7 @@ namespace Unigram.Controls.Views
             Search_TextChanged(null, null);
         }
 
-        private async void Search_TextChanged(object sender, TextChangedEventArgs e)
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (SearchField.FocusState == FocusState.Unfocused && string.IsNullOrEmpty(SearchField.Text))
             {

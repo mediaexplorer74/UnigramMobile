@@ -505,6 +505,8 @@ namespace Unigram.ViewModels
         public RelayCommand ReportCommand { get; }
         private async void ReportExecute()
         {
+            Logs.Logger.Warning(Logs.Target.API, "Call to not implemented ReportCommand (ProfileView)");
+            await Task.CompletedTask;
             //var user = Item as TLUser;
             //if (user != null)
             //{

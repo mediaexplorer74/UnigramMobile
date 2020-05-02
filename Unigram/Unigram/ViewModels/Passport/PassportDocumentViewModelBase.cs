@@ -73,6 +73,7 @@ namespace Unigram.ViewModels.Passport
 
                 _password = password;
             }
+            await Task.CompletedTask;
         }
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)

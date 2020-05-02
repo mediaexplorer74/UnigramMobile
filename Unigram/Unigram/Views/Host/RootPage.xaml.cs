@@ -491,6 +491,7 @@ namespace Unigram.Views.Host
                     Switch(_lifetime.Create(test: confirm == ContentDialogResult.Secondary));
 #else
                     Switch(_lifetime.Create());
+                    await System.Threading.Tasks.Task.CompletedTask;
 #endif
                 }
                 else if (_navigationService?.Frame?.Content is IRootContentPage content)

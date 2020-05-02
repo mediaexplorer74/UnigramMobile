@@ -372,7 +372,7 @@ namespace Unigram
             //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
             var dispatcher = Window.Current.Dispatcher;
-            Task.Run(() => OnStartSync(dispatcher));
+            await Task.Run(() => OnStartSync(dispatcher));
             //return Task.CompletedTask;
         }
 

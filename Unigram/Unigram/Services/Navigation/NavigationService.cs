@@ -247,7 +247,8 @@ namespace Unigram.Services.Navigation
             //}
 
             parameter = SerializationService.Serialize(parameter);
-
+           
+            await Task.CompletedTask;
             return FrameFacadeInternal.Navigate(page, parameter, infoOverride);
         }
 

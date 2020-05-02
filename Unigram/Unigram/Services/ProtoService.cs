@@ -323,7 +323,8 @@ namespace Unigram.Services
 
         private async void UpdateWallet()
         {
-
+            Logs.Logger.Warning(Logs.Target.API, "Call to not implemented UpdateWallet function");
+            await Task.CompletedTask;
         }
 
         private void UpdateConfig(BaseObject value)

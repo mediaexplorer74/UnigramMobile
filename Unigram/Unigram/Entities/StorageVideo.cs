@@ -157,7 +157,7 @@ namespace Unigram.Entities
             }
         }
 
-        private async void LoadPreview()
+        private void LoadPreview()
         {
             //_preview = _thumbnail;
             //_preview = await ImageHelper.GetPreviewBitmapAsync(File);

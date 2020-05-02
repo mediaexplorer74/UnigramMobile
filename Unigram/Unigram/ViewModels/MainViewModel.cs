@@ -278,6 +278,8 @@ namespace Unigram.ViewModels
         private async void FilterAddExecute(ChatListFilter filter)
         {
             // Meh I'm lazy
+            Logs.Logger.Warning(Logs.Target.API, "He was lazy. (Not yet implemented!)");
+            await Task.CompletedTask;
         }
 
         public RelayCommand<ChatListFilter> FilterDeleteCommand { get; }

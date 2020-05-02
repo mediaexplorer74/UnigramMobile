@@ -1632,7 +1632,7 @@ namespace Unigram.Views
             }
         }
 
-        private async void Hyperlink_Click(RichTextPhoneNumber phoneNumber)
+        private void Hyperlink_Click(RichTextPhoneNumber phoneNumber)
         {
 
         }

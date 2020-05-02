@@ -306,7 +306,7 @@ namespace Unigram.ViewModels.Supergroups
         }
 
         public RelayCommand<StorageFile> EditPhotoCommand { get; }
-        private async void EditPhotoExecute(StorageFile file)
+        private void EditPhotoExecute(StorageFile file)
         {
             _photo = file;
             _deletePhoto = false;

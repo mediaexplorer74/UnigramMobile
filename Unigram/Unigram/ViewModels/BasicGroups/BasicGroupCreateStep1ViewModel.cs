@@ -104,6 +104,7 @@ namespace Unigram.ViewModels.BasicGroups
         private async void EditPhotoExecute(StorageFile file)
         {
             _uploadingPhoto = true;
+            await Task.CompletedTask;
         }
 
         private void ContinueUploadingPhoto()

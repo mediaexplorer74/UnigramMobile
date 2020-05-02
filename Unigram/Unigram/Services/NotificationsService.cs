@@ -535,7 +535,7 @@ namespace Unigram.Services
 
                     channel.PushNotificationReceived += OnPushNotificationReceived;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _alreadyRegistered = false;
                     _settings.NotificationsToken = null;
@@ -582,13 +582,14 @@ namespace Unigram.Services
 
         public async Task UnregisterAsync()
         {
-            var channel = _settings.NotificationsToken;
+            //var channel = _settings.NotificationsToken;
             //var response = await _protoService.UnregisterDeviceAsync(8, channel);
             //if (response.IsSucceeded)
             //{
             //}
 
             _settings.NotificationsToken = null;
+            await Task.CompletedTask;
         }
 
         public async Task CloseAsync()
@@ -600,6 +601,7 @@ namespace Unigram.Services
             }
             catch (Exception ex)
             {
+                Logs.Logger.Error(Logs.Target.Notifications, $"OnClose, message: {ex.Message}");
                 Debugger.Break();
             }
         }

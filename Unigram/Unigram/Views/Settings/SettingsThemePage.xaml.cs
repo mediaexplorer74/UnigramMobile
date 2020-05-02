@@ -293,6 +293,7 @@ namespace Unigram.Views.Settings
 
             //var file = await StorageFile.GetFileFromPathAsync(_theme.Path);
             //await TLContainer.Current.Resolve<IThemeService>().SerializeAsync(file, _theme);
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         private void List_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
