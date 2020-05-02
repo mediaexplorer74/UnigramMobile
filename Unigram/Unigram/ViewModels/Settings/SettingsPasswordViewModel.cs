@@ -32,7 +32,6 @@ namespace Unigram.ViewModels.Settings
             Input = new InputViewModel(this, protoService, cacheService, settingsService, aggregator);
 
             SendCommand = new RelayCommand(SendExecute, () => !IsLoading);
-            ForgotCommand = new RelayCommand(ForgotExecute);
             EnableCommand = new RelayCommand(EnableExecute);
             DisableCommand = new RelayCommand(DisableExecute);
         }
@@ -135,37 +134,6 @@ namespace Unigram.ViewModels.Settings
             //    }
 
             //    Logs.Log.Write("account.checkPassword error " + response.Error);
-            //}
-        }
-
-        public RelayCommand ForgotCommand { get; }
-        private async void ForgotExecute()
-        {
-            //if (_passwordBase == null)
-            //{
-            //    // TODO: ...
-            //    return;
-            //}
-
-            //if (_passwordBase.HasRecovery)
-            //{
-            //    IsLoading = true;
-
-            //    var response = await ProtoService.SendAsync(new RequestPasswordRecovery());
-            //    if (response is PasswordRecoveryInfo info)
-            //    {
-            //        await TLMessageDialog.ShowAsync(string.Format(Strings.Resources.RestoreEmailSent, info.RecoveryEmailAddressPattern), Strings.Resources.AppName, Strings.Resources.OK);
-            //    }
-            //    else if (response is Error error)
-            //    {
-            //        IsLoading = false;
-            //        await new TLMessageDialog(error.Message ?? "Error message", error.Code.ToString()).ShowQueuedAsync();
-            //    }
-            //}
-            //else
-            //{
-            //    await TLMessageDialog.ShowAsync(Strings.Resources.RestorePasswordNoEmailText, Strings.Resources.RestorePasswordNoEmailTitle, Strings.Resources.OK);
-            //    //IsResettable = true;
             //}
         }
 

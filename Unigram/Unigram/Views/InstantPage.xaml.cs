@@ -391,8 +391,6 @@ namespace Unigram.Views
                 default:
                     return ProcessUnsupported(block);
             }
-
-            return null;
         }
 
         #region 2.0
@@ -1460,116 +1458,6 @@ namespace Unigram.Views
             }
 
             return 12;
-
-            if (lower is PageBlockCover || lower is PageBlockChatLink)
-            {
-                return 0;
-            }
-            else if (lower is PageBlockDivider || upper is PageBlockDivider)
-            {
-                return 15; // 25;
-            }
-            else if (lower is PageBlockBlockQuote || upper is PageBlockBlockQuote || lower is PageBlockPullQuote || upper is PageBlockPullQuote)
-            {
-                return 17; // 27;
-            }
-            else if (lower is PageBlockTitle)
-            {
-                return 12; // 20;
-            }
-            else if (lower is PageBlockAuthorDate)
-            {
-                if (upper is PageBlockTitle)
-                {
-                    return 16; // 26;
-                }
-                else
-                {
-                    return 12; // 20;
-                }
-            }
-            else if (lower is PageBlockParagraph)
-            {
-                if (upper is PageBlockTitle || upper is PageBlockAuthorDate)
-                {
-                    return 20; // 34;
-                }
-                else if (upper is PageBlockHeader || upper is PageBlockSubheader)
-                {
-                    return 15; // 25;
-                }
-                else if (upper is PageBlockParagraph)
-                {
-                    return 15; // 25;
-                }
-                else if (upper is PageBlockList)
-                {
-                    return 19; // 31;
-                }
-                else if (upper is PageBlockPreformatted)
-                {
-                    return 11; // 19;
-                }
-                else
-                {
-                    return 12; // 20;
-                }
-            }
-            else if (lower is PageBlockList)
-            {
-                if (upper is PageBlockTitle || upper is PageBlockAuthorDate)
-                {
-                    return 20; // 34;
-                }
-                else if (upper is PageBlockHeader || upper is PageBlockSubheader)
-                {
-                    return 19; // 31;
-                }
-                else if (upper is PageBlockParagraph || upper is PageBlockList)
-                {
-                    return 19; // 31;
-                }
-                else if (upper is PageBlockPreformatted)
-                {
-                    return 11; // 19;
-                }
-                else
-                {
-                    return 12; // 20;
-                }
-            }
-            else if (lower is PageBlockPreformatted)
-            {
-                if (upper is PageBlockParagraph)
-                {
-                    return 11; // 19;
-                }
-                else
-                {
-                    return 12; // 20;
-                }
-            }
-            else if (lower is PageBlockHeader)
-            {
-                return 20; // 32;
-            }
-            else if (lower is PageBlockSubheader)
-            {
-                return 20; // 32;
-            }
-            else if (lower == null)
-            {
-                if (upper is PageBlockFooter)
-                {
-                    return 14; // 24;
-                }
-                else
-                {
-                    return 14; // 24;
-                }
-            }
-
-            return 12; // 20;
         }
 
         private double PaddingForBlock(PageBlock block)

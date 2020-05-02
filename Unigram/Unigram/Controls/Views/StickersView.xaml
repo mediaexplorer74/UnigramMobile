@@ -22,7 +22,7 @@
     Unloaded="OnUnloaded">
 
     <UserControl.Resources>
-        <CollectionViewSource x:Name="FeaturedSource" Source="{x:Bind ViewModel.Stickers.FeaturedStickers}" ItemsPath="Covers" IsSourceGrouped="True"/>
+        <!--<CollectionViewSource x:Name="FeaturedSource" Source="{x:Bind ViewModel.Stickers.FeaturedStickers}" ItemsPath="Covers" IsSourceGrouped="True"/>-->
         <CollectionViewSource x:Name="StickersSource" Source="{x:Bind ViewModel.Stickers.Stickers, Mode=OneWay}" ItemsPath="Stickers" IsSourceGrouped="True"/>
 
         <Style x:Name="ModernPivotRadioButtonStyle" TargetType="controls:PivotRadioButton">
@@ -169,12 +169,11 @@
                 <PivotItem x:Name="Fuffa" x:DeferLoadStrategy="Lazy">
                     <controls:ZoomableGridView
                         x:Name="FeaturedView"
-                        ItemsSource="{x:Bind FeaturedSource.View}"
                         common:FluidGridView.OrientationOnly="False"
                         IsItemClickEnabled="True"
                         SelectionMode="None"
-                        ItemClick="Featured_ItemClick"
                         Padding="12,8,12,0">
+                        <!--ItemsSource="{x:Bind FeaturedSource.View}"-->
                         <common:FluidGridView.Triggers>
                             <common:FluidGridViewTrigger RowsOrColumns="5"/>
                         </common:FluidGridView.Triggers>

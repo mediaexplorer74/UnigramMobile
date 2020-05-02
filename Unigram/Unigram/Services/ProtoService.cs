@@ -351,9 +351,11 @@ namespace Unigram.Services
 
                     if (SettingsService.CurrentMedia)
                     {
+#pragma warning disable CS0162 // Unreachable code detected
                         Send(new AddLocalMessage(chat.Id, 777000, 0, false, new InputMessageAnimation(
                             new InputFileLocal(Path.Combine(Package.Current.InstalledLocation.Path, "Assets\\Mockup\\Changelog.mp4")), new InputThumbnail(
                                 new InputFileLocal(Path.Combine(Package.Current.InstalledLocation.Path, "Assets\\Mockup\\Changelog.jpg")), 450, 392), 5, 450, 392, formattedText)));
+#pragma warning restore CS0162 // Unreachable code detected
                     }
                     else
                     {

@@ -249,32 +249,6 @@ namespace Unigram.Common
             }
 
             return _rawEmojis.Contains(text);
-
-
-
-            var result = false;
-            var processed = false;
-
-            foreach (var last in EnumerateByComposedCharacterSequence(text))
-            {
-                if (processed)
-                {
-                    result = false;
-                    break;
-                }
-                else if (IsEmoji(last))
-                {
-                    result = true;
-                    processed = true;
-                }
-                else
-                {
-                    result = false;
-                    break;
-                }
-            }
-
-            return result;
         }
 
         public static bool TryCountEmojis(string text, out int count, int max = int.MaxValue)

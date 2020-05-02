@@ -79,8 +79,6 @@ namespace Unigram.Services
 
         public async Task<bool> EncryptAsync(string publicKey, IList<byte> dataArray, IList<byte> localPassword)
         {
-            IBuffer keyMaterial;
-
             //if (await KeyCredentialManager.IsSupportedAsync())
             //{
             //    var boh = await KeyCredentialManager.RequestCreateAsync(publicKey, KeyCredentialCreationOption.ReplaceExisting);

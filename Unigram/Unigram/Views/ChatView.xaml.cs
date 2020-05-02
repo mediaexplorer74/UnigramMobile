@@ -223,54 +223,6 @@ namespace Unigram.Views
             _textShadowVisual.IsVisible = false;
 
             //TextField.Language = Native.NativeUtils.GetCurrentCulture();
-
-            return;
-
-            if (ApiInformation.IsEventPresent("Windows.UI.Xaml.Input.FocusManager", "GettingFocus"))
-            {
-                FocusManager.GettingFocus += (s, args) =>
-                {
-                    // We want to apply this behavior when using mouse only
-                    if (args.InputDevice != FocusInputDeviceKind.Mouse)
-                    {
-                        return;
-                    }
-
-                    // We don't want to steal focus from text areas/keyboard navigation
-                    if (args.FocusState == FocusState.Keyboard || args.NewFocusedElement is TextBox || args.NewFocusedElement is RichEditBox)
-                    {
-                        return;
-                    }
-
-                    // We don't want to steal focus from popups
-                    if (VisualTreeHelper.GetOpenPopups(Window.Current).Any())
-                    {
-                        return;
-                    }
-
-                    // If new focused element supports programmatic focus (so it's a control)
-                    // then we can freely steal focus from it
-                    if (args.NewFocusedElement is Control)
-                    {
-                        if (args.FocusState == FocusState.Programmatic && args.OldFocusedElement is ChatTextBox)
-                        {
-                            args.TryCancel();
-                        }
-                        else if (args.FocusState == FocusState.Programmatic)
-                        {
-                            args.TrySetNewFocusedElement(TextField);
-                        }
-                        else if (args.OldFocusedElement is ChatTextBox)
-                        {
-                            args.TryCancel();
-                        }
-                        else if (args.NewFocusedElement is ChatListViewItem)
-                        {
-                            args.TrySetNewFocusedElement(TextField);
-                        }
-                    }
-                };
-            }
         }
 
         private void InitializeAutomation()
@@ -2819,24 +2771,6 @@ namespace Unigram.Views
             {
                 ViewModel.MessageShareCommand.Execute(message);
             }
-        }
-
-        private async void Date_Click(object sender, RoutedEventArgs e)
-        {
-            //var button = sender as FrameworkElement;
-            //if (button.DataContext is TLMessageCommonBase message)
-            //{
-            //    var dialog = new Controls.Views.CalendarView();
-            //    dialog.MaxDate = DateTimeOffset.Now.Date;
-            //    dialog.SelectedDates.Add(BindConvert.Current.DateTime(message.Date));
-
-            //    var confirm = await dialog.ShowQueuedAsync();
-            //    if (confirm == ContentDialogResult.Primary && dialog.SelectedDates.Count > 0)
-            //    {
-            //        var offset = TLUtils.DateToUniversalTimeTLInt(dialog.SelectedDates.FirstOrDefault().Date);
-            //        await ViewModel.LoadDateSliceAsync(offset);
-            //    }
-            //}
         }
 
         private void Collapse_Click(object sender, RoutedEventArgs e)

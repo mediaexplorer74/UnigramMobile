@@ -22,10 +22,10 @@ namespace Unigram.ViewModels.Dialogs
         private StickerSetViewModel _favoriteSet;
         private SupergroupStickerSetViewModel _groupSet;
 
-        private bool _recentGifs;
-        private bool _recentStickers;
-        private bool _favedStickers;
-        private bool _featured;
+        //private bool _recentGifs;
+        //private bool _recentStickers;
+        //private bool _favedStickers;
+        //private bool _featured;
         private bool _stickers;
 
         public DialogStickersViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator)
@@ -61,13 +61,13 @@ namespace Unigram.ViewModels.Dialogs
             Aggregator.Subscribe(this);
 
             SavedGifs = new MvxObservableCollection<MosaicMediaRow>();
-            FeaturedStickers = new MvxObservableCollection<TLFeaturedStickerSet>();
+            //FeaturedStickers = new MvxObservableCollection<TLFeaturedStickerSet>();
             SavedStickers = new StickerSetCollection();
 
             //SyncStickers();
             //SyncGifs();
 
-            InstallCommand = new RelayCommand<TLFeaturedStickerSet>(InstallExecute);
+            //InstallCommand = new RelayCommand<TLFeaturedStickerSet>(InstallExecute);
         }
 
         private static Dictionary<int, Dictionary<int, DialogStickersViewModel>> _windowContext = new Dictionary<int, Dictionary<int, DialogStickersViewModel>>();
@@ -163,7 +163,7 @@ namespace Unigram.ViewModels.Dialogs
                 }
             });
         }
-
+        /*
         private void ProcessRecentGifs()
         {
             //var recent = _stickersService.GetRecentGifs();
@@ -287,10 +287,10 @@ namespace Unigram.ViewModels.Dialogs
             //    }
             //}
         }
-
+        */
         public MvxObservableCollection<MosaicMediaRow> SavedGifs { get; private set; }
 
-        public MvxObservableCollection<TLFeaturedStickerSet> FeaturedStickers { get; private set; }
+        //public MvxObservableCollection<TLFeaturedStickerSet> FeaturedStickers { get; private set; }
 
         public StickerSetCollection SavedStickers { get; private set; }
 
@@ -337,7 +337,7 @@ namespace Unigram.ViewModels.Dialogs
                 await items.LoadMoreItemsAsync(0);
             }
         }
-
+        /*
         public async void FindAnimations(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
@@ -355,7 +355,7 @@ namespace Unigram.ViewModels.Dialogs
                 //}
             }
         }
-
+        */
         public async void UpdateSupergroupFullInfo(Chat chat, Supergroup group, SupergroupFullInfo fullInfo)
         {
             SavedStickers.Remove(_groupSet);
@@ -529,7 +529,7 @@ namespace Unigram.ViewModels.Dialogs
                 Set(ref _featuredUnreadCount, value);
             }
         }
-
+        /*
         public RelayCommand<TLFeaturedStickerSet> InstallCommand { get; }
         private async void InstallExecute(TLFeaturedStickerSet featured)
         {
@@ -554,7 +554,7 @@ namespace Unigram.ViewModels.Dialogs
             //    NavigationService.GoBack();
             //}
         }
-
+        */
         //protected override void BeginOnUIThread(Action action)
         //{
         //    // This is somehow needed because this viewmodel requires a Dispatcher

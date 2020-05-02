@@ -223,7 +223,6 @@ namespace Unigram.Common
             string username = null;
             string group = null;
             string sticker = null;
-            string[] instantView = null;
             Dictionary<string, object> auth = null;
             string botUser = null;
             string botChat = null;
@@ -240,7 +239,6 @@ namespace Unigram.Common
             string phoneCode = null;
             string lang = null;
             string channel = null;
-            bool hasUrl = false;
 
             var query = scheme.Query.ParseQueryString();
             if (scheme.AbsoluteUri.StartsWith("tg:resolve") || scheme.AbsoluteUri.StartsWith("tg://resolve"))
@@ -293,7 +291,6 @@ namespace Unigram.Common
                 {
                     if (message.Length > 0)
                     {
-                        hasUrl = true;
                         message += "\n";
                     }
                     message += query.GetParameter("text");
@@ -361,7 +358,7 @@ namespace Unigram.Common
 
             if (phone != null || phoneHash != null)
             {
-                NavigateToConfirmPhone(protoService, phone, phoneHash);
+                Logs.Logger.Warning(Logs.Target.API, "NavigateToConfirmPhone does not exist anymore. ;(");
             }
             if (server != null && int.TryParse(port, out int portCode))
             {
@@ -381,7 +378,7 @@ namespace Unigram.Common
             }
             else if (message != null)
             {
-                NavigateToShare(message, hasUrl);
+                Logs.Logger.Warning(Logs.Target.API, "NavigateToShare does not exist anymore. ;(");
             }
             else if (phoneCode != null)
             {
@@ -479,10 +476,7 @@ namespace Unigram.Common
                         {
                             if (username.Equals("confirmphone", StringComparison.OrdinalIgnoreCase))
                             {
-                                var phone = query.GetParameter("phone");
-                                var hash = query.GetParameter("hash");
-
-                                NavigateToConfirmPhone(null, phone, hash);
+                                Logs.Logger.Warning(Logs.Target.API, "NavigateToConfirmPhone does not exist anymore. ;(");
                             }
                             else if (username.Equals("login", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(post))
                             {
@@ -507,32 +501,7 @@ namespace Unigram.Common
                             }
                             else if (username.Equals("share"))
                             {
-                                var hasUrl = false;
-                                var text = query.GetParameter("url");
-                                if (text == null)
-                                {
-                                    text = "";
-                                }
-                                if (query.GetParameter("text") != null)
-                                {
-                                    if (text.Length > 0)
-                                    {
-                                        hasUrl = true;
-                                        text += "\n";
-                                    }
-                                    text += query.GetParameter("text");
-                                }
-                                if (text.Length > 4096 * 4)
-                                {
-                                    text = text.Substring(0, 4096 * 4);
-                                }
-                                while (text.EndsWith("\n"))
-                                {
-                                    text = text.Substring(0, text.Length - 1);
-                                }
-
-
-                                NavigateToShare(text, hasUrl);
+                                Logs.Logger.Warning(Logs.Target.API, "NavigateToShare does not exist anymore. ;(");
                             }
                             else if (username.Equals("setlanguage", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(post))
                             {
@@ -720,11 +689,6 @@ namespace Unigram.Common
             }
         }
 
-        public static async void NavigateToShare(string text, bool hasUrl)
-        {
-            //await ShareView.GetForCurrentView().ShowAsync(text, hasUrl);
-        }
-
         public static async void NavigateToProxy(IProtoService protoService, string server, int port, string username, string password, string secret)
         {
             var userText = username != null ? $"{Strings.Resources.UseProxyUsername}: {username}\n" : string.Empty;
@@ -746,38 +710,6 @@ namespace Unigram.Common
 
                 protoService.Send(new AddProxy(server ?? string.Empty, port, true, type));
             }
-        }
-
-        public static async void NavigateToConfirmPhone(IProtoService protoService, string phone, string hash)
-        {
-            //var response = await protoService.SendConfirmPhoneCodeAsync(hash, false);
-            //if (response.IsSucceeded)
-            //{
-            //    var state = new SignInSentCodePage.NavigationParameters
-            //    {
-            //        PhoneNumber = phone,
-            //        //Result = response.Result,
-            //    };
-
-            //    App.Current.NavigationService.Navigate(typeof(SignInSentCodePage), state);
-
-            //    //Telegram.Api.Helpers.Execute.BeginOnUIThread(delegate
-            //    //{
-            //    //    if (frame != null)
-            //    //    {
-            //    //        frame.CloseBlockingProgress();
-            //    //    }
-            //    //    TelegramViewBase.NavigateToConfirmPhone(result);
-            //    //});
-            //}
-            //else
-            //{
-            //    //if (error.CodeEquals(ErrorCode.BAD_REQUEST) && error.TypeEquals(ErrorType.USERNAME_NOT_OCCUPIED))
-            //    //{
-            //    //    return;
-            //    //}
-            //    //Telegram.Api.Helpers.Logs.Log.Write(string.Format("account.sendConfirmPhoneCode error {0}", error));
-            //};
         }
 
         public static async void NavigateToStickerSet(string text)

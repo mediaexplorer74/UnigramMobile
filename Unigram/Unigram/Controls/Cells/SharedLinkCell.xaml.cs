@@ -38,7 +38,6 @@ namespace Unigram.Controls.Cells
             var text = message.Content as MessageText;
 
             var links = new List<string>();
-            var hasThumb = false;
 
             string title = null;
             string description = null;
@@ -281,37 +280,6 @@ namespace Unigram.Controls.Cells
             {
                 await Launcher.LaunchUriAsync(uri);
             }
-        }
-
-        private async void Thumbnail_Click(object sender, RoutedEventArgs e)
-        {
-            //if (DataContext is TLMessage message && message.Media is TLMessageMediaWebPage webpageMedia && webpageMedia.WebPage is TLWebPage webpage)
-            //{
-            //    if (webpage.HasCachedPage)
-            //    {
-            //        Context.NavigationService.Navigate(typeof(InstantPage), message.Media);
-            //    }
-            //    else
-            //    {
-            //        var url = webpage.Url;
-            //        if (url.StartsWith("http") == false)
-            //        {
-            //            url = "http://" + url;
-            //        }
-
-            //        if (Uri.TryCreate(url, UriKind.Absolute, out Uri uri))
-            //        {
-            //            if (MessageHelper.IsTelegramUrl(uri))
-            //            {
-            //                MessageHelper.HandleTelegramUrl(webpage.Url);
-            //            }
-            //            else
-            //            {
-            //                await Launcher.LaunchUriAsync(uri);
-            //            }
-            //        }
-            //    }
-            //}
         }
     }
 }

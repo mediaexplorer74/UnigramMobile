@@ -80,7 +80,8 @@ namespace Unigram.Controls.Views
             var observable2 = Observable.FromEventPattern<TextChangedEventArgs>(FieldAnimations, "TextChanged");
             var throttled2 = observable2.Throttle(TimeSpan.FromMilliseconds(Constants.TypingTimeout)).ObserveOnDispatcher().Subscribe(x =>
             {
-                ViewModel.Stickers.FindAnimations(FieldAnimations.Text);
+                Logs.Logger.Warning(Logs.Target.API, "Call to not implemented function FindAnimations");
+                //ViewModel.Stickers.FindAnimations(FieldAnimations.Text);
                 //var items = ViewModel.Stickers.SearchStickers;
                 //if (items != null && string.Equals(FieldStickers.Text, items.Query))
                 //{
@@ -301,11 +302,6 @@ namespace Unigram.Controls.Views
             }
         }
 
-        private async void Featured_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //await StickerSetView.Current.ShowAsync(((TLDocument)e.ClickedItem).StickerSet);
-        }
-
         private void Stickers_Loaded(object sender, RoutedEventArgs e)
         {
             var scrollingHost = Stickers.Descendants<ScrollViewer>().FirstOrDefault() as ScrollViewer;
@@ -429,10 +425,10 @@ namespace Unigram.Controls.Views
             ViewModel.NavigationService.Navigate(typeof(SettingsStickersPage));
         }
 
-        private void Install_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Stickers.InstallCommand.Execute(((Button)sender).DataContext);
-        }
+        //private void Install_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ViewModel.Stickers.InstallCommand.Execute(((Button)sender).DataContext);
+        //}
 
         private async void Stickers_ChoosingGroupHeaderContainer(ListViewBase sender, ChoosingGroupHeaderContainerEventArgs args)
         {
@@ -453,36 +449,6 @@ namespace Unigram.Controls.Views
                 if (response is StickerSet full)
                 {
                     group.Update(full, true);
-                    return;
-
-                    foreach (var sticker in group.Stickers)
-                    {
-                        if (sticker.Thumbnail == null)
-                        {
-                            continue;
-                        }
-
-                        var container = Stickers.ContainerFromItem(sticker) as SelectorItem;
-                        if (container == null)
-                        {
-                            continue;
-                        }
-
-                        var content = container.ContentTemplateRoot as Image;
-
-                        container.Tag = sticker;
-                        content.Tag = sticker;
-
-                        var file = sticker.Thumbnail.Photo;
-                        if (file.Local.IsDownloadingCompleted)
-                        {
-                            content.Source = PlaceholderHelper.GetWebPFrame(file.Local.Path);
-                        }
-                        else if (file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
-                        {
-                            DownloadFile(file.Id, sticker);
-                        }
-                    }
                 }
             }
 

@@ -615,11 +615,6 @@ namespace Unigram.Controls.Views
             for (int a = 0; a < count; a++)
             {
                 StorageMedia messageObject = Messages[a];
-                IList<PhotoSize> photoThumbs = null;
-                if (a == 0)
-                {
-                    //isOut = messageObject.isOutOwner();
-                }
                 int w = (int)messageObject.Width;
                 int h = (int)messageObject.Height;
 

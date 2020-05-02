@@ -222,12 +222,6 @@ namespace Unigram.ViewModels
 
             Folder = ArchivedChats;
             RaisePropertyChanged(() => Folder);
-            return;
-
-            Folder = new ChatsViewModel(ProtoService, CacheService, base.Settings, Aggregator, _pushService, chatList);
-            Folder.Dispatcher = Dispatcher;
-            Folder.NavigationService = NavigationService;
-            RaisePropertyChanged(() => Folder);
         }
 
 

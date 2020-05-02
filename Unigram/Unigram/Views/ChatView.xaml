@@ -607,7 +607,7 @@
                         Visibility="Collapsed"
                         HorizontalAlignment="Center"
                         SizeChanged="DateHeaderPanel_SizeChanged">
-                    <messages:MessageService x:Name="DateHeader" Click="Date_Click" BorderThickness="0,4,0,4" Style="{StaticResource ServiceButtonStyle}">
+                    <messages:MessageService x:Name="DateHeader" BorderThickness="0,4,0,4" Style="{StaticResource ServiceButtonStyle}">
                         <TextBlock x:Name="DateHeaderLabel" Text="31 dicembre 2017" Foreground="White" TextAlignment="Center" Style="{StaticResource CaptionTextBlockStyle}"/>
                     </messages:MessageService>
                 </Border>
