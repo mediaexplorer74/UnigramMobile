@@ -2055,7 +2055,7 @@
                 <ControlTemplate TargetType="local:ButtonPageHeader">
                     <Border Background="{TemplateBinding Background}">
                         <contract7Present:Border.BackgroundTransition>
-                            <BrushTransition/>
+                            <contract7Present:BrushTransition/>
                         </contract7Present:Border.BackgroundTransition>
                         <Grid Height="{ThemeResource AppBarThemeCompactHeight}" Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
@@ -2101,7 +2101,7 @@
                 <ControlTemplate TargetType="local:ContentPageHeader">
                     <Border Background="{TemplateBinding Background}">
                         <contract7Present:Border.BackgroundTransition>
-                            <BrushTransition/>
+                            <contract7Present:BrushTransition/>
                         </contract7Present:Border.BackgroundTransition>
                         <Grid Height="{ThemeResource AppBarThemeCompactHeight}" Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
@@ -2138,7 +2138,7 @@
                 <ControlTemplate TargetType="local:PageHeader">
                     <Border Background="{TemplateBinding Background}">
                         <contract7Present:Border.BackgroundTransition>
-                            <BrushTransition/>
+                            <contract7Present:BrushTransition/>
                         </contract7Present:Border.BackgroundTransition>
                         <Grid Height="{ThemeResource AppBarThemeCompactHeight}" Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
