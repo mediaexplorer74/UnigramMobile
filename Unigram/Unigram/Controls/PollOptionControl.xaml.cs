@@ -52,7 +52,7 @@ namespace Unigram.Controls
             Votes.Maximum = results ? poll.Options.Max(x => x.VoterCount) : 1;
             Votes.Value = results ? option.VoterCount : 0;
             
-            Loading.IsActive = option.IsBeingChosen;
+            LoadingVisualization.IsActive = option.IsBeingChosen;
 
             Tick.Visibility = (results && correct) || option.IsChosen ? Visibility.Visible : Visibility.Collapsed;
 

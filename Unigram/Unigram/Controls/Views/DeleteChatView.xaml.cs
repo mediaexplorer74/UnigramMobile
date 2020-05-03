@@ -29,7 +29,7 @@ namespace Unigram.Controls.Views
 
             Photo.Source = PlaceholderHelper.GetChat(protoService, chat, 72);
 
-            Title.Text = clear ? Strings.Resources.ClearHistory : Strings.Resources.DeleteChatUser; // protoService.GetTitle(chat);
+            TitleDelete.Text = clear ? Strings.Resources.ClearHistory : Strings.Resources.DeleteChatUser; // protoService.GetTitle(chat);
 
             var user = protoService.GetUser(chat);
             var basicGroup = protoService.GetBasicGroup(chat);

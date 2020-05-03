@@ -21,7 +21,7 @@
             <controls:ProfilePicture x:Name="Photo" Width="{ThemeResource ChatPhotoSize}" Height="{ThemeResource ChatPhotoSize}" Margin="12,0,0,0" IsHitTestVisible="False"/>
 
             <StackPanel Margin="12,-2,0,2" Orientation="Vertical" VerticalAlignment="Center" Grid.Column="1">
-                <TextBlock x:Name="Title"
+                <TextBlock x:Name="TitleChat"
                                Style="{StaticResource BaseTextBlockStyle}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"

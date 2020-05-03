@@ -20,7 +20,7 @@
         <Border Background="{ThemeResource PageSubHeaderBackgroundBrush}"/>
 
         <ProgressRing
-            x:Name="Loading"
+            x:Name="LoadingVisualization"
             Width="48"
             Height="48"
             Grid.Row="1"

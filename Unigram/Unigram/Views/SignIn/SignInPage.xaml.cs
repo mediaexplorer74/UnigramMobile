@@ -303,13 +303,13 @@ namespace Unigram.Views.SignIn
         {
             if (mode == QrCodeMode.Loading)
             {
-                Loading.IsActive = true;
+                LoadingVisualization.IsActive = true;
                 TokenPanel.Visibility = Visibility.Collapsed;
                 PhonePanel.Visibility = Visibility.Collapsed;
             }
             else if (mode == QrCodeMode.Disabled || mode == QrCodeMode.Secondary)
             {
-                Loading.IsActive = false;
+                LoadingVisualization.IsActive = false;
                 TokenPanel.Visibility = Visibility.Collapsed;
                 PhonePanel.Visibility = Visibility.Visible;
                 Switch2.Visibility = mode == QrCodeMode.Secondary
@@ -318,7 +318,7 @@ namespace Unigram.Views.SignIn
             }
             else if (mode == QrCodeMode.Primary)
             {
-                Loading.IsActive = false;
+                LoadingVisualization.IsActive = false;
                 TokenPanel.Visibility = Visibility.Visible;
                 PhonePanel.Visibility = Visibility.Collapsed;
                 Switch2.Visibility = Visibility.Visible;

@@ -26,11 +26,12 @@ namespace Unigram.Common
         private readonly IProtoService _protoService;
         private readonly IPasscodeService _passcodeService;
 
+#if INCLUDE_WALLET
         private ViewLifetimeControl _walletLifetime;
 
-        private Dictionary<string, AppWindow> _instantWindows = new Dictionary<string, AppWindow>();
+        //private Dictionary<string, AppWindow> _instantWindows = new Dictionary<string, AppWindow>();
         private AppWindow _walletWindow;
-
+#endif
         public TLNavigationService(IProtoService protoService, Frame frame, int session, string id)
             : base(frame, session, id)
         {
@@ -38,7 +39,7 @@ namespace Unigram.Common
             _passcodeService = TLContainer.Current.Passcode;
         }
 
-        public int SessionId => _protoService.SessionId;
+        public new int SessionId => _protoService.SessionId;
         public IProtoService ProtoService => _protoService;
 
         public async void NavigateToInstant(string url)

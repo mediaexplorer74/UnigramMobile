@@ -100,7 +100,7 @@ namespace Unigram.Controls.Views
             Chat7.Mockup(new ChatTypePrivate(), 6, "Natalie Parker", string.Empty, "OK, great)", true, 0, false, false, DateTime.Now.AddHours(-6));
 
             Photo.Source = PlaceholderHelper.GetNameForUser("Reinhardt", 30);
-            Title.Text = "Reinhardt";
+            TitleChat.Text = "Reinhardt";
             Subtitle.Text = string.Format("{0} {1} {2}", Strings.Resources.LastSeen, Strings.Resources.TodayAt, BindConvert.Current.ShortTime.Format(DateTime.Now.AddHours(-1)));
 
             Message1.Mockup(new MessagePhoto(new Photo(false, null, new[] { new PhotoSize("i", new File { Local = new LocalFile { Path = "ms-appx:///Assets/Mockup/theme_preview_image.jpg" } }, 500, 302) }), new FormattedText(), false), "Bring it on! I LIVE for this!", false, DateTime.Now.AddSeconds(-25), true, true);
@@ -119,8 +119,8 @@ namespace Unigram.Controls.Views
             PrimaryButtonText = Strings.Resources.ApplyTheme;
             SecondaryButtonText = Strings.Resources.Cancel;
 
-            var shadow = DropShadowEx.Attach(Shadow, 20, 0.25f);
-            Shadow.SizeChanged += (s, args) =>
+            var shadow = DropShadowEx.Attach(ShadowBorder, 20, 0.25f);
+            ShadowBorder.SizeChanged += (s, args) =>
             {
                 shadow.Size = args.NewSize.ToVector2();
             };

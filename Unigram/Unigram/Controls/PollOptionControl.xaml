@@ -50,7 +50,7 @@
                 Margin="0,8,8,8"/>
 
 
-            <ProgressRing x:Name="Loading"
+            <ProgressRing x:Name="LoadingVisualization"
                           MinWidth="20"
                           MinHeight="20"
                           Width="20"

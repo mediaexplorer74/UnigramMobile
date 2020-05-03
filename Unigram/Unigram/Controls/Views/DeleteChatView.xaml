@@ -20,7 +20,7 @@
         <controls:ProfilePicture x:Name="Photo" Width="72" Height="72" IsEnabled="False"/>
 
         <StackPanel Margin="12,8,12,12" Grid.Row="1">
-            <TextBlock x:Name="Title" TextAlignment="Center" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Style="{StaticResource BaseTextBlockStyle}"/>
+            <TextBlock x:Name="TitleDelete" TextAlignment="Center" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock x:Name="Subtitle" TextAlignment="Center" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" FontFamily="{ThemeResource EmojiThemeFontFamily}" Style="{StaticResource BodyTextBlockStyle}"/>
         </StackPanel>
 

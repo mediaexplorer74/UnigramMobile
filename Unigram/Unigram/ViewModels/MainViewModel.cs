@@ -209,7 +209,7 @@ namespace Unigram.ViewModels
         public ChatsViewModel ArchivedChats { get; private set; }
         public ContactsViewModel Contacts { get; private set; }
         public CallsViewModel Calls { get; private set; }
-        public SettingsViewModel Settings { get; private set; }
+        public new SettingsViewModel Settings { get; private set; }
 
         public ChatsViewModel Folder { get; private set; }
 

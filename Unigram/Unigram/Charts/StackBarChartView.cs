@@ -31,7 +31,7 @@ namespace Unigram.Charts
             return new StackBarViewData(line);
         }
 
-        protected void drawChart(CanvasDrawingSession canvas)
+        protected override void drawChart(CanvasDrawingSession canvas)
         {
             if (chartData == null) return;
             float fullWidth = (chartWidth / (pickerDelegate.pickerEnd - pickerDelegate.pickerStart));
