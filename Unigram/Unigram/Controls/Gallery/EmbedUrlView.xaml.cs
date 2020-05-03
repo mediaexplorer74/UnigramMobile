@@ -23,14 +23,12 @@ namespace Unigram.Controls.Gallery
     {
         private Func<FrameworkElement> _closing;
 
-        private DisplayRequest _request;
-        private MediaPlayerElement _mediaPlayerElement;
         private WebView _surface;
         private AppWindow _window;
 
         private WebPage _webPage;
 
-        private Visual _layer;
+        //private Visual _layer;
 
         public EmbedUrlView()
         {

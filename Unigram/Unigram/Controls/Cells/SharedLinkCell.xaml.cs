@@ -15,7 +15,6 @@ namespace Unigram.Controls.Cells
 {
     public sealed partial class SharedLinkCell : UserControl
     {
-        private Message _message;
         private IProtoService _protoService;
         private INavigationService _navigationService;
 
@@ -161,6 +160,7 @@ namespace Unigram.Controls.Cells
                     }
                     catch (Exception e)
                     {
+                        Logs.Logger.Error(Logs.Target.Chat, e.Message, "SharedLinkCell");
                         //FileLog.e(e);
                     }
                 }

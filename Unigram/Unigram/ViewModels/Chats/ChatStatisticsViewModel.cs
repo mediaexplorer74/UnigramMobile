@@ -138,7 +138,7 @@ namespace Unigram.ViewModels.Chats
         public readonly int graphType;
         public readonly String title;
 
-        bool loading;
+        //bool loading;
         bool isEmpty;
 
         public ChartViewData(String title, int grahType)

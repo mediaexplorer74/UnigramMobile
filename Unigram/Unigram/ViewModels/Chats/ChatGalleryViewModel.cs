@@ -15,7 +15,7 @@ namespace Unigram.ViewModels.Chats
         private readonly bool _isMirrored;
 
         private readonly MvxObservableCollection<GalleryContent> _group;
-        private long _current;
+        //private long _current;
 
         public ChatGalleryViewModel(IProtoService protoService, IEventAggregator aggregator, long chatId, Message selected, bool mirrored = false)
             : base(protoService, aggregator)

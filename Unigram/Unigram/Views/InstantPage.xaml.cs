@@ -49,7 +49,6 @@ namespace Unigram.Views
         public InstantViewModel ViewModel => DataContext as InstantViewModel;
 
         private readonly string _injectedJs;
-        private ScrollViewer _scrollingHost;
 
         private FileContext<Tuple<IContentWithFile, MessageViewModel>> _filesMap = new FileContext<Tuple<IContentWithFile, MessageViewModel>>();
         private FileContext<Image> _iconsMap = new FileContext<Image>();
@@ -329,7 +328,7 @@ namespace Unigram.Views
             }
         }
 
-        private long _webpageId;
+        //private long _webpageId;
 
         //private Stack<Panel> _containers = new Stack<Panel>();
         private double _padding = 12;

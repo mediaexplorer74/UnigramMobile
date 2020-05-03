@@ -34,7 +34,7 @@ namespace Unigram.Controls
 
         protected Border Container;
         protected Border BackgroundElement;
-        private AppViewBackButtonVisibility BackButtonVisibility;
+        //private AppViewBackButtonVisibility BackButtonVisibility;
 
         public event EventHandler Closing;
 
