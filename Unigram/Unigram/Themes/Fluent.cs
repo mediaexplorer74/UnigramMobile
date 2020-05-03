@@ -60,6 +60,13 @@ namespace Unigram.Themes
                 MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx://Microsoft.UI.Xaml.2.1/Microsoft.UI.Xaml/Themes/rs2_themeresources.xaml") });
                 //this["NavigationViewTopPaneHeight"] = 48d;
             }
+
+            // Add named themes for custom controls;
+            // Slightly modified copy of RS1 themes (no big difference to RS2) as UI.XAML 2.1 does not include named styles yet, see:
+            // * https://github.com/microsoft/microsoft-ui-xaml/pull/1300
+            // * https://github.com/microsoft/microsoft-ui-xaml/pull/357
+            MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/TextBox_rs1_themeresources.xaml") });
+            MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/RichEditBox_rs1_themeresources.xaml") });
         }
     }
 }
