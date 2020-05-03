@@ -1624,7 +1624,7 @@ namespace Unigram.Controls.Messages
                     height = width / (AlbumContent.MAX_WIDTH - AlbumContent.ITEM_MARGIN) * (AlbumContent.MAX_HEIGHT - AlbumContent.ITEM_MARGIN);
                     height = groupedMessages.Height * height;
 
-                    goto Calculate;
+                    goto Calculate; //goto...
                 }
             }
 
