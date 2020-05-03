@@ -139,7 +139,9 @@ namespace Unigram.ViewModels.Chats
         public readonly String title;
 
         //bool loading;
+#pragma warning disable CS0414 // field value is never used
         bool isEmpty;
+#pragma warning disable CS0414 // field value is never used
 
         public ChartViewData(String title, int grahType)
         {

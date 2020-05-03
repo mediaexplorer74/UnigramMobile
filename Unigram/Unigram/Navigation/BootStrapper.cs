@@ -421,7 +421,7 @@ namespace Unigram.Navigation
         public virtual Task OnPrelaunchAsync(IActivatedEventArgs args, out bool runOnStartAsync)
         {
             DebugWrite("Virtual");
-
+            _HasOnPrelaunchAsync = true;
             runOnStartAsync = false;
             return Task.CompletedTask;
         }
@@ -429,7 +429,9 @@ namespace Unigram.Navigation
         /// <summary>
         /// This indicates if OnPreLaunch has EVER been called.
         /// </summary>
+#pragma warning disable CS0414 // field value is never used
         bool _HasOnPrelaunchAsync = false;
+#pragma warning disable CS0414 // field value is never used
 
         /// <summary>
         /// OnStartAsync is the one-stop-show override to handle when your app starts

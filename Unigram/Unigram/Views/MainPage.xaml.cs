@@ -1481,8 +1481,6 @@ namespace Unigram.Views
 
         #region Search
 
-        private bool _searchCollapsed = true;
-
         private void ShowHideSearch(bool show)
         {
             SearchField.Visibility = Visibility.Visible;

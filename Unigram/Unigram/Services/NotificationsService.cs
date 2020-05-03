@@ -64,9 +64,9 @@ namespace Unigram.Services
 
         private readonly DisposableMutex _registrationLock;
         private bool _alreadyRegistered;
-
+#pragma warning disable CS0649 // Never assigned field, always false - because the code got commented out
         private bool _suppress;
-
+#pragma warning disable CS0649 // Never assigned field, always false
         private int _tickCount;
 
         public NotificationsService(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, ISessionService sessionService, IEventAggregator aggregator)

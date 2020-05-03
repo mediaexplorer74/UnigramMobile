@@ -126,7 +126,9 @@ namespace Unigram.Charts
         Paint whiteLinePaint = new Paint();
 
         Rect pickerRect = new Rect();
+#pragma warning disable CS0649 // Never assigned field, always null
         CanvasPathBuilder pathTmp;
+#pragma warning disable CS0649 // Never assigned field, always null
 
         Animator maxValueAnimator;
 
@@ -170,9 +172,9 @@ namespace Unigram.Charts
         public const int TRANSITION_MODE_PARENT = 2;
         public const int TRANSITION_MODE_ALPHA_ENTER = 3;
         public const int TRANSITION_MODE_NONE = 0;
-
+#pragma warning disable CS0649 // Never assigned field, always null - see code in comments
         private int touchSlop;
-
+#pragma warning disable CS0649 // Never assigned field, always null
         public int pikerHeight = 46;
         public int pickerWidth;
         public int chartStart;

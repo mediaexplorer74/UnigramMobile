@@ -379,9 +379,9 @@ namespace Unigram.Controls
         public bool IsInMainView => throw new NotImplementedException();
 
         public int SessionId => throw new NotImplementedException();
-
+#pragma warning disable CS0067 // Event is never used
         public event TypedEventHandler<INavigationService, Type> AfterRestoreSavedNavigation;
-
+#pragma warning disable CS0067 // Event is never used
         public void ClearCache(bool removeCachedPagesInBackStack = false)
         {
             throw new NotImplementedException();
