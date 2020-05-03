@@ -17,11 +17,11 @@
         <CollectionViewSource x:Name="EmojiCollection" IsSourceGrouped="True" ItemsPath="Items"/>
 
         <DataTemplate x:Key="EmojiTemplate" x:DataType="common:EmojiData">
-            <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneWay}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
+            <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneTime}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
         </DataTemplate>
         
         <DataTemplate x:Key="EmojiSkinTemplate" x:DataType="common:EmojiSkinData">
-            <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneWay}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
+            <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneTime}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
         </DataTemplate>
 
         <Style x:Key="SkinToneRadioButtonStyle" TargetType="ButtonBase">
@@ -122,7 +122,7 @@
             </common:FluidGridView.Triggers>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="common:EmojiData">
-                    <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneWay}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
+                    <TextBlock x:Phase="0" Text="{x:Bind Value, Mode=OneTime}" FontSize="22" FontFamily="{ThemeResource EmojiThemeFontFamily}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemContainerStyle>
@@ -145,7 +145,7 @@
                     </GroupStyle.HeaderTemplate>
                     <GroupStyle.HeaderContainerStyle>
                         <Style TargetType="GridViewHeaderItem">
-                            <Setter Property="Background" Value="Trasparent" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
                             <Setter Property="FontSize" Value="{ThemeResource ListViewHeaderItemThemeFontSize}" />
                             <Setter Property="Margin" Value="0,0,0,0"/>
