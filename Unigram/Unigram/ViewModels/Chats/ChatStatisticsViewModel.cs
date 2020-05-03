@@ -174,6 +174,7 @@ namespace Unigram.ViewModels.Chats
                 }
                 catch (Exception e)
                 {
+                    Logs.Logger.Error(Logs.Target.Chat, e.Message, "ChatStatisticsViewModel");
                     //e.printStackTrace();
                     return null;
                 }
@@ -236,6 +237,7 @@ namespace Unigram.ViewModels.Chats
                 }
                 catch (Exception e)
                 {
+                    Logs.Logger.Error(Logs.Target.Chat, e.Message, "ChatStatisticsViewModel");
                     //e.printStackTrace();
                 }
             }

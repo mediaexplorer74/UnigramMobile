@@ -305,6 +305,7 @@ namespace Unigram.Common
             }
             catch (Exception e)
             {
+                Logs.Logger.Error(Logs.Target.API, e.Message, "Locale");
                 //FileLog.e(e);
             }
             return "LOC_ERR";
@@ -340,6 +341,7 @@ namespace Unigram.Common
             }
             catch (Exception e)
             {
+                Logs.Logger.Error(Logs.Target.API, e.Message, "Locale");
                 //FileLog.m27e(e);
             }
             return "LOC_ERR";

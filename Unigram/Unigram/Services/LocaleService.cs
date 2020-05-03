@@ -299,7 +299,7 @@ namespace Unigram.Services
             }
             catch (Exception ignore)
             {
-
+                Logs.Logger.Error(Logs.Target.API, ignore.Message, "LocaleService");
             }
         }
 

@@ -463,6 +463,7 @@ namespace Unigram.Common
             }
             catch (Exception e)
             {
+                Logs.Logger.Error(Logs.Target.API, e.Message, "Extensions");
                 //FileLog.e(e);
             }
 

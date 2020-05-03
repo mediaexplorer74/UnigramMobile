@@ -160,6 +160,7 @@ namespace Unigram.Converters
             }
             catch (Exception e)
             {
+                Logs.Logger.Error(Logs.Target.Chat, e.Message, "LastSeenConverter");
                 //FileLog.e(e);
             }
 
