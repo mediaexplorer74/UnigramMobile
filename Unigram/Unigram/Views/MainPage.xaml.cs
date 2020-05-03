@@ -1199,24 +1199,6 @@ namespace Unigram.Views
 
         public async void Navigate(object item)
         {
-#if MOCKUP
-            if (item is Chat cat)
-            {
-                if (cat.Id == 0)
-                {
-                    MasterDetail.NavigationService.Navigate(typeof(ChatPage), 9L);
-                }
-                else if (cat.Id == 1)
-                {
-                    MasterDetail.NavigationService.Navigate(typeof(ChatPage), 10L);
-                }
-            }
-
-            ChatsList.SelectedItem = null;
-
-            return;
-#endif
-
             if (item is TLCallGroup callGroup)
             {
                 item = callGroup.Message;

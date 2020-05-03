@@ -54,10 +54,6 @@ namespace Unigram.ViewModels
 
             TopChatDeleteCommand = new RelayCommand<Chat>(TopChatDeleteExecute);
 
-#if MOCKUP
-            Items.AddRange(protoService.GetChats(20));
-#endif
-
             SelectedItems = new MvxObservableCollection<Chat>();
         }
 
@@ -718,10 +714,6 @@ namespace Unigram.ViewModels
 
                 _chatList = chatList;
                 _filter = filter;
-
-#if MOCKUP
-                _hasMoreItems = false;
-#endif
 
                 _ = LoadMoreItemsAsync(0);
             }
