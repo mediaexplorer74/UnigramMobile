@@ -253,17 +253,6 @@ namespace Unigram.Controls.Gallery
         public static GalleryView GetForCurrentView()
         {
             return new GalleryView();
-
-            var id = ApplicationView.GetApplicationViewIdForWindow(Window.Current.CoreWindow);
-            if (_windowContext.TryGetValue(id, out WeakReference<GalleryView> reference) && reference.TryGetTarget(out GalleryView value))
-            {
-                return value;
-            }
-
-            var context = new GalleryView();
-            _windowContext[id] = new WeakReference<GalleryView>(context);
-
-            return context;
         }
 
         public IAsyncOperation<ContentDialogResult> ShowAsync(GalleryViewModelBase parameter, Func<FrameworkElement> closing = null)

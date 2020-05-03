@@ -80,17 +80,6 @@ namespace Unigram.Controls.Views
         public static ShareView GetForCurrentView()
         {
             return new ShareView();
-
-            var id = ApplicationView.GetApplicationViewIdForWindow(Window.Current.CoreWindow);
-            if (_windowContext.TryGetValue(id, out WeakReference<ShareView> reference) && reference.TryGetTarget(out ShareView value))
-            {
-                return value;
-            }
-
-            var context = new ShareView();
-            _windowContext[id] = new WeakReference<ShareView>(context);
-
-            return context;
         }
 
         public static async Task<Chat> PickChatAsync(string title)

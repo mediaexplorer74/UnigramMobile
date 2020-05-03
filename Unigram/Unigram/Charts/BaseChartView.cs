@@ -277,13 +277,11 @@ namespace Unigram.Charts
         protected int getMeasuredHeight()
         {
             return (int)canvas.Size.Height;
-            return (int)ActualHeight;
         }
 
         protected int getMeasuredWidth()
         {
             return (int)canvas.Size.Width;
-            return (int)ActualWidth;
         }
 
         private CanvasControl canvas;
@@ -1805,7 +1803,9 @@ namespace Unigram.Charts
 
         protected virtual void updatePickerMinMaxHeight()
         {
+#pragma warning disable CS0162 // Unreachable code detected
             if (!ANIMATE_PICKER_SIZES) return;
+#pragma warning restore CS0162 // Unreachable code detected
             int max = 0;
             int min = int.MaxValue;
             foreach (LineViewData l in lines)

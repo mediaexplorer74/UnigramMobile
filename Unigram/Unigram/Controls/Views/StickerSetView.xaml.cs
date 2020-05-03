@@ -43,17 +43,6 @@ namespace Unigram.Controls.Views
         public static StickerSetView GetForCurrentView()
         {
             return new StickerSetView();
-
-            var id = ApplicationView.GetApplicationViewIdForWindow(Window.Current.CoreWindow);
-            if (_windowContext.TryGetValue(id, out WeakReference<StickerSetView> reference) && reference.TryGetTarget(out StickerSetView value))
-            {
-                return value;
-            }
-
-            var context = new StickerSetView();
-            _windowContext[id] = new WeakReference<StickerSetView>(context);
-
-            return context;
         }
 
         public ItemClickEventHandler ItemClick { get; set; }

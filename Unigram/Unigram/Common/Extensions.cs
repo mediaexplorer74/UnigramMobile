@@ -188,13 +188,13 @@ namespace Unigram.Common
         public static uint GetHeight(this ImageProperties props)
         {
             return props.Height;
-            return props.Orientation == PhotoOrientation.Rotate180 ? props.Height : props.Width;
+            //return props.Orientation == PhotoOrientation.Rotate180 ? props.Height : props.Width;
         }
 
         public static uint GetWidth(this ImageProperties props)
         {
             return props.Width;
-            return props.Orientation == PhotoOrientation.Rotate180 ? props.Width : props.Height;
+            //return props.Orientation == PhotoOrientation.Rotate180 ? props.Width : props.Height;
         }
 
 

@@ -88,7 +88,6 @@ namespace Unigram.Services
 
                 var v = Package.Current.Id.Version;
                 return $"{v.Major}.{v.Minor}.{v.Build}";
-                return $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
             }
         }
 

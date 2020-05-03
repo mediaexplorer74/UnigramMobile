@@ -936,38 +936,6 @@ namespace Unigram.ViewModels
                         // TODO:
                         await TLMessageDialog.ShowAsync("Payments are coming soon!", Strings.Resources.AppName, "OK");
                         return;
-
-                        var response = await ProtoService.SendAsync(new GetPaymentForm(chat.Id, message.Id));
-                        if (response is PaymentForm form)
-                        {
-                            if (form.Invoice.NeedEmailAddress || form.Invoice.NeedName || form.Invoice.NeedPhoneNumber || form.Invoice.NeedShippingAddress)
-                            {
-                                NavigationService.NavigateToPaymentFormStep1(message, form);
-                            }
-                            else if (form.SavedCredentials != null)
-                            {
-                                //if (ApplicationSettings.Current.TmpPassword != null)
-                                //{
-                                //    if (ApplicationSettings.Current.TmpPassword.ValidUntil < TLUtils.Now + 60)
-                                //    {
-                                //        ApplicationSettings.Current.TmpPassword = null;
-                                //    }
-                                //}
-
-                                //if (ApplicationSettings.Current.TmpPassword != null)
-                                //{
-                                //    NavigationService.NavigateToPaymentFormStep5(message, form, null, null, null, null, null, true);
-                                //}
-                                //else
-                                //{
-                                //    NavigationService.NavigateToPaymentFormStep4(message, form, null, null, null);
-                                //}
-                            }
-                            else
-                            {
-                                NavigationService.NavigateToPaymentFormStep3(message, form, null, null, null);
-                            }
-                        }
                     }
                 }
                 else if (inline.Type is InlineKeyboardButtonTypeLoginUrl loginUrl)

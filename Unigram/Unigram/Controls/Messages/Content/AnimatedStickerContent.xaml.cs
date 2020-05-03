@@ -128,17 +128,6 @@ namespace Unigram.Controls.Messages.Content
         {
             // We can't recycle it as we must destroy CanvasAnimatedControl on Unload.
             return false;
-
-            if (content is MessageSticker sticker)
-            {
-                return sticker.Sticker.IsAnimated;
-            }
-            else if (content is MessageText text && text.WebPage != null && !primary)
-            {
-                return text.WebPage.Sticker != null && text.WebPage.Sticker.IsAnimated;
-            }
-
-            return false;
         }
 
         private Sticker GetContent(MessageViewModel message)

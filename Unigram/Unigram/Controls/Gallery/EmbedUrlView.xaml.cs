@@ -49,17 +49,6 @@ namespace Unigram.Controls.Gallery
         public static EmbedUrlView GetForCurrentView()
         {
             return new EmbedUrlView();
-
-            var id = ApplicationView.GetApplicationViewIdForWindow(Window.Current.CoreWindow);
-            if (_windowContext.TryGetValue(id, out WeakReference<EmbedUrlView> reference) && reference.TryGetTarget(out EmbedUrlView value))
-            {
-                return value;
-            }
-
-            var context = new EmbedUrlView();
-            _windowContext[id] = new WeakReference<EmbedUrlView>(context);
-
-            return context;
         }
 
         public IAsyncOperation<ContentDialogResult> ShowAsync(MessageViewModel message, WebPage parameter, Func<FrameworkElement> closing = null)
