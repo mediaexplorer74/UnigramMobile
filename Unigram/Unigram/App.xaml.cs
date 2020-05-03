@@ -186,17 +186,6 @@ namespace Unigram
                     TLContainer.Current.Passcode.CloseTime = DateTime.MaxValue;
                 }
             }
-
-#if !DEBUG && !PREVIEW
-            if (e.Visible)
-            {
-                var dispatcher = Window.Current.Dispatcher;
-                Execute.BeginOnThreadPool(async () =>
-                {
-                    await new HockeyAppUpdateService().CheckForUpdatesAsync(Constants.HockeyAppId, dispatcher);
-                });
-            }
-#endif
         }
 
         private void HandleActivated(bool active)
@@ -438,13 +427,6 @@ namespace Unigram
                 ToastNotificationManager.History.Clear("App");
             }
             catch { }
-
-#if !DEBUG && !PREVIEW
-            Execute.BeginOnThreadPool(async () =>
-            {
-                await new HockeyAppUpdateService().CheckForUpdatesAsync(Constants.HockeyAppId, dispatcher);
-            });
-#endif
 
             if (ApiInformation.IsTypePresent("Windows.ApplicationModel.FullTrustProcessLauncher"))
             {
