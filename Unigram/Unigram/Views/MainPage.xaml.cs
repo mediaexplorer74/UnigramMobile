@@ -2258,9 +2258,12 @@ namespace Unigram.Views
             flyout.CreateFlyoutItem(ViewModel.FilterAddCommand, filter, Strings.Resources.FilterAddChats, new FontIcon { Glyph = Icons.Add });
             flyout.CreateFlyoutSeparator();
             flyout.CreateFlyoutItem(ViewModel.FilterDeleteCommand, filter, Strings.Resources.Delete, new FontIcon { Glyph = Icons.Delete });
-
+#if MOBILE
+            flyout.ShowAt(element);
+#else
             //args.ShowAt(flyout, element);
             flyout.ShowAt(element, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft });
+#endif
         }
 
         private void ArchivedChats_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
@@ -2724,10 +2727,10 @@ namespace Unigram.Views
             return null;
         }
 
-
-        private void NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.InvokedItemContainer.DataContext is ChatListFilter filter)
+            if (args.SelectedItemContainer != null // filter DataBinding (OneWay)
+                && args.SelectedItem is ChatListFilter filter)
             {
                 SetFilter(filter.Id == Constants.ChatListFilterAll ? null : filter);
             }
