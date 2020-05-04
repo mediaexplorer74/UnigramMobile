@@ -2729,8 +2729,8 @@ namespace Unigram.Views
 
         private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.SelectedItemContainer != null // filter DataBinding (OneWay)
-                && args.SelectedItem is ChatListFilter filter)
+            if (//Works only as intended without More-Menu: args.SelectedItemContainer != null && // filter DataBinding (OneWay)
+                args.SelectedItem is ChatListFilter filter)
             {
                 SetFilter(filter.Id == Constants.ChatListFilterAll ? null : filter);
             }
