@@ -15,7 +15,7 @@ In agreement with the Unigram author, this fork continues to support Windows 10 
 - Multi-account
 - Filter chats (users, bots, groups, channels, unread chats and unmuted chats)
 - Calls
-- Videos and photos editor (crop photos, set video resultion or remove some parts of the videos before sending them)
+- Videos and photos editor (crop photos, set video resolution or remove some parts of the videos before sending them)
 - Replace sent media content
 - Polls 2.0
 - Backgrounds 2.0 (blurred and motion options available)
