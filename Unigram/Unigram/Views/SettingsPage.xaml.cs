@@ -233,13 +233,10 @@ namespace Unigram.Views
             var file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                var dialog = new EditYourPhotoView(file)
-                {
-                    CroppingProportions = ImageCroppingProportions.Square,
-                    IsCropEnabled = false
-                };
-                var dialogResult = await dialog.ShowAsync();
-                if (dialogResult == ContentDialogResult.Primary)
+                var dialog = new EditMediaView(file, BitmapProportions.Square, ImageCropperMask.Ellipse);
+
+                var confirm = await dialog.ShowAsync();
+                if (confirm == ContentDialogResult.Primary && dialog.Result != null)
                 {
                     ViewModel.EditPhotoCommand.Execute(dialog.Result);
                 }
@@ -256,13 +253,10 @@ namespace Unigram.Views
             var file = await capture.CaptureFileAsync(CameraCaptureUIMode.Photo);
             if (file != null)
             {
-                var dialog = new EditYourPhotoView(file)
-                {
-                    CroppingProportions = ImageCroppingProportions.Square,
-                    IsCropEnabled = false
-                };
-                var dialogResult = await dialog.ShowAsync();
-                if (dialogResult == ContentDialogResult.Primary)
+                var dialog = new EditMediaView(file, BitmapProportions.Square, ImageCropperMask.Ellipse);
+
+                var confirm = await dialog.ShowAsync();
+                if (confirm == ContentDialogResult.Primary && dialog.Result != null)
                 {
                     ViewModel.EditPhotoCommand.Execute(dialog.Result);
                 }
