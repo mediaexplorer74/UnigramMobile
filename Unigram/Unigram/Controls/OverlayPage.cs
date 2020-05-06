@@ -295,7 +295,7 @@ namespace Unigram.Controls
 
         private void Outside_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Hide();
+            //Hide();
         }
 
         private void OnSizeChanged(object sender, WindowSizeChangedEventArgs e)
