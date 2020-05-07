@@ -52,7 +52,7 @@ namespace Unigram.Services
         }
 
         private static ILocaleService _current;
-        public static ILocaleService Current => _current ??= new LocaleService();
+        public static ILocaleService Current => _current = _current ?? new LocaleService();
 
         public async Task<BaseObject> SetLanguageAsync(LanguagePackInfo info, bool refresh)
         {
@@ -137,7 +137,7 @@ namespace Unigram.Services
                         //{
                         //    continue;
                         //}
-                        else if (difference.Strings[a].Key.StartsWith('_'))
+                        else if (difference.Strings[a].Key.StartsWith("_"))
                         {
                             continue;
                         }
