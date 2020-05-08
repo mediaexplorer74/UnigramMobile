@@ -54,24 +54,6 @@ namespace Unigram.Common
         public static void ShowTeachingTip(this Window app, FrameworkElement target, string text, Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode placement = Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode.TopRight)
         {
             ShowTeachingTip(app, target, new FormattedText(text, new TextEntity[0]), placement);
-            return;
-
-            var tip = new Microsoft.UI.Xaml.Controls.TeachingTip
-            {
-                Target = target,
-                PreferredPlacement = placement,
-                IsLightDismissEnabled = true,
-                Subtitle = text
-            };
-            if (app.Content is FrameworkElement element)
-            {
-                element.Resources["TeachingTip"] = tip;
-            }
-            else
-            {
-                target.Resources["TeachingTip"] = tip;
-            }
-            tip.IsOpen = true;
         }
 
         public static void ShowTeachingTip(this Window app, FrameworkElement target, FormattedText text, Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode placement = Microsoft.UI.Xaml.Controls.TeachingTipPlacementMode.TopRight)

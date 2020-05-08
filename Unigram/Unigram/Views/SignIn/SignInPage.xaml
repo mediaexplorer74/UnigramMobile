@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Border Background="{ThemeResource PageTitleBackgroundBrush}"/>
 
-        <microsoft:ProgressRing
+        <ProgressRing
             x:Name="LoadingVisualization"
             Width="48"
             Height="48"
