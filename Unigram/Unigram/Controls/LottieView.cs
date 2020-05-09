@@ -121,16 +121,17 @@ namespace Unigram.Controls
             if (!animation.IsCached)
             {
                 _animationIsCached = true;
-                _animationIsCaching = true;
+                //_animationIsCaching = true; //TODO: Do Caching in other Threads, if it becomes a problem
 
-                ThreadPool.QueueUserWorkItem(state =>
-                {
-                    if (state is CachedAnimation cached)
-                    {
-                        cached.CreateCache(256, 256);
-                        _animationIsCaching = false;
-                    }
-                }, animation);
+                //ThreadPool.QueueUserWorkItem(state =>
+                //{
+                //    if (state is CachedAnimation cached)
+                //    {
+                //        cached.CreateCache(256, 256);
+                //        _animationIsCaching = false;
+                //    }
+                //}, animation);
+                animation.CreateCache(256, 256);
             }
 
             IndexChanged?.Invoke(this, index);
