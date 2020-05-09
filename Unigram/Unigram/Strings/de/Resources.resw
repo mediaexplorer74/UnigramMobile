@@ -8138,6 +8138,36 @@ Wenn du mehr Ordnung brauchst, versuche einige Chats zu archivieren. Der Ordner 
   <data name="ProxySettings" xml:space="preserve">
     <value>Proxy-Einstellungen</value>
   </data>
+  <data name="PsaHide" xml:space="preserve">
+    <value>Verbergen</value>
+  </data>
+  <data name="PsaHideChatAlertText" xml:space="preserve">
+    <value>Bist du dir sicher, dass du den ausgewählten Chat verbergen möchtest?</value>
+  </data>
+  <data name="PsaHideChatAlertTitle" xml:space="preserve">
+    <value>Chat verbergen</value>
+  </data>
+  <data name="PsaInfo_covid" xml:space="preserve">
+    <value>Diese Nachricht ist eine öffentliche Ankündigung im Zusammenhang mit der COVID-19-Pandemie. Weitere Informationen zur Initiative unter: https://telegram.org/blog/coronavirus</value>
+  </data>
+  <data name="PsaMessage_covid" xml:space="preserve">
+    <value>COVID-19 Benachrichtigung</value>
+  </data>
+  <data name="PsaMessageDefault" xml:space="preserve">
+    <value>Wichtige Benachrichtigung</value>
+  </data>
+  <data name="PsaMessageInfo_covid" xml:space="preserve">
+    <value>Diese Nachricht ist eine öffentliche Ankündigung im Zusammenhang mit der COVID-19-Pandemie. Weitere Informationen zur Initiative unter: https://telegram.org/blog/coronavirus</value>
+  </data>
+  <data name="PsaMessageInfoDefault" xml:space="preserve">
+    <value>Dies ist eine wichtige Benachrichtigung.</value>
+  </data>
+  <data name="PsaType_covid" xml:space="preserve">
+    <value>COVID-19</value>
+  </data>
+  <data name="PsaTypeDefault" xml:space="preserve">
+    <value>PSA</value>
+  </data>
   <data name="PublicChannelsTooMuch" xml:space="preserve">
     <value>Der ausgewählte Nutzer hat zu viele öffentliche Gruppen oder Kanäle. Bitte die Person, einfach einen Kanal oder eine Gruppe privat zu stellen.</value>
   </data>
