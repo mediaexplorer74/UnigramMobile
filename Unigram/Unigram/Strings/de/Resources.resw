@@ -2868,7 +2868,7 @@ Jederzeit kannst du hier zum Standard-Farbthema von Telegram zurückkehren.</val
     <value>Eigene Themen</value>
   </data>
   <data name="DartInfo" xml:space="preserve">
-    <value>Sende einen **:dart:** Emoji, um dein Glück zu versuchen.</value>
+    <value>Sende einen **🎯** Emoji, um dein Glück zu versuchen.</value>
   </data>
   <data name="DataSettings" xml:space="preserve">
     <value>Daten und Speicher</value>
@@ -3171,7 +3171,7 @@ Jederzeit kannst du hier zum Standard-Farbthema von Telegram zurückkehren.</val
     <value>Sende ein 🎲 Emoji in jedem beliebigen Chat, um eine zufällige Nummer von Telegram zu erhalten.</value>
   </data>
   <data name="DiceInfo2" xml:space="preserve">
-    <value>**:würfel:**-Emoji senden, um zu würfeln</value>
+    <value>**🎲**-Emoji senden, um zu würfeln</value>
   </data>
   <data name="DidNotGetTheCode" xml:space="preserve">
     <value>Code nicht erhalten?</value>

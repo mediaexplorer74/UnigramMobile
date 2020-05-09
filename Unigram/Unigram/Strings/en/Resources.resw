@@ -2866,7 +2866,7 @@ You can always switch back to the default Telegram theme here.</value>
     <value>Custom themes</value>
   </data>
   <data name="DartInfo" xml:space="preserve">
-    <value>Send a **:darts:** emoji to try your luck.</value>
+    <value>Send a **🎯** emoji to try your luck.</value>
   </data>
   <data name="DataSettings" xml:space="preserve">
     <value>Data and Storage</value>
@@ -3169,7 +3169,7 @@ You can always switch back to the default Telegram theme here.</value>
     <value>Send a 🎲 emoji to any chat to get a random number from Telegram.</value>
   </data>
   <data name="DiceInfo2" xml:space="preserve">
-    <value>Send a **:dice:** emoji to any chat to roll a die.</value>
+    <value>Send a **🎲** emoji to any chat to roll a die.</value>
   </data>
   <data name="DidNotGetTheCode" xml:space="preserve">
     <value>Didn't get the code?</value>
