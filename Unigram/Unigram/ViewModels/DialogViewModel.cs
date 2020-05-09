@@ -2082,6 +2082,7 @@ namespace Unigram.ViewModels
             set
             {
                 Set(ref _autocomplete, value);
+                Delegate?.UpdateAutocomplete(_chat, value);
             }
         }
 

@@ -7,21 +7,23 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Unigram.Common;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Unigram.Controls
 {
     [TemplatePart(Name = "Canvas", Type = typeof(CanvasAnimatedControl))]
+    [TemplatePart(Name = "Thumbnail", Type = typeof(Image))]
     public class LottieView : Control
     {
-        private CanvasAnimatedControl Canvas;
+        private CanvasAnimatedControl _canvas;
         private string CanvasPartName = "Canvas";
 
-        private int _frameWidth;
-        private int _frameHeight;
+        private Image _thumbnail;
 
         private string _source;
         private CachedAnimation _animation;
@@ -43,6 +45,8 @@ namespace Unigram.Controls
         private bool _isLoopingEnabled = true;
         private bool _isCachingEnabled = true;
 
+        private bool _hideThumbnail = true;
+
         public LottieView()
         {
             DefaultStyleKey = typeof(LottieView);
@@ -61,11 +65,13 @@ namespace Unigram.Controls
                 return;
             }
 
-            Canvas = canvas;
-            Canvas.Paused = true;
-            Canvas.Unloaded += OnUnloaded;
-            Canvas.CreateResources += OnCreateResources;
-            Canvas.Draw += OnDraw;
+            _canvas = canvas;
+            _canvas.Paused = true;
+            _canvas.Unloaded += OnUnloaded;
+            _canvas.CreateResources += OnCreateResources;
+            _canvas.Draw += OnDraw;
+
+            _thumbnail = (Image)GetTemplateChild("Thumbnail");
 
             base.OnApplyTemplate();
         }
@@ -83,13 +89,13 @@ namespace Unigram.Controls
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Dispose();
+            _canvas.Unloaded -= OnUnloaded;
+            _canvas.CreateResources -= OnCreateResources;
+            _canvas.Draw -= OnDraw;
+            _canvas.RemoveFromVisualTree();
+            _canvas = null;
 
-            Canvas.Unloaded -= OnUnloaded;
-            Canvas.CreateResources -= OnCreateResources;
-            Canvas.Draw -= OnDraw;
-            Canvas.RemoveFromVisualTree();
-            Canvas = null;
+            Dispose();
         }
 
         private void OnCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -118,7 +124,7 @@ namespace Unigram.Controls
                 args.DrawingSession.DrawImage(bitmap, new Rect(0, 0, sender.Size.Width, sender.Size.Height));
             }
 
-            if (!animation.IsCached)
+            if (!_animationIsCached)
             {
                 _animationIsCached = true;
                 //_animationIsCaching = true; //TODO: Do Caching in other Threads, if it becomes a problem
@@ -132,6 +138,15 @@ namespace Unigram.Controls
                 //    }
                 //}, animation);
                 animation.CreateCache(256, 256);
+            }
+
+            if (_hideThumbnail)
+            {
+                _hideThumbnail = false;
+                this.BeginOnUIThread(() =>
+                {
+                    _thumbnail.Opacity = 0;
+                });
             }
 
             IndexChanged?.Invoke(this, index);
@@ -203,7 +218,7 @@ namespace Unigram.Controls
 
         private void OnSourceChanged(string newValue, string oldValue)
         {
-            var canvas = Canvas;
+            var canvas = _canvas;
             if (canvas == null)
             {
                 return;
@@ -262,7 +277,7 @@ namespace Unigram.Controls
 
         public void Play(bool backward = false)
         {
-            var canvas = Canvas;
+            var canvas = _canvas;
             if (canvas == null)
             {
                 _shouldPlay = true;
@@ -285,7 +300,7 @@ namespace Unigram.Controls
 
         public void Pause()
         {
-            var canvas = Canvas;
+            var canvas = _canvas;
             if (canvas == null)
             {
                 //_source = newValue;
@@ -298,7 +313,7 @@ namespace Unigram.Controls
 
         public void Invalidate()
         {
-            var canvas = Canvas;
+            var canvas = _canvas;
             if (canvas == null)
             {
                 return;
@@ -401,22 +416,16 @@ namespace Unigram.Controls
 
         #endregion
 
-        #region FrameSize
+        #region Thumbnail
 
-        public Size FrameSize
+        public ImageSource Thumbnail
         {
-            get { return (Size)GetValue(FrameSizeProperty); }
-            set { SetValue(FrameSizeProperty, value); }
+            get { return (ImageSource)GetValue(ThumbnailProperty); }
+            set { SetValue(ThumbnailProperty, value); }
         }
 
-        public static readonly DependencyProperty FrameSizeProperty =
-            DependencyProperty.Register("FrameSize", typeof(Size), typeof(LottieView), new PropertyMetadata(new Size(256, 256), OnFrameSizeChanged));
-
-        private static void OnFrameSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LottieView)d)._frameWidth = (int)((Size)e.NewValue).Width;
-            ((LottieView)d)._frameHeight = (int)((Size)e.NewValue).Height;
-        }
+        public static readonly DependencyProperty ThumbnailProperty =
+            DependencyProperty.Register("Thumbnail", typeof(ImageSource), typeof(LottieView), new PropertyMetadata(null));
 
         #endregion
 
