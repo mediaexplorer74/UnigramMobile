@@ -22,6 +22,8 @@ namespace Unigram.ViewModels
         private readonly Dictionary<long, ChatViewModel> _viewModels = new Dictionary<long, ChatViewModel>();
         private readonly Dictionary<long, bool> _deletedChats = new Dictionary<long, bool>();
 
+        private bool _shouldWaitFirstSlice = true; //TODO Remove, when filters get removed
+
         private ChatList _chatList;
         public ChatList ChatList => _chatList;
 
@@ -591,7 +593,7 @@ namespace Unigram.ViewModels
                     return;
                 }
             }
-
+            if (_shouldWaitFirstSlice) return; //TODO Remove, when filters get removed
             var items = Items;
 
             var chat = GetChat(chatId);
@@ -751,7 +753,7 @@ namespace Unigram.ViewModels
                             _aggregator.Subscribe(_viewModel);
 
                             _viewModel.Delegate?.SetSelectedItems(_viewModel.SelectedItems);
-
+                            _viewModel._shouldWaitFirstSlice = false; //TODO Remove, when filters get removed
                             return new LoadMoreItemsResult { Count = (uint)chats.ChatIds.Count };
                         }
 
