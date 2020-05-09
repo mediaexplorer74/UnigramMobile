@@ -2735,5 +2735,10 @@ namespace Unigram.Views
                 SetFilter(filter.Id == Constants.ChatListFilterAll ? null : filter);
             }
         }
+
+        private void ChatTabs_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TabsNavView.MaxWidth = ChatTabs.ActualWidth;
+        }
     }
 }
