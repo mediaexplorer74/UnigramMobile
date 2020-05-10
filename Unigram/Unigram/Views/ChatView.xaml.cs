@@ -2795,8 +2795,8 @@ namespace Unigram.Views
             }
             else
             {
-                StickersPanel.MinHeight = ActualHeight - 48 * 2;
-                StickersPanel.MaxHeight = ActualHeight - 48 * 2;
+                StickersPanel.MinHeight = ActualHeight - 48 - TextArea.ActualHeight;
+                StickersPanel.MaxHeight = ActualHeight - 48 - TextArea.ActualHeight;
                 StickersPanel.Height = double.NaN;
                 ButtonExpand.Glyph = "\uE011";
 
