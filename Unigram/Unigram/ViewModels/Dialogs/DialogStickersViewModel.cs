@@ -337,8 +337,8 @@ namespace Unigram.ViewModels.Dialogs
                 await items.LoadMoreItemsAsync(0);
             }
         }
-        /*
-        public async void FindAnimations(string query)
+
+        public void FindAnimations(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
             {
@@ -355,7 +355,7 @@ namespace Unigram.ViewModels.Dialogs
                 //}
             }
         }
-        */
+
         public async void UpdateSupergroupFullInfo(Chat chat, Supergroup group, SupergroupFullInfo fullInfo)
         {
             SavedStickers.Remove(_groupSet);

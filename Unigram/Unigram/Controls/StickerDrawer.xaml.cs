@@ -68,14 +68,7 @@ namespace Unigram.Controls
             var observable2 = Observable.FromEventPattern<TextChangedEventArgs>(FieldAnimations, "TextChanged");
             var throttled2 = observable2.Throttle(TimeSpan.FromMilliseconds(Constants.TypingTimeout)).ObserveOnDispatcher().Subscribe(x =>
             {
-                Logs.Logger.Warning(Logs.Target.API, "Call to not implemented function FindAnimations");
-                //ViewModel.Stickers.FindAnimations(FieldAnimations.Text);
-                //var items = ViewModel.Stickers.SearchStickers;
-                //if (items != null && string.Equals(FieldStickers.Text, items.Query))
-                //{
-                //    await items.LoadMoreItemsAsync(1);
-                //    await items.LoadMoreItemsAsync(2);
-                //}
+                ViewModel.Stickers.FindAnimations(FieldAnimations.Text);
             });
 
             switch (SettingsService.Current.Stickers.SelectedTab)

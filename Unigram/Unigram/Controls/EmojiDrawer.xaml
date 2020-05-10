@@ -112,7 +112,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="1">
-            <TextBox x:Name="FieldEmoji" PlaceholderText="{CustomResource SearchEmojiHint}" TextChanged="FieldEmoji_TextChanged" Margin="12,8"/>
+            <TextBox x:Name="FieldEmoji" PlaceholderText="{CustomResource SearchEmojiHint}" TextChanged="FieldEmoji_TextChanged" Margin="10,0" AllowFocusOnInteraction="True"/>
         </Border>
 
         <GridView x:Name="List"

@@ -277,14 +277,14 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Border>
-                                    <TextBox x:Name="FieldAnimations" PlaceholderText="{CustomResource SearchGifsTitle}" TextChanged="FieldAnimations_TextChanged" Margin="12,8" Grid.Row="1"/>
+                                    <TextBox x:Name="FieldAnimations" PlaceholderText="{CustomResource SearchGifsTitle}" TextChanged="FieldAnimations_TextChanged" Margin="10,0" AllowFocusOnInteraction="True" Grid.Row="1"/>
                                 </Border>
 
                                 <ListView x:Name="GifsView"
                                           ItemsSource="{x:Bind ViewModel.Stickers.Animations, Mode=OneWay}"
                                           SelectionMode="None"
                                           ContainerContentChanging="Animations_ContainerContentChanging"
-                                          Padding="2"
+                                          Padding="10"
                                           Grid.Row="1">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
@@ -322,7 +322,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Border Grid.Row="1">
-                                    <TextBox x:Name="FieldStickers" PlaceholderText="{CustomResource SearchStickersHint}" TextChanged="FieldStickers_TextChanged" Margin="12,8"/>
+                                    <TextBox x:Name="FieldStickers" PlaceholderText="{CustomResource SearchStickersHint}" TextChanged="FieldStickers_TextChanged" Margin="10,0" AllowFocusOnInteraction="True"/>
                                 </Border>
 
                                 <controls:ZoomableGridView

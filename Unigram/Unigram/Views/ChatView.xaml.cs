@@ -348,6 +348,13 @@ namespace Unigram.Views
             });
         }
 
+        private bool SearchTextBoxHasPointerFocus()
+        {
+            return ((StickersPanel.FindName("Emojis") as EmojiDrawer)?.FindName("FieldEmoji") as TextBox)?.FocusState == FocusState.Pointer
+                || (StickersPanel.FindName("FieldAnimations") as TextBox)?.FocusState == FocusState.Pointer
+                || (StickersPanel.FindName("FieldStickers") as TextBox)?.FocusState == FocusState.Pointer;
+        }
+
         private void TextField_LostFocus(object sender, RoutedEventArgs e)
         {
             if (ApiInfo.IsFullExperience)
@@ -355,7 +362,7 @@ namespace Unigram.Views
                 return;
             }
 
-            if (StickersPanel.Visibility == Visibility.Visible && TextField.FocusState == FocusState.Unfocused)
+            if (StickersPanel.Visibility == Visibility.Visible && TextField.FocusState == FocusState.Unfocused && !SearchTextBoxHasPointerFocus())
             {
                 Collapse_Click(StickersPanel, null);
 
@@ -805,6 +812,8 @@ namespace Unigram.Views
 
         private void InputPane_Showing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
+            if (SearchTextBoxHasPointerFocus()) return;
+            
             args.EnsuredFocusedElementInView = true;
             KeyboardPlaceholder.Height = new GridLength(args.OccludedRect.Height);
             StickersPanel.Height = args.OccludedRect.Height;
