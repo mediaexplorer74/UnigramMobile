@@ -2929,7 +2929,7 @@ namespace Unigram.Views
             var titlebar = ApplicationView.GetForCurrentView().TitleBar;
             var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
             var foregroundBrush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            var overlayBrush = new SolidColorBrush(Color.FromArgb(0x99, 0x00, 0x00, 0x00));
+            var overlayBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(0x99, 0x00, 0x00, 0x00));
 
             if (overlayBrush != null)
             {
@@ -3678,10 +3678,6 @@ namespace Unigram.Views
                 {
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
-
-                    Grid.SetRow(btnAttach, show ? 2 : 1);
-                    Grid.SetRow(ButtonsPanel, show ? 2 : 1);
-                    Grid.SetColumnSpan(TextArea, show ? 4 : 2);
                 }
 
                 UpdateTextAreaRadius();
@@ -3716,10 +3712,6 @@ namespace Unigram.Views
                 _textFormattingCollapsed = false;
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
-
-                Grid.SetRow(btnAttach, show ? 2 : 1);
-                Grid.SetRow(ButtonsPanel, show ? 2 : 1);
-                Grid.SetColumnSpan(TextArea, show ? 4 : 2);
             }
             else
             {

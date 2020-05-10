@@ -1227,7 +1227,7 @@
                                           Padding="0,2,0,0"/>
                 </Border>
 
-                <Border Grid.Column="1" Grid.Row="2">
+                <Border Grid.ColumnSpan="4" Grid.Row="2" HorizontalAlignment="Center">
                     <chats:ChatTextFormatting
                         x:Name="TextFormatting"
                         TextBox="{x:Bind TextField}"

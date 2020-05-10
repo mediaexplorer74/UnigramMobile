@@ -132,6 +132,18 @@
   <data name="EditLink" xml:space="preserve">
     <value>Link bearbeiten</value>
   </data>
+  <data name="FormatBold.CheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B3;</value>
+  </data>
+  <data name="FormatBold.UncheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B3;</value>
+  </data>
+  <data name="FormatItalic.CheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B4;</value>
+  </data>
+  <data name="FormatItalic.UncheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B4;</value>
+  </data>
   <data name="Formatting" xml:space="preserve">
     <value>Formatieren</value>
   </data>
@@ -140,6 +152,12 @@
   </data>
   <data name="FormattingShow" xml:space="preserve">
     <value>Formatierungsoptionen immer zeigen</value>
+  </data>
+  <data name="FormatUnderline.CheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B5;</value>
+  </data>
+  <data name="FormatUnderline.UncheckedGlyph" xml:space="preserve">
+    <value>&amp;#xE1B5;</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Nachrichten</value>

@@ -12,6 +12,7 @@
 
     <StackPanel Orientation="Horizontal">
         <controls:GlyphToggleButton
+            x:Uid="FormatBold"
             x:Name="Bold"
             Click="Bold_Click"
             AutomationProperties.Name="{CustomResource Bold}"
@@ -23,6 +24,7 @@
             IsOneWay="False"
             FontSize="16"/>
         <controls:GlyphToggleButton
+            x:Uid="FormatItalic"
             x:Name="Italic"
             Click="Italic_Click"
             AutomationProperties.Name="{CustomResource Italic}"
@@ -34,6 +36,7 @@
             IsOneWay="False"
             FontSize="16"/>
         <controls:GlyphToggleButton
+            x:Uid="FormatUnderline"
             x:Name="Underline"
             Click="Underline_Click"
             AutomationProperties.Name="{CustomResource Underline}"
@@ -65,7 +68,7 @@
             AllowFocusOnInteraction="False"
             CheckedGlyph="&#xE943;"
             UncheckedGlyph="&#xE943;"
-            CheckedForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+            CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
             IsOneWay="False"
             FontSize="16"/>
 
