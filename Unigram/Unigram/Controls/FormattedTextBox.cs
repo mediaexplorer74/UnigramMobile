@@ -137,7 +137,7 @@ namespace Unigram.Controls
             formatting.Items.Add(new MenuFlyoutSeparator());
             CreateFlyoutItem(formatting.Items, length && !IsDefault(format), ContextPlain_Click, Strings.Resources.Regular, null, VirtualKey.N, VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift);
             formatting.Items.Add(new MenuFlyoutSeparator());
-            CreateFlyoutItem(formatting.Items, true, () => IsFormattingVisible = !_isFormattingVisible, _isFormattingVisible ? "Hide formatting" : "Show formatting", new FontIcon { Glyph = "\uE8D2" });
+            CreateFlyoutItem(formatting.Items, true, () => IsFormattingVisible = !_isFormattingVisible, _isFormattingVisible ? Strings.Additional.FormattingHide : Strings.Additional.FormattingShow, new FontIcon { Glyph = "\uE8D2" });
 
             CreateFlyoutItem(flyout.Items, Document.CanUndo(), ContextUndo_Click, Strings.Additional.Undo, new FontIcon { Glyph = Icons.Undo }, VirtualKey.Z);
             CreateFlyoutItem(flyout.Items, Document.CanRedo(), ContextRedo_Click, Strings.Additional.Redo, new FontIcon { Glyph = Icons.Redo }, VirtualKey.Y);

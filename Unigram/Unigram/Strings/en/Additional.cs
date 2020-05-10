@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/01/2020 22:12:17
+// 	Generated: 05/10/2020 11:00:40
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -112,6 +112,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("Formatting");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Hide formatting"
+        /// </summary>
+        public static string FormattingHide
+        {
+            get
+            {
+                return Resource.GetString("FormattingHide");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show formatting"
+        /// </summary>
+        public static string FormattingShow
+        {
+            get
+            {
+                return Resource.GetString("FormattingShow");
             }
         }
         

@@ -135,6 +135,12 @@
   <data name="Formatting" xml:space="preserve">
     <value>Formatieren</value>
   </data>
+  <data name="FormattingHide" xml:space="preserve">
+    <value>Formatierungsoptionen verbergen</value>
+  </data>
+  <data name="FormattingShow" xml:space="preserve">
+    <value>Formatierungsoptionen immer zeigen</value>
+  </data>
   <data name="News" xml:space="preserve">
     <value>Nachrichten</value>
   </data>
