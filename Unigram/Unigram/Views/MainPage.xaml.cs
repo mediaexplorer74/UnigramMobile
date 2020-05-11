@@ -2238,8 +2238,7 @@ namespace Unigram.Views
 
         private void ChatListFolder_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
-            var viewModel = ViewModel;
-            if (viewModel == null)
+            if (ViewModel == null)
             {
                 return;
             }
@@ -2249,7 +2248,7 @@ namespace Unigram.Views
             var element = sender as FrameworkElement;
             var filter = element.Tag as ChatListFolder;
 
-            if (filter.Id == Constants.ChatListFilterAll)
+            if (filter == null || filter.Id == Constants.ChatListFilterAll)
             {
                 return;
             }
