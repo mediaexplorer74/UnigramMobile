@@ -21,7 +21,7 @@
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>857058D4FB4BBB2F9E5ABE8D5B4C5D3EF83E6C47</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A2A8DEBFB129BF1ED16C0CF24397A3FD27C2FBC5</PackageCertificateThumbprint>
     <BuildAppxSideloadPackageForUap>False</BuildAppxSideloadPackageForUap>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>

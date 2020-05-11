@@ -38,7 +38,7 @@ namespace Unigram.Views.SignIn
 
             Transitions = ApiInfo.CreateSlideTransition();
 
-            Diagnostics.Text = $"Unigram Mobile " + GetVersion();
+            Diagnostics.Text = Package.Current.DisplayName + " " + GetVersion();
 
             ViewModel.PropertyChanged += OnPropertyChanged;
 
