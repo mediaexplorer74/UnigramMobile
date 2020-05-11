@@ -94,6 +94,9 @@ namespace Unigram
             UnhandledException += async (s, args) =>
             {
                 args.Handled = true;
+#if !DEBUG
+                Crashes.TrackError(args.Exception);
+#endif
 
                 try
                 {
@@ -113,6 +116,9 @@ namespace Unigram
 
             Analytics.TrackEvent($"{major}.{minor}.{build}");
             Analytics.TrackEvent(AnalyticsInfo.VersionInfo.DeviceFamily);
+
+            TaskScheduler.UnobservedTaskException += OnUnobservedException;
+            UnhandledException += OnUnobservedException;
 #endif
         }
 
@@ -479,5 +485,13 @@ namespace Unigram
 
             return base.OnSuspendingAsync(s, e, prelaunchActivated);
         }
+
+#if !DEBUG
+        private void OnUnobservedException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            Crashes.TrackError(e.Exception);
+            e.SetObserved();
+        }
+#endif
     }
 }
