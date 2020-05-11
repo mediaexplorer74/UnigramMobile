@@ -43,7 +43,7 @@ namespace Unigram.Views
 
             NavigationCacheMode = NavigationCacheMode.Required;
 
-            Diagnostics.Text = $"Unigram Mobile " + GetVersion();
+            Diagnostics.Text = Package.Current.DisplayName + " " + GetVersion();
 
             if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
             {
@@ -199,6 +199,12 @@ namespace Unigram.Views
         private void Questions_Click(object sender, RoutedEventArgs e)
         {
             MasterDetail.NavigationService.NavigateToInstant(Strings.Resources.TelegramFaqUrl);
+            MasterDetail.NavigationService.GoBackAt(0, false);
+        }
+
+        private void PrivacyPolicy_Click(object sender, RoutedEventArgs e)
+        {
+            MasterDetail.NavigationService.NavigateToInstant(Strings.Resources.PrivacyPolicyUrl);
             MasterDetail.NavigationService.GoBackAt(0, false);
         }
 
