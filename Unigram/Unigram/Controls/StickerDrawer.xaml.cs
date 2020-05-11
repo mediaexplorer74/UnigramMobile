@@ -627,7 +627,7 @@ namespace Unigram.Controls
 
             var flyout = new MenuFlyout();
             flyout.CreateFlyoutItem(ViewModel.StickerSendCommand, sticker.Get(), Strings.Resources.SendStickerPreview, new FontIcon { Glyph = Icons.Send, FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily });
-            flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, sticker.Get(), Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers });
+            flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, sticker.Get(), Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers, FontFamily = Constants.SymbolThemeFontFamily });
 
             if (ViewModel.ProtoService.IsStickerFavorite(sticker.StickerValue.Id))
             {
