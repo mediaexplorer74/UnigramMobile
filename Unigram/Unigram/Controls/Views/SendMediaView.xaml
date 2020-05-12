@@ -884,6 +884,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <!--
                 <controls:GlyphButton Glyph="&#xE909;"
                                       FontFamily="{StaticResource TelegramThemeFontFamily}"
                                       AutomationProperties.Name="{CustomResource AccDescrRotate}"
@@ -892,6 +893,7 @@
                                       FontFamily="{StaticResource TelegramThemeFontFamily}"
                                       IsEnabled="False"
                                       Grid.Column="1"/>
+                -->
                 <controls:GlyphButton Click="Proportions_Click"
                                       Glyph="&#xE90A;"
                                       Visibility="{x:Bind ConvertProportions(SelectedItem.CropProportions, x:False), Mode=OneWay}"
