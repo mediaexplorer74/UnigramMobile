@@ -46,12 +46,12 @@
                             BadgeVisibility="{x:Bind ViewModel.FeaturedStickersCount, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </controls:HeaderedControl>
                     
-                    <controls:HeaderedControl
+                    <!--<controls:HeaderedControl
                         Footer="{CustomResource MasksInfo}">
                         <controls:BadgeButton
                             Content="{CustomResource Masks}"
                             Click="Masks_Click"/>
-                    </controls:HeaderedControl>
+                    </controls:HeaderedControl>-->
 
                     <controls:HeaderedControl
                         Footer="{CustomResource ArchivedStickersInfo}"
