@@ -1023,6 +1023,14 @@
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
                                 <MenuFlyoutItem
+                                    x:Name="AttachCamera"
+                                    Text="{CustomResource ChatCamera}"
+                                    Command="{x:Bind ViewModel.SendCameraCommand}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE722;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem
                                     x:Name="AttachDocument"
                                     Text="{x:Bind ConvertSelectedCount(ViewModel.MediaLibrary.SelectedCount, x:False), Mode=OneWay}"
                                     Command="{x:Bind ViewModel.SendDocumentCommand}">
