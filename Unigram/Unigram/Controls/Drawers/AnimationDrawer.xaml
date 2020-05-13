@@ -30,7 +30,7 @@
             ItemsSource="{x:Bind ViewModel.Stickers.Animations, Mode=OneWay}"
             SelectionMode="None"
             ContainerContentChanging="OnContainerContentChanging"
-            Padding="10"
+            Padding="8"
             Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>

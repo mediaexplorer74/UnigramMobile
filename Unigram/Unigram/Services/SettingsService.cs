@@ -21,9 +21,6 @@ namespace Unigram.Services
         NotificationsSettings Notifications { get; }
         StickersSettings Stickers { get; }
         EmojiSettings Emoji { get; }
-#if INCLUDE_WALLET
-        WalletSettings Wallet { get; }
-#endif
         AutoDownloadSettings AutoDownload { get; set; }
         AppearanceSettings Appearance { get; }
         FiltersSettings Filters { get; }
@@ -278,17 +275,6 @@ namespace Unigram.Services
                 // c# 8.0: return _emoji ??= new EmojiSettings();
             }
         }
-
-#if INCLUDE_WALLET
-        private WalletSettings _wallet;
-        public WalletSettings Wallet
-        {
-            get
-            {
-                return _wallet = _wallet ?? new WalletSettings(_own);
-            }
-        }
-#endif
 
         private AutoDownloadSettings _autoDownload;
         public AutoDownloadSettings AutoDownload
