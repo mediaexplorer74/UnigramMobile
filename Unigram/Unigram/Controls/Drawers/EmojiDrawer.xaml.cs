@@ -50,6 +50,25 @@ namespace Unigram.Controls.Drawers
             {
                 shadow.Size = args.NewSize.ToVector2();
             };
+            ToolbarContainer.SizeChanged += (s, args) =>
+            {
+                if (Toolbar.ItemsPanelRoot is ItemsWrapGrid wrapGrid)
+                {
+                    wrapGrid.ItemWidth = Math.Floor(ToolbarContainer.ActualWidth / 10);
+                    SkinDefault.Width = wrapGrid.ItemWidth;
+                    SkinDefault.MinWidth = SkinDefault.Width;
+                    SkinFitz12.Width = SkinDefault.Width;
+                    SkinFitz12.MinWidth = SkinDefault.Width;
+                    SkinFitz3.Width = SkinDefault.Width;
+                    SkinFitz3.MinWidth = SkinDefault.Width;
+                    SkinFitz4.Width = SkinDefault.Width;
+                    SkinFitz4.MinWidth = SkinDefault.Width;
+                    SkinFitz5.Width = SkinDefault.Width;
+                    SkinFitz5.MinWidth = SkinDefault.Width;
+                    SkinFitz6.Width = SkinDefault.Width;
+                    SkinFitz6.MinWidth = SkinDefault.Width;
+                }
+            };
 
             _typeToItemHashSetMapping["EmojiSkinTemplate"] = new HashSet<SelectorItem>();
             _typeToItemHashSetMapping["EmojiTemplate"] = new HashSet<SelectorItem>();

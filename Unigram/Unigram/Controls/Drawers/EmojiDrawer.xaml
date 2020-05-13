@@ -67,8 +67,7 @@
                             <Grid
                                 x:Name="RootGrid"
                                 Background="Transparent"
-                                CornerRadius="{StaticResource GlyphButtonCornerRadius}"
-                                Margin="{StaticResource GlyphButtonPadding}">
+                                CornerRadius="{StaticResource GlyphButtonCornerRadius}">
                                 <Border Background="White"
                                         CornerRadius="10"
                                         Width="20"
@@ -249,7 +248,7 @@
                               Grid.Row="1">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsStackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                                <ItemsWrapGrid Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.ItemContainerStyle>
@@ -263,7 +262,7 @@
                                 <Setter Property="Padding" Value="0" />
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                <Setter Property="Width" Value="34"/>
+                                <!--<Setter Property="Width" Value="{ThemeResource AppBarThemeCompactHeight}"/>-->
                                 <Setter Property="Height" Value="{ThemeResource AppBarThemeCompactHeight}"/>
                                 <Setter Property="MinWidth" Value="0" />
                                 <Setter Property="MinHeight" Value="0" />
@@ -307,8 +306,7 @@
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 ContentMargin="{TemplateBinding Padding}"
                                                 CheckMode="{ThemeResource ListViewItemCheckMode}"
-                                                CornerRadius="{StaticResource GlyphButtonCornerRadius}"
-                                                Margin="{StaticResource GlyphButtonPadding}"/>
+                                                CornerRadius="{StaticResource GlyphButtonCornerRadius}"/>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
