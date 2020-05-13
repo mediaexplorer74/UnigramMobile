@@ -429,7 +429,7 @@ namespace Unigram.ViewModels
                 storages.Add(storage);
             }
 
-            SendMediaExecute(storages, null);
+            SendMediaExecute(storages, storage);
         }
 
         public RelayCommand SendMediaCommand { get; }
@@ -526,7 +526,7 @@ namespace Unigram.ViewModels
 
             var formattedText = GetFormattedText(true);
 
-            if (selectedItem.Caption is null)
+            if (selectedItem != null && selectedItem.Caption is null)
             {
                 selectedItem.Caption = formattedText
                     .Substring(0, CacheService.Options.MessageCaptionLengthMax);
