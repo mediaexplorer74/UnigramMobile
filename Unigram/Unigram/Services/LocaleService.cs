@@ -76,7 +76,7 @@ namespace Unigram.Services
                 }
 
                 return new Error();
-#endif
+#else
 
                 var response = await protoService.SendAsync(new SetOption("language_pack_id", new OptionValueString(info.Id)));
                 if (response is Ok && refresh)
@@ -97,6 +97,7 @@ namespace Unigram.Services
                 {
                     return response;
                 }
+#endif
             }
 
             return new Ok();
@@ -107,17 +108,6 @@ namespace Unigram.Services
             string GetName(string value)
             {
                 return value;
-
-                var split = value.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-                var result = string.Empty;
-
-                foreach (var item in split)
-                {
-                    result += item.Substring(0, 1).ToUpper();
-                    result += item.Substring(1);
-                }
-
-                return result;
             }
 
             var fileName = Path.Combine(ApplicationData.Current.LocalFolder.Path, "test", lang, "Resources.resw");

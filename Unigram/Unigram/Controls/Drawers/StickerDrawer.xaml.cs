@@ -33,7 +33,7 @@ namespace Unigram.Controls.Drawers
         private readonly AnimatedListHandler<StickerViewModel> _handler;
         private readonly DispatcherTimer _throttler;
 
-        private readonly AnimatedListHandler<StickerSetViewModel> _toolbarHandler;
+        //private readonly AnimatedListHandler<StickerSetViewModel> _toolbarHandler;
 
         private FileContext<StickerViewModel> _stickers = new FileContext<StickerViewModel>();
         private bool _isActive;
