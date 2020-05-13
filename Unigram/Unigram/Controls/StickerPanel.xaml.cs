@@ -87,23 +87,23 @@ namespace Unigram.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var scrollViewer = Pivot.GetScrollViewer();
-            if (scrollViewer != null)
-            {
-                scrollViewer.DirectManipulationStarted += ScrollViewer_DirectManipulationStarted;
-            }
-        }
+        //    var scrollViewer = Pivot.GetScrollViewer();
+        //    if (scrollViewer != null)
+        //    {
+        //        scrollViewer.DirectManipulationStarted += ScrollViewer_DirectManipulationStarted;
+        //    }
+        //}
 
-        private void ScrollViewer_DirectManipulationStarted(object sender, object e)
-        {
-            var transform = Pivot.TransformToVisual(Window.Current.Content as UIElement);
-            var point = transform.TransformPoint(new Point());
+        //private void ScrollViewer_DirectManipulationStarted(object sender, object e)
+        //{
+        //    var transform = Pivot.TransformToVisual(Window.Current.Content as UIElement);
+        //    var point = transform.TransformPoint(new Point());
 
-            var rect = new Rect(point.X, point.Y, Pivot.ActualWidth, 48);
-            if (rect.Contains(Window.Current.CoreWindow.PointerPosition))
-            {
-                Pivot.GetScrollViewer().CancelDirectManipulations();
-            }
+        //    var rect = new Rect(point.X, point.Y, Pivot.ActualWidth, 48);
+        //    if (rect.Contains(Window.Current.CoreWindow.PointerPosition))
+        //    {
+        //        Pivot.GetScrollViewer().CancelDirectManipulations();
+        //    }
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
