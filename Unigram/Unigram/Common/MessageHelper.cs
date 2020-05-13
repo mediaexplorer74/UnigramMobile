@@ -195,7 +195,7 @@ namespace Unigram.Common
         public static bool IsTelegramUrl(Uri uri)
         {
             var host = uri.Host;
-            if (host.StartsWith("www."))
+            if (host.ToLower().StartsWith("www."))
             {
                 host = host.Substring("www.".Length);
             }
