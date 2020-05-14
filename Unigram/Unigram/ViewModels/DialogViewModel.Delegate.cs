@@ -162,8 +162,7 @@ namespace Unigram.ViewModels
             }
             else if (content is VoiceNote voiceNote)
             {
-                // Voice notes aren't part of the deal
-                return true;
+                return Settings.AutoDownload.ShouldDownloadVoiceMessages(GetChatType(chat));
             }
 
             return false;

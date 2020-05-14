@@ -100,8 +100,7 @@
                 </controls:HeaderedControl>
                 
                 <controls:HeaderedControl
-                    Header="{CustomResource AutomaticMediaDownload}"
-                    Footer="{CustomResource AutoDownloadAudioInfo}">
+                    Header="{CustomResource AutomaticMediaDownload}">
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.AutoDownloadEnabled, Mode=TwoWay}"
                         Header="{CustomResource AutoDownloadMedia}"
@@ -142,6 +141,17 @@
                         Style="{StaticResource HyperVerticalDetailButtonStyle}">
                         <Button.CommandParameter>
                             <settings:AutoDownloadType>Documents</settings:AutoDownloadType>
+                        </Button.CommandParameter>
+                    </controls:BadgeButton>
+
+                    <controls:BadgeButton
+                        Badge="{x:Bind ConvertAutoDownload(settings:AutoDownloadType.VoiceMessages, ViewModel.AutoDownload.VoiceMessages, 0), Mode=OneWay}"
+                        Command="{x:Bind ViewModel.AutoDownloadCommand}"
+                        IsEnabled="{x:Bind ViewModel.AutoDownloadEnabled, Mode=OneWay}"
+                        Content="{CustomResource AudioAutodownload}"
+                        Style="{StaticResource HyperVerticalDetailButtonStyle}">
+                        <Button.CommandParameter>
+                            <settings:AutoDownloadType>VoiceMessages</settings:AutoDownloadType>
                         </Button.CommandParameter>
                     </controls:BadgeButton>
 
