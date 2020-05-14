@@ -105,6 +105,19 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
+        public bool SaveCameraMediaInGallery
+        {
+            get
+            {
+                return SettingsService.Current.SaveCameraMediaInGallery;
+            }
+            set
+            {
+                SettingsService.Current.SaveCameraMediaInGallery = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public string FilesDirectory
         {
             get

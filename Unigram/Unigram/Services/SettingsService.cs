@@ -54,6 +54,7 @@ namespace Unigram.Services
         bool IsSendGrouped { get; set; }
         bool IsAccountsSelectorExpanded { get; set; }
         bool IsAllAccountsNotifications { get; set; }
+        bool SaveCameraMediaInGallery { get; set; }
 
         DistanceUnits DistanceUnits { get; set; }
 
@@ -970,6 +971,23 @@ namespace Unigram.Services
             {
                 _useLessData = value;
                 AddOrUpdateValue("UseLessData", (int)value);
+            }
+        }
+
+        private bool? _saveCameraMediaInGallery;
+        public bool SaveCameraMediaInGallery
+        {
+            get
+            {
+                if (_saveCameraMediaInGallery == null)
+                    _saveCameraMediaInGallery = GetValueOrDefault("SaveCameraMediaInGallery", true);
+
+                return _saveCameraMediaInGallery ?? true;
+            }
+            set
+            {
+                _saveCameraMediaInGallery = value;
+                AddOrUpdateValue("SaveCameraMediaInGallery", value);
             }
         }
 

@@ -182,6 +182,14 @@
                         Header="{CustomResource EnableStreaming}"
                         Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
+
+                <controls:HeaderedControl
+                    Header="{CustomResource ChatCamera}">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.SaveCameraMediaInGallery, Mode=TwoWay}"
+                        Header="{CustomResource SaveToGallery}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                </controls:HeaderedControl>
                 
                 <controls:HeaderedControl
                     Header="{CustomResource Calls}">
