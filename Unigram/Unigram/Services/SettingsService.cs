@@ -194,7 +194,7 @@ namespace Unigram.Services
         #region App version
 
         //public const ulong CurrentVersion = (3UL << 48) | (15UL << 32) | (3073UL << 16);
-        public const string CurrentChangelog = "Welcome to the first Unigram Mobile Beta! Thanks for taking the risk and time. Please use the beta group for any feedback: https://t.me/joinchat/E_I5AhukKgSSXf4Acp8nbA";
+        public static readonly string CurrentChangelog = $"Beta Build {GetAppVersion().Build}. Thanks for taking the risk and time testing this beta release. Please use the beta group for any feedback: https://t.me/joinchat/E_I5AhukKgSSXf4Acp8nbA";
         public const bool CurrentMedia = false;
 
         public int Session => _session;
