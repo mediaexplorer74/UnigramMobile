@@ -118,7 +118,7 @@ namespace Unigram
             Analytics.TrackEvent(AnalyticsInfo.VersionInfo.DeviceFamily);
 
             TaskScheduler.UnobservedTaskException += OnUnobservedException;
-            UnhandledException += OnUnobservedException;
+            UnhandledException += OnUnhandledException;
 #endif
         }
 
@@ -491,6 +491,12 @@ namespace Unigram
         {
             Crashes.TrackError(e.Exception);
             e.SetObserved();
+        }
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Crashes.TrackError(e.Exception);
+            e.Handled = true;
         }
 #endif
     }
