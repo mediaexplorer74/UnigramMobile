@@ -154,6 +154,19 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
+        public bool IsTextFormattingVisible
+        {
+            get
+            {
+                return Settings.IsTextFormattingVisible;
+            }
+            set
+            {
+                Settings.IsTextFormattingVisible = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool IsLargeEmojiEnabled
         {
             get

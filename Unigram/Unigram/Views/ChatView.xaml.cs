@@ -633,6 +633,9 @@ namespace Unigram.Views
             else if (e.PropertyName.Equals("Search"))
             {
                 SearchMask.Update(ViewModel.Search);
+            } else if (TextField.IsFormattingVisible != ViewModel.Settings.IsTextFormattingVisible)
+            {
+                TextField.IsFormattingVisible = ViewModel.Settings.IsTextFormattingVisible;
             }
         }
 

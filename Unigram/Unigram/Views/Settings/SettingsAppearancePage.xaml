@@ -276,10 +276,15 @@
                         IsOn="{x:Bind ViewModel.AreAnimationsEnabled, Mode=TwoWay}"
                         Header="{CustomResource EnableAnimations}"
                         Style="{StaticResource CheckButtonStyle}"/>
-                    
+
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsSendByEnterEnabled, Mode=TwoWay}"
                         Header="{CustomResource SendByEnter}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsTextFormattingVisible, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingIsTextFormattingVisible}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch
@@ -289,8 +294,7 @@
                     
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsReplaceEmojiEnabled, Mode=TwoWay}"
-                        x:Uid="ReplaceEmoji"
-                        Header="Replace Emojis"
+                        Header="{CustomResource Additional.ReplaceEmoji}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <controls:BadgeButton
