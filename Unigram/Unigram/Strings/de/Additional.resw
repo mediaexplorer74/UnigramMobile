@@ -132,17 +132,11 @@
   <data name="EditLink" xml:space="preserve">
     <value>Link bearbeiten</value>
   </data>
-  <data name="FormatBold.CheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B3;</value>
+  <data name="FormatBoldGlyph" xml:space="preserve">
+    <value></value>
   </data>
-  <data name="FormatBold.UncheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B3;</value>
-  </data>
-  <data name="FormatItalic.CheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B4;</value>
-  </data>
-  <data name="FormatItalic.UncheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B4;</value>
+  <data name="FormatItalicGlyph" xml:space="preserve">
+    <value></value>
   </data>
   <data name="Formatting" xml:space="preserve">
     <value>Formatieren</value>
@@ -153,11 +147,8 @@
   <data name="FormattingShow" xml:space="preserve">
     <value>Formatierungsoptionen immer zeigen</value>
   </data>
-  <data name="FormatUnderline.CheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B5;</value>
-  </data>
-  <data name="FormatUnderline.UncheckedGlyph" xml:space="preserve">
-    <value>&amp;#xE1B5;</value>
+  <data name="FormatUnderlineGlyph" xml:space="preserve">
+    <value></value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Nachrichten</value>
@@ -187,19 +178,19 @@
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>
   </data>
-  <data name="AdaptiveWideSetting.Header" xml:space="preserve">
+  <data name="AdaptiveWideSetting" xml:space="preserve">
     <value>Optimiertes Layout für breite Bildschirme</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
-  <data name="CallSettingInput.Header" xml:space="preserve">
+  <data name="CallSettingInput" xml:space="preserve">
     <value>Eingabegerät wählen</value>
     <comment>SettingsVoIPPage</comment>
   </data>
-  <data name="CallSettingOutput.Header" xml:space="preserve">
+  <data name="CallSettingOutput" xml:space="preserve">
     <value>Ausgabegerät wählen</value>
     <comment>SettingsVoIPPage</comment>
   </data>
-  <data name="CallSettingsBtn.Content" xml:space="preserve">
+  <data name="CallSettingsTitle" xml:space="preserve">
     <value>Anrufeinstellungen</value>
     <comment>SettingsAdvancesPage</comment>
   </data>
@@ -211,7 +202,7 @@
     <value>Ausgangslautstärke</value>
     <comment>SettingsVoIPPage</comment>
   </data>
-  <data name="ReplaceEmoji.Header" xml:space="preserve">
+  <data name="ReplaceEmoji" xml:space="preserve">
     <value>Emoji ersetzen</value>
     <comment>SettingsAppearancePage</comment>
   </data>
@@ -222,5 +213,25 @@
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standard</value>
     <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingIsTextFormattingVisible" xml:space="preserve">
+    <value>Formatierungsoptionen anzeigen</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="CallSettingInputTitle" xml:space="preserve">
+    <value>Mikrofon</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutputTitle" xml:space="preserve">
+    <value>Lautsprecher und Kopfhörer</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="FormatGlyphFontSize" xml:space="preserve">
+    <value>22</value>
+    <comment>Font Size corresponding chosen Symbol</comment>
+  </data>
+  <data name="IPv6ToggleSetting" xml:space="preserve">
+    <value>Über IPv6 verbinden</value>
+    <comment>SettingsAdvancedPage</comment>
   </data>
 </root>

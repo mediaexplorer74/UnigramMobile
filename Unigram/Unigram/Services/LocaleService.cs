@@ -32,6 +32,7 @@ namespace Unigram.Services
         private const int QUANTITY_MANY = 0x0010;
 
         private readonly ResourceLoader _loader;
+        private readonly ResourceLoader _loaderAdditional;
 
         private readonly Dictionary<string, Dictionary<string, string>> _languagePack = new Dictionary<string, Dictionary<string, string>>();
         private string _languageCode;
@@ -42,6 +43,7 @@ namespace Unigram.Services
         public LocaleService()
         {
             _loader = ResourceLoader.GetForViewIndependentUse("Resources");
+            _loaderAdditional = ResourceLoader.GetForViewIndependentUse("Additional");
 
             _languagePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "langpack");
 
@@ -311,6 +313,8 @@ namespace Unigram.Services
 
         public string GetString(string key)
         {
+            if (key.StartsWith("Additional.")) return _loaderAdditional.GetString(key.Substring(11));
+
             var values = GetLanguagePack(_languageCode);
             if (values.TryGetValue(key, out string value))
             {

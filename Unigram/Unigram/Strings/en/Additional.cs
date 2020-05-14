@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/14/2020 18:35:34
+// 	Generated: 05/14/2020 23:53:14
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -46,6 +46,72 @@ namespace Unigram.Strings
             set
             {
                 resourceLoader = value;
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Adaptive Layout for Wide Screens"
+        /// </summary>
+        public static string AdaptiveWideSetting
+        {
+            get
+            {
+                return Resource.GetString("AdaptiveWideSetting");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Input device"
+        /// </summary>
+        public static string CallSettingInput
+        {
+            get
+            {
+                return Resource.GetString("CallSettingInput");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Microphone"
+        /// </summary>
+        public static string CallSettingInputTitle
+        {
+            get
+            {
+                return Resource.GetString("CallSettingInputTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Output device"
+        /// </summary>
+        public static string CallSettingOutput
+        {
+            get
+            {
+                return Resource.GetString("CallSettingOutput");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Speakers and headphones"
+        /// </summary>
+        public static string CallSettingOutputTitle
+        {
+            get
+            {
+                return Resource.GetString("CallSettingOutputTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Call Settings"
+        /// </summary>
+        public static string CallSettingsTitle
+        {
+            get
+            {
+                return Resource.GetString("CallSettingsTitle");
             }
         }
         
@@ -105,6 +171,39 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "?"
+        /// </summary>
+        public static string FormatBoldGlyph
+        {
+            get
+            {
+                return Resource.GetString("FormatBoldGlyph");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "16"
+        /// </summary>
+        public static string FormatGlyphFontSize
+        {
+            get
+            {
+                return Resource.GetString("FormatGlyphFontSize");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "?"
+        /// </summary>
+        public static string FormatItalicGlyph
+        {
+            get
+            {
+                return Resource.GetString("FormatItalicGlyph");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Formatting"
         /// </summary>
         public static string Formatting
@@ -116,7 +215,7 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Hide formatting"
+        /// Localized resource similar to "Hide Formatting"
         /// </summary>
         public static string FormattingHide
         {
@@ -127,13 +226,24 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Show formatting"
+        /// Localized resource similar to "Show Formatting"
         /// </summary>
         public static string FormattingShow
         {
             get
             {
                 return Resource.GetString("FormattingShow");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "?"
+        /// </summary>
+        public static string FormatUnderlineGlyph
+        {
+            get
+            {
+                return Resource.GetString("FormatUnderlineGlyph");
             }
         }
         
@@ -145,6 +255,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("InputVolume");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Try connecting through IPv6"
+        /// </summary>
+        public static string IPv6ToggleSetting
+        {
+            get
+            {
+                return Resource.GetString("IPv6ToggleSetting");
             }
         }
         
@@ -204,6 +325,17 @@ namespace Unigram.Strings
         }
         
         /// <summary>
+        /// Localized resource similar to "Replace Emoji"
+        /// </summary>
+        public static string ReplaceEmoji
+        {
+            get
+            {
+                return Resource.GetString("ReplaceEmoji");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Save as..."
         /// </summary>
         public static string SaveAs
@@ -233,6 +365,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SelectAll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show Formatting Buttons"
+        /// </summary>
+        public static string SettingIsTextFormattingVisible
+        {
+            get
+            {
+                return Resource.GetString("SettingIsTextFormattingVisible");
             }
         }
         

@@ -21,8 +21,7 @@
                       Grid.Row="1">
             <StackPanel>
                 <controls:HeaderedControl>
-                    <controls:BadgeButton Content="Call Settings"
-                                          x:Uid="CallSettingsBtn"
+                    <controls:BadgeButton Content="{CustomResource Additional.CallSettingsTitle}"
                                           Click="VoIP_Click"/>
                 </controls:HeaderedControl>
 
@@ -30,14 +29,12 @@
                     <ToggleSwitch
                         x:Name="AdaptiveWide"
                         IsOn="{x:Bind ViewModel.IsAdaptiveWideEnabled, Mode=TwoWay}"
-                        Header="Adaptive Layout for Wide Screens"
-                        x:Uid="AdaptiveWideSetting"
+                        Header="{CustomResource Additional.AdaptiveWideSetting}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.PreferIpv6, Mode=TwoWay}"
-                        Header="Try connecting through IPv6"
-                        x:Uid="IPv6ToggleSetting"
+                        Header="{CustomResource Additional.IPv6ToggleSetting}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch

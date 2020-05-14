@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdaptiveWideSetting" xml:space="preserve">
+    <value>Adaptive Layout for Wide Screens</value>
+    <comment>SettingsAdvancedPage</comment>
+  </data>
+  <data name="CallSettingInput" xml:space="preserve">
+    <value>Input device</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingInputTitle" xml:space="preserve">
+    <value>Microphone</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutput" xml:space="preserve">
+    <value>Output device</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutputTitle" xml:space="preserve">
+    <value>Speakers and headphones</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingsTitle" xml:space="preserve">
+    <value>Call Settings</value>
+    <comment>SettingsAdvancedPage</comment>
+  </data>
   <data name="Chats" xml:space="preserve">
     <value>Chats</value>
   </data>
@@ -132,18 +156,35 @@
   <data name="EditLink" xml:space="preserve">
     <value>Edit Link</value>
   </data>
+  <data name="FormatBoldGlyph" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FormatGlyphFontSize" xml:space="preserve">
+    <value>16</value>
+    <comment>Font Size corresponding chosen Symbol</comment>
+  </data>
+  <data name="FormatItalicGlyph" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="Formatting" xml:space="preserve">
     <value>Formatting</value>
   </data>
   <data name="FormattingHide" xml:space="preserve">
-    <value>Hide formatting</value>
+    <value>Hide Formatting</value>
   </data>
   <data name="FormattingShow" xml:space="preserve">
-    <value>Show formatting</value>
+    <value>Show Formatting</value>
+  </data>
+  <data name="FormatUnderlineGlyph" xml:space="preserve">
+    <value></value>
   </data>
   <data name="InputVolume" xml:space="preserve">
     <value>Input volume</value>
     <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="IPv6ToggleSetting" xml:space="preserve">
+    <value>Try connecting through IPv6</value>
+    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
@@ -162,6 +203,10 @@
   <data name="Redo" xml:space="preserve">
     <value>Redo</value>
   </data>
+  <data name="ReplaceEmoji" xml:space="preserve">
+    <value>Replace Emoji</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as...</value>
   </data>
@@ -170,6 +215,10 @@
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
+  </data>
+  <data name="SettingIsTextFormattingVisible" xml:space="preserve">
+    <value>Show Formatting Buttons</value>
+    <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ShowInFolder" xml:space="preserve">
     <value>Show in Folder</value>

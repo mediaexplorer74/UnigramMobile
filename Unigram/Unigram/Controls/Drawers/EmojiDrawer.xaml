@@ -39,6 +39,7 @@
             <Setter Property="Width" Value="{StaticResource AppBarThemeCompactHeight}" />
             <Setter Property="MinHeight" Value="{StaticResource AppBarThemeCompactHeight}" />
             <Setter Property="MinWidth" Value="{StaticResource AppBarThemeCompactHeight}" />
+            <Setter Property="MaxWidth" Value="{StaticResource AppBarThemeCompactHeight}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ButtonBase">
@@ -266,6 +267,7 @@
                                 <Setter Property="Height" Value="{ThemeResource AppBarThemeCompactHeight}"/>
                                 <Setter Property="MinWidth" Value="0" />
                                 <Setter Property="MinHeight" Value="0" />
+                                <Setter Property="MaxWidth" Value="{ThemeResource AppBarThemeCompactHeight}"/>
                                 <Setter Property="AllowDrop" Value="False" />
                                 <Setter Property="UseSystemFocusVisuals" Value="True" />
                                 <Setter Property="FocusVisualMargin" Value="0" />
