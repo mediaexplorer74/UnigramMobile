@@ -1068,8 +1068,8 @@ namespace Unigram.Views
             {
                 if (ViewModel.Chats.SelectionMode != ListViewSelectionMode.Multiple)
                 {
-                    ViewModel.Chats.SelectionMode = ListViewSelectionMode.None;
                     ViewModel.Chats.SelectedItem = null;
+                    ViewModel.Chats.SelectionMode = ListViewSelectionMode.None;
                 }
 
                 Separator.BorderThickness = new Thickness(0);
@@ -1083,8 +1083,13 @@ namespace Unigram.Views
             {
                 if (ViewModel.Chats.SelectionMode != ListViewSelectionMode.Multiple)
                 {
+                    if (ChatsList.SelectedItem2 is Chat chat)
+                    {
+                        ViewModel.Chats.SelectedItem = chat.Id;
+                    }
+
                     ViewModel.Chats.SelectionMode = ListViewSelectionMode.Single;
-                    ViewModel.Chats.SelectedItem = ViewModel.Chats.SelectedItem;
+                    //ViewModel.Chats.SelectedItem = ViewModel.Chats.SelectedItem;
                 }
 
                 Separator.BorderThickness = new Thickness(0, 0, 1, 0);
