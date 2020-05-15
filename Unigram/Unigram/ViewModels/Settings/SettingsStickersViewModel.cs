@@ -27,6 +27,16 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
+        public bool PlayStickers
+        {
+            get => Settings.Diagnostics.PlayStickers;
+            set
+            {
+                Settings.Diagnostics.PlayStickers = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool IsLoopingEnabled
         {
             get

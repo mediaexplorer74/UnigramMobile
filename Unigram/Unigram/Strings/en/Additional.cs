@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/14/2020 23:53:14
+// 	Generated: 05/15/2020 16:15:11
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -420,6 +420,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("Undo");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Play animated stickers"
+        /// </summary>
+        public static string SettingPlayStickers
+        {
+            get
+            {
+                return Resource.GetString("SettingPlayStickers");
             }
         }
         

@@ -581,7 +581,7 @@ namespace Unigram.Services
                 if (_areAnimationsEnabled == null)
                     _areAnimationsEnabled = GetValueOrDefault(_local, "AreAnimationsEnabled", ApiInfo.IsFullExperience);
 
-                return _areAnimationsEnabled ?? ApiInfo.IsFullExperience;
+                return ApiInfo.IsFullExperience ? _areAnimationsEnabled ?? ApiInfo.IsFullExperience : false;
             }
             set
             {

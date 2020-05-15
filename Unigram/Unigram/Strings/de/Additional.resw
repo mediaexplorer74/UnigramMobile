@@ -234,4 +234,8 @@
     <value>Über IPv6 verbinden</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
+  <data name="SettingPlayStickers" xml:space="preserve">
+    <value>Sticker-Animationen abspielen</value>
+    <comment>SettingStickersPage</comment>
+  </data>
 </root>

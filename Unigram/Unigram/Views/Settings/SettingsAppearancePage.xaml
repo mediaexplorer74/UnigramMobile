@@ -272,10 +272,12 @@
 
                 <controls:HeaderedControl
                     Header="{CustomResource Settings}">
+                    <!---
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.AreAnimationsEnabled, Mode=TwoWay}"
                         Header="{CustomResource EnableAnimations}"
                         Style="{StaticResource CheckButtonStyle}"/>
+                    -->
 
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsSendByEnterEnabled, Mode=TwoWay}"
