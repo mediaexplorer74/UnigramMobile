@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <controls:PageHeader Text="Call Settings" x:Uid="CallSettingsHeader"/>
+        <controls:PageHeader Text="{CustomResource Additional.CallSettingsTitle}" x:Uid="CallSettingsHeader"/>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       VerticalScrollMode="Auto"
@@ -22,7 +22,7 @@
             <StackPanel>
                 <controls:HeaderedControl
                     Header="{CustomResource Additional.CallSettingOutputTitle}">
-                    <ComboBox Header="{CustomResource Additional.CallSettingInput}"
+                    <ComboBox Header="{CustomResource Additional.CallSettingOutput}"
                               ItemsSource="{x:Bind ViewModel.Output}"
                               SelectedItem="{x:Bind ViewModel.SelectedOutput, Mode=TwoWay}"
                               DisplayMemberPath="Name"
