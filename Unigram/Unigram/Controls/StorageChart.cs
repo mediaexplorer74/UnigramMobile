@@ -59,6 +59,25 @@ namespace Unigram.Controls
             set => SetItems(value);
         }
 
+        /// <summary>
+        /// In old .NET Frameworks Missing Array.Fill-Method
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        public static void Fill<T>(T[] array, T value)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException("array");
+            }
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = value;
+            }
+        }
+
         private void SetItems(IList<StorageChartItem> items)
         {
             _items = items;
@@ -70,7 +89,7 @@ namespace Unigram.Controls
             _geometries = new CompositionEllipseGeometry[_values.Length];
             _shapes = new CompositionShape[_values.Length];
 
-            Array.Fill(_visible, true);
+            Fill(_visible, true);
 
             var width = Math.Max(THICKNESS, Math.Min((float)ActualWidth, (float)ActualHeight));
 
