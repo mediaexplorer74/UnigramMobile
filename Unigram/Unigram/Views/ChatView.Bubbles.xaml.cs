@@ -531,18 +531,6 @@ namespace Unigram.Views
 
             foreach (var message in items)
             {
-                if (message.Content is MessageDice dice)
-                {
-                    if (message.GeneratedUnread)
-                    {
-                        message.GeneratedUnread = dice.FinalStateSticker == null;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-
                 var container = Messages.ContainerFromItem(message) as ListViewItem;
                 if (container == null)
                 {
