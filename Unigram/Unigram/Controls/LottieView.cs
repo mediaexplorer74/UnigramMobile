@@ -190,15 +190,18 @@ namespace Unigram.Controls
                 _animationIsCaching = true;
 
                 Debug.WriteLine("Creating cache for: " + Path.GetFileName(_source));
-
+#if !MOBILE
                 ThreadPool.QueueUserWorkItem(state =>
                 {
+#endif
                     if (animation is CachedAnimation cached)
                     {
                         cached.CreateCache(256, 256);
                         _animationIsCaching = false;
                     }
+#if !MOBILE
                 }, animation);
+#endif
             }
 
             if (_hideThumbnail && _thumbnail != null)
@@ -420,7 +423,7 @@ namespace Unigram.Controls
             return null;
         }
 
-        #region IsLoopingEnabled
+#region IsLoopingEnabled
 
         public bool IsLoopingEnabled
         {
@@ -436,9 +439,9 @@ namespace Unigram.Controls
             ((LottieView)d)._isLoopingEnabled = (bool)e.NewValue;
         }
 
-        #endregion
+#endregion
 
-        #region IsCachingEnabled
+#region IsCachingEnabled
 
         public bool IsCachingEnabled
         {
@@ -454,9 +457,9 @@ namespace Unigram.Controls
             ((LottieView)d)._isCachingEnabled = (bool)e.NewValue;
         }
 
-        #endregion
+#endregion
 
-        #region AutoPlay
+#region AutoPlay
 
         public bool AutoPlay
         {
@@ -467,9 +470,9 @@ namespace Unigram.Controls
         public static readonly DependencyProperty AutoPlayProperty =
             DependencyProperty.Register("AutoPlay", typeof(bool), typeof(LottieView), new PropertyMetadata(true));
 
-        #endregion
+#endregion
 
-        #region Source
+#region Source
 
         public Uri Source
         {
@@ -485,9 +488,9 @@ namespace Unigram.Controls
             ((LottieView)d).OnSourceChanged((Uri)e.NewValue, (Uri)e.OldValue);
         }
 
-        #endregion
+#endregion
 
-        #region Thumbnail
+#region Thumbnail
 
         public ImageSource Thumbnail
         {
@@ -498,7 +501,7 @@ namespace Unigram.Controls
         public static readonly DependencyProperty ThumbnailProperty =
             DependencyProperty.Register("Thumbnail", typeof(ImageSource), typeof(LottieView), new PropertyMetadata(null));
 
-        #endregion
+#endregion
 
         public event EventHandler<double> PositionChanged;
         public event EventHandler<int> IndexChanged;
@@ -519,7 +522,7 @@ namespace Unigram.Controls
         }
 
         private static LottieLoopThread _current;
-        public static LottieLoopThread Current => _current ??= new LottieLoopThread();
+        public static LottieLoopThread Current => _current = _current ?? new LottieLoopThread();
 
         private void OnTick(object state)
         {
