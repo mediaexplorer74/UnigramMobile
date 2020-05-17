@@ -55,7 +55,9 @@ namespace Unigram.Controls.Gallery
             {
                 _closing = closing;
 
+#if !MOBILE
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("FullScreenPicture", _closing());
+#endif
                 Load(message, parameter);
 
                 //if (_compactLifetime != null)
@@ -126,7 +128,7 @@ namespace Unigram.Controls.Gallery
             {
                 Presenter.Opacity = 0;
                 Preview.Opacity = 1;
-
+#if !MOBILE
                 var root = Preview.Presenter;
 
                 var animation = ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("FullScreenPicture", root);
@@ -152,8 +154,10 @@ namespace Unigram.Controls.Gallery
                 }
                 else
                 {
+#endif
                     Hide();
                 }
+#if !MOBILE
             }
             else
             {
@@ -180,12 +184,13 @@ namespace Unigram.Controls.Gallery
 
             //Unload();
             //Dispose();
-
-            e.Handled = true;
+#endif
+                e.Handled = true;
         }
 
         private void Preview_ImageOpened(object sender, RoutedEventArgs e)
         {
+#if !MOBILE
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("FullScreenPicture");
             if (animation != null)
             {
@@ -207,6 +212,7 @@ namespace Unigram.Controls.Gallery
                     return;
                 }
             }
+#endif
         }
 
         private async void Compact_Click(object sender, RoutedEventArgs e)

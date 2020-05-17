@@ -260,9 +260,9 @@ namespace Unigram.Controls.Gallery
             return AsyncInfo.Run(async (token) =>
             {
                 _closing = closing;
-
+#if !MOBILE
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("FullScreenPicture", _closing());
-
+#endif
                 if (_compactLifetime != null)
                 {
                     var compact = _compactLifetime;
@@ -340,7 +340,7 @@ namespace Unigram.Controls.Gallery
             {
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();
             }
-
+#if !MOBILE
             //var container = GetContainer(0);
             //var root = container.Presenter;
             if (ViewModel != null && ViewModel.SelectedItem == ViewModel.FirstItem && _closing != null)
@@ -385,15 +385,17 @@ namespace Unigram.Controls.Gallery
                 batch.End();
                 batch.Completed += (s, args) =>
                 {
+#endif
                     ScrollingHost.Opacity = 0;
                     Preview.Opacity = 1;
 
                     Hide();
+#if !MOBILE
                 };
             }
 
             _layer.StartAnimation("Opacity", CreateScalarAnimation(1, 0));
-
+#endif
             if (Transport.IsVisible)
             {
                 Transport.Hide();
@@ -429,7 +431,7 @@ namespace Unigram.Controls.Gallery
             Preview.Opacity = 1;
 
             var container = GetContainer(0);
-
+#if !MOBILE
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("FullScreenPicture");
             if (animation != null)
             {
@@ -457,7 +459,7 @@ namespace Unigram.Controls.Gallery
                     return;
                 }
             }
-
+#endif
             _layer.Opacity = 1;
 
             Transport.Show();
@@ -480,7 +482,7 @@ namespace Unigram.Controls.Gallery
             return scalar;
         }
 
-        #region Binding
+#region Binding
 
         private string ConvertFrom(object with)
         {
@@ -522,7 +524,7 @@ namespace Unigram.Controls.Gallery
             return Visibility.Collapsed;
         }
 
-        #endregion
+#endregion
 
         private void Play(GalleryContent item, File file)
         {
@@ -727,7 +729,7 @@ namespace Unigram.Controls.Gallery
             ChangeView(args, false);
         }
 
-        #region Flippitiflip
+#region Flippitiflip
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -924,9 +926,9 @@ namespace Unigram.Controls.Gallery
             return true;
         }
 
-        #endregion
+#endregion
 
-        #region Context menu
+#region Context menu
 
         private void Menu_ContextRequested(object sender, RoutedEventArgs e)
         {
@@ -989,9 +991,9 @@ namespace Unigram.Controls.Gallery
             args.ShowAt(flyout, element);
         }
 
-        #endregion
+#endregion
 
-        #region Compact overlay
+#region Compact overlay
 
         private static ViewLifetimeControl _compactLifetime;
         private IViewService _viewService;
@@ -1091,9 +1093,9 @@ namespace Unigram.Controls.Gallery
             OnBackRequestedOverride(this, new HandledRoutedEventArgs());
         }
 
-        #endregion
+#endregion
 
-        #region Swipe to close
+#region Swipe to close
 
         private Visual _layout;
 
@@ -1225,7 +1227,7 @@ namespace Unigram.Controls.Gallery
             e.Handled = true;
         }
 
-        #endregion
+#endregion
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
