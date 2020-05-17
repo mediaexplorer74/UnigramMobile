@@ -238,4 +238,12 @@
     <value>Play animated stickers</value>
     <comment>SettingStickersPage</comment>
   </data>
+  <data name="HighlightWords" xml:space="preserve">
+    <value>Highlight mispelled words</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Autocorrect mispelled words</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
 </root>

@@ -274,11 +274,11 @@
                     Header="{CustomResource Settings}">
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.AutocorrectWords, Mode=TwoWay}"
-                        Header="Autocorrect mispelled words"
+                        Header="{CustomResource Additional.AutocorrectWords}"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.HighlightWords, Mode=TwoWay}"
-                        Header="Highlight mispelled words"
+                        Header="{CustomResource Additional.HighlightWords}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch
