@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/17/2020 23:41:07
+// 	Generated: 05/18/2020 00:49:59
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -435,7 +435,7 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Disable Highlighting of Misspelled Words"
+        /// Localized resource similar to "Disable Error Highlighting"
         /// </summary>
         public static string SettingsDisableHighlightWords
         {

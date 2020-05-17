@@ -239,7 +239,7 @@
     <comment>SettingStickersPage</comment>
   </data>
   <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Disable Highlighting of Misspelled Words</value>
+    <value>Disable Error Highlighting</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
