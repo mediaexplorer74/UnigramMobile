@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/17/2020 22:52:54
+// 	Generated: 05/17/2020 23:41:07
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -435,24 +435,24 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Highlight mispelled words"
+        /// Localized resource similar to "Disable Highlighting of Misspelled Words"
         /// </summary>
-        public static string HighlightWords
+        public static string SettingsDisableHighlightWords
         {
             get
             {
-                return Resource.GetString("HighlightWords");
+                return Resource.GetString("SettingsDisableHighlightWords");
             }
         }
         
         /// <summary>
-        /// Localized resource similar to "Autocorrect mispelled words"
+        /// Localized resource similar to "Disable Autocorrection"
         /// </summary>
-        public static string SettingsAutocorrectWords
+        public static string SettingsDisableAutocorrectWords
         {
             get
             {
-                return Resource.GetString("SettingsAutocorrectWords");
+                return Resource.GetString("SettingsDisableAutocorrectWords");
             }
         }
         

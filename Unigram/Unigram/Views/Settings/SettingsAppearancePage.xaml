@@ -273,12 +273,12 @@
                 <controls:HeaderedControl
                     Header="{CustomResource Settings}">
                     <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.AutocorrectWords, Mode=TwoWay}"
-                        Header="{CustomResource Additional.AutocorrectWords}"
+                        IsOn="{x:Bind ViewModel.DisableAutocorrectWords, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingsDisableAutocorrectWords}"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.HighlightWords, Mode=TwoWay}"
-                        Header="{CustomResource Additional.HighlightWords}"
+                        IsOn="{x:Bind ViewModel.DisableHighlightWords, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingsDisableHighlightWords}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch

@@ -128,28 +128,28 @@ namespace Unigram.ViewModels.Settings
 
 
 
-        public bool AutocorrectWords
+        public bool DisableAutocorrectWords
         {
             get
             {
-                return Settings.AutocorrectWords;
+                return !Settings.AutocorrectWords;
             }
             set
             {
-                Settings.AutocorrectWords = value;
+                Settings.AutocorrectWords = !value;
                 RaisePropertyChanged();
             }
         }
 
-        public bool HighlightWords
+        public bool DisableHighlightWords
         {
             get
             {
-                return Settings.HighlightWords;
+                return !Settings.HighlightWords;
             }
             set
             {
-                Settings.HighlightWords = value;
+                Settings.HighlightWords = !value;
                 RaisePropertyChanged();
             }
         }

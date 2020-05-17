@@ -238,12 +238,12 @@
     <value>Sticker-Animationen abspielen</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="HighlightWords" xml:space="preserve">
-    <value>Tippfehler hervorheben</value>
+  <data name="SettingsDisableHighlightWords" xml:space="preserve">
+    <value>Tippfehler-Hervorhebung deaktivieren</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SettingsAutocorrectWords" xml:space="preserve">
-    <value>Tippfehler automatische korrigieren</value>
+  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
+    <value>Autokorrektur deaktivieren</value>
     <comment>SettingsAppearancePage</comment>
   </data>
 </root>
