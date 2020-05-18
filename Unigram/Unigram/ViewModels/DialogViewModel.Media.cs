@@ -260,7 +260,7 @@ namespace Unigram.ViewModels
                 caption = formattedText.Substring(0, CacheService.Options.MessageCaptionLengthMax);
             }
 
-            var dialog = new SendFilesView(items, media, _chat.Type is ChatTypePrivate);
+            var dialog = new SendFilesView(items, media, _chat.Type is ChatTypePrivate && !CacheService.IsSavedMessages(_chat));
             dialog.ViewModel = this;
             dialog.Caption = caption;
 
