@@ -1022,12 +1022,17 @@ namespace Unigram.ViewModels
 
                 if (package.AvailableFormats.Contains(StandardDataFormats.Text))
                 {
-                    captionElements.Add(await package.GetTextAsync());
+                    var text = await package.GetTextAsync();
+                    captionElements.Add(text);
                 }
                 if (package.AvailableFormats.Contains(StandardDataFormats.WebLink))
                 {
-                    var webLink = await package.GetWebLinkAsync();
-                    captionElements.Add(webLink.AbsoluteUri);
+                    try
+                    {
+                        var webLink = await package.GetWebLinkAsync();
+                        captionElements.Add(webLink.AbsoluteUri);
+                    }
+                    catch { }
                 }
 
                 if (captionElements.Count > 0)
