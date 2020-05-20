@@ -1550,9 +1550,12 @@ namespace Unigram.Views
         {
             get
             {
+
                 if (ApiInfo.IsFullExperience)
                 {
-                    return /*Window.Current.Bounds.Width >= 900 ? StickersPanelMode.Sidebar :*/ StickersPanelMode.Overlay;
+                    return ActualWidth >= SIDEBAR_MIN_WIDTH
+                    ? StickersPanelMode.Sidebar
+                    : StickersPanelMode.Overlay;
                 }
 
                 return StickersPanelMode.Mobile;
