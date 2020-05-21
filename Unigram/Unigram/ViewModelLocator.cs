@@ -120,6 +120,11 @@ namespace Unigram
                     .As<IEmojiSetService>()
                     .SingleInstance()
                     .AutoActivate();
+
+                builder.RegisterType<ShortcutsService>()
+                    .As<IShortcutsService>()
+                    .SingleInstance()
+                    .AutoActivate();
                 //builder.RegisterType<OptionsService>()
                 //    .As<IOptionsService>()
                 //    .SingleInstance()
