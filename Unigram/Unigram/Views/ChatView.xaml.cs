@@ -369,27 +369,8 @@ namespace Unigram.Views
                 || ((StickersPanel.FindName("AnimationsRoot") as AnimationDrawer)?.FindName("FieldAnimations") as TextBox)?.FocusState == FocusState.Pointer
                 || ((StickersPanel.FindName("StickersRoot") as StickerDrawer)?.FindName("FieldStickers") as TextBox)?.FocusState == FocusState.Pointer;
         }
-        
-        private void TextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (ApiInfo.IsFullExperience)
-            {
-                return;
-            }
 
-            if (StickersPanel.Visibility == Visibility.Visible && TextField.FocusState == FocusState.Unfocused && !SearchTextBoxHasPointerFocus())
-            {
-                Collapse_Click(StickersPanel, null);
 
-                TextField.Focus(FocusState.Programmatic);
-            }
-            else if (ReplyMarkupPanel.Visibility == Visibility.Visible && ButtonMarkup.Visibility == Visibility.Visible && TextField.FocusState == FocusState.Unfocused)
-            {
-                CollapseMarkup(false);
-
-                TextField.Focus(FocusState.Programmatic);
-            }
-        }
 
         private void StickersPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
@@ -1038,12 +1019,6 @@ namespace Unigram.Views
                 args.Handled = SearchMask.OnBackRequested();
             }
 
-            if (StickersPanel.Visibility == Visibility.Visible)
-            {
-                Collapse_Click(null, null);
-                args.Handled = true;
-            }
-
             if (ReplyMarkupPanel.Visibility == Visibility.Visible && ButtonMarkup.Visibility == Visibility.Visible)
             {
                 CollapseMarkup(false);
@@ -1681,11 +1656,6 @@ namespace Unigram.Views
 
         private void TextField_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (StickersPanel.Visibility == Visibility.Visible)
-            {
-                Collapse_Click(StickersPanel, null);
-            }
-
             if (ReplyMarkupPanel.Visibility == Visibility.Visible && ButtonMarkup.Visibility == Visibility.Visible)
             {
                 CollapseMarkup(false);
@@ -2388,7 +2358,11 @@ namespace Unigram.Views
         public async void Stickers_ItemClick(Sticker sticker)
         {
             ViewModel.StickerSendCommand.Execute(sticker);
-            Collapse_Click(null, new RoutedEventArgs());
+
+            if (_stickersMode == StickersPanelMode.Overlay)
+            {
+                Collapse_Click(null, null);
+            }
 
             await Task.Delay(100);
             TextField.Focus(FocusState.Programmatic);
@@ -2397,7 +2371,11 @@ namespace Unigram.Views
         public async void Animations_ItemClick(Animation animation)
         {
             ViewModel.AnimationSendCommand.Execute(animation);
-            Collapse_Click(null, new RoutedEventArgs());
+
+            if (_stickersMode == StickersPanelMode.Overlay)
+            {
+                Collapse_Click(null, null);
+            }
 
             await Task.Delay(100);
             TextField.Focus(FocusState.Programmatic);
@@ -2733,7 +2711,10 @@ namespace Unigram.Views
                 TextField.SetText(null, null);
                 ViewModel.StickerSendCommand.Execute(sticker);
 
-                Collapse_Click(null, new RoutedEventArgs());
+                if (_stickersMode == StickersPanelMode.Overlay)
+                {
+                    Collapse_Click(null, null);
+                }
             }
 
             ViewModel.Autocomplete = null;
@@ -4329,7 +4310,10 @@ namespace Unigram.Views
 
         private void TextField_Sending(object sender, EventArgs e)
         {
-            Collapse_Click(StickersPanel, null);
+            if (_stickersMode == StickersPanelMode.Overlay)
+            {
+                Collapse_Click(StickersPanel, null);
+            }
         }
     }
 
