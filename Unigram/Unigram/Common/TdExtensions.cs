@@ -1184,12 +1184,7 @@ namespace Unigram.Common
             switch (result)
             {
                 case InlineQueryResultAnimation animation:
-                    return true;
-                //???
-                case InlineQueryResultLocation location:
-                    return string.IsNullOrEmpty(location.Title);
                 case InlineQueryResultPhoto photo:
-                case InlineQueryResultSticker sticker:
                     return true;
                 case InlineQueryResultVideo video:
                     return string.IsNullOrEmpty(video.Title);
@@ -1867,6 +1862,39 @@ namespace Unigram.Common
                     return voiceNote.UpdateFile(file);
                 case MessageChatChangePhoto chatChangePhoto:
                     return chatChangePhoto.UpdateFile(file);
+                default:
+                    return false;
+            }
+        }
+
+        public static bool UpdateFile(this InlineQueryResult result, File file)
+        {
+            switch (result)
+            {
+                case InlineQueryResultAnimation animation:
+                    return animation.Animation.UpdateFile(file);
+                case InlineQueryResultArticle article:
+                    return article.Thumbnail?.UpdateFile(file) ?? false;
+                case InlineQueryResultAudio audio:
+                    return audio.Audio.UpdateFile(file);
+                case InlineQueryResultContact contact:
+                    return contact.Thumbnail?.UpdateFile(file) ?? false;
+                case InlineQueryResultDocument document:
+                    return document.Document.UpdateFile(file);
+                case InlineQueryResultGame game:
+                    return game.Game.UpdateFile(file);
+                case InlineQueryResultLocation location:
+                    return location.Thumbnail?.UpdateFile(file) ?? false;
+                case InlineQueryResultPhoto photo:
+                    return photo.Photo.UpdateFile(file);
+                case InlineQueryResultSticker sticker:
+                    return sticker.Sticker.UpdateFile(file);
+                case InlineQueryResultVenue venue:
+                    return venue.Thumbnail?.UpdateFile(file) ?? false;
+                case InlineQueryResultVideo video:
+                    return video.Video.UpdateFile(file);
+                case InlineQueryResultVoiceNote voiceNote:
+                    return voiceNote.VoiceNote.UpdateFile(file);
                 default:
                     return false;
             }
