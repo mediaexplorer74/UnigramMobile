@@ -177,7 +177,7 @@ namespace Unigram.Controls
 
             float beginScale = 1.0f;
             float endScale = 1.0f;
-            if (Orientation == Orientation.Horizontal && MathF.Abs(size.X) > 0.001f)
+            if (Orientation == Orientation.Horizontal && Convert.ToSingle(Math.Abs(size.X)) > 0.001f)
             {
                 beginScale = beginSize.X / size.X;
                 endScale = endSize.X / size.X;
@@ -209,7 +209,7 @@ namespace Unigram.Controls
 
             ScalarKeyFrameAnimation scaleAnim = comp.CreateScalarKeyFrameAnimation();
             scaleAnim.InsertKeyFrame(0.0f, beginScale);
-            scaleAnim.InsertKeyFrame(0.333f, MathF.Abs(to - from) / dimension + (from < to ? endScale : beginScale), comp.CreateCubicBezierEasingFunction(c_frame1point1, c_frame1point2));
+            scaleAnim.InsertKeyFrame(0.333f, Convert.ToSingle(Math.Abs(to - from)) / dimension + (from < to ? endScale : beginScale), comp.CreateCubicBezierEasingFunction(c_frame1point1, c_frame1point2));
             scaleAnim.InsertKeyFrame(1.0f, endScale, comp.CreateCubicBezierEasingFunction(c_frame2point1, c_frame2point2));
             scaleAnim.Duration = TimeSpan.FromMilliseconds(600);
 
