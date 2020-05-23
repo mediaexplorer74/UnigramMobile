@@ -1573,7 +1573,7 @@ namespace Unigram.Views
             }
         }
 
-        private void ShowHideDockedStickersPanel(bool sidebar)
+        private void ShowHideDockedStickersPanel(bool sidebar, bool? show = null)
         {
             VisualStateManager.GoToState(this, sidebar ? "SidebarState" : "NarrowState", false);
             StickersPanel.SetView(sidebar ? StickersPanelMode.Sidebar : StickersPanelMode.Mobile);
@@ -2908,20 +2908,17 @@ namespace Unigram.Views
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (HeaderOverlay.Visibility == Visibility.Visible)
+            if (_stickersModeWide == StickersPanelMode.Mobile && HeaderOverlay.Visibility == Visibility.Visible)
             {
                 StickersPanel.MinHeight = e.NewSize.Height - 48 * 2;
                 StickersPanel.MaxHeight = e.NewSize.Height - 48 * 2;
             }
-        }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
             if (e.NewSize.Width > e.PreviousSize.Width && e.NewSize.Width >= SIDEBAR_MIN_WIDTH && e.PreviousSize.Width < SIDEBAR_MIN_WIDTH)
             {
                 if (_stickersModeWide == StickersPanelMode.Sidebar)
                 {
-                    ShowHideDockedStickersPanel(true);
+                    ShowHideDockedStickersPanel(true, true);
                 }
                 else
                 {
