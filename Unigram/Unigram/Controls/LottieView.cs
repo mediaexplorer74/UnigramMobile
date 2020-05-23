@@ -180,19 +180,22 @@ namespace Unigram.Controls
             {
                 _animationShouldCache = false;
                 _animationIsCaching = true;
-
+#if !MOBILE
                 ThreadPool.QueueUserWorkItem(state =>
                 {
-                    if (animation is CachedAnimation cached)
-                    {
-                        _cachingSemaphone.Wait();
+#endif
+                if (animation is CachedAnimation cached)
+                {
+                    _cachingSemaphone.Wait();
 
-                        cached.CreateCache(256, 256);
+                    cached.CreateCache(256, 256);
 
-                        _animationIsCaching = false;
-                        _cachingSemaphone.Release();
-                    }
+                    _animationIsCaching = false;
+                    _cachingSemaphone.Release();
+                }
+#if !MOBILE
                 }, animation);
+#endif
             }
 
             IndexChanged?.Invoke(this, index);
@@ -513,7 +516,7 @@ namespace Unigram.Controls
         }
 
         private static LottieLoopThread _current;
-        public static LottieLoopThread Current => _current ??= new LottieLoopThread();
+        public static LottieLoopThread Current => _current = _current ?? new LottieLoopThread();
 
         private void OnTick(object state)
         {
