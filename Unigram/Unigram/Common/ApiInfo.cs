@@ -32,8 +32,8 @@ namespace Unigram.Common
         private static bool? _canUseNewFlyoutPlacementMode;
         public static bool CanUseNewFlyoutPlacementMode => (_canUseNewFlyoutPlacementMode = _canUseNewFlyoutPlacementMode ?? ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft")) ?? false; //Note: Valid also for: BottomEdgeAlignedRight, TopEdgeAlignedRight, ...
 
-        private static bool? _isFullExperience;
-        public static bool IsFullExperience => (_isFullExperience = _isFullExperience ?? AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile") ?? true;
+        private static bool? _hasStatusBar;
+        public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;
 
         public static TransitionCollection CreateSlideTransition()
         {

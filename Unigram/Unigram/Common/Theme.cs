@@ -114,7 +114,7 @@ namespace Unigram.Common
             MergedDictionaries[0].MergedDictionaries.Clear();
             MergedDictionaries[0].MergedDictionaries.Add(dict);
 
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if (ApiInfo.HasStatusBar)
             {
                 try
                 {
@@ -179,7 +179,7 @@ namespace Unigram.Common
                 MergedDictionaries[0].MergedDictionaries.Clear();
                 MergedDictionaries[0].MergedDictionaries.Add(dict);
 
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                if (ApiInfo.HasStatusBar)
                 {
                     TLWindowContext.GetForCurrentView().UpdateTitleBar();
                 }

@@ -76,7 +76,7 @@ namespace Unigram.Controls
                 //titlebar.ButtonBackgroundColor = maskBackground;
                 titlebar.ButtonForegroundColor = maskForeground;
 
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                if (ApiInfo.HasStatusBar)
                 {
                     var statusBar = StatusBar.GetForCurrentView();
                     statusBar.BackgroundColor = maskBackground;

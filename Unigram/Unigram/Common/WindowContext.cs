@@ -164,7 +164,7 @@ namespace Unigram.Common
             titleBar.ButtonHoverBackgroundColor = buttonHover;
 
             // Mobile Status Bar
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if (ApiInfo.HasStatusBar)
             {
                 var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
                 var foregroundBrush = Application.Current.Resources["PageHeaderForegroundBrush"] as SolidColorBrush;
@@ -543,7 +543,7 @@ namespace Unigram.Common
         {
             Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = text;
 
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if (ApiInfo.HasStatusBar)
             {
                 StatusBar.GetForCurrentView().ProgressIndicator.Text = text;
                 await StatusBar.GetForCurrentView().ProgressIndicator.ShowAsync();
@@ -554,7 +554,7 @@ namespace Unigram.Common
         {
             Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = string.Empty;
 
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if (ApiInfo.HasStatusBar)
             {
                 StatusBar.GetForCurrentView().ProgressIndicator.Text = string.Empty;
                 await StatusBar.GetForCurrentView().ProgressIndicator.HideAsync();
