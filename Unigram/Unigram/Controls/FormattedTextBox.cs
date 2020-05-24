@@ -34,12 +34,12 @@ namespace Unigram.Controls
 
             //ContextMenuOpening += OnContextMenuOpening;
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.RichEditBox", "DisabledFormattingAccelerators"))
+            if (ApiInfo.CanUseAccelerators)
             {
                 DisabledFormattingAccelerators = DisabledFormattingAccelerators.All;
             }
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAcceleratorPlacementMode"))
+            if (ApiInfo.CanUseKeyboardAcceleratorPlacementMode)
             {
                 KeyboardAcceleratorPlacementMode = KeyboardAcceleratorPlacementMode.Hidden;
 

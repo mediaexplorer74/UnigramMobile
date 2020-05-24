@@ -305,7 +305,7 @@ namespace Unigram.Services
                 annotation.RemoteId = contact.RemoteId;
                 annotation.SupportedOperations = ContactAnnotationOperations.ContactProfile | ContactAnnotationOperations.Message | ContactAnnotationOperations.AudioCall;
 
-                if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+                if (ApiInfo.IsUniversalApiContract5Present)
                 {
                     annotation.SupportedOperations |= ContactAnnotationOperations.Share;
                 }

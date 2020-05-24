@@ -57,7 +57,7 @@ namespace Unigram.Controls
                     break;
             }
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "Shadow"))
+            if (ApiInfo.CanUseShadow)
             {
                 var themeShadow = new ThemeShadow();
                 BackgroundElement.Shadow = themeShadow;

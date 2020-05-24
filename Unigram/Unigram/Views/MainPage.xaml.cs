@@ -1853,7 +1853,7 @@ namespace Unigram.Views
                         subtitle.Text = string.Empty;
                     }
 
-                    if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.TextBlock", "TextHighlighters"))
+                    if (ApiInfo.CanUseTextHighlighters)
                     {
                         if (subtitle.Text.StartsWith($"@{result.Query}", StringComparison.OrdinalIgnoreCase))
                         {
@@ -2057,7 +2057,7 @@ namespace Unigram.Views
                     subtitle.Text = LastSeenConverter.GetLabel(user, true);
                 }
 
-                if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.TextBlock", "TextHighlighters"))
+                if (ApiInfo.CanUseTextHighlighters)
                 {
                     if (subtitle.Text.StartsWith($"@{result.Query}", StringComparison.OrdinalIgnoreCase))
                     {

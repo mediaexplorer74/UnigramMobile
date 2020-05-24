@@ -267,7 +267,7 @@ namespace Unigram.Controls.Views
 
             IsGrouped = ViewModel.Settings.IsSendGrouped;
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.RichEditBox", "MaxLength"))
+            if (ApiInfo.CanUseMaxLength)
             {
                 CaptionInput.MaxLength = ViewModel.CacheService.Options.MessageCaptionLengthMax;
             }

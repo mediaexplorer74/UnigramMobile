@@ -422,7 +422,7 @@ namespace Unigram.Controls.Views
                         subtitle.Text = string.Empty;
                     }
 
-                    if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.TextBlock", "TextHighlighters"))
+                    if (ApiInfo.CanUseTextHighlighters)
                     {
                         if (subtitle.Text.StartsWith($"@{result.Query}", StringComparison.OrdinalIgnoreCase))
                         {

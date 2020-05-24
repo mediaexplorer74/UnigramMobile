@@ -24,16 +24,40 @@ namespace Unigram.Common
         public static bool CanUseDirectComposition => (_canUseDirectComposition = _canUseDirectComposition ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7)) ?? false;
 
         private static bool? _canUseAccelerators;
-        public static bool CanUseAccelerators => (_canUseAccelerators = _canUseAccelerators ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAccelerators")) ?? false;
+        public static bool CanUseAccelerators => (_canUseAccelerators = _canUseAccelerators ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAccelerators")) ?? false; //Note: 16299, UniversalApiContract v5
 
         private static bool? _canUseFlyoutShowOptions;
-        public static bool CanUseFlyoutShowOptions => (_canUseFlyoutShowOptions = _canUseFlyoutShowOptions ?? ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions")) ?? false;
+        public static bool CanUseFlyoutShowOptions => (_canUseFlyoutShowOptions = _canUseFlyoutShowOptions ?? ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions")) ?? false; //Note: 17763 (1809), UniversalApiContract v7
 
         private static bool? _canUseNewFlyoutPlacementMode;
         public static bool CanUseNewFlyoutPlacementMode => (_canUseNewFlyoutPlacementMode = _canUseNewFlyoutPlacementMode ?? ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft")) ?? false; //Note: Valid also for: BottomEdgeAlignedRight, TopEdgeAlignedRight, ...
 
+        private static bool? _canUseKeyboardAcceleratorPlacementMode;
+        public static bool CanUseKeyboardAcceleratorPlacementMode => (_canUseKeyboardAcceleratorPlacementMode = _canUseKeyboardAcceleratorPlacementMode ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAcceleratorPlacementMode")) ?? false; //Note: 17134 (1803), UniversalApiContract v6
+
+        private static bool? _canUseShadow;
+        public static bool CanUseShadow => (_canUseShadow = _canUseShadow ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "Shadow")) ?? false; //Note: 18362 (1903), UniversalApiContract v8
+
         private static bool? _canCreateGeometricClip;
-        public static bool CanCreateGeometricClip => (_canCreateGeometricClip = _canCreateGeometricClip ?? ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateGeometricClip")) ?? false;
+        public static bool CanCreateGeometricClip => (_canCreateGeometricClip = _canCreateGeometricClip ?? ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateGeometricClip")) ?? false; //Note: 17763, UniversalApiContract v7
+
+        private static bool? _canUsePreviewKeyDownEvent;
+        public static bool CanUsePreviewKeyDownEvent => (_canUsePreviewKeyDownEvent = _canUsePreviewKeyDownEvent ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.UIElement", "PreviewKeyDown")) ?? false; //Note: 16299, UniversalApiContract v5
+
+        private static bool? _canUseTextHighlighters;
+        public static bool CanUseTextHighlighters => (_canUseTextHighlighters = _canUseTextHighlighters ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.TextBlock", "TextHighlighters")) ?? false; //Note: 16299, UniversalApiContract v5
+
+        private static bool? _canUseSplitViewPaneOpeningEvent;
+        public static bool CanUseSplitViewPaneOpeningEvent => (_canUseSplitViewPaneOpeningEvent = _canUseSplitViewPaneOpeningEvent ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.Controls.SplitView", "PaneOpening")) ?? false; //Note: 16299, UniversalApiContract v5
+
+        private static bool? _canShareContacts;
+        public static bool CanShareContacts => (_canShareContacts = _canShareContacts ?? ApiInformation.IsPropertyPresent("Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation", "Contacts")) ?? false; //Note: 16299, UniversalApiContract v5
+
+        private static bool? _isUniversalApiContract5Present;
+        public static bool IsUniversalApiContract5Present => (_isUniversalApiContract5Present = _isUniversalApiContract5Present ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5)) ?? false;
+
+        private static bool? _canUseMaxLength;
+        public static bool CanUseMaxLength => (_canUseMaxLength = _canUseMaxLength ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.RichEditBox", "MaxLength")) ?? false; //Note: 15063, UniversalApiContract v4
 
         private static bool? _hasStatusBar;
         public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;

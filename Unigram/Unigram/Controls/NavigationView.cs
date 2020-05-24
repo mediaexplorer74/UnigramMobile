@@ -28,7 +28,7 @@ namespace Unigram.Controls
 
             TogglePaneButton.Click += Toggle_Click;
 
-            if (ApiInformation.IsEventPresent("Windows.UI.Xaml.Controls.SplitView", "PaneOpening"))
+            if (Common.ApiInfo.CanUseSplitViewPaneOpeningEvent)
             {
                 RootSplitView.PaneOpening += OnPaneOpening;
                 RootSplitView.PaneClosing += OnPaneClosing;

@@ -28,7 +28,7 @@ namespace Unigram.Controls.Chats
         {
             InitializeComponent();
 
-            if (ApiInformation.IsEventPresent("Windows.UI.Xaml.UIElement", "PreviewKeyDown"))
+            if (ApiInfo.CanUsePreviewKeyDownEvent)
             {
                 Field.PreviewKeyDown += OnKeyDown;
             }

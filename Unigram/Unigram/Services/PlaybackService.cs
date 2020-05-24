@@ -250,7 +250,7 @@ namespace Unigram.Services
 
         private async Task AttachAsync()
         {
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1))
+            if (ApiInfo.IsPhoneContractPresent)
             {
                 var devices = await DeviceInformation.FindAllAsync(ProximitySensor.GetDeviceSelector());
                 if (devices.Count > 0)

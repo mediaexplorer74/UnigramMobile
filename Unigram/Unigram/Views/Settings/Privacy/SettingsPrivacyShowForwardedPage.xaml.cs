@@ -37,7 +37,7 @@ namespace Unigram.Views.Settings.Privacy
 
             BackgroundPresenter.Update(ViewModel.SessionId, ViewModel.ProtoService, ViewModel.Aggregator);
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "Shadow"))
+            if (ApiInfo.CanUseShadow)
             {
                 var themeShadow = new ThemeShadow();
                 ToolTip.Shadow = themeShadow;

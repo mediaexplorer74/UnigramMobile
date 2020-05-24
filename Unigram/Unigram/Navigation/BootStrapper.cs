@@ -279,7 +279,7 @@ namespace Unigram.Navigation
             DebugWrite();
 
             var handled = false;
-            if (ApiInformation.IsApiContractPresent(nameof(Windows.Phone.PhoneContract), 1, 0))
+            if (ApiInfo.IsPhoneContractPresent)
             {
                 if (NavigationService?.CanGoBack == true)
                 {

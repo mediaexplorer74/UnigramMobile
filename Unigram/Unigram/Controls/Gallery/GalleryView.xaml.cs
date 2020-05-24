@@ -75,7 +75,7 @@ namespace Unigram.Controls.Gallery
 
         private void CreateKeyboardAccelerator(Windows.System.VirtualKey key, Windows.System.VirtualKeyModifiers modifiers = Windows.System.VirtualKeyModifiers.Control)
         {
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAccelerators"))
+            if (ApiInfo.CanUseAccelerators)
             {
                 var accelerator = new KeyboardAccelerator { Modifiers = modifiers, Key = key, ScopeOwner = this };
                 accelerator.Invoked += FlyoutAccelerator_Invoked;

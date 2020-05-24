@@ -312,7 +312,7 @@ namespace Unigram.Common
 
                 var query = "tg://";
 
-                if (ApiInformation.IsPropertyPresent("Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation", "Contacts"))
+                if (ApiInfo.CanShareContacts)
                 {
                     var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
                     if (contactId is int userId)
