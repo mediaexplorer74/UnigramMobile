@@ -178,23 +178,8 @@ namespace Unigram.Common
 
         #endregion
 
-        private bool? _apiAvailable;
-
         private CoreWindowActivationMode _activationMode;
-        public CoreWindowActivationMode ActivationMode
-        {
-            get
-            {
-                _apiAvailable = _apiAvailable ?? ApiInformation.IsReadOnlyPropertyPresent("Windows.UI.Core.CoreWindow", "ActivationMode");
-
-                if (_apiAvailable == true)
-                {
-                    return _window.CoreWindow.ActivationMode;
-                }
-
-                return _activationMode;
-            }
-        }
+        public CoreWindowActivationMode ActivationMode => ApiInfo.IsUniversalApiContract5Present ? _window.CoreWindow.ActivationMode : _activationMode;
 
         public ContactPanel ContactPanel { get; private set; }
 

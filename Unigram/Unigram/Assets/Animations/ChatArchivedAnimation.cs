@@ -25,11 +25,7 @@ namespace Unigram.Assets.Animations
 
         static bool IsRuntimeCompatible()
         {
-            if (!Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Composition.CompositionGeometricClip"))
-            {
-                return false;
-            }
-            return true;
+            return Common.ApiInfo.IsUniversalApiContract7Present; //IsTypePresent("Windows.UI.Composition.CompositionGeometricClip")
         }
 
         sealed class AnimatedVisual : IAnimatedVisual

@@ -79,7 +79,7 @@ namespace Unigram.ViewModels.Settings
         {
             get
             {
-                var size = (int)Theme.Current.GetValueOrDefault("MessageFontSize", ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7) ? 14d : 15d);
+                var size = (int)Theme.Current.GetValueOrDefault("MessageFontSize", ApiInfo.IsUniversalApiContract7Present ? 14d : 15d);
                 if (_sizeToIndex.TryGetValue(size, out int index))
                 {
                     return (double)index;

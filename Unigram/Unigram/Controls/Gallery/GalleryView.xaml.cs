@@ -577,7 +577,7 @@ namespace Unigram.Controls.Gallery
                 _surface = parent;
                 _surface.Children.Add(_mediaPlayerElement);
 
-                if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
+                if (ApiInfo.IsUniversalApiContract5Present) //if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
                 {
                     Transport.ShowAndHideAutomatically = true;
                 }
@@ -654,7 +654,7 @@ namespace Unigram.Controls.Gallery
                 _request = null;
             }
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
+            if (ApiInfo.IsUniversalApiContract5Present) //if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
             {
                 Transport.ShowAndHideAutomatically = false;
             }
@@ -1132,7 +1132,7 @@ namespace Unigram.Controls.Gallery
             LayoutRoot.ManipulationCompleted += LayoutRoot_ManipulationCompleted;
 #endif
 
-            if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
+            if (ApiInfo.IsUniversalApiContract5Present) //if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
             {
                 Transport.ShowAndHideAutomatically = false;
             }

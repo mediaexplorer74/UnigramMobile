@@ -378,11 +378,6 @@ namespace Unigram.Common
             }
         }
 
-        public static bool IsCompactOverlaySupported(this ApplicationView view)
-        {
-            return ApiInformation.IsMethodPresent("Windows.UI.ViewManagement.ApplicationView", "IsViewModeSupported") && view.IsViewModeSupported(ApplicationViewMode.CompactOverlay);
-        }
-
         public static string NormalizeTextDirection(this string data)
         {
             if (data.Length > 0)
