@@ -10,6 +10,8 @@ using Unigram.Controls;
 using Unigram.Controls.Views;
 using Unigram.Navigation;
 using Unigram.Services;
+using Unigram.ViewModels.Folders;
+using Unigram.Views;
 using Unigram.Views.Folders;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -378,9 +380,10 @@ namespace Unigram.ViewModels
         public RelayCommand<ChatFilterViewModel> FilterEditCommand { get; }
         private async void FilterAddExecute(ChatFilterViewModel filter)
         {
-            // Meh I'm lazy
-            Logs.Logger.Warning(Logs.Target.API, "He was lazy. (Not yet implemented!)");
-            await Task.CompletedTask;
+            var viewModel = TLContainer.Current.Resolve<FolderViewModel>();
+            await viewModel.OnNavigatedToAsync(filter.ChatFilterId, NavigationMode.New, null);
+            await viewModel.AddIncludeAsync();
+            await viewModel.SendAsync();
         }
 
         public RelayCommand<ChatFilterViewModel> FilterDeleteCommand { get; }
