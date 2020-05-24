@@ -593,7 +593,7 @@ namespace Unigram.Views
 
             if (flyout.Items.Count > 0)
             {
-                if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+                if (ApiInfo.CanUseNewFlyoutPlacementMode)
                 {
                     flyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
                 }

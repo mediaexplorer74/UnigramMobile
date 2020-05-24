@@ -45,7 +45,7 @@ namespace Unigram.Views
 
             Diagnostics.Text = Package.Current.DisplayName + " " + GetVersion();
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 PhotoFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }

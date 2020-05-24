@@ -39,7 +39,7 @@ namespace Unigram.Views.Settings
             FromPicker.ClockIdentifier = GlobalizationPreferences.Clocks.FirstOrDefault();
             ToPicker.ClockIdentifier = GlobalizationPreferences.Clocks.FirstOrDefault();
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 FromPicker.Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft;
                 ToPicker.Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft;

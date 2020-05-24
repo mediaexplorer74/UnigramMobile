@@ -26,7 +26,7 @@ namespace Unigram.Views.Settings
         {
             this.InitializeComponent();
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 MenuFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }

@@ -1843,7 +1843,7 @@ namespace Unigram.Views
 
             if (flyout.Items.Count > 0)
             {
-                if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+                if (ApiInfo.CanUseNewFlyoutPlacementMode)
                 {
                     flyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
                 }
@@ -1871,7 +1871,7 @@ namespace Unigram.Views
             flyout.CreateFlyoutItem(new RelayCommand(async () => await TextField.SendAsync(true)), Strings.Resources.SendWithoutSound, new FontIcon { Glyph = Icons.Mute });
             flyout.CreateFlyoutItem(new RelayCommand(async () => await TextField.ScheduleAsync()), self ? Strings.Resources.SetReminder : Strings.Resources.ScheduleMessage, new FontIcon { Glyph = Icons.Schedule });
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "TopEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 flyout.ShowAt(sender, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
             }

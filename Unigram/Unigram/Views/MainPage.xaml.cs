@@ -126,7 +126,7 @@ namespace Unigram.Views
                 folderShadow.Size = args.NewSize.ToVector2();
             };
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 SettingsFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }
@@ -2351,12 +2351,17 @@ namespace Unigram.Views
                 flyout.CreateFlyoutSeparator();
                 flyout.CreateFlyoutItem(ViewModel.FilterDeleteCommand, filter, Strings.Resources.Delete, new FontIcon { Glyph = Icons.Delete });
             }
-#if MOBILE
-            flyout.ShowAt(element);
-#else
-            //args.ShowAt(flyout, element);
-            flyout.ShowAt(element, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft });
-#endif
+
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
+            {
+                //args.ShowAt(flyout, element);
+                flyout.ShowAt(element, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft });
+
+            }
+            else
+            {
+                flyout.ShowAt(element);
+            }
         }
 
         private void ArchivedChats_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
@@ -2729,7 +2734,7 @@ namespace Unigram.Views
         //        {
         //            var flyout = new MenuFlyout();
 
-        //            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft"))
+        //            if(ApiInfo.CanUseNewFlyoutPlacementMode)
         //            {
         //                flyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft;
         //            }

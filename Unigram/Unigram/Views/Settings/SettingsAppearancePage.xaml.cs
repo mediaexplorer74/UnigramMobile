@@ -33,7 +33,7 @@ namespace Unigram.Views.Settings
             //UpdatePreview(true);
             BackgroundPresenter.Update(ViewModel.SessionId, ViewModel.ProtoService, ViewModel.Aggregator);
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 MenuFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }

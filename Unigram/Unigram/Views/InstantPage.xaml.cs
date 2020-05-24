@@ -46,7 +46,7 @@ namespace Unigram.Views
             InitializeComponent();
             DataContext = TLContainer.Current.Resolve<InstantViewModel>();
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 EllipsisFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }

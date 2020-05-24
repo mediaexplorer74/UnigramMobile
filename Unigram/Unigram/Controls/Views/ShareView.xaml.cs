@@ -53,7 +53,7 @@ namespace Unigram.Controls.Views
                 }
             });
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 MenuFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }
