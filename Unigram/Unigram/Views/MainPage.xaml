@@ -92,7 +92,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <microsoft:ProgressBar x:Name="Status" VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2"/>
+                    <ProgressBar x:Name="Status" VerticalAlignment="Top" Background="Transparent" Grid.ColumnSpan="2"/>
                     <TextBlock x:Name="StatusLabel"
                                VerticalAlignment="Center"
                                TextLineBounds="TrimToCapHeight"
@@ -118,7 +118,7 @@
             </VisualStateManager.VisualStateGroups>
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <contract7Present:Grid.BackgroundTransition>
-                    <BrushTransition/>
+                    <contract7Present:BrushTransition/>
                 </contract7Present:Grid.BackgroundTransition>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -176,7 +176,7 @@
                                                 Click="LogOut_Click"
                                                 Text="{CustomResource LogOut}">
                                                 <MenuFlyoutItem.Icon>
-                                                    <FontIcon Glyph="&#xF3B1;"/>
+                                                    <FontIcon Glyph="&#xF3B1;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
                                                 </MenuFlyoutItem.Icon>
                                             </MenuFlyoutItem>
                                         </MenuFlyout>

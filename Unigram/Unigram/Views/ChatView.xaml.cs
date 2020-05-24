@@ -1586,12 +1586,15 @@ namespace Unigram.Views
 
                 ViewModel.OpenStickersCommand.Execute(null);
 
-                _stickersPanel.StopAnimation("Opacity");
-                _stickersPanel.Clip?.StopAnimation("LeftInset");
-                _stickersPanel.Clip?.StopAnimation("TopInset");
+                if (ApiInfo.IsFullExperience)
+                {
+                    _stickersPanel.StopAnimation("Opacity");
+                    _stickersPanel.Clip?.StopAnimation("LeftInset");
+                    _stickersPanel.Clip?.StopAnimation("TopInset");
 
-                _stickersPanel.Opacity = 1;
-                _stickersPanel.Clip = Window.Current.Compositor.CreateInsetClip();
+                    _stickersPanel.Opacity = 1;
+                    _stickersPanel.Clip = Window.Current.Compositor.CreateInsetClip();
+                }
             }
             else
             {
