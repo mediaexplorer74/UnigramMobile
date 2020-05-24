@@ -135,7 +135,7 @@ namespace Unigram.Views
                 return;
             }
 
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1))
+            if (ApiInfo.IsPhoneContractPresent)
             {
                 Routing.Visibility = Visibility.Visible;
                 AudioRoutingManager.GetDefault().AudioEndpointChanged += AudioEndpointChanged;
@@ -150,7 +150,7 @@ namespace Unigram.Views
         {
             Debug.WriteLine("Unloaded");
 
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1))
+            if (ApiInfo.IsPhoneContractPresent)
             {
                 AudioRoutingManager.GetDefault().AudioEndpointChanged -= AudioEndpointChanged;
             }
@@ -169,7 +169,7 @@ namespace Unigram.Views
                 _controller = null;
             }
 
-            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1))
+            if (ApiInfo.IsPhoneContractPresent)
             {
                 AudioRoutingManager.GetDefault().AudioEndpointChanged -= AudioEndpointChanged;
             }

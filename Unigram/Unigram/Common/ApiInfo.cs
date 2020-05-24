@@ -38,6 +38,12 @@ namespace Unigram.Common
         private static bool? _hasStatusBar;
         public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;
 
+        private static bool? _isPhoneContractPresent;
+        public static bool IsPhoneContractPresent => (_isPhoneContractPresent = _isPhoneContractPresent ?? ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1)) ?? false;
+
+        private static bool? _isFullExperience;
+        public static bool IsFullExperience => (_isFullExperience = _isFullExperience ?? AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile") ?? true;
+
         public static TransitionCollection CreateSlideTransition()
         {
             //if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo", "Effect"))
