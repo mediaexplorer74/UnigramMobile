@@ -47,7 +47,7 @@ namespace Unigram.Views.Supergroups
                 return;
             }
 
-            if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions"))
+            if (ApiInfo.CanUseFlyoutShowOptions)
             {
                 flyout.ShowAt(sender as FrameworkElement, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft });
             }

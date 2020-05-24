@@ -26,6 +26,9 @@ namespace Unigram.Common
         private static bool? _canUseAccelerators;
         public static bool CanUseAccelerators => (_canUseAccelerators = _canUseAccelerators ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAccelerators")) ?? false;
 
+        private static bool? _canUseFlyoutShowOptions;
+        public static bool CanUseFlyoutShowOptions => (_canUseFlyoutShowOptions = _canUseFlyoutShowOptions ?? ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions")) ?? false;
+
         private static bool? _canUseNewFlyoutPlacementMode;
         public static bool CanUseNewFlyoutPlacementMode => (_canUseNewFlyoutPlacementMode = _canUseNewFlyoutPlacementMode ?? ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft")) ?? false; //Note: Valid also for: BottomEdgeAlignedRight, TopEdgeAlignedRight, ...
 
