@@ -32,6 +32,9 @@ namespace Unigram.Common
         private static bool? _canUseNewFlyoutPlacementMode;
         public static bool CanUseNewFlyoutPlacementMode => (_canUseNewFlyoutPlacementMode = _canUseNewFlyoutPlacementMode ?? ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft")) ?? false; //Note: Valid also for: BottomEdgeAlignedRight, TopEdgeAlignedRight, ...
 
+        private static bool? _canCreateGeometricClip;
+        public static bool CanCreateGeometricClip => (_canCreateGeometricClip = _canCreateGeometricClip ?? ApiInformation.IsMethodPresent("Windows.UI.Composition.Compositor", "CreateGeometricClip")) ?? false;
+
         private static bool? _hasStatusBar;
         public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;
 
