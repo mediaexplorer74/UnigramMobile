@@ -125,22 +125,19 @@ namespace Unigram.Controls.Views
             MapPresenter.Height = ActualHeight;
             MapPresenter.Margin = new Thickness(0, -(space / 2), 0, -(space / 2));
 
-            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2))
-            {
-                var scrollingHost = NearbyList.Descendants<ScrollViewer>().FirstOrDefault() as ScrollViewer;
+            var scrollingHost = NearbyList.Descendants<ScrollViewer>().FirstOrDefault() as ScrollViewer;
 
-                var scrollerViewerManipulation = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollingHost);
+            var scrollerViewerManipulation = ElementCompositionPreview.GetScrollViewerManipulationPropertySet(scrollingHost);
 
-                var compositor = scrollerViewerManipulation.Compositor;
+            var compositor = scrollerViewerManipulation.Compositor;
 
-                var expression = compositor.CreateExpressionAnimation("-(ScrollManipulation.Translation.Y / 2)");
-                expression.SetScalarParameter("ParallaxMultiplier", (float)(space / 2));
-                expression.SetReferenceParameter("ScrollManipulation", scrollerViewerManipulation);
+            var expression = compositor.CreateExpressionAnimation("-(ScrollManipulation.Translation.Y / 2)");
+            expression.SetScalarParameter("ParallaxMultiplier", (float)(space / 2));
+            expression.SetReferenceParameter("ScrollManipulation", scrollerViewerManipulation);
 
-                var heroVisual = ElementCompositionPreview.GetElementVisual(MapPresenter);
-                heroVisual.CenterPoint = new Vector3((float)(MapPresenter.ActualWidth / 2), (float)MapPresenter.ActualHeight, 0);
-                heroVisual.StartAnimation("Offset.Y", expression);
-            }
+            var heroVisual = ElementCompositionPreview.GetElementVisual(MapPresenter);
+            heroVisual.CenterPoint = new Vector3((float)(MapPresenter.ActualWidth / 2), (float)MapPresenter.ActualHeight, 0);
+            heroVisual.StartAnimation("Offset.Y", expression);
 
             mMap.Style = MapStyle.Road;
             mMap.ZoomLevel = 10;

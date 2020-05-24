@@ -68,7 +68,7 @@ namespace Unigram.Services
 
         public async Task JumpListAsync()
         {
-            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2) && JumpList.IsSupported())
+            if (JumpList.IsSupported())
             {
                 var current = await JumpList.LoadCurrentAsync();
                 current.SystemGroupKind = JumpListSystemGroupKind.None;
