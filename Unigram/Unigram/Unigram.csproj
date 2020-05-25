@@ -290,6 +290,7 @@
     </Compile>
     <Compile Include="Controls\ColorPicker.cs" />
     <Compile Include="Controls\ColorTextBox.cs" />
+    <Compile Include="Controls\CompatibilityFallback\StorageChart.cs" />
     <Compile Include="Controls\ConfettiView.cs" />
     <Compile Include="Controls\DialogListView.cs" />
     <Compile Include="Controls\Drawers\AnimationDrawer.xaml.cs">
@@ -443,6 +444,7 @@
     <Compile Include="Controls\StickerPanel.xaml.cs">
       <DependentUpon>StickerPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CompatibilityFallback\StorageChartUWPv5.cs" />
     <Compile Include="Controls\StorageChart.cs" />
     <Compile Include="Controls\TableListView.cs" />
     <Compile Include="Controls\TablePanel.cs" />

@@ -14,8 +14,8 @@ namespace Unigram.Common
 {
     public static class ApiInfo
     {
-        private static bool? _canAddContextRequestedEvent;
-        public static bool CanAddContextRequestedEvent => (_canAddContextRequestedEvent = _canAddContextRequestedEvent ?? ApiInformation.IsReadOnlyPropertyPresent("Windows.UI.Xaml.UIElement", "ContextRequestedEvent")) ?? false; //Note: 17134 (1803), UniversalApiContract v6
+        //private static bool? _canAddContextRequestedEvent;
+        public static bool CanAddContextRequestedEvent => IsUniversalApiContract6Present;// (_canAddContextRequestedEvent = _canAddContextRequestedEvent ?? ApiInformation.IsReadOnlyPropertyPresent("Windows.UI.Xaml.UIElement", "ContextRequestedEvent")) ?? false; //Note: 17134 (1803), UniversalApiContract v6
 
         //private static bool? _canCheckTextTrimming;
         public static bool CanCheckTextTrimming => IsUniversalApiContract5Present; // (_canCheckTextTrimming = _canCheckTextTrimming ?? ApiInformation.IsReadOnlyPropertyPresent("Windows.UI.Xaml.Controls.TextBlock", "IsTextTrimmed")) ?? false;
@@ -32,8 +32,8 @@ namespace Unigram.Common
         //private static bool? _canUseNewFlyoutPlacementMode; //Note: 17763, UniversalApiContract v7
         public static bool CanUseNewFlyoutPlacementMode => IsUniversalApiContract7Present;// (_canUseNewFlyoutPlacementMode = _canUseNewFlyoutPlacementMode ?? ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedLeft")) ?? false; //Note: Valid also for: BottomEdgeAlignedRight, TopEdgeAlignedRight, ...
 
-        private static bool? _canUseKeyboardAcceleratorPlacementMode;
-        public static bool CanUseKeyboardAcceleratorPlacementMode => (_canUseKeyboardAcceleratorPlacementMode = _canUseKeyboardAcceleratorPlacementMode ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAcceleratorPlacementMode")) ?? false; //Note: 17134 (1803), UniversalApiContract v6
+        //private static bool? _canUseKeyboardAcceleratorPlacementMode;
+        public static bool CanUseKeyboardAcceleratorPlacementMode => IsUniversalApiContract6Present;// (_canUseKeyboardAcceleratorPlacementMode = _canUseKeyboardAcceleratorPlacementMode ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "KeyboardAcceleratorPlacementMode")) ?? false; //Note: 17134 (1803), UniversalApiContract v6
 
         private static bool? _canUseShadow;
         public static bool CanUseShadow => (_canUseShadow = _canUseShadow ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "Shadow")) ?? false; //Note: 18362 (1903), UniversalApiContract v8
@@ -53,7 +53,10 @@ namespace Unigram.Common
         //private static bool? _canShareContacts;
         public static bool CanShareContacts => IsUniversalApiContract5Present; // (_canShareContacts = _canShareContacts ?? ApiInformation.IsPropertyPresent("Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation", "Contacts")) ?? false; //Note: 16299, UniversalApiContract v5
 
-         public static bool IsUniversalApiContract7Present => CanUseAccelerators;
+        public static bool IsUniversalApiContract7Present => CanUseAccelerators;
+
+        private static bool? _isUniversalApiContract6Present;
+        public static bool IsUniversalApiContract6Present => (_isUniversalApiContract6Present = _isUniversalApiContract6Present ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6)) ?? false;
 
         private static bool? _isUniversalApiContract5Present;
         public static bool IsUniversalApiContract5Present => (_isUniversalApiContract5Present = _isUniversalApiContract5Present ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5)) ?? false;

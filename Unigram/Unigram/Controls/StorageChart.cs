@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Windows.Foundation;
 using Windows.UI;
@@ -65,7 +63,7 @@ namespace Unigram.Controls
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="value"></param>
-        public static void Fill<T>(T[] array, T value)
+        private static void Fill<T>(T[] array, T value)
         {
             if (array == null)
             {
