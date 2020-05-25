@@ -8,7 +8,7 @@ using System.Text;
 using Telegram.Td.Api;
 using Unigram.Common;
 using Unigram.Controls;
-using Unigram.Controls.Views;
+using Unigram.Views.Popups;
 using Unigram.Converters;
 using Unigram.Services;
 using Unigram.Views;
@@ -129,7 +129,7 @@ namespace Unigram.ViewModels
             }
 
             var sameUser = messages.All(x => x.SenderUserId == first.SenderUserId);
-            var dialog = new DeleteMessagesView(CacheService, messages.Select(x => x.Get()).ToArray());
+            var dialog = new DeleteMessagesPopup(CacheService, messages.Select(x => x.Get()).ToArray());
 
             var confirm = await dialog.ShowQueuedAsync();
             if (confirm != ContentDialogResult.Primary)
@@ -184,7 +184,7 @@ namespace Unigram.ViewModels
             DisposeSearch();
             SelectionMode = ListViewSelectionMode.None;
 
-            await ShareView.GetForCurrentView().ShowAsync(message.Get());
+            await SharePopup.GetForCurrentView().ShowAsync(message.Get());
 
             TextField?.Focus(FocusState.Programmatic);
         }
@@ -198,11 +198,11 @@ namespace Unigram.ViewModels
         {
             if (message.Content is MessageAlbum album)
             {
-                await ShareView.GetForCurrentView().ShowAsync(album.Layout.Messages.Select(x => x.Get()).ToList());
+                await SharePopup.GetForCurrentView().ShowAsync(album.Layout.Messages.Select(x => x.Get()).ToList());
             }
             else
             {
-                await ShareView.GetForCurrentView().ShowAsync(message.Get());
+                await SharePopup.GetForCurrentView().ShowAsync(message.Get());
             }
         }
 
@@ -248,7 +248,7 @@ namespace Unigram.ViewModels
                 DisposeSearch();
                 SelectionMode = ListViewSelectionMode.None;
 
-                await ShareView.GetForCurrentView().ShowAsync(messages);
+                await SharePopup.GetForCurrentView().ShowAsync(messages);
 
                 TextField?.Focus(FocusState.Programmatic);
             }
@@ -463,7 +463,7 @@ namespace Unigram.ViewModels
                 new SelectRadioItem(new ChatReportReasonCustom(), Strings.Resources.ReportChatOther, false)
             };
 
-            var dialog = new SelectRadioView(items);
+            var dialog = new SelectRadioPopup(items);
             dialog.Title = Strings.Resources.ReportChat;
             dialog.PrimaryButtonText = Strings.Resources.OK;
             dialog.SecondaryButtonText = Strings.Resources.Cancel;
@@ -832,7 +832,7 @@ namespace Unigram.ViewModels
                 new SelectRadioItem(new ChatReportReasonCustom(), Strings.Resources.ReportChatOther, false)
             };
 
-            var dialog = new SelectRadioView(items);
+            var dialog = new SelectRadioPopup(items);
             dialog.Title = Strings.Resources.ReportChat;
             dialog.PrimaryButtonText = Strings.Resources.OK;
             dialog.SecondaryButtonText = Strings.Resources.Cancel;
@@ -947,7 +947,7 @@ namespace Unigram.ViewModels
                     }
                     else if (response is LoginUrlInfoRequestConfirmation requestConfirmation)
                     {
-                        var dialog = new LoginUrlInfoView(CacheService, requestConfirmation);
+                        var dialog = new LoginUrlInfoPopup(CacheService, requestConfirmation);
                         var confirm = await dialog.ShowQueuedAsync();
                         if (confirm != ContentDialogResult.Primary || !dialog.HasAccepted)
                         {
@@ -986,7 +986,7 @@ namespace Unigram.ViewModels
                     }
                     else
                     {
-                        await ShareView.GetForCurrentView().ShowAsync(switchInline, bot);
+                        await SharePopup.GetForCurrentView().ShowAsync(switchInline, bot);
                     }
                 }
                 else if (inline.Type is InlineKeyboardButtonTypeUrl urlButton)
@@ -1382,7 +1382,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var dialog = new EditUserNameView(user.FirstName, user.LastName, fullInfo.NeedPhoneNumberPrivacyException);
+            var dialog = new EditUserNamePopup(user.FirstName, user.LastName, fullInfo.NeedPhoneNumberPrivacyException);
 
             var confirm = await dialog.ShowQueuedAsync();
             if (confirm == ContentDialogResult.Primary)
@@ -1403,7 +1403,7 @@ namespace Unigram.ViewModels
             {
                 var date = BindConvert.Current.DateTime(message.Date);
 
-                var dialog = new Controls.Views.CalendarView();
+                var dialog = new CalendarPopup();
                 dialog.MaxDate = DateTimeOffset.Now.Date;
                 dialog.SelectedDates.Add(date);
 

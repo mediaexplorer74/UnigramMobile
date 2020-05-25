@@ -319,6 +319,9 @@
     <Compile Include="Controls\GroupedListView.cs" />
     <Compile Include="Controls\HeaderedControl.cs" />
     <Compile Include="Controls\ImageCropper.cs" />
+    <Compile Include="Controls\InlineBotResultsView.xaml.cs">
+      <DependentUpon>InlineBotResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LazoListView.cs" />
     <Compile Include="Controls\LazoListViewItem.cs" />
     <Compile Include="Controls\MasterDetailPanel.cs" />
@@ -865,9 +868,6 @@
     <Compile Include="Views\Popups\EditYourAboutPopup.xaml.cs">
       <DependentUpon>EditYourAboutPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Popups\InlineBotResultsPopup.xaml.cs">
-      <DependentUpon>InlineBotResultsPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Popups\JoinChatPopup.xaml.cs">
       <DependentUpon>JoinChatPopup.xaml</DependentUpon>
     </Compile>
@@ -886,9 +886,6 @@
     <Compile Include="Views\Popups\ScheduleMessagePopup.xaml.cs">
       <DependentUpon>ScheduleMessagePopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Popups\SelectLivePeriodPopup.xaml.cs">
-      <DependentUpon>SelectLivePeriodPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Popups\SelectRadioPopup.xaml.cs">
       <DependentUpon>SelectRadioPopup.xaml</DependentUpon>
     </Compile>
@@ -906,9 +903,6 @@
     </Compile>
     <Compile Include="Views\Popups\SettingsPasscodeInputPopup.xaml.cs">
       <DependentUpon>SettingsPasscodeInputPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Popups\SettingsPasswordPopup.xaml.cs">
-      <DependentUpon>SettingsPasswordPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Popups\SharePopup.xaml.cs">
       <DependentUpon>SharePopup.xaml</DependentUpon>
@@ -1893,6 +1887,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\InlineBotResultsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Messages\Content\AlbumContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2277,10 +2275,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Popups\InlineBotResultsPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Popups\JoinChatPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2305,10 +2299,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Popups\SelectLivePeriodPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Popups\SelectRadioPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2330,10 +2320,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Popups\SettingsPasscodeInputPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Popups\SettingsPasswordPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

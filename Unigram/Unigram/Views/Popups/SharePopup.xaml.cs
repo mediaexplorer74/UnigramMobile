@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Unigram.Collections;
 using Unigram.Common;
+using Unigram.Controls;
 using Unigram.Converters;
 using Unigram.Services;
 using Unigram.ViewModels;
@@ -26,13 +27,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Unigram.Controls.Views
+namespace Unigram.Views.Popups
 {
-    public sealed partial class ShareView : TLContentDialog
+    public sealed partial class SharePopup : TLContentDialog
     {
         public ShareViewModel ViewModel => DataContext as ShareViewModel;
 
-        private ShareView()
+        private SharePopup()
         {
             InitializeComponent();
             DataContext = TLContainer.Current.Resolve<ShareViewModel>();
@@ -77,11 +78,10 @@ namespace Unigram.Controls.Views
 
         #region Show
 
-        private static Dictionary<int, WeakReference<ShareView>> _windowContext = new Dictionary<int, WeakReference<ShareView>>();
-        public static ShareView GetForCurrentView()
+        private static Dictionary<int, WeakReference<SharePopup>> _windowContext = new Dictionary<int, WeakReference<SharePopup>>();
+        public static SharePopup GetForCurrentView()
         {
-            return new ShareView();
-        }
+            return new SharePopup();
 
         public static async Task<Chat> PickChatAsync(string title)
         {
@@ -369,7 +369,7 @@ namespace Unigram.Controls.Views
                 }
             });
 
-            var dialog = ShareView.GetForCurrentView();
+            var dialog = SharePopup.GetForCurrentView();
             dialog.ViewModel.Title = include ? Strings.Resources.FilterAlwaysShow : Strings.Resources.FilterNeverShow;
             dialog.ViewModel.AllowEmptySelection = true;
             dialog.Header = panel;
