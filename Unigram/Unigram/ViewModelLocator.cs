@@ -121,6 +121,10 @@ namespace Unigram
                     .As<IEmojiSetService>()
                     .SingleInstance()
                     .AutoActivate();
+                builder.RegisterType<CloudUpdateService>()
+                    .As<ICloudUpdateService>()
+                    .SingleInstance()
+                    .AutoActivate();
 
                 builder.RegisterType<ShortcutsService>()
                     .As<IShortcutsService>()
