@@ -1726,7 +1726,7 @@ namespace Unigram.ViewModels
 #if !DEBUG
             if (chat.Type is ChatTypeSecret)
             {
-                ApplicationView.GetForCurrentView().IsScreenCaptureEnabled = false;
+                Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().IsScreenCaptureEnabled = false;
             }
 #endif
 
@@ -1913,7 +1913,7 @@ namespace Unigram.ViewModels
 #if !DEBUG
             if (chat.Type is ChatTypeSecret)
             {
-                ApplicationView.GetForCurrentView().IsScreenCaptureEnabled = true;
+                Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().IsScreenCaptureEnabled = true;
             }
 #endif
 
