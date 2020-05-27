@@ -180,10 +180,9 @@ namespace Unigram.Controls
             {
                 _animationShouldCache = false;
                 _animationIsCaching = true;
-#if !MOBILE
-                ThreadPool.QueueUserWorkItem(state =>
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                Windows.System.Threading.ThreadPool.RunAsync(state =>
                 {
-#endif
                 if (animation is CachedAnimation cached)
                 {
                     _cachingSemaphone.Wait();
@@ -193,9 +192,8 @@ namespace Unigram.Controls
                     _animationIsCaching = false;
                     _cachingSemaphone.Release();
                 }
-#if !MOBILE
-                }, animation);
-#endif
+                });
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }
 
             IndexChanged?.Invoke(this, index);
