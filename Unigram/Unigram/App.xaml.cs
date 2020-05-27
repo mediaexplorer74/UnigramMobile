@@ -9,6 +9,7 @@ using Unigram.Controls;
 using Unigram.Navigation;
 using Unigram.Services;
 using Unigram.Services.Navigation;
+using Unigram.Services.Updates;
 using Unigram.Views;
 using Unigram.Views.Host;
 using Windows.ApplicationModel;
@@ -199,7 +200,7 @@ namespace Unigram
             var aggregator = TLContainer.Current.Resolve<IEventAggregator>();
             if (aggregator != null)
             {
-                aggregator.Publish(active ? "Window_Activated" : "Window_Deactivated");
+                aggregator.Publish(new UpdateWindowActivated(active));
             }
 
             var cacheService = TLContainer.Current.Resolve<ICacheService>();
