@@ -70,13 +70,13 @@ namespace Unigram.ViewModels
             SelectedItems = messages;
         }
 
-        public MediaLibraryCollection MediaLibrary
-        {
-            get
-            {
-                return MediaLibraryCollection.GetForCurrentView();
-            }
-        }
+        //public MediaLibraryCollection MediaLibrary
+        //{
+        //    get
+        //    {
+        //        return MediaLibraryCollection.GetForCurrentView();
+        //    }
+        //}
 
         private readonly ConcurrentDictionary<long, MessageViewModel> _groupedMessages = new ConcurrentDictionary<long, MessageViewModel>();
 
@@ -188,8 +188,10 @@ namespace Unigram.ViewModels
             MessageRescheduleCommand = new RelayCommand<MessageViewModel>(MessageRescheduleExecute);
 
             SendDocumentCommand = new RelayCommand(SendDocumentExecute);
+            SendStorageFileCommand = new RelayCommand<IList<Entities.StorageMedia>>(SendStorageFileExecute);
             SendCameraCommand = new RelayCommand(SendCameraExecute);
             SendMediaCommand = new RelayCommand(SendMediaExecute);
+            SendStorageMediaCommand = new RelayCommand<IList<Entities.StorageMedia>>(SendStorageMediaExecute);
             SendContactCommand = new RelayCommand(SendContactExecute);
             SendLocationCommand = new RelayCommand(SendLocationExecute);
             SendPollCommand = new RelayCommand(SendPollExecute);

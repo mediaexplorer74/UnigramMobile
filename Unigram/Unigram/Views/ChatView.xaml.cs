@@ -1386,12 +1386,6 @@ namespace Unigram.Views
                 return;
             }
 
-            //var restricted = await ViewModel.VerifyRightsAsync(chat, x => x.CanSendMediaMessages, Strings.Resources.AttachMediaRestrictedForever, Strings.Resources.AttachMediaRestricted);
-            //if (restricted)
-            //{
-            //    return;
-            //}
-
             var pane = InputPane.GetForCurrentView();
             if (pane.OccludedRect != Rect.Empty)
             {
@@ -1401,43 +1395,45 @@ namespace Unigram.Views
                 await Task.Delay(200);
             }
 
-            foreach (var item in ViewModel.MediaLibrary)
-            {
-                item.Reset();
-            }
-
             if (FlyoutBase.GetAttachedFlyout(ButtonAttach) is MenuFlyout flyout)
             {
-                //var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
-                //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile" && (bounds.Width < 500 || bounds.Height < 500))
-                //{
-                //    flyout.LightDismissOverlayMode = LightDismissOverlayMode.On;
-                //}
-                //else
-                //{
-                //    flyout.LightDismissOverlayMode = LightDismissOverlayMode.Auto;
-                //}
-
-                //flyout.ShowAt(ButtonAttach, new Point(4, -4));
                 flyout.ShowAt(FlyoutArea);
             }
         }
 
         private void AttachPickerFlyout_ItemClick(object sender, MediaSelectedEventArgs e)
         {
-            var flyout = FlyoutBase.GetAttachedFlyout(ButtonAttach) as MenuFlyout;
-            if (flyout != null)
+            if (FlyoutBase.GetAttachedFlyout(ButtonAttach) is MenuFlyout flyout)
             {
                 flyout.Hide();
             }
 
-            if (e.IsLocal)
+            ViewModel.SendStorageMediaCommand.Execute(new List<StorageMedia> { e.Item });
+        }
+
+        private void AttachPickerFlyout_ItemSelectionChanged(object sender, MediaSelectedItemsEventArgs e)
+        {
+            AttachMedia.Text = ConvertSelectedCount(e.SelectedItems.Count, true);
+            AttachDocument.Text = ConvertSelectedCount(e.SelectedItems.Count, false);
+
+            if (e.SelectedItems.Count == 0)
             {
-                ViewModel.SendMediaExecute(new ObservableCollection<StorageMedia>(ViewModel.MediaLibrary), e.Item);
-            }
-            else
+                AttachMedia.Command = ViewModel.SendMediaCommand;
+                AttachMedia.CommandParameter = null;
+                AttachDocument.Command = ViewModel.SendDocumentCommand;
+                AttachDocument.CommandParameter = null;
+                AttachLocation.IsEnabled = true;
+                AttachPoll.IsEnabled = true;
+                AttachContact.IsEnabled = true;
+            } else
             {
-                ViewModel.SendMediaExecute(new ObservableCollection<StorageMedia> { e.Item }, e.Item);
+                AttachMedia.Command = ViewModel.SendStorageMediaCommand;
+                AttachMedia.CommandParameter = e.SelectedItems;
+                AttachDocument.Command = ViewModel.SendStorageFileCommand;
+                AttachDocument.CommandParameter = e.SelectedItems;
+                AttachLocation.IsEnabled = false;
+                AttachPoll.IsEnabled = false;
+                AttachContact.IsEnabled = false;
             }
         }
 

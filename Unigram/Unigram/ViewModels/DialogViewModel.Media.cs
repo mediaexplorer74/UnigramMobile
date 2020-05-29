@@ -218,16 +218,6 @@ namespace Unigram.ViewModels
             var header = _composerHeader;
             if (header?.EditingMessage == null)
             {
-                if (MediaLibrary.SelectedCount > 0)
-                {
-                    foreach (var storage in MediaLibrary.Where(x => x.IsSelected))
-                    {
-                        await SendDocumentAsync(storage.File, storage.Caption);
-                    }
-
-                    return;
-                }
-
                 var picker = new FileOpenPicker();
                 picker.ViewMode = PickerViewMode.Thumbnail;
                 picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
@@ -441,59 +431,6 @@ namespace Unigram.ViewModels
         public RelayCommand SendMediaCommand { get; }
         private async void SendMediaExecute()
         {
-            if (MediaLibrary.SelectedCount > 0)
-            {
-                if (Settings.IsSendGrouped && MediaLibrary.SelectedCount > 1)
-                {
-                    var options = await PickSendMessageOptionsAsync();
-                    if (options == null)
-                    {
-                        return;
-                    }
-
-                    var items = MediaLibrary.Where(x => x.IsSelected).ToList();
-                    var group = new List<StorageMedia>(Math.Min(items.Count, 10));
-
-                    foreach (var item in items)
-                    {
-                        group.Add(item);
-
-                        if (group.Count == 10)
-                        {
-                            await SendGroupedAsync(group, options);
-                            group = new List<StorageMedia>(Math.Min(items.Count, 10));
-                        }
-                    }
-
-                    if (group.Count > 0)
-                    {
-                        await SendGroupedAsync(group, options);
-                    }
-                }
-                else if (MediaLibrary.SelectedCount > 0)
-                {
-                    var options = await PickSendMessageOptionsAsync();
-                    if (options == null)
-                    {
-                        return;
-                    }
-
-                    foreach (var storage in MediaLibrary.Where(x => x.IsSelected))
-                    {
-                        if (storage is StoragePhoto photo)
-                        {
-                            await SendPhotoAsync(storage.File, storage.Caption, storage.IsForceFile, storage.Ttl, storage.IsCropped ? storage.CropRectangle : null, options);
-                        }
-                        else if (storage is StorageVideo video)
-                        {
-                            await SendVideoAsync(storage.File, storage.Caption, video.IsMuted, storage.IsForceFile, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform(), options);
-                        }
-                    }
-                }
-
-                return;
-            }
-
             var picker = new FileOpenPicker();
             picker.ViewMode = PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -503,6 +440,98 @@ namespace Unigram.ViewModels
             if (files != null && files.Count > 0)
             {
                 SendFileExecute(files);
+            }
+        }
+
+        public RelayCommand<IList<StorageMedia>> SendStorageMediaCommand { get; }
+        private async void SendStorageMediaExecute(IList<StorageMedia> items)
+        {
+            await SendStorage(items, true);
+        }
+
+        public RelayCommand<IList<StorageMedia>> SendStorageFileCommand { get; }
+        private async void SendStorageFileExecute(IList<StorageMedia> items)
+        {
+            await SendStorage(items, false);
+        }
+
+        private async Task SendStorage(IList<StorageMedia> items, bool media)
+        {
+            if (items.IsEmpty())
+            {
+                return;
+            }
+
+            var formattedText = GetFormattedText(true);
+            var caption = formattedText.Substring(0, CacheService.Options.MessageCaptionLengthMax);
+            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !CacheService.IsSavedMessages(_chat));
+            dialog.ViewModel = this;
+            dialog.Caption = caption;
+
+            var confirm = await dialog.ShowQueuedAsync();
+            if (confirm != ContentDialogResult.Primary)
+            {
+                if (formattedText != null)
+                {
+                    TextField?.SetText(formattedText);
+                }
+
+                return;
+            }
+
+            if (items.Count == 1)
+            {
+                var options = await PickSendMessageOptionsAsync();
+                if (options == null)
+                {
+                    return;
+                }
+
+                await SendStorageMediaAsync(dialog.Items[0], dialog.Caption, dialog.IsFilesSelected, options);
+            }
+            else if (items.Count > 1 && dialog.IsAlbum && dialog.IsAlbumAvailable)
+            {
+                var options = await PickSendMessageOptionsAsync();
+                if (options == null)
+                {
+                    return;
+                }
+
+                var group = new List<StorageMedia>(Math.Min(dialog.Items.Count, 10));
+
+                foreach (var item in dialog.Items)
+                {
+                    @group.Add(item);
+
+                    if (@group.Count == 10)
+                    {
+                        await SendGroupedAsync(@group, dialog.Caption, options);
+                        @group = new List<StorageMedia>(Math.Min(dialog.Items.Count, 10));
+                    }
+                }
+
+                if (@group.Count > 0)
+                {
+                    await SendGroupedAsync(@group, dialog.Caption, options);
+                }
+            }
+            else if (items.Count > 0)
+            {
+                var options = await PickSendMessageOptionsAsync();
+                if (options == null)
+                {
+                    return;
+                }
+
+                if (dialog.Caption != null)
+                {
+                    await SendMessageAsync(dialog.Caption, options);
+                }
+
+                foreach (var file in dialog.Items)
+                {
+                    await SendStorageMediaAsync(file, null, dialog.IsFilesSelected, options);
+                }
             }
         }
 
