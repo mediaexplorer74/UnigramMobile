@@ -9,16 +9,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <local:HostedPage.Header>
+        <controls:PageHeader Text="{CustomResource Additional.CallSettingsTitle}"/>
+    </local:HostedPage.Header>
+    
     <Grid Background="{ThemeResource PageBackgroundDarkBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <controls:PageHeader Text="{CustomResource Additional.CallSettingsTitle}" x:Uid="CallSettingsHeader"/>
-
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      VerticalScrollMode="Auto"
-                      Grid.Row="1">
+                      VerticalScrollMode="Auto">
             <StackPanel>
                 <controls:HeaderedControl
                     Header="{CustomResource Additional.CallSettingOutputTitle}">
