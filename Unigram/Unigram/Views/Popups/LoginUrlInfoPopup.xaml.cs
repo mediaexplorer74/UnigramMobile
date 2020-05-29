@@ -58,6 +58,40 @@ namespace Unigram.Views.Popups
             }
         }
 
+        private void OnOpened(ContentDialog sender, ContentDialogOpenedEventArgs args)
+        {
+            MaskTitleAndStatusBar();
+        }
+
+        private void OnClosed(ContentDialog sender, ContentDialogClosedEventArgs args)
+        {
+            UnmaskTitleAndStatusBar();
+        }
+
+        private void MaskTitleAndStatusBar()
+        {
+            var titlebar = ApplicationView.GetForCurrentView().TitleBar;
+            var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
+            var foregroundBrush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var overlayBrush = Application.Current.Resources["SystemControlBackgroundAltMediumBrush"] as SolidColorBrush;
+
+            if (overlayBrush != null)
+            {
+                var maskBackground = ColorsHelper.AlphaBlend(backgroundBrush.Color, overlayBrush.Color);
+                var maskForeground = ColorsHelper.AlphaBlend(foregroundBrush.Color, overlayBrush.Color);
+
+                titlebar.BackgroundColor = maskBackground;
+                titlebar.ForegroundColor = maskForeground;
+                //titlebar.ButtonBackgroundColor = maskBackground;
+                titlebar.ButtonForegroundColor = maskForeground;
+            }
+        }
+
+        private void UnmaskTitleAndStatusBar()
+        {
+            TLWindowContext.GetForCurrentView().UpdateTitleBar();
+        }
+
         public string Message
         {
             get
