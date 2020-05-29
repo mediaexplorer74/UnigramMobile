@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Unigram.Views.Settings
 {
-    public sealed partial class SettingsNetworkPage : Page
+    public sealed partial class SettingsNetworkPage : HostedPage
     {
         public SettingsNetworkViewModel ViewModel => DataContext as SettingsNetworkViewModel;
 
