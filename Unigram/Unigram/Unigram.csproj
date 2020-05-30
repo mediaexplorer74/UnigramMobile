@@ -2183,10 +2183,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Passport\PassportMrzPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Passport\PassportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2211,13 +2207,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\RichEditBox_rs1_themeresources.xaml">
+    <Page Include="Views\Payments\PaymentFormStep5Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Plain.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\RichEditBox_rs1_themeresources.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\TextBox_rs1_themeresources.xaml">
       <Generator>MSBuild:Compile</Generator>

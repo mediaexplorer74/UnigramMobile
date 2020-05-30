@@ -168,7 +168,7 @@ namespace Unigram.Controls
             var h = 180f;
 
             var offsetX = position.X / w;
-            var left = Math.Clamp(offsetX, 0, 1);
+            var left = Clamp(offsetX, 0, 1);
             var bottom = _current.Y;
 
             _current.X = left;
@@ -176,7 +176,7 @@ namespace Unigram.Controls
             if (position.Y < h)
             {
                 var offsetY = position.Y / h;
-                bottom = 1 - Math.Clamp(offsetY, 0, 1);
+                bottom = 1 - Clamp(offsetY, 0, 1);
 
                 _current.Y = bottom;
             }
@@ -286,7 +286,7 @@ namespace Unigram.Controls
 
         private Color interpolateColor(Color color1, Color color2, double factor)
         {
-            factor = Math.Clamp(factor, 0, 1);
+            factor = Clamp(factor, 0, 1);
 
 
             var r1 = color1.R / 255f;
@@ -328,5 +328,14 @@ namespace Unigram.Controls
             0.85, //black
             1.0
         };
+
+        #region MissingFrameworkFunction
+        public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
+        {
+            if (val.CompareTo(min) < 0) return min;
+            else if (val.CompareTo(max) > 0) return max;
+            else return val;
+        }
+        #endregion
     }
 }

@@ -82,6 +82,7 @@ namespace Unigram.Views.Popups
         public static SharePopup GetForCurrentView()
         {
             return new SharePopup();
+        }
 
         public static async Task<Chat> PickChatAsync(string title)
         {

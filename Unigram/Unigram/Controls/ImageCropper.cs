@@ -301,8 +301,8 @@ namespace Unigram.Controls
                 var offsetX = (position.X - startPosition.X) / w;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var left = Math.Clamp(m_rectangle.Left + offsetX, 0, 1 - m_rectangle.Width);
-                var top = Math.Clamp(m_rectangle.Top + offsetY, 0, 1 - m_rectangle.Height);
+                var left = Clamp(m_rectangle.Left + offsetX, 0, 1 - m_rectangle.Width);
+                var top = Clamp(m_rectangle.Top + offsetY, 0, 1 - m_rectangle.Height);
                 var width = m_rectangle.Right - left;
                 var height = m_rectangle.Bottom - top;
 
@@ -340,8 +340,8 @@ namespace Unigram.Controls
                 var offsetX = (position.X - startPosition.X) / w;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var left = Math.Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
-                var top = Math.Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
+                var left = Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
+                var top = Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
                 var width = m_rectangle.Right - left;
                 var height = m_rectangle.Bottom - top;
 
@@ -382,7 +382,7 @@ namespace Unigram.Controls
                 var position = e.GetCurrentPoint(m_layoutRoot).Position;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var top = Math.Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
+                var top = Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
                 var height = m_rectangle.Bottom - top;
 
                 var cropScale = (m_current.Width * w) / (height * h);
@@ -391,7 +391,7 @@ namespace Unigram.Controls
                 var cropWidth = Math.Min(w, (height * h) * proportionalCropScale) / w;
 
                 m_current.Y = top;
-                m_current.X = Math.Clamp(m_current.X + (m_current.Width - cropWidth) / 2.0, 0, 1 - cropWidth);
+                m_current.X = Clamp(m_current.X + (m_current.Width - cropWidth) / 2.0, 0, 1 - cropWidth);
                 m_current.Width = cropWidth;
                 m_current.Height = ((cropWidth * w) / proportionalCropScale) / h;
 
@@ -410,7 +410,7 @@ namespace Unigram.Controls
                 var position = e.GetCurrentPoint(m_layoutRoot).Position;
                 var offsetX = (position.X - startPosition.X) / w;
 
-                var left = Math.Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
+                var left = Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
                 var width = m_rectangle.Right - left;
 
                 var cropScale = (width * w) / (m_current.Height * h);
@@ -418,7 +418,7 @@ namespace Unigram.Controls
 
                 var cropHeight = Math.Min(h, (width * w) / proportionalCropScale) / h;
 
-                m_current.Y = Math.Clamp(m_current.Y + (m_current.Height - cropHeight) / 2.0, 0, 1 - cropHeight);
+                m_current.Y = Clamp(m_current.Y + (m_current.Height - cropHeight) / 2.0, 0, 1 - cropHeight);
                 m_current.X = left;
                 m_current.Width = ((cropHeight * h) * proportionalCropScale) / w;
                 m_current.Height = cropHeight;
@@ -439,8 +439,8 @@ namespace Unigram.Controls
                 var offsetX = (position.X - startPosition.X) / w;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var right = Math.Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
-                var bottom = Math.Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
+                var right = Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
+                var bottom = Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
                 var width = right - m_rectangle.Left;
                 var height = bottom - m_rectangle.Top;
 
@@ -477,7 +477,7 @@ namespace Unigram.Controls
                 var position = e.GetCurrentPoint(m_layoutRoot).Position;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var bottom = Math.Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
+                var bottom = Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
                 var height = bottom - m_rectangle.Top;
 
                 var cropScale = (m_current.Width * w) / (height * h);
@@ -485,7 +485,7 @@ namespace Unigram.Controls
 
                 var cropWidth = Math.Min(w, (height * h) * proportionalCropScale) / w;
 
-                m_current.X = Math.Clamp(m_current.X + (m_current.Width - cropWidth) / 2.0, 0, 1 - cropWidth);
+                m_current.X = Clamp(m_current.X + (m_current.Width - cropWidth) / 2.0, 0, 1 - cropWidth);
                 m_current.Width = cropWidth;
                 m_current.Height = ((cropWidth * w) / proportionalCropScale) / h;
 
@@ -504,7 +504,7 @@ namespace Unigram.Controls
                 var position = e.GetCurrentPoint(m_layoutRoot).Position;
                 var offsetX = (position.X - startPosition.X) / w;
 
-                var right = Math.Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
+                var right = Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
                 var width = right - m_rectangle.Left;
 
                 var cropScale = (width * w) / (m_current.Height * h);
@@ -512,7 +512,7 @@ namespace Unigram.Controls
 
                 var cropHeight = Math.Min(h, (width * w) / proportionalCropScale) / h;
 
-                m_current.Y = Math.Clamp(m_current.Y + (m_current.Height - cropHeight) / 2.0, 0, 1 - cropHeight);
+                m_current.Y = Clamp(m_current.Y + (m_current.Height - cropHeight) / 2.0, 0, 1 - cropHeight);
                 m_current.Width = ((cropHeight * h) * proportionalCropScale) / w;
                 m_current.Height = cropHeight;
 
@@ -532,8 +532,8 @@ namespace Unigram.Controls
                 var offsetX = (position.X - startPosition.X) / w;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var left = Math.Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
-                var bottom = Math.Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
+                var left = Clamp(m_rectangle.Left + offsetX, 0, m_rectangle.Right);
+                var bottom = Clamp(m_rectangle.Bottom + offsetY, m_current.Top, 1);
                 var width = m_rectangle.Right - left;
                 var height = bottom - m_rectangle.Top;
 
@@ -573,8 +573,8 @@ namespace Unigram.Controls
                 var offsetX = (position.X - startPosition.X) / w;
                 var offsetY = (position.Y - startPosition.Y) / h;
 
-                var right = Math.Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
-                var top = Math.Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
+                var right = Clamp(m_rectangle.Right + offsetX, m_current.Left, 1);
+                var top = Clamp(m_rectangle.Top + offsetY, 0, m_rectangle.Bottom);
                 var width = right - m_rectangle.Left;
                 var height = m_rectangle.Bottom - top;
 
@@ -667,14 +667,14 @@ namespace Unigram.Controls
             {
                 var cropHeight = ((m_rectangle.Width * m_imageSize.Width) / proportionalCropScale) / m_imageSize.Height;
 
-                m_rectangle.Y = Math.Clamp(m_rectangle.Y + (m_rectangle.Height - cropHeight) / 2.0, 0.0, m_imageSize.Height - cropHeight);
+                m_rectangle.Y = Clamp(m_rectangle.Y + (m_rectangle.Height - cropHeight) / 2.0, 0.0, m_imageSize.Height - cropHeight);
                 m_rectangle.Height = cropHeight;
             }
             else
             {
                 var cropWidth = ((m_rectangle.Height * m_imageSize.Height) * proportionalCropScale) / m_imageSize.Width;
 
-                m_rectangle.X = Math.Clamp(m_rectangle.X + (m_rectangle.Width - cropWidth) / 2.0, 0.0, m_imageSize.Width - cropWidth);
+                m_rectangle.X = Clamp(m_rectangle.X + (m_rectangle.Width - cropWidth) / 2.0, 0.0, m_imageSize.Width - cropWidth);
                 m_rectangle.Width = cropWidth;
             }
 
@@ -948,6 +948,15 @@ namespace Unigram.Controls
                 : 1;
         }
 
+        #endregion
+
+        #region MissingFrameworkFunction
+        public static T Clamp<T>(T val, T min, T max) where T : IComparable<T>
+        {
+            if (val.CompareTo(min) < 0) return min;
+            else if (val.CompareTo(max) > 0) return max;
+            else return val;
+        }
         #endregion
 
     }

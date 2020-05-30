@@ -97,13 +97,13 @@ namespace Unigram.Charts
     {
         public static float ToRadians(float degrees)
         {
-            float radians = (MathF.PI / 180) * degrees;
+            float radians = ((float)Math.PI / 180) * degrees;
             return radians;
         }
 
         public static float ToDegrees(float radians)
         {
-            float degrees = (180 / MathF.PI) * radians;
+            float degrees = (180 / (float)Math.PI) * radians;
             return degrees;
         }
     }
