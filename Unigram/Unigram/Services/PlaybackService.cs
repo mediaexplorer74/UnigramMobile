@@ -555,7 +555,7 @@ namespace Unigram.Services
             }
 
             var offset = -49;
-            var filter = message.Content is MessageAudio ? new SearchMessagesFilterAudio() : (SearchMessagesFilter)new SearchMessagesFilterVoiceNote();
+            var filter = message.Content is MessageAudio ? new SearchMessagesFilterAudio() : (SearchMessagesFilter)new SearchMessagesFilterVoiceAndVideoNote();
 
             _protoService.Send(new SearchChatMessages(message.ChatId, string.Empty, 0, message.Id, offset, 100, filter), result =>
             {
@@ -567,7 +567,7 @@ namespace Unigram.Services
                         {
                             items.Insert(0, GetPlaybackItem(add));
                         }
-                        else if (add.Id < message.Id && message.Content is MessageVoiceNote)
+                        else if (add.Id < message.Id && (message.Content is MessageVoiceNote || message.Content is MessageVideoNote))
                         {
                             items.Insert(0, GetPlaybackItem(add));
                         }
@@ -579,7 +579,7 @@ namespace Unigram.Services
                         {
                             items.Add(GetPlaybackItem(add));
                         }
-                        else if (add.Id > message.Id && message.Content is MessageVoiceNote)
+                        else if (add.Id > message.Id && (message.Content is MessageVoiceNote || message.Content is MessageVideoNote))
                         {
                             items.Add(GetPlaybackItem(add));
                         }
@@ -645,6 +645,10 @@ namespace Unigram.Services
             {
                 return voiceNote.VoiceNote.Voice;
             }
+            else if (message.Content is MessageVideoNote videoNote)
+            {
+                return videoNote.VideoNote.Video;
+            }
             else if (message.Content is MessageText text && text.WebPage != null)
             {
                 if (text.WebPage.Audio != null)
@@ -654,6 +658,10 @@ namespace Unigram.Services
                 else if (text.WebPage.VoiceNote != null)
                 {
                     return text.WebPage.VoiceNote.Voice;
+                }
+                else if (text.WebPage.VideoNote != null)
+                {
+                    return text.WebPage.VideoNote.Video;
                 }
             }
 
@@ -670,6 +678,10 @@ namespace Unigram.Services
             {
                 return voiceNote.VoiceNote.MimeType;
             }
+            else if (message.Content is MessageVideoNote videoNote)
+            {
+                return "video/mp4";
+            }
             else if (message.Content is MessageText text && text.WebPage != null)
             {
                 if (text.WebPage.Audio != null)
@@ -679,6 +691,10 @@ namespace Unigram.Services
                 else if (text.WebPage.VoiceNote != null)
                 {
                     return text.WebPage.VoiceNote.MimeType;
+                }
+                else if (text.WebPage.VideoNote != null)
+                {
+                    return "video/mp4";
                 }
             }
 
@@ -695,6 +711,10 @@ namespace Unigram.Services
             {
                 return voiceNote.VoiceNote.Duration;
             }
+            else if (message.Content is MessageVideoNote videoNote)
+            {
+                return videoNote.VideoNote.Duration;
+            }
             else if (message.Content is MessageText text && text.WebPage != null)
             {
                 if (text.WebPage.Audio != null)
@@ -704,6 +724,10 @@ namespace Unigram.Services
                 else if (text.WebPage.VoiceNote != null)
                 {
                     return text.WebPage.VoiceNote.Duration;
+                }
+                else if (text.WebPage.VideoNote != null)
+                {
+                    return text.WebPage.VideoNote.Duration;
                 }
             }
 
