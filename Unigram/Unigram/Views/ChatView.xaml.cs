@@ -336,7 +336,7 @@ namespace Unigram.Views
 
         public void HideStickers()
         {
-            if (_stickersMode == StickersPanelMode.Overlay)
+            if (_stickersMode == StickersPanelMode.Overlay || _stickersMode == StickersPanelMode.Mobile)
             {
                 Collapse_Click(StickersPanel, null);
             }
@@ -2362,7 +2362,7 @@ namespace Unigram.Views
         {
             ViewModel.StickerSendCommand.Execute(sticker);
 
-            if (_stickersMode == StickersPanelMode.Overlay)
+            if (_stickersMode == StickersPanelMode.Overlay || _stickersMode == StickersPanelMode.Mobile)
             {
                 Collapse_Click(null, null);
             }
@@ -2375,7 +2375,7 @@ namespace Unigram.Views
         {
             ViewModel.AnimationSendCommand.Execute(animation);
 
-            if (_stickersMode == StickersPanelMode.Overlay)
+            if (_stickersMode == StickersPanelMode.Overlay || _stickersMode == StickersPanelMode.Mobile)
             {
                 Collapse_Click(null, null);
             }
@@ -2714,7 +2714,7 @@ namespace Unigram.Views
                 TextField.SetText(null, null);
                 ViewModel.StickerSendCommand.Execute(sticker);
 
-                if (_stickersMode == StickersPanelMode.Overlay)
+                if (_stickersMode == StickersPanelMode.Overlay || _stickersMode == StickersPanelMode.Mobile)
                 {
                     Collapse_Click(null, null);
                 }
@@ -4315,7 +4315,7 @@ namespace Unigram.Views
 
         private void TextField_Sending(object sender, EventArgs e)
         {
-            if (_stickersMode == StickersPanelMode.Overlay)
+            if (_stickersMode == StickersPanelMode.Overlay || _stickersMode == StickersPanelMode.Mobile)
             {
                 Collapse_Click(StickersPanel, null);
             }
