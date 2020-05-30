@@ -4272,7 +4272,9 @@ namespace Unigram.Views
                                 continue;
                             }
 
-                            var photo = container.ContentTemplateRoot as Image;
+                            var content = container.ContentTemplateRoot as Grid;
+                            var photo = content?.Children[0] as Image;
+
                             if (photo == null)
                             {
                                 continue;
