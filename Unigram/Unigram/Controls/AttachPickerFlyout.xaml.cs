@@ -27,26 +27,7 @@ namespace Unigram.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateView(Window.Current.Bounds.Width);
-            Window.Current.SizeChanged += OnSizeChanged;
             SelectedItems.Clear();
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= OnSizeChanged;
-        }
-
-        private void OnSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            UpdateView(e.Size.Width);
-        }
-
-        private void UpdateView(double width)
-        {
-            //Library.MaxWidth = width < 500 ? width - 16 - 2 : 360;
-            Library.MaxWidth = width < 500 ? width - 16 - 2 : 360;
-            Library.MinWidth = Library.MaxWidth;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
