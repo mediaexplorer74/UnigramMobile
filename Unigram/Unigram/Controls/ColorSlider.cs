@@ -222,9 +222,21 @@ namespace Unigram.Controls
                         _container.Margin = new Thickness(0, zoom ? -180 : 0, 0, 0);
                     };
 
-                    var scale = Window.Current.Compositor.CreateSpringVector3Animation();
-                    scale.InitialValue = new Vector3(zoom ? 0.5f : 1);
-                    scale.FinalValue = new Vector3(zoom ? 1 : 0.5f);
+                    CompositionAnimation scale;
+                    if (Common.ApiInfo.IsUniversalApiContract5Present)
+                    {
+                        var scaleNew = Window.Current.Compositor.CreateSpringVector3Animation();
+                        scaleNew.InitialValue = new Vector3(zoom ? 0.5f : 1);
+                        scaleNew.FinalValue = new Vector3(zoom ? 1 : 0.5f);
+                        scale = scaleNew;
+                    }
+                    else
+                    {
+                        var scaleOld = Window.Current.Compositor.CreateVector3KeyFrameAnimation();
+                        scaleOld.InsertKeyFrame(0, new Vector3(zoom ? 0.5f : 1));
+                        scaleOld.InsertKeyFrame(1, new Vector3(zoom ? 1 : 0.5f));
+                        scale = scaleOld;
+                    }
 
                     var offset = Window.Current.Compositor.CreateVector3KeyFrameAnimation();
                     offset.InsertKeyFrame(0, _thumbVisual.Offset);
