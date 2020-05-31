@@ -1189,7 +1189,7 @@
                     </Grid>
 
                     <!-- Button to use stickers keyboard, all -->
-                    <controls:AnimatedGlyphButton
+                    <chats:ChatStickerButton
                         x:Name="ButtonStickers"
                         Click="Stickers_Click"
                         AllowFocusOnInteraction="False"

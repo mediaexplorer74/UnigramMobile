@@ -413,6 +413,7 @@ namespace Unigram.Views
             }
 
             _stickersMode = StickersPanelMode.Overlay;
+            ButtonStickers.IsChecked = false;
             SettingsService.Current.IsSidebarOpen = false;
 
             VisualStateManager.GoToState(this, "FilledState", false);
@@ -1573,6 +1574,7 @@ namespace Unigram.Views
                 }
 
                 _stickersMode = sidebar ? StickersPanelMode.Sidebar : StickersPanelMode.Mobile;
+                ButtonStickers.IsChecked = true;
                 SettingsService.Current.IsSidebarOpen = sidebar;
 
                 Focus(FocusState.Programmatic);
@@ -2842,19 +2844,6 @@ namespace Unigram.Views
                 _stickersPanel.Clip.StartAnimation("TopInset", clip);
 
                 batch.End();
-
-                switch (ViewModel.Settings.Stickers.SelectedTab)
-                {
-                    case Services.Settings.StickersTab.Emoji:
-                        ButtonStickers.Glyph = "\uE76E";
-                        break;
-                    case Services.Settings.StickersTab.Animations:
-                        ButtonStickers.Glyph = "\uF4A9";
-                        break;
-                    case Services.Settings.StickersTab.Stickers:
-                        ButtonStickers.Glyph = "\uF4AA";
-                        break;
-                }
             }
             else
             {
@@ -2871,19 +2860,21 @@ namespace Unigram.Views
 
                 StickersPanel.Deactivate();
                 StickersPanel.Visibility = Visibility.Collapsed;
+            }
 
-                switch (ViewModel.Settings.Stickers.SelectedTab)
-                {
-                    case Services.Settings.StickersTab.Emoji:
-                        ButtonStickers.Glyph = "\uE76E";
-                        break;
-                    case Services.Settings.StickersTab.Animations:
-                        ButtonStickers.Glyph = "\uF4A9";
-                        break;
-                    case Services.Settings.StickersTab.Stickers:
-                        ButtonStickers.Glyph = "\uF4AA";
-                        break;
-                }
+            ButtonStickers.IsChecked = false;
+
+            switch (ViewModel.Settings.Stickers.SelectedTab)
+            {
+                case Services.Settings.StickersTab.Emoji:
+                    ButtonStickers.Glyph = "\uE76E";
+                    break;
+                case Services.Settings.StickersTab.Animations:
+                    ButtonStickers.Glyph = "\uF4A9";
+                    break;
+                case Services.Settings.StickersTab.Stickers:
+                    ButtonStickers.Glyph = "\uF4AA";
+                    break;
             }
         }
 
@@ -3770,6 +3761,9 @@ namespace Unigram.Views
                 TextArea.Margin = ChatFooter.Margin = new Thickness();
                 InlinePanel.Margin = new Thickness();
             }
+
+            Messages.Margin = new Thickness(0, 0, 0, -radius);
+            Messages.Padding = new Thickness(0, 0, 0, radius + 6);
         }
 
         public void UpdateAutocomplete(Chat chat, IAutocompleteCollection collection)
