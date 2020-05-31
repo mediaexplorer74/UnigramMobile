@@ -21,7 +21,7 @@ namespace Unigram.Views
             var sticker = element.Tag as StickerViewModel;
 
             var flyout = new MenuFlyout();
-            flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, sticker.Get(), Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers });
+            flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, sticker.Get(), Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers, FontFamily = Constants.SymbolThemeFontFamily });
 
             if (ViewModel.ProtoService.IsStickerFavorite(sticker.StickerValue.Id))
             {
