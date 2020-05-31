@@ -604,7 +604,7 @@
                                                 x:Name="ChatFilters"
                                                 ItemsSource="{x:Bind ViewModel.Filters}"
                                                 SelectedItem="{x:Bind ConvertFilter(ViewModel.SelectedFilter), Mode=TwoWay, BindBack=ConvertFilterBack}"
-                                                ItemContextRequested="ChatListFolder_ContextRequested"
+                                                ItemContextRequested="ChatFilter_ContextRequested"
                                                 Height="40">
                                                 <controls:TopNavView.ItemTemplate>
                                                     <DataTemplate x:DataType="viewModels:ChatFilterViewModel">

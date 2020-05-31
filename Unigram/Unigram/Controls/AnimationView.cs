@@ -136,7 +136,11 @@ namespace Unigram.Controls
             else if (_bitmap == null)
             {
                 var colors = new byte[_animation.PixelWidth * _animation.PixelHeight * 4];
-                Array.Fill<byte>(colors, 0);
+                //Array.Fill<byte>(colors, 0);
+                for (int i = 0; i < colors.Length; i++)
+                {
+                    colors[i] = 0;
+                }
 
                 _bitmap = CanvasBitmap.CreateFromBytes(sender, colors, _animation.PixelWidth, _animation.PixelHeight, Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UIntNormalized);
             }

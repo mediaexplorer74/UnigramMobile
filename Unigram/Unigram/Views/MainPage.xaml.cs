@@ -2331,7 +2331,7 @@ namespace Unigram.Views
             SetFolder(new ChatListArchive());
         }
 
-        private void ChatListFolder_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
+        private void ChatFilter_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
             if (ViewModel == null)
             {

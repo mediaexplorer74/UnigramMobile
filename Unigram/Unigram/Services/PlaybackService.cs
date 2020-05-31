@@ -6,6 +6,7 @@ using Telegram.Td.Api;
 using Unigram.Common;
 using Unigram.Navigation;
 using Unigram.Services.Updates;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Media;
 using Windows.Media.Core;
@@ -242,11 +243,11 @@ namespace Unigram.Services
         private ProximitySensor _sensor;
         private ProximitySensorDisplayOnOffController _controller;
 
-        private async Task AttachAsync()
+        private async System.Threading.Tasks.Task AttachAsync()
         {
             if (ApiInfo.IsPhoneContractPresent)
             {
-                var devices = await DeviceInformation.FindAllAsync(ProximitySensor.GetDeviceSelector());
+                var devices = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(ProximitySensor.GetDeviceSelector());
                 if (devices.Count > 0)
                 {
                     _sensor = ProximitySensor.FromId(devices[0].Id);
