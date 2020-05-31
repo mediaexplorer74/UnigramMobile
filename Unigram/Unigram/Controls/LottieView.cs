@@ -27,7 +27,7 @@ namespace Unigram.Controls
         private bool _hideThumbnail = true;
 
         private string _source;
-        private CachedAnimation _animation;
+        private LottieAnimation _animation;
 
         private bool _animationShouldCache;
         private bool _animationIsCaching;
@@ -177,9 +177,9 @@ namespace Unigram.Controls
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 Windows.System.Threading.ThreadPool.RunAsync(state =>
                 {
-                if (animation is CachedAnimation cached)
-                {
-                    _cachingSemaphone.Wait();
+                    if (animation is LottieAnimation cached)
+                    {
+                        _cachingSemaphone.Wait();
 
                     cached.CreateCache(256, 256);
 
@@ -283,7 +283,7 @@ namespace Unigram.Controls
                 return;
             }
 
-            var animation = CachedAnimation.LoadFromFile(newValue, _isCachingEnabled, _limitFps, ColorReplacements);
+            var animation = LottieAnimation.LoadFromFile(newValue, _isCachingEnabled, _limitFps, ColorReplacements);
             if (animation == null)
             {
                 // The app can't access the file specified
@@ -293,7 +293,7 @@ namespace Unigram.Controls
             _source = newValue;
             _animation = animation;
 
-            _animationShouldCache = !animation.IsCached;
+            _animationShouldCache = !animation.ShouldCache;
             _animationFrameRate = animation.FrameRate;
             _animationTotalFrame = animation.TotalFrame;
 

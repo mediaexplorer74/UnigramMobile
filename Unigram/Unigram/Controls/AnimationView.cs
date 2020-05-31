@@ -22,7 +22,7 @@ namespace Unigram.Controls
         private CanvasBitmap _bitmap;
 
         private Image _thumbnail;
-        private bool _hideThumbnail = true;
+        private bool? _hideThumbnail;
 
         private string _source;
         private VideoAnimation _animation;
@@ -171,7 +171,7 @@ namespace Unigram.Controls
 
             args.DrawingSession.DrawImage(_bitmap, new Rect(x, y, width, height));
 
-            if (_hideThumbnail && _thumbnail != null)
+            if (_hideThumbnail == true && _thumbnail != null)
             {
                 _hideThumbnail = false;
                 _thumbnail.Opacity = 0;
@@ -188,6 +188,11 @@ namespace Unigram.Controls
 
             //_bitmap = animation.RenderSync(_device, index, 256, 256);
             animation.RenderSync(_bitmap, false);
+
+            if (_hideThumbnail == null)
+            {
+                _hideThumbnail = true;
+            }
         }
 
         private void OnSourceChanged(Uri newValue, Uri oldValue)
