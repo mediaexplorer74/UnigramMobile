@@ -1752,6 +1752,9 @@
     <Content Include="Assets\Animations\ChatListNewFolder.tgs" />
     <PRIResource Include="Strings\tr\Additional.resw" />
     <PRIResource Include="Strings\fa\Additional.resw" />
+    <PRIResource Include="Strings\hy\Additional.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <None Include="Unigram_StoreKey.pfx" />
     <None Include="Unigram_TemporaryKey.pfx" />
   </ItemGroup>
@@ -2694,6 +2697,7 @@
     <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\libtgvoip\$(Platform)\libtgvoip.dll" />
     <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\libtgvoip\$(Platform)\libtgvoip.pri" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
