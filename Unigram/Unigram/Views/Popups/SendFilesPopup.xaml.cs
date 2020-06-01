@@ -353,9 +353,7 @@ namespace Unigram.Views.Popups
         }
 
         private int _itemsState = -1;
-#if DEBUG
         private int _panelState = -1;
-#endif
 
         private void UpdateView()
         {
