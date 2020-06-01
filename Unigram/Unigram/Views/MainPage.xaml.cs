@@ -110,7 +110,7 @@ namespace Unigram.Views
                 ViewModel.Aggregator.Publish(update);
             }
 
-            InputPane.GetForCurrentView().Showing += (s, args) => args.EnsuredFocusedElementInView = true;
+            //InputPane.GetForCurrentView().Showing += (s, args) => args.EnsuredFocusedElementInView = true;
 
             //var separator = ElementCompositionPreview.GetElementVisual(Separator);
             //var visual = DropShadowEx.Attach(Separator, 20, 0.25f, separator.Compositor.CreateInsetClip(-100, 0, 19, 0));

@@ -812,8 +812,8 @@ namespace Unigram.Views
         private void InputPane_Showing(InputPane sender, InputPaneVisibilityEventArgs args)
         {
             if (SearchTextBoxHasPointerFocus()) return;
-            
-            args.EnsuredFocusedElementInView = true;
+
+            args.EnsuredFocusedElementInView = FocusManager.GetFocusedElement() is ChatTextBox;
             KeyboardPlaceholder.Height = new GridLength(args.OccludedRect.Height);
             StickersPanel.Height = args.OccludedRect.Height;
             ReplyMarkupPanel.MaxHeight = args.OccludedRect.Height;
@@ -827,7 +827,7 @@ namespace Unigram.Views
 
         private void InputPane_Hiding(InputPane sender, InputPaneVisibilityEventArgs args)
         {
-            args.EnsuredFocusedElementInView = true;
+            //args.EnsuredFocusedElementInView = false;
             KeyboardPlaceholder.Height = new GridLength(1, GridUnitType.Auto);
         }
 
