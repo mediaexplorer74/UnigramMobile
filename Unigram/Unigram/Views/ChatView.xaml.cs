@@ -1,7 +1,6 @@
 ﻿using LinqToVisualTree;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -19,7 +18,6 @@ using Unigram.Controls.Drawers;
 using Unigram.Controls.Gallery;
 using Unigram.Controls.Messages;
 using Unigram.Converters;
-using Unigram.Entities;
 using Unigram.Navigation;
 using Unigram.Services;
 using Unigram.ViewModels;
@@ -3700,6 +3698,10 @@ namespace Unigram.Views
                 {
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
+
+                    Grid.SetRow(btnAttach, show ? 2 : 1);
+                    Grid.SetRow(ButtonsPanel, show ? 2 : 1);
+                    //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
                 }
 
                 UpdateTextAreaRadius();
@@ -3734,6 +3736,10 @@ namespace Unigram.Views
                 _textFormattingCollapsed = false;
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
+
+                Grid.SetRow(btnAttach, show ? 2 : 1);
+                Grid.SetRow(ButtonsPanel, show ? 2 : 1);
+                //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
             }
             else
             {
