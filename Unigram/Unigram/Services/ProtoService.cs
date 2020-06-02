@@ -256,14 +256,7 @@ namespace Unigram.Services
         {
             Send(new GetChats(new ChatListMain(), long.MaxValue, 0, 20));
 
-            UpdateWallet();
             UpdateVersion();
-        }
-
-        private async void UpdateWallet()
-        {
-            Logs.Logger.Warning(Logs.Target.API, "Call to not implemented UpdateWallet function");
-            await Task.CompletedTask;
         }
 
         private void UpdateConfig(BaseObject value)
