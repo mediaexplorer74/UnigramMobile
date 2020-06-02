@@ -158,7 +158,7 @@ namespace Unigram.Views.Popups
                     return;
                 }
 
-                var file = sticker.Thumbnail.Photo;
+                var file = sticker.Thumbnail.File;
                 if (file.Local.IsDownloadingCompleted)
                 {
                     photo.Source = PlaceholderHelper.GetWebPFrame(file.Local.Path);
@@ -221,7 +221,7 @@ namespace Unigram.Views.Popups
             {
                 if (sticker.UpdateFile(file) && file.Local.IsDownloadingCompleted)
                 {
-                    if (file.Id == sticker.Thumbnail?.Photo.Id)
+                    if (file.Id == sticker.Thumbnail?.File.Id)
                     {
                         var container = List.ContainerFromItem(sticker) as SelectorItem;
                         if (container == null)
