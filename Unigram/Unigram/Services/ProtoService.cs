@@ -8,7 +8,6 @@ using Telegram.Td;
 using Telegram.Td.Api;
 using Unigram.Common;
 using Unigram.Entities;
-using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace Unigram.Services
@@ -243,7 +242,7 @@ namespace Unigram.Services
             foreach (var tag in tags.Tags)
             {
                 var level = Client.Execute(new GetLogTagVerbosityLevel(tag)) as LogVerbosityLevel;
-                
+
                 var saved = _settings.Diagnostics.GetValueOrDefault(tag, -1);
                 if (saved != level.VerbosityLevel && saved > -1)
                 {
@@ -398,8 +397,8 @@ namespace Unigram.Services
             }
         }
 
-#region Cache
-        
+        #region Cache
+
         public ChatListUnreadCount GetUnreadCount(ChatList chatList)
         {
             var id = GetIdFromChatList(chatList);
@@ -876,7 +875,7 @@ namespace Unigram.Services
 
             return null;
         }
-        
+
         public SupergroupFullInfo GetSupergroupFull(Chat chat)
         {
             if (chat.Type is ChatTypeSupergroup supergroup)
@@ -1026,7 +1025,7 @@ namespace Unigram.Services
             return _diceEmojis.Contains(text);
         }
 
-#endregion
+        #endregion
 
 
 

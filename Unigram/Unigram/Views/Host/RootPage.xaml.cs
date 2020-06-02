@@ -445,7 +445,7 @@ namespace Unigram.Views.Host
             }
         }
 
-#endregion
+        #endregion
 
         private void Expand_Click(object sender, RoutedEventArgs e)
         {
@@ -507,7 +507,7 @@ namespace Unigram.Views.Host
             }
         }
 
-#region Exposed
+        #region Exposed
 
         public void SetPaneToggleButtonVisibility(Visibility value)
         {
@@ -533,7 +533,7 @@ namespace Unigram.Views.Host
             SetChecked(RootDestination.Settings, value);
         }
 
-#endregion
+        #endregion
 
         public void ShowEditor(ThemeCustomInfo theme)
         {

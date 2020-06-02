@@ -1985,7 +1985,7 @@ namespace Unigram.Views
                 // Scheduled
                 flyout.CreateFlyoutItem(MessageSendNow_Loaded, ViewModel.MessageSendNowCommand, message, Strings.Resources.MessageScheduleSend, new FontIcon { Glyph = Icons.Send, FontFamily = new FontFamily("ms-appx:///Assets/Fonts/Telegram.ttf#Telegram") });
                 flyout.CreateFlyoutItem(MessageReschedule_Loaded, ViewModel.MessageRescheduleCommand, message, Strings.Resources.MessageScheduleEditTime, new FontIcon { Glyph = Icons.Schedule });
-                
+
                 // Generic
                 flyout.CreateFlyoutItem(MessageReply_Loaded, ViewModel.MessageReplyCommand, message, Strings.Resources.Reply, new FontIcon { Glyph = Icons.Reply });
                 flyout.CreateFlyoutItem(MessageEdit_Loaded, ViewModel.MessageEditCommand, message, Strings.Resources.Edit, new FontIcon { Glyph = Icons.Edit });

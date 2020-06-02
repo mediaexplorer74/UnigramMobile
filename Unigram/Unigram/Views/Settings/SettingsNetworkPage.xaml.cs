@@ -1,7 +1,6 @@
 ﻿using System;
 using Unigram.Converters;
 using Unigram.ViewModels.Settings;
-using Windows.UI.Xaml.Controls;
 
 namespace Unigram.Views.Settings
 {

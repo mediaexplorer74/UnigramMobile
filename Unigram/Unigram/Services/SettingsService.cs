@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using Unigram.Common;
-using Unigram.Services;
 using Unigram.Services.Settings;
 using Windows.Globalization;
 using Windows.Storage;
-using Windows.UI.Xaml;
 
 namespace Unigram.Services
 {

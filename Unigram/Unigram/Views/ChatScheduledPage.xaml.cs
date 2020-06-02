@@ -3,7 +3,6 @@ using Unigram.Common;
 using Unigram.Navigation;
 using Unigram.ViewModels;
 using Unigram.ViewModels.Delegates;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Unigram.Views
