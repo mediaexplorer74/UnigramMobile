@@ -57,7 +57,7 @@ namespace Unigram.Controls
         private ICanvasResourceCreator _device;
 
         public LottieView()
-            : this(!CompositionCapabilities.GetForCurrentView().AreEffectsFast())
+            : this(CompositionCapabilities.GetForCurrentView().AreEffectsFast())
         {
         }
 
@@ -317,7 +317,7 @@ namespace Unigram.Controls
             _source = newValue;
             _animation = animation;
 
-            _animationShouldCache = !animation.ShouldCache;
+            _animationShouldCache = animation.ShouldCache;
             _animationFrameRate = animation.FrameRate;
             _animationTotalFrame = animation.TotalFrame;
 
