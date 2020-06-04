@@ -2963,7 +2963,14 @@ namespace Unigram.ViewModels
         public RelayCommand SearchCommand { get; }
         private void SearchExecute()
         {
-            Search = new ChatSearchViewModel(ProtoService, CacheService, Settings, Aggregator, this);
+            if (Search == null)
+            {
+                Search = new ChatSearchViewModel(ProtoService, CacheService, Settings, Aggregator, this);
+            }
+            else
+            {
+                Search = null;
+            }
         }
 
         #endregion
