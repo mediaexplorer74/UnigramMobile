@@ -2377,6 +2377,8 @@ namespace Unigram.Views
 
         private ChatFilterViewModel ConvertFilter(ChatFilterViewModel filter)
         {
+            rpMasterTitlebar.SelectedIndex = 0;
+
             ShowHideTopTabs(!ViewModel.Chats.Settings.IsLeftTabsEnabled && ViewModel.Filters.Count > 0);
             ShowHideLeftTabs(ViewModel.Chats.Settings.IsLeftTabsEnabled && ViewModel.Filters.Count > 0);
             ShowHideArchive(filter == null || filter.ChatList is ChatListMain);
@@ -2913,9 +2915,15 @@ namespace Unigram.Views
 
         private void ChatFilters_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
         {
+            var list = sender as TopNavView;
+            if (list == null)
+            {
+                return;
+            }
+
             if (e.Items.Count > 1 || e.Items[0] is ChatFilterViewModel filter && filter.ChatList is ChatListMain)
             {
-                ChatFilters.CanReorderItems = false;
+                list.CanReorderItems = false;
                 e.Cancel = true;
             }
             else
@@ -2923,19 +2931,19 @@ namespace Unigram.Views
                 var items = ViewModel?.Filters;
                 if (items == null || items.Count < 3)
                 {
-                    ChatFilters.CanReorderItems = false;
+                    list.CanReorderItems = false;
                     e.Cancel = true;
                 }
                 else
                 {
-                    ChatFilters.CanReorderItems = true;
+                    list.CanReorderItems = true;
                 }
             }
         }
 
         private void ChatFilters_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
         {
-            ChatsList.CanReorderItems = false;
+            sender.CanReorderItems = false;
 
             if (args.DropResult == DataPackageOperation.Move && args.Items.Count == 1 && args.Items[0] is ChatFilterViewModel filter)
             {
