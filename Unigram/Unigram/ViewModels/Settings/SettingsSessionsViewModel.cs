@@ -106,7 +106,7 @@ namespace Unigram.ViewModels.Settings
         public RelayCommand<Session> TerminateCommand { get; }
         private async void TerminateExecute(Session session)
         {
-            var terminate = await TLMessageDialog.ShowAsync(Strings.Resources.TerminateSessionQuestion, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
+            var terminate = await MessagePopup.ShowAsync(Strings.Resources.TerminateSessionQuestion, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
             if (terminate == ContentDialogResult.Primary)
             {
                 var response = await ProtoService.SendAsync(new TerminateSession(session.Id));
@@ -127,7 +127,7 @@ namespace Unigram.ViewModels.Settings
         public RelayCommand TerminateOthersCommand { get; }
         private async void TerminateOtherExecute()
         {
-            var terminate = await TLMessageDialog.ShowAsync(Strings.Resources.AreYouSureSessions, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
+            var terminate = await MessagePopup.ShowAsync(Strings.Resources.AreYouSureSessions, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
             if (terminate == ContentDialogResult.Primary)
             {
                 var response = await ProtoService.SendAsync(new TerminateAllOtherSessions());
