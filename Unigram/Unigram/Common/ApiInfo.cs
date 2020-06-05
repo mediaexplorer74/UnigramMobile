@@ -1,6 +1,5 @@
 ﻿using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation.Metadata;
-using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -64,8 +63,8 @@ namespace Unigram.Common
         private static bool? _isPhoneContractPresent;
         public static bool IsPhoneContractPresent => (_isPhoneContractPresent = _isPhoneContractPresent ?? ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1)) ?? false;
 
-        private static bool? _isFullExperience;
-        public static bool IsFullExperience => (_isFullExperience = _isFullExperience ?? AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile") ?? true;
+        private static bool? _canUseViewports;
+        public static bool CanUseViewports => (_canUseViewports = _canUseViewports ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.FrameworkElement", "EffectiveViewportChanged")) ?? false;
 
         public static bool IsMediaSupported => true;
 
