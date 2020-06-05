@@ -63,6 +63,9 @@ namespace Unigram.Common
         private static bool? _isPhoneContractPresent;
         public static bool IsPhoneContractPresent => (_isPhoneContractPresent = _isPhoneContractPresent ?? ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1)) ?? false;
 
+        private static bool? _isFullExperience;
+        public static bool IsFullExperience => (_isFullExperience = _isFullExperience ?? Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile") ?? true;
+
         private static bool? _canUseViewports;
         public static bool CanUseViewports => (_canUseViewports = _canUseViewports ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.FrameworkElement", "EffectiveViewportChanged")) ?? false;
 
