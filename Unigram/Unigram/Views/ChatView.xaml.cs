@@ -489,6 +489,11 @@ namespace Unigram.Views
             TextField.IsTextPredictionEnabled = SettingsService.Current.AutocorrectWords;
             TextField.IsSpellCheckEnabled = SettingsService.Current.HighlightWords;
             TextField.Focus(FocusState.Programmatic);
+
+            //Hide Stickers on opening a chat on mobile
+            if (_stickersMode == StickersPanelMode.Mobile) {
+                Collapse_Click(null, null);
+            }
         }
 
         private async void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -1543,7 +1548,9 @@ namespace Unigram.Views
                     : StickersPanelMode.Overlay;
                 }
 
-                return StickersPanelMode.Mobile;
+                return ActualWidth >= SIDEBAR_MIN_WIDTH
+                    ? StickersPanelMode.Sidebar 
+                    : StickersPanelMode.Mobile;
             }
         }
 
