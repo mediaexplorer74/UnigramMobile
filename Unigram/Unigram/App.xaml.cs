@@ -90,7 +90,7 @@ namespace Unigram
             {
                 args.Handled = true;
 #if !DEBUG
-                Microsoft.AppCenter.Crashes.TrackError(args.Exception);
+                Microsoft.AppCenter.Crashes.Crashes.TrackError(args.Exception);
 #endif
 
                 try
@@ -486,13 +486,13 @@ namespace Unigram
 #if !DEBUG
         private void OnUnobservedException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            Crashes.TrackError(e.Exception);
+            Microsoft.AppCenter.Crashes.Crashes.TrackError(e.Exception);
             e.SetObserved();
         }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Crashes.TrackError(e.Exception);
+            Microsoft.AppCenter.Crashes.Crashes.TrackError(e.Exception);
             e.Handled = true;
         }
 #endif
