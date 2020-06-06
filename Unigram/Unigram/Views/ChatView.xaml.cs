@@ -70,7 +70,11 @@ namespace Unigram.Views
         private StickersPanelMode _stickersMode = StickersPanelMode.Collapsed;
         private StickersPanelMode _stickersModeWide = StickersPanelMode.Sidebar;
 
-        private const double SIDEBAR_MIN_WIDTH = 380 + 320;
+#if MOBILE
+        private const double SIDEBAR_MIN_WIDTH = 380 + 320 - 104;
+#else
+        private const double SIDEBAR_MIN_WIDTH = 380 + 320;      
+#endif
 
         private DispatcherTimer _elapsedTimer;
         private Visual _messageVisual;
@@ -1478,7 +1482,7 @@ namespace Unigram.Views
             ViewModel.SendBotInlineResult(result, collection.GetQueryId(result));
         }
 
-        #region Drag & Drop
+#region Drag & Drop
 
         private void OnDragOver(object sender, DragEventArgs e)
         {
@@ -1491,7 +1495,7 @@ namespace Unigram.Views
         }
         //gridLoading.Visibility = Visibility.Visible;
 
-        #endregion
+#endregion
 
         private async void Reply_Click(object sender, RoutedEventArgs e)
         {
@@ -1779,7 +1783,7 @@ namespace Unigram.Views
             _selectionFromItemClick = false;
         }
 
-        #region Context menu
+#region Context menu
 
         private void Menu_ContextRequested(object sender, RoutedEventArgs e)
         {
@@ -2363,7 +2367,7 @@ namespace Unigram.Views
             return false;
         }
 
-        #endregion
+#endregion
 
         private async void Emojis_ItemClick(string emoji)
         {
@@ -2746,7 +2750,7 @@ namespace Unigram.Views
             ViewModel.Autocomplete = null;
         }
 
-        #region Binding
+#region Binding
 
         //public Visibility ConvertBotInfo(TLBotInfo info, bool last)
         //{
@@ -2792,7 +2796,7 @@ namespace Unigram.Views
             return mode == ListViewSelectionMode.Multiple;
         }
 
-        #endregion
+#endregion
 
         private void Share_Click(object sender, RoutedEventArgs e)
         {
@@ -2904,7 +2908,7 @@ namespace Unigram.Views
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (_stickersModeWide == StickersPanelMode.Mobile && HeaderOverlay.Visibility == Visibility.Visible)
+            if (HeaderOverlay.Visibility == Visibility.Visible)
             {
                 StickersPanel.MinHeight = e.NewSize.Height - 48 * 2;
                 StickersPanel.MaxHeight = e.NewSize.Height - 48 * 2;
@@ -2923,7 +2927,7 @@ namespace Unigram.Views
             }
             else if (e.NewSize.Width < e.PreviousSize.Width && e.NewSize.Width < SIDEBAR_MIN_WIDTH && e.PreviousSize.Width >= SIDEBAR_MIN_WIDTH)
             {
-                if (_stickersMode == StickersPanelMode.Sidebar)
+                if (_stickersMode == StickersPanelMode.Sidebar || _stickersMode == StickersPanelMode.Mobile)
                 {
                     _stickersModeWide = StickersPanelMode.Sidebar;
                     Collapse_Click(null, null);
@@ -3110,7 +3114,7 @@ namespace Unigram.Views
             return chat?.Id == ViewModel?.Chat?.Id;
         }
 
-        #region UI delegate
+#region UI delegate
 
         public void UpdateChat(Chat chat)
         {
@@ -4326,7 +4330,7 @@ namespace Unigram.Views
             }
         }
 
-        #endregion
+#endregion
 
         private void TextField_Formatting(FormattedTextBox sender, EventArgs args)
         {
