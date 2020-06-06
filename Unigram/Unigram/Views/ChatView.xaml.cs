@@ -3701,8 +3701,8 @@ namespace Unigram.Views
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
 
-                    Grid.SetRow(btnAttach, show ? 2 : 1); //TODO: Ich glaube, ich hatte das aus UI-Gründen entfernt/auskommentiert?
-                    Grid.SetRow(ButtonsPanel, show ? 2 : 1);
+                    //Grid.SetRow(btnAttach, show ? 2 : 1);
+                    //Grid.SetRow(ButtonsPanel, show ? 2 : 1);
                     //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
                 }
 
@@ -3739,8 +3739,8 @@ namespace Unigram.Views
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
 
-                Grid.SetRow(btnAttach, show ? 2 : 1); //TODO: Ich glaube, ich hatte das aus UI-Gründen entfernt/auskommentiert?
-                Grid.SetRow(ButtonsPanel, show ? 2 : 1);
+                //Grid.SetRow(btnAttach, show ? 2 : 1);
+                //Grid.SetRow(ButtonsPanel, show ? 2 : 1);
                 //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
             }
             else
