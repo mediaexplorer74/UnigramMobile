@@ -372,7 +372,7 @@ namespace Unigram.Views
 
         private bool SearchTextBoxHasPointerFocus()
         {
-            return ((StickersPanel.FindName("Emojis") as EmojiDrawer)?.FindName("FieldEmoji") as TextBox)?.FocusState == FocusState.Pointer
+            return ((StickersPanel.FindName("EmojisRoot") as EmojiDrawer)?.FindName("FieldEmoji") as TextBox)?.FocusState == FocusState.Pointer
                 || ((StickersPanel.FindName("AnimationsRoot") as AnimationDrawer)?.FindName("FieldAnimations") as TextBox)?.FocusState == FocusState.Pointer
                 || ((StickersPanel.FindName("StickersRoot") as StickerDrawer)?.FindName("FieldStickers") as TextBox)?.FocusState == FocusState.Pointer;
         }
