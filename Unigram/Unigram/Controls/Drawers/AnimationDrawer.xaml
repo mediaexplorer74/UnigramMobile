@@ -29,6 +29,14 @@
                 Grid.Row="1"/>
         </Border>
 
+        <muxc:ProgressRing
+            IsActive="{x:Bind ViewModel.Items.IsLoading, Mode=OneWay}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="48"
+            Height="48"
+            Grid.Row="2"/>
+
         <muxc:ItemsRepeaterScrollHost Grid.Row="2">
             <ScrollViewer
                 x:Name="ScrollingHost"
@@ -56,7 +64,6 @@
                                         Stretch="UniformToFill"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"/>
-                                    
                                 </Grid>
                             </Button>
                         </DataTemplate>
