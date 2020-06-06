@@ -313,7 +313,8 @@
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                             ContentMargin="{TemplateBinding Padding}"
                                             CheckMode="{ThemeResource ListViewItemCheckMode}"
-                                            CornerRadius="{StaticResource GlyphButtonCornerRadius}"/>
+                                            CornerRadius="{StaticResource GlyphButtonCornerRadius}"
+                                            Margin="0 4"/>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>

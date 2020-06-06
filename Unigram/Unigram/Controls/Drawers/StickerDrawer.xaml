@@ -55,7 +55,7 @@
                     </GroupStyle.HeaderTemplate>
                     <GroupStyle.HeaderContainerStyle>
                         <Style TargetType="GridViewHeaderItem">
-                            <Setter Property="Background" Value="Trasparent" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
                             <Setter Property="FontSize" Value="{ThemeResource ListViewHeaderItemThemeFontSize}" />
                             <Setter Property="Margin" Value="0,0,0,0"/>
