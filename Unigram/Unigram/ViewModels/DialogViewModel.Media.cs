@@ -455,11 +455,12 @@ namespace Unigram.ViewModels
 
             var formattedText = GetFormattedText(true);
             var caption = formattedText.Substring(0, CacheService.Options.MessageCaptionLengthMax);
-            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !CacheService.IsSavedMessages(_chat));
+            var self = CacheService.IsSavedMessages(_chat);
+            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, !_isSchedule, self);
             dialog.ViewModel = this;
             dialog.Caption = caption;
 
-            var confirm = await dialog.ShowQueuedAsync();
+            var confirm = await dialog.OpenAsync();
             if (confirm != ContentDialogResult.Primary)
             {
                 if (formattedText != null)
@@ -470,50 +471,38 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            if (items.Count == 1)
+            var options = await PickSendMessageOptionsAsync(dialog.Schedule, dialog.Silent);
+            if (options == null)
             {
-                var options = await PickSendMessageOptionsAsync();
-                if (options == null)
-                {
-                    return;
-                }
+                return;
+            }
 
+            if (dialog.Items.Count == 1)
+            {
                 await SendStorageMediaAsync(dialog.Items[0], dialog.Caption, dialog.IsFilesSelected, options);
             }
-            else if (items.Count > 1 && dialog.IsAlbum && dialog.IsAlbumAvailable)
+            else if (dialog.Items.Count > 1 && dialog.IsAlbum && dialog.IsAlbumAvailable)
             {
-                var options = await PickSendMessageOptionsAsync();
-                if (options == null)
-                {
-                    return;
-                }
-
                 var group = new List<StorageMedia>(Math.Min(dialog.Items.Count, 10));
 
                 foreach (var item in dialog.Items)
                 {
-                    @group.Add(item);
+                    group.Add(item);
 
-                    if (@group.Count == 10)
+                    if (group.Count == 10)
                     {
-                        await SendGroupedAsync(@group, dialog.Caption, options);
-                        @group = new List<StorageMedia>(Math.Min(dialog.Items.Count, 10));
+                        await SendGroupedAsync(group, dialog.Caption, options);
+                        group = new List<StorageMedia>(Math.Min(dialog.Items.Count, 10));
                     }
                 }
 
-                if (@group.Count > 0)
+                if (group.Count > 0)
                 {
-                    await SendGroupedAsync(@group, dialog.Caption, options);
+                    await SendGroupedAsync(group, dialog.Caption, options);
                 }
             }
-            else if (items.Count > 0)
+            else if (dialog.Items.Count > 0)
             {
-                var options = await PickSendMessageOptionsAsync();
-                if (options == null)
-                {
-                    return;
-                }
-
                 if (dialog.Caption != null)
                 {
                     await SendMessageAsync(dialog.Caption, options);
