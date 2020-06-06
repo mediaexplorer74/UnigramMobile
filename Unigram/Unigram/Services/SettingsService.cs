@@ -195,7 +195,8 @@ namespace Unigram.Services
 
         #region App version
 
-        //public const ulong CurrentVersion = (3UL << 48) | (15UL << 32) | (3073UL << 16);
+        //public const ulong CurrentVersion = (4UL << 48) | (0UL << 32) | (5072UL << 16);
+        //public const string CurrentChangelog = "• Chat folders.\r\n• Stream Videos and Audio files.\r\n• Improved stickers, GIFs and emojis.\r\n\r\nRead more: https://telegra.ph/Unigram-40-05-28";
         public static readonly string CurrentChangelog = $"Beta Build {GetAppVersion().Build}. Thanks for taking the risk and time testing this beta release. Please use the beta group for any feedback: https://t.me/joinchat/E_I5AhukKgSSXf4Acp8nbA";
 
         public int Session => _session;
