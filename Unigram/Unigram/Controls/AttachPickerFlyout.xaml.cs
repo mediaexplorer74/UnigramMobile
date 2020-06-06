@@ -28,6 +28,8 @@ namespace Unigram.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             SelectedItems.Clear();
+            Library.MaxWidth = Window.Current.Bounds.Width - 24;
+            Library.MinWidth = Library.MaxWidth;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
