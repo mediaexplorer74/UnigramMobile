@@ -740,7 +740,7 @@
                                         ItemsSource="{x:Bind ViewModel.Folder.Items, Mode=OneWay}"
                                         SelectionMode2="{x:Bind ViewModel.Folder.SelectionMode, Mode=TwoWay}"/>
                                 </Grid>
-
+<!--
                                 <Grid
                                     VerticalAlignment="Bottom"
                                     HorizontalAlignment="Center"
@@ -765,7 +765,7 @@
                                         Margin="0"
                                         Height="36"/>
                                 </Grid>
-
+-->
                                 <controls:UndoView x:Name="Undo" VerticalAlignment="Bottom" Grid.Row="1"/>
 
                                 <!--<StackPanel x:Name="Arrow" VerticalAlignment="Bottom" HorizontalAlignment="Right">

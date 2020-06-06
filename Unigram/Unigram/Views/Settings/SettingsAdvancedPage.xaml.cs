@@ -12,12 +12,12 @@ namespace Unigram.Views.Settings
         {
             InitializeComponent();
             DataContext = TLContainer.Current.Resolve<SettingsAdvancedViewModel>();
-
+#if CLOUDUPDATES
             if (Package.Current.SignatureKind != PackageSignatureKind.Store)
             {
                 FindName(nameof(UpdatePanel));
             }
-
+#endif
 #if DESKTOP_BRIDGE
             FindName(nameof(TraySwitch));
 

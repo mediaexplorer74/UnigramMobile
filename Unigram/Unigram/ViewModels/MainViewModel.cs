@@ -26,9 +26,12 @@ namespace Unigram.ViewModels
         IHandle<UpdateServiceNotification>,
         IHandle<UpdateUnreadMessageCount>,
         IHandle<UpdateUnreadChatCount>,
-        IHandle<UpdateChatFilters>,
+        IHandle<UpdateChatFilters>
+#if CLOUDUPDATES
+        ,
         IHandle<UpdateAppVersion>,
         IHandle<UpdateWindowActivated>
+#endif
     {
         private readonly INotificationsService _pushService;
         private readonly IContactsService _contactsService;
@@ -44,8 +47,13 @@ namespace Unigram.ViewModels
 
         public bool Refresh { get; set; }
 
+#if CLOUDUPDATES
         public MainViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator, INotificationsService pushService, IContactsService contactsService, IVibrationService vibrationService, IPasscodeService passcodeService, ILifetimeService lifecycle, ISessionService session, IVoIPService voipService, ISettingsSearchService settingsSearchService, IEmojiSetService emojiSetService, ICloudUpdateService cloudUpdateService, IPlaybackService playbackService, IShortcutsService shortcutService)
             : base(protoService, cacheService, settingsService, aggregator)
+#else
+        public MainViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator, INotificationsService pushService, IContactsService contactsService, IVibrationService vibrationService, IPasscodeService passcodeService, ILifetimeService lifecycle, ISessionService session, IVoIPService voipService, ISettingsSearchService settingsSearchService, IEmojiSetService emojiSetService, IPlaybackService playbackService, IShortcutsService shortcutService)
+            : base(protoService, cacheService, settingsService, aggregator)
+#endif
         {
             _pushService = pushService;
             _contactsService = contactsService;
@@ -55,7 +63,9 @@ namespace Unigram.ViewModels
             _sessionService = session;
             _voipService = voipService;
             _emojiSetService = emojiSetService;
+#if CLOUDUPDATES
             _cloudUpdateService = cloudUpdateService;
+#endif
             _playbackService = playbackService;
             _shortcutService = shortcutService;
 
@@ -86,9 +96,9 @@ namespace Unigram.ViewModels
             CreateSecretChatCommand = new RelayCommand(CreateSecretChatExecute);
 
             SetupFiltersCommand = new RelayCommand(SetupFiltersExecute);
-
+#if CLOUDUPDATES
             UpdateAppCommand = new RelayCommand(UpdateAppExecute);
-
+#endif
             FilterEditCommand = new RelayCommand<ChatFilterViewModel>(FilterEditExecute);
             FilterAddCommand = new RelayCommand<ChatFilterViewModel>(FilterAddExecute);
             FilterDeleteCommand = new RelayCommand<ChatFilterViewModel>(FilterDeleteExecute);
@@ -161,7 +171,7 @@ namespace Unigram.ViewModels
         {
             _voipService.Show();
         }
-
+#if CLOUDUPDATES
         public void Handle(UpdateAppVersion update)
         {
             BeginOnUIThread(() => UpdateAppVersion(update.Update));
@@ -179,7 +189,7 @@ namespace Unigram.ViewModels
         {
             IsUpdateAvailable = update?.File != null;
         }
-
+#endif
         public void Handle(UpdateServiceNotification update)
         {
 
@@ -363,8 +373,9 @@ namespace Unigram.ViewModels
             //Dispatch(() => Dialogs.LoadFirstSlice());
             //Dispatch(() => Contacts.getTLContacts());
             //Dispatch(() => Contacts.GetSelfAsync());
-
+#if CLOUDUPDATES
             UpdateAppVersion(_cloudUpdateService.NextUpdate);
+#endif
             UpdateChatFilters(CacheService.ChatFilters);
 
             var unreadCount = CacheService.GetUnreadCount(new ChatListMain());
@@ -376,7 +387,9 @@ namespace Unigram.ViewModels
                 Task.Run(() => _pushService.RegisterAsync());
                 Task.Run(() => _contactsService.JumpListAsync());
                 Task.Run(() => _emojiSetService.UpdateAsync());
+#if CLOUDUPDATES
                 Task.Run(() => _cloudUpdateService.UpdateAsync(false));
+#endif
             }
 
             return base.OnNavigatedToAsync(parameter, mode, state);
@@ -402,7 +415,7 @@ namespace Unigram.ViewModels
         }
 
 
-
+#if CLOUDUPDATES
         public RelayCommand UpdateAppCommand { get; }
         private async void UpdateAppExecute()
         {
@@ -415,7 +428,7 @@ namespace Unigram.ViewModels
             await Launcher.LaunchFileAsync(file);
             Application.Current.Exit();
         }
-
+#endif
         public RelayCommand CreateSecretChatCommand { get; }
         private async void CreateSecretChatExecute()
         {

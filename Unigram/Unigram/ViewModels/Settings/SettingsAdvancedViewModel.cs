@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Unigram.ViewModels.Settings
 {
+#if CLOUDUPDATES
     public class SettingsAdvancedViewModel : TLViewModelBase, IHandle<UpdateFile>, IHandle<UpdateAppVersion>
     {
         private readonly ICloudUpdateService _cloudUpdateService;
@@ -41,7 +42,7 @@ namespace Unigram.ViewModels.Settings
             return base.OnNavigatedFromAsync(pageState, suspending);
         }
 
-        #region Updates
+    #region Updates
 
         private bool _isUpdateEnabled = true;
         public bool IsUpdateEnabled
@@ -138,9 +139,16 @@ namespace Unigram.ViewModels.Settings
             Update(update);
         }
 
-        #endregion
-
-        public bool IsAdaptiveWideEnabled
+    #endregion
+#else
+    public class SettingsAdvancedViewModel : TLViewModelBase
+        {
+            public SettingsAdvancedViewModel(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator)
+                : base(protoService, cacheService, settingsService, aggregator)
+            {
+            }
+#endif
+            public bool IsAdaptiveWideEnabled
         {
             get
             {

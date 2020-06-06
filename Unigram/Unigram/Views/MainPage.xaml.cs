@@ -109,13 +109,13 @@ namespace Unigram.Views
             }
 
             //InputPane.GetForCurrentView().Showing += (s, args) => args.EnsuredFocusedElementInView = true;
-
+#if CLOUDUPDATES
             var updateShadow = DropShadowEx.Attach(UpdateShadow, 20, 0.25f);
             UpdateShadow.SizeChanged += (s, args) =>
             {
                 updateShadow.Size = args.NewSize.ToVector2();
             };
-
+#endif
             var folderShadow = DropShadowEx.Attach(FolderShadow, 20, 0.25f);
             FolderShadow.SizeChanged += (s, args) =>
             {
@@ -195,7 +195,7 @@ namespace Unigram.Views
             Lock.IsChecked = ViewModel.Passcode.IsLocked;
         }
 
-        #region Handle
+#region Handle
 
         public void UpdateChatLastMessage(Chat chat)
         {
@@ -535,7 +535,7 @@ namespace Unigram.Views
             });
         }
 
-        #endregion
+#endregion
 
         public void ShowChatsUndo(IList<Chat> chats, UndoType type, Action<IList<Chat>> undo, Action<IList<Chat>> action = null)
         {
@@ -1573,7 +1573,7 @@ namespace Unigram.Views
             });
         }
 
-        #region Context menu
+#region Context menu
 
         private void TopChat_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
@@ -1607,9 +1607,9 @@ namespace Unigram.Views
             return Visibility.Visible;
         }
 
-        #endregion
+#endregion
 
-        #region Binding
+#region Binding
 
         private string ConvertGeoLive(int count, IList<Message> items)
         {
@@ -1630,7 +1630,7 @@ namespace Unigram.Views
             return epoch ? Strings.Resources.SortedByLastSeen : Strings.Resources.SortedByName;
         }
 
-        #endregion
+#endregion
 
         private void NewContact_Click(object sender, RoutedEventArgs e)
         {
@@ -1707,7 +1707,7 @@ namespace Unigram.Views
             ChatTabsSearch.Content = rpMasterTitlebar.SelectedIndex == 3 ? Strings.Resources.SearchInSettings : Strings.Resources.Search;
         }
 
-        #region Search
+#region Search
 
         private void ShowHideSearch(bool show)
         {
@@ -1889,7 +1889,7 @@ namespace Unigram.Views
             }
         }
 
-        #endregion
+#endregion
 
         private void Lock_Click(object sender, RoutedEventArgs e)
         {
@@ -2690,7 +2690,7 @@ namespace Unigram.Views
             }
         }
 
-        #region Selection
+#region Selection
 
         private void List_SelectionModeChanged(DependencyObject sender, DependencyProperty dp)
         {
@@ -2864,7 +2864,7 @@ namespace Unigram.Views
             }
         }
 
-        #endregion
+#endregion
 
         private void Confetti_Completed(object sender, EventArgs e)
         {
