@@ -30,11 +30,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Resources;
-#if !DEBUG
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-#endif
 
 namespace Unigram
 {
@@ -95,7 +90,7 @@ namespace Unigram
             {
                 args.Handled = true;
 #if !DEBUG
-                Crashes.TrackError(args.Exception);
+                Microsoft.AppCenter.Crashes.TrackError(args.Exception);
 #endif
 
                 try
@@ -106,7 +101,9 @@ namespace Unigram
             };
 
 #if !DEBUG
-            AppCenter.Start(Constants.AppCenterId, typeof(Analytics), typeof(Crashes));
+            Microsoft.AppCenter.AppCenter.Start(Constants.AppCenterId,
+                typeof(Microsoft.AppCenter.Analytics.Analytics),
+                typeof(Microsoft.AppCenter.Crashes.Crashes));
 
             string deviceFamilyVersion = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
             ulong version = ulong.Parse(deviceFamilyVersion);
@@ -114,8 +111,8 @@ namespace Unigram
             ulong minor = (version & 0x0000FFFF00000000L) >> 32;
             ulong build = (version & 0x00000000FFFF0000L) >> 16;
 
-            Analytics.TrackEvent($"{major}.{minor}.{build}");
-            Analytics.TrackEvent(AnalyticsInfo.VersionInfo.DeviceFamily);
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent($"{major}.{minor}.{build}");
+            Microsoft.AppCenter.Analytics.Analytics.TrackEvent(AnalyticsInfo.VersionInfo.DeviceFamily);
 
             TaskScheduler.UnobservedTaskException += OnUnobservedException;
             UnhandledException += OnUnhandledException;
