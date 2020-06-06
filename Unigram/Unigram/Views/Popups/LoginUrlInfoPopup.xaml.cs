@@ -2,7 +2,9 @@
 using Unigram.Common;
 using Unigram.Controls;
 using Unigram.Services;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Unigram.Views.Popups
 {
@@ -55,9 +57,9 @@ namespace Unigram.Views.Popups
         private void MaskTitleAndStatusBar()
         {
             var titlebar = ApplicationView.GetForCurrentView().TitleBar;
-            var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
-            var foregroundBrush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            var overlayBrush = Application.Current.Resources["SystemControlBackgroundAltMediumBrush"] as SolidColorBrush;
+            var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as Windows.UI.Xaml.Media.SolidColorBrush;
+            var foregroundBrush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as Windows.UI.Xaml.Media.SolidColorBrush;
+            var overlayBrush = Application.Current.Resources["SystemControlBackgroundAltMediumBrush"] as Windows.UI.Xaml.Media.SolidColorBrush;
 
             if (overlayBrush != null)
             {

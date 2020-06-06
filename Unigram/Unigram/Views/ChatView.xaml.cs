@@ -1427,7 +1427,7 @@ namespace Unigram.Views
                 flyout.Hide();
             }
 
-            ViewModel.SendStorageMediaCommand.Execute(new List<StorageMedia> { e.Item });
+            ViewModel.SendStorageMediaCommand.Execute(new List<Entities.StorageMedia> { e.Item });
         }
 
         private void AttachPickerFlyout_ItemSelectionChanged(object sender, MediaSelectedItemsEventArgs e)
@@ -3701,7 +3701,7 @@ namespace Unigram.Views
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
 
-                    Grid.SetRow(btnAttach, show ? 2 : 1);
+                    Grid.SetRow(btnAttach, show ? 2 : 1); //TODO: Ich glaube, ich hatte das aus UI-Gründen entfernt/auskommentiert?
                     Grid.SetRow(ButtonsPanel, show ? 2 : 1);
                     //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
                 }
@@ -3739,7 +3739,7 @@ namespace Unigram.Views
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
 
-                Grid.SetRow(btnAttach, show ? 2 : 1);
+                Grid.SetRow(btnAttach, show ? 2 : 1); //TODO: Ich glaube, ich hatte das aus UI-Gründen entfernt/auskommentiert?
                 Grid.SetRow(ButtonsPanel, show ? 2 : 1);
                 //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
             }

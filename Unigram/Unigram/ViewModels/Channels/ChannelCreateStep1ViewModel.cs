@@ -74,7 +74,7 @@ namespace Unigram.ViewModels.Channels
         private async void EditPhotoExecute(StorageFile file)
         {
             Logs.Logger.Warning(Logs.Target.API, "Call to not implemented EditPhotoExecute (ChannelCreateStep1)");
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
     }
 }

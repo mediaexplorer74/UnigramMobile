@@ -273,8 +273,8 @@ namespace Unigram.Services
                 var response = await SendAsync(new CreatePrivateChat(777000, false));
                 if (response is Chat chat)
                 {
-                    PackageVersion version = SettingsService.GetAppVersion();
-                    var title = Package.Current.DisplayName + $" Version {version.Major}.{version.Minor}";
+                    Windows.ApplicationModel.PackageVersion version = SettingsService.GetAppVersion();
+                    var title = Windows.ApplicationModel.Package.Current.DisplayName + $" Version {version.Major}.{version.Minor}";
                     var message = title + Environment.NewLine + Environment.NewLine + SettingsService.CurrentChangelog;
                     var formattedText = new FormattedText(message, new[] { new TextEntity { Offset = 0, Length = title.Length, Type = new TextEntityTypeBold() } });
 

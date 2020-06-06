@@ -94,7 +94,7 @@ namespace Unigram.ViewModels.BasicGroups
         public RelayCommand<StorageFile> EditPhotoCommand { get; }
         private async void EditPhotoExecute(StorageFile file)
         {
-            await Task.CompletedTask;
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         private void ContinueUploadingPhoto()
