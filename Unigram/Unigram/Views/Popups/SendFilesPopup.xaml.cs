@@ -487,7 +487,14 @@ namespace Unigram.Views.Popups
             var flyout = new Flyout();
             flyout.Content = stack;
 
-            flyout.ShowAt(button.Parent as UIElement, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
+            {
+                flyout.ShowAt(button.Parent as UIElement, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
+            }
+            else
+            {
+                flyout.ShowAt(button.Parent as FrameworkElement);
+            }
         }
 
         private void Mute_Click(object sender, RoutedEventArgs e)
