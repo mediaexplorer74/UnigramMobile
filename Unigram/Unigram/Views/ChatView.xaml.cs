@@ -56,6 +56,7 @@ namespace Unigram.Views
 
         private Func<IDialogDelegate, DialogViewModel> _getViewModel;
         private DialogViewModel _viewModel;
+        private double _lastKnownKeyboardHeight = 262;
 
         private readonly TLWindowContext _windowContext;
 
@@ -826,6 +827,8 @@ namespace Unigram.Views
             StickersPanel.Height = args.OccludedRect.Height;
             ReplyMarkupPanel.MaxHeight = args.OccludedRect.Height;
             //ReplyMarkupViewer.MaxHeight = args.OccludedRect.Height;
+
+            _lastKnownKeyboardHeight = Math.Max(262, args.OccludedRect.Height);
 
             Collapse_Click(null, null);
             CollapseMarkup(false);
@@ -1601,8 +1604,7 @@ namespace Unigram.Views
 
                 if (!sidebar)
                 {
-                    StickersPanel.MinHeight = 260;
-                    StickersPanel.MaxHeight = 360;
+                    StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
                     StickersPanel.Height = _lastKnownKeyboardHeight;
                 }
 
@@ -2809,8 +2811,7 @@ namespace Unigram.Views
         {
             if (HeaderOverlay.Visibility == Visibility.Visible)
             {
-                StickersPanel.MinHeight = 260;
-                StickersPanel.MaxHeight = 360;
+                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
                 StickersPanel.Height = _lastKnownKeyboardHeight;
                 ButtonExpand.Glyph = "\uE010";
 
@@ -2819,7 +2820,6 @@ namespace Unigram.Views
             }
             else
             {
-                StickersPanel.MinHeight = ActualHeight - 24 - TextArea.ActualHeight;
                 StickersPanel.MaxHeight = ActualHeight - 24 - TextArea.ActualHeight;
                 StickersPanel.Height = double.NaN;
                 ButtonExpand.Glyph = "\uE011";
@@ -2867,7 +2867,7 @@ namespace Unigram.Views
                 _stickersMode = StickersPanelMode.Collapsed;
                 SettingsService.Current.IsSidebarOpen = false;
 
-                StickersPanel.MaxHeight = 360;
+                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
                 StickersPanel.Height = _lastKnownKeyboardHeight;
                 ButtonExpand.Glyph = "\uE010";
 
@@ -2907,7 +2907,6 @@ namespace Unigram.Views
         {
             if (HeaderOverlay.Visibility == Visibility.Visible)
             {
-                StickersPanel.MinHeight = e.NewSize.Height - 48 * 2;
                 StickersPanel.MaxHeight = e.NewSize.Height - 48 * 2;
             }
 

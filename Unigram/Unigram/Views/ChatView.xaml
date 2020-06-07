@@ -504,7 +504,9 @@
             <VisualStateGroup>
                 <VisualState x:Name="NarrowState">
                     <VisualState.Setters>
+                        <!--
                         <Setter Target="StickersPanel.Height" Value="300"/>
+                        -->
                         <Setter Target="StickersPanel.MinHeight" Value="260"/>
                         <Setter Target="StickersPanel.MaxHeight" Value="360"/>
                         <Setter Target="StickersPanel.Margin" Value="0"/>
