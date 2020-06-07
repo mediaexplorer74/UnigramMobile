@@ -266,4 +266,12 @@
     <value>Sonstige Chats</value>
     <comment>SettingsStoragePage</comment>
   </data>
+  <data name="ShareRemoveCaptions" xml:space="preserve">
+    <value>Entferne Überschriften in Kopien</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsCopy" xml:space="preserve">
+    <value>Als Kopie senden</value>
+    <comment>SharePopup</comment>
+  </data>
 </root>

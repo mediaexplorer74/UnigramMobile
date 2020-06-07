@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 06/07/2020 10:59:12
+// 	Generated: 06/07/2020 11:28:21
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -508,6 +508,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SettingsStorageOtherChats");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Remove captions in copies"
+        /// </summary>
+        public static string ShareRemoveCaptions
+        {
+            get
+            {
+                return Resource.GetString("ShareRemoveCaptions");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Send as copy"
+        /// </summary>
+        public static string ShareSendAsCopy
+        {
+            get
+            {
+                return Resource.GetString("ShareSendAsCopy");
             }
         }
         
