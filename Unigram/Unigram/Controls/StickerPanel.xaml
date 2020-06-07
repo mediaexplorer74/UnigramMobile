@@ -115,7 +115,11 @@
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="NarrowState"/>
-                <VisualState x:Name="SidebarState"/>
+                <VisualState x:Name="SidebarState">
+                    <VisualState.Setters>
+                        <Setter Target="ButtonExpand.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState x:Name="FilledState">
                     <VisualState.Setters>
                         <Setter Target="ShowColumn.Width" Value="362*"/>
@@ -132,6 +136,8 @@
                         <Setter Target="PaddingLeftColumn.Width" Value="12"/>
                         <Setter Target="PaddingBottomRow.Height" Value="4"/>
                         <Setter Target="PaddingRightColumn.Width" Value="12"/>
+                        
+                        <Setter Target="ButtonExpand.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -255,6 +261,12 @@
                             ToolTipService.ToolTip="{CustomResource AccDescrStickers}"
                             GroupName="StickersView"
                             Grid.Column="4"/>
+
+                        <controls:GlyphToggleButton x:Name="ButtonExpand"
+                                                    CheckedGlyph="&#xE011;"
+                                                    UncheckedGlyph="&#xE010;"
+                                                    Click="ButtonExpand_Click"
+                                                    AllowFocusOnInteraction="False"/>
                     </Grid>
                 </Grid>
             </Grid>

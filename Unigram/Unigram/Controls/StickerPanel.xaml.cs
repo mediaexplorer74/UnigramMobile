@@ -33,6 +33,8 @@ namespace Unigram.Controls
         public Action<Animation> AnimationClick { get; set; }
         public event TypedEventHandler<UIElement, ContextRequestedEventArgs> AnimationContextRequested;
 
+        public event EventHandler<bool> ToggleExpand;
+
         private StickersPanelMode _widget;
 
         public StickerPanel()
@@ -232,6 +234,7 @@ namespace Unigram.Controls
 
         public void Deactivate()
         {
+            ButtonExpand.IsChecked = false;
             foreach (var drawer in GetDrawers())
             {
                 drawer?.Deactivate();
@@ -252,6 +255,12 @@ namespace Unigram.Controls
             {
                 drawer?.LoadVisibleItems();
             }
+        }
+
+        private void ButtonExpand_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonExpand.IsChecked = !ButtonExpand.IsChecked;
+            ToggleExpand?.Invoke(sender, ButtonExpand.IsChecked ?? false);
         }
     }
 

@@ -522,7 +522,6 @@
                         <Setter Target="StickersPanel.MinHeight" Value="0"/>
                         <Setter Target="StickersPanel.MaxHeight" Value="3600"/>
                         <Setter Target="StickersPanel.Margin" Value="0"/>
-                        <Setter Target="ButtonExpand.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="FilledState">
@@ -533,7 +532,6 @@
                         <Setter Target="StickersPanel.MinHeight" Value="0"/>
                         <Setter Target="StickersPanel.MaxHeight" Value="3600"/>
                         <Setter Target="StickersPanel.Margin" Value="0,48,0,0"/>
-                        <Setter Target="ButtonExpand.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -934,7 +932,8 @@
         </ScrollViewer>
 
         <Grid x:Name="KeyboardItems" Grid.Row="4">
-            <controls:StickerPanel x:Name="StickersPanel" Visibility="Collapsed" Height="260" MaxHeight="360" MinHeight="260"/>
+            <controls:StickerPanel x:Name="StickersPanel" Visibility="Collapsed" Height="260" MaxHeight="360" MinHeight="260"
+                                   ToggleExpand="StickersPanel_ExpandButtonClicked"/>
         </Grid>
 
         <!-- Input pane -->
@@ -1245,14 +1244,6 @@
                         AutomationProperties.Name="{CustomResource Done}"
                         ToolTipService.ToolTip="{CustomResource Done}"
                         Visibility="Collapsed"/>
-
-                    <controls:GlyphButton x:Name="ButtonExpand"
-                                          Visibility="{x:Bind StickersPanel.Visibility, Mode=OneWay}"
-                                          VerticalAlignment="Bottom"
-                                          Click="Expand_Click"
-                                          Glyph="&#xE010;"
-                                          AllowFocusOnInteraction="False"
-                                          Padding="0,2,0,0"/>
                 </Grid>
 
                 <Border Grid.ColumnSpan="4" Grid.Row="2" HorizontalAlignment="Center">

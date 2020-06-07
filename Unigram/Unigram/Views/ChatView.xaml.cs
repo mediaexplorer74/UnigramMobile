@@ -2807,14 +2807,13 @@ namespace Unigram.Views
             }
         }
 
-        private void Expand_Click(object sender, RoutedEventArgs e)
+        private void StickersPanel_ExpandButtonClicked(object sender, bool expand)
         {
-            if (HeaderOverlay.Visibility == Visibility.Visible)
+            if (!expand)
             {
                 StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
                 StickersPanel.Height = _lastKnownKeyboardHeight;
-                ButtonExpand.Glyph = "\uE010";
-
+                
                 HeaderOverlay.Visibility = Visibility.Collapsed;
                 UnmaskTitleAndStatusBar();
             }
@@ -2822,7 +2821,6 @@ namespace Unigram.Views
             {
                 StickersPanel.MaxHeight = ActualHeight - 24 - TextArea.ActualHeight;
                 StickersPanel.Height = double.NaN;
-                ButtonExpand.Glyph = "\uE011";
 
                 HeaderOverlay.Visibility = Visibility.Visible;
                 MaskTitleAndStatusBar();
@@ -2869,7 +2867,6 @@ namespace Unigram.Views
 
                 StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
                 StickersPanel.Height = _lastKnownKeyboardHeight;
-                ButtonExpand.Glyph = "\uE010";
 
                 HeaderOverlay.Visibility = Visibility.Collapsed;
                 UnmaskTitleAndStatusBar();
