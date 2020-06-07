@@ -1201,7 +1201,7 @@
                         x:Name="ButtonStickers"
                         Click="Stickers_Click"
                         AllowFocusOnInteraction="False"
-                        Glyph="&#xF4AA;"
+                        Glyph="&#xE76E;"
                         VerticalAlignment="Bottom"
                         AutomationProperties.Name="{CustomResource AccDescrEmojiButton}"
                         Grid.Column="1"/>

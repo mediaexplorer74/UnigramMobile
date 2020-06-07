@@ -328,18 +328,18 @@ namespace Unigram.Views
                 StickersPanel.AllowFocusOnInteraction = false;
             }
 
-            switch (ViewModel.Settings.Stickers.SelectedTab)
-            {
-                case Services.Settings.StickersTab.Emoji:
-                    ButtonStickers.Glyph = "\uE76E";
-                    break;
-                case Services.Settings.StickersTab.Animations:
-                    ButtonStickers.Glyph = "\uF4A9";
-                    break;
-                case Services.Settings.StickersTab.Stickers:
-                    ButtonStickers.Glyph = "\uF4AA";
-                    break;
-            }
+            //switch (ViewModel.Settings.Stickers.SelectedTab)
+            //{
+            //    case Services.Settings.StickersTab.Emoji:
+            //        ButtonStickers.Glyph = "\uE76E";
+            //        break;
+            //    case Services.Settings.StickersTab.Animations:
+            //        ButtonStickers.Glyph = "\uF4A9";
+            //        break;
+            //    case Services.Settings.StickersTab.Stickers:
+            //        ButtonStickers.Glyph = "\uF4AA";
+            //        break;
+            //}
         }
 
         public void HideStickers()
@@ -2877,18 +2877,18 @@ namespace Unigram.Views
 
             ButtonStickers.IsChecked = false;
 
-            switch (ViewModel.Settings.Stickers.SelectedTab)
-            {
-                case Services.Settings.StickersTab.Emoji:
-                    ButtonStickers.Glyph = "\uE76E";
-                    break;
-                case Services.Settings.StickersTab.Animations:
-                    ButtonStickers.Glyph = "\uF4A9";
-                    break;
-                case Services.Settings.StickersTab.Stickers:
-                    ButtonStickers.Glyph = "\uF4AA";
-                    break;
-            }
+            //switch (ViewModel.Settings.Stickers.SelectedTab)
+            //{
+            //    case Services.Settings.StickersTab.Emoji:
+            //        ButtonStickers.Glyph = "\uE76E";
+            //        break;
+            //    case Services.Settings.StickersTab.Animations:
+            //        ButtonStickers.Glyph = "\uF4A9";
+            //        break;
+            //    case Services.Settings.StickersTab.Stickers:
+            //        ButtonStickers.Glyph = "\uF4AA";
+            //        break;
+            //}
         }
 
         private void StickersPanel_VisibilityChanged(DependencyObject sender, DependencyProperty dp)
