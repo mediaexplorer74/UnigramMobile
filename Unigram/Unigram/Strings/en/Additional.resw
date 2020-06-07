@@ -246,4 +246,24 @@
     <value>Disable Autocorrection</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>Folders at the top</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>Folders on the left</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>Folders view</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>If you have many folders, try moving them to the left.</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>Other Chats</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
 </root>

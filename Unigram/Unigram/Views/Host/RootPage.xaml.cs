@@ -438,7 +438,7 @@ namespace Unigram.Views.Host
                         break;
 
                     case RootDestination.News:
-                        content.Text = "News";
+                        content.Text = Strings.Additional.News;
                         content.Glyph = "\uE789";
                         break;
                 }

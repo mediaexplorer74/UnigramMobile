@@ -37,7 +37,7 @@ namespace Unigram.Views.Settings
             if (args.Phase == 0)
             {
                 var title = content.Children[1] as TextBlock;
-                title.Text = chat == null ? "Other Chats" : ViewModel.ProtoService.GetTitle(chat);
+                title.Text = chat == null ? Strings.Additional.SettingsStorageOtherChats : ViewModel.ProtoService.GetTitle(chat);
             }
             else if (args.Phase == 1)
             {

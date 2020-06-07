@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 05/18/2020 00:49:59
+// 	Generated: 06/07/2020 10:59:12
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -453,6 +453,61 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SettingsDisableAutocorrectWords");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Folders at the top"
+        /// </summary>
+        public static string SettingsFoldersTabsAtTheTop
+        {
+            get
+            {
+                return Resource.GetString("SettingsFoldersTabsAtTheTop");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Folders on the left"
+        /// </summary>
+        public static string SettingsFoldersTabsOnTheLeft
+        {
+            get
+            {
+                return Resource.GetString("SettingsFoldersTabsOnTheLeft");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Folders view"
+        /// </summary>
+        public static string SettingsFoldersTabView
+        {
+            get
+            {
+                return Resource.GetString("SettingsFoldersTabView");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "If you have many folders, try moving them to the left."
+        /// </summary>
+        public static string SettingsFoldersTabViewHint
+        {
+            get
+            {
+                return Resource.GetString("SettingsFoldersTabViewHint");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Other Chats"
+        /// </summary>
+        public static string SettingsStorageOtherChats
+        {
+            get
+            {
+                return Resource.GetString("SettingsStorageOtherChats");
             }
         }
         

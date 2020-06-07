@@ -79,8 +79,8 @@
                     </controls:HeaderedControl>
 
                     <controls:HeaderedControl
-                    Header="Tabs view"
-                        Footer="If you have many folders, try moving tabs on the left.">
+                    Header="{CustomResource Additional.SettingsFoldersTabView}"
+                        Footer="{CustomResource Additional.SettingsFoldersTabViewHint}">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   HorizontalScrollMode="Auto"
                                   VerticalScrollBarVisibility="Disabled"
@@ -141,7 +141,7 @@
                                             </Grid>
                                         </StackPanel>
                                     </RadioButton>
-                                    <TextBlock Text="Tabs at the top" Margin="0,8,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                    <TextBlock Text="{CustomResource Additional.SettingsFoldersTabsAtTheTop}" Margin="0,8,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
                                 </StackPanel>
 
                                 <StackPanel Margin="0,12,0,12">
@@ -225,7 +225,7 @@
                                             </StackPanel>
                                         </Grid>
                                     </RadioButton>
-                                    <TextBlock Text="Tabs on the left" Margin="0,8,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                    <TextBlock Text="{CustomResource Additional.SettingsFoldersTabsOnTheLeft}" Margin="0,8,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
                                 </StackPanel>
                             </StackPanel>
                         </ScrollViewer>

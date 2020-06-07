@@ -22,7 +22,7 @@ namespace Unigram.Views.Settings
 
             var chat = protoService.GetChat(statistics.ChatId);
 
-            TitleChat.Text = chat == null ? "Other Chats" : protoService.GetTitle(chat);
+            TitleChat.Text = chat == null ? Strings.Additional.SettingsStorageOtherChats : protoService.GetTitle(chat);
             Subtitle.Text = FileSizeConverter.Convert(statistics.Size, true);
 
             Photo.Source = chat == null ? null : PlaceholderHelper.GetChat(protoService, chat, (int)Photo.Width);

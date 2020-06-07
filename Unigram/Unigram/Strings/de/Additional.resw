@@ -246,4 +246,24 @@
     <value>Autokorrektur deaktivieren</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>Ordner oben</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>Ordner links</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>Ordnerdarstellung</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>Wenn du viele Ordner hast, so teste sie links anzeigen zu lassen.</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>Sonstige Chats</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
 </root>
