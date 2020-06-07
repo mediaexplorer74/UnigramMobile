@@ -367,10 +367,11 @@ namespace Unigram.Services
                 if (response is Chat chat)
                 {
                     Windows.ApplicationModel.PackageVersion version = SettingsService.GetAppVersion();
-                    var title = Windows.ApplicationModel.Package.Current.DisplayName + $" Version {version.Major}.{version.Minor}";
+                    var title = $"**{Windows.ApplicationModel.Package.Current.DisplayName} Version {version.Major}.{version.Minor}**";
                     var message = title + Environment.NewLine + Environment.NewLine + SettingsService.CurrentChangelog;
-                    var formattedText = new FormattedText(message, new[] { new TextEntity { Offset = 0, Length = title.Length, Type = new TextEntityTypeBold() } });
 
+                    var entities = Client.Execute(new GetTextEntities(message)) as TextEntities;
+                    var formattedText = new FormattedText(message, entities.Entities);
                     formattedText = Client.Execute(new ParseMarkdown(formattedText)) as FormattedText;
 
                     foreach (var entity in formattedText.Entities)
