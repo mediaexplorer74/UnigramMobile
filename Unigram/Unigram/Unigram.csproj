@@ -1757,14 +1757,26 @@
     </PRIResource>
     <Content Include="Assets\Mockup\theme_preview_image.jpg" />
     <Content Include="Assets\secureid_ocr_nn.bin" />
-    <PRIResource Include="Strings\tr\Resources.resw" />
-    <PRIResource Include="Strings\ca\Resources.resw" />
+    <PRIResource Include="Strings\tr\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\ca\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <Content Include="Assets\Themes\DarkBlue.unigram-theme" />
-    <PRIResource Include="Strings\pl\Resources.resw" />
-    <PRIResource Include="Strings\uz\Resources.resw" />
+    <PRIResource Include="Strings\pl\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\uz\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <Content Include="Assets\Animations\ChatListNewFolder.tgs" />
-    <PRIResource Include="Strings\tr\Additional.resw" />
-    <PRIResource Include="Strings\fa\Additional.resw" />
+    <PRIResource Include="Strings\tr\Additional.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\fa\Additional.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <PRIResource Include="Strings\hy\Additional.resw">
       <SubType>Designer</SubType>
     </PRIResource>

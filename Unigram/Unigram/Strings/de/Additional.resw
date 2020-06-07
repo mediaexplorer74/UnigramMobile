@@ -267,7 +267,7 @@
     <comment>SettingsStoragePage</comment>
   </data>
   <data name="ShareRemoveCaptions" xml:space="preserve">
-    <value>Entferne Überschriften in Kopien</value>
+    <value>Entferne Medientext in Kopien</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
