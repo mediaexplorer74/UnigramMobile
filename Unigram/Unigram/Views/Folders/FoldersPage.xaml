@@ -79,7 +79,7 @@
                     </controls:HeaderedControl>
 
                     <controls:HeaderedControl
-                    Header="{CustomResource Additional.SettingsFoldersTabView}"
+                        Header="{CustomResource Additional.SettingsFoldersTabView}"
                         Footer="{CustomResource Additional.SettingsFoldersTabViewHint}">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   HorizontalScrollMode="Auto"
