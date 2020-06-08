@@ -2507,12 +2507,10 @@ namespace Unigram.Views
 
             var element = sender as FrameworkElement;
             var filter = ChatFilters?.ItemFromContainer(sender) as ChatFilterViewModel;
-            var left = false;
 
             if (filter == null)
             {
                 filter = ChatFiltersSide.ItemFromContainer(sender) as ChatFilterViewModel;
-                left = true;
             }
 
             if (filter.ChatFilterId == Constants.ChatListMain)
@@ -2529,8 +2527,7 @@ namespace Unigram.Views
 
             if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
-                //args.ShowAt(flyout, element);
-                flyout.ShowAt(element, new FlyoutShowOptions { Placement = left ? FlyoutPlacementMode.RightEdgeAlignedTop : FlyoutPlacementMode.BottomEdgeAlignedLeft });
+                flyout.ShowAt(element, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedLeft });
             }
             else
             {

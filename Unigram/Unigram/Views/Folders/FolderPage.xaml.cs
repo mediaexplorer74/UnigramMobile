@@ -121,8 +121,8 @@ namespace Unigram.Views.Folders
             EmojiList.ItemsSource = Icons.Filters;
             EmojiList.SelectedItem = ViewModel.Icon;
 
-            var flyout = FlyoutBase.GetAttachedFlyout(EmojiButton);       
-            
+            var flyout = FlyoutBase.GetAttachedFlyout(EmojiButton);
+
             if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 flyout.ShowAt(EmojiButton, new FlyoutShowOptions { Placement = FlyoutPlacementMode.BottomEdgeAlignedRight });
