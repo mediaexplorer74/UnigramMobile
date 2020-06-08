@@ -73,6 +73,7 @@ namespace Unigram.Views.Host
             service.Frame.Navigated += OnNavigated;
             _navigationService = service;
 
+            InitializeTitleBar();
             InitializeNavigation(service.Frame);
             InitializeLocalization();
 
@@ -98,6 +99,14 @@ namespace Unigram.Views.Host
             InitializeLocalization();
 
             Switch(_lifetime.ActiveItem);
+        }
+
+        private void InitializeTitleBar()
+        {
+            if (ApiInfo.IsFullExperience &&
+                UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse) return;
+            var sender = CoreApplication.GetCurrentView().TitleBar;
+            Navigation.Padding = new Thickness(0, sender.IsVisible ? sender.Height : 0, 0, 0);
         }
 
         public Thickness TopPadding

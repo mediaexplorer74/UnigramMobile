@@ -714,12 +714,12 @@ namespace Unigram.Views
 
         private void UpdateLeftTabsScale(bool show)
         {
-            if (ChatFiltersSide.RenderTransform is ScaleTransform scaleTransform && (scaleTransform.ScaleX != SettingsService.Current.Appearance.TabsLeftLayoutScale || ChatTabsLeft.Width.Equals(double.NaN)))
+            if (ChatFiltersSide?.RenderTransform is ScaleTransform scaleTransform && (scaleTransform.ScaleX != SettingsService.Current.Appearance.TabsLeftLayoutScale || ChatTabsLeft.Width.Equals(double.NaN)))
             {
                 scaleTransform.ScaleX = SettingsService.Current.Appearance.TabsLeftLayoutScale;
                 scaleTransform.ScaleY = scaleTransform.ScaleX;
                 ChatTabsLeft.Width = 72 * scaleTransform.ScaleX;
-                ChatFiltersSide.Margin = new Thickness(0, 32, -72 + 72 * scaleTransform.ScaleX, 0);
+                ChatFiltersSide.Margin = new Thickness(0, 0, -72 + 72 * scaleTransform.ScaleX, 0);
             }
 
             if (Window.Current.Content is RootPage root)
