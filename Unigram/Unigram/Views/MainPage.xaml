@@ -213,6 +213,9 @@
                         </Setter>
                     </Style>
                 </controls:TopNavView.ItemContainerStyle>
+                <controls:TopNavView.RenderTransform>
+                    <ScaleTransform ScaleX="{x:Bind CurrentSettingsService.Appearance.TabsLeftLayoutScale, Mode=OneWay}" ScaleY="{x:Bind CurrentSettingsService.Appearance.TabsLeftLayoutScale, Mode=OneWay}" />
+                </controls:TopNavView.RenderTransform>
             </controls:TopNavView>
         </Border>
         

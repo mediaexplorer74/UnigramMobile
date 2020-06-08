@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 06/07/2020 19:22:20
+// 	Generated: 06/08/2020 15:49:32
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -530,6 +530,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("ShareSendAsCopy");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Size of the folders menu"
+        /// </summary>
+        public static string SettingsFoldersLeftLayoutScale
+        {
+            get
+            {
+                return Resource.GetString("SettingsFoldersLeftLayoutScale");
             }
         }
         

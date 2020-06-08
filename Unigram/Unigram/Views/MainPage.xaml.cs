@@ -75,6 +75,7 @@ namespace Unigram.Views
     {
         public MainViewModel ViewModel => DataContext as MainViewModel;
         public RootPage Root { get; set; }
+        public SettingsService CurrentSettingsService { get { return SettingsService.Current; } }
 
         private readonly ICacheService _cacheService;
 
@@ -631,6 +632,7 @@ namespace Unigram.Views
         {
             if ((show && ChatTabsLeft?.Visibility == Visibility.Visible) || (!show && (ChatTabsLeft == null || ChatTabsLeft.Visibility == Visibility.Collapsed || _tabsLeftCollapsed)))
             {
+                UpdateLeftTabsScale(show);
                 return;
             }
 
@@ -639,13 +641,15 @@ namespace Unigram.Views
                 _tabsLeftCollapsed = false;
             }
 
-            if (Window.Current.Content is RootPage root)
-            {
-                root.TopPadding = new Thickness(show ? 72 : 0, 0, 0, 0);
-            }
+            //if (Window.Current.Content is RootPage root)
+            //{
+            //    root.TopPadding = new Thickness(show ? 72 : 0, 0, 0, 0);
+            //}
 
             if (ChatTabsLeft == null)
                 FindName(nameof(ChatTabsLeft));
+
+            UpdateLeftTabsScale(show);
 
             var element = VisualTreeHelper.GetChild(ChatsList, 0) as UIElement;
             if (element == null)
@@ -712,6 +716,22 @@ namespace Unigram.Views
             visual.StartAnimation("Offset", offset);
 
             batch.End();
+        }
+
+        private void UpdateLeftTabsScale(bool show)
+        {
+            if (ChatFiltersSide.RenderTransform is ScaleTransform scaleTransform && (scaleTransform.ScaleX != SettingsService.Current.Appearance.TabsLeftLayoutScale || ChatTabsLeft.Width.Equals(double.NaN)))
+            {
+                scaleTransform.ScaleX = SettingsService.Current.Appearance.TabsLeftLayoutScale;
+                scaleTransform.ScaleY = scaleTransform.ScaleX;
+                ChatTabsLeft.Width = 72 * scaleTransform.ScaleX;
+                ChatFiltersSide.Margin = new Thickness(0, 32, -72 + 72 * scaleTransform.ScaleX, 0);
+            }
+
+            if (Window.Current.Content is RootPage root)
+            {
+                root.TopPadding = new Thickness(show ? 72 * SettingsService.Current.Appearance.TabsLeftLayoutScale : 0, 0, 0, 0);
+            }
         }
 
         public void OnBackRequesting(HandledRoutedEventArgs args)

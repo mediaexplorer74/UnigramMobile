@@ -232,6 +232,21 @@
 
                         <Rectangle Fill="{ThemeResource TelegramSeparatorMediumBrush}" Height="1" Margin="12,0,0,0"/>
                     </controls:HeaderedControl>
+
+                    <controls:HeaderedControl
+                        Header="{CustomResource Additional.SettingsFoldersLeftLayoutScale}"
+                        Visibility="{x:Bind ViewModel.UseLeftLayout, Mode=OneWay}">
+                        <Slider
+                            Value="{x:Bind ViewModel.LeftLayoutScale, Mode=TwoWay}"
+                            Minimum="1"
+                            Maximum="10"
+                            SmallChange="1"
+                            LargeChange="1"
+                            TickFrequency="1"
+                            TickPlacement="Outside"
+                            IsThumbToolTipEnabled="False"
+                            Margin="12,6,12,6"/>
+                    </controls:HeaderedControl>
                 </StackPanel>
             </ScrollViewer>
         </muxc:ItemsRepeaterScrollHost>

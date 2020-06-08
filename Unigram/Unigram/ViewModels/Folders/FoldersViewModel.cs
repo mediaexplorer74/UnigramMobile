@@ -52,6 +52,26 @@ namespace Unigram.ViewModels.Folders
             return base.OnNavigatedFromAsync(pageState, suspending);
         }
 
+        public int LeftLayoutScale
+        {
+            get
+            {
+                //Note: Slider snaps in only on integers -> convert float percentage to int
+                return System.Convert.ToInt16(Settings.Appearance.TabsLeftLayoutScale * 100 - 50) / 5;
+            }
+            set
+            {
+                var update = value * .05f + .5f;
+
+                if (Settings.Appearance.TabsLeftLayoutScale != update)
+                {
+                    Settings.Appearance.TabsLeftLayoutScale = update;
+                    RaisePropertyChanged();
+                    Aggregator.Publish(new UpdateChatFiltersLayout());
+                }
+            }
+        }
+
         private bool _useLeftLayout;
         public bool UseLeftLayout
         {
