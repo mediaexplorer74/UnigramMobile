@@ -72,7 +72,7 @@ namespace Unigram
 
             try
             {
-                if (!string.Equals(AnalyticsInfo.VersionInfo.DeviceFamily, "Windows.Desktop"))
+                if (!ApiInfo.IsFullExperience)
                 {
                     _mediaExtensionManager = new MediaExtensionManager();
                     _mediaExtensionManager.RegisterByteStreamHandler("Unigram.Native.Media.OpusByteStreamHandler", ".ogg", "audio/ogg");
@@ -445,7 +445,7 @@ namespace Unigram
             }
 #endif
 
-            if (_extendedSession == null && AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop")
+            if (_extendedSession == null && ApiInfo.IsFullExperience)
             {
                 var session = new ExtendedExecutionSession { Reason = ExtendedExecutionReason.Unspecified };
                 var result = await session.RequestExtensionAsync();

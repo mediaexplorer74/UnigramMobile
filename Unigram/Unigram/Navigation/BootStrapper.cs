@@ -813,7 +813,7 @@ namespace Unigram.Navigation
             {
                 DebugWrite($"autoExtendExecutionSession: {autoExtendExecutionSession}");
 
-                if (autoExtendExecutionSession && AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Desktop")
+                if (autoExtendExecutionSession && !ApiInfo.IsFullExperience)
                 {
                     using (var session = new ExtendedExecutionSession { Reason = ExtendedExecutionReason.SavingData })
                     {

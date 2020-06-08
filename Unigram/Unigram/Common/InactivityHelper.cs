@@ -14,7 +14,7 @@ namespace Unigram.Common
 
         public static void Initialize(int timeout)
         {
-            if (AnalyticsInfo.VersionInfo.DeviceFamily.Equals("Windows.Desktop"))
+            if (ApiInfo.IsFullExperience)
             {
                 if (timeout > 0)
                 {
