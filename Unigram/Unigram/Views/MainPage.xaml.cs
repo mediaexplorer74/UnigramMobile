@@ -1645,7 +1645,7 @@ namespace Unigram.Views
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MasterDetail.AllowCompact = MasterDetail.NavigationService.CurrentPageType != typeof(BlankPage) && rpMasterTitlebar.SelectedIndex == 0;
-
+            
             switch (rpMasterTitlebar.SelectedIndex)
             {
                 case 0:
@@ -1709,10 +1709,25 @@ namespace Unigram.Views
             SettingsOptions.Visibility = rpMasterTitlebar.SelectedIndex == 3 ? Visibility.Visible : Visibility.Collapsed;
 
             SearchField.PlaceholderText = rpMasterTitlebar.SelectedIndex == 3 ? Strings.Resources.SearchInSettings : Strings.Resources.Search;
-            ChatTabsSearch.Content = rpMasterTitlebar.SelectedIndex == 3 ? Strings.Resources.SearchInSettings : Strings.Resources.Search;
+
+            switch (rpMasterTitlebar.SelectedIndex)
+            {
+                case 0:
+                    ChatTabsSearch.Content = $"{Strings.Resources.Search} ({Strings.Additional.Chats})";
+                    break;
+                case 1:
+                    ChatTabsSearch.Content = $"{Strings.Resources.Search} ({Strings.Resources.Contacts})";
+                    break;
+                case 2:
+                    ChatTabsSearch.Content = $"{Strings.Resources.Search} ({Strings.Resources.Calls})";
+                    break;
+                case 3:
+                    ChatTabsSearch.Content = Strings.Resources.SearchInSettings;
+                    break;
+            }
         }
 
-#region Search
+        #region Search
 
         private void ShowHideSearch(bool show)
         {
