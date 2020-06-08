@@ -7,6 +7,23 @@
         {
         }
 
+        private bool? _showFilesInFolder;
+        public bool ShowFilesInFolder
+        {
+            get
+            {
+                if (_showFilesInFolder == null)
+                    _showFilesInFolder = GetValueOrDefault("ShowFilesInFolder", false);
+
+                return _showFilesInFolder ?? false;
+            }
+            set
+            {
+                _showFilesInFolder = value;
+                AddOrUpdateValue("ShowFilesInFolder", value);
+            }
+        }
+
         private bool? _bubbleMeasureAlpha;
         public bool BubbleMeasureAlpha
         {

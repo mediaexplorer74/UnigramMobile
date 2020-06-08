@@ -29,6 +29,14 @@
                         Header="Bubble knockout"
                         Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
+                
+                <controls:HeaderedControl
+                    Header="For Desktop">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.ShowFilesInFolder, Mode=TwoWay}"
+                        Header="{CustomResource Additional.ShowInFolder}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                </controls:HeaderedControl>
 
                 <controls:HeaderedControl
                     Header="TDLib Logs"

@@ -104,6 +104,16 @@ namespace Unigram.ViewModels
         public MvxObservableCollection<DiagnosticsOption> Options { get; private set; }
         public MvxObservableCollection<DiagnosticsTag> Tags { get; private set; }
 
+        public bool ShowFilesInFolder
+        {
+            get => Settings.Diagnostics.ShowFilesInFolder;
+            set
+            {
+                Settings.Diagnostics.ShowFilesInFolder = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool BubbleMeasureAlpha
         {
             get => Settings.Diagnostics.BubbleMeasureAlpha;
