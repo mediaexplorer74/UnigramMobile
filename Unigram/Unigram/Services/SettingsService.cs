@@ -1123,7 +1123,7 @@ namespace Unigram.Services
                 return true;
             }
 
-            value = default(T);
+            value = default;
             return false;
         }
 
@@ -1136,6 +1136,7 @@ namespace Unigram.Services
     public enum ChatSetting
     {
         Index,
-        Pixel
+        Pixel,
+        ReadInboxMaxId
     }
 }
