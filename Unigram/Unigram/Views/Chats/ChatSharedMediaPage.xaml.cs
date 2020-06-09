@@ -404,7 +404,6 @@ namespace Unigram.Views.Chats
             }
 
             args.ItemContainer.ContentTemplate = sender.ItemTemplateSelector.SelectTemplate(args.Item, args.ItemContainer);
-
             args.IsContainerPrepared = true;
         }
 
