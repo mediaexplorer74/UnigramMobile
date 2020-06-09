@@ -33,6 +33,10 @@
                 <controls:HeaderedControl
                     Header="For Desktop">
                     <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.FastAnimationsEnabled, Mode=TwoWay}"
+                        Header="Enable fast Animations, if supported"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                    <ToggleSwitch
                         IsOn="{x:Bind ViewModel.ShowFilesInFolder, Mode=TwoWay}"
                         Header="{CustomResource Additional.ShowInFolder}"
                         Style="{StaticResource CheckButtonStyle}"/>

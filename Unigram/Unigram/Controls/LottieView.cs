@@ -58,7 +58,7 @@ namespace Unigram.Controls
         private ICanvasResourceCreator _device;
 
         public LottieView()
-            : this(CompositionCapabilities.GetForCurrentView().AreEffectsFast())
+            : this(Services.SettingsService.Current.Diagnostics.FastAnimationsEnabled && CompositionCapabilities.GetForCurrentView().AreEffectsFast())
         {
         }
 

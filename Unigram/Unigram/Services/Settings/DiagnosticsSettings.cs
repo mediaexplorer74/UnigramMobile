@@ -7,6 +7,23 @@
         {
         }
 
+        private bool? _fastAnimationsEnabled;
+        public bool FastAnimationsEnabled
+        {
+            get
+            {
+                if (_fastAnimationsEnabled == null)
+                    _fastAnimationsEnabled = GetValueOrDefault("FastAnimationsEnabled", false);
+
+                return _fastAnimationsEnabled ?? false;
+            }
+            set
+            {
+                _fastAnimationsEnabled = value;
+                AddOrUpdateValue("FastAnimationsEnabled", value);
+            }
+        }
+
         private bool? _showFilesInFolder;
         public bool ShowFilesInFolder
         {

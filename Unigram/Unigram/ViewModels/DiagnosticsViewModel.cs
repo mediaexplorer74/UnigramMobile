@@ -104,6 +104,16 @@ namespace Unigram.ViewModels
         public MvxObservableCollection<DiagnosticsOption> Options { get; private set; }
         public MvxObservableCollection<DiagnosticsTag> Tags { get; private set; }
 
+        public bool FastAnimationsEnabled
+        {
+            get => Settings.Diagnostics.FastAnimationsEnabled;
+            set
+            {
+                Settings.Diagnostics.FastAnimationsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool ShowFilesInFolder
         {
             get => Settings.Diagnostics.ShowFilesInFolder;
