@@ -103,7 +103,11 @@ namespace Unigram.Views.Popups
 
         private void LinkField_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            Hide(ContentDialogResult.Primary);
+            if (e.Key == Windows.System.VirtualKey.Enter && sender is TextBox tb)
+            {
+                Hide(ContentDialogResult.Primary);
+                tb.Select(tb.Text.Length, 0);
+            }
         }
 
         private void TextField_Loaded(object sender, RoutedEventArgs e)
