@@ -163,6 +163,7 @@
     <Compile Include="Common\Automation.cs" />
     <Compile Include="Common\Chats\InputChatActionManager.cs" />
     <Compile Include="Common\Chats\OutputChatActionManager.cs" />
+    <Compile Include="Common\Colors.cs" />
     <Compile Include="Common\ColorsHelper.cs" />
     <Compile Include="Common\ConcurrentQueueWorker.cs" />
     <Compile Include="Common\DisposableMutex.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Common\SoundEffects.cs" />
     <Compile Include="Common\SunDate.cs" />
     <Compile Include="Common\TextStyleRun.cs" />
+    <Compile Include="Common\ThemeColorizer.cs" />
     <Compile Include="Common\TitleBar.cs" />
     <Compile Include="Common\TLContainer.cs" />
     <Compile Include="Common\CameraRotationHelper.cs" />
@@ -473,6 +475,10 @@
     <Compile Include="Controls\WebPageButton.cs" />
     <Compile Include="Controls\WrapPanel.cs" />
     <Compile Include="Services\ProtoService.ChatList.cs" />
+    <Compile Include="Services\ThemeService.Defaults.cs" />
+    <Compile Include="Views\Popups\SelectColorPopup.xaml.cs">
+      <DependentUpon>SelectColorPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Popups\ZoomableMediaPopup.xaml.cs">
       <DependentUpon>ZoomableMediaPopup.xaml</DependentUpon>
     </Compile>
@@ -1764,7 +1770,6 @@
     <PRIResource Include="Strings\ca\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-    <Content Include="Assets\Themes\DarkBlue.unigram-theme" />
     <PRIResource Include="Strings\pl\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
@@ -2045,6 +2050,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Popups\SelectColorPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Popups\ZoomableMediaPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2072,10 +2081,6 @@
     <Page Include="Themes\ThemeGreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\ThemeSystem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\ThemeTemplates.xaml">
       <SubType>Designer</SubType>

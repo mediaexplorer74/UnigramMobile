@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unigram.Common;
 using Unigram.Converters;
 using Unigram.Services;
@@ -66,6 +67,16 @@ namespace Unigram.Views.Settings
 
         #region Binding
 
+        private SolidColorBrush ConvertAccent(IList<ThemeAccentInfo> accents, int index)
+        {
+            if (accents != null && accents.Count > index)
+            {
+                return new SolidColorBrush(accents[index].AccentColor);
+            }
+
+            return null;
+        }
+
         private string ConvertNightMode(NightMode mode)
         {
             return mode == NightMode.Scheduled
@@ -126,11 +137,6 @@ namespace Unigram.Views.Settings
             var element = sender as FrameworkElement;
             var theme = element.Tag as ThemeInfoBase;
 
-            if (theme is ThemeSystemInfo)
-            {
-                return;
-            }
-
             var flyout = new MenuFlyout();
             flyout.CreateFlyoutItem(ViewModel.ThemeCreateCommand, theme, Strings.Resources.CreateNewThemeMenu, new FontIcon { Glyph = Icons.Theme });
 
@@ -155,24 +161,27 @@ namespace Unigram.Views.Settings
             }
 
             var theme = args.Item as ThemeInfoBase;
-            var root = args.ItemContainer.ContentTemplateRoot as StackPanel;
+            var radio = args.ItemContainer.ContentTemplateRoot as RadioButton;
 
-            var radio = root.Children[0] as RadioButton;
+            if (args.ItemContainer.ContentTemplateRoot is StackPanel root)
+            {
+                radio = root.Children[0] as RadioButton;
+            }
 
             if (theme is ThemeCustomInfo custom)
             {
                 radio.RequestedTheme = custom.Parent.HasFlag(TelegramTheme.Dark) ? ElementTheme.Dark : ElementTheme.Light;
-                radio.IsChecked = string.Equals(SettingsService.Current.Appearance.RequestedThemePath, custom.Path, StringComparison.OrdinalIgnoreCase);
+                radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == TelegramThemeType.Custom && string.Equals(SettingsService.Current.Appearance.RequestedThemeCustom, custom.Path, StringComparison.OrdinalIgnoreCase);
             }
-            else if (theme is ThemeSystemInfo)
+            else if (theme is ThemeAccentInfo accent)
             {
-                radio.RequestedTheme = SettingsService.Current.Appearance.GetSystemTheme() == TelegramAppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
-                radio.IsChecked = string.IsNullOrEmpty(SettingsService.Current.Appearance.RequestedThemePath) && SettingsService.Current.Appearance.RequestedTheme == ElementTheme.Default;
+                radio.RequestedTheme = accent.Parent.HasFlag(TelegramTheme.Dark) ? ElementTheme.Dark : ElementTheme.Light;
+                radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == accent.Type && SettingsService.Current.Appearance.Accents[accent.Type] == accent.AccentColor;
             }
             else
             {
                 radio.RequestedTheme = theme.Parent.HasFlag(TelegramTheme.Dark) ? ElementTheme.Dark : ElementTheme.Light;
-                radio.IsChecked = string.IsNullOrEmpty(SettingsService.Current.Appearance.RequestedThemePath) && SettingsService.Current.Appearance.RequestedTheme == (theme.Parent.HasFlag(TelegramTheme.Light) ? ElementTheme.Light : ElementTheme.Dark);
+                radio.IsChecked = string.IsNullOrEmpty(SettingsService.Current.Appearance.RequestedThemeCustom) && SettingsService.Current.Appearance.RequestedTheme == (theme.Parent.HasFlag(TelegramTheme.Light) ? ElementTheme.Light : ElementTheme.Dark);
             }
         }
     }
