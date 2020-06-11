@@ -246,7 +246,7 @@
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
-    <value>Çok sayıda klasörünüz varsa, bunları sol tarafa taşıyın.</value>
+    <value>Çok sayıda klasörünüz varsa, daha iyi bir görünüm için sol tarafa taşıyabilirsiniz.</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsStorageOtherChats" xml:space="preserve">
@@ -258,7 +258,7 @@
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
-    <value>Kopya Olarak Gönder</value>
+    <value>Kopyayı Sadece Metin Olarak Gönder</value>
     <comment>SharePopup</comment>
   </data>
 </root>

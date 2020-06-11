@@ -233,4 +233,32 @@
     <value>Անջատել ինքնաուղղումը</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>Պանակները վերևում</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>Պանակները ձախ մասում</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>Պանակների տեսք</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>Եթե շատ թղթապանակներ ունեք՝ տեղափոխեք դեպի ձախ մաս</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>Այլ զրուցարաններ</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
+  <data name="ShareRemoveCaptions" xml:space="preserve">
+    <value>Ջնջել նիշքերի պատճենման հիշատակումները</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsCopy" xml:space="preserve">
+    <value>Ուկարկել որպես պատճեն</value>
+    <comment>SharePopup</comment>
+  </data>
 </root>
