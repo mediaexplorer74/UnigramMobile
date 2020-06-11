@@ -13,16 +13,17 @@ In agreement with the Unigram author, this fork continues to support Windows 10 
 - Secret chats
 - Instant view
 - Multi-account
-- Filter chats (users, bots, groups, channels, unread chats and unmuted chats)
+- Folders (e.g. unread chats) synced with other Telegram clients
 - Calls
-- Videos and photos editor (crop photos, set video resolution or remove some parts of the videos before sending them)
+- Photo editor (easily crop photos, rotate, flip, draw on images before sending them)
 - Replace sent media content
-- Polls 2.0
+- Polls 2.0 and Quizzes
 - Backgrounds 2.0 (blurred and motion options available)
 - Built-in app lock with support for Windows Hello authentication (fingerprint, face and iris recognition)
 - Advanced markdown editor for messages
 - In-app music player
 - Animated stickers and emojis
 - Scheduled and silent messages
+- Channel statistics for big channels
 - Full support of Windows 10 notifications and Action Centre (reply to a message or mark it as read without opening the app)
 - Continuum support
