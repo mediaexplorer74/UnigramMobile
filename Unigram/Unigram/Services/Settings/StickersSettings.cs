@@ -42,6 +42,23 @@ namespace Unigram.Services.Settings
             }
         }
 
+        private bool? _playStickers;
+        public bool PlayStickers
+        {
+            get
+            {
+                if (_playStickers == null)
+                    _playStickers = GetValueOrDefault("PlayStickers", true);
+
+                return _playStickers ?? true;
+            }
+            set
+            {
+                _playStickers = value;
+                AddOrUpdateValue("PlayStickers", value);
+            }
+        }
+
         private bool? _isLoopingEnabled;
         public bool IsLoopingEnabled
         {

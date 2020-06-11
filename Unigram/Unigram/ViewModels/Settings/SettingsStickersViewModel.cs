@@ -29,10 +29,10 @@ namespace Unigram.ViewModels.Settings
 
         public bool PlayStickers
         {
-            get => Settings.Diagnostics.PlayStickers;
+            get => Settings.Stickers.PlayStickers;
             set
             {
-                Settings.Diagnostics.PlayStickers = value;
+                Settings.Stickers.PlayStickers = value;
                 RaisePropertyChanged();
             }
         }

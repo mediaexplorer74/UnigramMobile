@@ -92,6 +92,7 @@ namespace Unigram.Common
 
         public void LoadVisibleItems(bool intermediate)
         {
+            if (!Services.SettingsService.Current.Stickers.PlayStickers) return;
             if (intermediate && _old.Count < 1)
             {
                 return;

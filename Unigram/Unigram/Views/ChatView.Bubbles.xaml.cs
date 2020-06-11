@@ -517,6 +517,7 @@ namespace Unigram.Views
 
         public void PlayStickers(IEnumerable<MessageViewModel> items)
         {
+            if (!SettingsService.Current.Stickers.PlayStickers) return;
             var news = new Dictionary<long, LottieViewItem>();
 
             foreach (var message in items)
