@@ -89,9 +89,9 @@ namespace Unigram.Common
 
         public void ElementPrepared(UIElement container)
         {
-            container.AddHandler(UIElement.PointerPressedEvent, _handlerPressed ??= new PointerEventHandler(OnPointerPressed), true);
-            container.AddHandler(UIElement.PointerReleasedEvent, _handlerReleased ??= new PointerEventHandler(OnPointerReleased), true);
-            container.AddHandler(UIElement.PointerExitedEvent, _handlerExited ??= new PointerEventHandler(OnPointerExited), true);
+            container.AddHandler(UIElement.PointerPressedEvent, _handlerPressed = _handlerPressed ?? new PointerEventHandler(OnPointerPressed), true);
+            container.AddHandler(UIElement.PointerReleasedEvent, _handlerReleased = _handlerReleased ?? new PointerEventHandler(OnPointerReleased), true);
+            container.AddHandler(UIElement.PointerExitedEvent, _handlerExited = _handlerExited ?? new PointerEventHandler(OnPointerExited), true);
         }
 
         public void ElementClearing(UIElement container)
