@@ -24,6 +24,23 @@
             }
         }
 
+        private bool? _animateStickersInPanel;
+        public bool AnimateStickersInPanel
+        {
+            get
+            {
+                if (_animateStickersInPanel == null)
+                    _animateStickersInPanel = GetValueOrDefault("AnimateStickersInPanel", false);
+
+                return _animateStickersInPanel ?? false;
+            }
+            set
+            {
+                _animateStickersInPanel = value;
+                AddOrUpdateValue("AnimateStickersInPanel", value);
+            }
+        }
+
         private bool? _showFilesInFolder;
         public bool ShowFilesInFolder
         {

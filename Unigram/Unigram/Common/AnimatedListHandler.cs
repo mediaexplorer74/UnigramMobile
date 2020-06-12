@@ -92,7 +92,7 @@ namespace Unigram.Common
 
         public void LoadVisibleItems(bool intermediate)
         {
-            if (!Services.SettingsService.Current.Stickers.PlayStickers) return;
+            if (!Services.SettingsService.Current.Stickers.PlayStickers || !Services.SettingsService.Current.Diagnostics.AnimateStickersInPanel) return;
             if (intermediate && _old.Count < 1)
             {
                 return;

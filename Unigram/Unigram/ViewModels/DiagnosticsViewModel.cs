@@ -114,6 +114,16 @@ namespace Unigram.ViewModels
             }
         }
 
+        public bool AnimateStickersInPanel
+        {
+            get => Settings.Diagnostics.AnimateStickersInPanel;
+            set
+            {
+                Settings.Diagnostics.AnimateStickersInPanel = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool ShowFilesInFolder
         {
             get => Settings.Diagnostics.ShowFilesInFolder;
