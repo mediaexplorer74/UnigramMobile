@@ -147,6 +147,11 @@ namespace Unigram.Views.Popups
             if (TypeProtoPanel != null)
             {
                 TypeProtoPanel.Visibility = TypeProto.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+
+                if (TypeProto.IsChecked == true && string.IsNullOrWhiteSpace(FieldServer.Text) && string.IsNullOrWhiteSpace(FieldPort.Text) && string.IsNullOrWhiteSpace(FieldSecret.Text))
+                {
+                    CopyProxyValuesFromClipboard();
+                }
             }
 
             if (TypeHttpPanel != null)
@@ -163,6 +168,18 @@ namespace Unigram.Views.Popups
                     : TypeHttp.IsChecked == true
                     ? "Enable if server supports transparent TCP connections via HTTP CONNECT method." + Environment.NewLine + Environment.NewLine + "When supported, it may improve connection speed dramatically. Try changing this option if this proxy doesn't work."
                     : String.Empty;
+            }
+        }
+
+        private async void CopyProxyValuesFromClipboard()
+        {
+            var dataPackageView = Windows.ApplicationModel.DataTransfer.Clipboard.GetContent();
+            if (dataPackageView.Contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.WebLink) && await dataPackageView.GetWebLinkAsync() is Uri uri && uri.Host == "t.me" && uri.LocalPath == "/proxy")
+            {
+                var query = uri.ToString().ParseQueryString();
+                FieldServer.Text = query.GetParameter("server");
+                FieldPort.Text = query.GetParameter("port");
+                FieldSecret.Text = query.GetParameter("secret");
             }
         }
     }

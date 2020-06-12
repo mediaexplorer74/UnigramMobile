@@ -35,6 +35,7 @@ namespace Unigram.Views.Settings
             if (proxy.Type is ProxyTypeMtproto || proxy.Type is ProxyTypeSocks5)
             {
                 flyout.CreateFlyoutItem(ViewModel.ShareCommand, proxy, Strings.Resources.ShareFile, new FontIcon { Glyph = Icons.Share });
+                flyout.CreateFlyoutItem(ViewModel.CopyLinkCommand, proxy, Strings.Resources.CopyLink, new FontIcon { Glyph = Icons.CopyLink });
             }
 
             flyout.CreateFlyoutItem(ViewModel.EditCommand, proxy, Strings.Resources.Edit, new FontIcon { Glyph = Icons.Edit });

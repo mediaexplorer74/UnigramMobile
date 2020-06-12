@@ -26,6 +26,7 @@ namespace Unigram.ViewModels.Settings
             EditCommand = new RelayCommand<ConnectionViewModel>(EditExecute);
             RemoveCommand = new RelayCommand<ProxyViewModel>(RemoveExecute);
             ShareCommand = new RelayCommand<ProxyViewModel>(ShareExecute);
+            CopyLinkCommand = new RelayCommand<ProxyViewModel>(CopyLinkExecute);
 
             aggregator.Subscribe(this);
         }
@@ -223,6 +224,20 @@ namespace Unigram.ViewModels.Settings
             if (response is Text text && Uri.TryCreate(text.TextValue, UriKind.Absolute, out Uri uri))
             {
                 await SharePopup.GetForCurrentView().ShowAsync(uri, Strings.Resources.Proxy);
+            }
+        }
+
+        public RelayCommand<ProxyViewModel> CopyLinkCommand { get; }
+        private async void CopyLinkExecute(ProxyViewModel proxy)
+        {
+            var response = await ProtoService.SendAsync(new GetProxyLink(proxy.Id));
+            if (response is Text text && Uri.TryCreate(text.TextValue, UriKind.Absolute, out Uri uri))
+            {
+                var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
+                dataPackage.RequestedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+                dataPackage.SetWebLink(uri);
+                Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
+                //TODO: Add UI notification (copied to clipboard)
             }
         }
 
