@@ -38,11 +38,14 @@ namespace Unigram.Controls.Drawers
             _handler = new AnimatedRepeaterHandler<Animation>(Repeater, ScrollingHost);
             _handler.DownloadFile = DownloadFile;
 
-            _zoomer = new ZoomableRepeaterHandler(Repeater);
-            _zoomer.Opening = _handler.UnloadVisibleItems;
-            _zoomer.Closing = _handler.ThrottleVisibleItems;
-            _zoomer.DownloadFile = fileId => ViewModel.ProtoService.DownloadFile(fileId, 32);
-            _zoomer.GetEmojisAsync = fileId => ViewModel.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(fileId)));
+            if (ApiInfo.IsFullExperience)
+            {
+                _zoomer = new ZoomableRepeaterHandler(Repeater);
+                _zoomer.Opening = _handler.UnloadVisibleItems;
+                _zoomer.Closing = _handler.ThrottleVisibleItems;
+                _zoomer.DownloadFile = fileId => ViewModel.ProtoService.DownloadFile(fileId, 32);
+                _zoomer.GetEmojisAsync = fileId => ViewModel.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(fileId)));
+            }
 
             ElementCompositionPreview.GetElementVisual(this).Clip = Window.Current.Compositor.CreateInsetClip();
 
@@ -115,7 +118,8 @@ namespace Unigram.Controls.Drawers
             var button = args.Element as Button;
             var animation = button.DataContext as Animation;
 
-            _zoomer.ElementPrepared(button);
+            if (ApiInfo.IsFullExperience)
+                _zoomer.ElementPrepared(button);
 
             button.Tag = animation;
 
@@ -141,7 +145,8 @@ namespace Unigram.Controls.Drawers
 
         private void OnElementClearing(ItemsRepeater sender, ItemsRepeaterElementClearingEventArgs args)
         {
-            _zoomer.ElementClearing(args.Element);
+            if (ApiInfo.IsFullExperience)
+                _zoomer.ElementClearing(args.Element);
 
             if (args.Element is Button button && button.Content is Grid content && content.Children[0] is Image image)
             {
@@ -214,7 +219,8 @@ namespace Unigram.Controls.Drawers
                 }
             }
 
-            _zoomer.UpdateFile(file);
+            if (ApiInfo.IsFullExperience)
+                _zoomer.UpdateFile(file);
         }
     }
 }

@@ -52,11 +52,14 @@ namespace Unigram.Controls.Drawers
                 DownloadFile(_stickers, id, sticker);
             };
 
-            _zoomer = new ZoomableListHandler(Stickers);
-            _zoomer.Opening = _handler.UnloadVisibleItems;
-            _zoomer.Closing = _handler.ThrottleVisibleItems;
-            _zoomer.DownloadFile = fileId => ViewModel.ProtoService.DownloadFile(fileId, 32);
-            _zoomer.GetEmojisAsync = fileId => ViewModel.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(fileId)));
+            if (ApiInfo.IsFullExperience)
+            {
+                _zoomer = new ZoomableListHandler(Stickers);
+                _zoomer.Opening = _handler.UnloadVisibleItems;
+                _zoomer.Closing = _handler.ThrottleVisibleItems;
+                _zoomer.DownloadFile = fileId => ViewModel.ProtoService.DownloadFile(fileId, 32);
+                _zoomer.GetEmojisAsync = fileId => ViewModel.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(fileId)));
+            }
 
             //_toolbarHandler = new AnimatedStickerHandler<StickerSetViewModel>(Toolbar);
 
@@ -174,7 +177,8 @@ namespace Unigram.Controls.Drawers
                 }
             }
 
-            _zoomer.UpdateFile(file);
+            if (ApiInfo.IsFullExperience)
+                _zoomer.UpdateFile(file);
         }
 
         private void Stickers_ItemClick(object sender, ItemClickEventArgs e)
@@ -273,7 +277,8 @@ namespace Unigram.Controls.Drawers
                 args.ItemContainer.ContentTemplate = sender.ItemTemplate;
                 args.ItemContainer.ContextRequested += Sticker_ContextRequested;
 
-                _zoomer.ElementPrepared(args.ItemContainer);
+                if (ApiInfo.IsFullExperience)
+                    _zoomer.ElementPrepared(args.ItemContainer);
             }
 
             args.IsContainerPrepared = true;
