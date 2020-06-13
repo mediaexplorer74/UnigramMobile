@@ -15,6 +15,13 @@ namespace Unigram.Views
             var element = sender as FrameworkElement;
             var sticker = element.Tag as StickerViewModel;
 
+            if (sticker.StickerValue is File file && // Download for preview
+                !file.Local.IsDownloadingCompleted && 
+                file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
+            {
+                sticker.ProtoService.DownloadFile(file.Id, 1);
+            }
+
             var flyout = new MenuFlyout();
             flyout.Items.Add(new Controls.MenuFlyoutMediaItem(sticker));
             flyout.CreateFlyoutSeparator();

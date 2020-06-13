@@ -37,19 +37,23 @@ namespace Unigram.Controls
                 {
                     case ViewModels.Drawers.StickerViewModel sticker:
                         titleScroll.Visibility = Visibility.Visible;
-                        SetSticker(title, aspect, sticker, thumbnail, texture, container);
+                        aspect.MaxWidth = 200;
+                        aspect.MaxHeight = 200;
+                        aspect.Constraint = sticker;
+
+                        if (sticker.Thumbnail != null)
+                        {
+                            UpdateThumbnail(sticker.Thumbnail.File, ref thumbnail);
+                        }
+
+                        UpdateFile(sticker, sticker.StickerValue, ref thumbnail, ref texture, ref container);
+
                         this.BeginOnUIThread(async () => {
                             if (await sticker.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(sticker.StickerValue.Id))) is Emojis emojis)
                             {
                                 title.Text = string.Join(" ", emojis.EmojisValue);
                             }
                         });
-                        break;
-
-                    case Sticker sticker:
-                        titleScroll.Visibility = Visibility.Visible;
-                        SetSticker(title, aspect, sticker, thumbnail, texture, container);
-                        title.Text = sticker.Emoji;
                         break;
 
                     case Animation animation:
@@ -69,22 +73,7 @@ namespace Unigram.Controls
             }
         }
 
-        private void SetSticker(TextBlock title, AspectView aspect, Sticker sticker, Image thumbnail, ImageView texture,
-            Border container)
-        {
-            aspect.MaxWidth = 200;
-            aspect.MaxHeight = 200;
-            aspect.Constraint = sticker;
-
-            if (sticker.Thumbnail != null)
-            {
-                UpdateThumbnail(sticker.Thumbnail.File, ref thumbnail);
-            }
-
-            UpdateFile(sticker, sticker.StickerValue, ref thumbnail, ref texture, ref container);
-        }
-
-        private void UpdateFile(Sticker sticker, File file, ref Image thumbnail, ref ImageView texture, ref Border container)
+        private void UpdateFile(ViewModels.Drawers.StickerViewModel sticker, File file, ref Image thumbnail, ref ImageView texture, ref Border container)
         {
             if (file.Local.IsDownloadingCompleted)
             {
@@ -106,6 +95,9 @@ namespace Unigram.Controls
                 thumbnail.Opacity = 1;
                 texture.Source = null;
                 container.Child = new Border();
+
+                sticker.ProtoService.DownloadFile(file.Id, 32);
+                Logs.Logger.Info(Logs.Target.API, "File gets downloaded, but not updated yet.", "MenuFlyoutMediaItem"); // If ever called - implement update
             }
         }
 
@@ -134,6 +126,7 @@ namespace Unigram.Controls
             else if (file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
             {
                 thumbnail.Source = null;
+                Logs.Logger.Warning(Logs.Target.API, "Thumbnail not downloaded yet.", "MenuFlyoutMediaItem"); // If ever called - implement download & update here
             }
         }        
     }
