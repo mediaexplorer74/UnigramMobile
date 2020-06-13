@@ -241,21 +241,6 @@ namespace Unigram.Controls.Drawers
             return false;
         }
 
-        private void GroupStickers_Click(object sender, RoutedEventArgs e)
-        {
-            //ViewModel.GroupStickersCommand.Execute(null);
-        }
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            //ViewModel.NavigationService.Navigate(typeof(SettingsStickersPage));
-        }
-
-        //private void Install_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ViewModel.InstallCommand.Execute(((Button)sender).DataContext);
-        //}
-
         private async void OnChoosingGroupHeaderContainer(ListViewBase sender, ChoosingGroupHeaderContainerEventArgs args)
         {
             if (args.GroupHeaderContainer == null)
