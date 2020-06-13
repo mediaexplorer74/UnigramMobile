@@ -4506,4 +4506,33 @@
         </Setter>
     </Style>
 
+    <Style TargetType="local:MenuFlyoutMediaItem">
+        <Setter Property="Background" Value="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" />
+        <Setter Property="Padding" Value="{ThemeResource MenuFlyoutItemThemePadding}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MenuFlyoutMediaItem">
+                    <StackPanel VerticalAlignment="Center">
+                        <ScrollViewer x:Name="TitleScroll" VerticalScrollMode="Disabled">
+                            <TextBlock
+                                x:Name="Title"
+                                TextAlignment="Center"
+                                FontFamily="{ThemeResource EmojiThemeFontFamily}"
+                                FontSize="22"
+                                Padding="{TemplateBinding Padding}"/>
+                        </ScrollViewer>
+
+                        <Viewbox StretchDirection="DownOnly" Margin="4,0,4,2">
+                            <local:AspectView x:Name="Aspect">
+                                <Image x:Name="Thumbnail"/>
+                                <Border x:Name="Container"/>
+                                <local:ImageView x:Name="Texture"/>
+                            </local:AspectView>
+                        </Viewbox>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

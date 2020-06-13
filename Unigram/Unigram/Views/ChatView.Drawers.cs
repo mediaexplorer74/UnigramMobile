@@ -16,6 +16,8 @@ namespace Unigram.Views
             var sticker = element.Tag as StickerViewModel;
 
             var flyout = new MenuFlyout();
+            flyout.Items.Add(new Controls.MenuFlyoutMediaItem(sticker));
+            flyout.CreateFlyoutSeparator();
             flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, (Sticker)sticker, Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers, FontFamily = Constants.SymbolThemeFontFamily });
 
             if (ViewModel.ProtoService.IsStickerFavorite(sticker.StickerValue.Id))
@@ -51,6 +53,8 @@ namespace Unigram.Views
             var animation = element.DataContext as Animation;
 
             var flyout = new MenuFlyout();
+            flyout.Items.Add(new Controls.MenuFlyoutMediaItem(animation));
+            flyout.CreateFlyoutSeparator();
 
             if (ViewModel.ProtoService.IsAnimationSaved(animation.AnimationValue.Id))
             {
