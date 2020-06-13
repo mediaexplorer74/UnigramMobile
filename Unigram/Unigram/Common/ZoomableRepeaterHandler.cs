@@ -34,6 +34,7 @@ namespace Unigram.Common
 
             _popupHost = new Popup();
             _popupHost.IsHitTestVisible = false;
+            _popupHost.IsLightDismissEnabled = true;
             _popupHost.Child = _popupPanel = new ZoomableMediaPopup();
 
             _throttler = new DispatcherTimer();
