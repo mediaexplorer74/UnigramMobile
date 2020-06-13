@@ -32,8 +32,6 @@ namespace Unigram.Controls
             ContextFlyout = new MenuFlyout();
             ContextFlyout.Opening += OnContextFlyoutOpening;
 
-            //ContextMenuOpening += OnContextMenuOpening;
-
             if (ApiInfo.CanUseAccelerators)
             {
                 DisabledFormattingAccelerators = DisabledFormattingAccelerators.All;
