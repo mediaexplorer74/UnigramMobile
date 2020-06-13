@@ -603,7 +603,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resw</DependentUpon>
     </Compile>
-    <Compile Include="Themes\Fluent.cs" />
     <Compile Include="Triggers\CompactTrigger.cs" />
     <Compile Include="Triggers\DeviceFamilyTrigger.cs" />
     <Compile Include="Triggers\EnumTrigger.cs" />
@@ -2053,10 +2052,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Fluent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2068,10 +2063,6 @@
     <Page Include="Themes\OutgoingOverride.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Plain.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TeachingTip.xaml">
       <SubType>Designer</SubType>
