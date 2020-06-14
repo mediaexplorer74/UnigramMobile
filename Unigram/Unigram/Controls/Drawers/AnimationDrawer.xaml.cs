@@ -38,7 +38,8 @@ namespace Unigram.Controls.Drawers
             _handler = new AnimatedRepeaterHandler<Animation>(Repeater, ScrollingHost);
             _handler.DownloadFile = DownloadFile;
 
-            if (ApiInfo.IsFullExperience)
+            // Only for Desktop or Continuum
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
             {
                 _zoomer = new ZoomableRepeaterHandler(Repeater);
                 _zoomer.Opening = _handler.UnloadVisibleItems;

@@ -52,7 +52,8 @@ namespace Unigram.Controls.Drawers
                 DownloadFile(_stickers, id, sticker);
             };
 
-            if (ApiInfo.IsFullExperience)
+            // Only for Desktop or Continuum
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
             {
                 _zoomer = new ZoomableListHandler(Stickers);
                 _zoomer.Opening = _handler.UnloadVisibleItems;
