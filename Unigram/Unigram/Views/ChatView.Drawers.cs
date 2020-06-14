@@ -11,11 +11,22 @@ namespace Unigram.Views
     public partial class ChatView
     {
         private Controls.MenuFlyoutMediaItem _previewFlyout;
+        private Services.FileContext<StickerViewModel> _stickers = new Services.FileContext<StickerViewModel>();
 
         private void UpdateFileFyloutPreview(File file)
         {
-            if (file.Local.IsDownloadingCompleted && _previewFlyout is Controls.MenuFlyoutMediaItem flyout)
-                flyout.UpdateFile(file);
+            if (file.Local.IsDownloadingCompleted && 
+                _stickers.TryGetValue(file.Id, out System.Collections.Generic.List<StickerViewModel> items) && items.Count > 0)
+            {
+                foreach (var item in items)
+                {
+                    item.UpdateFile(file);
+
+                    if (_previewFlyout is Controls.MenuFlyoutMediaItem flyout)
+                        flyout.UpdatePreview();
+                }
+                _stickers[file.Id].Clear();
+            }
         }
 
         private void Sticker_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
@@ -27,6 +38,7 @@ namespace Unigram.Views
                 !file.Local.IsDownloadingCompleted && 
                 file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
             {
+                _stickers[file.Id].Add(sticker);
                 sticker.ProtoService.DownloadFile(file.Id, 1);
             }
 

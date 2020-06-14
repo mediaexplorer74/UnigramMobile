@@ -22,24 +22,14 @@ namespace Unigram.Controls
             _media = animation;
         }
 
-        public void UpdateFile(File file)
-        {
-            if (_media is ViewModels.Drawers.StickerViewModel sticker && 
-                sticker.StickerValue?.Id == file.Id)
-            {
-                sticker.UpdateFile(file);
-                UpdatePreview(true);
-            }
-        }
-
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            UpdatePreview();
+            UpdatePreview(true);
         }
 
-        private void UpdatePreview(bool fileOnly = false) {
+        public void UpdatePreview(bool getEmojis = false) {
             if (GetTemplateChild("Aspect") is AspectView aspect &&
                 GetTemplateChild("TitleScroll") is ScrollViewer titleScroll &&
                 GetTemplateChild("Title") is TextBlock title &&
@@ -62,7 +52,7 @@ namespace Unigram.Controls
 
                         UpdateFile(sticker, sticker.StickerValue, ref thumbnail, ref texture, ref container);
 
-                        if (!fileOnly)
+                        if (getEmojis)
                             this.BeginOnUIThread(async () => {
                                 if (await sticker.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(sticker.StickerValue.Id))) is Emojis emojis)
                                 {
