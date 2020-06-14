@@ -179,12 +179,6 @@ namespace Unigram.Controls.Drawers
 
             if (ApiInfo.IsFullExperience)
                 _zoomer.UpdateFile(file);
-
-            if (ViewModel.Stickers.FirstOrDefault(sg => sg.Stickers.FirstOrDefault(s => s.StickerValue?.Id == file.Id) is StickerViewModel) is StickerSetViewModel stickerSet &&
-                stickerSet.Stickers.FirstOrDefault(s => s.StickerValue?.Id == file.Id) is StickerViewModel stickerModel)
-            {
-                stickerModel.UpdateFile(file);
-            }
         }
 
         private void Stickers_ItemClick(object sender, ItemClickEventArgs e)

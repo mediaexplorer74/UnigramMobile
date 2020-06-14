@@ -10,6 +10,14 @@ namespace Unigram.Views
 {
     public partial class ChatView
     {
+        private Controls.MenuFlyoutMediaItem _previewFlyout;
+
+        private void UpdateFileFyloutPreview(File file)
+        {
+            if (file.Local.IsDownloadingCompleted && _previewFlyout is Controls.MenuFlyoutMediaItem flyout)
+                flyout.UpdateFile(file);
+        }
+
         private void Sticker_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
             var element = sender as FrameworkElement;
@@ -23,7 +31,8 @@ namespace Unigram.Views
             }
 
             var flyout = new MenuFlyout();
-            flyout.Items.Add(new Controls.MenuFlyoutMediaItem(sticker));
+            _previewFlyout = new Controls.MenuFlyoutMediaItem(sticker);
+            flyout.Items.Add(_previewFlyout);
             flyout.CreateFlyoutSeparator();
             flyout.CreateFlyoutItem(ViewModel.StickerViewCommand, (Sticker)sticker, Strings.Resources.ViewPackPreview, new FontIcon { Glyph = Icons.Stickers, FontFamily = Constants.SymbolThemeFontFamily });
 

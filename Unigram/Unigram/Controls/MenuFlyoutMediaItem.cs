@@ -22,10 +22,24 @@ namespace Unigram.Controls
             _media = animation;
         }
 
+        public void UpdateFile(File file)
+        {
+            if (_media is ViewModels.Drawers.StickerViewModel sticker && 
+                sticker.StickerValue?.Id == file.Id)
+            {
+                sticker.UpdateFile(file);
+                UpdatePreview(true);
+            }
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
+            UpdatePreview();
+        }
+
+        private void UpdatePreview(bool fileOnly = false) {
             if (GetTemplateChild("Aspect") is AspectView aspect &&
                 GetTemplateChild("TitleScroll") is ScrollViewer titleScroll &&
                 GetTemplateChild("Title") is TextBlock title &&
@@ -48,12 +62,13 @@ namespace Unigram.Controls
 
                         UpdateFile(sticker, sticker.StickerValue, ref thumbnail, ref texture, ref container);
 
-                        this.BeginOnUIThread(async () => {
-                            if (await sticker.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(sticker.StickerValue.Id))) is Emojis emojis)
-                            {
-                                title.Text = string.Join(" ", emojis.EmojisValue);
-                            }
-                        });
+                        if (!fileOnly)
+                            this.BeginOnUIThread(async () => {
+                                if (await sticker.ProtoService.SendAsync(new GetStickerEmojis(new InputFileId(sticker.StickerValue.Id))) is Emojis emojis)
+                                {
+                                    title.Text = string.Join(" ", emojis.EmojisValue);
+                                }
+                            });
                         break;
 
                     case Animation animation:
@@ -97,7 +112,6 @@ namespace Unigram.Controls
                 container.Child = new Border();
 
                 sticker.ProtoService.DownloadFile(file.Id, 32);
-                Logs.Logger.Info(Logs.Target.API, "File gets downloaded, but not updated yet.", "MenuFlyoutMediaItem"); // If ever called - implement update
             }
         }
 
