@@ -384,9 +384,7 @@ namespace Unigram.Views
 
         private bool SearchTextBoxHasPointerFocus()
         {
-            return ((StickersPanel.FindName("EmojisRoot") as EmojiDrawer)?.FindName("FieldEmoji") as TextBox)?.FocusState == FocusState.Pointer
-                || ((StickersPanel.FindName("AnimationsRoot") as AnimationDrawer)?.FindName("FieldAnimations") as TextBox)?.FocusState == FocusState.Pointer
-                || ((StickersPanel.FindName("StickersRoot") as StickerDrawer)?.FindName("FieldStickers") as TextBox)?.FocusState == FocusState.Pointer;
+            return FocusManager.GetFocusedElement() is TextBox tb && (tb.Name == "FieldEmoji" || tb.Name == "FieldAnimations" || tb.Name == "FieldStickers");
         }
 
 
@@ -3150,13 +3148,13 @@ namespace Unigram.Views
             Call.Visibility = Visibility.Collapsed;
             CallPlaceholder.Visibility = Visibility.Collapsed;
 
-            StickersPanel.UpdateChatPermissions(chat);
+            StickersPanel.UpdateChatPermissions(ViewModel.ProtoService, chat);
             ListInline.UpdateChatPermissions(chat);
         }
 
         public void UpdateChatPermissions(Chat chat)
         {
-            StickersPanel.UpdateChatPermissions(chat);
+            StickersPanel.UpdateChatPermissions(ViewModel.ProtoService, chat);
             ListInline.UpdateChatPermissions(chat);
         }
 
@@ -4265,6 +4263,7 @@ namespace Unigram.Views
 
             ListInline.UpdateFile(file);
             StickersPanel.UpdateFile(file);
+            UpdateFileFyloutPreview(file);
 
             foreach (var item in ListAutocomplete.Items.ToArray())
             {
