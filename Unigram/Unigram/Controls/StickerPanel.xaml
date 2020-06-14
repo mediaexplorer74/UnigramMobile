@@ -264,7 +264,8 @@
                                                     CheckedGlyph="&#xE011;"
                                                     UncheckedGlyph="&#xE010;"
                                                     Click="ButtonExpand_Click"
-                                                    AllowFocusOnInteraction="False"/>
+                                                    AllowFocusOnInteraction="False"
+                                                    Grid.Column="6"/>
                     </Grid>
                 </Grid>
             </Grid>
