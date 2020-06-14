@@ -3809,6 +3809,8 @@ namespace Unigram.Views
 
             Messages.Margin = new Thickness(0, 0, 0, -radius);
             Messages.Padding = new Thickness(0, 0, 0, radius + 6);
+
+            TextField.IsReplaceEmojiEnabled = SettingsService.Current.IsReplaceEmojiEnabled;
         }
 
         public void UpdateAutocomplete(Chat chat, IAutocompleteCollection collection)
