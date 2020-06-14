@@ -178,7 +178,7 @@ namespace Unigram.Common
                     break;
             }
             var nowLightness = temp.ToHSL().L;
-            var limitedLightness = Math.Clamp(
+            var limitedLightness = Controls.ColorSlider.Clamp(
                 nowLightness,
                 result._lightnessMin,
                 result._lightnessMax);

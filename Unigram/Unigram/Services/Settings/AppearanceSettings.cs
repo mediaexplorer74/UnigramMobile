@@ -236,7 +236,7 @@ namespace Unigram.Services.Settings
         }
 
         private ThemeSettingsBase _accents;
-        public ThemeSettingsBase Accents => _accents ??= new ThemeSettingsBase(_container);
+        public ThemeSettingsBase Accents => _accents = _accents ??  new ThemeSettingsBase(_container);
 
         private ElementTheme? _requestedTheme;
         public ElementTheme RequestedTheme
