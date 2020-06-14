@@ -35,5 +35,6 @@
         };
 
         public static readonly Windows.UI.Xaml.Media.FontFamily SymbolThemeFontFamily = new Windows.UI.Xaml.Media.FontFamily("ms-appx:///Assets/Fonts/SEGMDL2.TTF#Segoe MDL2 Assets"); // see App.xaml
+        public static readonly Windows.UI.Xaml.Media.FontFamily TelegramThemeFontFamily = new Windows.UI.Xaml.Media.FontFamily("ms-appx:///Assets/Fonts/Telegram.ttf#Telegram"); // see App.xaml
     }
 }

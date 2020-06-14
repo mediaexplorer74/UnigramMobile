@@ -70,6 +70,7 @@ namespace Unigram.Views
                 flyout.CreateFlyoutSeparator();
                 flyout.CreateFlyoutItem(new RelayCommand<Sticker>(anim => ViewModel.StickerSendExecute(anim, null, true)), (Sticker)sticker, Strings.Resources.SendWithoutSound, new FontIcon { Glyph = Icons.Mute });
                 //flyout.CreateFlyoutItem(new RelayCommand<Sticker>(anim => ViewModel.StickerSendExecute(anim, true, null)), sticker.Get(), self ? Strings.Resources.SetReminder : Strings.Resources.ScheduleMessage, new FontIcon { Glyph = Icons.Schedule });
+                flyout.CreateFlyoutItem(new RelayCommand<Sticker>(anim => ViewModel.StickerSendExecute(anim)), (Sticker)sticker, Strings.Resources.Send, new FontIcon { Glyph = Icons.Send, FontFamily = Constants.TelegramThemeFontFamily });
             }
 
             args.ShowAt(flyout, element);
@@ -106,6 +107,7 @@ namespace Unigram.Views
                 flyout.CreateFlyoutSeparator();
                 flyout.CreateFlyoutItem(new RelayCommand<Animation>(anim => ViewModel.AnimationSendExecute(anim, null, true)), animation, Strings.Resources.SendWithoutSound, new FontIcon { Glyph = Icons.Mute });
                 //flyout.CreateFlyoutItem(new RelayCommand<Animation>(anim => ViewModel.AnimationSendExecute(anim, true, null)), animation, self ? Strings.Resources.SetReminder : Strings.Resources.ScheduleMessage, new FontIcon { Glyph = Icons.Schedule });
+                flyout.CreateFlyoutItem(new RelayCommand<Animation>(anim => ViewModel.AnimationSendExecute(anim)), animation, Strings.Resources.Send, new FontIcon { Glyph = Icons.Send, FontFamily = Constants.TelegramThemeFontFamily });
             }
 
             args.ShowAt(flyout, element);
