@@ -4404,3 +4404,14 @@ namespace Unigram.Views
         Sidebar
     }
 }
+
+
+/// <summary>
+/// TODO: Remove this! 
+/// https://github.com/UnigramDev/Unigram/commit/11294a56f1f2ff0b62a169d9ffdeef1a82bb0cd1 needs a follow-up with a new interface
+/// </summary>
+internal interface ICloneable
+{
+    // Note: Should be differently named. This in newer .NET Framework existing interface got misused for this.
+    object Clone();
+}

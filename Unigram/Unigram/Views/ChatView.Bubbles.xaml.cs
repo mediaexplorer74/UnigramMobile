@@ -855,11 +855,11 @@ namespace Unigram.Views
             // but the property has been added in April Update.
             if (ApiInfo.CanAddContextRequestedEvent)
             {
-                item.AddHandler(ContextRequestedEvent, _contextRequestedHandler ??= new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested), true);
+                item.AddHandler(ContextRequestedEvent, _contextRequestedHandler = _contextRequestedHandler ?? new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested), true);
             }
             else
             {
-                item.ContextRequested += _contextRequestedHandler ??= new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested);
+                item.ContextRequested += _contextRequestedHandler = _contextRequestedHandler ?? new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested);
             }
 
             return item;
