@@ -26,12 +26,12 @@ namespace Unigram.ViewModels
         IHandle<UpdateServiceNotification>,
         IHandle<UpdateUnreadMessageCount>,
         IHandle<UpdateUnreadChatCount>,
-        IHandle<UpdateChatFilters>
+        IHandle<UpdateChatFilters>,
 #if CLOUDUPDATES
-        ,
         IHandle<UpdateAppVersion>,
-        IHandle<UpdateWindowActivated>
+        IHandle<UpdateWindowActivated>,
 #endif
+        IDisposable
     {
         private readonly INotificationsService _pushService;
         private readonly IContactsService _contactsService;
@@ -104,6 +104,23 @@ namespace Unigram.ViewModels
             FilterEditCommand = new RelayCommand<ChatFilterViewModel>(FilterEditExecute);
             FilterAddCommand = new RelayCommand<ChatFilterViewModel>(FilterAddExecute);
             FilterDeleteCommand = new RelayCommand<ChatFilterViewModel>(FilterDeleteExecute);
+        }
+
+        public void Dispose()
+        {
+            Aggregator.Unsubscribe(ArchivedChats.Items);
+            Aggregator.Unsubscribe(Chats.Items);
+            Aggregator.Unsubscribe(this);
+
+            ArchivedChats.Items.Clear();
+            Chats.Items.Clear();
+
+            Children.Clear();
+            Chats = null;
+            ArchivedChats = null;
+            Contacts = null;
+            Calls = null;
+            Settings = null;
         }
 
         public ILifetimeService Lifetime => _lifetimeService;
