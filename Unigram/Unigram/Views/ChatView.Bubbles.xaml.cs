@@ -380,9 +380,19 @@ namespace Unigram.Views
                 }
 
                 var root = container.ContentTemplateRoot as FrameworkElement;
+                if (root == null)
+                {
+                    continue;
+                }
+
                 if (root is MessageBubble == false)
                 {
                     root = root.FindName("Bubble") as FrameworkElement;
+                }
+
+                if (root == null)
+                {
+                    continue;
                 }
 
                 var target = message.Content as object;
@@ -547,9 +557,19 @@ namespace Unigram.Views
                 }
 
                 var root = container.ContentTemplateRoot as FrameworkElement;
+                if (root == null)
+                {
+                    continue;
+                }
+
                 if (root is MessageBubble == false)
                 {
                     root = root.FindName("Bubble") as FrameworkElement;
+                }
+
+                if (root == null)
+                {
+                    continue;
                 }
 
                 var target = message.Content as object;
@@ -667,6 +687,17 @@ namespace Unigram.Views
         {
             if (args.InRecycleQueue == true)
             {
+                var test = args.ItemContainer.ContentTemplateRoot as FrameworkElement;
+                if (test is Grid grudd)
+                {
+                    test = grudd.FindName("Bubble") as FrameworkElement;
+                }
+
+                if (test is MessageBubble bubbu)
+                {
+                    bubbu.UpdateMessage(null);
+                }
+
                 // XAML has indicated that the item is no longer being shown, so add it to the recycle queue
                 var tag = args.ItemContainer.Tag as string;
                 var added = _typeToItemHashSetMapping[tag].Add(args.ItemContainer);
@@ -677,33 +708,12 @@ namespace Unigram.Views
             var message = args.Item as MessageViewModel;
 
             var content = args.ItemContainer.ContentTemplateRoot as FrameworkElement;
+            if (content == null)
+            {
+                return;
+            }
+
             content.Tag = message;
-
-            //var brushes = new string[]
-            //{
-            //    "MessageForeground",
-            //    "MessageForegroundLink",
-            //    "MessageBackground",
-            //    "MessageSubtleLabel",
-            //    "MessageSubtleGlyph",
-            //    "MessageSubtleForeground",
-            //    "MessageHeaderForeground",
-            //    "MessageHeaderBorder",
-            //    "MessageMediaForeground",
-            //    "MessageMediaBackground",
-            //    "MessageHyperlinkForeground",
-            //    "MessageOverlayBackground",
-            //    "MessageCallForeground",
-            //    "MessageCallMissedForeground"
-            //};
-
-            //foreach (var color in brushes)
-            //{
-            //    if (content.Resources.TryGetValue($"{color}Brush", out object brush) && brush is SolidColorBrush abrush)
-            //    {
-            //        abrush.Color = (Color)App.Current.Resources[color + (message.IsOutgoing ? "OutColor" : "Color")];
-            //    }
-            //}
 
             if (args.ItemContainer is ChatListViewItem selector)
             {
@@ -833,21 +843,23 @@ namespace Unigram.Views
             }
         }
 
+        private TypedEventHandler<UIElement, ContextRequestedEventArgs> _contextRequestedHandler;
+
         private SelectorItem CreateSelectorItem(string typeName)
         {
             SelectorItem item = new ChatListViewItem(Messages);
-            item.ContentTemplate = Resources[typeName] as DataTemplate;
+            item.ContentTemplate = _typeToTemplateMapping[typeName];
             item.Tag = typeName;
 
             // For some reason the event is available since Anniversary Update,
             // but the property has been added in April Update.
             if (ApiInfo.CanAddContextRequestedEvent)
             {
-                item.AddHandler(ContextRequestedEvent, new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested), true);
+                item.AddHandler(ContextRequestedEvent, _contextRequestedHandler ??= new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested), true);
             }
             else
             {
-                item.ContextRequested += Message_ContextRequested;
+                item.ContextRequested += _contextRequestedHandler ??= new TypedEventHandler<UIElement, ContextRequestedEventArgs>(Message_ContextRequested);
             }
 
             return item;
@@ -855,16 +867,11 @@ namespace Unigram.Views
 
         private string SelectTemplateCore(object item)
         {
-            //if (item is MessageViewModel message)
-            //{
-
-            //}
             var message = item as MessageViewModel;
             if (message == null)
             {
                 return "EmptyMessageTemplate";
             }
-
 
             if (message.IsService())
             {

@@ -48,7 +48,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Unigram.Views
 {
-    public sealed partial class ChatView : HostedPage, INavigablePage, ISearchablePage, IDialogDelegate, IDisposable
+    public sealed partial class ChatView : HostedPage, INavigablePage, ISearchablePage, IDialogDelegate, IDisposable, ICloneable
     {
         public DialogViewModel ViewModel => DataContext as DialogViewModel;
 
@@ -121,7 +121,7 @@ namespace Unigram.Views
 
             _getViewModel = getViewModel;
 
-            //NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
 
             _typeToItemHashSetMapping.Add("UserMessageTemplate", new HashSet<SelectorItem>());
             _typeToItemHashSetMapping.Add("ChatFriendMessageTemplate", new HashSet<SelectorItem>());
@@ -130,6 +130,14 @@ namespace Unigram.Views
             _typeToItemHashSetMapping.Add("ServiceMessagePhotoTemplate", new HashSet<SelectorItem>());
             _typeToItemHashSetMapping.Add("ServiceMessageUnreadTemplate", new HashSet<SelectorItem>());
             _typeToItemHashSetMapping.Add("EmptyMessageTemplate", new HashSet<SelectorItem>());
+
+            _typeToTemplateMapping.Add("UserMessageTemplate", Resources["UserMessageTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("ChatFriendMessageTemplate", Resources["ChatFriendMessageTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("FriendMessageTemplate", Resources["FriendMessageTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("ServiceMessageTemplate", Resources["ServiceMessageTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("ServiceMessagePhotoTemplate", Resources["ServiceMessagePhotoTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("ServiceMessageUnreadTemplate", Resources["ServiceMessageUnreadTemplate"] as DataTemplate);
+            _typeToTemplateMapping.Add("EmptyMessageTemplate", Resources["EmptyMessageTemplate"] as DataTemplate);
 
             _windowContext = TLWindowContext.GetForCurrentView();
 
@@ -289,6 +297,7 @@ namespace Unigram.Views
             if (ApiInfo.IsFullExperience)
             {
                 _stickersModeWide = SettingsService.Current.IsSidebarOpen
+                    && SettingsService.Current.Stickers.IsSidebarEnabled
                     ? StickersPanelMode.Sidebar
                     : StickersPanelMode.Collapsed;
                 _stickersPanel = ElementCompositionPreview.GetElementVisual(StickersPanel.Presenter);
@@ -464,16 +473,23 @@ namespace Unigram.Views
         {
             if (ViewModel != null)
             {
+                ViewModel.Items.Clear();
+
                 ViewModel.PropertyChanged -= OnPropertyChanged;
+                ViewModel.Items.AttachChanged = null;
                 //ViewModel.Items.CollectionChanged -= OnCollectionChanged;
 
                 ViewModel.Delegate = null;
                 ViewModel.TextField = null;
                 ViewModel.ListField = null;
+                ViewModel.Sticker_Click = null;
 
                 ViewModel.Dispose();
             }
+        }
 
+        public object Clone()
+        { 
             DataContext = _getViewModel(this);
 
             ViewModel.TextField = TextField;
@@ -504,6 +520,8 @@ namespace Unigram.Views
             if (_stickersMode == StickersPanelMode.Mobile) {
                 Collapse_Click(null, null);
             }
+
+            return null;
         }
 
         private async void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -787,8 +805,8 @@ namespace Unigram.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Bindings.StopTracking();
-            Bindings.Update();
+            //Bindings.StopTracking();
+            //Bindings.Update();
 
             InputPane.GetForCurrentView().Showing += InputPane_Showing;
             InputPane.GetForCurrentView().Hiding += InputPane_Hiding;
@@ -809,7 +827,7 @@ namespace Unigram.Views
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Bindings.StopTracking();
+            //Bindings.StopTracking();
 
             UnloadVisibleMessages();
 
@@ -1550,15 +1568,14 @@ namespace Unigram.Views
 
                 if (ApiInfo.IsFullExperience)
                 {
-#if !DEBUG
-                    return StickersPanelMode.Overlay;
-#endif
                     return ActualWidth >= SIDEBAR_MIN_WIDTH
-                    ? StickersPanelMode.Sidebar
-                    : StickersPanelMode.Overlay;
+                       && SettingsService.Current.Stickers.IsSidebarEnabled
+                           ? StickersPanelMode.Sidebar
+                           : StickersPanelMode.Overlay;
                 }
 
                 return ActualWidth >= SIDEBAR_MIN_WIDTH
+                    && SettingsService.Current.Stickers.IsSidebarEnabled
                     ? StickersPanelMode.Sidebar 
                     : StickersPanelMode.Mobile;
             }
@@ -3148,13 +3165,12 @@ namespace Unigram.Views
             Call.Visibility = Visibility.Collapsed;
             CallPlaceholder.Visibility = Visibility.Collapsed;
 
-            StickersPanel.UpdateChatPermissions(ViewModel.ProtoService, chat);
-            ListInline.UpdateChatPermissions(chat);
+            UpdateChatPermissions(chat);
         }
 
         public void UpdateChatPermissions(Chat chat)
         {
-            StickersPanel.UpdateChatPermissions(ViewModel.ProtoService, chat);
+            StickersPanel.UpdateChatPermissions(ViewModel.CacheService, chat);
             ListInline.UpdateChatPermissions(chat);
         }
 
