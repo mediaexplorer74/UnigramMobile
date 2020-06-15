@@ -1,0 +1,375 @@
+﻿<!-- Note: Added to use XamlControlsResources instead of rs2_themeresources, but remove reveal. -->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <!-- Resources for Windows.UI.Xaml.Controls.Button -->
+            <StaticResource x:Key="ButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.RepeatButton -->
+            <StaticResource x:Key="RepeatButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.ToggleButton -->
+            <StaticResource x:Key="ToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for ellipsis button in Windows.UI.Xaml.Controls.CommandBar -->
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarButton -->
+            <StaticResource x:Key="AppBarButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarToggleButton -->
+            <StaticResource x:Key="AppBarToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlay" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ListViewItem -->
+            <StaticResource x:Key="ListViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.GridViewItem -->
+            <StaticResource x:Key="GridViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ComboBoxItem -->
+            <StaticResource x:Key="ComboBoxItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+
+            <!-- Other Resource Forwarders -->
+            <x:Boolean x:Key="UseSystemFocusVisuals">True</x:Boolean>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <!-- Resources for Windows.UI.Xaml.Controls.Button -->
+            <StaticResource x:Key="ButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.RepeatButton -->
+            <StaticResource x:Key="RepeatButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.ToggleButton -->
+            <StaticResource x:Key="ToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for ellipsis button in Windows.UI.Xaml.Controls.CommandBar -->
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarButton -->
+            <StaticResource x:Key="AppBarButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarToggleButton -->
+            <StaticResource x:Key="AppBarToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlay" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ListViewItem -->
+            <StaticResource x:Key="ListViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.GridViewItem -->
+            <StaticResource x:Key="GridViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ComboBoxItem -->
+            <StaticResource x:Key="ComboBoxItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+
+            <!-- Other Resource Forwarders -->
+            <x:Boolean x:Key="UseSystemFocusVisuals">True</x:Boolean>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <!-- Resources for Windows.UI.Xaml.Controls.Button -->
+            <StaticResource x:Key="ButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.RepeatButton -->
+            <StaticResource x:Key="RepeatButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="RepeatButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.Primitives.ToggleButton -->
+            <StaticResource x:Key="ToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBackgroundIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminate" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminatePressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ToggleButtonRevealBorderBrushIndeterminateDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for ellipsis button in Windows.UI.Xaml.Controls.CommandBar -->
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarEllipsisButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarButton -->
+            <StaticResource x:Key="AppBarButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.AppBarToggleButton -->
+            <StaticResource x:Key="AppBarToggleButtonRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlay" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBackgroundHighLightOverlayCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushChecked" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="AppBarToggleButtonRevealBorderBrushCheckedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ListViewItem -->
+            <StaticResource x:Key="ListViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ListViewItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.GridViewItem -->
+            <StaticResource x:Key="GridViewItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealPlaceholderBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="GridViewItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <!-- Resources for Windows.UI.Xaml.Controls.ComboBoxItem -->
+            <StaticResource x:Key="ComboBoxItemRevealBackground" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBackgroundSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrush" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelected" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedUnfocused" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPressed" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedPointerOver" ResourceKey="SystemControlForegroundTransparentBrush" />
+            <StaticResource x:Key="ComboBoxItemRevealBorderBrushSelectedDisabled" ResourceKey="SystemControlForegroundTransparentBrush" />
+
+            <!-- Other Resource Forwarders -->
+            <x:Boolean x:Key="UseSystemFocusVisuals">True</x:Boolean>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

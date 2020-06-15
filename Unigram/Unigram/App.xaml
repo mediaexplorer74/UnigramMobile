@@ -8,6 +8,7 @@
     xmlns:common="using:Unigram.Common"
     xmlns:views="using:Unigram.Views"
     xmlns:converters="using:Unigram.Converters"
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     xmlns:local="using:Unigram">
 
     <Application.Resources>
@@ -287,6 +288,7 @@
                 <ResourceDictionary Source="ms-appx:///Common/CommonStyles.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Themes/Accent.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Themes/TeachingTip.xaml"/>
+                <contract5NotPresent:ResourceDictionary Source="ms-appx:///Themes/ReplaceRevealBrushes.xaml"/>
                 <themes:Messages/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
