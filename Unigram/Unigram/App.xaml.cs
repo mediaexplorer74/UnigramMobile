@@ -43,10 +43,6 @@ namespace Unigram
         public static AppServiceConnection Connection { get; private set; }
         public static BackgroundTaskDeferral Deferral { get; private set; }
 
-        private readonly UISettings _uiSettings;
-
-        public UISettings UISettings => _uiSettings;
-
         private ExtendedExecutionSession _extendedSession;
         private MediaExtensionManager _mediaExtensionManager;
 
@@ -60,8 +56,6 @@ namespace Unigram
         public App()
         {
             Locator.Configure(/*session*/);
-
-            _uiSettings = new UISettings();
 
             if (SettingsService.Current.Appearance.RequestedTheme != ElementTheme.Default)
             {
@@ -86,19 +80,19 @@ namespace Unigram
 
             InactivityHelper.Detected += Inactivity_Detected;
 
-            UnhandledException += async (s, args) =>
-            {
-                args.Handled = true;
-#if !DEBUG
-                Microsoft.AppCenter.Crashes.Crashes.TrackError(args.Exception);
-#endif
+//            UnhandledException += async (s, args) =>
+//            {
+//                args.Handled = true;
+//#if !DEBUG
+//                Microsoft.AppCenter.Crashes.Crashes.TrackError(args.Exception);
+//#endif
 
-                try
-                {
-                    await new MessagePopup(args.Exception?.ToString() ?? string.Empty, "Unhandled exception").ShowQueuedAsync();
-                }
-                catch { }
-            };
+            //    try
+            //    {
+            //        await new MessagePopup(args.Exception?.ToString() ?? string.Empty, "Unhandled exception").ShowQueuedAsync();
+            //    }
+            //    catch { }
+            //};
 
 #if !DEBUG
             Microsoft.AppCenter.AppCenter.Start(Constants.AppCenterId,
@@ -182,7 +176,7 @@ namespace Unigram
 
         private void Window_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
         {
-            HandleActivated(e.Visible);
+            //HandleActivated(e.Visible);
 
             if (e.Visible && TLContainer.Current.Passcode.IsLockscreenRequired)
             {
