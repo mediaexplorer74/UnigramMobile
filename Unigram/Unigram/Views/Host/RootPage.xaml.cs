@@ -11,6 +11,7 @@ using Unigram.Services;
 using Unigram.Services.Navigation;
 using Unigram.ViewModels;
 using Unigram.Views.SignIn;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
