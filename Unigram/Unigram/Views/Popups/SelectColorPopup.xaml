@@ -33,7 +33,7 @@
             Grid.Row="1"/>
 
         <HyperlinkButton
-            Content="Use system accent color"
+            Content="{CustomResource Additional.SelectColorSystemAccent}"
             Click="System_Click"
             HorizontalAlignment="Center"
             Margin="12,0,12,8"
