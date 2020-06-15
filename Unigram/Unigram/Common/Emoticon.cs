@@ -190,7 +190,7 @@ namespace Unigram.Common
     public static class Emoticon
     {
         public static Dictionary<char, string[]> _matches;
-        public static Dictionary<char, string[]> Matches => _matches ??= Data.Keys.GroupBy(x => x.Last()).ToDictionary(x => x.Key, y => y.ToArray());
+        public static Dictionary<char, string[]> Matches => _matches = _matches ?? Data.Keys.GroupBy(x => x.Last()).ToDictionary(x => x.Key, y => y.ToArray());
 
         public static readonly Dictionary<string, string> Data = new Dictionary<string, string>
         {
@@ -200,20 +200,30 @@ namespace Unigram.Common
             { ":)",     "\U0001F642" },
             { "8-)",    "\U0001F60D" },
             { ":-*",    "\U0001F61A" },
+            { ":*",     "\U0001F61A" },
             { "B-)",    "\U0001F60E" },
+            { "B)",     "\U0001F60E" },
             { ":-D",    "\U0001F603" },
+            { ":D",     "\U0001F603" },
             { ";-)",    "\U0001F609" },
+            { ";)",     "\U0001F609" },
             { ";-P",    "\U0001F61C" },
+            { ";P",     "\U0001F61C" },
             { ":-p",    "\U0001F60B" },
+            { ":p",     "\U0001F60B" },
             { "3(",     "\U0001F614" },
             { ":-(",    "\U0001F61E" },
             { ":(",     "\U0001F61E" },
+            { ":-]",    "\U0001F60F" },
             { ":]",     "\U0001F60F" },
             { ":'(",    "\U0001F622" },
             { ":_(",    "\U0001F62D" },
+            { ":-((",   "\U0001F629" },
             { ":((",    "\U0001F629" },
+            { ":-|",    "\U0001F610" },
             { ":|",     "\U0001F610" },
             { "3-)",    "\U0001F60C" },
+            { "3)",     "\U0001F60C" },
             { ">(",     "\U0001F620" },
             { "O:)",    "\U0001F607" },
             { ";o",     "\U0001F630" },
