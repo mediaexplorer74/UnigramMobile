@@ -142,7 +142,8 @@ namespace Unigram
             });
         }
 
-        private static volatile bool _passcodeShown;
+        [ThreadStatic]
+        private static bool _passcodeShown;
         public static async void ShowPasscode()
         {
             if (_passcodeShown)
@@ -325,6 +326,11 @@ namespace Unigram
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
+            if (TLContainer.Current.Passcode.IsLockscreenRequired)
+            {
+                ShowPasscode();
+            }
+
             if (startKind == StartKind.Activate)
             {
                 var lifetime = TLContainer.Current.Lifetime;
