@@ -241,7 +241,6 @@ namespace Unigram.Views.Chats
         }
 
         public event EventHandler<ScrollViewerViewChangedEventArgs> ViewChanged;
-        public event EventHandler<ChatSharedMediaTab> ViewRequested;
 
         private void InitializeSearch(TextBox field, Func<SearchMessagesFilter> filter)
         {

@@ -41,7 +41,9 @@ namespace Unigram.ViewModels
         private readonly ISessionService _sessionService;
         private readonly IVoIPService _voipService;
         private readonly IEmojiSetService _emojiSetService;
+#if CLOUDUPDATES
         private readonly ICloudUpdateService _cloudUpdateService;
+#endif
         private readonly IPlaybackService _playbackService;
         private readonly IShortcutsService _shortcutService;
 
