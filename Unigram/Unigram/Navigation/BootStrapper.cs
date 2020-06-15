@@ -54,7 +54,7 @@ namespace Unigram.Navigation
         internal volatile bool IsMainWindowCreated;
 
         private UISettings _uiSettings;
-        public UISettings UISettings => _uiSettings ??= new UISettings();
+        public UISettings UISettings => _uiSettings = _uiSettings ?? new UISettings();
 
         #region Debug
 
