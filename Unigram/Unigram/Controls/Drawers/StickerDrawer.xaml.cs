@@ -178,7 +178,7 @@ namespace Unigram.Controls.Drawers
                 }
             }
 
-            if (ApiInfo.IsFullExperience)
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
                 _zoomer.UpdateFile(file);
         }
 
@@ -278,7 +278,7 @@ namespace Unigram.Controls.Drawers
                 args.ItemContainer.ContentTemplate = sender.ItemTemplate;
                 args.ItemContainer.ContextRequested += Sticker_ContextRequested;
 
-                if (ApiInfo.IsFullExperience)
+                if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
                     _zoomer.ElementPrepared(args.ItemContainer);
             }
 

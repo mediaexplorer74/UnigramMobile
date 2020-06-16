@@ -119,7 +119,7 @@ namespace Unigram.Controls.Drawers
             var button = args.Element as Button;
             var animation = button.DataContext as Animation;
 
-            if (ApiInfo.IsFullExperience)
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
                 _zoomer.ElementPrepared(button);
 
             button.Tag = animation;
@@ -146,7 +146,7 @@ namespace Unigram.Controls.Drawers
 
         private void OnElementClearing(ItemsRepeater sender, ItemsRepeaterElementClearingEventArgs args)
         {
-            if (ApiInfo.IsFullExperience)
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
                 _zoomer.ElementClearing(args.Element);
 
             if (args.Element is Button button && button.Content is Grid content && content.Children[0] is Image image)
@@ -220,7 +220,7 @@ namespace Unigram.Controls.Drawers
                 }
             }
 
-            if (ApiInfo.IsFullExperience)
+            if (ApiInfo.IsFullExperience || Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView().UserInteractionMode == Windows.UI.ViewManagement.UserInteractionMode.Mouse)
                 _zoomer.UpdateFile(file);
         }
     }
