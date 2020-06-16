@@ -136,19 +136,14 @@ namespace Unigram.Views
 
             ArchivedChatsPanel.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
             ArchivedChatsCompactPanel.Visibility = show ? Visibility.Collapsed : Visibility.Visible;
-
-            //if (true)
-            //{
-            //    _tabsTopCollapsed = false;
-            //    FindName(nameof(ChatTabs));
-            //    ChatTabs.Visibility = Visibility.Visible;
-            //}
         }
 
         public void Dispose()
         {
             try
             {
+                Bindings.StopTracking();
+
                 var viewModel = ViewModel;
                 if (viewModel != null)
                 {
@@ -167,9 +162,6 @@ namespace Unigram.Views
 
                 MasterDetail.Dispose();
                 SettingsView.Dispose();
-                //DataContext = null;
-                //Bindings?.Update();
-                Bindings?.StopTracking();
             }
             catch { }
         }
@@ -566,6 +558,11 @@ namespace Unigram.Views
                 _tabsTopCollapsed = false;
             }
 
+            if (Window.Current.Content is RootPage root && show)
+            {
+                root.SetTopPadding(new Thickness());
+            }
+
             if (ChatTabs == null)
                 FindName(nameof(ChatTabs));
 
@@ -649,10 +646,10 @@ namespace Unigram.Views
                 _tabsLeftCollapsed = false;
             }
 
-            //if (Window.Current.Content is RootPage root)
-            //{
-            //    root.TopPadding = new Thickness(show ? 72 : 0, 0, 0, 0);
-            //}
+            if (Window.Current.Content is RootPage root)
+            {
+                root.SetTopPadding(new Thickness(show ? 72 : 0, 0, 0, 0));
+            }
 
             if (ChatTabsLeft == null)
                 FindName(nameof(ChatTabsLeft));
@@ -738,7 +735,7 @@ namespace Unigram.Views
 
             if (Window.Current.Content is RootPage root)
             {
-                root.TopPadding = new Thickness(show ? 72 * SettingsService.Current.Appearance.TabsLeftLayoutScale : 0, 0, 0, 0);
+                root.SetTopPadding(new Thickness(show ? 72 * SettingsService.Current.Appearance.TabsLeftLayoutScale : 0, 0, 0, 0));
             }
         }
 

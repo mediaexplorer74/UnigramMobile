@@ -108,10 +108,9 @@ namespace Unigram.Views.Host
             Navigation.Padding = new Thickness(0, sender.IsVisible ? sender.Height : 0, 0, 0);
         }
 
-        public Thickness TopPadding
+        public void SetTopPadding(Thickness thickness)
         {
-            get { return Navigation.TopPadding; }
-            set { Navigation.TopPadding = value; }
+            Navigation.SetTopPadding(thickness);
         }
 
         public void Create()
@@ -127,6 +126,8 @@ namespace Unigram.Views.Host
             {
                 Destroy(_navigationService);
             }
+
+            Navigation.SetTopPadding(new Thickness());
 
             var service = WindowContext.GetForCurrentView().NavigationServices.GetByFrameId($"{session.Id}") as NavigationService;
             if (service == null)
