@@ -48,7 +48,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Unigram.Views
 {
-    public sealed partial class ChatView : HostedPage, INavigablePage, ISearchablePage, IDialogDelegate, IDisposable, ICloneable
+    public sealed partial class ChatView : HostedPage, INavigablePage, ISearchablePage, IDialogDelegate, IActivablePage
     {
         public DialogViewModel ViewModel => DataContext as DialogViewModel;
 
@@ -488,7 +488,7 @@ namespace Unigram.Views
             }
         }
 
-        public object Clone()
+        public void Activate()
         { 
             DataContext = _getViewModel(this);
 
@@ -520,8 +520,6 @@ namespace Unigram.Views
             if (_stickersMode == StickersPanelMode.Mobile) {
                 Collapse_Click(null, null);
             }
-
-            return null;
         }
 
         private async void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -4403,15 +4401,4 @@ namespace Unigram.Views
         Overlay,
         Sidebar
     }
-}
-
-
-/// <summary>
-/// TODO: Remove this! 
-/// https://github.com/UnigramDev/Unigram/commit/11294a56f1f2ff0b62a169d9ffdeef1a82bb0cd1 needs a follow-up with a new interface
-/// </summary>
-internal interface ICloneable
-{
-    // Note: Should be differently named. This in newer .NET Framework existing interface got misused for this.
-    object Clone();
 }

@@ -886,4 +886,9 @@ namespace Unigram.Navigation
     {
         void Search();
     }
+
+    public interface IActivablePage : IDisposable
+    {
+        void Activate();
+    }
 }
