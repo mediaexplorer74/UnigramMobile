@@ -210,10 +210,6 @@
   <data name="ShowInFolder" xml:space="preserve">
     <value>Klasörde Göster</value>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Açık</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standart</value>
     <comment>SettingsAppearancePage</comment>
@@ -260,5 +256,17 @@
   <data name="ShareSendAsCopy" xml:space="preserve">
     <value>Kopyayı Sadece Metin Olarak Gönder</value>
     <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsAlbum" xml:space="preserve">
+    <value>Albüm Olarak Gönder</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>Klasör Menüsünün Boyutunu Ayarla</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>Windows Vurgu Rengini Seçin</value>
+    <comment>SelectColorPopup</comment>
   </data>
 </root>
