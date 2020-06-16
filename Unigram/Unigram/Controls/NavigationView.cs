@@ -25,8 +25,8 @@ namespace Unigram.Controls
             if (Common.ApiInfo.CanUseSplitViewPaneOpeningEvent)
             {
                 RootSplitView.PaneOpening += OnPaneOpening;
-                RootSplitView.PaneClosing += OnPaneClosing;
             }
+            RootSplitView.PaneClosing += OnPaneClosing;
         }
 
         private void Toggle_Click(object sender, RoutedEventArgs e)
@@ -59,15 +59,8 @@ namespace Unigram.Controls
         {
             get { return (bool)GetValue(IsPaneOpenProperty); }
             set { SetValue(IsPaneOpenProperty, value);
-                if (!Common.ApiInfo.CanUseSplitViewPaneOpeningEvent) {
-                    if (value)
-                    {
-                        OnPaneOpening(null, null);
-                    } else
-                    {
-                        OnPaneClosing(null, null);
-                    }
-                }
+                if (value && !Common.ApiInfo.CanUseSplitViewPaneOpeningEvent)
+                    OnPaneOpening(null, null);
             }
         }
 

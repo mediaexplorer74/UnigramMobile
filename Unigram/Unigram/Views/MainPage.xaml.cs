@@ -646,10 +646,10 @@ namespace Unigram.Views
                 _tabsLeftCollapsed = false;
             }
 
-            if (Window.Current.Content is RootPage root)
-            {
-                root.SetTopPadding(new Thickness(show ? 72 : 0, 0, 0, 0));
-            }
+            //if (Window.Current.Content is RootPage root)
+            //{
+            //    root.SetTopPadding(new Thickness(show ? 72 : 0, 0, 0, 0));
+            //}
 
             if (ChatTabsLeft == null)
                 FindName(nameof(ChatTabsLeft));
