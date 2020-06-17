@@ -1037,7 +1037,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var file = await StorageFile.GetFileFromPathAsync(fileInfo.File.Local.Path);
+            var file = await ProtoService.GetFileAsync(fileInfo.File);
             if (file == null)
             {
                 return;
