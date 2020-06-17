@@ -491,6 +491,7 @@ namespace Unigram.Views
         public void Activate()
         { 
             DataContext = _getViewModel(this);
+            Bindings.Update();
 
             ViewModel.TextField = TextField;
             ViewModel.ListField = Messages;
