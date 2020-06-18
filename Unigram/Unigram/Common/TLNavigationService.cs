@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Unigram.Controls;
+using Unigram.Navigation.Services;
 using Unigram.Services;
-using Unigram.Services.Navigation;
-using Unigram.Services.ViewService;
 using Unigram.Views;
 using Unigram.Views.Popups;
 using Unigram.Views.Settings;
@@ -22,7 +21,8 @@ namespace Unigram.Common
     {
         private readonly IPasscodeService _passcodeService;
 
-        //private Dictionary<string, AppWindow> _instantWindows = new Dictionary<string, AppWindow>();
+        //sprivate Dictionary<string, AppWindow> _instantWindows = new Dictionary<string, AppWindow>();
+
         public TLNavigationService(IProtoService protoService, Frame frame, int session, string id)
             : base(frame, session, id)
         {
