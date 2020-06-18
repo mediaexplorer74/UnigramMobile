@@ -59,7 +59,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Without Proxy" VerticalAlignment="Bottom" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="{CustomResource Additional.ConnectWithoutProxy}" VerticalAlignment="Bottom" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
                                 <controls:ProxyStatusControl Status="{x:Bind Status, Mode=OneWay}" VerticalAlignment="Top" Grid.Row="1"/>
                             </Grid>
                         </DataTemplate>

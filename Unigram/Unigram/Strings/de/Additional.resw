@@ -286,4 +286,8 @@
     <value>Windows-Akzentfarbe auswählen</value>
     <comment>SelectColorPopup</comment>
   </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Ohne Proxy</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
 </root>

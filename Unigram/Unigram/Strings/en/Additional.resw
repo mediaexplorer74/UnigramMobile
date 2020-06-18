@@ -286,4 +286,8 @@
     <value>Use system accent color</value>
     <comment>SelectColorPopup</comment>
   </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Without Proxy</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
 </root>

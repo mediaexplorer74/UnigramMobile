@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 06/15/2020 23:44:15
+// 	Generated: 06/18/2020 17:18:33
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -563,6 +563,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SelectColorSystemAccent");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Without Proxy"
+        /// </summary>
+        public static string ConnectWithoutProxy
+        {
+            get
+            {
+                return Resource.GetString("ConnectWithoutProxy");
             }
         }
         
