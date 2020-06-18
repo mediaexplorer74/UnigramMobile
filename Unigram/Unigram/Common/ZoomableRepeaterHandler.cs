@@ -127,7 +127,7 @@ namespace Unigram.Common
 
         private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            if (e.Pointer.PointerDeviceType != PointerDeviceType.Mouse)
+            if (UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse && e.Pointer.PointerDeviceType != PointerDeviceType.Mouse)
             {
                 return;
             }
