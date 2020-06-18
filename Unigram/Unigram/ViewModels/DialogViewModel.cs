@@ -954,53 +954,6 @@ namespace Unigram.ViewModels
                     }
                 }
             }
-
-            //var dialog = _dialog;
-            //if (dialog == null)
-            //{
-            //    return;
-            //}
-
-            //var responsez = await LegacyService.GetUnreadMentionsAsync(_peer, 0, dialog.UnreadMentionsCount - 1, 1, 0, 0);
-            //if (responsez.IsSucceeded && responsez.Result is ITLMessages result)
-            //{
-            //    var count = 0;
-            //    if (responsez.Result is TLMessagesChannelMessages channelMessages)
-            //    {
-            //        count = channelMessages.Count;
-            //    }
-
-            //    dialog.UnreadMentionsCount = count;
-            //    dialog.RaisePropertyChanged(() => dialog.UnreadMentionsCount);
-
-            //    //if (response.Result.Messages.IsEmpty())
-            //    //{
-            //    //    dialog.UnreadMentionsCount = 0;
-            //    //    dialog.RaisePropertyChanged(() => dialog.UnreadMentionsCount);
-            //    //    return;
-            //    //}
-
-            //    var commonMessage = result.Messages.FirstOrDefault() as TLMessageCommonBase;
-            //    if (commonMessage == null)
-            //    {
-            //        return;
-            //    }
-
-            //    commonMessage.IsMediaUnread = false;
-            //    commonMessage.RaisePropertyChanged(() => commonMessage.IsMediaUnread);
-
-            //    // DO NOT AWAIT
-            //    LoadMessageSliceAsync(null, commonMessage.Id);
-
-            //    if (With is TLChannel channel)
-            //    {
-            //        await LegacyService.ReadMessageContentsAsync(channel.ToInputChannel(), new TLVector<int> { commonMessage.Id });
-            //    }
-            //    else
-            //    {
-            //        await LegacyService.ReadMessageContentsAsync(new TLVector<int> { commonMessage.Id });
-            //    }
-            //}
         }
 
         public RelayCommand PreviousSliceCommand { get; }
@@ -1908,7 +1861,7 @@ namespace Unigram.ViewModels
 
                 ProtoService.Send(new GetChatAdministrators(chat.Id), result =>
                 {
-                    if (result is Telegram.Td.Api.ChatAdministrators users)
+                    if (result is ChatAdministrators users)
                     {
                         _admins[chat.Id] = users.Administrators;
                     }
@@ -1933,7 +1886,7 @@ namespace Unigram.ViewModels
 
                 ProtoService.Send(new GetChatAdministrators(chat.Id), result =>
                 {
-                    if (result is Telegram.Td.Api.ChatAdministrators users)
+                    if (result is ChatAdministrators users)
                     {
                         _admins[chat.Id] = users.Administrators;
                     }
@@ -1960,14 +1913,14 @@ namespace Unigram.ViewModels
         //    }
         //}
 
-        public override Task OnNavigatingFromAsync(NavigatingEventArgs args)
+        public override void OnNavigatingFrom(NavigatingEventArgs args)
         {
             Aggregator.Unsubscribe(this);
 
             var chat = _chat;
             if (chat == null)
             {
-                return Task.CompletedTask;
+                return;
             }
 
 #if !DEBUG
@@ -1989,7 +1942,7 @@ namespace Unigram.ViewModels
 
                     Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Removing scrolling position, generic reason", chat.Id));
 
-                    return Task.CompletedTask;
+                    return;
                 }
 
                 var panel = field.ItemsPanelRoot as ItemsStackPanel;
@@ -2048,8 +2001,6 @@ namespace Unigram.ViewModels
             {
                 Dispatcher.Dispatch(SaveDraft);
             }
-
-            return Task.CompletedTask;
         }
 
         private void ShowSwitchInline(IDictionary<string, object> state)

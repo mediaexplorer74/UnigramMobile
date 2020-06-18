@@ -473,11 +473,12 @@ namespace Unigram.Views
         {
             if (ViewModel != null)
             {
-                ViewModel.Items.Clear();
-
                 ViewModel.PropertyChanged -= OnPropertyChanged;
                 ViewModel.Items.AttachChanged = null;
                 //ViewModel.Items.CollectionChanged -= OnCollectionChanged;
+
+                //ViewModel.Items.Dispose();
+                //ViewModel.Items.Clear();
 
                 ViewModel.Delegate = null;
                 ViewModel.TextField = null;
@@ -513,6 +514,7 @@ namespace Unigram.Views
 
             UpdateTextAreaRadius();
 
+            TextField.IsReplaceEmojiEnabled = ViewModel.Settings.IsReplaceEmojiEnabled;
             TextField.IsTextPredictionEnabled = SettingsService.Current.AutocorrectWords;
             TextField.IsSpellCheckEnabled = SettingsService.Current.HighlightWords;
             TextField.Focus(FocusState.Programmatic);
@@ -3824,8 +3826,6 @@ namespace Unigram.Views
 
             Messages.Margin = new Thickness(0, 0, 0, -radius);
             Messages.Padding = new Thickness(0, 0, 0, radius + 6);
-
-            TextField.IsReplaceEmojiEnabled = ViewModel.Settings.IsReplaceEmojiEnabled;
         }
 
         public void UpdateAutocomplete(Chat chat, IAutocompleteCollection collection)
