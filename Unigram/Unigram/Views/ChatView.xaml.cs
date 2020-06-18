@@ -4350,6 +4350,7 @@ namespace Unigram.Views
                         else if (file.Id == sticker.StickerValue.Id)
                         {
                             _autocompleteHandler.ThrottleVisibleItems();
+                            _autocompleteZoomer.UpdateFile(file);
                         }
                     }
                 }
