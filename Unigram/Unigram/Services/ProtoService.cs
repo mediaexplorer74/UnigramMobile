@@ -475,7 +475,7 @@ namespace Unigram.Services
         {
             if (file.Local.IsDownloadingCompleted)
             {
-                var path = System.IO.Path.GetRelativePath(ApplicationData.Current.LocalFolder.Path, file.Local.Path);
+                var path = Compatibility.MissingFrameworkFunctions.GetRelativePath(ApplicationData.Current.LocalFolder.Path, file.Local.Path);
 
                 var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(path) as StorageFile;
                 if (item != null)
