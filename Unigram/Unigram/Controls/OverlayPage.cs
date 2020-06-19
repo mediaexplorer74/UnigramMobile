@@ -379,6 +379,9 @@ namespace Unigram.Controls
         public bool IsInMainView => throw new NotImplementedException();
 
         public int SessionId => throw new NotImplementedException();
+
+        public IDictionary<string, long> CacheKeyToChatId => throw new NotImplementedException();
+
 #pragma warning disable CS0067 // Event is never used
         public event TypedEventHandler<INavigationService, Type> AfterRestoreSavedNavigation;
 #pragma warning disable CS0067 // Event is never used
@@ -402,22 +405,7 @@ namespace Unigram.Controls
             throw new NotImplementedException();
         }
 
-        public void Navigate(Type page, object parameter = null, IDictionary<string, object> state = null, NavigationTransitionInfo infoOverride = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Navigate<T>(T key, object parameter = null, IDictionary<string, object> state = null, NavigationTransitionInfo infoOverride = null) where T : struct, IConvertible
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> NavigateAsync(Type page, object parameter = null, IDictionary<string, object> state = null, NavigationTransitionInfo infoOverride = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> NavigateAsync<T>(T key, object parameter = null, IDictionary<string, object> state = null, NavigationTransitionInfo infoOverride = null) where T : struct, IConvertible
+        public bool Navigate(Type page, object parameter = null, IDictionary<string, object> state = null, NavigationTransitionInfo infoOverride = null)
         {
             throw new NotImplementedException();
         }
