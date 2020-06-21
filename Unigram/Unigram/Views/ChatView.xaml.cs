@@ -519,6 +519,10 @@ namespace Unigram.Views
             TextField.IsSpellCheckEnabled = SettingsService.Current.HighlightWords;
             TextField.Focus(FocusState.Programmatic);
 
+            Options.Visibility = ViewModel.Type == DialogType.Normal
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+
             //Hide Stickers on opening a chat on mobile
             if (!(ApiInfo.IsFullExperience || UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse)) {
                 Collapse_Click(null, null);
@@ -3164,7 +3168,6 @@ namespace Unigram.Views
             ButtonSilent.IsChecked = chat.DefaultDisableNotification;
 
             Call.Visibility = Visibility.Collapsed;
-            CallPlaceholder.Visibility = Visibility.Collapsed;
 
             UpdateChatPermissions(chat);
         }
@@ -3898,7 +3901,6 @@ namespace Unigram.Views
             }
 
             Call.Visibility = /*!secret &&*/ fullInfo.CanBeCalled ? Visibility.Visible : Visibility.Collapsed;
-            CallPlaceholder.Visibility = /*!secret &&*/ fullInfo.CanBeCalled ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void UpdateUserStatus(Chat chat, User user)
