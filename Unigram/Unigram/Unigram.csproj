@@ -484,6 +484,10 @@
     <Compile Include="Navigation\Services\NavigationServiceList.cs" />
     <Compile Include="Services\ProtoService.ChatList.cs" />
     <Compile Include="Services\ThemeService.Defaults.cs" />
+    <Compile Include="ViewModels\DialogEventLogViewModel.cs" />
+    <Compile Include="Views\ChatEventLogPage.xaml.cs">
+      <DependentUpon>ChatEventLogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Chats\ChatSharedMediaPage.xaml.cs">
       <DependentUpon>ChatSharedMediaPage.xaml</DependentUpon>
     </Compile>
@@ -742,7 +746,6 @@
     <Compile Include="ViewModels\Supergroups\SupergroupEditTypeViewModel.cs" />
     <Compile Include="ViewModels\Supergroups\SupergroupEditViewModel.cs" />
     <Compile Include="ViewModels\Supergroups\SupergroupEditViewModelBase.cs" />
-    <Compile Include="ViewModels\Supergroups\SupergroupEventLogViewModel.cs" />
     <Compile Include="ViewModels\Supergroups\SupergroupMembersViewModel.cs" />
     <Compile Include="ViewModels\Supergroups\SupergroupMembersViewModelBase.cs" />
     <Compile Include="ViewModels\Supergroups\SupergroupPermissionsViewModel.cs" />
@@ -1074,12 +1077,6 @@
     </Compile>
     <Compile Include="Views\Supergroups\SupergroupEditTypePage.xaml.cs">
       <DependentUpon>SupergroupEditTypePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Supergroups\SupergroupEventLogPage.Bubbles.cs">
-      <DependentUpon>SupergroupEventLogPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Supergroups\SupergroupEventLogPage.xaml.cs">
-      <DependentUpon>SupergroupEventLogPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Supergroups\SupergroupMembersPage.xaml.cs">
       <DependentUpon>SupergroupMembersPage.xaml</DependentUpon>
@@ -2057,6 +2054,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ChatEventLogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Chats\ChatSharedMediaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2600,10 +2601,6 @@
     <Page Include="Views\Supergroups\SupergroupEditTypePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Supergroups\SupergroupEventLogPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Supergroups\SupergroupMembersPage.xaml">
       <SubType>Designer</SubType>
