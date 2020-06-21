@@ -520,7 +520,7 @@ namespace Unigram.Views
             TextField.Focus(FocusState.Programmatic);
 
             //Hide Stickers on opening a chat on mobile
-            if (_stickersMode == StickersPanelMode.Mobile) {
+            if (!(ApiInfo.IsFullExperience || UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse)) {
                 Collapse_Click(null, null);
             }
         }
@@ -2936,7 +2936,7 @@ namespace Unigram.Views
             {
                 if (_stickersModeWide == StickersPanelMode.Sidebar)
                 {
-                    ShowHideDockedStickersPanel(true, true);
+                    ShowHideDockedStickersPanel(true, ApiInfo.IsFullExperience || StickersPanel.Visibility == Visibility.Visible);
                 }
                 else
                 {
