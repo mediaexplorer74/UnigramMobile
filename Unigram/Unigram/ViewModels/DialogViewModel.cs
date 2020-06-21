@@ -284,7 +284,7 @@ namespace Unigram.ViewModels
         private string _lastSeen;
         public string LastSeen
         {
-            get { return _lastSeen; }
+            get { return _type == DialogType.EventLog ? Strings.Resources.EventLog : _lastSeen; }
             set { Set(ref _lastSeen, value); RaisePropertyChanged(() => Subtitle); }
         }
 
@@ -295,7 +295,7 @@ namespace Unigram.ViewModels
             set { Set(ref _onlineCount, value); RaisePropertyChanged(() => Subtitle); }
         }
 
-        public string Subtitle
+        public virtual string Subtitle
         {
             get
             {
@@ -1197,7 +1197,7 @@ namespace Unigram.ViewModels
             }
         }
 
-        public virtual Task LoadEventLogSliceAsync()
+        public virtual Task LoadEventLogSliceAsync(string query = "")
         {
             return Task.CompletedTask;
         }
@@ -1927,7 +1927,7 @@ namespace Unigram.ViewModels
             ShowPinnedMessage(chat);
             ShowSwitchInline(state);
 
-            if (App.DataPackages.TryRemove(chat.Id, out DataPackageView package))
+            if (_type == DialogType.Normal && App.DataPackages.TryRemove(chat.Id, out DataPackageView package))
             {
                 await HandlePackageAsync(package);
             }
@@ -2031,7 +2031,7 @@ namespace Unigram.ViewModels
 
         private void ShowSwitchInline(IDictionary<string, object> state)
         {
-            if (state.TryGet("switch_query", out string query) && state.TryGet("switch_bot", out int userId))
+            if (_type == DialogType.Normal && state.TryGet("switch_query", out string query) && state.TryGet("switch_bot", out int userId))
             {
                 state.Remove("switch_query");
                 state.Remove("switch_bot");
@@ -2049,7 +2049,7 @@ namespace Unigram.ViewModels
 
         private async void ShowReplyMarkup(Chat chat)
         {
-            if (chat.ReplyMarkupMessageId == 0)
+            if (chat.ReplyMarkupMessageId == 0 || _type != DialogType.Normal)
             {
                 Delegate?.UpdateChatReplyMarkup(chat, null);
             }
@@ -2069,7 +2069,7 @@ namespace Unigram.ViewModels
 
         public async void ShowPinnedMessage(Chat chat)
         {
-            if (chat == null || chat.PinnedMessageId == 0)
+            if (chat == null || chat.PinnedMessageId == 0 || _type != DialogType.Normal)
             {
                 Delegate?.UpdatePinnedMessage(chat, null, false);
             }
@@ -2099,7 +2099,7 @@ namespace Unigram.ViewModels
         private async void ShowDraftMessage(Chat chat)
         {
             var draft = chat.DraftMessage;
-            if (draft == null)
+            if (draft == null || _type != DialogType.Normal)
             {
                 SetText(null as string);
                 ComposerHeader = null;
