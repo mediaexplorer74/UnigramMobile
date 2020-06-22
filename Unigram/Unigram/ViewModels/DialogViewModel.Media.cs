@@ -467,7 +467,7 @@ namespace Unigram.ViewModels
             var formattedText = GetFormattedText(true);
             var caption = formattedText.Substring(0, CacheService.Options.MessageCaptionLengthMax);
             var self = CacheService.IsSavedMessages(_chat);
-            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, !_isSchedule, self);
+            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, _type == DialogType.Normal, self);
             dialog.ViewModel = this;
             dialog.Caption = caption;
 
