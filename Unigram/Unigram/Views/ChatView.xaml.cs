@@ -2004,7 +2004,7 @@ namespace Unigram.Views
                     }
                     else
                     {
-                        message = album.Layout.Messages.FirstOrDefault() ?? message;
+                        message = album.Messages.FirstOrDefault() ?? message;
                     }
                 }
             }
