@@ -679,18 +679,18 @@ namespace Unigram.Views.Popups
 
         private (Rect[], Size) GetPositionsForWidth(double w)
         {
-            var positions = _positionsBase ??= MosaicAlbumLayout.chatMessageBubbleMosaicLayout(new Size(MAX_WIDTH, MAX_HEIGHT), Sizes);
+            var positions = _positionsBase = _positionsBase ?? MosaicAlbumLayout.chatMessageBubbleMosaicLayout(new Size(MAX_WIDTH, MAX_HEIGHT), Sizes);
 
             var ratio = w / MAX_WIDTH;
-            var rects = new Rect[positions.Item1.Length];
+            var rects = new Rect[positions.Value.Item1.Length];
 
             for (int i = 0; i < rects.Length; i++)
             {
-                var rect = positions.Item1[i].Item1;
+                var rect = positions.Value.Item1[i].Item1;
                 rects[i] = new Rect(rect.X * ratio, rect.Y * ratio, rect.Width * ratio, rect.Height * ratio);
             }
 
-            return (rects, new Size(positions.Item2.Width * ratio, positions.Item2.Height * ratio));
+            return (rects, new Size(positions.Value.Item2.Width * ratio, positions.Value.Item2.Height * ratio));
         }
     }
 }

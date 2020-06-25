@@ -248,9 +248,9 @@ namespace Unigram.Common
                 }
 
                 var attempts = new List<MosaicLayoutAttempt>();
-                void addAttempt(int[] lineCounts, double[] heights, ref List<MosaicLayoutAttempt> attempts)
+                void addAttempt(int[] lineCounts, double[] heights, ref List<MosaicLayoutAttempt> mlattempts)
                 {
-                    attempts.Add(new MosaicLayoutAttempt { LineCounts = lineCounts, Heights = heights });
+                    mlattempts.Add(new MosaicLayoutAttempt { LineCounts = lineCounts, Heights = heights });
                 }
 
                 for (int firstLine = 1; firstLine < croppedRatios.Count; firstLine++)

@@ -2133,18 +2133,18 @@ namespace Telegram.Td.Api
 
         public (Rect[], Size) GetPositionsForWidth(double w)
         {
-            var positions = _positions ??= MosaicAlbumLayout.chatMessageBubbleMosaicLayout(new Size(MAX_WIDTH, MAX_HEIGHT), GetSizes());
+            var positions = _positions = _positions ?? MosaicAlbumLayout.chatMessageBubbleMosaicLayout(new Size(MAX_WIDTH, MAX_HEIGHT), GetSizes());
 
-            var ratio = w / positions.Item2.Width;
-            var rects = new Rect[positions.Item1.Length];
+            var ratio = w / positions.Value.Item2.Width;
+            var rects = new Rect[positions.Value.Item1.Length];
 
             for (int i = 0; i < rects.Length; i++)
             {
-                var rect = positions.Item1[i].Item1;
+                var rect = positions.Value.Item1[i].Item1;
                 rects[i] = new Rect(rect.X * ratio, rect.Y * ratio, rect.Width * ratio, rect.Height * ratio);
             }
-
-            return (rects, new Size(positions.Item2.Width * ratio, positions.Item2.Height * ratio));
+            
+            return (rects, new Size(positions.Value.Item2.Width * ratio, positions.Value.Item2.Height * ratio));
         }
 
         private IEnumerable<Size> GetSizes()
