@@ -95,7 +95,7 @@ namespace Unigram.Views
             ViewModel.ArchivedChats.Delegate = this;
             ViewModel.ArchivedChats.SelectedItems.CollectionChanged += SelectedItems_CollectionChanged;
 
-            NavigationCacheMode = NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Enabled;
 
             InitializeTitleBar();
             InitializeLocalization();
