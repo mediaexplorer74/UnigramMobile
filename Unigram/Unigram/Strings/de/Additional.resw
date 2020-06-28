@@ -238,12 +238,16 @@
     <value>Sticker-Animationen abspielen</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Tippfehler-Hervorhebung deaktivieren</value>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Eingabe</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Autokorrektur deaktivieren</value>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Rechtschreibfehler hervorheben</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Rechtschreibfehler automatisch korrigieren</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">

@@ -512,20 +512,6 @@
                 <controls:HeaderedControl
                     Header="{CustomResource Settings}">
                     <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.DisableAutocorrectWords, Mode=TwoWay}"
-                        Header="{CustomResource Additional.SettingsDisableAutocorrectWords}"
-                        Style="{StaticResource CheckButtonStyle}"/>
-                    <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.DisableHighlightWords, Mode=TwoWay}"
-                        Header="{CustomResource Additional.SettingsDisableHighlightWords}"
-                        Style="{StaticResource CheckButtonStyle}"/>
-
-                    <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.IsSendByEnterEnabled, Mode=TwoWay}"
-                        Header="{CustomResource SendByEnter}"
-                        Style="{StaticResource CheckButtonStyle}"/>
-
-                    <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsTextFormattingVisible, Mode=TwoWay}"
                         Header="{CustomResource Additional.SettingIsTextFormattingVisible}"
                         Style="{StaticResource CheckButtonStyle}"/>
@@ -534,16 +520,33 @@
                         IsOn="{x:Bind ViewModel.IsLargeEmojiEnabled, Mode=TwoWay}"
                         Header="{CustomResource LargeEmoji}"
                         Style="{StaticResource CheckButtonStyle}"/>
-                    
-                    <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.IsReplaceEmojiEnabled, Mode=TwoWay}"
-                        Header="{CustomResource Additional.ReplaceEmoji}"
-                        Style="{StaticResource CheckButtonStyle}"/>
 
                     <controls:BadgeButton
                         Content="{CustomResource DistanceUnits}"
                         Command="{x:Bind ViewModel.DistanceUnitsCommand}"
                         Badge="{x:Bind ConvertDistanceUnits(ViewModel.DistanceUnits), Mode=OneWay}"/>
+                </controls:HeaderedControl>
+
+                <controls:HeaderedControl
+                    Header="{CustomResource Additional.SettingsKeyboard}">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.AutocorrectWords, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingsAutocorrectWords}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.HighlightWords, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingsHighlightWords}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsSendByEnterEnabled, Mode=TwoWay}"
+                        Header="{CustomResource SendByEnter}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsReplaceEmojiEnabled, Mode=TwoWay}"
+                        Header="{CustomResource Additional.ReplaceEmoji}"
+                        Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
             </StackPanel>
         </ScrollViewer>

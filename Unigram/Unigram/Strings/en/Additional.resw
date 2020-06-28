@@ -238,12 +238,16 @@
     <value>Play animated stickers</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Disable Error Highlighting</value>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Typing</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Disable Autocorrection</value>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Highlight misspelled words</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Autocorrect misspelled words</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
