@@ -210,10 +210,6 @@
   <data name="ShowInFolder" xml:space="preserve">
     <value>Mostrar na Pasta</value>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Leve</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Tema do sistema</value>
     <comment>SettingsAppearancePage</comment>
@@ -224,14 +220,6 @@
   <data name="SettingPlayStickers" xml:space="preserve">
     <value>Reproduzir adesivos animados</value>
     <comment>SettingStickersPage</comment>
-  </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Desativar destaque de erro</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Desativar correção automática</value>
-    <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
     <value>Pastas na parte superior</value>
@@ -260,5 +248,33 @@
   <data name="ShareSendAsCopy" xml:space="preserve">
     <value>Enviar como cópia</value>
     <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsAlbum" xml:space="preserve">
+    <value>Enviar como álbum</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>Tamanho do menu de pastas</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>Usar a cor destaque do sistema</value>
+    <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Sem Proxy</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Digitando</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Destacar as palavras mal-escritas</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Corrigir as palavras mal-escritas automaticamente</value>
+    <comment>SettingsAppearancePage</comment>
   </data>
 </root>
