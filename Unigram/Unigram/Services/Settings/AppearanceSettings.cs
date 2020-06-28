@@ -206,6 +206,7 @@ namespace Unigram.Services.Settings
 
                 _container.Values.Remove("ThemePath");
             }
+            /* Note: Removed as Default Theme is now implemented (System Theme)
             else if (RequestedTheme == ElementTheme.Default)
             {
                 var system = GetSystemTheme();
@@ -222,6 +223,7 @@ namespace Unigram.Services.Settings
                     Accents[TelegramThemeType.Day] = default;
                 }
             }
+            */
         }
 
         private TelegramThemeType? _requestedThemeType;

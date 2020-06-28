@@ -223,10 +223,6 @@
   <data name="ShowInFolder" xml:space="preserve">
     <value>Show in Folder</value>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Light</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>System Theme</value>
     <comment>SettingsAppearancePage</comment>

@@ -195,6 +195,11 @@ namespace Unigram.Views.Settings
                 radio.RequestedTheme = accent.Parent.HasFlag(TelegramTheme.Dark) ? ElementTheme.Dark : ElementTheme.Light;
                 radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == accent.Type && SettingsService.Current.Appearance.Accents[accent.Type] == accent.AccentColor;
             }
+            else if (theme is ThemeSystemInfo)
+            {
+                radio.RequestedTheme = ElementTheme.Default;
+                radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == TelegramThemeType.Classic && SettingsService.Current.Appearance.RequestedTheme == ElementTheme.Default;
+            }
             else
             {
                 radio.RequestedTheme = theme.Parent.HasFlag(TelegramTheme.Dark) ? ElementTheme.Dark : ElementTheme.Light;

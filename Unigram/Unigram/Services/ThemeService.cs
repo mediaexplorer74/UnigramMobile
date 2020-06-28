@@ -146,6 +146,7 @@ namespace Unigram.Services
             result.Add(ThemeAccentInfo.FromAccent(TelegramThemeType.Day, _settingsService.Appearance.Accents[TelegramThemeType.Day]));
             result.Add(ThemeAccentInfo.FromAccent(TelegramThemeType.Tinted, _settingsService.Appearance.Accents[TelegramThemeType.Tinted]));
             result.Add(ThemeAccentInfo.FromAccent(TelegramThemeType.Night, _settingsService.Appearance.Accents[TelegramThemeType.Night]));
+            result.Add(new ThemeSystemInfo { Name = Strings.Additional.ThemeSystemTheme });
 
             return result;
         }
@@ -265,7 +266,10 @@ namespace Unigram.Services
 
         public async Task SetThemeAsync(ThemeInfoBase info)
         {
-            _settingsService.Appearance.RequestedTheme = info.Parent.HasFlag(TelegramTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
+            if (info is ThemeSystemInfo)
+                _settingsService.Appearance.RequestedTheme = ElementTheme.Default;
+            else
+                _settingsService.Appearance.RequestedTheme = info.Parent.HasFlag(TelegramTheme.Light) ? ElementTheme.Light : ElementTheme.Dark;
 
             if (info is ThemeCustomInfo custom)
             {
@@ -279,7 +283,10 @@ namespace Unigram.Services
             }
             else
             {
-                _settingsService.Appearance.RequestedThemeType = info.Parent == TelegramTheme.Light ? TelegramThemeType.Classic : TelegramThemeType.Night;
+                if (info is ThemeSystemInfo)
+                    _settingsService.Appearance.RequestedThemeType = TelegramThemeType.Classic;
+                else
+                    _settingsService.Appearance.RequestedThemeType = info.Parent == TelegramTheme.Light ? TelegramThemeType.Classic : TelegramThemeType.Night;
             }
 
             var flags = _settingsService.Appearance.GetCalculatedElementTheme();
@@ -597,6 +604,57 @@ namespace Unigram.Services
     public class ThemeBundledInfo : ThemeInfoBase
     {
         public override bool IsOfficial => true;
+    }
+
+    public class ThemeSystemInfo : ThemeInfoBase
+    {
+        public override bool IsOfficial => true;
+
+        public override Color ChatBackgroundColor => ((App)App.Current).UISettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Background);
+
+        public override Color ChatBorderColor
+        {
+            get
+            {
+                if (SettingsService.Current.Appearance.GetSystemTheme() == TelegramAppTheme.Light)
+                {
+                    return Color.FromArgb(0xFF, 0xe6, 0xe6, 0xe6);
+                }
+
+                return Color.FromArgb(0xFF, 0x2b, 0x2b, 0x2b);
+            }
+        }
+
+        public override Color MessageBackgroundColor
+        {
+            get
+            {
+                if (SettingsService.Current.Appearance.GetSystemTheme() == TelegramAppTheme.Light)
+                {
+                    return Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+                }
+
+                return Color.FromArgb(0xFF, 0x1F, 0x2C, 0x36);
+            }
+        }
+
+        public override Color MessageBackgroundOutColor
+        {
+            get
+            {
+                if (SettingsService.Current.Appearance.GetSystemTheme() == TelegramAppTheme.Light)
+                {
+                    return ((App)App.Current).UISettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.AccentLight3);
+                }
+
+                return ((App)App.Current).UISettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.AccentDark2);
+            }
+        }
+
+        public override Color AccentColor
+        {
+            get => ((App)App.Current).UISettings.GetColorValue(UIColorType.Accent);
+        }
     }
 
     public abstract class ThemeInfoBase

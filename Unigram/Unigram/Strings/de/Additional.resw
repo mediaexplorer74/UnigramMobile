@@ -206,10 +206,6 @@
     <value>Emoji ersetzen</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Hell</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standard</value>
     <comment>SettingsAppearancePage</comment>

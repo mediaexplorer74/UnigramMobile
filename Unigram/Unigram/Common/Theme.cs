@@ -129,7 +129,7 @@ namespace Unigram.Common
             }
         }
 
-        public void Update()
+        public void Update(bool systemTheme = false)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace Unigram.Common
                 ThemeDictionaries.Clear();
                 MergedDictionaries.Clear();
 
-                MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/ThemeGreen.xaml") });
+                MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("ms-appx:///Themes/" + (systemTheme ? "ThemeSystem" : "ThemeGreen") + ".xaml") });
             }
             catch { }
         }
@@ -155,7 +155,7 @@ namespace Unigram.Common
             }
             else
             {
-                Update();
+                Update(info is ThemeSystemInfo);
             }
         }
 
