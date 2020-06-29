@@ -213,6 +213,26 @@ namespace Unigram.Services
 
         private void OnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
+            if (sender.Source is MediaSource source &&
+                source.CustomProperties.TryGet("alternativeMimeTypeSource", out MediaSource guessedMimeTypeSource) &&
+                guessedMimeTypeSource != null && CurrentPlayback.Source.Equals(source) &&
+                source.CustomProperties.TryGet("file", out int fileId) &&
+                source.CustomProperties.TryGet("message", out long messageId) &&
+                source.CustomProperties.TryGet("chat", out long chatId) &&
+                source.CustomProperties.TryGet("token", out string token))
+            {
+                var index = _items.IndexOf(CurrentPlayback);
+                guessedMimeTypeSource.CustomProperties["file"] = fileId;
+                guessedMimeTypeSource.CustomProperties["message"] = messageId;
+                guessedMimeTypeSource.CustomProperties["chat"] = chatId;
+                guessedMimeTypeSource.CustomProperties["token"] = token;
+                if (index > -1)
+                    _items[index].Source = guessedMimeTypeSource;
+                _mediaPlayer.Source = guessedMimeTypeSource;
+                _mediaPlayer.Play();
+                return;
+            }
+            
             Clear();
             MediaFailed?.Invoke(sender.PlaybackSession, args);
         }
@@ -630,6 +650,34 @@ namespace Unigram.Services
             });
         }
 
+        private string GuessMimeTypeByFileEnding(Message message, string originalMetadataMimeType)
+        {
+            if (message.Content is MessageAudio audio && 
+                audio.Audio.FileName.LastIndexOf(".") is int index && index > 0 &&
+                audio.Audio.FileName.Substring(index + 1) is string fileExtension)
+            {
+                string mimeTypeShouldContain;
+                switch (fileExtension)
+                {
+                    case "mp2":
+                    case "mp3":
+                        mimeTypeShouldContain = "mpeg";
+                        break;
+                    case "m4a":
+                        mimeTypeShouldContain = "mp4";
+                        break;
+                    default:
+                        mimeTypeShouldContain = fileExtension;
+                        break;
+                }
+
+                if (!originalMetadataMimeType.Contains(mimeTypeShouldContain))
+                    return "audio/" + mimeTypeShouldContain;
+            }
+
+            return originalMetadataMimeType;
+        }
+
         private PlaybackItem GetPlaybackItem(Message message)
         {
             var token = $"{message.ChatId}_{message.Id}";
@@ -647,6 +695,9 @@ namespace Unigram.Services
             source.CustomProperties["message"] = message.Id;
             source.CustomProperties["chat"] = message.ChatId;
             source.CustomProperties["token"] = token;
+
+            if (GuessMimeTypeByFileEnding(message, mime) is string mimeGuessed && !mime.Equals(mimeGuessed))
+                source.CustomProperties["alternativeMimeTypeSource"] = MediaSource.CreateFromStream(stream, mimeGuessed);
 
             item.File = file;
             item.Message = message;
