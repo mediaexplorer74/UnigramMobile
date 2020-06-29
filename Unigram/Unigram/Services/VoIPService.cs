@@ -61,7 +61,51 @@ namespace Unigram.Services
             }
 
             aggregator.Subscribe(this);
+
+            _watcher = Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(Windows.Devices.Sensors.ProximitySensor.GetDeviceSelector());
+            _watcher.Added += OnProximitySensorAdded;
+            _watcher.Start();
         }
+
+        #region Proximity
+
+        private Windows.Devices.Sensors.ProximitySensor _sensor;
+        private Windows.Devices.Sensors.ProximitySensorDisplayOnOffController _displayController;
+        private Windows.Devices.Enumeration.DeviceWatcher _watcher;
+
+        /// <summary>
+        /// Invoked when the device watcher finds a proximity sensor
+        /// </summary>
+        /// <param name="sender">The device watcher</param>
+        /// <param name="device">Device information for the proximity sensor that was found</param>
+        private void OnProximitySensorAdded(Windows.Devices.Enumeration.DeviceWatcher sender, Windows.Devices.Enumeration.DeviceInformation device)
+        {
+            if (_sensor == null && Windows.Devices.Sensors.ProximitySensor.FromId(device.Id) is Windows.Devices.Sensors.ProximitySensor foundSensor)
+                _sensor = foundSensor;
+        }
+
+        private void EnableDisplayOnOffController()
+        {
+            if (_sensor != null && _displayController == null)
+            {
+                // Acquires the display on/off controller for this proximity sensor.
+                // This tells the system to use the sensor's IsDetected state to
+                // turn the screen on or off.  If the display does not support this
+                // feature, this code will do nothing.
+                _displayController = _sensor.CreateDisplayOnOffController();
+            }
+        }
+
+        private void DisableDisplayOnOffController()
+        {
+            if (_displayController != null)
+            {
+                _displayController.Dispose(); // closes the controller
+                _displayController = null;
+            }
+        }
+
+        #endregion
 
         public string CurrentAudioInput
         {
@@ -366,6 +410,7 @@ namespace Unigram.Services
 
                 _callPage.Update(call, started);
             });
+            EnableDisplayOnOffController();
         }
 
         private async void Hide()
@@ -392,6 +437,7 @@ namespace Unigram.Services
 
                 Aggregator.Publish(new UpdateCallDialog(_call, true));
             }
+            DisableDisplayOnOffController();
         }
 
         private void ApplicationView_Consolidated(ApplicationView sender, ApplicationViewConsolidatedEventArgs args)

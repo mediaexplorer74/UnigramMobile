@@ -109,6 +109,10 @@ namespace Unigram.Services
             _mapping = new Dictionary<string, PlaybackItem>();
 
             aggregator.Subscribe(this);
+
+            _watcher = Windows.Devices.Enumeration.DeviceInformation.CreateWatcher(ProximitySensor.GetDeviceSelector());
+            _watcher.Added += OnProximitySensorAdded;
+            _watcher.Start();
         }
 
         #region SystemMediaTransportControls
@@ -167,6 +171,11 @@ namespace Unigram.Services
                 {
                     _protoService.Send(new OpenMessageContent(message.ChatId, message.Id));
                 }
+
+                if (message.Content is MessageVoiceNote)
+                    EnableDisplayOnOffController();
+                else
+                    DisableDisplayOnOffController();
             }
         }
 
@@ -225,6 +234,7 @@ namespace Unigram.Services
                     break;
                 case MediaPlaybackState.None:
                     _transport.PlaybackStatus = MediaPlaybackStatus.Stopped;
+                    DisableDisplayOnOffController();
                     break;
             }
 
@@ -248,26 +258,39 @@ namespace Unigram.Services
         #region Proximity
 
         private ProximitySensor _sensor;
-        private ProximitySensorDisplayOnOffController _controller;
+        private ProximitySensorDisplayOnOffController _displayController;
+        private Windows.Devices.Enumeration.DeviceWatcher _watcher;
 
-        private async System.Threading.Tasks.Task AttachAsync()
+        /// <summary>
+        /// Invoked when the device watcher finds a proximity sensor
+        /// </summary>
+        /// <param name="sender">The device watcher</param>
+        /// <param name="device">Device information for the proximity sensor that was found</param>
+        private void OnProximitySensorAdded(Windows.Devices.Enumeration.DeviceWatcher sender, Windows.Devices.Enumeration.DeviceInformation device)
         {
-            if (ApiInfo.IsPhoneContractPresent)
-            {
-                var devices = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(ProximitySensor.GetDeviceSelector());
-                if (devices.Count > 0)
-                {
-                    _sensor = ProximitySensor.FromId(devices[0].Id);
-                    //_sensor.ReadingChanged += OnReadingChanged;
+            if (_sensor == null && ProximitySensor.FromId(device.Id) is ProximitySensor foundSensor)
+                _sensor = foundSensor;
+        }
 
-                    _controller = _sensor.CreateDisplayOnOffController();
-                }
+        private void EnableDisplayOnOffController()
+        {
+            if (_sensor != null && _displayController == null)
+            {
+                // Acquires the display on/off controller for this proximity sensor.
+                // This tells the system to use the sensor's IsDetected state to
+                // turn the screen on or off.  If the display does not support this
+                // feature, this code will do nothing.
+                _displayController = _sensor.CreateDisplayOnOffController();
             }
         }
 
-        private void OnReadingChanged(ProximitySensor sender, ProximitySensorReadingChangedEventArgs args)
+        private void DisableDisplayOnOffController()
         {
-            AudioRoutingManager.GetDefault().SetAudioEndpoint(args.Reading.IsDetected ? AudioRoutingEndpoint.Earpiece : AudioRoutingEndpoint.Speakerphone);
+            if (_displayController != null)
+            {
+                _displayController.Dispose(); // closes the controller
+                _displayController = null;
+            }
         }
 
         #endregion
@@ -453,6 +476,7 @@ namespace Unigram.Services
             if (_mediaPlayer.PlaybackSession.CanPause)
             {
                 _mediaPlayer.Pause();
+                DisableDisplayOnOffController();
             }
         }
 
