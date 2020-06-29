@@ -2516,6 +2516,7 @@ namespace Unigram.Views
             batch.End();
 
             ViewModel.ChatActionManager.SetTyping(btnVoiceMessage.IsChecked.Value ? (ChatAction)new ChatActionRecordingVideoNote() : new ChatActionRecordingVoiceNote());
+            Grid.SetColumnSpan(TextFieldPanel, 4);
         }
 
         private void VoiceButton_RecordingStopped(object sender, EventArgs e)
@@ -2568,6 +2569,8 @@ namespace Unigram.Views
                 _recordVisual.Offset = point;
             };
             batch.End();
+
+            Grid.SetColumnSpan(TextFieldPanel, _textFormattingCollapsed ? 2 : 4);
 
             ViewModel.ChatActionManager.CancelTyping();
 
@@ -3744,12 +3747,14 @@ namespace Unigram.Views
                 }
                 else
                 {
+                    FormattingViewer.Visibility = Visibility.Collapsed;
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
 
-                    //Grid.SetRow(btnAttach, show ? 2 : 1);
-                    //Grid.SetRow(ButtonsPanel, show ? 2 : 1);
-                    //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
+                    Grid.SetRow(btnAttach, 1);
+                    Grid.SetRow(ButtonsPanel, 1);
+                    Grid.SetColumnSpan(TextFieldPanel, 2);
+                    TextField.Padding = new Thickness(48, 4, 0, 6);
                 }
 
                 UpdateTextAreaRadius();
@@ -3782,12 +3787,14 @@ namespace Unigram.Views
             if (show)
             {
                 _textFormattingCollapsed = false;
+                FormattingViewer.Visibility = Visibility.Visible;
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
 
-                //Grid.SetRow(btnAttach, show ? 2 : 1);
-                //Grid.SetRow(ButtonsPanel, show ? 2 : 1);
-                //Grid.SetColumnSpan(TextFieldPanel, show ? 4 : 2);
+                Grid.SetRow(btnAttach, 2);
+                Grid.SetRow(ButtonsPanel, 2);
+                Grid.SetColumnSpan(TextFieldPanel, 4);
+                TextField.Padding = new Thickness(8, 4, 6, 6);
             }
             else
             {

@@ -1237,11 +1237,18 @@
                         Visibility="Collapsed"/>
                 </Grid>
 
-                <Border Grid.ColumnSpan="4" Grid.Row="2" HorizontalAlignment="Center">
-                    <chats:ChatTextFormatting
-                        x:Name="TextFormatting"
-                        TextBox="{x:Bind TextField}"
-                        Visibility="Collapsed"/>
+                <Border Grid.Column="1" Grid.Row="2">
+                    <ScrollViewer
+                        x:Name="FormattingViewer"
+                        Visibility="Collapsed"
+                        HorizontalAlignment="Center"
+                        HorizontalScrollBarVisibility="Auto">
+                        <chats:ChatTextFormatting
+                            x:Name="TextFormatting"
+                            TextBox="{x:Bind TextField}"
+                            Width="295"
+                            Visibility="Collapsed"/>
+                    </ScrollViewer>
                 </Border>
             </Grid>
         </ContentControl>
