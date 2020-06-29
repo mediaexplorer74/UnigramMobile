@@ -2608,6 +2608,10 @@ namespace Unigram.Views
 
             _slideVisual.Opacity = 0;
             _slideVisual.Offset = point;
+
+            point = _elapsedVisual.Offset;
+            point.Y = 0;
+            _elapsedVisual.Offset = point;
         }
 
         private void VoiceButton_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
