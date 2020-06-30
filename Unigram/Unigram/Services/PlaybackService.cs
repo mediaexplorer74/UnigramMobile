@@ -213,7 +213,8 @@ namespace Unigram.Services
 
         private void OnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
-            if (sender.Source is MediaSource source &&
+            if (ApiInfo.IsPhoneContractPresent && 
+                sender.Source is MediaSource source &&
                 source.CustomProperties.TryGet("alternativeMimeTypeSource", out MediaSource guessedMimeTypeSource) &&
                 guessedMimeTypeSource != null && CurrentPlayback.Source.Equals(source) &&
                 source.CustomProperties.TryGet("file", out int fileId) &&
@@ -696,7 +697,7 @@ namespace Unigram.Services
             source.CustomProperties["chat"] = message.ChatId;
             source.CustomProperties["token"] = token;
 
-            if (GuessMimeTypeByFileEnding(message, mime) is string mimeGuessed && !mime.Equals(mimeGuessed))
+            if (ApiInfo.IsPhoneContractPresent && GuessMimeTypeByFileEnding(message, mime) is string mimeGuessed && !mime.Equals(mimeGuessed))
                 source.CustomProperties["alternativeMimeTypeSource"] = MediaSource.CreateFromStream(stream, mimeGuessed);
 
             item.File = file;
