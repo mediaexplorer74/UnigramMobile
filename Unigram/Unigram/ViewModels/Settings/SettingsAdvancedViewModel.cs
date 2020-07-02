@@ -148,7 +148,7 @@ namespace Unigram.ViewModels.Settings
             {
             }
 #endif
-            public bool IsAdaptiveWideEnabled
+        public bool IsAdaptiveWideEnabled
         {
             get
             {
@@ -157,6 +157,18 @@ namespace Unigram.ViewModels.Settings
             set
             {
                 Settings.IsAdaptiveWideEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool PlayGifPreview
+        {
+            get
+            {
+                return Settings.PlayGifPreview;
+            }
+            set
+            {
+                Settings.PlayGifPreview = value;
                 RaisePropertyChanged();
             }
         }

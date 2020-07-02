@@ -36,6 +36,7 @@ namespace Unigram.Services
         bool UseThreeLinesLayout { get; set; }
         bool CollapseArchivedChats { get; set; }
         bool IsAdaptiveWideEnabled { get; set; }
+        bool PlayGifPreview { get; set; }
         bool IsTrayVisible { get; set; }
         bool IsLaunchMinimized { get; set; }
         bool IsSendByEnterEnabled { get; set; }
@@ -487,6 +488,23 @@ namespace Unigram.Services
             {
                 _isAdaptiveWideEnabled = value;
                 AddOrUpdateValue(_local, "IsAdaptiveWideEnabled", value);
+            }
+        }
+
+        private static bool? _playGifPreview;
+        public bool PlayGifPreview
+        {
+            get
+            {
+                if (_playGifPreview == null)
+                    _playGifPreview = GetValueOrDefault(_local, "PlayGifPreview", false);
+
+                return _playGifPreview ?? false;
+            }
+            set
+            {
+                _playGifPreview = value;
+                AddOrUpdateValue(_local, "PlayGifPreview", value);
             }
         }
 

@@ -81,6 +81,7 @@ namespace Unigram.Common
 
         public void LoadVisibleItems(bool intermediate)
         {
+            if (!Services.SettingsService.Current.PlayGifPreview) return;
             if (intermediate && _old.Count < 1)
             {
                 return;

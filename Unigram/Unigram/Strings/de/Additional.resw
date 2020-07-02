@@ -178,6 +178,10 @@
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>
   </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>Animierte GIF in GIF-Auswahl</value>
+    <comment>SettingsAdvancedPage</comment>
+  </data>
   <data name="AdaptiveWideSetting" xml:space="preserve">
     <value>Optimiertes Layout für breite Bildschirme</value>
     <comment>SettingsAdvancedPage</comment>
