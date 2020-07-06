@@ -221,14 +221,6 @@
     <value>Hareketli çıkartmaları oynat</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Yazım hatasını vurgulamayı kaldır</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Otomatik düzeltmeyi kaldır</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
     <value>Klasörleri Yukarıda Göster</value>
     <comment>FoldersPage</comment>
@@ -268,5 +260,25 @@
   <data name="SelectColorSystemAccent" xml:space="preserve">
     <value>Windows Vurgu Rengini Seçin</value>
     <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Proxy Olmadan Bağlan</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Yazım Denetimi</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Yanlış yazılan sözcükleri vurgula</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Yanlış yazılan sözcükleri otomatik düzelt</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>GIF Seçiminde GIF Önizlemelerini Oynat</value>
+    <comment>SettingsAdvancedPage</comment>
   </data>
 </root>
