@@ -117,6 +117,15 @@ namespace Unigram.Views
         {
             foreach (var item in _old.Values)
             {
+                if (item.MediaPlayerPresenter?.MediaPlayer != null)
+                {
+                    try
+                    {
+                        item.MediaPlayerPresenter.MediaPlayer.Dispose();
+                        item.MediaPlayerPresenter.MediaPlayer = null;
+                    }
+                    catch { }
+                }
                 var presenter = item.Presenter;
                 if (presenter != null /*&& presenter.MediaPlayer != null*/)
                 {
@@ -130,6 +139,14 @@ namespace Unigram.Views
                     try
                     {
                         item.Container.Children.Remove(presenter);
+                    }
+                    catch { }
+                }
+                if (item.MediaPlayerPresenter != null)
+                {
+                    try
+                    {
+                        item.Container.Children.Remove(item.MediaPlayerPresenter);
                     }
                     catch { }
                 }
@@ -268,9 +285,12 @@ namespace Unigram.Views
 
         class MediaPlayerItem
         {
+            private MediaPlayerView _mediaPlayerPresenter;
+
             public File File { get; set; }
             public Grid Container { get; set; }
             public AnimationView Presenter { get; set; }
+            public MediaPlayerView MediaPlayerPresenter { get => _mediaPlayerPresenter; set => _mediaPlayerPresenter = value; }
             public bool Watermark { get; set; }
             public bool Clip { get; set; }
         }
@@ -291,6 +311,7 @@ namespace Unigram.Views
             // If autoplay is enabled and the message contains a video note, then we want a different behavior
             if (ViewModel.Settings.IsAutoPlayAnimationsEnabled && (message.Content is MessageVideoNote || text?.WebPage != null && text.WebPage.Video != null))
             {
+                if (SettingsService.Current.Diagnostics.SoftwareDecoderEnabled) //TODO: Make audio and video playable like in other clients: together & control on top...
                 ViewModel.PlaybackService.Enqueue(message.Get());
                 //if (_old.TryGetValue(message.Id, out MediaPlayerItem item))
                 //{
@@ -333,6 +354,48 @@ namespace Unigram.Views
                 //        item.Presenter.MediaPlayer.Pause();
                 //    }
                 //}
+                if (_old.TryGetValue(message.Id, out MediaPlayerItem item))
+                {
+                    if (item.MediaPlayerPresenter?.MediaPlayer == null)
+                    {
+                        return;
+                    }
+
+                    // If the video player is muted, then let's play the video again with audio turned on
+                    if (item.MediaPlayerPresenter.MediaPlayer.IsMuted)
+                    {
+                        //TypedEventHandler<Windows.Media.Playback.MediaPlayer, object> handler = null;
+                        //handler = (player, args) =>
+                        //{
+                        //    player.MediaEnded -= handler;
+                        //    player.IsMuted = true;
+                        //    player.IsLoopingEnabled = true;
+                        //    player.Play();
+                        //};
+
+                        //item.MediaPlayerPresenter.MediaPlayer.MediaEnded += handler; //TODO: Play next video message and scroll to that one
+                        item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
+                        item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
+                        item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.Position = TimeSpan.Zero;
+
+                        // Mark it as viewed if needed
+                        if (message.Content is MessageVideoNote videoNote && !message.IsOutgoing && !videoNote.IsViewed)
+                        {
+                            ViewModel.ProtoService.Send(new OpenMessageContent(message.ChatId, message.Id));
+                        }
+                    }
+                    // If the video player is paused, then resume playback
+                    else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
+                    {
+                        item.MediaPlayerPresenter.MediaPlayer.Play();
+                        //TODO: Pause all other video messages
+                    }
+                    // And last, if the video player can be pause, then pause it
+                    else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.CanPause)
+                    {
+                        item.MediaPlayerPresenter.MediaPlayer.Pause();
+                    }
+                }
             }
             else if (ViewModel.Settings.IsAutoPlayAnimationsEnabled && (message.Content is MessageAnimation || (text?.WebPage != null && text.WebPage.Animation != null) || (message.Content is MessageGame game && game.Game.Animation != null)))
             {
@@ -463,16 +526,20 @@ namespace Unigram.Views
             foreach (var item in _old.Keys.Except(news.Keys).ToList())
             {
                 var presenter = _old[item].Presenter;
-                //if (presenter != null && presenter.MediaPlayer != null)
-                //{
-                //    presenter.MediaPlayer.Dispose();
-                //    presenter.MediaPlayer = null;
-                //}
+                if (_old[item].MediaPlayerPresenter?.MediaPlayer != null)
+                {
+                    _old[item].MediaPlayerPresenter.MediaPlayer.Dispose();
+                    _old[item].MediaPlayerPresenter.MediaPlayer = null;
+                }
 
                 var container = _old[item].Container;
                 if (container != null && presenter != null)
                 {
                     container.Children.Remove(presenter);
+                }
+                if (container != null && _old[item].MediaPlayerPresenter != null)
+                {
+                    container.Children.Remove(_old[item].MediaPlayerPresenter);
                 }
 
                 _old.Remove(item);
@@ -492,6 +559,8 @@ namespace Unigram.Views
 
                 if (news.TryGetValue(item, out MediaPlayerItem data) && data.Container != null && data.Container.Children.Count < 5)
                 {
+                    if (SettingsService.Current.Diagnostics.SoftwareDecoderEnabled)
+                    {
                     var presenter = new AnimationView();
                     presenter.AutoPlay = true;
                     presenter.IsLoopingEnabled = true;
@@ -519,6 +588,26 @@ namespace Unigram.Views
                     //container.Children.Add(presenter);
 
                     data.Container.Children.Add(presenter);
+                    }
+                    else
+                    {
+                        var player = new Windows.Media.Playback.MediaPlayer
+                        {
+                            AutoPlay = true,
+                            IsMuted = !audio,
+                            IsLoopingEnabled = true,
+                            Source = Windows.Media.Core.MediaSource.CreateFromUri(UriEx.GetLocal(data.File.Local.Path))
+                        };
+                        player.CommandManager.IsEnabled = false;
+
+                        var presenter = new MediaPlayerView
+                        {
+                            MediaPlayer = player
+                        };
+
+                        data.MediaPlayerPresenter = presenter;
+                        data.Container.Children.Add(presenter);
+                    }
                 }
 
                 _old[item] = news[item];

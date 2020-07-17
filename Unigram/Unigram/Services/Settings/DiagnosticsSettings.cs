@@ -7,6 +7,23 @@
         {
         }
 
+        private bool? _softwareDecoderEnabled;
+        public bool SoftwareDecoderEnabled
+        {
+            get
+            {
+                if (_softwareDecoderEnabled == null)
+                    _softwareDecoderEnabled = GetValueOrDefault("SoftwareDecoderEnabled", false);
+
+                return _softwareDecoderEnabled ?? false;
+            }
+            set
+            {
+                _softwareDecoderEnabled = value;
+                AddOrUpdateValue("SoftwareDecoderEnabled", value);
+            }
+        }
+
         private bool? _fastAnimationsEnabled;
         public bool FastAnimationsEnabled
         {
