@@ -27,7 +27,7 @@ namespace Unigram.Common
 
         [ThreadStatic]
         private static LoopThread _animations;
-        public static LoopThread Animations => _animations = _animations ?? new LoopThread(TimeSpan.FromMilliseconds(1000 / 30));
+        public static LoopThread Animations => _animations = _animations ?? new LoopThread(TimeSpan.FromMilliseconds(1000 / 25));
 
         [ThreadStatic]
         private static LoopThread _stickers;
