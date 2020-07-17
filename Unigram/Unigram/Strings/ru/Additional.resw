@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Адаптивная раскладка для широкого экрана</value>
+    <value>Адаптировать для широкого экрана</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="CallSettingInput" xml:space="preserve">
-    <value>Устройство ввода</value>
+    <value>Устройство</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingInputTitle" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingsTitle" xml:space="preserve">
-    <value>Настройки вызова</value>
+    <value>Настройки звонков</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="Chats" xml:space="preserve">
@@ -191,7 +191,7 @@
     <value>Повторить</value>
   </data>
   <data name="ReplaceEmoji" xml:space="preserve">
-    <value>Заменить emoji</value>
+    <value>Заменить эмодзи</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SaveAs" xml:space="preserve">
@@ -204,15 +204,11 @@
     <value>Выбрать все</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
-    <value>Показать кнопки форматирования</value>
+    <value>Кнопки форматирования</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ShowInFolder" xml:space="preserve">
     <value>Открыть папку с файлом</value>
-  </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Светлая</value>
-    <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Системная</value>
@@ -222,15 +218,67 @@
     <value>Отменить</value>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
-    <value>Воспроизводить анимированные стикеры</value>
+    <value>Воспроизводить стикеры</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Не выделять ошибки</value>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>Папки сверху</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>Папки слева</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>Вид папок</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>Если у вас много папок, переместите их влево</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>Остальные чаты</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
+  <data name="ShareRemoveCaptions" xml:space="preserve">
+    <value>Удалить заголовки в копиях медиафайлов</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsCopy" xml:space="preserve">
+    <value>Отправить копию</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsAlbum" xml:space="preserve">
+    <value>Отправить альбом</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>Размер меню папок</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>Системный цвет</value>
+    <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Без прокси</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Печатает</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Отключить автокоррекцию</value>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Выделять слова с ошибками</value>
     <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Исправлять слова с ошибками</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>Анимировать GIF при выделении</value>
+    <comment>SettingsAdvancedPage</comment>
   </data>
 </root>
