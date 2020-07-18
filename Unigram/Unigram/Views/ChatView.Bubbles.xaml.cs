@@ -362,7 +362,18 @@ namespace Unigram.Views
                     // If the video player is muted, then let's play the video again with audio turned on
                     if (item.MediaPlayerPresenter.MediaPlayer.IsMuted)
                     {
-                        //item.MediaPlayerPresenter.MediaPlayer.MediaEnded += handler; //TODO: Play next video message and scroll to that one
+                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                        {
+                            mutedIcon.Visibility = Visibility.Collapsed;
+                            TypedEventHandler<Windows.Media.Playback.MediaPlayer, object> handler = async (player, args) =>
+                            {
+                                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                {
+                                    mutedIcon.Visibility = Visibility.Visible;
+                                });
+                            };
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += handler; //TODO: Play next video message and scroll to that one
+                        }
                         item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
                         item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
                         item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.Position = TimeSpan.Zero;
@@ -372,8 +383,6 @@ namespace Unigram.Views
                         {
                             ViewModel.ProtoService.Send(new OpenMessageContent(message.ChatId, message.Id));
                         }
-                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
-                            mutedIcon.Visibility = Visibility.Collapsed;
                     }
                     // If the video player is paused, then resume playback
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
