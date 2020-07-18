@@ -290,9 +290,25 @@ namespace Unigram.Views
             public File File { get; set; }
             public Grid Container { get; set; }
             public AnimationView Presenter { get; set; }
-            public MediaPlayerView MediaPlayerPresenter { get => _mediaPlayerPresenter; set => _mediaPlayerPresenter = value; }
+            public MediaPlayerView MediaPlayerPresenter { get => _mediaPlayerPresenter; set { _mediaPlayerPresenter = value; AttachMediaPlayerIsMuteChangedEvent(value); } }
             public bool Watermark { get; set; }
             public bool Clip { get; set; }
+
+            //
+            // Summary:
+            //     Occurs when the current muted status of the MediaPlayer changes.
+            public event TypedEventHandler<Windows.Media.Playback.MediaPlayer, MediaPlayerItem> IsMutedChanged;
+
+            private void AttachMediaPlayerIsMuteChangedEvent(MediaPlayerView mpv)
+            {
+                if (mpv?.MediaPlayer is Windows.Media.Playback.MediaPlayer player)
+                    player.IsMutedChanged += (mplayer, args) =>
+                   {
+                       var isMutedChangedEvent = IsMutedChanged;
+                       if (isMutedChangedEvent != null)
+                           IsMutedChanged(mplayer, this);
+                   };
+            }
         }
 
         class LottieViewItem
@@ -607,6 +623,32 @@ namespace Unigram.Views
 
                         data.MediaPlayerPresenter = presenter;
                         data.Container.Children.Add(presenter);
+
+                        data.IsMutedChanged += async (mplayer, mplayerItem) =>
+                        {
+                            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                            //var mutedIcon = new StackPanel
+                            //{
+                            //    Height = 30,
+                            //    Width = 30,
+                            //    Margin = new Thickness(3),
+                            //    CornerRadius = new CornerRadius(100),
+                            //    VerticalAlignment = VerticalAlignment.Top,
+                            //    Background = (Windows.UI.Xaml.Media.SolidColorBrush)Resources["MessageOverlayBackgroundBrush"]
+                            //};
+                            //var mutedSymbol = new SymbolIcon
+                            //{
+                            //    Height = 30,
+                            //    Width = 30,
+                            //    Symbol = Symbol.Mute,
+                            //    Foreground = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.White)
+                            //};
+                            //mutedIcon.Children.Add(mutedSymbol);
+                            //mplayerItem.Container.Children.Add(mutedIcon);
+                                if (mplayerItem.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                                    mutedIcon.Visibility = mplayer.IsMuted ? Visibility.Visible : Visibility.Collapsed;
+                            });
+                        };
                     }
                 }
 

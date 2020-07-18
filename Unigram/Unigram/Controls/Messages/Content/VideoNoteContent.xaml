@@ -26,6 +26,9 @@
     <!-- TODO: future, remove this and use CompositionGeometricClip
          when most more desktop users will be on RS5 -->
     <Grid x:Name="Presenter" CornerRadius="100"/>
+    <StackPanel x:Name="MutedIcon" Background="{ThemeResource MessageOverlayBackgroundBrush}" CornerRadius="100" Width="30" VerticalAlignment="Top" Margin="3">
+        <SymbolIcon Symbol="Mute" Foreground="White" Width="30" Height="30" />
+    </StackPanel>
 
     <Border x:Name="Overlay" IsHitTestVisible="False" Background="{ThemeResource MessageServiceBackgroundBrush}" CornerRadius="{ThemeResource MessageOverlayCornerRadius}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="8,4,8,4" Margin="4">
         <TextBlock x:Name="Subtitle" Style="{StaticResource CaptionTextBlockStyle}" Foreground="White" TextAlignment="Right"/>
