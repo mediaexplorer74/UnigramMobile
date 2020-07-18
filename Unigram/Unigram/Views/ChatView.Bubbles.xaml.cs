@@ -285,30 +285,12 @@ namespace Unigram.Views
 
         class MediaPlayerItem
         {
-            private MediaPlayerView _mediaPlayerPresenter;
-
             public File File { get; set; }
             public Grid Container { get; set; }
             public AnimationView Presenter { get; set; }
-            public MediaPlayerView MediaPlayerPresenter { get => _mediaPlayerPresenter; set { _mediaPlayerPresenter = value; AttachMediaPlayerIsMuteChangedEvent(value); } }
+            public MediaPlayerView MediaPlayerPresenter { get; set; }
             public bool Watermark { get; set; }
             public bool Clip { get; set; }
-
-            //
-            // Summary:
-            //     Occurs when the current muted status of the MediaPlayer changes.
-            public event TypedEventHandler<Windows.Media.Playback.MediaPlayer, MediaPlayerItem> IsMutedChanged;
-
-            private void AttachMediaPlayerIsMuteChangedEvent(MediaPlayerView mpv)
-            {
-                if (mpv?.MediaPlayer is Windows.Media.Playback.MediaPlayer player)
-                    player.IsMutedChanged += (mplayer, args) =>
-                   {
-                       var isMutedChangedEvent = IsMutedChanged;
-                       if (isMutedChangedEvent != null)
-                           IsMutedChanged(mplayer, this);
-                   };
-            }
         }
 
         class LottieViewItem
@@ -390,20 +372,24 @@ namespace Unigram.Views
                         {
                             ViewModel.ProtoService.Send(new OpenMessageContent(message.ChatId, message.Id));
                         }
+                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                            mutedIcon.Visibility = Visibility.Collapsed;
                     }
                     // If the video player is paused, then resume playback
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
                     {
                         item.MediaPlayerPresenter.MediaPlayer.Play();
                         //TODO: Pause all other video messages
+                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                            mutedIcon.Visibility = Visibility.Collapsed;
                     }
                     // And last, if the video player can be pause, then pause it
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.CanPause)
                     {
                         item.MediaPlayerPresenter.MediaPlayer.Pause();
                         // Note: UWP has no event or public player state property, so it gets hardcoded:
-                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIconInit)
-                            mutedIconInit.Visibility = Visibility.Visible;
+                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                            mutedIcon.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -618,16 +604,8 @@ namespace Unigram.Views
                         data.MediaPlayerPresenter = presenter;
                         data.Container.Children.Add(presenter);
 
-                        if (data.Container.FindName("MutedIcon") is StackPanel mutedIconInit)
-                            mutedIconInit.Visibility = Visibility.Visible;
-
-                        data.IsMutedChanged += async (mplayer, mplayerItem) =>
-                        {
-                            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
-                                if (mplayerItem.Container.FindName("MutedIcon") is StackPanel mutedIcon)
-                                    mutedIcon.Visibility = mplayer.IsMuted ? Visibility.Visible : Visibility.Collapsed;
-                            });
-                        };
+                        if (data.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                            mutedIcon.Visibility = Visibility.Visible;
                     }
                 }
 
