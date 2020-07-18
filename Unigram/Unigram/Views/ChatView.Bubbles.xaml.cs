@@ -380,15 +380,6 @@ namespace Unigram.Views
                     // If the video player is muted, then let's play the video again with audio turned on
                     if (item.MediaPlayerPresenter.MediaPlayer.IsMuted)
                     {
-                        //TypedEventHandler<Windows.Media.Playback.MediaPlayer, object> handler = null;
-                        //handler = (player, args) =>
-                        //{
-                        //    player.MediaEnded -= handler;
-                        //    player.IsMuted = true;
-                        //    player.IsLoopingEnabled = true;
-                        //    player.Play();
-                        //};
-
                         //item.MediaPlayerPresenter.MediaPlayer.MediaEnded += handler; //TODO: Play next video message and scroll to that one
                         item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
                         item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
@@ -410,6 +401,9 @@ namespace Unigram.Views
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.CanPause)
                     {
                         item.MediaPlayerPresenter.MediaPlayer.Pause();
+                        // Note: UWP has no event or public player state property, so it gets hardcoded:
+                        if (item.Container.FindName("MutedIcon") is StackPanel mutedIconInit)
+                            mutedIconInit.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -624,27 +618,12 @@ namespace Unigram.Views
                         data.MediaPlayerPresenter = presenter;
                         data.Container.Children.Add(presenter);
 
+                        if (data.Container.FindName("MutedIcon") is StackPanel mutedIconInit)
+                            mutedIconInit.Visibility = Visibility.Visible;
+
                         data.IsMutedChanged += async (mplayer, mplayerItem) =>
                         {
                             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
-                            //var mutedIcon = new StackPanel
-                            //{
-                            //    Height = 30,
-                            //    Width = 30,
-                            //    Margin = new Thickness(3),
-                            //    CornerRadius = new CornerRadius(100),
-                            //    VerticalAlignment = VerticalAlignment.Top,
-                            //    Background = (Windows.UI.Xaml.Media.SolidColorBrush)Resources["MessageOverlayBackgroundBrush"]
-                            //};
-                            //var mutedSymbol = new SymbolIcon
-                            //{
-                            //    Height = 30,
-                            //    Width = 30,
-                            //    Symbol = Symbol.Mute,
-                            //    Foreground = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.White)
-                            //};
-                            //mutedIcon.Children.Add(mutedSymbol);
-                            //mplayerItem.Container.Children.Add(mutedIcon);
                                 if (mplayerItem.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                                     mutedIcon.Visibility = mplayer.IsMuted ? Visibility.Visible : Visibility.Collapsed;
                             });
