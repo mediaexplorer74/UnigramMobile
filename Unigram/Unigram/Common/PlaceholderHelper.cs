@@ -482,6 +482,51 @@ namespace Unigram.Common
             return WebPImage.DecodeFromPath(path);
         }
 
+        public static async System.Threading.Tasks.Task<ImageSource> GeFirstFrameAsync(string filePath)
+        {
+            var originalFile = await Windows.Storage.StorageFile.GetFileFromPathAsync(filePath);
+            var cacheDirectory = await originalFile.GetParentAsync();
+            var fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+            const string fileExtension = ".jpg";
+
+            // Thumbnail already cached?
+            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile thumbnail))
+                return new BitmapImage(new Uri(thumbnail.Path));
+            else
+            {
+                //Note: copy file, as GetThumbnailAsync only works for public folders; this seems to be a workaround for now (only works for newly copied files)
+                var copiedFile = await originalFile.CopyAsync(Windows.Storage.ApplicationData.Current.TemporaryFolder, fileName, Windows.Storage.NameCollisionOption.GenerateUniqueName);
+                try
+                {
+                    using (var stream = await copiedFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem))
+                    {
+                        var saveFile = await cacheDirectory.CreateFileAsync(fileName + fileExtension, Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                        var inputBuffer = new Windows.Storage.Streams.Buffer(2048);
+
+                        using (var destFileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
+                        {
+                            IBuffer buf;
+                            while ((buf = (await stream.ReadAsync(inputBuffer, inputBuffer.Capacity, InputStreamOptions.None))).Length > 0)
+                                await destFileStream.WriteAsync(buf);
+                        }
+
+                        var bitmap = new BitmapImage();
+                        bitmap.SetSource(stream);
+
+                        return bitmap;
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                finally
+                {
+                    await copiedFile?.DeleteAsync();
+                }
+            }
+        }
+
         public static ImageSource GetLottieFrame(string path, int frame, int width, int height, bool webp = true)
         {
             var animation = LottieAnimation.LoadFromFile(path, false, null);
