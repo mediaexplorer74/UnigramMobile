@@ -38,6 +38,7 @@
                 </Path.Data>
             </Path>
         </contract7NotPresent:Canvas>
+        <controls:RadialProgressBar x:Name="Progress" Minimum="0" Thickness="3" Outline="Transparent" Foreground="WhiteSmoke" Tapped="Progress_Tapped" MaxWidth="200"/>
     </Grid>
     
     <StackPanel x:Name="MutedIcon" Background="{ThemeResource MessageOverlayBackgroundBrush}" CornerRadius="100" Width="30" VerticalAlignment="Top" Margin="3">

@@ -201,5 +201,10 @@ namespace Unigram.Controls.Messages.Content
                 _message.Delegate.OpenMedia(_message, this);
             }
         }
+
+        private void Progress_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            Button_Click(sender, e);
+        }
     }
 }

@@ -360,24 +360,36 @@ namespace Unigram.Views
                     }
 
                     // If the video player is muted, then let's play the video again with audio turned on
-                    if (item.MediaPlayerPresenter.MediaPlayer.IsMuted)
+                    if (item.MediaPlayerPresenter.MediaPlayer.IsMuted && item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState != Windows.Media.Playback.MediaPlaybackState.Paused)
                     {
                         if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                         {
                             mutedIcon.Visibility = Visibility.Collapsed;
-                            TypedEventHandler<Windows.Media.Playback.MediaPlayer, object> handler = async (player, args) =>
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += async (player, args) =>
                             {
                                 player.IsMuted = true;
+                                if (player.PlaybackSession.CanPause)
+                                    player.Pause();
                                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                 {
                                     mutedIcon.Visibility = Visibility.Visible;
                                 });
-                            };
-                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += handler; //TODO: Play next video message and scroll to that one
+                            }; //TODO: Play next video message and scroll to that one
                         }
                         item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
                         item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
                         item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.Position = TimeSpan.Zero;
+                        item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged += async (Windows.Media.Playback.MediaPlaybackSession session, object args) =>
+                        {
+                            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                if (item.Container.FindName("Progress") is RadialProgressBar progress)
+                                {
+                                    progress.Maximum = session.NaturalDuration.TotalSeconds;
+                                    progress.Value = session.Position.TotalSeconds;
+                                }
+                            });
+                        };
 
                         // Mark it as viewed if needed
                         if (message.Content is MessageVideoNote videoNote && !message.IsOutgoing && !videoNote.IsViewed)
@@ -388,6 +400,7 @@ namespace Unigram.Views
                     // If the video player is paused, then resume playback
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
                     {
+                        item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
                         item.MediaPlayerPresenter.MediaPlayer.Play();
                         //TODO: Pause all other video messages
                         if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
