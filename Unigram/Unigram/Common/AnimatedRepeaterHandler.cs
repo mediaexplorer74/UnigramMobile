@@ -81,7 +81,6 @@ namespace Unigram.Common
 
         public void LoadVisibleItems(bool intermediate)
         {
-            if (!Services.SettingsService.Current.IsAutoPlayAnimationsEnabled || !Services.SettingsService.Current.Diagnostics.PlayGifPreview) return;
             if (intermediate && _old.Count < 1)
             {
                 return;
@@ -269,7 +268,7 @@ namespace Unigram.Common
                 if (news.TryGetValue(item, out MediaPlayerItem data) && data.Container != null && data.Container.Children.Count < 2)
                 {
                     var presenter = new AnimationView();
-                    presenter.AutoPlay = true;
+                    presenter.AutoPlay = Services.SettingsService.Current.IsAutoPlayAnimationsEnabled && Services.SettingsService.Current.Diagnostics.PlayGifPreview;
                     presenter.IsLoopingEnabled = true;
                     presenter.Source = UriEx.GetLocal(data.File.Local.Path);
 

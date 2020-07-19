@@ -145,6 +145,12 @@ namespace Unigram.Controls
                 _bitmap = CanvasBitmap.CreateFromBytes(sender, _reusableBuffer, _animation.PixelWidth, _animation.PixelHeight, DirectXPixelFormat.R8G8B8A8UIntNormalized);
                 _device = sender;
 
+                // Invalidate to render the first frame
+                if (!_subscribed)
+                {
+                    Invalidate();
+                    _canvas?.Invalidate();
+                }
             }).AsAsyncAction());
         }
 
