@@ -3805,7 +3805,7 @@ namespace Unigram.Views
 
             if (show)
             {
-                TextField.Padding = new Thickness(8, 4, 6, 6);
+                TextField.Padding = new Thickness(10, 4, 10, 6);
                 _textFormattingCollapsed = false;
                 FormattingViewer.Visibility = Visibility.Visible;
                 TextFormatting.Visibility = Visibility.Visible;
