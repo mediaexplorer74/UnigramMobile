@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract, 7)"
     d:DesignHeight="200"
     d:DesignWidth="200"
     MinWidth="{ThemeResource TelegramMediaMinWidth}"
@@ -14,18 +15,31 @@
     MaxWidth="{ThemeResource TelegramMediaMaxWidth}"
     MaxHeight="{ThemeResource TelegramMediaMaxHeight}">
 
-    <Ellipse x:Name="Holder">
-        <Ellipse.Fill>
-            <ImageBrush x:Name="Texture" Stretch="UniformToFill"/>
-        </Ellipse.Fill>
-    </Ellipse>
+    <Grid Name="OldSDK" Background="{ThemeResource MessageBackgroundBrush}">
+        <Ellipse x:Name="Holder" MaxWidth="200">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="Texture" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
 
-    <controls:FileButton x:Name="Button" Click="Button_Click" Style="{StaticResource ImmersiveFileButtonStyle}"/>
+        <controls:FileButton x:Name="Button" Click="Button_Click" Style="{StaticResource ImmersiveFileButtonStyle}"/>
 
-    <!-- Used to host the MediaPlayer -->
-    <!-- TODO: future, remove this and use CompositionGeometricClip
+        <!-- Used to host the MediaPlayer -->
+        <!-- TODO: future, remove this and use CompositionGeometricClip
          when most more desktop users will be on RS5 -->
-    <Grid x:Name="Presenter" CornerRadius="100"/>
+        <Grid x:Name="Presenter" CornerRadius="100" MaxWidth="200" />
+        <contract7NotPresent:Canvas MaxWidth="200">
+            <Path Fill="{ThemeResource MessageBackgroundBrush}">
+                <Path.Data>
+                    <GeometryGroup FillRule="EvenOdd">
+                        <RectangleGeometry Rect="0,0,200,200" />
+                        <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100" />
+                    </GeometryGroup>
+                </Path.Data>
+            </Path>
+        </contract7NotPresent:Canvas>
+    </Grid>
+    
     <StackPanel x:Name="MutedIcon" Background="{ThemeResource MessageOverlayBackgroundBrush}" CornerRadius="100" Width="30" VerticalAlignment="Top" Margin="3">
         <SymbolIcon Symbol="Mute" Foreground="White" Width="30" Height="30" />
     </StackPanel>

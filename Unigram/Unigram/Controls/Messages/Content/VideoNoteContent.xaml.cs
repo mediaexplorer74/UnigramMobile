@@ -17,6 +17,14 @@ namespace Unigram.Controls.Messages.Content
         {
             InitializeComponent();
             UpdateMessage(message);
+
+            if (ApiInfo.IsUniversalApiContract7Present)
+            {
+                OldSDK.Background = null;
+            } else
+            {
+                OldSDK.CornerRadius = new CornerRadius(Services.SettingsService.Current.Appearance.BubbleRadius);
+            }
         }
 
         public void UpdateMessage(MessageViewModel message)

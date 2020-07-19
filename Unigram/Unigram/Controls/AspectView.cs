@@ -236,7 +236,7 @@ namespace Unigram.Controls
             }
             else if (constraint is VideoNote videoNote)
             {
-                width = 200;
+                width = ApiInfo.IsUniversalApiContract7Present ? 200 : 240;
                 height = 200;
             }
             else if (constraint is WebPage webPage)

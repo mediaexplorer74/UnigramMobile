@@ -367,6 +367,7 @@ namespace Unigram.Views
                             mutedIcon.Visibility = Visibility.Collapsed;
                             TypedEventHandler<Windows.Media.Playback.MediaPlayer, object> handler = async (player, args) =>
                             {
+                                player.IsMuted = true;
                                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                 {
                                     mutedIcon.Visibility = Visibility.Visible;
