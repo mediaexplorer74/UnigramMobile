@@ -360,12 +360,37 @@ namespace Unigram.Views
                     }
 
                     // If the video player is muted, then let's play the video again with audio turned on
-                    if (item.MediaPlayerPresenter.MediaPlayer.IsMuted && item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState != Windows.Media.Playback.MediaPlaybackState.Paused)
+                    if (item.MediaPlayerPresenter.MediaPlayer.IsMuted)
                     {
+                        item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
+                        item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
+                        item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.Position = TimeSpan.Zero;
+                        PauseAllOtherVideoNotes(message.Id);
+
+                        // Mark it as viewed if needed
+                        if (message.Content is MessageVideoNote videoNote && !message.IsOutgoing && !videoNote.IsViewed)
+                        {
+                            ViewModel.ProtoService.Send(new OpenMessageContent(message.ChatId, message.Id));
+                        }
+
+                        if (item.Container.FindName("Progress") is RadialProgressBar progress)
+                        {
+                            progress.Maximum = item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.NaturalDuration.TotalSeconds;
+                            async void progressHandler(Windows.Media.Playback.MediaPlaybackSession session, object args)
+                            {
+                                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                {
+                                    progress.Value = session.Position.TotalSeconds;
+                                });
+                            }
+                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged -= progressHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged += progressHandler;
+                        }
+                        // MediaEnded
                         if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                         {
                             mutedIcon.Visibility = Visibility.Collapsed;
-                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += async (player, args) =>
+                            async void mediaEndedHandler(Windows.Media.Playback.MediaPlayer player, object args)
                             {
                                 player.IsMuted = true;
                                 if (player.PlaybackSession.CanPause)
@@ -374,35 +399,21 @@ namespace Unigram.Views
                                 {
                                     mutedIcon.Visibility = Visibility.Visible;
                                 });
-                            }; //TODO: Play next video message and scroll to that one
+                                //TODO: Play next media content and scroll to that one
+                            }
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded -= mediaEndedHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += mediaEndedHandler;
                         }
-                        item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
-                        item.MediaPlayerPresenter.MediaPlayer.IsLoopingEnabled = false;
-                        item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.Position = TimeSpan.Zero;
-                        item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged += async (Windows.Media.Playback.MediaPlaybackSession session, object args) =>
-                        {
-                            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            {
-                                if (item.Container.FindName("Progress") is RadialProgressBar progress)
-                                {
-                                    progress.Maximum = session.NaturalDuration.TotalSeconds;
-                                    progress.Value = session.Position.TotalSeconds;
-                                }
-                            });
-                        };
 
-                        // Mark it as viewed if needed
-                        if (message.Content is MessageVideoNote videoNote && !message.IsOutgoing && !videoNote.IsViewed)
-                        {
-                            ViewModel.ProtoService.Send(new OpenMessageContent(message.ChatId, message.Id));
-                        }
+                        if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
+                            item.MediaPlayerPresenter.MediaPlayer.Play();
                     }
                     // If the video player is paused, then resume playback
                     else if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
                     {
                         item.MediaPlayerPresenter.MediaPlayer.IsMuted = false;
                         item.MediaPlayerPresenter.MediaPlayer.Play();
-                        //TODO: Pause all other video messages
+                        PauseAllOtherVideoNotes(message.Id);
                         if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                             mutedIcon.Visibility = Visibility.Collapsed;
                     }
@@ -437,6 +448,22 @@ namespace Unigram.Views
                 else
                 {
                     Play(new[] { message }, true, true);
+                }
+            }
+        }
+
+        private void PauseAllOtherVideoNotes(long messageId)
+        {
+            foreach (var item in _old)
+            {
+                if (item.Key != messageId &&
+                    item.Value.MediaPlayerPresenter?.MediaPlayer is Windows.Media.Playback.MediaPlayer player &&
+                    item.Value.Container.FindName("MutedIcon") is StackPanel mutedIcon)
+                {
+                    player.IsMuted = true;
+                    if (player.PlaybackSession.CanPause)
+                        player.Pause();
+                    mutedIcon.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -629,6 +656,8 @@ namespace Unigram.Views
 
                         if (data.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                             mutedIcon.Visibility = Visibility.Visible;
+                        if (data.Container.FindName("Progress") is RadialProgressBar progress)
+                            progress.Value = 0;
                     }
                 }
 
