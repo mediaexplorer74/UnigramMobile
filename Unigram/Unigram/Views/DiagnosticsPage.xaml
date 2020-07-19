@@ -31,10 +31,10 @@
                 </controls:HeaderedControl>
                 
                 <controls:HeaderedControl
-                    Header="For Desktop">
+                    Header="For Desktop Only (Crashes on Mobile)">
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.SoftwareDecoderEnabled, Mode=TwoWay}"
-                        Header="Enable Software Decoder for Animations"
+                        Header="Enable Software Decoder in Chat for Animations and Videos"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.FastAnimationsEnabled, Mode=TwoWay}"
@@ -43,6 +43,10 @@
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.AnimateStickersInPanel, Mode=TwoWay}"
                         Header="Play Stickers in Stickers Panel"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.PlayGifPreview, Mode=TwoWay}"
+                        Header="{CustomResource Additional.PlayGifPreview}"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.ShowFilesInFolder, Mode=TwoWay}"

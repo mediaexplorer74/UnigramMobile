@@ -119,7 +119,7 @@
   </resheader>
   <data name="PlayGifPreview" xml:space="preserve">
     <value>Play GIF previews on GIF selection</value>
-    <comment>SettingsAdvancedPage</comment>
+    <comment>DiagnosticsPage</comment>
   </data>
   <data name="AdaptiveWideSetting" xml:space="preserve">
     <value>Adaptive Layout for Wide Screens</value>

@@ -160,18 +160,6 @@ namespace Unigram.ViewModels.Settings
                 RaisePropertyChanged();
             }
         }
-        public bool PlayGifPreview
-        {
-            get
-            {
-                return Settings.PlayGifPreview;
-            }
-            set
-            {
-                Settings.PlayGifPreview = value;
-                RaisePropertyChanged();
-            }
-        }
 
         public bool PreferIpv6
         {

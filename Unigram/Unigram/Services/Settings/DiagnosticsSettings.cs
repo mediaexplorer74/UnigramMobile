@@ -58,6 +58,23 @@
             }
         }
 
+        private static bool? _playGifPreview;
+        public bool PlayGifPreview
+        {
+            get
+            {
+                if (_playGifPreview == null)
+                    _playGifPreview = GetValueOrDefault("PlayGifPreview", false);
+
+                return _playGifPreview ?? false;
+            }
+            set
+            {
+                _playGifPreview = value;
+                AddOrUpdateValue("PlayGifPreview", value);
+            }
+        }
+
         private bool? _showFilesInFolder;
         public bool ShowFilesInFolder
         {

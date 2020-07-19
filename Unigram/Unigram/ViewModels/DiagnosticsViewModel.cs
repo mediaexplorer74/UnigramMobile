@@ -133,6 +133,19 @@ namespace Unigram.ViewModels
             }
         }
 
+        public bool PlayGifPreview
+        {
+            get
+            {
+                return Settings.Diagnostics.PlayGifPreview;
+            }
+            set
+            {
+                Settings.Diagnostics.PlayGifPreview = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool ShowFilesInFolder
         {
             get => Settings.Diagnostics.ShowFilesInFolder;

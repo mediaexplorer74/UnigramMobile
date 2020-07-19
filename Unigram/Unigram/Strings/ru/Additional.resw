@@ -279,6 +279,6 @@
   </data>
   <data name="PlayGifPreview" xml:space="preserve">
     <value>Анимировать GIF при выделении</value>
-    <comment>SettingsAdvancedPage</comment>
+    <comment>DiagnosticsPage</comment>
   </data>
 </root>
