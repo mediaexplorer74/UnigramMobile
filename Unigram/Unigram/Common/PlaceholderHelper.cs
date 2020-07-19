@@ -490,8 +490,8 @@ namespace Unigram.Common
             const string fileExtension = ".jpg";
 
             // Thumbnail already cached?
-            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile thumbnail))
-                return new BitmapImage(new Uri(thumbnail.Path));
+            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile oldThumbnail))
+                return new BitmapImage(new Uri(oldThumbnail.Path));
             else
             {
                 //Note: copy file, as GetThumbnailAsync only works for public folders; this seems to be a workaround for now (only works for newly copied files)
@@ -509,11 +509,6 @@ namespace Unigram.Common
                             while ((buf = (await stream.ReadAsync(inputBuffer, inputBuffer.Capacity, InputStreamOptions.None))).Length > 0)
                                 await destFileStream.WriteAsync(buf);
                         }
-
-                        var bitmap = new BitmapImage();
-                        bitmap.SetSource(stream);
-
-                        return bitmap;
                     }
                 }
                 catch (Exception)
@@ -525,6 +520,10 @@ namespace Unigram.Common
                     await copiedFile?.DeleteAsync();
                 }
             }
+
+            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile thumbnail))
+                return new BitmapImage(new Uri(thumbnail.Path));
+            return null;
         }
 
         public static ImageSource GetLottieFrame(string path, int frame, int width, int height, bool webp = true)
