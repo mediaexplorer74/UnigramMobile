@@ -130,7 +130,7 @@ namespace Unigram.Controls.Messages.Content
                     //Texture.Source = new BitmapImage(new Uri("file:///" + file.Local.Path));
                     Texture.Source = PlaceholderHelper.GetBlurred(file.Local.Path);
                 else if (!Services.SettingsService.Current.Diagnostics.SoftwareDecoderEnabled)
-                    this.BeginOnUIThread(async () => { Texture.Source = await PlaceholderHelper.GeFirstFrameAsync(file.Local.Path); });
+                    this.BeginOnUIThread(async () => { Texture.Source = await PlaceholderHelper.GetFirstVideoFrameAsBlurredTumbnailAsync(file.Local.Path); });
             }
             else if (file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
             {

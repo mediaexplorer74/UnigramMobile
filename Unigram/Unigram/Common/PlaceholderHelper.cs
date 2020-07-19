@@ -482,48 +482,65 @@ namespace Unigram.Common
             return WebPImage.DecodeFromPath(path);
         }
 
-        public static async System.Threading.Tasks.Task<ImageSource> GeFirstFrameAsync(string filePath)
+        public static async System.Threading.Tasks.Task<ImageSource> GetFirstVideoFrameAsBlurredTumbnailAsync(string file)
         {
-            var originalFile = await Windows.Storage.StorageFile.GetFileFromPathAsync(filePath);
-            var cacheDirectory = await originalFile.GetParentAsync();
-            var fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
             const string fileExtension = ".jpg";
 
-            // Thumbnail already cached?
-            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile oldThumbnail))
-                return new BitmapImage(new Uri(oldThumbnail.Path));
-            else
+            if (await GetFirstVideoFrameAsTumbnailAsync(file) is string tumbnailPath)
+                return GetBlurred(tumbnailPath);
+            return null;
+
+
+            async System.Threading.Tasks.Task<string> GetFirstVideoFrameAsTumbnailAsync(string filePath)
+            {
+                var originalFile = await Windows.Storage.StorageFile.GetFileFromPathAsync(filePath);
+                var cacheDirectory = await originalFile.GetParentAsync();
+                var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
+
+                //Return path to cached thumbnail:
+                if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile oldThumbnail))
+                    return oldThumbnail.Path;
+
+                //No cached thumbnail found; create one:
+                await CreateThumbnailWorkaround(originalFile, fileName, cacheDirectory);
+
+                if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile thumbnail))
+                    return thumbnail.Path;
+                return null;
+            }
+
+            async System.Threading.Tasks.Task CreateThumbnailWorkaround(Windows.Storage.StorageFile storageFile, string storageFileName, Windows.Storage.StorageFolder storageFolder)
             {
                 //Note: copy file, as GetThumbnailAsync only works for public folders; this seems to be a workaround for now (only works for newly copied files)
-                var copiedFile = await originalFile.CopyAsync(Windows.Storage.ApplicationData.Current.TemporaryFolder, fileName, Windows.Storage.NameCollisionOption.GenerateUniqueName);
+                var copiedFile = await storageFile.CopyAsync(Windows.Storage.ApplicationData.Current.TemporaryFolder, storageFileName,
+                    Windows.Storage.NameCollisionOption.GenerateUniqueName);
                 try
                 {
                     using (var stream = await copiedFile.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.SingleItem))
                     {
-                        var saveFile = await cacheDirectory.CreateFileAsync(fileName + fileExtension, Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                        var saveFile = await storageFolder.CreateFileAsync(storageFileName + fileExtension,
+                            Windows.Storage.CreationCollisionOption.ReplaceExisting);
                         var inputBuffer = new Windows.Storage.Streams.Buffer(2048);
 
                         using (var destFileStream = await saveFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite))
                         {
                             IBuffer buf;
-                            while ((buf = (await stream.ReadAsync(inputBuffer, inputBuffer.Capacity, InputStreamOptions.None))).Length > 0)
+                            while ((buf = (await stream.ReadAsync(inputBuffer, inputBuffer.Capacity, InputStreamOptions.None)))
+                                .Length > 0)
                                 await destFileStream.WriteAsync(buf);
                         }
                     }
                 }
                 catch (Exception)
                 {
-                    return null;
+                    //do nothing
                 }
                 finally
                 {
-                    await copiedFile?.DeleteAsync();
+                    if (copiedFile != null)
+                        await copiedFile.DeleteAsync();
                 }
             }
-
-            if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile thumbnail))
-                return new BitmapImage(new Uri(thumbnail.Path));
-            return null;
         }
 
         public static ImageSource GetLottieFrame(string path, int frame, int width, int height, bool webp = true)
