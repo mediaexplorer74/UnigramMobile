@@ -43,6 +43,8 @@ namespace Unigram.Views.Users
             }
         }
 
+        public int GroupInCommonCount { get; internal set; }
+
         public void Update(bool embedded, bool locked)
         {
             _isEmbedded = embedded;

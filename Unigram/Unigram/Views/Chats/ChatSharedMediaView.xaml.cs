@@ -55,7 +55,47 @@ namespace Unigram.Views.Chats
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
             ViewModel.PropertyChanged -= OnPropertyChanged;
+
+            foreach (var handler in handlerToDeregister)
+            {
+                handler.Key.PropertyChanged -= handler.Value;
+            }
         }
+
+        public void UpdateSharedCount(Chat chat)
+        {
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterPhotoAndVideo()), result =>
+            {
+                if (result is Messages messages)
+                    _mediaHeader.Subtitle = messages.TotalCount.ToString();
+            });
+
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterDocument()), result =>
+            {
+                if (result is Messages messages)
+                    _filesHeader.Subtitle = messages.TotalCount.ToString();
+            });
+
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterUrl()), result =>
+            {
+                if (result is Messages messages)
+                    _linksHeader.Subtitle = messages.TotalCount.ToString();
+            });
+
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterAudio()), result =>
+            {
+                if (result is Messages messages)
+                    _musicHeader.Subtitle = messages.TotalCount.ToString();
+            });
+
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterVoiceNote()), result =>
+            {
+                if (result is Messages messages)
+                    _voiceHeader.Subtitle = messages.TotalCount.ToString();
+            });
+        }
+
+        private Dictionary<BindableBase, PropertyChangedEventHandler> handlerToDeregister = new Dictionary<BindableBase, PropertyChangedEventHandler>();
 
         private readonly ObservableCollection<ChatSharedMediaTab> _tabs;
         private ChatSharedMediaTab _mediaHeader;
@@ -104,11 +144,31 @@ namespace Unigram.Views.Chats
 
                     ScrollingHost.Items.Insert(value.Index, pivotItem);
 
-                    _tabs.Insert(value.Index, new ChatSharedMediaTab { Title = value.Text });
+                    var tab = new ChatSharedMediaTab {Title = value.Text};
+                    switch (value)
+                    {
+                        case Users.UserCommonChatsView uccv:
+                            tab.Subtitle = uccv.GroupInCommonCount.ToString();
+                            break;
+                        case Supergroups.SupergroupMembersView sgmv:
+                            void SupergroupMembersViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+                            {
+                                if (e.PropertyName.Equals("Members") && sender is ViewModels.Supergroups.SupergroupMembersViewModel vm && 
+                                    vm.Chat?.Type is ChatTypeBasicGroup basic &&
+                                    vm.ProtoService.GetBasicGroup(basic.BasicGroupId) is BasicGroup group)
+                                    tab.Subtitle = group.MemberCount.ToString();
+                            }
+
+                            sgmv.ViewModel.PropertyChanged += SupergroupMembersViewModelPropertyChanged;
+                            handlerToDeregister.Add(sgmv.ViewModel, SupergroupMembersViewModelPropertyChanged);
+                            break;
+                    }
+
+                    _tabs.Insert(value.Index, tab);
                 }
             }
         }
-
+        
         private void Update(bool embedded, bool locked)
         {
             _tab?.Update(embedded, locked);

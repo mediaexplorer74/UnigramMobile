@@ -49,6 +49,7 @@ namespace Unigram.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SharedMedia.OnNavigatedTo(e);
+            SharedMedia.UpdateSharedCount(ViewModel.Chat);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -211,12 +212,12 @@ namespace Unigram.Views
 
             if (fullInfo.GroupInCommonCount > 0)
             {
-                SharedMedia.Tab = new UserCommonChatsView { DataContext = ViewModel.UserCommonChats, IsEmbedded = true };
+                SharedMedia.Tab = new UserCommonChatsView { DataContext = ViewModel.UserCommonChats, IsEmbedded = true, GroupInCommonCount = fullInfo.GroupInCommonCount };
             }
-            else
-            {
-                SharedMedia.Tab = null;
-            }
+            //else
+            //{
+            //    SharedMedia.Tab = null;
+            //}
 
             Call.Visibility = fullInfo.CanBeCalled ? Visibility.Visible : Visibility.Collapsed;
             Edit.Visibility = Visibility.Collapsed;
@@ -356,7 +357,7 @@ namespace Unigram.Views
 
             if (group.IsChannel)
             {
-                SharedMedia.Tab = null;
+                //SharedMedia.Tab = null;
             }
             else
             {
