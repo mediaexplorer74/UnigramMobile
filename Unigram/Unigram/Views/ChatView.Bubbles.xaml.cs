@@ -376,21 +376,21 @@ namespace Unigram.Views
                         if (item.Container.FindName("Progress") is RadialProgressBar progress)
                         {
                             progress.Maximum = item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.NaturalDuration.TotalSeconds;
-                            async void progressHandler(Windows.Media.Playback.MediaPlaybackSession session, object args)
+                            async void ProgressHandler(Windows.Media.Playback.MediaPlaybackSession session, object args)
                             {
                                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                 {
                                     progress.Value = session.Position.TotalSeconds;
                                 });
                             }
-                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged -= progressHandler;
-                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged += progressHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged -= ProgressHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PositionChanged += ProgressHandler;
                         }
                         // MediaEnded
                         if (item.Container.FindName("MutedIcon") is StackPanel mutedIcon)
                         {
                             mutedIcon.Visibility = Visibility.Collapsed;
-                            async void mediaEndedHandler(Windows.Media.Playback.MediaPlayer player, object args)
+                            async void MediaEndedHandler(Windows.Media.Playback.MediaPlayer player, object args)
                             {
                                 player.IsMuted = true;
                                 if (player.PlaybackSession.CanPause)
@@ -401,8 +401,8 @@ namespace Unigram.Views
                                 });
                                 //TODO: Play next media content and scroll to that one
                             }
-                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded -= mediaEndedHandler;
-                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += mediaEndedHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded -= MediaEndedHandler;
+                            item.MediaPlayerPresenter.MediaPlayer.MediaEnded += MediaEndedHandler;
                         }
 
                         if (item.MediaPlayerPresenter.MediaPlayer.PlaybackSession.PlaybackState == Windows.Media.Playback.MediaPlaybackState.Paused)
@@ -456,15 +456,12 @@ namespace Unigram.Views
         {
             foreach (var item in _old)
             {
-                if (item.Key != messageId &&
-                    item.Value.MediaPlayerPresenter?.MediaPlayer is Windows.Media.Playback.MediaPlayer player &&
-                    item.Value.Container.FindName("MutedIcon") is StackPanel mutedIcon)
-                {
-                    player.IsMuted = true;
-                    if (player.PlaybackSession.CanPause)
-                        player.Pause();
-                    mutedIcon.Visibility = Visibility.Visible;
-                }
+                if (item.Key == messageId ||
+                    !(item.Value.MediaPlayerPresenter?.MediaPlayer is Windows.Media.Playback.MediaPlayer player) ||
+                    !(item.Value.Container.FindName("MutedIcon") is StackPanel mutedIcon)) continue;
+                player.IsMuted = true;
+                if (player.PlaybackSession.CanPause) player.Pause();
+                mutedIcon.Visibility = Visibility.Visible;
             }
         }
 
