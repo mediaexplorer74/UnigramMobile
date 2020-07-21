@@ -90,7 +90,10 @@ namespace Unigram.Services
                 BuildAppearance(),
                 new SettingsSearchPage(null, Strings.Resources.Language, "\uE164"),
                 new SettingsSearchPage(null, Strings.Resources.AskAQuestion, "\uED15"),
-                new SettingsSearchPage(typeof(FoldersPage), Strings.Resources.Filters, "\uF12B")
+                new SettingsSearchPage(typeof(FoldersPage), Strings.Resources.Filters, "\uF12B", new SettingsSearchEntry[]
+                {
+                    new SettingsSearchPage(typeof(FoldersPage), Strings.Additional.SettingsFoldersTabView)
+                })
             };
 
             // FAQ indexing is done asyncronously
@@ -191,19 +194,34 @@ namespace Unigram.Services
             return new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.PrivacySettings, "\uE1F6", new SettingsSearchEntry[]
             {
                 new SettingsSearchPage(typeof(SettingsBlockedUsersPage), Strings.Resources.BlockedUsers),
+                new SettingsSearchPage(typeof(SettingsPrivacyShowPhonePage), Strings.Resources.PrivacyPhoneTitle),
                 new SettingsSearchPage(typeof(SettingsPrivacyShowStatusPage), Strings.Resources.PrivacyLastSeen),
+                new SettingsSearchPage(typeof(SettingsPrivacyShowPhotoPage), Strings.Resources.PrivacyProfilePhotoTitle, "\uE91B"),
+                new SettingsSearchPage(typeof(SettingsPrivacyShowForwardedPage), Strings.Resources.PrivacyForwards, "\uE89C"),
+                new SettingsSearchPage(typeof(SettingsPrivacyShowForwardedPage), Strings.Resources.PrivacyForwardsTitle),
                 //yield return new SettingsSearchEntry(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.ProfilePhoto, group);
                 //yield return new SettingsSearchEntry(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.Forwards, group);
                 new SettingsSearchPage(typeof(SettingsPrivacyAllowCallsPage), Strings.Resources.Calls),
+                new SettingsSearchPage(typeof(SettingsPrivacyAllowCallsPage), Strings.Resources.WhoCanCallMe, "\uE77E"),
                 new SettingsSearchPage(typeof(SettingsPrivacyAllowP2PCallsPage), Strings.Resources.PrivacyP2P),
                 new SettingsSearchPage(typeof(SettingsPrivacyAllowChatInvitesPage), Strings.Resources.GroupsAndChannels),
+                new SettingsSearchPage(typeof(SettingsPrivacyAllowChatInvitesPage), Strings.Resources.WhoCanAddMe),
 
                 new SettingsSearchPage(typeof(SettingsPasscodePage), Strings.Resources.Passcode),
                 new SettingsSearchPage(typeof(SettingsPasswordPage), Strings.Resources.TwoStepVerification),
                 new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SessionsTitle),
 
+                new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.WebSessionsTitle),
+
+                new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SyncContactsDelete),
+                new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SyncContacts),
+                new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SuggestContacts),
+
                 new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.PrivacyDeleteCloudDrafts),
-                new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.DeleteAccountIfAwayFor2)
+                new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.DeleteAccountIfAwayFor2),
+
+                new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.SecretChat),
+                new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.SecretWebPage)
             });
         }
 
@@ -214,7 +232,8 @@ namespace Unigram.Services
                 // Storage Usage
                 new SettingsSearchPage(typeof(SettingsStoragePage), Strings.Resources.StorageUsage, "\uEE94", new SettingsSearchEntry[]
                 {
-                    new SettingsSearchPage(typeof(SettingsStoragePage), Strings.Resources.KeepMedia)
+                    new SettingsSearchPage(typeof(SettingsStoragePage), Strings.Resources.KeepMedia),
+                    new SettingsSearchPage(typeof(SettingsStoragePage), Strings.Resources.ClearCache)
                 }),
 
                 // Data Usage
@@ -223,14 +242,30 @@ namespace Unigram.Services
 
                 }),
 
-                // TODO: new autodownload settings
-
-                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.ResetAutomaticMediaDownload),
+                // autodownload settings
+                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutomaticMediaDownload, "\uE118", new SettingsSearchEntry[]
+                {
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoDownloadMedia),
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoDownloadPhotosTitle),
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoDownloadVideosTitle),
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoDownloadFilesTitle),
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), $"Auto-Download ({Strings.Resources.AudioAutodownload})"), //TODO
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.ResetAutomaticMediaDownload),
+                }),
 
                 new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoplayMedia, "\uEE94", new SettingsSearchEntry[]
                 {
                     new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoplayGifs),
                     new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoplayVideo)
+                }),
+
+                // streaming
+                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.EnableStreaming, "\uE93E"),
+
+                // Camera
+                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.ChatCamera, "\uE114", new SettingsSearchEntry[]
+                {
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.SaveToGallery)
                 }),
 
                 // Calls
@@ -269,6 +304,13 @@ namespace Unigram.Services
             return new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Resources.Appearance, "\uE2B1", new SettingsSearchEntry[]
             {
                 new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Resources.TextSizeHeader),
+
+                new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Additional.SettingsEmojiSet),
+                new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Additional.ReplaceEmoji),
+                new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Resources.LargeEmoji),
+
+                new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Additional.SettingIsTextFormattingVisible),
+                new SettingsSearchPage(typeof(SettingsAppearancePage), Strings.Resources.SendByEnter),
 
                 new SettingsSearchPage(typeof(SettingsBackgroundsPage), Strings.Resources.ChatBackground, "\uE2B1", new SettingsSearchEntry[]
                 {
