@@ -214,6 +214,14 @@
     <value>Windows-Standard</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>Emoji-Paket</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>Emoji-Paket auswählen</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Formatierungsoptionen anzeigen</value>
     <comment>SettingsAppearancePage</comment>

@@ -220,6 +220,14 @@
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
   </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>Emoji Set</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>Choose Emoji Set</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Show Formatting Buttons</value>
     <comment>SettingsAppearancePage</comment>

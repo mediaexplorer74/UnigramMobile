@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/19/2020 14:35:49
+// 	Generated: 07/21/2020 21:37:12
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -376,6 +376,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SelectAll");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Emoji Set"
+        /// </summary>
+        public static string SettingsEmojiSet
+        {
+            get
+            {
+                return Resource.GetString("SettingsEmojiSet");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Choose Emoji Set"
+        /// </summary>
+        public static string SettingsEmojiSetPopup
+        {
+            get
+            {
+                return Resource.GetString("SettingsEmojiSetPopup");
             }
         }
         

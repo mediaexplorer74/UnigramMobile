@@ -268,7 +268,7 @@
                         Click="Wallpaper_Click"/>
 
                     <controls:BadgeButtonWithImage
-                        Content="Emoji Set"
+                        Content="{CustomResource Additional.SettingsEmojiSet}"
                         Badge="{x:Bind ViewModel.EmojiSet, Mode=OneWay}"
                         Command="{x:Bind ViewModel.EmojiSetCommand}"
                         Style="{StaticResource ImageSubbadgeBadgeButtonStyle}">
