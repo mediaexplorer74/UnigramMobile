@@ -1050,6 +1050,23 @@ namespace Unigram.Services
             }
         }
 
+        private bool? _createAndSaveGifThumbnails;
+        public bool CreateAndSaveGifThumbnails
+        {
+            get
+            {
+                if (_createAndSaveGifThumbnails == null)
+                    _createAndSaveGifThumbnails = GetValueOrDefault("CreateAndSaveGifThumbnails", true);
+
+                return _createAndSaveGifThumbnails ?? true;
+            }
+            set
+            {
+                _createAndSaveGifThumbnails = value;
+                AddOrUpdateValue("CreateAndSaveGifThumbnails", value);
+            }
+        }
+
         private bool? _saveCameraMediaInGallery;
         public bool SaveCameraMediaInGallery
         {

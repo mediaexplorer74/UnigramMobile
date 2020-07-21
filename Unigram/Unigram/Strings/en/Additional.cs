@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/21/2020 21:37:12
+// 	Generated: 07/21/2020 22:29:42
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -398,6 +398,28 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SettingsEmojiSetPopup");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Thumbnails"
+        /// </summary>
+        public static string Thumbnails
+        {
+            get
+            {
+                return Resource.GetString("Thumbnails");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Preview GIF animations"
+        /// </summary>
+        public static string SettingsThumbnailsGif
+        {
+            get
+            {
+                return Resource.GetString("SettingsThumbnailsGif");
             }
         }
         

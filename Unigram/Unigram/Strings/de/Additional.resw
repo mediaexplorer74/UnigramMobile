@@ -222,6 +222,14 @@
     <value>Emoji-Paket auswählen</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Miniaturansichten</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>Vorschau für GIFs</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Formatierungsoptionen anzeigen</value>
     <comment>SettingsAppearancePage</comment>

@@ -228,6 +228,14 @@
     <value>Choose Emoji Set</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Thumbnails</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>Preview GIF animations</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Show Formatting Buttons</value>
     <comment>SettingsAppearancePage</comment>

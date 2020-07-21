@@ -105,6 +105,19 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
+        public bool CreateAndSaveGifThumbnails
+        {
+            get
+            {
+                return SettingsService.Current.CreateAndSaveGifThumbnails;
+            }
+            set
+            {
+                SettingsService.Current.CreateAndSaveGifThumbnails = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool SaveCameraMediaInGallery
         {
             get

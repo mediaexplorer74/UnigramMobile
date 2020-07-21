@@ -181,6 +181,14 @@
                 </controls:HeaderedControl>
 
                 <controls:HeaderedControl
+                    Header="{CustomResource Additional.Thumbnails}">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.CreateAndSaveGifThumbnails, Mode=TwoWay}"
+                        Header="{CustomResource Additional.SettingsThumbnailsGif}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                </controls:HeaderedControl>
+
+                <controls:HeaderedControl
                     Header="{CustomResource ChatCamera}">
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.SaveCameraMediaInGallery, Mode=TwoWay}"

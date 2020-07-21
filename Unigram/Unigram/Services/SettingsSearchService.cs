@@ -259,6 +259,12 @@ namespace Unigram.Services
                     new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.AutoplayVideo)
                 }),
 
+                // Thumbnails
+                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Additional.Thumbnails, "\uEB9F", new SettingsSearchEntry[]
+                {
+                    new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Additional.SettingsThumbnailsGif, "\uF4A9")
+                }),
+
                 // streaming
                 new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.EnableStreaming, "\uE93E"),
 

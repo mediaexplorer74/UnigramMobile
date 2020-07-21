@@ -498,8 +498,10 @@ namespace Unigram.Common
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
 
                 //Return path to cached thumbnail:
-                if ((await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile oldThumbnail))
+                if (await cacheDirectory.TryGetItemAsync(fileName + fileExtension) is Windows.Storage.StorageFile oldThumbnail)
                     return oldThumbnail.Path;
+
+                if (!SettingsService.Current.CreateAndSaveGifThumbnails) return null;
 
                 //No cached thumbnail found; create one:
                 await CreateThumbnailWorkaround(originalFile, fileName, cacheDirectory);
