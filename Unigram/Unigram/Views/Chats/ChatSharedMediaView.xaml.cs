@@ -153,10 +153,11 @@ namespace Unigram.Views.Chats
                         case Supergroups.SupergroupMembersView sgmv:
                             void SupergroupMembersViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
                             {
-                                if (e.PropertyName.Equals("Members") && sender is ViewModels.Supergroups.SupergroupMembersViewModel vm && 
-                                    vm.Chat?.Type is ChatTypeBasicGroup basic &&
-                                    vm.ProtoService.GetBasicGroup(basic.BasicGroupId) is BasicGroup group)
-                                    tab.Subtitle = group.MemberCount.ToString();
+                                if (e.PropertyName.Equals("Members") && sender is ViewModels.Supergroups.SupergroupMembersViewModel vm)
+                                    if (vm.Chat?.Type is ChatTypeBasicGroup basic && vm.ProtoService.GetBasicGroup(basic.BasicGroupId) is BasicGroup group)
+                                        tab.Subtitle = group.MemberCount.ToString();
+                                    else if (vm.Chat?.Type is ChatTypeSupergroup super && vm.ProtoService.GetSupergroup(super.SupergroupId) is Supergroup sgroup)
+                                        tab.Subtitle = sgroup.MemberCount.ToString();
                             }
 
                             sgmv.ViewModel.PropertyChanged += SupergroupMembersViewModelPropertyChanged;
