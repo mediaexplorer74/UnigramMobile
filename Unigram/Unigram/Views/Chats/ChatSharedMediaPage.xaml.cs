@@ -19,6 +19,8 @@ namespace Unigram.Views.Chats
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             View.OnNavigatedTo(e);
+            if (DataContext is ChatSharedMediaViewModel viewModel)
+                View.UpdateSharedCount(viewModel.Chat);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
