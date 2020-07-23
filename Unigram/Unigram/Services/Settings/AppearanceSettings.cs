@@ -582,6 +582,24 @@ namespace Unigram.Services.Settings
                 AddOrUpdateValue("TabsLeftLayoutScale", value);
             }
         }
+
+        private static double? _lastKnownKeyboardHeight;
+        public double LastKnownHorizontalKeyboardHeight
+        {
+            get
+            {
+                if (_lastKnownKeyboardHeight == null)
+                    _lastKnownKeyboardHeight = GetValueOrDefault("LastKnownKeyboardHeight", 262d);
+
+                return _lastKnownKeyboardHeight ?? 262d;
+            }
+            set
+            {
+                if (_lastKnownKeyboardHeight == value) return;
+                _lastKnownKeyboardHeight = value;
+                AddOrUpdateValue("LastKnownKeyboardHeight", value);
+            }
+        }
     }
 
     public class ThemeSettingsBase : SettingsServiceBase

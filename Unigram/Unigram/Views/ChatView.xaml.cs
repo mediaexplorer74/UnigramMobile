@@ -56,7 +56,7 @@ namespace Unigram.Views
 
         private Func<IDialogDelegate, DialogViewModel> _getViewModel;
         private DialogViewModel _viewModel;
-        private double _lastKnownKeyboardHeight = 262;
+        private double _lastKnownKeyboardHeight;
 
         private readonly TLWindowContext _windowContext;
 
@@ -856,7 +856,7 @@ namespace Unigram.Views
             ReplyMarkupPanel.MaxHeight = args.OccludedRect.Height;
             //ReplyMarkupViewer.MaxHeight = args.OccludedRect.Height;
 
-            _lastKnownKeyboardHeight = Math.Max(262, args.OccludedRect.Height);
+            LastKnownKeyboardHeight = Math.Max(262, args.OccludedRect.Height);
 
             Collapse_Click(null, null);
             CollapseMarkup(false);
@@ -1586,6 +1586,17 @@ namespace Unigram.Views
             }
         }
 
+        public double LastKnownKeyboardHeight {
+            get => _lastKnownKeyboardHeight < 1 ? SettingsService.Current.Appearance.LastKnownHorizontalKeyboardHeight : _lastKnownKeyboardHeight;
+            set {
+                _lastKnownKeyboardHeight = value;
+                if (value > 200 && 
+                    Windows.Graphics.Display.DisplayInformation.GetForCurrentView().CurrentOrientation is Windows.Graphics.Display.DisplayOrientations orientation &&
+                    (orientation != Windows.Graphics.Display.DisplayOrientations.Landscape || orientation != Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped))
+                    SettingsService.Current.Appearance.LastKnownHorizontalKeyboardHeight = value;
+            }
+        }
+
         private void Stickers_Click(object sender, RoutedEventArgs e)
         {
             switch (CurrentPanelMode)
@@ -1631,8 +1642,8 @@ namespace Unigram.Views
 
                 if (!sidebar)
                 {
-                    StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
-                    StickersPanel.Height = _lastKnownKeyboardHeight;
+                    StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
+                    StickersPanel.Height = LastKnownKeyboardHeight;
                 }
 
                 StickersPanel.Visibility = Visibility.Visible;
@@ -2861,8 +2872,8 @@ namespace Unigram.Views
         {
             if (!expand)
             {
-                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
-                StickersPanel.Height = _lastKnownKeyboardHeight;
+                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
+                StickersPanel.Height = LastKnownKeyboardHeight;
                 
                 HeaderOverlay.Visibility = Visibility.Collapsed;
                 UnmaskTitleAndStatusBar();
@@ -2915,8 +2926,8 @@ namespace Unigram.Views
                 _stickersMode = StickersPanelMode.Collapsed;
                 SettingsService.Current.IsSidebarOpen = false;
 
-                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, _lastKnownKeyboardHeight);
-                StickersPanel.Height = _lastKnownKeyboardHeight;
+                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
+                StickersPanel.Height = LastKnownKeyboardHeight;
 
                 HeaderOverlay.Visibility = Visibility.Collapsed;
                 UnmaskTitleAndStatusBar();
