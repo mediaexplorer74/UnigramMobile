@@ -32,7 +32,8 @@ namespace Unigram.Services.Settings
         Day = 1,
         Night = 2,
         Tinted = 3,
-        Custom = 4
+        Custom = 4,
+        System = 5
     }
 
     public enum NightMode

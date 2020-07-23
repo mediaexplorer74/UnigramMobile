@@ -284,7 +284,7 @@ namespace Unigram.Services
             else
             {
                 if (info is ThemeSystemInfo)
-                    _settingsService.Appearance.RequestedThemeType = TelegramThemeType.Classic;
+                    _settingsService.Appearance.RequestedThemeType = TelegramThemeType.System;
                 else
                     _settingsService.Appearance.RequestedThemeType = info.Parent == TelegramTheme.Light ? TelegramThemeType.Classic : TelegramThemeType.Night;
             }

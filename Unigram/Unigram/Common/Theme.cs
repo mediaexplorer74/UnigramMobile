@@ -64,7 +64,7 @@ namespace Unigram.Common
             }
             else
             {
-                Update();
+                Update(settings.RequestedThemeType == TelegramThemeType.System);
             }
         }
 

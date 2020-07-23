@@ -198,7 +198,7 @@ namespace Unigram.Views.Settings
             else if (theme is ThemeSystemInfo)
             {
                 radio.RequestedTheme = ElementTheme.Default;
-                radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == TelegramThemeType.Classic && SettingsService.Current.Appearance.RequestedTheme == ElementTheme.Default;
+                radio.IsChecked = SettingsService.Current.Appearance.RequestedThemeType == TelegramThemeType.System && SettingsService.Current.Appearance.RequestedTheme == ElementTheme.Default;
             }
             else
             {
