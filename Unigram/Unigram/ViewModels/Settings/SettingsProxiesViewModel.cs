@@ -234,10 +234,9 @@ namespace Unigram.ViewModels.Settings
             if (response is Text text && Uri.TryCreate(text.TextValue, UriKind.Absolute, out Uri uri))
             {
                 var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-                dataPackage.RequestedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
-                dataPackage.SetWebLink(uri);
-                Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-                //TODO: Add UI notification (copied to clipboard)
+                dataPackage.SetText(text.TextValue);
+                ClipboardEx.TrySetContent(dataPackage);
+                await MessagePopup.ShowAsync(Strings.Resources.LinkCopied, Strings.Resources.UseProxyTelegram, Strings.Resources.OK);
             }
         }
 
