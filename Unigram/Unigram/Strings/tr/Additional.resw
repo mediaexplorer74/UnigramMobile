@@ -281,4 +281,20 @@
     <value>GIF Seçiminde GIF Önizlemelerini Oynat</value>
     <comment>DiagnosticsPage</comment>
   </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>Emoji Paketi</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>Emoji Paketini Seçin</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Küçük Önizleme Resimleri</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>GIF'ler İçin Önizleme</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
 </root>
