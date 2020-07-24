@@ -301,13 +301,14 @@ namespace Unigram.Services
 
                     if (window.Content is FrameworkElement element)
                     {
+                        /* // I do not get this code
                         if (theme == element.RequestedTheme)
                         {
                             element.RequestedTheme = theme == ElementTheme.Dark
                                 ? ElementTheme.Light
                                 : ElementTheme.Dark;
                         }
-
+                        */
                         element.RequestedTheme = theme;
                     }
                 });

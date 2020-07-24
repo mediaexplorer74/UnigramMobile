@@ -423,13 +423,14 @@ namespace Unigram.Views.Settings
 
                     if (window.Content is FrameworkElement element)
                     {
+                        /* // I do not get this code
                         if (value == element.RequestedTheme)
                         {
                             element.RequestedTheme = value == ElementTheme.Dark
                                 ? ElementTheme.Light
                                 : ElementTheme.Dark;
                         }
-
+                        */
                         element.RequestedTheme = value;
                     }
                 });
