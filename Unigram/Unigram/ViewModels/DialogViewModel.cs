@@ -1620,21 +1620,20 @@ namespace Unigram.ViewModels
 
                 if (replyId != 0)
                 {
-                    //var enqueue = true;
+                    var enqueue = true;
 
-                    //foreach (var reply in slice)
-                    //{
-                    //    if (reply.Id == replyId)
-                    //    {
-                    //        message.ReplyToMessage = _messageFactory.Create(this, reply.Get());
+                    foreach (var reply in slice)
+                    {
+                        if (reply.Id == replyId)
+                        {
+                            //message.ReplyToMessage = _messageFactory.Create(this, reply.Get()); // As for some reason this value may get lost
 
-                    //        enqueue = false;
-                    //        break;
-                    //    }
-                    //}
+                            enqueue = false;
+                            break;
+                        }
+                    }
 
-                    //if (enqueue && !replies.Contains(replyId))
-                    if (!replies.Contains(replyId))
+                    if (enqueue && !replies.Contains(replyId))
                     {
                         message.ReplyToMessageState = ReplyToMessageState.Loading;
                         replies.Add(replyId);
@@ -1650,6 +1649,7 @@ namespace Unigram.ViewModels
                 foreach (var message in slice)
                 {
                     if (message.ReplyToMessage == null)
+                    {
                         foreach (var result in messages.MessagesValue)
                         {
                             if (result == null)
@@ -1678,6 +1678,16 @@ namespace Unigram.ViewModels
                                 break;
                             }
                         }
+
+                        // the reply should already exist in slice:
+                        if (message.ReplyToMessage == null)
+                            foreach (var reply in slice)
+                            {
+                                if (reply.Id != message.ReplyToMessageId) continue;
+                                message.ReplyToMessage = _messageFactory.Create(this, reply.Get());
+                                break;
+                            }
+                    }
 
                     if (message.ReplyToMessage == null)
                     {
