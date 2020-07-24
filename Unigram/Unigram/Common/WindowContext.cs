@@ -166,12 +166,9 @@ namespace Unigram.Common
             // Mobile Status Bar
             if (ApiInfo.HasStatusBar)
             {
-                var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
-                var foregroundBrush = Application.Current.Resources["PageHeaderForegroundBrush"] as SolidColorBrush;
-
                 var statusBar = StatusBar.GetForCurrentView();
-                statusBar.BackgroundColor = backgroundBrush.Color;
-                statusBar.ForegroundColor = foregroundBrush.Color;
+                statusBar.BackgroundColor = background;
+                statusBar.ForegroundColor = foreground;
                 statusBar.BackgroundOpacity = 1;
             }
         }
