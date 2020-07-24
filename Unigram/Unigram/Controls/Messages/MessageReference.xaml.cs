@@ -26,13 +26,13 @@ namespace Unigram.Controls.Messages
             set
             {
                 // TODO: shitty hack!!!
-                var oldValue = (object)GetValue(MessageProperty);
+                //var oldValue = (object)GetValue(MessageProperty);
                 SetValue(MessageProperty, value);
 
-                if (oldValue == value)
-                {
+                //if (oldValue == value)
+                //{
                     //SetTemplateCore(value);
-                }
+                //}
             }
         }
 
