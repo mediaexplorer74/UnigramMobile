@@ -56,12 +56,7 @@ namespace Unigram.ViewModels.Settings
         {
             Settings.Appearance.UpdateTimer();
 
-            var conditions = Settings.Appearance.CheckNightModeConditions();
-            var theme = conditions == null
-                ? Settings.Appearance.RequestedTheme
-                : conditions == true
-                ? ElementTheme.Dark
-                : ElementTheme.Light;
+            var theme = Settings.Appearance.GetCalculatedElementTheme();
 
             foreach (TLWindowContext window in WindowContext.ActiveWrappers)
             {

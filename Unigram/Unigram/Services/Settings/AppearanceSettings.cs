@@ -128,12 +128,7 @@ namespace Unigram.Services.Settings
 
             if (RequestedTheme != ElementTheme.Default)
             {
-                var conditions = CheckNightModeConditions();
-                var theme = conditions == null
-                    ? RequestedTheme
-                    : conditions == true
-                    ? ElementTheme.Dark
-                    : ElementTheme.Light;
+                var theme = GetCalculatedElementTheme();
 
                 foreach (TLWindowContext window in WindowContext.ActiveWrappers)
                 {

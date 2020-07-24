@@ -289,7 +289,7 @@ namespace Unigram.Services
                     _settingsService.Appearance.RequestedThemeType = info.Parent == TelegramTheme.Light ? TelegramThemeType.Classic : TelegramThemeType.Night;
             }
 
-            var flags = _settingsService.Appearance.GetCalculatedElementTheme();
+            var theme = _settingsService.Appearance.GetCalculatedElementTheme();
 
             foreach (TLWindowContext window in WindowContext.ActiveWrappers)
             {
@@ -301,14 +301,14 @@ namespace Unigram.Services
 
                     if (window.Content is FrameworkElement element)
                     {
-                        if (flags == element.RequestedTheme)
+                        if (theme == element.RequestedTheme)
                         {
-                            element.RequestedTheme = flags == ElementTheme.Dark
+                            element.RequestedTheme = theme == ElementTheme.Dark
                                 ? ElementTheme.Light
                                 : ElementTheme.Dark;
                         }
 
-                        element.RequestedTheme = flags;
+                        element.RequestedTheme = theme;
                     }
                 });
             }
