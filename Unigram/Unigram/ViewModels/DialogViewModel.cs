@@ -1620,20 +1620,21 @@ namespace Unigram.ViewModels
 
                 if (replyId != 0)
                 {
-                    var enqueue = true;
+                    //var enqueue = true;
 
-                    foreach (var reply in slice)
-                    {
-                        if (reply.Id == replyId)
-                        {
-                            message.ReplyToMessage = _messageFactory.Create(this, reply.Get());
+                    //foreach (var reply in slice)
+                    //{
+                    //    if (reply.Id == replyId)
+                    //    {
+                    //        message.ReplyToMessage = _messageFactory.Create(this, reply.Get());
 
-                            enqueue = false;
-                            break;
-                        }
-                    }
+                    //        enqueue = false;
+                    //        break;
+                    //    }
+                    //}
 
-                    if (enqueue && !replies.Contains(replyId))
+                    //if (enqueue && !replies.Contains(replyId))
+                    if (!replies.Contains(replyId))
                     {
                         message.ReplyToMessageState = ReplyToMessageState.Loading;
                         replies.Add(replyId);
@@ -1648,34 +1649,35 @@ namespace Unigram.ViewModels
             {
                 foreach (var message in slice)
                 {
-                    foreach (var result in messages.MessagesValue)
-                    {
-                        if (result == null)
+                    if (message.ReplyToMessage == null)
+                        foreach (var result in messages.MessagesValue)
                         {
-                            continue;
-                        }
+                            if (result == null)
+                            {
+                                continue;
+                            }
 
-                        if (message.Content is MessagePinMessage pinMessage && pinMessage.MessageId == result.Id)
-                        {
-                            message.ReplyToMessage = _messageFactory.Create(this, result);
-                            break;
+                            if (message.Content is MessagePinMessage pinMessage && pinMessage.MessageId == result.Id)
+                            {
+                                message.ReplyToMessage = _messageFactory.Create(this, result);
+                                break;
+                            }
+                            else if (message.Content is MessageGameScore gameScore && gameScore.GameMessageId == result.Id)
+                            {
+                                message.ReplyToMessage = _messageFactory.Create(this, result);
+                                break;
+                            }
+                            else if (message.Content is MessagePaymentSuccessful paymentSuccessful && paymentSuccessful.InvoiceMessageId == result.Id)
+                            {
+                                message.ReplyToMessage = _messageFactory.Create(this, result);
+                                break;
+                            }
+                            else if (message.ReplyToMessageId == result.Id)
+                            {
+                                message.ReplyToMessage = _messageFactory.Create(this, result);
+                                break;
+                            }
                         }
-                        else if (message.Content is MessageGameScore gameScore && gameScore.GameMessageId == result.Id)
-                        {
-                            message.ReplyToMessage = _messageFactory.Create(this, result);
-                            break;
-                        }
-                        else if (message.Content is MessagePaymentSuccessful paymentSuccessful && paymentSuccessful.InvoiceMessageId == result.Id)
-                        {
-                            message.ReplyToMessage = _messageFactory.Create(this, result);
-                            break;
-                        }
-                        else if (message.ReplyToMessageId == result.Id)
-                        {
-                            message.ReplyToMessage = _messageFactory.Create(this, result);
-                            break;
-                        }
-                    }
 
                     if (message.ReplyToMessage == null)
                     {
