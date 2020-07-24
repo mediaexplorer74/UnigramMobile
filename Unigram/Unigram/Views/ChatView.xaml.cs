@@ -167,7 +167,6 @@ namespace Unigram.Views
             InitializeStickers();
 
             Messages.RegisterPropertyChangedCallback(ListViewBase.SelectionModeProperty, List_SelectionModeChanged);
-            StickersPanel.RegisterPropertyChangedCallback(FrameworkElement.VisibilityProperty, StickersPanel_VisibilityChanged);
 
             _messageVisual = ElementCompositionPreview.GetElementVisual(TextField);
             _ellipseVisual = ElementCompositionPreview.GetElementVisual(Ellipse);
@@ -2868,21 +2867,15 @@ namespace Unigram.Views
 
         private void StickersPanel_ExpandButtonClicked(object sender, bool expand)
         {
-            if (!expand)
-            {
-                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
-                StickersPanel.Height = LastKnownKeyboardHeight;
-                
-                HeaderOverlay.Visibility = Visibility.Collapsed;
-                UnmaskTitleAndStatusBar();
-            }
-            else
+            if (expand)
             {
                 StickersPanel.MaxHeight = ActualHeight - 24 - TextArea.ActualHeight;
                 StickersPanel.Height = double.NaN;
-
-                HeaderOverlay.Visibility = Visibility.Visible;
-                MaskTitleAndStatusBar();
+            }
+            else
+            {
+                StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
+                StickersPanel.Height = LastKnownKeyboardHeight;
             }
         }
 
@@ -2927,9 +2920,6 @@ namespace Unigram.Views
                 StickersPanel.MaxHeight = Math.Max(StickersPanel.MinHeight, LastKnownKeyboardHeight);
                 StickersPanel.Height = LastKnownKeyboardHeight;
 
-                HeaderOverlay.Visibility = Visibility.Collapsed;
-                UnmaskTitleAndStatusBar();
-
                 StickersPanel.Deactivate();
                 StickersPanel.Visibility = Visibility.Collapsed;
             }
@@ -2950,22 +2940,8 @@ namespace Unigram.Views
             //}
         }
 
-        private void StickersPanel_VisibilityChanged(DependencyObject sender, DependencyProperty dp)
-        {
-            if (StickersPanel.Visibility == Visibility.Collapsed)
-            {
-                HeaderOverlay.Visibility = Visibility.Collapsed;
-                UnmaskTitleAndStatusBar();
-            }
-        }
-
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (HeaderOverlay.Visibility == Visibility.Visible)
-            {
-                StickersPanel.MaxHeight = e.NewSize.Height - 48 * 2;
-            }
-
             if (e.NewSize.Width > e.PreviousSize.Width && e.NewSize.Width >= SIDEBAR_MIN_WIDTH && e.PreviousSize.Width < SIDEBAR_MIN_WIDTH)
             {
                 if (_stickersModeWide == StickersPanelMode.Sidebar)
@@ -3005,30 +2981,6 @@ namespace Unigram.Views
         private void DateHeaderPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ElementCompositionPreview.GetElementVisual(sender as UIElement).CenterPoint = new Vector3((float)e.NewSize.Width / 2f, (float)e.NewSize.Height / 2f, 0);
-        }
-
-        private void MaskTitleAndStatusBar()
-        {
-            var titlebar = ApplicationView.GetForCurrentView().TitleBar;
-            var backgroundBrush = Application.Current.Resources["PageHeaderBackgroundBrush"] as SolidColorBrush;
-            var foregroundBrush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-            var overlayBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(0x99, 0x00, 0x00, 0x00));
-
-            if (overlayBrush != null)
-            {
-                var maskBackground = ColorsHelper.AlphaBlend(backgroundBrush.Color, overlayBrush.Color);
-                var maskForeground = ColorsHelper.AlphaBlend(foregroundBrush.Color, overlayBrush.Color);
-
-                titlebar.BackgroundColor = maskBackground;
-                titlebar.ForegroundColor = maskForeground;
-                //titlebar.ButtonBackgroundColor = maskBackground;
-                titlebar.ButtonForegroundColor = maskForeground;
-            }
-        }
-
-        private void UnmaskTitleAndStatusBar()
-        {
-            TLWindowContext.GetForCurrentView().UpdateTitleBar();
         }
 
         private void Mentions_RightTapped(object sender, RightTappedRoutedEventArgs e)

@@ -567,10 +567,6 @@
             <Border x:Name="FlyoutArea" MinHeight="{ThemeResource TelegramToolBarHeight}"/>
         </Grid>
 
-        <Border Visibility="{x:Bind StickersPanel.Visibility, Mode=OneWay}" IsHitTestVisible="False">
-            <Border x:Name="HeaderOverlay" Background="#99000000" Visibility="Collapsed"/>
-        </Border>
-
         <Grid x:Name="Clipper" Canvas.ZIndex="2" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
