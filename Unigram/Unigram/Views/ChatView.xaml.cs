@@ -2532,7 +2532,6 @@ namespace Unigram.Views
 
                 AttachExpression();
                 //DetachTextAreaExpression();
-                FormattingViewer.Visibility = Visibility.Collapsed;
             };
             batch.End();
 
@@ -2545,7 +2544,6 @@ namespace Unigram.Views
         {
             AttachExpression();
             AttachTextAreaExpression();
-            FormattingViewer.Visibility = TextField.IsFormattingVisible ? Visibility.Visible : Visibility.Collapsed;
 
             var slidePosition = (float)(LayoutRoot.ActualWidth - 48 - 36);
             var difference = (float)(slidePosition - ElapsedPanel.ActualWidth);
