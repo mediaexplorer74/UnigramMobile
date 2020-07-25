@@ -67,6 +67,7 @@
                 Style="{StaticResource HeaderlessPivotStyle}"
                 Grid.Row="1">
             <PivotItem>
+                <Grid>
                 <controls:SelectGridView
                     x:Name="ScrollingMedia"
                     ItemsSource="{x:Bind ViewModel.Media, Mode=OneWay}"
@@ -133,6 +134,12 @@
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                 </controls:SelectGridView>
+                    <Button Name="LoadMedia"
+                            Content="{CustomResource Additional.LoadAllMedia}"
+                            Click="Button_Click"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Margin="0,15,0,0"/>
+                </Grid>
             </PivotItem>
             <PivotItem>
                 <controls:SelectListView

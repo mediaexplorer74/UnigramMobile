@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/21/2020 22:29:42
+// 	Generated: 07/24/2020 19:24:31
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -629,6 +629,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("ConnectWithoutProxy");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Load all media"
+        /// </summary>
+        public static string LoadAllMedia
+        {
+            get
+            {
+                return Resource.GetString("LoadAllMedia");
             }
         }
         

@@ -53,19 +53,19 @@ namespace Unigram.ViewModels.Chats
             //With = Peer is TLInputPeerUser ? (ITLDialogWith)CacheService.GetUser(Peer.ToPeer().Id) : CacheService.GetChat(Peer.ToPeer().Id);
 
             Chat = ProtoService.GetChat(chatId);
-
+            if (Settings.Diagnostics.LoadMediaImmediately) {
             Media = new MediaCollection(ProtoService, chatId, new SearchMessagesFilterPhotoAndVideo());
             Files = new MediaCollection(ProtoService, chatId, new SearchMessagesFilterDocument());
             Links = new MediaCollection(ProtoService, chatId, new SearchMessagesFilterUrl());
             Music = new MediaCollection(ProtoService, chatId, new SearchMessagesFilterAudio());
             Voice = new MediaCollection(ProtoService, chatId, new SearchMessagesFilterVoiceNote());
-
+            
             RaisePropertyChanged(() => Media);
             RaisePropertyChanged(() => Files);
             RaisePropertyChanged(() => Links);
             RaisePropertyChanged(() => Music);
             RaisePropertyChanged(() => Voice);
-
+            }
             return Task.CompletedTask;
         }
 

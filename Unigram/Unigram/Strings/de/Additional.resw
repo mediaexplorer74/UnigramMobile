@@ -310,4 +310,8 @@
     <value>Ohne Proxy</value>
     <comment>SettingsProxiesPage</comment>
   </data>
+  <data name="LoadAllMedia" xml:space="preserve">
+    <value>Alle Medien laden</value>
+    <comment>ChatSharedMediaView</comment>
+  </data>
 </root>

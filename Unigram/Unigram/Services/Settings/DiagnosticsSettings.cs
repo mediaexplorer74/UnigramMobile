@@ -7,6 +7,23 @@
         {
         }
 
+        private bool? _loadMediaImmediately;
+        public bool LoadMediaImmediately
+        {
+            get
+            {
+                if (_loadMediaImmediately == null)
+                    _loadMediaImmediately = GetValueOrDefault("LoadMediaImmediately", false);
+
+                return _loadMediaImmediately ?? false;
+            }
+            set
+            {
+                _loadMediaImmediately = value;
+                AddOrUpdateValue("LoadMediaImmediately", value);
+            }
+        }
+
         private bool? _softwareDecoderEnabled;
         public bool SoftwareDecoderEnabled
         {

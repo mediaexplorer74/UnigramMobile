@@ -33,6 +33,10 @@
                 <controls:HeaderedControl
                     Header="For Desktop Only (Crashes on Mobile)">
                     <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.LoadMediaImmediately, Mode=TwoWay}"
+                        Header="Load all Media in Medias Panel"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                    <ToggleSwitch
                         IsOn="{x:Bind ViewModel.SoftwareDecoderEnabled, Mode=TwoWay}"
                         Header="Enable Software Decoder in Chat for Animations and Videos"
                         Style="{StaticResource CheckButtonStyle}"/>

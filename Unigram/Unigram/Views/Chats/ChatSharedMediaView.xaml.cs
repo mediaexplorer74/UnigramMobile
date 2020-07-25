@@ -43,6 +43,9 @@ namespace Unigram.Views.Chats
             _tabs.Add(_musicHeader = new ChatSharedMediaTab { Title = Strings.Resources.SharedMusicTab2 });
             _tabs.Add(_voiceHeader = new ChatSharedMediaTab { Title = Strings.Resources.SharedVoiceTab2 });
 
+            if (Services.SettingsService.Current.Diagnostics.LoadMediaImmediately)
+                LoadMedia.Visibility = Visibility.Collapsed;
+
             Header.ItemsSource = _tabs;
             Header.SelectedIndex = 0;
         }
@@ -665,6 +668,18 @@ namespace Unigram.Views.Chats
         private void ScrollingHost_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Header.SelectedItem = _tabs[ScrollingHost.SelectedIndex];
+            if (!Services.SettingsService.Current.Diagnostics.LoadMediaImmediately &&
+                sender is FrameworkElement fe && fe.DataContext is ChatSharedMediaViewModel viewModel)
+            { // Load all data, but media
+                if (ViewModel.Files == null)
+                    ViewModel.Find(new SearchMessagesFilterDocument(), null);
+                if (ViewModel.Links == null)
+                    ViewModel.Find(new SearchMessagesFilterUrl(), null);
+                if (ViewModel.Music == null)
+                    ViewModel.Find(new SearchMessagesFilterAudio(), null);
+                if (ViewModel.Voice == null)
+                    ViewModel.Find(new SearchMessagesFilterVoiceNote(), null);
+            }
         }
 
         private void Scrolling_Loaded(object sender, RoutedEventArgs e)
@@ -817,6 +832,12 @@ namespace Unigram.Views.Chats
                 ScrollingVoice.ItemsPanelRoot.SizeChanged -= ScrollingVoice_SizeChanged;
                 ScrollingVoice.GetScrollViewer().ChangeView(null, 12, null, true);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Find(new SearchMessagesFilterPhotoAndVideo(), null);
+            LoadMedia.Visibility = Visibility.Collapsed;
         }
     }
 

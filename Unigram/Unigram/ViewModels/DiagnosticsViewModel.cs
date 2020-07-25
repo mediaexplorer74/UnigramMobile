@@ -103,6 +103,17 @@ namespace Unigram.ViewModels
 
         public MvxObservableCollection<DiagnosticsOption> Options { get; private set; }
         public MvxObservableCollection<DiagnosticsTag> Tags { get; private set; }
+
+        public bool LoadMediaImmediately
+        {
+            get => Settings.Diagnostics.LoadMediaImmediately;
+            set
+            {
+                Settings.Diagnostics.LoadMediaImmediately = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool SoftwareDecoderEnabled
         {
             get => Settings.Diagnostics.SoftwareDecoderEnabled;
