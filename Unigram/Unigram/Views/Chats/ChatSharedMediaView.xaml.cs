@@ -58,11 +58,16 @@ namespace Unigram.Views.Chats
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
             ViewModel.PropertyChanged -= OnPropertyChanged;
+            DeregisterHandler();
+        }
 
+
+        private void DeregisterHandler() {
             foreach (var handler in handlerToDeregister)
             {
                 handler.Key.PropertyChanged -= handler.Value;
             }
+            handlerToDeregister.Clear();
         }
 
         public void UpdateSharedCount(Chat chat)
@@ -162,7 +167,7 @@ namespace Unigram.Views.Chats
                                     else if (vm.Chat?.Type is ChatTypeSupergroup super && vm.ProtoService.GetSupergroup(super.SupergroupId) is Supergroup sgroup)
                                         tab.Subtitle = sgroup.MemberCount.ToString();
                             }
-
+                            DeregisterHandler();
                             sgmv.ViewModel.PropertyChanged += SupergroupMembersViewModelPropertyChanged;
                             handlerToDeregister.Add(sgmv.ViewModel, SupergroupMembersViewModelPropertyChanged);
                             break;
