@@ -58,16 +58,6 @@ namespace Unigram.Views.Chats
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
             ViewModel.PropertyChanged -= OnPropertyChanged;
-            DeregisterHandler();
-        }
-
-
-        private void DeregisterHandler() {
-            foreach (var handler in handlerToDeregister)
-            {
-                handler.Key.PropertyChanged -= handler.Value;
-            }
-            handlerToDeregister.Clear();
         }
 
         public void UpdateSharedCount(Chat chat)
@@ -102,8 +92,6 @@ namespace Unigram.Views.Chats
                     _voiceHeader.Subtitle = messages.TotalCount.ToString();
             });
         }
-
-        private Dictionary<BindableBase, PropertyChangedEventHandler> handlerToDeregister = new Dictionary<BindableBase, PropertyChangedEventHandler>();
 
         private readonly ObservableCollection<ChatSharedMediaTab> _tabs;
         private ChatSharedMediaTab _mediaHeader;
@@ -159,17 +147,23 @@ namespace Unigram.Views.Chats
                             tab.Subtitle = uccv.GroupInCommonCount.ToString();
                             break;
                         case Supergroups.SupergroupMembersView sgmv:
+                            if (ViewModel.Chat?.Type is ChatTypeBasicGroup dbasic && ViewModel.ProtoService.GetBasicGroup(dbasic.BasicGroupId) is BasicGroup dgroup)
+                                tab.Subtitle = dgroup.MemberCount.ToString();
+                            else if (ViewModel.Chat?.Type is ChatTypeSupergroup dsuper && ViewModel.ProtoService.GetSupergroup(dsuper.SupergroupId) is Supergroup dsgroup)
+                                tab.Subtitle = dsgroup.MemberCount.ToString();
+                            else
+                                sgmv.ViewModel.PropertyChanged += SupergroupMembersViewModelPropertyChanged;
                             void SupergroupMembersViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
                             {
                                 if (e.PropertyName.Equals("Members") && sender is ViewModels.Supergroups.SupergroupMembersViewModel vm)
+                                {
                                     if (vm.Chat?.Type is ChatTypeBasicGroup basic && vm.ProtoService.GetBasicGroup(basic.BasicGroupId) is BasicGroup group)
                                         tab.Subtitle = group.MemberCount.ToString();
                                     else if (vm.Chat?.Type is ChatTypeSupergroup super && vm.ProtoService.GetSupergroup(super.SupergroupId) is Supergroup sgroup)
                                         tab.Subtitle = sgroup.MemberCount.ToString();
+                                    sgmv.ViewModel.PropertyChanged -= SupergroupMembersViewModelPropertyChanged;
+                                }
                             }
-                            DeregisterHandler();
-                            sgmv.ViewModel.PropertyChanged += SupergroupMembersViewModelPropertyChanged;
-                            handlerToDeregister.Add(sgmv.ViewModel, SupergroupMembersViewModelPropertyChanged);
                             break;
                     }
 
@@ -177,7 +171,7 @@ namespace Unigram.Views.Chats
                 }
             }
         }
-        
+
         private void Update(bool embedded, bool locked)
         {
             _tab?.Update(embedded, locked);
