@@ -68,7 +68,7 @@ namespace Unigram.Services.Factories
                 {
                     InputFile = generated,
                     Type = new FileTypeDocument(),
-                    Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, caption)
+                    Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, asFile, caption)
                 };
             }
 
@@ -126,7 +126,7 @@ namespace Unigram.Services.Factories
                 {
                     InputFile = generated,
                     Type = new FileTypeDocument(),
-                    Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, caption)
+                    Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, asFile, caption)
                 };
             }
             else if (animated && ttl == 0)
@@ -237,7 +237,7 @@ namespace Unigram.Services.Factories
             {
                 InputFile = generated,
                 Type = new FileTypeDocument(),
-                Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, caption)
+                Delegate = (inputFile, caption) => new InputMessageDocument(inputFile, thumbnail, true, caption)
             };
         }
     }

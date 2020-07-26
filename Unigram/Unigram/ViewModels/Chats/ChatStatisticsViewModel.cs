@@ -30,8 +30,8 @@ namespace Unigram.ViewModels.Chats
             set => Set(ref _chat, value);
         }
 
-        private ChatStatistics _statistics;
-        public ChatStatistics Statistics
+        private ChatStatisticsChannel _statistics;
+        public ChatStatisticsChannel Statistics
         {
             get => _statistics;
             set => Set(ref _statistics, value);
@@ -50,10 +50,10 @@ namespace Unigram.ViewModels.Chats
 
 
             var response = await ProtoService.SendAsync(new GetChatStatistics(chatId, false));
-            if (response is ChatStatistics statistics)
+            if (response is ChatStatisticsChannel statistics)
             {
                 Statistics = statistics;
-
+                
                 var stats = new List<ChartViewData>(9);
                 stats.Add(ChartViewData.create(statistics.MemberCountGraph, Strings.Resources.GrowthChartTitle, 0));
                 stats.Add(ChartViewData.create(statistics.JoinGraph, Strings.Resources.FollowersChartTitle, 0));

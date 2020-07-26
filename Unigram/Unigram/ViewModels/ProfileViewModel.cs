@@ -769,6 +769,8 @@ namespace Unigram.ViewModels
                 {
 
                 }
+                //else
+                //    Members.Insert(Members.Count, new ChatMember(user.Id, -1, DateTime.Now.ToTimestamp(), null, null)); //TODO: Hacky
             }
         }
 

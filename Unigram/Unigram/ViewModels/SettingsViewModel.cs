@@ -132,13 +132,24 @@ namespace Unigram.ViewModels
             }
         }
 
+        public class tempInputChatPhoto : InputChatPhoto
+        {
+            public tempInputChatPhoto(InputFile inputChatPhotoStatic) { InputChatPhotoStatic = inputChatPhotoStatic; }
 
+            public long InputChatPhotoPrevious { get; set; }
+            public InputFile InputChatPhotoStatic { get; set; }
+            public InputFile InputChatPhotoAnimation { get; set; }
+            public NativeObject ToUnmanaged()
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public RelayCommand<StorageFile> EditPhotoCommand { get; }
         private async void EditPhotoExecute(StorageFile file)
         {
             var props = await file.GetBasicPropertiesAsync();
-            var response = await ProtoService.SendAsync(new SetProfilePhoto(await file.ToGeneratedAsync()));
+            var response = await ProtoService.SendAsync(new SetProfilePhoto(new tempInputChatPhoto(await file.ToGeneratedAsync())));
         }
 
         public RelayCommand AskCommand { get; }

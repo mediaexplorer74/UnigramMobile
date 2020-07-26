@@ -7,10 +7,10 @@ namespace Unigram.ViewModels.Gallery
     public class GalleryUserProfilePhoto : GalleryContent
     {
         private readonly User _user;
-        private readonly UserProfilePhoto _photo;
+        private readonly ChatPhoto _photo;
         private readonly string _caption;
 
-        public GalleryUserProfilePhoto(IProtoService protoService, User user, UserProfilePhoto photo)
+        public GalleryUserProfilePhoto(IProtoService protoService, User user, ChatPhoto photo)
             : base(protoService)
         {
             _user = user;
