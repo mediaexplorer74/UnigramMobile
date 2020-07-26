@@ -793,7 +793,15 @@ namespace Unigram.Controls
                         }
                         else if (entity.Type is TextEntityTypeTextUrl textUrl)
                         {
-                            range.Link = $"\"{textUrl.Url}\"";
+                            try
+                            {
+                                range.Link = $"\"{textUrl.Url}\"";
+                            }
+                            catch (Exception)
+                            {
+                                range.Text = "."; //TODO: Hacky.
+                                range.Link = $"\"{textUrl.Url}\"";
+                            }
                         }
                         else if (entity.Type is TextEntityTypeMentionName mentionName)
                         {
