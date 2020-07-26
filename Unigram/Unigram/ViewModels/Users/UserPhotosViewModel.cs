@@ -31,7 +31,7 @@ namespace Unigram.ViewModels.Users
             using (await _loadMoreLock.WaitAsync())
             {
                 var response = await ProtoService.SendAsync(new GetUserProfilePhotos(_user.Id, 0, 20));
-                if (response is UserProfilePhotos photos)
+                if (response is ChatPhotos photos)
                 {
                     TotalItems = photos.TotalCount;
 
@@ -56,7 +56,7 @@ namespace Unigram.ViewModels.Users
             using (await _loadMoreLock.WaitAsync())
             {
                 var response = await ProtoService.SendAsync(new GetUserProfilePhotos(_user.Id, Items.Count, 20));
-                if (response is UserProfilePhotos photos)
+                if (response is ChatPhotos photos)
                 {
                     TotalItems = photos.TotalCount;
 

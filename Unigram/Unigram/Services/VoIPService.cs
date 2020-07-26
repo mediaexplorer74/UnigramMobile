@@ -341,7 +341,7 @@ namespace Unigram.Services
                         return;
                     }
 
-                    ProtoService.Send(new SendMessage(chat.Id, 0, new SendMessageOptions(false, false, null), null, new InputMessageDocument(new InputFileLocal(file.Path), null, null)));
+                    ProtoService.Send(new SendMessage(chat.Id, 0, new SendMessageOptions(false, false, null), null, new InputMessageDocument(new InputFileLocal(file.Path), null, false, null)));
                 }
             }
         }

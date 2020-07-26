@@ -119,6 +119,17 @@ namespace Unigram.Controls
                 texture.Source = null;
                 container.Child = new Border();
             }
+            //var player = new Windows.Media.Playback.MediaPlayer
+            //{
+            //    AutoPlay = true,
+            //    IsMuted = false,
+            //    IsLoopingEnabled = true,
+            //    Source = Windows.Media.Core.MediaSource.CreateFromUri(UriEx.GetLocal(file.Local.Path))
+            //};
+            //container.Child = new MediaPlayerView
+            //{
+            //    MediaPlayer = player
+            //};
         }
 
         private void UpdateThumbnail(File file, ref Image thumbnail)
