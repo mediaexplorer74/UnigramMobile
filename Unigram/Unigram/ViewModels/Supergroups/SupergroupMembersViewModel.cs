@@ -149,7 +149,7 @@ namespace Unigram.ViewModels.Supergroups
                 return;
             }
 
-            var confirm = await MessagePopup.ShowAsync(string.Format(Strings.Resources.AddToTheGroup, user.GetFullName()), Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
+            var confirm = await MessagePopup.ShowAsync(string.Format((chat.Type as ChatTypeSupergroup)?.IsChannel ?? false ? Strings.Resources.ChannelAddTo : Strings.Resources.AddToTheGroup, user.GetFullName()), Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
             if (confirm != ContentDialogResult.Primary)
             {
                 return;
