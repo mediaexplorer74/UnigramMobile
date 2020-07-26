@@ -543,6 +543,21 @@ namespace Unigram.Views.Popups
             }
         }
 
+        private async void Preview_TappedAsync(object sender, TappedRoutedEventArgs e)
+        {
+            var image = sender as Image;
+            if (image.Tag is StorageMedia media)
+            {
+                var dialog = new EditMediaPopup(media);
+
+                var confirm = await dialog.ShowAsync();
+                if (confirm == ContentDialogResult.Primary)
+                {
+                    media.Refresh();
+                }
+            }
+        }
+
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
