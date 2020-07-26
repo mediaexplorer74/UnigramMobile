@@ -148,7 +148,11 @@ namespace Unigram.Views.Chats
                             break;
                         case Supergroups.SupergroupMembersView sgmv:
                             if (ViewModel.Chat?.Type is ChatTypeBasicGroup dbasic && ViewModel.ProtoService.GetBasicGroup(dbasic.BasicGroupId) is BasicGroup dgroup)
+                            {
                                 tab.Subtitle = dgroup.MemberCount.ToString();
+                                if (dgroup.MemberCount != sgmv.ViewModel.Members?.Count)
+                                    sgmv.ViewModel.Members = new ViewModels.ChatMemberGroupedCollection(sgmv.ViewModel.ProtoService, sgmv.ViewModel.Chat.Id, string.Empty, !sgmv.ViewModel.IsEmbedded);
+                            }
                             else if (ViewModel.Chat?.Type is ChatTypeSupergroup dsuper && ViewModel.ProtoService.GetSupergroup(dsuper.SupergroupId) is Supergroup dsgroup)
                                 tab.Subtitle = dsgroup.MemberCount.ToString();
                             else
