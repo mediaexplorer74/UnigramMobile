@@ -516,7 +516,7 @@ namespace Unigram.ViewModels
             {
                 if (dialog.Caption != null)
                 {
-                    await SendMessageAsync(dialog.Caption, options);
+                    dialog.Items[0].Caption = dialog.Caption; //TODO: temp hack until #24 //await SendMessageAsync(dialog.Caption, options);
                 }
 
                 foreach (var file in dialog.Items)
