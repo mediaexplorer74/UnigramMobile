@@ -415,8 +415,6 @@ namespace Unigram.Views.Popups
         private void Crop_Click(object sender, RoutedEventArgs e)
         {
             ResetUiVisibility();
-            Cropper.SetMask(ImageCropperMask.Rectangle);
-            Cropper.SetProportions(_media.EditState.Proportions);
             Cropper.IsCropEnabled = true;
             BasicToolbar.Visibility = Visibility.Collapsed;
 
@@ -429,6 +427,9 @@ namespace Unigram.Views.Popups
                 Proportions.IsChecked = true;
                 Proportions.IsEnabled = true;
             }
+
+            Rotate.IsChecked = _media.EditState.Rotation != BitmapRotation.None;
+            Flip.IsChecked = _media.EditState.Flip != BitmapFlip.None;
         }
 
         private void Draw_Click(object sender, RoutedEventArgs e)
@@ -453,12 +454,7 @@ namespace Unigram.Views.Popups
 
             Brush.IsChecked = true;
             Erase.IsChecked = false;
-
-            if (_media.EditState.Proportions != BitmapProportions.Custom)
-            {
-                Proportions.IsChecked = true;
-                Proportions.IsEnabled = true;
-            }
+            InvalidateToolbar();
         }
 
         private void Ttl_Click(object sender, RoutedEventArgs e)
