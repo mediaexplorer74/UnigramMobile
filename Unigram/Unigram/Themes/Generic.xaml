@@ -2091,7 +2091,12 @@
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation From="0.9" To="0.6" Storyboard.TargetName="Clip" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation From="0" To="1.0" Storyboard.TargetName="ThumbsContainer" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>                                    
+                                </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
                                         <Setter Target="ImageThumb.ManipulationMode" Value="None"/>
@@ -2099,8 +2104,8 @@
                                         <Setter Target="Clip.IsHitTestVisible" Value="False"/>
                                     </VisualState.Setters>
                                     <Storyboard>
-                                        <DoubleAnimation From="0.6" To="0" Storyboard.TargetName="Clip" Storyboard.TargetProperty="Opacity"/>
-                                        <DoubleAnimation From="1.0" To="0" Storyboard.TargetName="ThumbsContainer" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation From="0.6" To="0.9" Storyboard.TargetName="Clip" Storyboard.TargetProperty="Opacity"/>
+                                        <!--<DoubleAnimation From="1.0" To="0" Storyboard.TargetName="ThumbsContainer" Storyboard.TargetProperty="Opacity"/>-->
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -2160,7 +2165,7 @@
 
                             <Path x:Name="Clip" Opacity="0.6" Fill="{TemplateBinding Background}" Stroke="Transparent" StrokeThickness="1"/>
 
-                            <Grid x:Name="ThumbsContainer">
+                            <Grid x:Name="ThumbsContainer" Opacity="0">
                                 <Rectangle x:Name="MiddleThumb" Fill="Transparent" />
 
                                 <local:ImageCropperThumb x:Name="LeftThumb" Style="{StaticResource VerticalSideThumbStyle}" Margin="-11,-11,-10,-11" HorizontalAlignment="Left" VerticalAlignment="Stretch" />

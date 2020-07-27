@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <controls:ImageCropper x:Name="Cropper" Padding="24">
+        <controls:ImageCropper x:Name="Cropper" Padding="24" IsCropEnabled="False">
             <Grid>
                 <controls:PencilCanvas
                     x:Name="Canvas"
