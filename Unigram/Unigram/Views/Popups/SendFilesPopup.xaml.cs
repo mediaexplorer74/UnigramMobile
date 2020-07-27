@@ -545,8 +545,8 @@ namespace Unigram.Views.Popups
         */
         private async void Preview_TappedAsync(object sender, TappedRoutedEventArgs e)
         {
-            var image = sender as Image;
-            if (image.Tag is StorageMedia media)
+            var fe = sender as FrameworkElement;
+            if (fe.Tag is StorageMedia media)
             {
                 var dialog = new EditMediaPopup(media, IsTtlAvailable);
 
