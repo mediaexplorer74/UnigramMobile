@@ -189,10 +189,11 @@ namespace Unigram.Views.Popups
             }
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private async void Cancel_Click(object sender, RoutedEventArgs e)
         {
             if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
+                await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle); // Reset
                 ResetUiVisibility();
             }
             else if(DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
@@ -414,7 +415,6 @@ namespace Unigram.Views.Popups
         private void Crop_Click(object sender, RoutedEventArgs e)
         {
             ResetUiVisibility();
-            Cropper.Visibility = Visibility.Visible;
             Cropper.SetMask(ImageCropperMask.Rectangle);
             Cropper.SetProportions(_media.EditState.Proportions);
             Cropper.IsCropEnabled = true;
