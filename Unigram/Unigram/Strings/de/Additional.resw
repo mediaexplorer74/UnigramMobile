@@ -314,4 +314,8 @@
     <value>Alle Medien laden</value>
     <comment>ChatSharedMediaView</comment>
   </data>
+  <data name="AutoDownloadAudioTitle" xml:space="preserve">
+    <value>Auto-Download (Sprachnachrichten)</value>
+    <comment>SettingsDataAutoView</comment>
+  </data>
 </root>

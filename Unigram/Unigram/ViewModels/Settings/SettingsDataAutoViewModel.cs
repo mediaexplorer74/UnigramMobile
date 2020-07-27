@@ -42,7 +42,7 @@ namespace Unigram.ViewModels.Settings
                         break;
                     case AutoDownloadType.VoiceMessages:
                         Title = Strings.Resources.AudioAutodownload;
-                        Header = $"Auto-Download ({Strings.Resources.AudioAutodownload})"; //TODO
+                        Header = Strings.Additional.AutoDownloadAudioTitle;
                         mode = preferences.VoiceMessages;
                         limit = 0;
                         break;

@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/24/2020 19:24:31
+// 	Generated: 07/27/2020 21:02:11
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -640,6 +640,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("LoadAllMedia");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Auto-download voice messages"
+        /// </summary>
+        public static string AutoDownloadAudioTitle
+        {
+            get
+            {
+                return Resource.GetString("AutoDownloadAudioTitle");
             }
         }
         
