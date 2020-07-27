@@ -101,7 +101,11 @@ namespace Unigram.Views.Popups
         public FormattedText Caption
         {
             get => CaptionInput.GetFormattedText(false);
-            set => CaptionInput.SetText(value);
+            set
+            {
+                CaptionInput.SetText(value);
+                Items[0].Caption = value;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -548,12 +552,16 @@ namespace Unigram.Views.Popups
             var fe = sender as FrameworkElement;
             if (fe.Tag is StorageMedia media)
             {
+                if (Items[0] == media)
+                    media.Caption = Caption;
                 var dialog = new EditMediaPopup(media, IsTtlAvailable);
 
                 var confirm = await dialog.ShowAsync();
                 if (confirm == ContentDialogResult.Primary)
                 {
                     media.Refresh();
+                    if (Items[0] == media && !string.IsNullOrWhiteSpace(media.Caption?.Text))
+                        CaptionInput.SetText(media.Caption);
                 }
             }
         }

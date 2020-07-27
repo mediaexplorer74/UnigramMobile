@@ -29,6 +29,17 @@
             </Grid>
         </controls:ImageCropper>
 
+        <controls:FormattedTextBox
+            x:Name="CaptionInput"
+            Loaded="OnLoaded"
+            Unloaded="OnUnloaded"
+            InputScope="Chat"
+            FontFamily="{ThemeResource EmojiThemeFontFamily}"
+            PlaceholderText="{CustomResource AddCaption}"
+            Margin="12,0,0,12"
+            MaxWidth="320"
+            Grid.Row="1"/>
+
         <controls:ColorSlider
             x:Name="DrawSlider"
             x:Load="False"

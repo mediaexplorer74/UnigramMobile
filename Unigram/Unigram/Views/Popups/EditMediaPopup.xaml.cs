@@ -118,6 +118,8 @@ namespace Unigram.Views.Popups
                 Crop.IsChecked = false;
                 Draw.IsChecked = false;
             }
+            if (!string.IsNullOrWhiteSpace(media.Caption?.Text))
+                CaptionInput.SetText(media.Caption);
         }
 
         public bool IsCropEnabled
@@ -185,6 +187,7 @@ namespace Unigram.Views.Popups
             else
             {
                 ResetUiVisibility();
+                _media.Caption = CaptionInput.GetFormattedText();
                 Hide(ContentDialogResult.Primary);
             }
         }
@@ -214,6 +217,7 @@ namespace Unigram.Views.Popups
         {
             Cropper.IsCropEnabled = false;
             Canvas.IsEnabled = false;
+            CaptionInput.Visibility = Visibility.Visible;
             BasicToolbar.Visibility = Visibility.Visible;
             if (CropToolbar != null)
                 CropToolbar.Visibility = Visibility.Collapsed;
@@ -416,6 +420,7 @@ namespace Unigram.Views.Popups
         {
             ResetUiVisibility();
             Cropper.IsCropEnabled = true;
+            CaptionInput.Visibility = Visibility.Collapsed;
             BasicToolbar.Visibility = Visibility.Collapsed;
 
             if (CropToolbar == null)
@@ -436,7 +441,7 @@ namespace Unigram.Views.Popups
         {
             ResetUiVisibility();
             Canvas.IsEnabled = true;
-
+            CaptionInput.Visibility = Visibility.Collapsed;
             BasicToolbar.Visibility = Visibility.Collapsed;
 
             if (DrawToolbar == null)
@@ -560,6 +565,47 @@ namespace Unigram.Views.Popups
             if (Redo != null)
             {
                 Redo.IsEnabled = Canvas.CanRedo;
+            }
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            CaptionInput.Focus(FocusState.Keyboard);
+            Window.Current.CoreWindow.CharacterReceived += OnCharacterReceived;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.CoreWindow.CharacterReceived -= OnCharacterReceived;
+        }
+
+        private void OnCharacterReceived(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.CharacterReceivedEventArgs args)
+        {
+            var character = System.Text.Encoding.UTF32.GetString(BitConverter.GetBytes(args.KeyCode));
+            if (character.Length == 0 || (char.IsControl(character[0]) && character != "\u0016" && character != "\r") || char.IsWhiteSpace(character[0]))
+            {
+                return;
+            }
+
+            var focused = Windows.UI.Xaml.Input.FocusManager.GetFocusedElement();
+            if (focused != CaptionInput)
+            {
+                if (character == "\u0016" && CaptionInput.Document.Selection.CanPaste(0))
+                {
+                    CaptionInput.Focus(FocusState.Keyboard);
+                    CaptionInput.Document.Selection.Paste(0);
+                }
+                //else if (character == "\r")
+                //{
+                //    Accept_Click(null, null);
+                //}
+                else
+                {
+                    CaptionInput.Focus(FocusState.Keyboard);
+                    CaptionInput.InsertText(character);
+                }
+
+                args.Handled = true;
             }
         }
     }

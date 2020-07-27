@@ -96,6 +96,8 @@ namespace Unigram.Entities
 
         public bool IsEdited => !_editState?.IsEmpty ?? false;
 
+        public Telegram.Td.Api.FormattedText Caption { get; set; }
+
         private async void LoadThumbnail()
         {
             try

@@ -322,20 +322,20 @@ namespace Unigram.ViewModels
                 }
             }
         }
-
+        //TODO: Here and many other places: because of StorageMedia.Caption, the parameter caption is superfluous
         private async Task SendStorageMediaAsync(StorageMedia storage, FormattedText caption, bool asFile, SendMessageOptions options)
         {
             if (storage is StorageDocument)
             {
-                await SendDocumentAsync(storage.File, caption, options);
+                await SendDocumentAsync(storage.File, caption ?? storage.Caption, options);
             }
             else if (storage is StoragePhoto photo)
             {
-                await SendPhotoAsync(storage.File, caption, asFile, storage.Ttl, storage.IsEdited ? storage.EditState : null, options);
+                await SendPhotoAsync(storage.File, caption ?? storage.Caption, asFile, storage.Ttl, storage.IsEdited ? storage.EditState : null, options);
             }
             else if (storage is StorageVideo video)
             {
-                await SendVideoAsync(storage.File, caption, video.IsMuted, asFile, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform(), options);
+                await SendVideoAsync(storage.File, caption ?? storage.Caption, video.IsMuted, asFile, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform(), options);
             }
         }
 
@@ -831,7 +831,7 @@ namespace Unigram.ViewModels
                     var factory = await _messageFactory.CreatePhotoAsync(photo.File, false, photo.Ttl, photo.IsEdited ? photo.EditState : null);
                     if (factory != null)
                     {
-                        var input = factory.Delegate(factory.InputFile, firstCaption);
+                        var input = factory.Delegate(factory.InputFile, firstCaption ?? item.Caption);
 
                         operations.Add(input);
                         firstCaption = null;
@@ -842,7 +842,7 @@ namespace Unigram.ViewModels
                     var factory = await _messageFactory.CreateVideoAsync(video.File, video.IsMuted, false, video.Ttl, await video.GetEncodingAsync(), video.GetTransform());
                     if (factory != null)
                     {
-                        var input = factory.Delegate(factory.InputFile, firstCaption);
+                        var input = factory.Delegate(factory.InputFile, firstCaption ?? item.Caption);
 
                         operations.Add(input);
                         firstCaption = null;
