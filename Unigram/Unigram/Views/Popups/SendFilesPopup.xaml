@@ -166,6 +166,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <!--
                     <controls:GlyphToggleButton
                         x:Name="Mute"
                         Click="Mute_Click"
@@ -207,7 +208,7 @@
                         AutomationProperties.Name="{CustomResource SetTimer}"
                         ToolTipService.ToolTip="{CustomResource SetTimer}"
                         Grid.Column="1"/>
-
+                    -->
                     <controls:GlyphButton
                         Glyph="&#xE107;"
                         Click="Remove_Click"
@@ -215,7 +216,7 @@
                         Width="40"
                         Height="40"
                         FontSize="{StaticResource GlyphButtonFontSize}"
-                        Radius="4,12,12,4"
+                        Radius="12"
                         Grid.Column="2"/>
                 </Grid>
             </Grid>

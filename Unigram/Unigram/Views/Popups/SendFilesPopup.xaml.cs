@@ -290,24 +290,24 @@ namespace Unigram.Views.Popups
 
             var overlay = root.FindName("Overlay") as Border;
 
-            var mute = root.FindName("Mute") as ToggleButton;
-            var crop = root.FindName("Crop") as ToggleButton;
-            var ttl = root.FindName("Ttl") as ToggleButton;
+            //var mute = root.FindName("Mute") as ToggleButton;
+            //var crop = root.FindName("Crop") as ToggleButton;
+            //var ttl = root.FindName("Ttl") as ToggleButton;
 
             overlay.Visibility = storage is StorageVideo ? Visibility.Visible : Visibility.Collapsed;
 
-            if (storage is StorageVideo video)
-            {
-                mute.IsChecked = video.IsMuted;
-                mute.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                mute.Visibility = Visibility.Collapsed;
-            }
+            //if (storage is StorageVideo video)
+            //{
+            //    mute.IsChecked = video.IsMuted;
+            //    mute.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    mute.Visibility = Visibility.Collapsed;
+            //}
 
-            crop.Visibility = storage is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
-            ttl.Visibility = IsTtlAvailable ? Visibility.Visible : Visibility.Collapsed;
+            //crop.Visibility = storage is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
+            //ttl.Visibility = IsTtlAvailable ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void Accept()
@@ -469,7 +469,7 @@ namespace Unigram.Views.Popups
         {
             UpdatePanel();
         }
-
+        /*
         private void Ttl_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as ToggleButton;
@@ -542,13 +542,13 @@ namespace Unigram.Views.Popups
                 }
             }
         }
-
+        */
         private async void Preview_TappedAsync(object sender, TappedRoutedEventArgs e)
         {
             var image = sender as Image;
             if (image.Tag is StorageMedia media)
             {
-                var dialog = new EditMediaPopup(media);
+                var dialog = new EditMediaPopup(media, IsTtlAvailable);
 
                 var confirm = await dialog.ShowAsync();
                 if (confirm == ContentDialogResult.Primary)

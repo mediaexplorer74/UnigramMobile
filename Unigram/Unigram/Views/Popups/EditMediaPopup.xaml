@@ -73,6 +73,57 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <controls:GlyphToggleButton
+                    x:Name="Mute"
+                    Click="Mute_Click"
+                    UncheckedGlyph="&#xE906;"
+                    CheckedGlyph="&#xE906;"
+                    CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
+                    FontFamily="{StaticResource TelegramThemeFontFamily}"
+                    FontSize="18"/>
+
+                <controls:GlyphToggleButton
+                    x:Name="Crop"
+                    Click="Crop_Click"
+                    UncheckedGlyph="&#xE7A8;"
+                    CheckedGlyph="&#xE7A8;"
+                    CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
+                    FontSize="{StaticResource GlyphButtonFontSize}"
+                    AutomationProperties.Name="{CustomResource CropImage}"
+                    ToolTipService.ToolTip="{CustomResource CropImage}"
+                    Grid.Column="1"/>
+                <!--IsChecked="{x:Bind IsEdited, Mode=OneWay}" TODO-->
+
+                <controls:GlyphToggleButton
+                    x:Name="Draw"
+                    Click="Draw_Click"
+                    UncheckedGlyph="&#xEE56;"
+                    CheckedGlyph="&#xEE56;"
+                    CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
+                    FontSize="{StaticResource GlyphButtonFontSize}"
+                    AutomationProperties.Name="{CustomResource AccDescrPhotoEditor}"
+                    ToolTipService.ToolTip="{CustomResource AccDescrPhotoEditor}"
+                    Grid.Column="2"/>
+
+                <controls:GlyphToggleButton
+                    x:Name="Ttl"
+                    Click="Ttl_Click"
+                    UncheckedGlyph="&#xE916;"
+                    CheckedGlyph="&#xE916;"
+                    CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
+                    FontSize="{StaticResource GlyphButtonFontSize}"
+                    AutomationProperties.Name="{CustomResource SetTimer}"
+                    ToolTipService.ToolTip="{CustomResource SetTimer}"
+                    Grid.Column="3"/>
+                <!--IsChecked="{x:Bind IsSecret, Mode=OneWay}" TODO-->
+            </Grid>
+            <Grid x:Name="CropToolbar" x:Load="False" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <controls:GlyphToggleButton
                     x:Name="Rotate"
                     Click="Rotate_Click"
                     UncheckedGlyph="&#xE909;"
@@ -90,7 +141,7 @@
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontFamily="{StaticResource TelegramThemeFontFamily}"
                     Grid.Column="1"/>
-                
+                <!--
                 <controls:GlyphButton
                     x:Name="Draw"
                     Click="Draw_Click"
@@ -98,7 +149,7 @@
                     AutomationProperties.Name="{CustomResource AccDescrPhotoEditor}"
                     ToolTipService.ToolTip="{CustomResource AccDescrPhotoEditor}"
                     Grid.Column="2"/>
-
+                -->
                 <controls:GlyphToggleButton
                     x:Name="Proportions"
                     Click="Proportions_Click"

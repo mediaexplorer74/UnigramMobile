@@ -31,7 +31,7 @@ namespace Unigram.Views.Popups
         public EditMediaPopup(StorageFile file, BitmapProportions proportions = BitmapProportions.Custom, ImageCropperMask mask = ImageCropperMask.Rectangle)
         {
             InitializeComponent();
-
+            //TODO!!
             Cropper.SetMask(mask);
             Cropper.SetProportions(proportions);
 
@@ -48,7 +48,7 @@ namespace Unigram.Views.Popups
                 await Cropper.SetSourceAsync(file, proportions: proportions);
             };
         }
-
+        /* Stays here for easier merging with the original:
         public EditMediaPopup(StorageMedia media)
         {
             InitializeComponent();
@@ -72,6 +72,53 @@ namespace Unigram.Views.Popups
                 await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
             };
         }
+        */
+        public EditMediaPopup(StorageMedia media, bool ttl)
+        {
+            InitializeComponent();
+
+            Canvas.Strokes = media.EditState.Strokes;
+
+            _file = media.File;
+            _media = media;
+
+            Loaded += async (s, args) =>
+            {
+                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
+                Cropper.IsCropEnabled = false;
+            };
+
+            if (_media is StorageVideo video)
+            {
+                Mute.IsChecked = video.IsMuted;
+                Mute.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Mute.Visibility = Visibility.Collapsed;
+            }
+
+            Crop.Visibility = _media is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
+            Draw.Visibility = Crop.Visibility;
+            Ttl.Visibility = ttl ? Visibility.Visible : Visibility.Collapsed;
+            Ttl.IsChecked = _media.Ttl > 0;
+
+            if (_media.EditState is BitmapEditState editSate)
+            {
+                Crop.IsChecked = editSate.Proportions != BitmapProportions.Custom ||
+                                    editSate.Flip != BitmapFlip.None ||
+                                    editSate.Rotation != BitmapRotation.None ||
+                                    (editSate.Rectangle != null && !editSate.Rectangle.IsEmpty && 
+                                    (editSate.Rectangle.X > 0 || editSate.Rectangle.Y > 0 ||
+                                    editSate.Rectangle.Width != 1 || editSate.Rectangle.Height != 1));
+
+                Draw.IsChecked = editSate.Strokes != null && editSate.Strokes.Count > 0;
+            } else
+            {
+                Crop.IsChecked = false;
+                Draw.IsChecked = false;
+            }
+        }
 
         public bool IsCropEnabled
         {
@@ -86,13 +133,13 @@ namespace Unigram.Views.Popups
 
         private async void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if (Cropper.IsCropEnabled)
+            if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
                 if (_media != null)
                 {
                     var rect = Cropper.CropRectangle;
-                    var w = Cropper.PixelWidth;
-                    var h = Cropper.PixelHeight;
+                    //var w = Cropper.PixelWidth;
+                    //var h = Cropper.PixelHeight;
 
                     _media.EditState = new BitmapEditState
                     {
@@ -104,7 +151,13 @@ namespace Unigram.Views.Popups
                         Rotation = _rotation
                     };
 
-                    Hide(ContentDialogResult.Primary);
+                    ResetUiVisibility(); //Hide(ContentDialogResult.Primary);
+                    Crop.IsChecked = Cropper.Proportions != BitmapProportions.Custom ||
+                                        _flip != BitmapFlip.None ||
+                                        _rotation != BitmapRotation.None ||
+                                        (rect != null && !rect.IsEmpty && 
+                                        (rect.X > 0 || rect.Y > 0 || 
+                                        rect.Width != 1 || rect.Height != 1));
                     return;
                 }
 
@@ -119,40 +172,54 @@ namespace Unigram.Views.Popups
                 Result = cropped;
                 Hide(ContentDialogResult.Primary);
             }
-            else
+            else if (DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
             {
                 Canvas.SaveState();
+                _media.EditState.Strokes = Canvas.Strokes;
 
-                Cropper.IsCropEnabled = true;
-                Canvas.IsEnabled = false;
-
-                BasicToolbar.Visibility = Visibility.Visible;
-                DrawToolbar.Visibility = Visibility.Collapsed;
-                DrawSlider.Visibility = Visibility.Collapsed;
+                Draw.IsChecked = Canvas.Strokes != null && Canvas.Strokes.Count > 0;
+                ResetUiVisibility();
 
                 SettingsService.Current.Pencil = DrawSlider.GetDefault();
+            }
+            else
+            {
+                ResetUiVisibility();
+                Hide(ContentDialogResult.Primary);
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            if (Cropper.IsCropEnabled)
+            if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
-                Hide(ContentDialogResult.Secondary);
+                ResetUiVisibility();
             }
-            else
+            else if(DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
             {
                 Canvas.RestoreState();
 
-                Cropper.IsCropEnabled = true;
-                Canvas.IsEnabled = false;
-
-                BasicToolbar.Visibility = Visibility.Visible;
-                DrawToolbar.Visibility = Visibility.Collapsed;
-                DrawSlider.Visibility = Visibility.Collapsed;
-
+                ResetUiVisibility();
                 SettingsService.Current.Pencil = DrawSlider.GetDefault();
             }
+            else
+            {
+                ResetUiVisibility();
+                Hide(ContentDialogResult.Secondary);
+            }
+        }
+
+        private void ResetUiVisibility()
+        {
+            Cropper.IsCropEnabled = false;
+            Canvas.IsEnabled = false;
+            BasicToolbar.Visibility = Visibility.Visible;
+            if (CropToolbar != null)
+                CropToolbar.Visibility = Visibility.Collapsed;
+            if (DrawToolbar != null)
+                DrawToolbar.Visibility = Visibility.Collapsed;
+            if (DrawSlider != null)
+                DrawSlider.Visibility = Visibility.Collapsed;
         }
 
         private void Proportions_Click(object sender, RoutedEventArgs e)
@@ -334,9 +401,39 @@ namespace Unigram.Views.Popups
             return result;
         }
 
+        private void Mute_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Windows.UI.Xaml.Controls.Primitives.ToggleButton;
+            if (_media is StorageVideo video)
+            {
+                button.IsChecked = !button.IsChecked == true;
+                video.IsMuted = button.IsChecked == true;
+            }
+        }
+
+        private void Crop_Click(object sender, RoutedEventArgs e)
+        {
+            ResetUiVisibility();
+            Cropper.Visibility = Visibility.Visible;
+            Cropper.SetMask(ImageCropperMask.Rectangle);
+            Cropper.SetProportions(_media.EditState.Proportions);
+            Cropper.IsCropEnabled = true;
+            BasicToolbar.Visibility = Visibility.Collapsed;
+
+            if (CropToolbar == null)
+                FindName(nameof(CropToolbar));
+            CropToolbar.Visibility = Visibility.Visible;
+
+            if (_media.EditState.Proportions != BitmapProportions.Custom)
+            {
+                Proportions.IsChecked = true;
+                Proportions.IsEnabled = true;
+            }
+        }
+
         private void Draw_Click(object sender, RoutedEventArgs e)
         {
-            Cropper.IsCropEnabled = false;
+            ResetUiVisibility();
             Canvas.IsEnabled = true;
 
             BasicToolbar.Visibility = Visibility.Collapsed;
@@ -356,6 +453,62 @@ namespace Unigram.Views.Popups
 
             Brush.IsChecked = true;
             Erase.IsChecked = false;
+
+            if (_media.EditState.Proportions != BitmapProportions.Custom)
+            {
+                Proportions.IsChecked = true;
+                Proportions.IsEnabled = true;
+            }
+        }
+
+        private void Ttl_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Windows.UI.Xaml.Controls.Primitives.ToggleButton;
+            var media = _media as StorageMedia;
+
+            var slider = new Slider();
+            slider.IsThumbToolTipEnabled = false;
+            slider.Header = MessageTtlConverter.Convert(MessageTtlConverter.ConvertSeconds(media.Ttl));
+            slider.Minimum = 0;
+            slider.Maximum = 28;
+            slider.StepFrequency = 1;
+            slider.SmallChange = 1;
+            slider.LargeChange = 1;
+            slider.Value = MessageTtlConverter.ConvertSeconds(media.Ttl);
+            slider.ValueChanged += (s, args) =>
+            {
+                var index = (int)args.NewValue;
+                var label = MessageTtlConverter.Convert(index);
+
+                slider.Header = label;
+                media.Ttl = MessageTtlConverter.ConvertBack(index);
+                Ttl.IsChecked = media.Ttl > 0;
+            };
+
+            var text = new TextBlock();
+            text.Style = App.Current.Resources["InfoCaptionTextBlockStyle"] as Style;
+            text.TextWrapping = TextWrapping.Wrap;
+            text.Text = media is StoragePhoto
+                ? Strings.Resources.MessageLifetimePhoto
+                : Strings.Resources.MessageLifetimeVideo;
+
+            var stack = new StackPanel();
+            stack.Width = 260;
+            stack.Children.Add(slider);
+            stack.Children.Add(text);
+
+            var flyout = new Flyout();
+            flyout.Content = stack;
+
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
+            {
+                flyout.ShowAt(button.Parent as UIElement, new Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions { Placement = Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.TopEdgeAlignedRight });
+            }
+            else
+            {
+                flyout.ShowAt(button.Parent as FrameworkElement);
+            }
+
         }
 
         private void Brush_Click(object sender, RoutedEventArgs e)
