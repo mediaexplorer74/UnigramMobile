@@ -143,7 +143,7 @@
                     Tag="{x:Bind}"
                     Stretch="Uniform"/>
 
-                <Border x:Name="Overlay" DataContextChanged="Grid_DataContextChanged" Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageOverlayBackgroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border x:Name="Overlay" DataContextChanged="Grid_DataContextChanged" Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageOverlayBackgroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
                     <!--<controls:FileButton x:Name="Button" Style="{StaticResource InlineFileButtonStyle}"/>-->
                     <TextBlock
                         x:Name="Glyph"
