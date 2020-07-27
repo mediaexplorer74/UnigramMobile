@@ -139,6 +139,8 @@
                 <Image
                     x:Name="Preview"
                     Tapped="Preview_TappedAsync"
+                    AutomationProperties.Name="{CustomResource EditMessageMedia}"
+                    ToolTipService.ToolTip="{CustomResource EditMessageMedia}"  
                     Source="{x:Bind Preview, Mode=OneWay}"
                     Tag="{x:Bind}"
                     Stretch="Uniform"/>
@@ -263,6 +265,8 @@
                 Click="PivotRadioButton_Click"
                 Style="{StaticResource ModernPivotRadioButtonStyle}"
                 IsChecked="{x:Bind IsFilesSelected, Mode=TwoWay}"
+                AutomationProperties.Name="{CustomResource SendWithoutCompression}"
+                ToolTipService.ToolTip="{CustomResource SendWithoutCompression}"  
                 Grid.Column="1"/>
             <controls:PivotRadioButton
                 Glyph="&#xE7B8;"
@@ -277,6 +281,8 @@
                 UncheckedGlyph="&#xE90C;"
                 CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                 Click="Album_Click"
+                AutomationProperties.Name="{CustomResource SendWithoutGrouping}"
+                ToolTipService.ToolTip="{CustomResource SendWithoutGrouping}"                
                 FontFamily="{StaticResource TelegramThemeFontFamily}"
                 FontSize="{StaticResource GlyphButtonFontSize}"
                 Visibility="{x:Bind IsAlbumAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
