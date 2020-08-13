@@ -28,6 +28,7 @@ namespace Unigram.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             SelectedItems.Clear();
+            ItemSelectionChanged?.Invoke(this, new MediaSelectedItemsEventArgs(SelectedItems));
             Library.MaxWidth = Window.Current.Bounds.Width - 24;
             Library.MinWidth = Library.MaxWidth;
         }

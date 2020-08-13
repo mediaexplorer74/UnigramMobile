@@ -524,6 +524,7 @@ namespace Unigram.ViewModels
                     await SendStorageMediaAsync(file, null, dialog.IsFilesSelected, options);
                 }
             }
+            Collections.MediaLibraryCollection.ResetForCurrentView(); //Reset probably edited media items //TODO: Update (reset) only those item that got sent
         }
 
         public RelayCommand SendContactCommand { get; }

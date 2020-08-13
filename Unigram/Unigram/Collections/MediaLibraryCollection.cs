@@ -43,6 +43,11 @@ namespace Unigram.Collections
             return context;
         }
 
+        public static void ResetForCurrentView()
+        {
+            GetForCurrentView().OnContentsChanged(null, null);
+        }
+
         private async void OnContentsChanged(IStorageQueryResultBase sender, object args)
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -71,19 +76,13 @@ namespace Unigram.Collections
                     }
 
                     var items = new List<StorageMedia>();
-                    uint resultCount = 0;
                     var result = await _query.GetFilesAsync(_startIndex, 10);
                     _startIndex += (uint)result.Count;
 
-                    resultCount = (uint)result.Count;
-
                     foreach (var file in result)
                     {
-                        var storage = await StorageMedia.CreateAsync(file, false);
-                        if (storage != null)
-                        {
+                        if (await StorageMedia.CreateAsync(file, false) is StorageMedia storage)
                             items.Add(storage);
-                        }
                     }
 
                     return items;
