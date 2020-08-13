@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     TitleTemplate="{x:Null}"
+    MaxWidth="640"
     PrimaryButtonText="Button1"
     SecondaryButtonText="Button2"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
@@ -166,12 +167,12 @@
                       RequestedTheme="Dark"
                       CornerRadius="15"
                       Margin="4">
+                    <!--
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <!--
                     <controls:GlyphToggleButton
                         x:Name="Mute"
                         Click="Mute_Click"
@@ -238,7 +239,7 @@
         </ItemsPanelTemplate>
 
         <ItemsPanelTemplate x:Key="AlbumPanelTemplate">
-            <local:SendFilesAlbumPanel Loading="SendFilesAlbumPanel_Loading" MaxWidth="322" MaxHeight="422"/>
+            <local:SendFilesAlbumPanel Loading="SendFilesAlbumPanel_Loading"/>
         </ItemsPanelTemplate>
 
     </ContentControl.Resources>
