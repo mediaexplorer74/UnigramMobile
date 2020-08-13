@@ -606,7 +606,7 @@ namespace Unigram.Views.Popups
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            CaptionInput.Focus(FocusState.Keyboard);
+            //CaptionInput.Focus(FocusState.Keyboard);
             Window.Current.CoreWindow.CharacterReceived += OnCharacterReceived;
         }
 

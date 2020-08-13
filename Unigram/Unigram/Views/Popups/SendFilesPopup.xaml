@@ -161,7 +161,7 @@
                         FontSize="20"/>
                 </Border>
 
-                <Grid HorizontalAlignment="Right"
+                <Grid HorizontalAlignment="Center"
                       VerticalAlignment="Bottom"
                       Background="{ThemeResource MessageOverlayBackgroundBrush}"
                       RequestedTheme="Dark"
@@ -297,7 +297,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ListView x:Name="List"
@@ -310,6 +310,7 @@
                   CanReorderItems="True"
                   CanDragItems="True"
                   AllowDrop="True"
+                  VerticalAlignment="Top"
                   Padding="0,6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -331,6 +332,7 @@
                   DragEnter="ListView_DragEnter"
                   Drop="ListView_Drop"
                   AllowDrop="True"
+                  VerticalAlignment="Top"
                   Margin="11">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -373,7 +375,6 @@
             </ListView.ItemContainerTransitions>
         </ListView>
 
-        <Grid x:Name="CaptionPanel" Grid.Row="2">
             <controls:CaptionTextBox
                 x:Name="CaptionInput"
                 Loaded="OnLoaded"
@@ -386,8 +387,8 @@
                 FontFamily="{ThemeResource EmojiThemeFontFamily}"
                 PlaceholderText="{CustomResource AddCaption}"
                 Margin="12,8,12,0"
+                VerticalAlignment="Bottom"
                 Grid.Row="1"/>
-        </Grid>
     </Grid>
 
 </controls:ContentPopup>
