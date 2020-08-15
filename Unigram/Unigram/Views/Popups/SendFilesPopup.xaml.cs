@@ -547,6 +547,13 @@ namespace Unigram.Views.Popups
             }
         }
         */
+
+        // Used to verify the current media edit state
+        public EditMediaPopup Popup
+        {
+            get; private set;
+        }
+
         private async void Preview_TappedAsync(object sender, TappedRoutedEventArgs e)
         {
             var fe = sender as FrameworkElement;
@@ -554,15 +561,16 @@ namespace Unigram.Views.Popups
             {
                 if (Items[0] == media)
                     media.Caption = Caption;
-                var dialog = new EditMediaPopup(media, IsTtlAvailable);
+                Popup = new EditMediaPopup(media, IsTtlAvailable);
 
-                var confirm = await dialog.ShowAsync();
+                var confirm = await Popup.ShowAsync();
                 if (confirm == ContentDialogResult.Primary)
                 {
                     media.Refresh();
                     if (Items[0] == media && !string.IsNullOrWhiteSpace(media.Caption?.Text))
                         CaptionInput.SetText(media.Caption);
                 }
+                Popup = null;
             }
         }
 

@@ -267,6 +267,7 @@ namespace Unigram.ViewModels
             var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, _type == DialogType.Normal, self);
             dialog.ViewModel = this;
             dialog.Caption = caption;
+            dialog.Closing += SendFilesPopup_Closing;
 
             var confirm = await dialog.OpenAsync();
             if (confirm != ContentDialogResult.Primary)
@@ -470,6 +471,7 @@ namespace Unigram.ViewModels
             var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, _type == DialogType.Normal, self);
             dialog.ViewModel = this;
             dialog.Caption = caption;
+            dialog.Closing += SendFilesPopup_Closing;
 
             var confirm = await dialog.OpenAsync();
             if (confirm != ContentDialogResult.Primary)
@@ -1066,6 +1068,7 @@ namespace Unigram.ViewModels
             var dialog = new SendFilesPopup(new[] { storage }, true, false, false, false);
             dialog.Caption = formattedText
                 .Substring(0, CacheService.Options.MessageCaptionLengthMax);
+            dialog.Closing += SendFilesPopup_Closing;
 
             var confirm = await dialog.OpenAsync();
 
@@ -1097,6 +1100,17 @@ namespace Unigram.ViewModels
             if (factory != null)
             {
                 header.EditingMessageMedia = factory;
+            }
+        }
+
+        private void SendFilesPopup_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            if (args.Result == ContentDialogResult.None && sender is SendFilesPopup popup && popup.Popup is EditMediaPopup editMediaPopup 
+                && editMediaPopup.IsOpen)
+            {
+                // Instead of closing, handle press back in open OverlayPage
+                editMediaPopup.OnBackRequested(new HandledRoutedEventArgs());
+                args.Cancel = true;
             }
         }
     }
