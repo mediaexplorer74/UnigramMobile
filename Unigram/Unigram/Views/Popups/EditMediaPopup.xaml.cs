@@ -20,10 +20,11 @@ namespace Unigram.Views.Popups
     public sealed partial class EditMediaPopup : OverlayPage
     {
         public StorageFile Result { get; private set; }
-        public StorageMedia ResultMedia { get; private set; }
+        //public StorageMedia ResultMedia { get; private set; }
 
         private StorageFile _file;
         private StorageMedia _media;
+        private BitmapEditState _originalMediaEditState;
 
         private readonly BitmapProportions _proportions;
         private BitmapRotation _rotation = BitmapRotation.None;
@@ -84,6 +85,7 @@ namespace Unigram.Views.Popups
 
             _file = media.File;
             _media = media;
+            _originalMediaEditState = CopyBitmapEditState(media.EditState);
 
             Loaded += async (s, args) =>
             {
@@ -141,15 +143,14 @@ namespace Unigram.Views.Popups
             if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
                 var rect = Cropper.CropRectangle;
-                if (_media != null)
-                    _media.EditState = new BitmapEditState
-                    {
-                        Rectangle = rect,
-                        Proportions = Cropper.Proportions,
-                        Strokes = Canvas.Strokes,
-                        Flip = _flip,
-                        Rotation = _rotation
-                    };
+                if (_media?.EditState is BitmapEditState es)
+                {
+                    es.Rectangle = rect;
+                    es.Proportions = Cropper.Proportions;
+                    es.Strokes = Canvas.Strokes;
+                    es.Flip = _flip;
+                    es.Rotation = _rotation;
+                }
                 Crop.IsChecked = IsCropped(rect);
                 ResetUiVisibility(); //Hide(ContentDialogResult.Primary);
             }
@@ -216,9 +217,15 @@ namespace Unigram.Views.Popups
             }
             else
             {
+                _media.EditState = _originalMediaEditState; // Reset to state before starting editing
                 ResetUiVisibility();
                 Hide(ContentDialogResult.Secondary);
             }
+        }
+
+        private BitmapEditState CopyBitmapEditState(BitmapEditState original)
+        {
+            return new BitmapEditState() { Flip = original.Flip, Proportions = original.Proportions, Rectangle = original.Rectangle, Rotation = original.Rotation, Strokes = original.Strokes };
         }
 
         private bool IsCropped(Rect rect)
