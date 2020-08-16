@@ -600,13 +600,16 @@ namespace Unigram.Views.Popups
         #region Media Description Events
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //CaptionInput.Focus(FocusState.Keyboard);
             Window.Current.CoreWindow.CharacterReceived += OnCharacterReceived;
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Showing += InputPane_Showing;
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Hiding += InputPane_Hiding;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.CoreWindow.CharacterReceived -= OnCharacterReceived;
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Showing -= InputPane_Showing;
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Hiding -= InputPane_Hiding;
         }
 
         private void OnCharacterReceived(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.CharacterReceivedEventArgs args)
@@ -637,6 +640,18 @@ namespace Unigram.Views.Popups
 
                 args.Handled = true;
             }
+        }
+
+
+        private void InputPane_Showing(Windows.UI.ViewManagement.InputPane sender, Windows.UI.ViewManagement.InputPaneVisibilityEventArgs args)
+        {
+            args.EnsuredFocusedElementInView = Windows.UI.Xaml.Input.FocusManager.GetFocusedElement() is FormattedTextBox;
+            KeyboardPlaceholder.Height = new GridLength(args.OccludedRect.Height);
+        }
+
+        private void InputPane_Hiding(Windows.UI.ViewManagement.InputPane sender, Windows.UI.ViewManagement.InputPaneVisibilityEventArgs args)
+        {
+            KeyboardPlaceholder.Height = new GridLength(1, GridUnitType.Auto);
         }
         #endregion
     }

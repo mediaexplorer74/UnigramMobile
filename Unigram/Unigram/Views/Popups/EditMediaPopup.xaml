@@ -19,6 +19,7 @@
             <RowDefinition/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition x:Name="KeyboardPlaceholder" Height="Auto"/>
         </Grid.RowDefinitions>
 
         <controls:ImageCropper x:Name="Cropper" Padding="8,0,8,8" IsCropEnabled="False">
