@@ -137,6 +137,16 @@ namespace Unigram.Controls
                 View.Autocomplete = null;
             }
         }
+
+        #region Paste on Mobile
+        public event EventHandler PasteMobile;
+
+        protected override void OnPaste()
+        {
+            //Paste?.Invoke(this, null); // This event does not get triggered on Mobile -- for some reason
+            PasteMobile?.Invoke(this, null);
+        }
+        #endregion
     }
 
     public interface IViewWithAutocomplete

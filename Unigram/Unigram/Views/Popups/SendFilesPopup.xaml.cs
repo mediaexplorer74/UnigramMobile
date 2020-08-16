@@ -334,6 +334,15 @@ namespace Unigram.Views.Popups
             }
         }
 
+        private async void OnPasteMobile(object sender, EventArgs e)
+        {
+            var content = Clipboard.GetContent();
+            if (!content.AvailableFormats.Contains(StandardDataFormats.Text))
+            {
+                await HandlePackageAsync(content);
+            }
+        }
+
         private void ListView_DragEnter(object sender, DragEventArgs e)
         {
             e.Handled = true;

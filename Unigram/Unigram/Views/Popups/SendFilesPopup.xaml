@@ -383,6 +383,7 @@
                 Autocomplete="{x:Bind ListAutocomplete}"
                 DataContext="{x:Bind ViewModel}"
                 Paste="OnPaste"
+                PasteMobile="OnPasteMobile"
                 InputScope="Chat"
                 FontFamily="{ThemeResource EmojiThemeFontFamily}"
                 PlaceholderText="{CustomResource AddCaption}"
