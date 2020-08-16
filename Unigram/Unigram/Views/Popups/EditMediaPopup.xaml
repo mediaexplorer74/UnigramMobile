@@ -11,16 +11,17 @@
     VerticalAlignment="Stretch"
     HorizontalAlignment="Stretch"
     Background="{x:Null}"
+    OverlayBrush="#CC000000"
     RequestedTheme="Dark">
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="44"/>
+            <RowDefinition Height="32"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <controls:ImageCropper x:Name="Cropper" Padding="24" IsCropEnabled="False">
+        <controls:ImageCropper x:Name="Cropper" Padding="8,0,8,8" IsCropEnabled="False">
             <Grid>
                 <controls:PencilCanvas
                     x:Name="Canvas"
@@ -36,22 +37,23 @@
             InputScope="Chat"
             FontFamily="{ThemeResource EmojiThemeFontFamily}"
             PlaceholderText="{CustomResource AddCaption}"
-            Margin="12,0,0,12"
-            MaxWidth="320"
+            Margin="12,0,12,0"
+            Padding="5,6,6,5"
+            MaxWidth="400"
             Grid.Row="1"/>
 
         <controls:ColorSlider
             x:Name="DrawSlider"
             x:Load="False"
             StrokeChanged="DrawSlider_StrokeChanged"
-            Margin="12,0,12,24"
-            MaxWidth="320"
+            Margin="14,0,14,0"
+            MaxWidth="400"
             Grid.Row="1"/>
 
         <Grid x:Name="Commands"
               Background="{ThemeResource SystemControlChromeMediumLowAcrylicElementMediumBrush}"
               HorizontalAlignment="Center"
-              Margin="24,0,24,24"
+              Margin="24,8,24,2"
               CornerRadius="15"
               Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -127,6 +129,7 @@
                     Grid.Column="3"/>
                 <!--IsChecked="{x:Bind IsSecret, Mode=OneWay}" TODO-->
             </Grid>
+            
             <Grid x:Name="CropToolbar" x:Load="False" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

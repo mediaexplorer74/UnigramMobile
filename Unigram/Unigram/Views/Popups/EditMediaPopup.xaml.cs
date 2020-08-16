@@ -597,6 +597,7 @@ namespace Unigram.Views.Popups
             }
         }
 
+        #region Media Description Events
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             //CaptionInput.Focus(FocusState.Keyboard);
@@ -637,6 +638,7 @@ namespace Unigram.Views.Popups
                 args.Handled = true;
             }
         }
+        #endregion
     }
 
     public sealed class SmoothPathBuilder
