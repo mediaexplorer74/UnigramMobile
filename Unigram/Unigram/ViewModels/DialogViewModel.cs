@@ -1626,7 +1626,7 @@ namespace Unigram.ViewModels
                     {
                         if (reply.Id == replyId)
                         {
-                            //message.ReplyToMessage = _messageFactory.Create(this, reply.Get()); // As for some reason this value may get lost
+                            message.ReplyToMessage = _messageFactory.Create(this, reply.Get()); // For some reason this value may get lost
 
                             enqueue = false;
                             break;
@@ -1680,7 +1680,7 @@ namespace Unigram.ViewModels
                         }
 
                         // the reply should already exist in slice:
-                        if (message.ReplyToMessage == null)
+                        if (message.ReplyToMessageId > 0 && message.ReplyToMessage == null)
                             foreach (var reply in slice)
                             {
                                 if (reply.Id != message.ReplyToMessageId) continue;
