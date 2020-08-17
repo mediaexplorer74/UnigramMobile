@@ -82,7 +82,7 @@ namespace Unigram.Services.Factories
 
         public async Task<InputMessageFactory> CreateVideoAsync(StorageFile file, bool animated, bool asFile, int ttl = 0, MediaEncodingProfile profile = null, VideoTransformEffectDefinition transform = null)
         {
-            var basicProps = await file.GetBasicPropertiesAsync();
+            //var basicProps = await file.GetBasicPropertiesAsync();
             var videoProps = await file.Properties.GetVideoPropertiesAsync();
 
             //var thumbnail = await ImageHelper.GetVideoThumbnailAsync(file, videoProps, transform);
@@ -91,24 +91,26 @@ namespace Unigram.Services.Factories
             var videoWidth = (int)videoProps.GetWidth();
             var videoHeight = (int)videoProps.GetHeight();
 
-            if (profile != null)
-            {
-                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Width : (int)profile.Video.Height;
-                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Height : (int)profile.Video.Width;
-            }
+            //if (profile != null)
+            //{
+            //    videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Width : (int)profile.Video.Height;
+            //    videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Height : (int)profile.Video.Width;
+            //}
 
             var conversion = new VideoConversion();
             if (profile != null)
             {
-                //conversion.Transcode = true;
+                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Width : (int)profile.Video.Height;
+                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Height : (int)profile.Video.Width;
+                conversion.Transcode = true;
                 conversion.Mute = animated;
-                //conversion.Width = profile.Video.Width;
-                //conversion.Height = profile.Video.Height;
-                //conversion.Bitrate = profile.Video.Bitrate;
+                conversion.Width = profile.Video.Width;
+                conversion.Height = profile.Video.Height;
+                conversion.Bitrate = profile.Video.Bitrate;
 
                 if (transform != null)
                 {
-                    conversion.Transcode = true;
+                    //conversion.Transcode = true;
                     conversion.Transform = true;
                     conversion.Rotation = transform.Rotation;
                     conversion.OutputSize = transform.OutputSize;

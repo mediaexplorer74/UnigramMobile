@@ -252,12 +252,18 @@ namespace Unigram.Services
             try
             {
                 var conversion = JsonConvert.DeserializeObject<VideoConversion>(args[2]);
-                if (conversion.Mute)
+                if (conversion.Transcode) // <==> conversion.Mute (currently, see: MessageFactory)
                 {
                     var file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(args[0]);
                     var temp = await StorageFile.GetFileFromPathAsync(update.DestinationPath);
 
                     var profile = await MediaEncodingProfile.CreateFromFileAsync(file);
+                    if (profile.Video.Width != conversion.Width || profile.Video.Height != conversion.Height)
+                    {
+                        profile.Video.Width = conversion.Width;
+                        profile.Video.Height = conversion.Height;
+                        profile.Video.Bitrate = conversion.Bitrate;
+                    } else
                     if (profile.Audio == null && conversion.Mute)
                     {
                         await CopyAsync(update, args);
