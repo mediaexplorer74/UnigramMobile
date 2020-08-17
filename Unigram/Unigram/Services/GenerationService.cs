@@ -263,6 +263,12 @@ namespace Unigram.Services
                         profile.Video.Width = conversion.Width;
                         profile.Video.Height = conversion.Height;
                         profile.Video.Bitrate = conversion.Bitrate;
+                    }
+                    else if(profile.Video.Width == conversion.Width && profile.Video.Height == conversion.Height &&
+                        Math.Abs(profile.Video.Bitrate - conversion.Bitrate) < 10000)
+                    { // Do not transcode if bitrate is very similar
+                        await CopyAsync(update, args);
+                        return;
                     } else
                     if (profile.Audio == null && conversion.Mute)
                     {
