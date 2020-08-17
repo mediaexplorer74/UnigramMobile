@@ -30,10 +30,10 @@ namespace Unigram.Entities
             originalHeight = (int)props.GetHeight();
             originalBitrate = bitrate = (int)props.Bitrate; //(trackBitrate / 100000 * 100000);
 
-            if (bitrate > 900000)
-            {
-                bitrate = 900000;
-            }
+            //if (bitrate > 900000)
+            //{
+            //    bitrate = 900000;
+            //}
 
             LoadPreview();
         }
@@ -336,18 +336,18 @@ namespace Unigram.Entities
                         break;
                     case 2:
                         maxSize = 848.0f;
-                        targetBitrate = 1100000;
+                        targetBitrate = 1600000;
                         break;
                     case 3:
-                        targetBitrate = 1600000;
+                        targetBitrate = 3200000;
                         maxSize = 1280.0f;
                         break;
                     case 4:
-                        targetBitrate = 2400000;
+                        targetBitrate = 4400000;
                         maxSize = 1920.0f;
                         break;
                     case 5:
-                        targetBitrate = 3400000;
+                        targetBitrate = 5000000;
                         maxSize = 3840.0f;
                         break;
                     case 6:
@@ -364,9 +364,9 @@ namespace Unigram.Entities
                 float scale = originalWidth > originalHeight ? maxSize / originalWidth : maxSize / originalHeight;
                 resultWidth = (int)Math.Round(originalWidth * scale / 2) * 2;
                 resultHeight = (int)Math.Round(originalHeight * scale / 2) * 2;
-                if (bitrate != 0)
+                if (originalBitrate != 0)
                 {
-                    bitrate = Math.Min(targetBitrate, (int)(originalBitrate / scale));
+                    bitrate = Math.Min(targetBitrate, originalBitrate);
                     videoFramesSize = (long)(bitrate / 8 * videoDuration / 1000);
                 }
             } else {
