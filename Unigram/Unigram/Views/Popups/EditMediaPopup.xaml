@@ -105,7 +105,6 @@
                     AutomationProperties.Name="{CustomResource CropImage}"
                     ToolTipService.ToolTip="{CustomResource CropImage}"
                     Grid.Column="1"/>
-                <!--IsChecked="{x:Bind IsEdited, Mode=OneWay}" TODO-->
 
                 <controls:GlyphToggleButton
                     x:Name="Draw"
@@ -118,6 +117,18 @@
                     ToolTipService.ToolTip="{CustomResource AccDescrPhotoEditor}"
                     Grid.Column="2"/>
 
+                <controls:GlyphToggleButton 
+                    x:Name="Compress"
+                    Click="Compress_Click"
+                    UncheckedGlyph="&#xE900;"
+                    CheckedGlyph="&#xE900;"
+                    FontFamily="ms-appx:///Assets/Fonts/VideoResolution.ttf#VideoResolution"
+                    FontSize="{StaticResource GlyphButtonFontSize}"
+                    CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
+                    AutomationProperties.Name="{CustomResource AccDescrVideoQuality}"
+                    ToolTipService.ToolTip="{CustomResource AccDescrVideoQuality}"
+                    Grid.Column="2"/>
+
                 <controls:GlyphToggleButton
                     x:Name="Ttl"
                     Click="Ttl_Click"
@@ -128,7 +139,6 @@
                     AutomationProperties.Name="{CustomResource SetTimer}"
                     ToolTipService.ToolTip="{CustomResource SetTimer}"
                     Grid.Column="3"/>
-                <!--IsChecked="{x:Bind IsSecret, Mode=OneWay}" TODO-->
             </Grid>
             
             <Grid x:Name="CropToolbar" x:Load="False" Grid.Column="2">

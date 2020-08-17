@@ -25,6 +25,8 @@ namespace Unigram.Views.Popups
         private StorageFile _file;
         private StorageMedia _media;
         private BitmapEditState _originalMediaEditState;
+        private bool _originalVideoIsMuted;
+        private int _originalVideoCompression;
 
         private readonly BitmapProportions _proportions;
         private BitmapRotation _rotation = BitmapRotation.None;
@@ -36,6 +38,7 @@ namespace Unigram.Views.Popups
 
             CaptionInput.Visibility = Visibility.Collapsed;
             Mute.Visibility = Visibility.Collapsed;
+            Compress.Visibility = Visibility.Collapsed; //TODO: File is video?
             Ttl.Visibility = Visibility.Collapsed;
             Crop.IsChecked = false;
             Draw.IsChecked = false;
@@ -95,12 +98,24 @@ namespace Unigram.Views.Popups
 
             if (_media is StorageVideo video)
             {
+                _originalVideoCompression = video.Compression;
+                _originalVideoIsMuted = video.IsMuted;
                 Mute.IsChecked = video.IsMuted;
                 Mute.Visibility = Visibility.Visible;
+                Compress.IsChecked = video.Compression != video.MaxCompression;
+                Compress.Visibility = video.CanCompress ? Visibility.Visible : Visibility.Collapsed;
+
+                if (video.CanCompress)
+                {
+                    Compress.UncheckedGlyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                    Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                    Compress.IsChecked = video.Compression != video.MaxCompression;
+                }
             }
             else
             {
                 Mute.Visibility = Visibility.Collapsed;
+                Compress.Visibility = Visibility.Collapsed;
             }
 
             Crop.Visibility = _media is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
@@ -127,16 +142,16 @@ namespace Unigram.Views.Popups
                 CaptionInput.SetText(media.Caption);
         }
 
-        public bool IsCropEnabled
-        {
-            get { return this.Cropper.IsCropEnabled; }
-            set { this.Cropper.IsCropEnabled = value; }
-        }
+        //public bool IsCropEnabled
+        //{
+        //    get { return this.Cropper.IsCropEnabled; }
+        //    set { this.Cropper.IsCropEnabled = value; }
+        //}
 
-        public Rect CropRectangle
-        {
-            get { return this.Cropper.CropRectangle; }
-        }
+        //public Rect CropRectangle
+        //{
+        //    get { return this.Cropper.CropRectangle; }
+        //}
 
         private async void Accept_Click(object sender, RoutedEventArgs e)
         {
@@ -218,6 +233,11 @@ namespace Unigram.Views.Popups
             else
             {
                 _media.EditState = _originalMediaEditState; // Reset to state before starting editing
+                if (_media is StorageVideo video)
+                {
+                    video.IsMuted = _originalVideoIsMuted;
+                    video.Compression = _originalVideoCompression;
+                }
                 ResetUiVisibility();
                 Hide(ContentDialogResult.Secondary);
             }
@@ -437,6 +457,20 @@ namespace Unigram.Views.Popups
             {
                 button.IsChecked = !button.IsChecked == true;
                 video.IsMuted = button.IsChecked == true;
+                Compress.IsEnabled = video.CanCompress;
+                if (video.CanCompress && Compress.Visibility == Visibility.Collapsed)
+                { // never hide, just readd if it was hidden
+                    Compress.Visibility = Visibility.Visible;
+                    Compress.IsChecked = false;
+                    video.Compression = video.MaxCompression;
+                }
+
+                if (video.IsMuted)
+                {
+                    Compress.UncheckedGlyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                    Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                    Compress.IsChecked = video.Compression != video.MaxCompression;
+                }
             }
         }
 
@@ -490,6 +524,68 @@ namespace Unigram.Views.Popups
             Brush.IsChecked = true;
             Erase.IsChecked = false;
             InvalidateToolbar();
+        }
+
+        public int Compression
+        {
+            get => (_media is StorageVideo video) ? video.Compression : -1;
+        }
+
+        private void Compress_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is GlyphToggleButton button && _media is StorageVideo video)) return;
+            var compressionToGlyphConverter = new CompressionToGlyphConverter();
+            if (!video.IsMuted && video.Compression != video.MaxCompression)
+            {
+                // Do not compress
+                video.Compression = video.MaxCompression;
+                Compress.UncheckedGlyph = compressionToGlyphConverter.Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                Compress.IsChecked = false;
+                return;
+            }
+            var text = new TextBlock
+            {
+                Style = App.Current.Resources["InfoCaptionTextBlockStyle"] as Style,
+                TextWrapping = TextWrapping.Wrap,
+                Text = video.ToString()
+            };
+            var slider = new Slider
+            {
+                IsThumbToolTipEnabled = false,
+                Minimum = 0,
+                Maximum = video.MaxCompression,
+                StepFrequency = 1,
+                SmallChange = 1,
+                LargeChange = 1,
+                Value = video.Compression
+            };
+            slider.Header = compressionToGlyphConverter.Convert(video.Compression, typeof(string), string.Empty, video.MaxCompression.ToString());
+            slider.ValueChanged += (s, args) =>
+            {
+                var index = (int)args.NewValue;
+                slider.Header = compressionToGlyphConverter.Convert(index, typeof(string), string.Empty, video.MaxCompression.ToString());
+                video.Compression = index;
+                Compress.UncheckedGlyph = compressionToGlyphConverter.Convert(index, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                Compress.IsChecked = video.Compression != video.MaxCompression;
+                text.Text = video.ToString();
+            };
+
+            var stack = new StackPanel { Width = 260 };
+            stack.Children.Add(slider);
+            stack.Children.Add(text);
+
+            var flyout = new Flyout { Content = stack };
+
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
+            {
+                flyout.ShowAt(button.Parent as UIElement, new Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions { Placement = Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.TopEdgeAlignedRight });
+            }
+            else
+            {
+                flyout.ShowAt(button.Parent as FrameworkElement);
+            }
         }
 
         private void Ttl_Click(object sender, RoutedEventArgs e)

@@ -157,16 +157,27 @@ namespace Unigram.Entities
 
             int originalWidth = this.originalWidth;
             int originalHeight = this.originalHeight;
+            int originalMaxCompression = MaxCompression;
 
-            if (_editState is BitmapEditState state && state.Rectangle is Rect rectangle)
+            if (IsEdited && _editState is BitmapEditState state && state.Rectangle is Rect rectangle)
             {
                 originalWidth = (int)rectangle.Width;
                 originalHeight = (int)rectangle.Height;
             }
 
-            Compression = 6;
-
-            if (originalWidth > 1280 || originalHeight > 1280)
+            if (originalWidth > 4096 || originalHeight > 4096)
+            {
+                MaxCompression = 8;
+            }
+            else if (originalWidth > 3840 || originalHeight > 3840)
+            {
+                MaxCompression = 7;
+            }
+            else if (originalWidth > 1920 || originalHeight > 1920)
+            {
+                MaxCompression = 6;
+            }
+            else if (originalWidth > 1280 || originalHeight > 1280)
             {
                 MaxCompression = 5;
             }
@@ -187,10 +198,13 @@ namespace Unigram.Entities
                 MaxCompression = 1;
             }
 
-            if (Compression >= MaxCompression)
-            {
-                Compression = MaxCompression - 1;
-            }
+            if (originalMaxCompression != MaxCompression)
+                Compression = MaxCompression; // no compression
+
+            //if (Compression >= MaxCompression)
+            //{
+            //    Compression = MaxCompression - 1;
+            //}
         }
 
         private int originalWidth;
@@ -227,61 +241,21 @@ namespace Unigram.Entities
             int originalWidth = (int)Properties.Width;
             int originalHeight = (int)Properties.Height;
 
-            if (_editState is BitmapEditState state && state.Rectangle is Rect rectangle)
+            if (IsEdited && _editState is BitmapEditState state && state.Rectangle is Rect rectangle)
             {
                 originalWidth = (int)rectangle.Width;
                 originalHeight = (int)rectangle.Height;
             }
 
-            int resultWidth = originalWidth;
-            int resultHeight = originalHeight;
-
-            int bitrate = this.originalBitrate;
-            long videoFramesSize = 0;
-            double videoDuration = 0;
-
-            var selectedCompression = _compression;
-            var compressionsCount = _maxCompression;
-
-            if (selectedCompression != compressionsCount - 1)
-            {
-                float maxSize;
-                int targetBitrate;
-                switch (selectedCompression)
-                {
-                    case 0:
-                        maxSize = 432.0f;
-                        targetBitrate = 400000;
-                        break;
-                    case 1:
-                        maxSize = 640.0f;
-                        targetBitrate = 900000;
-                        break;
-                    case 2:
-                        maxSize = 848.0f;
-                        targetBitrate = 1100000;
-                        break;
-                    case 3:
-                    default:
-                        targetBitrate = 1600000;
-                        maxSize = 1280.0f;
-                        break;
-                }
-
-                float scale = originalWidth > originalHeight ? maxSize / originalWidth : maxSize / originalHeight;
-                resultWidth = (int)Math.Round(originalWidth * scale / 2) * 2;
-                resultHeight = (int)Math.Round(originalHeight * scale / 2) * 2;
-                if (bitrate != 0)
-                {
-                    bitrate = Math.Min(targetBitrate, (int)(originalBitrate / scale));
-                    videoFramesSize = (long)(bitrate / 8 * videoDuration / 1000);
-                }
-            }
+            UpdateWidthHeightBitrateForCompression(_compression);
 
             var profile = await MediaEncodingProfile.CreateFromFileAsync(File);
-            //profile.Video.Width = (uint)resultWidth;
-            //profile.Video.Height = (uint)resultHeight;
-            //profile.Video.Bitrate = (uint)bitrate;
+            if (resultWidth != originalWidth || resultHeight != originalHeight)
+            {
+                profile.Video.Width = (uint)resultWidth;
+                profile.Video.Height = (uint)resultHeight;
+                profile.Video.Bitrate = (uint)bitrate;
+            }
 
             if (_isMuted)
             {
@@ -296,7 +270,6 @@ namespace Unigram.Entities
             UpdateWidthHeightBitrateForCompression(compression);
 
             var selectedCompression = compression;
-            var compressionsCount = _maxCompression;
 
             //estimatedDuration = (long)Math.ceil((videoTimelineView.getRightProgress() - videoTimelineView.getLeftProgress()) * videoDuration);
             estimatedDuration = (long)videoDuration;
@@ -304,7 +277,7 @@ namespace Unigram.Entities
             int width;
             int height;
 
-            if (/*compressItem.getTag() == null ||*/ selectedCompression == compressionsCount - 1)
+            if (/*compressItem.getTag() == null ||*/ selectedCompression == _maxCompression)
             {
                 width = rotationValue == 90 || rotationValue == 270 ? originalHeight : originalWidth;
                 height = rotationValue == 90 || rotationValue == 270 ? originalWidth : originalHeight;
@@ -346,9 +319,8 @@ namespace Unigram.Entities
         private void UpdateWidthHeightBitrateForCompression(int compression)
         {
             var selectedCompression = compression;
-            var compressionsCount = _maxCompression;
 
-            if (selectedCompression != compressionsCount - 1)
+            if (selectedCompression != _maxCompression)
             {
                 float maxSize;
                 int targetBitrate;
@@ -367,9 +339,25 @@ namespace Unigram.Entities
                         targetBitrate = 1100000;
                         break;
                     case 3:
-                    default:
                         targetBitrate = 1600000;
                         maxSize = 1280.0f;
+                        break;
+                    case 4:
+                        targetBitrate = 2400000;
+                        maxSize = 1920.0f;
+                        break;
+                    case 5:
+                        targetBitrate = 3400000;
+                        maxSize = 3840.0f;
+                        break;
+                    case 6:
+                        targetBitrate = 5000000;
+                        maxSize = 4096.0f;
+                        break;
+                    case 7:
+                    default: // case 8: is always uncompressed
+                        targetBitrate = originalBitrate;
+                        maxSize = 7680.0f;
                         break;
                 }
 
@@ -381,6 +369,9 @@ namespace Unigram.Entities
                     bitrate = Math.Min(targetBitrate, (int)(originalBitrate / scale));
                     videoFramesSize = (long)(bitrate / 8 * videoDuration / 1000);
                 }
+            } else {
+                resultWidth = originalWidth;
+                resultHeight = originalHeight;
             }
         }
 

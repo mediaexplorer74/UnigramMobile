@@ -12,6 +12,10 @@ namespace Unigram.Converters
                 value = (int)(double)value;
             }
 
+            // Use language parameter for fictious maxValue to have an uncompressed option
+            if (int.TryParse(language, out int maxValue) && (int)value == maxValue)
+                return parameter == null ? "\uE900" : "∞";
+
             switch ((int)value)
             {
                 case 0:
@@ -23,8 +27,15 @@ namespace Unigram.Converters
                 case 3:
                     return parameter == null ? "\uE904" : "720p";
                 case 4:
-                default:
                     return parameter == null ? "\uE905" : "1080p";
+                case 5:
+                    return parameter == null ? "\uE907" : "UHD";
+                case 6:
+                    return parameter == null ? "\uE908" : "4k";
+                case 7:
+                    return parameter == null ? "\uE909" : "8k";
+                default:
+                    return parameter == null ? "\uE900" : "∞";
             }
         }
 
