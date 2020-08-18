@@ -284,24 +284,24 @@ namespace Unigram.Controls
 
             OnVisibleBoundsChanged(_applicationView, null);
 
-            Container.Tapped += Outside_Tapped;
-            BackgroundElement.Tapped += Inside_Tapped;
+            //Container.Tapped += Outside_Tapped;
+            //BackgroundElement.Tapped += Inside_Tapped;
         }
 
-        private void Inside_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            e.Handled = true;
-        }
+        //private void Inside_Tapped(object sender, TappedRoutedEventArgs e)
+        //{
+        //    e.Handled = true;
+        //}
 
-        private void Outside_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            //Hide();
-        }
+        //private void Outside_Tapped(object sender, TappedRoutedEventArgs e)
+        //{
+        //    //Hide();
+        //}
 
-        private void OnSizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            //UpdateViewBase();
-        }
+        //private void OnSizeChanged(object sender, WindowSizeChangedEventArgs e)
+        //{
+        //    //UpdateViewBase();
+        //}
 
         private void OnLoading(FrameworkElement sender, object args)
         {

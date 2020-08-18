@@ -194,7 +194,7 @@ namespace Unigram.Controls
 
             var length = Math.Abs(selection.Length) > 0;
 
-            var clipboard = Clipboard.GetContent();
+            //var clipboard = Clipboard.GetContent();
 
             var clone = Document.Selection.GetClone();
             clone.StartOf(TextRangeUnit.Link, true);
