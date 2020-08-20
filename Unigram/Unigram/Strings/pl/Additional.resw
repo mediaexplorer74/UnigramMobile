@@ -118,179 +118,179 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>حالت قابل تنظیم برای صفحه های عریض</value>
+    <value>Adaptacyjny układ dla szerokich ekranów</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="CallSettingInput" xml:space="preserve">
-    <value>ابزار ورودی</value>
+    <value>Urządzenie wejściowe</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingInputTitle" xml:space="preserve">
-    <value>میکروفون</value>
+    <value>Mikrofon</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutput" xml:space="preserve">
-    <value>ابزار خروجی</value>
+    <value>Urządzenie wyjściowe</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutputTitle" xml:space="preserve">
-    <value>اسپیکر و هدفون</value>
+    <value>Głośniki i słuchawki</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingsTitle" xml:space="preserve">
-    <value>تنظیمات تماس</value>
+    <value>Ustawienia połączeń</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="Chats" xml:space="preserve">
-    <value>گفتگوها</value>
+    <value>Czaty</value>
   </data>
   <data name="CopyImage" xml:space="preserve">
-    <value>کپی عکس</value>
+    <value>Kopiuj obraz</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>بریدن</value>
+    <value>Wytnij</value>
   </data>
   <data name="DeletedMessage" xml:space="preserve">
-    <value>پیام های حذف شده</value>
+    <value>Usunięte wiadomości</value>
   </data>
   <data name="EditLink" xml:space="preserve">
-    <value>ویرایش لینک</value>
+    <value>Edytuj link</value>
   </data>
   <data name="Formatting" xml:space="preserve">
-    <value>قالب بندی</value>
+    <value>Formatowanie</value>
   </data>
   <data name="FormattingHide" xml:space="preserve">
-    <value>مخفی کردن قالب بندی</value>
+    <value>Ukryj formatowanie</value>
   </data>
   <data name="FormattingShow" xml:space="preserve">
-    <value>نمایش قالب بندی</value>
+    <value>Pokaż formatowanie</value>
   </data>
   <data name="InputVolume" xml:space="preserve">
-    <value>مقدار صدای ورودی</value>
+    <value>Głośność</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>تلاش برای اتصال از طریق IPv6</value>
+    <value>Staraj się łączyć przez IPv6</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
-    <value>اخبار</value>
+    <value>News</value>
   </data>
   <data name="OriginalMessage" xml:space="preserve">
-    <value>اصلی</value>
+    <value>original</value>
     <comment>Original message date and time</comment>
   </data>
   <data name="OutputVolume" xml:space="preserve">
-    <value>میزان صدای خروجی</value>
+    <value>Głośność</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>چسباندن</value>
+    <value>Wklej</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>تکرار مجدد</value>
+    <value>Przywróć</value>
   </data>
   <data name="ReplaceEmoji" xml:space="preserve">
-    <value>جایگذاری ایموجی</value>
+    <value>Zastąp emoji</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>ذخیره به عنوان ...</value>
+    <value>Zapisz jako...</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>انتخاب</value>
+    <value>Wybierz</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>انتخاب همه</value>
+    <value>Wybierz wszystkie</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
-    <value>نمایش دکمه های قالب بندی</value>
+    <value>Pokaż przyciski formatowania tekstu</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ShowInFolder" xml:space="preserve">
-    <value>نمایش داخل پوشه</value>
+    <value>Pokaż w folderze</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
-    <value>قالب سیستم</value>
+    <value>Motyw systemowy</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>خنثی سازی</value>
+    <value>Cofnij</value>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
-    <value>نمایش استیکرهای متحرک</value>
+    <value>Odtwarzaj animowane naklejki</value>
     <comment>SettingStickersPage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
-    <value>پوشه ها در بالای صفحه</value>
+    <value>Foldery na wierzchu</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
-    <value>پوشه ها در سمت چپ</value>
+    <value>Foldery po lewej</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabView" xml:space="preserve">
-    <value>نمای پوشه ها</value>
+    <value>Widok folderów</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
-    <value>اگر تعداد زیادی پوشه دارید، آنها را به سمت چپ منتقل کنید.</value>
+    <value>Jeśli posiadasz dużo czatów, spróbuj umieścić je po lewej.</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsStorageOtherChats" xml:space="preserve">
-    <value>سایر چت ها</value>
+    <value>Inne czaty</value>
     <comment>SettingsStoragePage</comment>
   </data>
   <data name="ShareRemoveCaptions" xml:space="preserve">
-    <value>حذف کپشن های رسانه</value>
+    <value>Usuń tekst w kopiach mediów</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
-    <value>ارسال به عنوان کپی</value>
+    <value>Wyślij jako kopię</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>ارسال به صورت البوم</value>
+    <value>Wyślij jako album</value>
     <comment>SharePopup</comment>
   </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
-    <value>Size of the folders menu</value>
+    <value>Wielkość paska folderów</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SelectColorSystemAccent" xml:space="preserve">
-    <value>Use system accent color</value>
+    <value>Użyj wiodącego koloru systemu</value>
     <comment>SelectColorPopup</comment>
   </data>
   <data name="ConnectWithoutProxy" xml:space="preserve">
-    <value>بدون پراکسی</value>
+    <value>Bez proxy</value>
     <comment>SettingsProxiesPage</comment>
   </data>
   <data name="SettingsKeyboard" xml:space="preserve">
-    <value>در حال نوشتن</value>
+    <value>Pisanie</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsHighlightWords" xml:space="preserve">
-    <value>غلط های املایی را مشخص کن </value>
+    <value>Podkreślaj błędy w pisowni</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsAutocorrectWords" xml:space="preserve">
-    <value>تصحیح خودکار غلط های املایی</value>
+    <value>Automatycznie poprawiaj błędy w pisowni</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="PlayGifPreview" xml:space="preserve">
-    <value>پخش پیش نمایش GIF ها در حین انتخاب GIF</value>
+    <value>Play GIF previews on GIF selection</value>
     <comment>DiagnosticsPage</comment>
   </data>
   <data name="SettingsEmojiSet" xml:space="preserve">
-    <value>ست ایموجی</value>
+    <value>Zestaw emoji</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsEmojiSetPopup" xml:space="preserve">
-    <value>Choose Emoji Set</value>
+    <value>Wybierz zestaw emoji</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Thumbnails" xml:space="preserve">
-    <value>انگشت</value>
+    <value>Miniaturki</value>
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="SettingsThumbnailsGif" xml:space="preserve">
@@ -298,11 +298,11 @@
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="LoadAllMedia" xml:space="preserve">
-    <value>بارگیری محتوا </value>
+    <value>Załaduj wszystkie media</value>
     <comment>ChatSharedMediaView</comment>
   </data>
   <data name="AutoDownloadAudioTitle" xml:space="preserve">
-    <value>دانلود خودکار پیام های صوتی</value>
+    <value>Automatycznie pobieraj wiadomości głosowe</value>
     <comment>SettingsDataAutoView</comment>
   </data>
 </root>

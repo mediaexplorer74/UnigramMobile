@@ -142,7 +142,7 @@
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="Chats" xml:space="preserve">
-    <value>Զրուցարաններ</value>
+    <value>Ուղերձներ</value>
   </data>
   <data name="CopyImage" xml:space="preserve">
     <value>Պատճենել նկարը</value>
@@ -210,10 +210,6 @@
   <data name="ShowInFolder" xml:space="preserve">
     <value>Ցուցադրել պանակում</value>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>Բաց</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Համակարգի ոճը</value>
     <comment>SettingsAppearancePage</comment>
@@ -225,14 +221,6 @@
     <value>Ցուցադրել շարժական կպչուկները</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>Անջատել սխալների ուղղումը</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>Անջատել ինքնաուղղումը</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
     <value>Պանակները վերևում</value>
     <comment>FoldersPage</comment>
@@ -242,7 +230,7 @@
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabView" xml:space="preserve">
-    <value>Պանակների տեսք</value>
+    <value>Պանակների տեսքը</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
@@ -258,7 +246,63 @@
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
-    <value>Ուկարկել որպես պատճեն</value>
+    <value>Ուղարկել որպես պատճեն</value>
     <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsAlbum" xml:space="preserve">
+    <value>Ուղարկել որպես հավաքածու</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>Պանակների չափսը</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>Օգտագործել համակարգի ոճը</value>
+    <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>Առանց պրոքսի-ի</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>Գրում է</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>Ցուցադրել վրիպակները</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>Ինքնաուղղում գրելիս</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>Նվագարկել gif–ը նախադիտելիս</value>
+    <comment>DiagnosticsPage</comment>
+  </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>Զմայլերի դրվածքներ</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>Ընտրել զմայլերի փունջը</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Նախադիտակներ</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>Նախադիտել gif շարժանկարները</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="LoadAllMedia" xml:space="preserve">
+    <value>Բեռնել բոլոր նիշքերը</value>
+    <comment>ChatSharedMediaView</comment>
+  </data>
+  <data name="AutoDownloadAudioTitle" xml:space="preserve">
+    <value>Ինքնակամ բեռնել ձայնայինները</value>
+    <comment>SettingsDataAutoView</comment>
   </data>
 </root>

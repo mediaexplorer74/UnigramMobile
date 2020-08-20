@@ -1787,6 +1787,10 @@
     <PRIResource Include="Strings\hy\Additional.resw">
       <SubType>Designer</SubType>
     </PRIResource>
+    <Content Include="Assets\Fonts\VideoResolution.ttf" />
+    <PRIResource Include="Strings\pl\Additional.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <None Include="Unigram_StoreKey.pfx" />
     <None Include="Unigram_TemporaryKey.pfx" />
   </ItemGroup>
