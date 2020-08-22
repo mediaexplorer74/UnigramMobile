@@ -122,7 +122,7 @@
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="CallSettingInput" xml:space="preserve">
-    <value>Устройство</value>
+    <value>Входное устройство</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingInputTitle" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutput" xml:space="preserve">
-    <value>Устройство вывода</value>
+    <value>Выходное устройство</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutputTitle" xml:space="preserve">
@@ -170,14 +170,14 @@
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Соединяться через IPv6 по возможности</value>
+    <value>Соединиться через IPv6 по возможности</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новости</value>
   </data>
   <data name="OriginalMessage" xml:space="preserve">
-    <value>исходное</value>
+    <value>создано</value>
     <comment>Original message date and time</comment>
   </data>
   <data name="OutputVolume" xml:space="preserve">
@@ -191,7 +191,7 @@
     <value>Повторить</value>
   </data>
   <data name="ReplaceEmoji" xml:space="preserve">
-    <value>Заменить эмодзи</value>
+    <value>Автозамена эмодзи</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SaveAs" xml:space="preserve">
@@ -211,14 +211,14 @@
     <value>Открыть папку с файлом</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
-    <value>Системная</value>
+    <value>Системная тема</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Отменить</value>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
-    <value>Воспроизводить стикеры</value>
+    <value>Анимировать стикеры</value>
     <comment>SettingStickersPage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
@@ -234,7 +234,7 @@
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
-    <value>Если у вас много папок, переместите их влево</value>
+    <value>Если у вас много папок, переместите их влево.</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsStorageOtherChats" xml:space="preserve">
@@ -242,7 +242,7 @@
     <comment>SettingsStoragePage</comment>
   </data>
   <data name="ShareRemoveCaptions" xml:space="preserve">
-    <value>Удалить заголовки в копиях медиафайлов</value>
+    <value>Удалить подписи к медиа</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
@@ -266,19 +266,43 @@
     <comment>SettingsProxiesPage</comment>
   </data>
   <data name="SettingsKeyboard" xml:space="preserve">
-    <value>Печатает</value>
+    <value>Набор текста</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsHighlightWords" xml:space="preserve">
-    <value>Выделять слова с ошибками</value>
+    <value>Выделить слова с ошибками</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsAutocorrectWords" xml:space="preserve">
-    <value>Исправлять слова с ошибками</value>
+    <value>Автозамена слов с ошибками</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="PlayGifPreview" xml:space="preserve">
     <value>Анимировать GIF при выделении</value>
     <comment>DiagnosticsPage</comment>
+  </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>Набор эмодзи</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>Выбрать набора эмодзи</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>Эскизы</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>Предпросмотрр GIF анимации</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="LoadAllMedia" xml:space="preserve">
+    <value>Загрузить все медиа</value>
+    <comment>ChatSharedMediaView</comment>
+  </data>
+  <data name="AutoDownloadAudioTitle" xml:space="preserve">
+    <value>Автозагрузка голосовых сообщений</value>
+    <comment>SettingsDataAutoView</comment>
   </data>
 </root>
