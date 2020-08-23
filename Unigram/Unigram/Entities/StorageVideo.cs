@@ -364,9 +364,9 @@ namespace Unigram.Entities
                 float scale = originalWidth > originalHeight ? maxSize / originalWidth : maxSize / originalHeight;
                 resultWidth = (int)Math.Round(originalWidth * scale / 2) * 2;
                 resultHeight = (int)Math.Round(originalHeight * scale / 2) * 2;
-                if (originalBitrate != 0)
+                bitrate = Math.Min(targetBitrate, originalBitrate);
+                if (bitrate != 0)
                 {
-                    bitrate = Math.Min(targetBitrate, originalBitrate);
                     videoFramesSize = (long)(bitrate / 8 * videoDuration / 1000);
                 }
             } else {

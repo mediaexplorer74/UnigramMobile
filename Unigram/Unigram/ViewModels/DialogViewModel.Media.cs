@@ -1063,14 +1063,10 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var formattedText = GetFormattedText(true);
-
-            var dialog = new SendFilesPopup(new[] { storage }, true, false, false, false);
-            dialog.Caption = formattedText
+            storage.Caption = GetFormattedText(true)
                 .Substring(0, CacheService.Options.MessageCaptionLengthMax);
-            dialog.Closing += SendFilesPopup_Closing;
-
-            var confirm = await dialog.OpenAsync();
+            var dialog = new EditMediaPopup(storage, false);
+            var confirm = await dialog.ShowAsync();
 
             TextField?.Focus(FocusState.Programmatic);
 
@@ -1079,16 +1075,17 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            TextField?.SetText(dialog.Caption);
+            if (TextField != null && !string.IsNullOrWhiteSpace(storage.Caption?.Text))
+                TextField.SetText(storage.Caption);
 
             Task<InputMessageFactory> request = null;
             if (storage is StoragePhoto photo)
             {
-                request = _messageFactory.CreatePhotoAsync(storage.File, dialog.IsFilesSelected, storage.Ttl, storage.IsEdited ? storage.EditState : null);
+                request = _messageFactory.CreatePhotoAsync(storage.File, false, storage.Ttl, storage.IsEdited ? storage.EditState : null);
             }
             else if (storage is StorageVideo video)
             {
-                request = _messageFactory.CreateVideoAsync(storage.File, video.IsMuted, dialog.IsFilesSelected, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform());
+                request = _messageFactory.CreateVideoAsync(storage.File, video.IsMuted, false, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform());
             }
 
             if (request == null)
