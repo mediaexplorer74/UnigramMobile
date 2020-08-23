@@ -243,7 +243,7 @@ namespace Unigram.ViewModels
             }
             else
             {
-
+                EditDocumentExecute();
             }
         }
 
@@ -434,6 +434,8 @@ namespace Unigram.ViewModels
         public RelayCommand SendMediaCommand { get; }
         private async void SendMediaExecute()
         {
+            if (_composerHeader?.EditingMessage == null)
+            {
             var picker = new FileOpenPicker();
             picker.ViewMode = PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -444,11 +446,18 @@ namespace Unigram.ViewModels
             {
                 SendFileExecute(files);
             }
+            } else
+            {
+                EditMediaExecute();
+            }
         }
 
         public RelayCommand<IList<StorageMedia>> SendStorageMediaCommand { get; }
         private async void SendStorageMediaExecute(IList<StorageMedia> items)
         {
+            if (_composerHeader?.EditingMessage != null && items.Count == 1)
+                await EditMediaAsync(items[0]);
+            else
             await SendStorage(items, true);
         }
 
@@ -1049,6 +1058,47 @@ namespace Unigram.ViewModels
             await EditMediaAsync(file);
         }
 
+        public async Task EditMediaAsync(StorageMedia media)
+        {
+            var formattedText = GetFormattedText(true);
+            media.Caption = formattedText
+                .Substring(0, CacheService.Options.MessageCaptionLengthMax);
+            var dialog = new EditMediaPopup(media, false);
+            var confirm = await dialog.ShowAsync();
+
+            TextField?.Focus(FocusState.Programmatic);
+
+            if (confirm != ContentDialogResult.Primary)
+            {
+                TextField?.SetText(formattedText);
+                return;
+            }
+
+            if (TextField != null && !string.IsNullOrWhiteSpace(media.Caption?.Text))
+                TextField.SetText(media.Caption);
+
+            Task<InputMessageFactory> request = null;
+            if (media is StoragePhoto photo)
+            {
+                request = _messageFactory.CreatePhotoAsync(media.File, false, media.Ttl, media.IsEdited ? media.EditState : null);
+            }
+            else if (media is StorageVideo video)
+            {
+                request = _messageFactory.CreateVideoAsync(media.File, video.IsMuted, false, media.Ttl, await video.GetEncodingAsync(), video.GetTransform());
+            }
+
+            if (request == null)
+            {
+                return;
+            }
+
+            var factory = await request;
+            if (factory != null)
+            {
+                _composerHeader.EditingMessageMedia = factory;
+            }
+        }
+
         public async Task EditMediaAsync(StorageFile file)
         {
             var header = _composerHeader;
@@ -1063,41 +1113,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            storage.Caption = GetFormattedText(true)
-                .Substring(0, CacheService.Options.MessageCaptionLengthMax);
-            var dialog = new EditMediaPopup(storage, false);
-            var confirm = await dialog.ShowAsync();
-
-            TextField?.Focus(FocusState.Programmatic);
-
-            if (confirm != ContentDialogResult.Primary)
-            {
-                return;
-            }
-
-            if (TextField != null && !string.IsNullOrWhiteSpace(storage.Caption?.Text))
-                TextField.SetText(storage.Caption);
-
-            Task<InputMessageFactory> request = null;
-            if (storage is StoragePhoto photo)
-            {
-                request = _messageFactory.CreatePhotoAsync(storage.File, false, storage.Ttl, storage.IsEdited ? storage.EditState : null);
-            }
-            else if (storage is StorageVideo video)
-            {
-                request = _messageFactory.CreateVideoAsync(storage.File, video.IsMuted, false, storage.Ttl, await video.GetEncodingAsync(), video.GetTransform());
-            }
-
-            if (request == null)
-            {
-                return;
-            }
-
-            var factory = await request;
-            if (factory != null)
-            {
-                header.EditingMessageMedia = factory;
-            }
+            await EditMediaAsync(storage);
         }
 
         private void SendFilesPopup_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)

@@ -3402,8 +3402,8 @@ namespace Unigram.Views
                 ShowHideComposerHeader(false);
                 ComposerHeaderReference.Message = null;
 
-                AttachMedia.Command = ViewModel.SendMediaCommand;
-                AttachDocument.Command = ViewModel.SendDocumentCommand;
+                //AttachMedia.Command = ViewModel.SendMediaCommand;
+                //AttachDocument.Command = ViewModel.SendDocumentCommand;
 
                 var rights = ViewModel.VerifyRights(chat, x => x.CanSendMediaMessages, Strings.Resources.GlobalAttachMediaRestricted, Strings.Resources.AttachMediaRestrictedForever, Strings.Resources.AttachMediaRestricted, out string label);
                 var pollsRights = ViewModel.VerifyRights(chat, x => x.CanSendPolls, Strings.Resources.GlobalAttachMediaRestricted, Strings.Resources.AttachMediaRestrictedForever, Strings.Resources.AttachMediaRestricted, out string pollsLabel);
@@ -3464,8 +3464,8 @@ namespace Unigram.Views
                             break;
                     }
 
-                    AttachMedia.Command = ViewModel.EditMediaCommand;
-                    AttachDocument.Command = ViewModel.EditDocumentCommand;
+                    //AttachMedia.Command = ViewModel.EditMediaCommand;
+                    //AttachDocument.Command = ViewModel.EditDocumentCommand;
 
                     AttachRestriction.Visibility = Visibility.Collapsed;
                     AttachMedia.Visibility = Visibility.Visible;
@@ -3486,8 +3486,8 @@ namespace Unigram.Views
                 }
                 else
                 {
-                    AttachMedia.Command = ViewModel.SendMediaCommand;
-                    AttachDocument.Command = ViewModel.SendDocumentCommand;
+                    //AttachMedia.Command = ViewModel.SendMediaCommand;
+                    //AttachDocument.Command = ViewModel.SendDocumentCommand;
 
                     var rights = ViewModel.VerifyRights(chat, x => x.CanSendMediaMessages, Strings.Resources.GlobalAttachMediaRestricted, Strings.Resources.AttachMediaRestrictedForever, Strings.Resources.AttachMediaRestricted, out string label);
                     var pollsRights = ViewModel.VerifyRights(chat, x => x.CanSendPolls, Strings.Resources.GlobalAttachMediaRestricted, Strings.Resources.AttachMediaRestrictedForever, Strings.Resources.AttachMediaRestricted, out string pollsLabel);
