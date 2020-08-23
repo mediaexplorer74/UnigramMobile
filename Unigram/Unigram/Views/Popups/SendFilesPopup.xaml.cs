@@ -670,6 +670,27 @@ namespace Unigram.Views.Popups
                 args.Handled = true;
             }
         }
+
+        private async void Add_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+
+            if (IsFilesSelected)
+            {
+                picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+                picker.FileTypeFilter.Add("*");
+
+            } else //if (IsMediaSelected)
+            {
+                picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+                picker.FileTypeFilter.AddRange(Constants.MediaTypes);
+            }
+
+            var items = await StorageMedia.CreateAsync(await picker.PickMultipleFilesAsync());
+            if (!items.IsEmpty())
+                Items.AddRange(items);
+        }
     }
 
     public class SendFilesAlbumPanel : Grid
