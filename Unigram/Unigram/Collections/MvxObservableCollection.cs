@@ -100,6 +100,8 @@ namespace Unigram.Collections
                 throw new ArgumentNullException(nameof(items));
             }
 
+            var countOld = Count;
+
             using (SuppressEvents())
             {
                 foreach (var item in items)
@@ -108,7 +110,7 @@ namespace Unigram.Collections
                 }
             }
 
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, changedItems: items.ToList()));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, items.ToList(), countOld));
         }
 
         /// <summary>
