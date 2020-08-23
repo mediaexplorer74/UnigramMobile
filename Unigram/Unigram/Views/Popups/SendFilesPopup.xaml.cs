@@ -278,27 +278,27 @@ namespace Unigram.Views.Popups
             subtitle.Text = FileSizeConverter.Convert((int)props.Size);
         }
 
-        private void Grid_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            var storage = args.NewValue as StorageMedia;
-            if (storage == null)
-            {
-                return;
-            }
+        //private void Grid_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        //{
+            //var storage = args.NewValue as StorageMedia;
+            //if (storage == null)
+            //{
+            //    return;
+            //}
 
-            var root = sender.Parent as Grid;
-            if (root == null)
-            {
-                return;
-            }
+            //var root = sender.Parent as Grid;
+            //if (root == null)
+            //{
+            //    return;
+            //}
 
-            var overlay = root.FindName("Overlay") as Border;
+            //var overlay = root.FindName("Overlay") as Border;
 
             //var mute = root.FindName("Mute") as ToggleButton;
             //var crop = root.FindName("Crop") as ToggleButton;
             //var ttl = root.FindName("Ttl") as ToggleButton;
 
-            overlay.Visibility = storage is StorageVideo ? Visibility.Visible : Visibility.Collapsed;
+            //overlay.Visibility = storage is StorageVideo || storage.Ttl > 0 ? Visibility.Visible : Visibility.Collapsed;
 
             //if (storage is StorageVideo video)
             //{
@@ -312,7 +312,7 @@ namespace Unigram.Views.Popups
 
             //crop.Visibility = storage is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
             //ttl.Visibility = IsTtlAvailable ? Visibility.Visible : Visibility.Collapsed;
-        }
+        //}
 
         public void Accept()
         {
@@ -578,6 +578,15 @@ namespace Unigram.Views.Popups
                     media.Refresh();
                     if (Items[0] == media && !string.IsNullOrWhiteSpace(media.Caption?.Text))
                         CaptionInput.SetText(media.Caption);
+                    if (fe.Parent is Grid root)
+                    {
+                        if (root.FindName("OverlayTtl") is FrameworkElement overlayTtl)
+                            overlayTtl.Visibility = media.IsSecret ? Visibility.Visible : Visibility.Collapsed;
+                        if (root.FindName("Glyph") is TextBlock glyph)
+                            glyph.Visibility = media.IsAnimation ? Visibility.Collapsed : Visibility.Visible;
+                        if (root.FindName("GlyphTelegram") is FrameworkElement glyphTelegram)
+                            glyphTelegram.Visibility = media.IsAnimation ? Visibility.Visible : Visibility.Collapsed;
+                    }
                 }
                 Popup = null;
             }
@@ -731,6 +740,19 @@ namespace Unigram.Views.Popups
             }
 
             return (rects, new Size(positions.Value.Item2.Width * ratio, positions.Value.Item2.Height * ratio));
+        }
+    }
+
+    public class IsPhotoVideoToGlyphConverter : Windows.UI.Xaml.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return System.Convert.ToBoolean(value) ? Icons.Photo : Icons.Play;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }

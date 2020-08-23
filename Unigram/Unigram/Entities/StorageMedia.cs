@@ -78,6 +78,10 @@ namespace Unigram.Entities
 
         public bool IsSecret => _ttl > 0;
 
+        public virtual bool IsVideo { get; }
+        public virtual bool IsPhoto { get; }
+        public virtual bool IsAnimation { get; }
+
         public virtual uint Width { get; }
         public virtual uint Height { get; }
 

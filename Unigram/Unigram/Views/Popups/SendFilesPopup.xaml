@@ -18,6 +18,7 @@
     IsLightDismissEnabled="False">
 
     <ContentControl.Resources>
+        <local:IsPhotoVideoToGlyphConverter x:Key="IsPhotoVideoToGlyphConverter" />
         <Style x:Key="ModernPivotRadioButtonStyle" TargetType="controls:PivotRadioButton">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -146,16 +147,43 @@
                     Tag="{x:Bind}"
                     Stretch="Uniform"/>
 
-                <Border x:Name="Overlay" DataContextChanged="Grid_DataContextChanged" Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageOverlayBackgroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Visibility="Collapsed"
+                <Border Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageOverlayBackgroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Tapped="Preview_TappedAsync"
                         Tag="{x:Bind}">
                     <!--<controls:FileButton x:Name="Button" Style="{StaticResource InlineFileButtonStyle}"/>-->
+                    <Grid>
+                        <TextBlock
+                            x:Name="Glyph"
+                            Text="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource IsPhotoVideoToGlyphConverter}}"
+                            Visibility="{x:Bind IsAnimation, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=invert}"
+                            Foreground="{ThemeResource MessageMediaForegroundBrush}"
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"/>
+                        <TextBlock
+                            x:Name="GlyphTelegram"
+                            Text="&#xE906;"
+                            Visibility="{x:Bind IsAnimation, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Foreground="{ThemeResource MessageMediaForegroundBrush}"
+                            FontFamily="{StaticResource TelegramThemeFontFamily}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"/>
+                    </Grid>
+                </Border>
+                <Border x:Name="OverlayTtl" 
+                        Width="48" Height="48" CornerRadius="24" 
+                        Background="{ThemeResource MessageOverlayBackgroundBrush}" 
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Visibility="{x:Bind IsSecret, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Tapped="Preview_TappedAsync"
+                        Tag="{x:Bind}">
                     <TextBlock
-                        x:Name="Glyph"
-                        Text="&#xE768;"
+                        Text="&#xE60E;"
                         Foreground="{ThemeResource MessageMediaForegroundBrush}"
-                        FontFamily="{StaticResource SymbolThemeFontFamily}"
+                        FontFamily="{StaticResource TelegramThemeFontFamily}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="20"/>

@@ -23,6 +23,8 @@ namespace Unigram.Entities
         public override uint Width => Properties.GetWidth();
         public override uint Height => Properties.GetHeight();
 
+        public override bool IsPhoto => true;
+
         //private bool? _isAnimatable;
         //public override bool IsAnimatable
         //{
