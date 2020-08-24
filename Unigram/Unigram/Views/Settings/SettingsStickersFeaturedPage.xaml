@@ -37,7 +37,12 @@
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.Header>
-                <Border Height="16"/>
+                <TextBlock
+                    Text="{CustomResource FeaturedStickersInfo}"
+                    Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    MaxWidth="630"
+                    Margin="12,16,12,8"/>
             </ListView.Header>
             <ListView.Footer>
                 <Border Height="32"/>

@@ -548,6 +548,12 @@
                         Header="{CustomResource Additional.ReplaceEmoji}"
                         Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
+
+                <controls:HeaderedControl>
+                    <controls:BadgeButton
+                        Content="{CustomResource StickersAndMasks}"
+                        Click="Stickers_Click"/>
+                </controls:HeaderedControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

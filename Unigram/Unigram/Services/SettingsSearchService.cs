@@ -86,8 +86,8 @@ namespace Unigram.Services
                 BuildNotificationsAndSounds(),
                 BuildPrivacyAndSecurity(),
                 BuildDataAndStorage(),
-                BuildStickersAndMasks(),
                 BuildAppearance(),
+                new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.Devices, "\uEA6C"),
                 new SettingsSearchPage(null, Strings.Resources.Language, "\uE164"),
                 new SettingsSearchPage(null, Strings.Resources.AskAQuestion, "\uED15"),
                 new SettingsSearchPage(typeof(FoldersPage), Strings.Resources.Filters, "\uF12B", new SettingsSearchEntry[]
@@ -325,7 +325,9 @@ namespace Unigram.Services
                     new SettingsSearchPage(typeof(SettingsBackgroundsPage), Strings.Resources.SetColor)
                 }),
 
-                new SettingsSearchPage(typeof(SettingsNightModePage), Strings.Resources.AutoNightTheme)
+                new SettingsSearchPage(typeof(SettingsNightModePage), Strings.Resources.AutoNightTheme),
+
+                BuildStickersAndMasks()
             });
         }
     }

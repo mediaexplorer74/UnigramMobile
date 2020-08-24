@@ -142,11 +142,11 @@ namespace Unigram.Views
             MasterDetail.NavigationService.GoBackAt(0, false);
         }
 
-        private void Stickers_Click(object sender, RoutedEventArgs e)
-        {
-            MasterDetail.NavigationService.Navigate(typeof(SettingsStickersPage));
-            MasterDetail.NavigationService.GoBackAt(0, false);
-        }
+        //private void Stickers_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MasterDetail.NavigationService.Navigate(typeof(SettingsStickersPage));
+        //    MasterDetail.NavigationService.GoBackAt(0, false);
+        //}
 
         private void Data_Click(object sender, RoutedEventArgs e)
         {
@@ -169,6 +169,12 @@ namespace Unigram.Views
         private void Appearance_Click(object sender, RoutedEventArgs e)
         {
             MasterDetail.NavigationService.Navigate(typeof(SettingsAppearancePage));
+            MasterDetail.NavigationService.GoBackAt(0, false);
+        }
+
+        private void Devices_Click(object sender, RoutedEventArgs e)
+        {
+            MasterDetail.NavigationService.Navigate(typeof(SettingsSessionsPage));
             MasterDetail.NavigationService.GoBackAt(0, false);
         }
 

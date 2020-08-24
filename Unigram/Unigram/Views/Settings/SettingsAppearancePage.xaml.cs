@@ -209,5 +209,9 @@ namespace Unigram.Views.Settings
 
         #endregion
 
+        private void Stickers_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.NavigationService.Navigate(typeof(SettingsStickersPage));
+        }
     }
 }

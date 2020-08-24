@@ -94,10 +94,14 @@
                         <contract7Present:BrushTransition/>
                     </contract7Present:StackPanel.BackgroundTransition>
                     <Rectangle Fill="{ThemeResource TelegramSeparatorMediumBrush}" Height="1" Margin="12,0,0,0" />
-                    
+
+                    <TextBlock
+                        Text="{CustomResource Account}"
+                        Margin="12,12,12,0"
+                        Style="{StaticResource SettingsGroupTextBlockStyle}"/>
                     <controls:BadgeButton
                         x:Name="PhoneNumber"
-                        Content="{CustomResource Phone}"
+                        Content="{CustomResource TapToChangePhone}"
                         Style="{StaticResource GlyphSubtitleBadgeButtonStyle}"
                         Glyph="&#xE717;"
                         Click="Phone_Click"/>
@@ -114,7 +118,7 @@
                         Glyph="&#xE946;"
                         Click="About_Click"/>
                 </StackPanel>
-
+<!--
                 <StackPanel
                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                     Margin="0,16,0,0">
@@ -127,13 +131,17 @@
                         Click="Folders_Click"
                         Style="{StaticResource TextGlyphButtonStyle}"/>
                 </StackPanel>
-                
+-->
                 <StackPanel
                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                     Margin="0,16,0,0">
                     <contract7Present:StackPanel.BackgroundTransition>
                         <contract7Present:BrushTransition/>
                     </contract7Present:StackPanel.BackgroundTransition>
+                    <TextBlock
+                        Text="{CustomResource SETTINGS}"
+                        Margin="12,12,12,0"
+                        Style="{StaticResource SettingsGroupTextBlockStyle}"/>
                     <controls:BadgeButton
                         Content="{CustomResource NotificationsAndSounds}"
                         Glyph="&#xEC42;"
@@ -149,15 +157,25 @@
                         Glyph="&#xEB05;"
                         Click="Data_Click"
                         Style="{StaticResource TextGlyphButtonStyle}"/>
-                    <controls:BadgeButton
+                    <!--<controls:BadgeButton
                         Content="{CustomResource StickersName}"
                         Glyph="&#xF4AA;"
                         Click="Stickers_Click"
-                        Style="{StaticResource TextGlyphButtonStyle}"/>
+                        Style="{StaticResource TextGlyphButtonStyle}"/>-->
                     <controls:BadgeButton
                         Content="{CustomResource ChatSettings}"
                         Glyph="&#xE8BD;"
                         Click="Appearance_Click"
+                        Style="{StaticResource TextGlyphButtonStyle}"/>
+                    <controls:BadgeButton
+                        Content="{CustomResource Filters}"
+                        Glyph="&#xF12B;"
+                        Click="Folders_Click"
+                        Style="{StaticResource TextGlyphButtonStyle}"/>
+                    <controls:BadgeButton
+                        Content="{CustomResource Devices}"
+                        Glyph="&#xEA6C;"
+                        Click="Devices_Click"
                         Style="{StaticResource TextGlyphButtonStyle}"/>
                     <controls:BadgeButton
                         Content="{CustomResource Language}"
@@ -170,13 +188,17 @@
                         Click="Advanced_Click"
                         Style="{StaticResource TextGlyphButtonStyle}"/>
                 </StackPanel>
-                
+
                 <StackPanel
                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                     Margin="0,16,0,0">
                     <contract7Present:StackPanel.BackgroundTransition>
                         <contract7Present:BrushTransition/>
                     </contract7Present:StackPanel.BackgroundTransition>
+                    <TextBlock
+                        Text="{CustomResource SettingsHelp}"
+                        Margin="12,12,12,0"
+                        Style="{StaticResource SettingsGroupTextBlockStyle}"/>
                     <controls:BadgeButton Content="{CustomResource AskAQuestion}"
                                           Glyph="&#xED15;"
                                           Command="{x:Bind ViewModel.AskCommand}"

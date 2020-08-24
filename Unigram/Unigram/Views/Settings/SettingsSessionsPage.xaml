@@ -22,7 +22,7 @@
     </Page.Resources>
 
     <local:HostedPage.Header>
-        <controls:PageHeader Text="{CustomResource SessionsTitle}"/>
+        <controls:PageHeader Text="{CustomResource Devices}"/>
     </local:HostedPage.Header>
 
     <Grid Background="{ThemeResource PageBackgroundDarkBrush}">

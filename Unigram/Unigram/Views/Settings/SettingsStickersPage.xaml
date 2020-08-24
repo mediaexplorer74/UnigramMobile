@@ -29,7 +29,7 @@
             <ListView.Header>
                 <StackPanel Margin="0,0,0,16">
                     <controls:HeaderedControl
-                        Footer="{CustomResource FeaturedStickersInfo}">
+                        Footer="{CustomResource LoopAnimatedStickersInfo}">
                         <controls:BadgeButton
                             Content="{CustomResource SuggestStickers}"
                             Command="{x:Bind ViewModel.SuggestCommand}"
@@ -42,27 +42,23 @@
                             IsOn="{x:Bind ViewModel.IsLoopingEnabled, Mode=TwoWay}"
                             Header="{CustomResource LoopAnimatedStickers}"
                             Style="{StaticResource CheckButtonStyle}"/>
-                        <controls:BadgeButton
+                    </controls:HeaderedControl>
+                    
+                    <controls:HeaderedControl
+                        Footer="{CustomResource StickersBotInfo}">
+                            <controls:BadgeButton
                             Content="{CustomResource FeaturedStickers}"
                             Click="FeaturedStickers_Click"
                             Badge="{x:Bind ViewModel.FeaturedStickersCount, Mode=OneWay}"
                             BadgeVisibility="{x:Bind ViewModel.FeaturedStickersCount, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    </controls:HeaderedControl>
-                    
-                    <!--<controls:HeaderedControl
-                        Footer="{CustomResource MasksInfo}">
                         <controls:BadgeButton
-                            Content="{CustomResource Masks}"
-                            Click="Masks_Click"/>
-                    </controls:HeaderedControl>-->
-
-                    <controls:HeaderedControl
-                        Footer="{CustomResource ArchivedStickersInfo}"
-                        Visibility="{x:Bind ViewModel.ArchivedStickersCount, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <controls:BadgeButton
+                            Visibility="{x:Bind ViewModel.ArchivedStickersCount, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Content="{CustomResource ArchivedStickers}"
                             Click="ArchivedStickers_Click"
                             Badge="{x:Bind ViewModel.ArchivedStickersCount, Mode=OneWay}"/>
+                        <controls:BadgeButton
+                            Content="{CustomResource Masks}"
+                            Click="Masks_Click"/>
                     </controls:HeaderedControl>
                 </StackPanel>
             </ListView.Header>
