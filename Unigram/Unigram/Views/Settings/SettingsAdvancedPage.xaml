@@ -54,6 +54,13 @@
                         IsEnabled="{x:Bind ViewModel.IsUpdateEnabled, Mode=OneWay}"/>
                 </controls:HeaderedControl>
                 -->
+                <controls:HeaderedControl
+                    Header="{CustomResource RecentFiles}">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.ShowRecentFiles, Mode=TwoWay}"
+                        Header="{CustomResource ShowInChat}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                </controls:HeaderedControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

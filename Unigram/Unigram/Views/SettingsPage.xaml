@@ -186,9 +186,10 @@
                                           Click="Questions_Click"
                                           Style="{StaticResource TextGlyphButtonStyle}"/>
                     <controls:BadgeButton Content="{CustomResource PrivacyPolicy}"
-                                          Glyph="&#xE131;"
+                                          Glyph="&#xE916;"
                                           Click="PrivacyPolicy_Click"
-                                          Style="{StaticResource TextGlyphButtonStyle}"/>
+                                          Style="{StaticResource TextGlyphButtonStyle}"
+                                          FontFamily="{StaticResource TelegramThemeFontFamily}"/>
                 </StackPanel>
                 
                 <Grid>

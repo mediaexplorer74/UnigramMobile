@@ -1036,7 +1036,7 @@
                                         <FontIcon Glyph="&#xEB9F;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <!--
+                                
                                 <MenuFlyoutItem
                                     x:Name="AttachCamera"
                                     Text="{CustomResource ChatCamera}"
@@ -1045,7 +1045,7 @@
                                         <FontIcon Glyph="&#xE722;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                -->
+                                
                                 <MenuFlyoutItem
                                     x:Name="AttachDocument"
                                     Text="{CustomResource ChatDocument}"

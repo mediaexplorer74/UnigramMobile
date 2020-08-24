@@ -497,6 +497,9 @@ namespace Unigram.Views
             ViewModel.ListField = Messages;
             ViewModel.Sticker_Click = Stickers_ItemClick;
 
+            AttachRecent.Visibility = SettingsService.Current.ShowRecentFiles ? Visibility.Visible : Visibility.Collapsed;
+            AttachCamera.Visibility = SettingsService.Current.ShowRecentFiles ? Visibility.Collapsed : Visibility.Visible;
+
             ViewModel.SetText(null, false);
 
             Messages.SetScrollMode(ItemsUpdatingScrollMode.KeepLastItemInView, true);
@@ -1453,7 +1456,7 @@ namespace Unigram.Views
 
             if (FlyoutBase.GetAttachedFlyout(ButtonAttach) is MenuFlyout flyout)
             {
-                flyout.ShowAt(FlyoutArea);
+                flyout.ShowAt(SettingsService.Current.ShowRecentFiles ? FlyoutArea : btnAttach);
             }
         }
 

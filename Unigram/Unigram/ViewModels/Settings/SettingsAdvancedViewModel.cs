@@ -174,6 +174,19 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
+        public bool ShowRecentFiles
+        {
+            get
+            {
+                return Settings.ShowRecentFiles;
+            }
+            set
+            {
+                Settings.ShowRecentFiles = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool IsTrayVisible
         {
             get { return Settings.IsTrayVisible; }

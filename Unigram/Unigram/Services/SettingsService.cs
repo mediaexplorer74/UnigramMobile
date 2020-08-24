@@ -36,6 +36,7 @@ namespace Unigram.Services
         bool UseThreeLinesLayout { get; set; }
         bool CollapseArchivedChats { get; set; }
         bool IsAdaptiveWideEnabled { get; set; }
+        bool ShowRecentFiles { get; set; }
         bool IsTrayVisible { get; set; }
         bool IsLaunchMinimized { get; set; }
         bool IsSendByEnterEnabled { get; set; }
@@ -487,6 +488,22 @@ namespace Unigram.Services
             {
                 _isAdaptiveWideEnabled = value;
                 AddOrUpdateValue(_local, "IsAdaptiveWideEnabled", value);
+            }
+        }
+        private static bool? _showRecentFiles;
+        public bool ShowRecentFiles
+        {
+            get
+            {
+                if (_showRecentFiles == null)
+                    _showRecentFiles = GetValueOrDefault(_local, "ShowRecentFiles", true);
+
+                return _showRecentFiles ?? true;
+            }
+            set
+            {
+                _showRecentFiles = value;
+                AddOrUpdateValue(_local, "ShowRecentFiles", value);
             }
         }
 
