@@ -217,7 +217,6 @@ namespace Unigram.Services
                 new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SyncContacts),
                 new SettingsSearchPage(typeof(SettingsSessionsPage), Strings.Resources.SuggestContacts),
 
-                new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.PrivacyDeleteCloudDrafts),
                 new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.DeleteAccountIfAwayFor2),
 
                 new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.SecretChat),
@@ -284,7 +283,9 @@ namespace Unigram.Services
                 new SettingsSearchPage(typeof(SettingsProxiesPage), Strings.Resources.Proxy, "\uEE94", new SettingsSearchEntry[]
                 {
                     new SettingsSearchPage(typeof(SettingsProxiesPage), Strings.Resources.AddProxy)
-                })
+                }),
+
+                new SettingsSearchPage(typeof(SettingsDataAndStoragePage), Strings.Resources.PrivacyDeleteCloudDrafts)
             });
         }
 

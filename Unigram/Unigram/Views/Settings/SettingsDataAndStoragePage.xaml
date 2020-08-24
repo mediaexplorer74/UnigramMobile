@@ -210,6 +210,12 @@
                         Content="{CustomResource ProxySettings}"
                         Click="Proxy_Click"/>
                 </controls:HeaderedControl>
+
+                <controls:HeaderedControl>
+                    <controls:BadgeButton
+                        Content="{CustomResource PrivacyDeleteCloudDrafts}"
+                        Command="{x:Bind ViewModel.ClearDraftsCommand}"/>
+                </controls:HeaderedControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -25,6 +25,7 @@ namespace Unigram.ViewModels.Settings
             ResetAutoDownloadCommand = new RelayCommand(ResetAutoDownloadExecute);
             DownloadLocationCommand = new RelayCommand(DownloadLocationExecute);
             UseLessDataCommand = new RelayCommand(UseLessDataExecute);
+            ClearDraftsCommand = new RelayCommand(ClearDraftsExecute);
         }
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
@@ -249,6 +250,22 @@ namespace Unigram.ViewModels.Settings
 
                 RaisePropertyChanged(() => AutoDownloadEnabled);
                 RaisePropertyChanged(() => AutoDownload);
+            }
+        }
+
+        public RelayCommand ClearDraftsCommand { get; }
+        private async void ClearDraftsExecute()
+        {
+            var confirm = await MessagePopup.ShowAsync(Strings.Resources.AreYouSureClearDrafts, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
+            if (confirm != ContentDialogResult.Primary)
+            {
+                return;
+            }
+
+            var clear = await ProtoService.SendAsync(new ClearAllDraftMessages(true));
+            if (clear is Error)
+            {
+                // TODO
             }
         }
     }
