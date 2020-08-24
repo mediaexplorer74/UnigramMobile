@@ -1,6 +1,6 @@
 ﻿using Unigram.Common;
 using Unigram.Services;
-using Unigram.Views.Settings.Password;
+using Unigram.Views.Settings;
 
 namespace Unigram.ViewModels.Settings.Password
 {
@@ -15,7 +15,7 @@ namespace Unigram.ViewModels.Settings.Password
         public RelayCommand SendCommand { get; }
         private void SendExecute()
         {
-            NavigationService.Navigate(typeof(SettingsPasswordCreatePage));
+            NavigationService.Navigate(typeof(SettingsPasswordPage));
         }
     }
 }
