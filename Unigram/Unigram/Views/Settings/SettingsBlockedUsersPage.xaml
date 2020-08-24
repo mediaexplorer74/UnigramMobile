@@ -63,7 +63,13 @@
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.Header>
-                <Border Height="16"/>
+                <Border MinHeight="16">
+                    <TextBlock
+                        Text="{CustomResource BlockedUsersInfo}"
+                        Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Margin="12,16,12,8"/>
+                </Border>
             </ListView.Header>
             <ListView.Footer>
                 <Border MaxWidth="640">
