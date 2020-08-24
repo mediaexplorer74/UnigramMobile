@@ -145,22 +145,22 @@
     <value>گفتگوها</value>
   </data>
   <data name="CopyImage" xml:space="preserve">
-    <value>کپی عکس</value>
+    <value>رونوشت عکس</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>بریدن</value>
+    <value>جدا کردن</value>
   </data>
   <data name="DeletedMessage" xml:space="preserve">
     <value>پیام های حذف شده</value>
   </data>
   <data name="EditLink" xml:space="preserve">
-    <value>ویرایش لینک</value>
+    <value>ویرایش آدرس</value>
   </data>
   <data name="Formatting" xml:space="preserve">
     <value>قالب بندی</value>
   </data>
   <data name="FormattingHide" xml:space="preserve">
-    <value>مخفی کردن قالب بندی</value>
+    <value>پنهان کردن قالب بندی</value>
   </data>
   <data name="FormattingShow" xml:space="preserve">
     <value>نمایش قالب بندی</value>
@@ -174,7 +174,7 @@
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
-    <value>اخبار</value>
+    <value>رویدادها</value>
   </data>
   <data name="OriginalMessage" xml:space="preserve">
     <value>اصلی</value>
@@ -189,19 +189,19 @@
   </data>
   <data name="Redo" xml:space="preserve">
     <value>تکرار مجدد</value>
-  </data>
+ </data>
   <data name="ReplaceEmoji" xml:space="preserve">
-    <value>جایگذاری ایموجی</value>
+    <value>جایگذاری صورتک</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>ذخیره به عنوان ...</value>
+    <value>ذخیره به صورت ...</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>انتخاب</value>
+    <value>گزینش</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>انتخاب همه</value>
+    <value>گزینش همه</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>نمایش دکمه های قالب بندی</value>
@@ -215,14 +215,15 @@
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>خنثی سازی</value>
+    <value>واگرد</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
     <value>نمایش استیکرهای متحرک</value>
     <comment>SettingStickersPage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
-    <value>پوشه ها در بالای صفحه</value>
+    <value>پوشه ها در بالا</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
@@ -234,31 +235,31 @@
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
-    <value>اگر تعداد زیادی پوشه دارید، آنها را به سمت چپ منتقل کنید.</value>
+    <value>اگر پوشه های زیادی دارید، آنها را به سمت چپ منتقل کنید.</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsStorageOtherChats" xml:space="preserve">
-    <value>سایر چت ها</value>
+    <value>دیگر گفتگوها</value>
     <comment>SettingsStoragePage</comment>
   </data>
   <data name="ShareRemoveCaptions" xml:space="preserve">
-    <value>حذف کپشن های رسانه</value>
+    <value>حذف زیرنویس های رسانه</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
-    <value>ارسال به عنوان کپی</value>
+    <value>روانه به صورت رونوشت</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>ارسال به صورت البوم</value>
+    <value>روانه به صورت مجموعه</value>
     <comment>SharePopup</comment>
   </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
-    <value>Size of the folders menu</value>
+    <value>اندازه لیست پوشه ها</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SelectColorSystemAccent" xml:space="preserve">
-    <value>Use system accent color</value>
+    <value>استفاده از رنگ سیستم </value>
     <comment>SelectColorPopup</comment>
   </data>
   <data name="ConnectWithoutProxy" xml:space="preserve">
@@ -270,11 +271,11 @@
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsHighlightWords" xml:space="preserve">
-    <value>غلط های املایی را مشخص کن </value>
+    <value>آشکارسازی واژه های اشتباه</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsAutocorrectWords" xml:space="preserve">
-    <value>تصحیح خودکار غلط های املایی</value>
+    <value>ویرایش خودکار واژه های اشتباه</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="PlayGifPreview" xml:space="preserve">
@@ -282,27 +283,27 @@
     <comment>DiagnosticsPage</comment>
   </data>
   <data name="SettingsEmojiSet" xml:space="preserve">
-    <value>ست ایموجی</value>
+    <value>دسته صورتک</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsEmojiSetPopup" xml:space="preserve">
-    <value>Choose Emoji Set</value>
+    <value>گزینش دسته صورتک</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Thumbnails" xml:space="preserve">
-    <value>انگشت</value>
+    <value>بندانگشتی</value>
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="SettingsThumbnailsGif" xml:space="preserve">
-    <value>Preview GIF animations</value>
+    <value>پیش نمایش GIF</value>
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="LoadAllMedia" xml:space="preserve">
-    <value>بارگیری محتوا </value>
+    <value>نمایش تمام محتوا</value>
     <comment>ChatSharedMediaView</comment>
   </data>
   <data name="AutoDownloadAudioTitle" xml:space="preserve">
-    <value>دانلود خودکار پیام های صوتی</value>
+    <value>بارگیری خودکار پیام های آوایی</value>
     <comment>SettingsDataAutoView</comment>
   </data>
 </root>
