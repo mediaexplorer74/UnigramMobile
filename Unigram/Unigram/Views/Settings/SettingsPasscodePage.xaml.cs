@@ -19,6 +19,8 @@ namespace Unigram.Views.Settings
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             Biometrics.Visibility = await KeyCredentialManager.IsSupportedAsync() ? Visibility.Visible : Visibility.Collapsed;
+            IsEnabled.IsOn = ViewModel.IsEnabled;
+
         }
 
         #region Binding
@@ -30,5 +32,12 @@ namespace Unigram.Views.Settings
 
         #endregion
 
+        private async void ToggleSwitch_ToggledAsync(object sender, RoutedEventArgs e)
+        {
+            if (IsEnabled.IsOn != ViewModel.IsEnabled)
+                await ViewModel.TogglePasscode();
+            if (IsEnabled.IsOn != ViewModel.IsEnabled) // if canceled by user
+                IsEnabled.IsOn = ViewModel.IsEnabled;
+        }
     }
 }

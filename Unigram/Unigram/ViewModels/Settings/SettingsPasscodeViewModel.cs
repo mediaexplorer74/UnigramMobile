@@ -18,7 +18,6 @@ namespace Unigram.ViewModels.Settings
         {
             _passcodeService = passcodeService;
 
-            ToggleCommand = new RelayCommand(ToggleExecute);
             EditCommand = new RelayCommand(EditExecute);
             AutolockCommand = new RelayCommand(AutolockExecute);
         }
@@ -79,8 +78,7 @@ namespace Unigram.ViewModels.Settings
             }
         }
 
-        public RelayCommand ToggleCommand { get; }
-        private async void ToggleExecute()
+        public async Task TogglePasscode()
         {
             if (_passcodeService.IsEnabled)
             {

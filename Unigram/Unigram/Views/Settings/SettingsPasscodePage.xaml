@@ -28,11 +28,11 @@
             <StackPanel Margin="0,0,0,48">
                 <controls:HeaderedControl
                     Footer="{CustomResource ChangePasscodeInfo}">
-                    <CheckBox IsChecked="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
-                              Command="{x:Bind ViewModel.ToggleCommand}"
-                              Content="{CustomResource Passcode}"
-                              Margin="12,6,12,0"/>
-                    <Rectangle Fill="{ThemeResource TelegramSeparatorMediumBrush}" Height="1" Margin="12,6,0,0"/>
+                    <ToggleSwitch
+                        x:Name="IsEnabled"
+                        Toggled="ToggleSwitch_ToggledAsync"
+                        Header="{CustomResource Passcode}"
+                        Style="{StaticResource CheckButtonStyle}"/>
 
                     <controls:BadgeButton
                         Command="{x:Bind ViewModel.EditCommand}"
