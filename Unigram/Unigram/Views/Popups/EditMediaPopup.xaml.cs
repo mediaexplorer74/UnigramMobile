@@ -232,7 +232,8 @@ namespace Unigram.Views.Popups
             }
             else
             {
-                _media.EditState = _originalMediaEditState; // Reset to state before starting editing
+                if (_media is StorageMedia)
+                    _media.EditState = _originalMediaEditState; // Reset to state before starting editing
                 if (_media is StorageVideo video)
                 {
                     video.IsMuted = _originalVideoIsMuted;
