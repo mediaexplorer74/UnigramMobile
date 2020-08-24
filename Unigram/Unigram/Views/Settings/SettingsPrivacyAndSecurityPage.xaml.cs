@@ -65,7 +65,7 @@ namespace Unigram.Views.Settings
 
         private string ConvertOnOff(bool value)
         {
-            return value ? Strings.Resources.NotificationsOn : Strings.Resources.NotificationsOff;
+            return value ? Strings.Resources.PasswordOn : Strings.Resources.PasswordOff;
         }
 
         private string ConvertSync(bool sync)
