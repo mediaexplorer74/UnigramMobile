@@ -210,11 +210,6 @@
   <data name="ShowInFolder" xml:space="preserve">
     <value>打开文件夹</value>
   </data>
-  <data name="ThemeLight" xml:space="preserve">
-    <value>亮色主题</value>
-    <comment>SettingsAppearancePage
-Fuzzy</comment>
-  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>系统主题</value>
     <comment>SettingsAppearancePage</comment>
@@ -226,12 +221,88 @@ Fuzzy</comment>
     <value>播放动画壁纸</value>
     <comment>SettingStickersPage</comment>
   </data>
-  <data name="SettingsDisableHighlightWords" xml:space="preserve">
-    <value>关闭格式错误高亮</value>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>聊天分类顶置</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>聊天分类左置</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>游览分类</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>如果你有过多的分类，尝试将他们移到左边</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>其他聊天</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
+  <data name="ShareRemoveCaptions" xml:space="preserve">
+    <value>复制时移除媒体文件</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsCopy" xml:space="preserve">
+    <value>以拷贝的形式发送</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsAlbum" xml:space="preserve">
+    <value>以相册的形式发送</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>更改分类文件夹的大小</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>使用系统主题颜色</value>
+    <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>不使用代理</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>打字</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SettingsDisableAutocorrectWords" xml:space="preserve">
-    <value>关闭自动修正</value>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>高亮拼写错误的单词</value>
     <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>自动修正拼写错误的单词</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>选中gif时播放gif</value>
+    <comment>DiagnosticsPage</comment>
+  </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>表情包合集</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>选择表情包集</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>预览</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>预览gif动画</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="LoadAllMedia" xml:space="preserve">
+    <value>加载全部媒体</value>
+    <comment>ChatSharedMediaView</comment>
+  </data>
+  <data name="AutoDownloadAudioTitle" xml:space="preserve">
+    <value>自动下载语音消息</value>
+    <comment>SettingsDataAutoView</comment>
   </data>
 </root>
