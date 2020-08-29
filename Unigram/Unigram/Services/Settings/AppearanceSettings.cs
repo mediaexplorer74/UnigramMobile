@@ -537,6 +537,11 @@ namespace Unigram.Services.Settings
 
         public ApplicationTheme GetApplicationTheme()
         {
+            if (RequestedThemeType == TelegramThemeType.System && RequestedTheme == ElementTheme.Default)
+               return GetSystemTheme() == TelegramAppTheme.Dark
+                ? ApplicationTheme.Dark
+                : ApplicationTheme.Light;
+
             var theme = RequestedTheme;
             return theme.HasFlag(ElementTheme.Dark)
                 ? ApplicationTheme.Dark
