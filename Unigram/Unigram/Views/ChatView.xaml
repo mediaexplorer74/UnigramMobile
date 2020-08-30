@@ -1174,7 +1174,6 @@
                                 Click="Markup_Click"
                                 AllowFocusOnInteraction="False"
                                 Glyph="&#xE90F;"
-                                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                 FontFamily="{StaticResource TelegramThemeFontFamily}"
                                 VerticalAlignment="Bottom"
                                 AutomationProperties.Name="{CustomResource AccDescrBotKeyboard}"
