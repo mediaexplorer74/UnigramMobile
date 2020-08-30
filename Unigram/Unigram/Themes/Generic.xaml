@@ -3517,6 +3517,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:GlyphToggleButton">
                     <Grid
+                        x:Name="RootGrid"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding Radius}"
                         Margin="{StaticResource GlyphButtonPadding}">
@@ -3592,7 +3593,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="RootGrid">
+                        <Grid>
                             <TextBlock
                                 x:Name="CheckedContentPresenter"
                                 Margin="{TemplateBinding Padding}"
@@ -3868,6 +3869,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="chats:ChatStickerButton">
                     <Grid
+                        x:Name="RootGrid"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding Radius}"
                         Margin="{StaticResource GlyphButtonPadding}">
@@ -3958,7 +3960,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="RootGrid">
+                        <Grid>
                             <TextBlock
                                 x:Name="ContentPresenter1"
                                 Margin="{TemplateBinding Padding}"
@@ -4000,6 +4002,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnimatedBitmapButton">
                     <Grid
+                        x:Name="RootGrid"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding Radius}"
                         Margin="{StaticResource GlyphButtonPadding}">
@@ -4044,7 +4047,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="RootGrid">
+                        <Grid>
                             <BitmapIcon
                                 x:Name="ContentPresenter1"
                                 Margin="{TemplateBinding Padding}"
@@ -4091,6 +4094,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnimatedGlyphButton">
                     <Grid
+                        x:Name="RootGrid"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding Radius}"
                         Margin="{StaticResource GlyphButtonPadding}">
@@ -4135,7 +4139,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="RootGrid">
+                        <Grid>
                             <TextBlock
                                 x:Name="ContentPresenter1"
                                 Margin="{TemplateBinding Padding}"
@@ -4179,6 +4183,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnimatedGlyphToggleButton">
                     <Grid
+                        x:Name="RootGrid"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding Radius}"
                         Margin="{StaticResource GlyphButtonPadding}">
@@ -4297,7 +4302,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="RootGrid">
+                        <Grid>
                             <TextBlock
                                 x:Name="ContentPresenter1"
                                 Margin="{TemplateBinding Padding}"
