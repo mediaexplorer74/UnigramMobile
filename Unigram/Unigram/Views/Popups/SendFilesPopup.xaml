@@ -18,7 +18,7 @@
     IsLightDismissEnabled="False">
 
     <ContentControl.Resources>
-        <local:IsPhotoVideoToGlyphConverter x:Key="IsPhotoVideoToGlyphConverter" />
+        <local:AttachDestructingMediaToolTipConverter x:Key="AttachDestructingMediaToolTipConverter" />
         <Style x:Key="ModernPivotRadioButtonStyle" TargetType="controls:PivotRadioButton">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -137,30 +137,31 @@
         </DataTemplate>
 
         <DataTemplate x:Key="MediaItemTemplate" x:DataType="entities:StorageMedia">
-            <Grid MinHeight="48" MaxHeight="294">
-                <Image
-                    x:Name="Preview"
-                    Tapped="Preview_TappedAsync"
-                    AutomationProperties.Name="{CustomResource EditMessageMedia}"
-                    ToolTipService.ToolTip="{CustomResource EditMessageMedia}"  
-                    Source="{x:Bind Preview, Mode=OneWay}"
-                    Tag="{x:Bind}"
-                    Stretch="Uniform"/>
+            <Grid>
+                <Grid MinHeight="48" MaxHeight="294"
+                      Tapped="Preview_TappedAsync"
+                      Tag="{x:Bind}">
+                    <Image
+                        x:Name="Preview"
+                        AutomationProperties.Name="{CustomResource EditMessageMedia}"
+                        ToolTipService.ToolTip="{CustomResource EditMessageMedia}"  
+                        Source="{x:Bind Preview, Mode=OneWay}"
+                        Stretch="UniformToFill"/>
 
-                <Border Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageOverlayBackgroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Tapped="Preview_TappedAsync"
-                        Tag="{x:Bind}">
-                    <!--<controls:FileButton x:Name="Button" Style="{StaticResource InlineFileButtonStyle}"/>-->
-                    <Grid>
+                    <Grid
+                        Visibility="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=invert}"
+                        Width="40" Height="40" CornerRadius="24"
+                        Background="{ThemeResource MessageOverlayBackgroundBrush}"
+                        VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock
                             x:Name="Glyph"
-                            Text="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource IsPhotoVideoToGlyphConverter}}"
+                            Text="&#xE102;"
                             Visibility="{x:Bind IsAnimation, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=invert}"
                             Foreground="{ThemeResource MessageMediaForegroundBrush}"
                             FontFamily="{StaticResource SymbolThemeFontFamily}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="20"/>
+                            FontSize="18"/>
                         <TextBlock
                             x:Name="GlyphTelegram"
                             Text="&#xE906;"
@@ -170,87 +171,53 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="20"/>
+                    </Grid>
+                    <Border 
+                        x:Name="OverlayTtl"
+                        Width="24" Height="24" CornerRadius="24"
+                        Margin="2"
+                        Background="{ThemeResource MessageOverlayBackgroundBrush}" 
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        AutomationProperties.Name="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource AttachDestructingMediaToolTipConverter}}"
+                        ToolTipService.ToolTip="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource AttachDestructingMediaToolTipConverter}}"  
+                        Visibility="{x:Bind IsSecret, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock
+                            Text="&#xE60E;"
+                            Foreground="{ThemeResource MessageMediaForegroundBrush}"
+                            FontFamily="{StaticResource TelegramThemeFontFamily}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="10"/>
+                    </Border>
+
+                    <Border
+                        Width="24" Height="24" CornerRadius="24"
+                        Margin="4"
+                        Background="{ThemeResource MessageOverlayBackgroundBrush}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        AutomationProperties.Name="{CustomResource EditMessageMedia}"
+                        ToolTipService.ToolTip="{CustomResource EditMessageMedia}">
                         <TextBlock
                             Text="&#xE104;"
                             Foreground="{ThemeResource MessageMediaForegroundBrush}"
                             FontFamily="{StaticResource SymbolThemeFontFamily}"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            FontSize="12"
-                            Padding="6,8,0,0"/>
-                    </Grid>
-                </Border>
-                <Border x:Name="OverlayTtl" 
-                        Width="48" Height="48" CornerRadius="24" 
-                        Background="{ThemeResource MessageOverlayBackgroundBrush}" 
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Center"
-                        Visibility="{x:Bind IsSecret, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Tapped="Preview_TappedAsync"
-                        Tag="{x:Bind}">
-                    <TextBlock
-                        Text="&#xE60E;"
-                        Foreground="{ThemeResource MessageMediaForegroundBrush}"
-                        FontFamily="{StaticResource TelegramThemeFontFamily}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="20"/>
-                </Border>
+                            VerticalAlignment="Center"
+                            FontSize="12"/>
+                    </Border>
+                </Grid>
 
-                <Grid HorizontalAlignment="Center"
-                      VerticalAlignment="Bottom"
-                      Background="{ThemeResource MessageOverlayBackgroundBrush}"
-                      RequestedTheme="Dark"
-                      CornerRadius="15"
-                      Margin="4">
-                    <!--
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <controls:GlyphToggleButton
-                        x:Name="Mute"
-                        Click="Mute_Click"
-                        UncheckedGlyph="&#xE906;"
-                        CheckedGlyph="&#xE906;"
-                        CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
-                        Tag="{x:Bind}"
-                        Width="40"
-                        Height="40"
-                        FontFamily="{StaticResource TelegramThemeFontFamily}"
-                        FontSize="18"
-                        Radius="12,4,4,12"/>
-                    
-                    <controls:GlyphToggleButton
-                        x:Name="Crop"
-                        Click="Crop_Click" 
-                        UncheckedGlyph="&#xE7A8;"
-                        CheckedGlyph="&#xE7A8;"
-                        CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
-                        Tag="{x:Bind}"
-                        Width="40"
-                        Height="40"
-                        FontSize="{StaticResource GlyphButtonFontSize}"
-                        IsChecked="{x:Bind IsEdited, Mode=OneWay}"
-                        AutomationProperties.Name="{CustomResource CropImage}"
-                        ToolTipService.ToolTip="{CustomResource CropImage}"
-                        Radius="12,4,4,12"/>
-
-                    <controls:GlyphToggleButton
-                        x:Name="Ttl"
-                        Click="Ttl_Click"
-                        Tag="{x:Bind}"
-                        Width="40"
-                        Height="40"
-                        IsChecked="{x:Bind IsSecret, Mode=OneWay}"
-                        UncheckedGlyph="&#xE916;"
-                        CheckedGlyph="&#xE916;"
-                        CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
-                        AutomationProperties.Name="{CustomResource SetTimer}"
-                        ToolTipService.ToolTip="{CustomResource SetTimer}"
-                        Grid.Column="1"/>
-                    -->
+                <Border 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="{ThemeResource MessageOverlayBackgroundBrush}"
+                    RequestedTheme="Dark"
+                    CornerRadius="15"
+                    Margin="4"
+                    AutomationProperties.Name="{CustomResource StickersRemove}"
+                    ToolTipService.ToolTip="{CustomResource StickersRemove}">
                     <controls:GlyphButton
                         Glyph="&#xE107;"
                         Click="Remove_Click"
@@ -260,7 +227,7 @@
                         FontSize="{StaticResource GlyphButtonFontSize}"
                         Radius="12"
                         Grid.Column="2"/>
-                </Grid>
+                </Border>
             </Grid>
             <!--<cells:SendMediaCell
                 Media="{x:Bind}"
@@ -275,7 +242,7 @@
         </ItemsPanelTemplate>
 
         <ItemsPanelTemplate x:Key="AlbumPanelTemplate">
-            <local:SendFilesAlbumPanel Loading="SendFilesAlbumPanel_Loading"/>
+            <local:SendFilesAlbumPanel Loading="SendFilesAlbumPanel_Loading" MaxWidth="322"/>
         </ItemsPanelTemplate>
 
     </ContentControl.Resources>
@@ -335,7 +302,7 @@
                 IsOneWay="False"
                 Grid.Column="5"/>
 
-            <Border BorderThickness="0,0,0,1" BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}" IsHitTestVisible="False" Grid.ColumnSpan="5"/>
+            <Border BorderThickness="0,0,0,1" BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}" IsHitTestVisible="False" Grid.ColumnSpan="6"/>
         </Grid>
     </ContentDialog.Title>
 

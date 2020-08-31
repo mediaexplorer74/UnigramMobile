@@ -578,15 +578,12 @@ namespace Unigram.Views.Popups
                     media.Refresh();
                     if (Items[0] == media && !string.IsNullOrWhiteSpace(media.Caption?.Text))
                         CaptionInput.SetText(media.Caption);
-                    if (fe.Parent is Grid root)
-                    {
-                        if (root.FindName("OverlayTtl") is FrameworkElement overlayTtl)
-                            overlayTtl.Visibility = media.IsSecret ? Visibility.Visible : Visibility.Collapsed;
-                        if (root.FindName("Glyph") is TextBlock glyph)
-                            glyph.Visibility = media.IsAnimation ? Visibility.Collapsed : Visibility.Visible;
-                        if (root.FindName("GlyphTelegram") is FrameworkElement glyphTelegram)
-                            glyphTelegram.Visibility = media.IsAnimation ? Visibility.Visible : Visibility.Collapsed;
-                    }
+                    if (fe.FindName("OverlayTtl") is FrameworkElement overlayTtl)
+                        overlayTtl.Visibility = media.IsSecret ? Visibility.Visible : Visibility.Collapsed;
+                    if (fe.FindName("Glyph") is TextBlock glyph)
+                        glyph.Visibility = media.IsAnimation ? Visibility.Collapsed : Visibility.Visible;
+                    if (fe.FindName("GlyphTelegram") is FrameworkElement glyphTelegram)
+                        glyphTelegram.Visibility = media.IsAnimation ? Visibility.Visible : Visibility.Collapsed;
                 }
                 Popup = null;
             }
@@ -763,12 +760,12 @@ namespace Unigram.Views.Popups
             return (rects, new Size(positions.Value.Item2.Width * ratio, positions.Value.Item2.Height * ratio));
         }
     }
-
-    public class IsPhotoVideoToGlyphConverter : Windows.UI.Xaml.Data.IValueConverter
+    
+    public class AttachDestructingMediaToolTipConverter : Windows.UI.Xaml.Data.IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return System.Convert.ToBoolean(value) ? Icons.Photo : Icons.Play;
+            return System.Convert.ToBoolean(value) ? Strings.Resources.AttachDestructingPhoto : Strings.Resources.AttachDestructingVideo;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
