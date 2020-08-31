@@ -138,7 +138,7 @@ namespace Unigram.Entities
             set
             {
                 Set(ref _isMuted, value);
-                Set(() => Compression, ref _compression, 0);
+                Set(() => Compression, ref _compression, MaxCompression >= 1 ? 1 : 0);
 
                 RaisePropertyChanged(() => CanCompress);
             }
