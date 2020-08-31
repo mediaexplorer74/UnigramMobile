@@ -103,10 +103,8 @@ namespace Unigram.Collections
 
         protected virtual void Merge(IList<T> result)
         {
-            foreach (T item in result)
-            {
-                this.Add(item);
-            }
+            if (result != null && result.Count > 0)
+                AddRange(result);
         }
 
         protected void RaisePropertyChanged(string propertyName)
