@@ -167,6 +167,16 @@ namespace Unigram.ViewModels
             }
         }
 
+        public bool ShowOpenWithVlc
+        {
+            get => Settings.Diagnostics.ShowOpenWithVlc;
+            set
+            {
+                Settings.Diagnostics.ShowOpenWithVlc = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool BubbleMeasureAlpha
         {
             get => Settings.Diagnostics.BubbleMeasureAlpha;

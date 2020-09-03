@@ -27,6 +27,7 @@ namespace Unigram.ViewModels.Gallery
             CopyCommand = new RelayCommand(CopyExecute);
             SaveCommand = new RelayCommand(SaveExecute);
             OpenWithCommand = new RelayCommand(OpenWithExecute);
+            OpenWithVlcCommand = new RelayCommand(OpenWithVlcExecute);
 
             //Aggregator.Subscribe(this);
         }
@@ -313,6 +314,28 @@ namespace Unigram.ViewModels.Gallery
                     options.DisplayApplicationPicker = true;
 
                     await Launcher.LaunchFileAsync(temp, options);
+                }
+            }
+        }
+
+        public RelayCommand OpenWithVlcCommand { get; }
+        protected virtual async void OpenWithVlcExecute()
+        {
+            var item = _selectedItem;
+            if (item == null || !CanOpenWith)
+            {
+                return;
+            }
+
+            var file = item.GetFile();
+            if (file != null && file.Local.IsDownloadingCompleted)
+            {
+                var temp = await ProtoService.GetFileAsync(file);
+                if (temp != null)
+                {
+                    var copiedFile = await temp.CopyAsync(KnownFolders.VideosLibrary, "OpenWithVLCtmp.UnigramMobile", NameCollisionOption.ReplaceExisting);
+                    var uriVlc = new Uri(@"vlc://openstream/?from=url&url=" + copiedFile.Path);
+                    await Launcher.LaunchUriAsync(uriVlc);
                 }
             }
         }

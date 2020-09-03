@@ -109,6 +109,23 @@
             }
         }
 
+        private bool? _showOpenWithVlc;
+        public bool ShowOpenWithVlc
+        {
+            get
+            {
+                if (_showOpenWithVlc == null)
+                    _showOpenWithVlc = GetValueOrDefault("ShowOpenWithVlc", false);
+
+                return _showOpenWithVlc ?? false;
+            }
+            set
+            {
+                _showOpenWithVlc = value;
+                AddOrUpdateValue("ShowOpenWithVlc", value);
+            }
+        }
+
         private bool? _bubbleMeasureAlpha;
         public bool BubbleMeasureAlpha
         {

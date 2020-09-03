@@ -28,6 +28,11 @@
                         IsOn="{x:Bind ViewModel.BubbleKnockout, Mode=TwoWay}"
                         Header="Bubble knockout"
                         Style="{StaticResource CheckButtonStyle}"/>
+                    <!-- Attention: Copies the video to the default video folder. File "OpenWithVLCtmp.UnigramMobile" does not get deleted automatically! -->
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.ShowOpenWithVlc, Mode=TwoWay}"
+                        Header="Show 'Open with ... VLC' for Videos"
+                        Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
                 
                 <controls:HeaderedControl

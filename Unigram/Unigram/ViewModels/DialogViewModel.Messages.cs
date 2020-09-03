@@ -1346,6 +1346,26 @@ namespace Unigram.ViewModels
             }
         }
 
+        public RelayCommand<MessageViewModel> MessageOpenWithVlcCommand { get; }
+        private async void MessageOpenWithVlcExecute(MessageViewModel message)
+        {
+            var result = message.Get().GetFileAndName(true);
+
+            var file = result.File;
+            if (file == null || !file.Local.IsDownloadingCompleted)
+            {
+                return;
+            }
+
+            var item = await ProtoService.GetFileAsync(file);
+            if (item != null)
+            {
+                var copiedFile = await item.CopyAsync(KnownFolders.VideosLibrary, "OpenWithVLCtmp.UnigramMobile", NameCollisionOption.ReplaceExisting);
+                var uriVlc = new Uri(@"vlc://openstream/?from=url&url=" + copiedFile.Path);
+                await Launcher.LaunchUriAsync(uriVlc);
+            }
+        }
+
         #endregion
 
         #region Show in folder

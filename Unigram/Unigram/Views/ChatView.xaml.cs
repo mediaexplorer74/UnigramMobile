@@ -2072,6 +2072,8 @@ namespace Unigram.Views
                 flyout.CreateFlyoutItem(MessageSaveAnimation_Loaded, ViewModel.MessageSaveAnimationCommand, message, Strings.Resources.SaveToGIFs, new FontIcon { Glyph = Icons.Animations, FontFamily = Constants.SymbolThemeFontFamily });
                 flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageSaveMediaCommand, message, Strings.Additional.SaveAs, new FontIcon { Glyph = Icons.SaveAs });
                 flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenWithCommand, message, Strings.Resources.OpenInExternalApp, new FontIcon { Glyph = Icons.OpenIn });
+                if (SettingsService.Current.Diagnostics.ShowOpenWithVlc && message?.Content is MessageVideo)
+                    flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenWithVlcCommand, message, Strings.Resources.OpenInExternalApp + " VLC", new FontIcon { Glyph = Icons.Play });
                 if (SettingsService.Current.Diagnostics.ShowFilesInFolder)
                 flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenFolderCommand, message, Strings.Additional.ShowInFolder, new FontIcon { Glyph = Icons.Folder });
 

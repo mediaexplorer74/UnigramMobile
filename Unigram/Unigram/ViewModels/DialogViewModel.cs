@@ -165,6 +165,7 @@ namespace Unigram.ViewModels
             MessageSaveDownloadCommand = new RelayCommand<MessageViewModel>(MessageSaveDownloadExecute);
             MessageSaveAnimationCommand = new RelayCommand<MessageViewModel>(MessageSaveAnimationExecute);
             MessageOpenWithCommand = new RelayCommand<MessageViewModel>(MessageOpenWithExecute);
+            MessageOpenWithVlcCommand = new RelayCommand<MessageViewModel>(MessageOpenWithVlcExecute);
             MessageOpenFolderCommand = new RelayCommand<MessageViewModel>(MessageOpenFolderExecute);
             MessageAddContactCommand = new RelayCommand<MessageViewModel>(MessageAddContactExecute);
             MessageServiceCommand = new RelayCommand<MessageViewModel>(MessageServiceExecute);
@@ -3351,7 +3352,7 @@ namespace Unigram.ViewModels
 
             item.IsFirst = true;
             item.IsLast = true;
-            base.InsertItem(index, item);
+            base.InsertItem(index, item); // TODO: Improve performance - skip changed events?
 
             var previous = index > 0 ? this[index - 1] : null;
             var next = index < Count - 1 ? this[index + 1] : null;
