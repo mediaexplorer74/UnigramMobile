@@ -280,38 +280,38 @@ namespace Unigram.Views.Popups
 
         //private void Grid_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         //{
-            //var storage = args.NewValue as StorageMedia;
-            //if (storage == null)
-            //{
-            //    return;
-            //}
+        //var storage = args.NewValue as StorageMedia;
+        //if (storage == null)
+        //{
+        //    return;
+        //}
 
-            //var root = sender.Parent as Grid;
-            //if (root == null)
-            //{
-            //    return;
-            //}
+        //var root = sender.Parent as Grid;
+        //if (root == null)
+        //{
+        //    return;
+        //}
 
-            //var overlay = root.FindName("Overlay") as Border;
+        //var overlay = root.FindName("Overlay") as Border;
 
-            //var mute = root.FindName("Mute") as ToggleButton;
-            //var crop = root.FindName("Crop") as ToggleButton;
-            //var ttl = root.FindName("Ttl") as ToggleButton;
+        //var mute = root.FindName("Mute") as ToggleButton;
+        //var crop = root.FindName("Crop") as ToggleButton;
+        //var ttl = root.FindName("Ttl") as ToggleButton;
 
-            //overlay.Visibility = storage is StorageVideo || storage.Ttl > 0 ? Visibility.Visible : Visibility.Collapsed;
+        //overlay.Visibility = storage is StorageVideo || storage.Ttl > 0 ? Visibility.Visible : Visibility.Collapsed;
 
-            //if (storage is StorageVideo video)
-            //{
-            //    mute.IsChecked = video.IsMuted;
-            //    mute.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    mute.Visibility = Visibility.Collapsed;
-            //}
+        //if (storage is StorageVideo video)
+        //{
+        //    mute.IsChecked = video.IsMuted;
+        //    mute.Visibility = Visibility.Visible;
+        //}
+        //else
+        //{
+        //    mute.Visibility = Visibility.Collapsed;
+        //}
 
-            //crop.Visibility = storage is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
-            //ttl.Visibility = IsTtlAvailable ? Visibility.Visible : Visibility.Collapsed;
+        //crop.Visibility = storage is StoragePhoto ? Visibility.Visible : Visibility.Collapsed;
+        //ttl.Visibility = IsTtlAvailable ? Visibility.Visible : Visibility.Collapsed;
         //}
 
         public void Accept()
@@ -684,9 +684,10 @@ namespace Unigram.Views.Popups
                 picker.FileTypeFilter.AddRange(Constants.MediaTypes);
             }
 
-            var items = await StorageMedia.CreateAsync(await picker.PickMultipleFilesAsync());
-            if (!items.IsEmpty())
-                Items.AddRange(items);
+            foreach (var item in await StorageMedia.CreateAsync(await picker.PickMultipleFilesAsync()))
+            {
+                Items.Add(item);
+            }
         }
     }
 
