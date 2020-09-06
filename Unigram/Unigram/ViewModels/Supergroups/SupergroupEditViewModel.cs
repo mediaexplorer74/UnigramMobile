@@ -272,7 +272,7 @@ namespace Unigram.ViewModels.Supergroups
             }
             else if (_deletePhoto)
             {
-                var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, new InputChatPhotoStatic(new InputFileId(0))));
+                var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, null));
                 if (response is Error)
                 {
                     // TODO:

@@ -518,7 +518,7 @@ namespace Unigram.Common
                 case MessageText text:
                     return text.WebPage?.Photo;
                 case MessageChatChangePhoto chatChangePhoto:
-                    return new Photo(false, chatChangePhoto.Photo.Minithumbnail, chatChangePhoto.Photo.Sizes);
+                    return chatChangePhoto.Photo.ToPhoto();
                 default:
                     return null;
             }
@@ -854,6 +854,11 @@ namespace Unigram.Common
         public static Photo ToPhoto(this ChatPhotoInfo chatPhoto)
         {
             return new Photo(false, null, new PhotoSize[] { new PhotoSize("t", chatPhoto.Small, 160, 160), new PhotoSize("i", chatPhoto.Big, 640, 640) });
+        }
+
+        public static Photo ToPhoto(this ChatPhoto chatPhoto)
+        {
+            return new Photo(false, chatPhoto.Minithumbnail, chatPhoto.Sizes);
         }
 
         public static bool IsSimple(this WebPage webPage)
@@ -1892,6 +1897,23 @@ namespace Unigram.Common
 
 
 
+        public static bool UpdateFile(this ChatPhotoInfo photo, File file)
+        {
+            var any = false;
+            if (photo.Small.Id == file.Id)
+            {
+                photo.Small = file;
+                any = true;
+            }
+
+            if (photo.Big.Id == file.Id)
+            {
+                photo.Big = file;
+                any = true;
+            }
+
+            return any;
+        }
 
         public static bool UpdateFile(this ChatPhoto photo, File file)
         {
@@ -1903,6 +1925,12 @@ namespace Unigram.Common
                     size.Photo = file;
                     any = true;
                 }
+            }
+
+            if (photo.Animation?.File.Id == file.Id)
+            {
+                photo.Animation.File = file;
+                any = true;
             }
 
             return any;
