@@ -73,7 +73,16 @@
                         Click="Sessions_Click"
                         Style="{StaticResource TextGlyphButtonStyle}"/>
                 </controls:HeaderedControl>
-                
+
+                <controls:HeaderedControl
+                    Header="{CustomResource NewChatsFromNonContacts}"
+                    Footer="{CustomResource ArchiveAndMuteInfo}">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsArchiveAndMuteEnabled, Mode=TwoWay}"
+                        Header="{CustomResource ArchiveAndMute}"
+                        Style="{StaticResource CheckButtonStyle}"/>
+                </controls:HeaderedControl>
+
                 <controls:HeaderedControl
                     Header="{CustomResource PrivacyAdvanced}"
                     Footer="{CustomResource DeleteAccountHelp}">
