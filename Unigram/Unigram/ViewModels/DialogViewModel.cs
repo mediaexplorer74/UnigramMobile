@@ -2343,12 +2343,12 @@ namespace Unigram.ViewModels
             await SendMessageAsync(args);
         }
 
-        public Task SendMessageAsync(FormattedText formattedText, SendMessageOptions options = null)
+        public Task SendMessageAsync(FormattedText formattedText, MessageSendOptions options = null)
         {
             return SendMessageAsync(formattedText.Text, formattedText.Entities, options);
         }
 
-        public async Task SendMessageAsync(string text, IList<TextEntity> entities = null, SendMessageOptions options = null)
+        public async Task SendMessageAsync(string text, IList<TextEntity> entities = null, MessageSendOptions options = null)
         {
             text = text.Replace('\v', '\n').Replace('\r', '\n');
 
@@ -2370,7 +2370,7 @@ namespace Unigram.ViewModels
 
             if (options == null)
             {
-                options = await PickSendMessageOptionsAsync();
+                options = await PickMessageSendOptionsAsync();
             }
 
             if (options == null)
