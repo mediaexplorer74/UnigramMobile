@@ -24,8 +24,9 @@ namespace Unigram.Common
 
             var split = slug.Split('-');
             if (split.Length > 0 && split[0].Length > 2 && int.TryParse(split[0], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int topColor))
+            if (split.Length > 0 && split[0].Length == 6 && int.TryParse(split[0], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int topColor))
             {
-                if (split.Length > 1 && int.TryParse(split[1], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int bottomColor))
+                if (split.Length > 1 && split[1].Length == 6 && int.TryParse(split[1], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int bottomColor))
                 {
                     query.TryGetValue("rotation", out string rotationKey);
                     int.TryParse(rotationKey ?? string.Empty, out int rotation);
