@@ -42,7 +42,6 @@ namespace Unigram.Common
             _id = id;
 
             _window = window;
-            _window.Activated += OnActivated;
 
             _lifetime = TLContainer.Current.Lifetime;
 
@@ -88,7 +87,8 @@ namespace Unigram.Common
                     return false;
                 }
 
-                if (ActivationMode != CoreWindowActivationMode.Deactivated && service.CurrentPageType == typeof(ChatPage) && (long)service.CurrentPageParam == chatId)
+                if (ApiInfo.IsUniversalApiContract5Present && 
+                    ActivationMode == CoreWindowActivationMode.ActivatedInForeground && service.CurrentPageType == typeof(ChatPage) && (long)service.CurrentPageParam == chatId)
                 {
                     return true;
                 }
@@ -175,8 +175,7 @@ namespace Unigram.Common
 
         #endregion
 
-        private CoreWindowActivationMode _activationMode;
-        public CoreWindowActivationMode ActivationMode => ApiInfo.IsUniversalApiContract5Present ? _window.CoreWindow.ActivationMode : _activationMode;
+        public CoreWindowActivationMode ActivationMode => _window.CoreWindow.ActivationMode;
 
         public ContactPanel ContactPanel { get; private set; }
 
@@ -188,13 +187,6 @@ namespace Unigram.Common
         public bool IsContactPanel()
         {
             return ContactPanel != null;
-        }
-
-        private void OnActivated(object sender, WindowActivatedEventArgs e)
-        {
-            _activationMode = e.WindowActivationState == CoreWindowActivationState.Deactivated
-                ? CoreWindowActivationMode.Deactivated
-                : CoreWindowActivationMode.ActivatedInForeground;
         }
 
 
