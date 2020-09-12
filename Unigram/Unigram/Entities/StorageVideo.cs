@@ -44,7 +44,7 @@ namespace Unigram.Entities
         public override bool IsVideo => true;
         public override bool IsAnimation => IsMuted;
 
-        public new static async Task<StorageVideo> CreateAsync(StorageFile file, bool selected)
+        public new static async Task<StorageVideo> CreateAsync(StorageFile file)
         {
             try
             {

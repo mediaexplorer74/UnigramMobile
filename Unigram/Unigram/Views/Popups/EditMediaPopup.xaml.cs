@@ -10,16 +10,18 @@ using Unigram.Entities;
 using Unigram.Services;
 using Windows.Foundation;
 using Windows.Graphics.Imaging;
+using Windows.Media.Core;
+using Windows.Media.Editing;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Unigram.Views.Popups
 {
     public sealed partial class EditMediaPopup : OverlayPage
     {
-        public StorageFile Result { get; private set; }
         //public StorageMedia ResultMedia { get; private set; }
 
         private StorageFile _file;
@@ -45,7 +47,7 @@ namespace Unigram.Views.Popups
 
             Cropper.SetMask(mask);
             Cropper.SetProportions(proportions);
-            
+
             _proportions = proportions;
             _file = file;
 
@@ -56,19 +58,19 @@ namespace Unigram.Views.Popups
             };
         }
         /* Stays here for easier merging with the original:
-        public EditMediaPopup(StorageMedia media)
+        public EditMediaPopup(StorageMedia media, ImageCropperMask mask = ImageCropperMask.Rectangle)
         {
             InitializeComponent();
 
             Canvas.Strokes = media.EditState.Strokes;
 
-            Cropper.SetMask(ImageCropperMask.Rectangle);
-            Cropper.SetProportions(media.EditState.Proportions);
+            Cropper.SetMask(mask);
+            Cropper.SetProportions(mask == ImageCropperMask.Ellipse ? BitmapProportions.Square : media.EditState.Proportions);
 
-            if (media.EditState.Proportions != BitmapProportions.Custom)
+            if (mask == ImageCropperMask.Ellipse)
             {
                 Proportions.IsChecked = true;
-                Proportions.IsEnabled = true;
+                Proportions.IsEnabled = false;
             }
 
             _file = media.File;
@@ -76,8 +78,21 @@ namespace Unigram.Views.Popups
 
             Loaded += async (s, args) =>
             {
-                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
+                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, mask == ImageCropperMask.Ellipse ? BitmapProportions.Square : media.EditState.Proportions, mask == ImageCropperMask.Ellipse ? new Rect?() : media.EditState.Rectangle);
             };
+            Unloaded += (s, args) =>
+            {
+                Media.Source = null;
+            };
+
+            if (mask == ImageCropperMask.Ellipse && string.Equals(media.File.FileType, ".mp4", StringComparison.OrdinalIgnoreCase))
+            {
+                FindName(nameof(TrimToolbar));
+                TrimToolbar.Visibility = Visibility.Visible;
+                BasicToolbar.Visibility = Visibility.Collapsed;
+
+                InitializeVideo(media.File);
+            }
         }
         */
         public EditMediaPopup(StorageMedia media, bool ttl)
@@ -128,7 +143,7 @@ namespace Unigram.Views.Popups
                 Crop.IsChecked = editSate.Proportions != BitmapProportions.Custom ||
                                     editSate.Flip != BitmapFlip.None ||
                                     editSate.Rotation != BitmapRotation.None ||
-                                    (!editSate.Rectangle.IsEmpty && 
+                                    (!editSate.Rectangle.IsEmpty &&
                                     (editSate.Rectangle.X > 0 || editSate.Rectangle.Y > 0 ||
                                     Math.Abs(editSate.Rectangle.Width - 1) > 0.1f || Math.Abs(editSate.Rectangle.Height - 1) > 0.1f));
 
@@ -152,6 +167,94 @@ namespace Unigram.Views.Popups
         //{
         //    get { return this.Cropper.CropRectangle; }
         //}
+
+        private async void InitializeVideo(StorageFile file)
+        {
+            Media.Source = MediaSource.CreateFromStorageFile(file);
+            Media.MediaPlayer.AutoPlay = true;
+            Media.MediaPlayer.IsMuted = true;
+            Media.MediaPlayer.IsLoopingEnabled = true;
+            Media.MediaPlayer.PlaybackSession.PositionChanged += MediaPlayer_PositionChanged;
+
+            var clip = await MediaClip.CreateFromFileAsync(file);
+            var composition = new MediaComposition();
+            composition.Clips.Add(clip);
+
+            var props = clip.GetVideoEncodingProperties();
+
+            double ratioX = (double)40 / props.Width;
+            double ratioY = (double)40 / props.Height;
+            double ratio = Math.Max(ratioY, ratioY);
+
+            var width = (int)(props.Width * ratio);
+            var height = (int)(props.Height * ratio);
+
+            var count = Math.Ceiling(296d / width);
+
+            var times = new List<TimeSpan>();
+
+            for (int i = 0; i < count; i++)
+            {
+                times.Add(clip.OriginalDuration / count * i);
+            }
+
+            TrimThumbnails.Children.Clear();
+
+            var thumbnails = await composition.GetThumbnailsAsync(times, width, height, VideoFramePrecision.NearestKeyFrame);
+
+            foreach (var thumb in thumbnails)
+            {
+                var bitmap = new BitmapImage();
+                await bitmap.SetSourceAsync(thumb);
+
+                var image = new Image();
+                image.Width = width;
+                image.Height = height;
+                image.Stretch = Windows.UI.Xaml.Media.Stretch.UniformToFill;
+                image.Source = bitmap;
+
+                TrimThumbnails.Children.Add(image);
+            }
+
+            TrimRange.SetOriginalDuration(clip.OriginalDuration);
+        }
+
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            if (Cropper.IsCropEnabled)
+            {
+                var rect = Cropper.CropRectangle;
+                var w = Cropper.PixelWidth;
+                var h = Cropper.PixelHeight;
+
+                _media.EditState = new BitmapEditState
+                {
+                    //Rectangle = new Rect(rect.X * w, rect.Y * h, rect.Width * w, rect.Height * h),
+                    Rectangle = rect,
+                    Proportions = Cropper.Proportions,
+                    Strokes = Canvas.Strokes,
+                    Flip = _flip,
+                    Rotation = _rotation,
+                    TrimStartTime = TimeSpan.FromMilliseconds(TrimRange.Minimum * TrimRange.OriginalDuration.TotalMilliseconds),
+                    TrimStopTime = TimeSpan.FromMilliseconds(TrimRange.Maximum * TrimRange.OriginalDuration.TotalMilliseconds),
+                };
+
+                Hide(ContentDialogResult.Primary);
+            }
+            else
+            {
+                Canvas.SaveState();
+
+                Cropper.IsCropEnabled = true;
+                Canvas.IsEnabled = false;
+
+                BasicToolbar.Visibility = Visibility.Visible;
+                DrawToolbar.Visibility = Visibility.Collapsed;
+                DrawSlider.Visibility = Visibility.Collapsed;
+
+                SettingsService.Current.Pencil = DrawSlider.GetDefault();
+            }
+        }
 
         private async void Accept_Click(object sender, RoutedEventArgs e)
         {
@@ -223,7 +326,7 @@ namespace Unigram.Views.Popups
                 Crop.IsChecked = _media == null ? false : IsCropped(Cropper.CropRectangle);
                 ResetUiVisibility();
             }
-            else if(DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
+            else if (DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
             {
                 Canvas.RestoreState();
 
@@ -692,6 +795,34 @@ namespace Unigram.Views.Popups
             {
                 Redo.IsEnabled = Canvas.CanRedo;
             }
+        }
+
+        private async void MediaPlayer_PositionChanged(Windows.Media.Playback.MediaPlaybackSession sender, object args)
+        {
+            await TrimRange.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                if (sender.Position.TotalMilliseconds >= TrimRange.Maximum * sender.NaturalDuration.TotalMilliseconds)
+                {
+                    sender.Position = TimeSpan.FromMilliseconds(sender.NaturalDuration.TotalMilliseconds * TrimRange.Minimum);
+                    return;
+                }
+
+                TrimRange.Value = sender.Position.TotalMilliseconds / sender.NaturalDuration.TotalMilliseconds;
+            });
+        }
+
+        private void TrimRange_MinimumChanged(object sender, double e)
+        {
+            Media.MediaPlayer.Pause();
+            Media.MediaPlayer.PlaybackSession.Position =
+                TimeSpan.FromMilliseconds(Media.MediaPlayer.PlaybackSession.NaturalDuration.TotalMilliseconds * e);
+        }
+
+        private void TrimRange_MaximumChanged(object sender, double e)
+        {
+            Media.MediaPlayer.PlaybackSession.Position =
+                TimeSpan.FromMilliseconds(Media.MediaPlayer.PlaybackSession.NaturalDuration.TotalMilliseconds * e);
+            Media.MediaPlayer.Play();
         }
 
         #region Media Description Events

@@ -270,7 +270,7 @@ namespace Unigram.Services
                         await CopyAsync(update, args);
                         return;
                     } else
-                    if (profile.Audio == null && conversion.Mute)
+                    if (profile.Audio == null && conversion.Mute && conversion.TrimStartTime == null && conversion.TrimStopTime == null)
                     {
                         await CopyAsync(update, args);
                         return;
@@ -286,6 +286,15 @@ namespace Unigram.Services
 
                     var transcoder = new MediaTranscoder();
 
+                    if (conversion.TrimStartTime is TimeSpan trimStart)
+                    {
+                        transcoder.TrimStartTime = trimStart;
+                    }
+                    if (conversion.TrimStopTime is TimeSpan trimStop)
+                    {
+                        transcoder.TrimStopTime = trimStop;
+                    }
+
                     if (conversion.Transform)
                     {
                         var transform = new VideoTransformEffectDefinition();
@@ -293,6 +302,9 @@ namespace Unigram.Services
                         transform.OutputSize = conversion.OutputSize;
                         transform.Mirror = conversion.Mirror;
                         transform.CropRectangle = conversion.CropRectangle.IsEmpty() ? Rect.Empty : conversion.CropRectangle;
+
+                        profile.Video.Width = (uint)conversion.OutputSize.Width;
+                        profile.Video.Height = (uint)conversion.OutputSize.Height;
 
                         transcoder.AddVideoEffect(transform.ActivatableClassId, true, transform.Properties);
                     }
@@ -432,6 +444,9 @@ namespace Unigram.Services
             public uint Width { get; set; }
             public uint Height { get; set; }
             public uint Bitrate { get; set; }
+
+            public TimeSpan? TrimStartTime { get; set; }
+            public TimeSpan? TrimStopTime { get; set; }
 
             public bool Transform { get; set; }
             public MediaRotation Rotation { get; set; }
