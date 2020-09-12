@@ -81,7 +81,7 @@ namespace Unigram.Collections
 
                     foreach (var file in result)
                     {
-                        if (await StorageMedia.CreateAsync(file, false) is StorageMedia storage)
+                        if (await StorageMedia.CreateAsync(file) is StorageMedia storage)
                             items.Add(storage);
                     }
 

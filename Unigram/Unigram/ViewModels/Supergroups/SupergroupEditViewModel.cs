@@ -340,8 +340,8 @@ namespace Unigram.ViewModels.Supergroups
             NavigationService.GoBack();
         }
 
-        public RelayCommand<StorageFile> EditPhotoCommand { get; }
-        private void EditPhotoExecute(StorageFile file)
+        public RelayCommand<StorageMedia> EditPhotoCommand { get; }
+        private void EditPhotoExecute(StorageMedia file)
         {
             _photo = file;
             _deletePhoto = false;

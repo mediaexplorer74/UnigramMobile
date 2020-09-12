@@ -73,12 +73,12 @@ namespace Unigram.Controls
                 if (file.ContentType.Equals("video/mp4"))
                 {
                     if (Services.SettingsService.Current.SaveCameraMediaInGallery) await file.CopyAsync(KnownFolders.CameraRoll, DateTime.Now.ToString("UM_yyyyMMdd_HH_mm_ss") + ".mp4", NameCollisionOption.GenerateUniqueName);
-                    ItemClick?.Invoke(this, new MediaSelectedEventArgs(await StorageVideo.CreateAsync(file, true), false));
+                    ItemClick?.Invoke(this, new MediaSelectedEventArgs(await StorageVideo.CreateAsync(file), false));
                 }
                 else
                 {
                     if (Services.SettingsService.Current.SaveCameraMediaInGallery) await file.CopyAsync(KnownFolders.CameraRoll, DateTime.Now.ToString("UM_yyyyMMdd_HH_mm_ss") + ".jpg", NameCollisionOption.GenerateUniqueName);
-                    ItemClick?.Invoke(this, new MediaSelectedEventArgs(await StoragePhoto.CreateAsync(file, true), false));
+                    ItemClick?.Invoke(this, new MediaSelectedEventArgs(await StoragePhoto.CreateAsync(file), false));
                 }
             }
         }
