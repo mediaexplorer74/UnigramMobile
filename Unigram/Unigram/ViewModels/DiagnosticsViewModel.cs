@@ -187,6 +187,16 @@ namespace Unigram.ViewModels
             }
         }
 
+        public bool Minithumbnails
+        {
+            get => Settings.Diagnostics.Minithumbnails;
+            set
+            {
+                Settings.Diagnostics.Minithumbnails = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public bool BubbleKnockout
         {
             get => Settings.Diagnostics.BubbleKnockout;
