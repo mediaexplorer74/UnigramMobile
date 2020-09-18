@@ -174,7 +174,10 @@ namespace Unigram
 
         private void Window_Activated(object sender, WindowActivatedEventArgs e)
         {
-            HandleActivated(Window.Current.CoreWindow.ActivationMode == CoreWindowActivationMode.ActivatedInForeground);
+            if (ApiInfo.IsUniversalApiContract5Present)
+                HandleActivated(Window.Current.CoreWindow.ActivationMode == CoreWindowActivationMode.ActivatedInForeground);
+            else
+                HandleActivated(e.WindowActivationState != CoreWindowActivationState.Deactivated);
             SettingsService.Current.Appearance.UpdateTimer();
         }
 
