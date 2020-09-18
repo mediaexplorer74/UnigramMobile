@@ -493,7 +493,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var options = await PickSendMessageOptionsAsync(dialog.Schedule, dialog.Silent);
+            var options = await PickMessageSendOptionsAsync(dialog.Schedule, dialog.Silent);
             if (options == null)
             {
                 return;
