@@ -260,7 +260,7 @@ namespace Unigram.Services
                     var profile = await MediaEncodingProfile.CreateFromFileAsync(file);
                     if (profile.Video.Width != conversion.Width || profile.Video.Height != conversion.Height)
                     {
-                        profile.Video.Width = conversion.Width;
+                        profile.Video.Width = conversion.Width; //TODO: Why having OutputSize and these properties?
                         profile.Video.Height = conversion.Height;
                         profile.Video.Bitrate = conversion.Bitrate;
                     }

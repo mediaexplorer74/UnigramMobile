@@ -11,6 +11,7 @@ using Unigram.ViewModels.Delegates;
 using Unigram.Views.Popups;
 using Unigram.Views.Supergroups;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using static Unigram.Services.GenerationService;
