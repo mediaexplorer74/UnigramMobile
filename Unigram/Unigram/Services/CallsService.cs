@@ -1,5 +1,6 @@
 ﻿using libtgvoip;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -227,7 +228,7 @@ namespace Unigram.Services
                     logFilePath = logFile,
                     statsDumpFilePath = statsDumpFile
                 };
-
+                
                 _controller = new VoIPControllerWrapper();
                 _controller.SetConfig(config);
                 _controller.CurrentAudioInput = SettingsService.Current.VoIP.InputDevice;
@@ -258,15 +259,25 @@ namespace Unigram.Services
                     Show(update.Call, _controller, _callStarted);
                 });
 
-                var endpoints = new Endpoint[ready.Connections.Count];
+                var endpoints = new List<Endpoint>();
 
-                for (int i = 0; i < endpoints.Length; i++)
+                foreach (var server in ready.Servers)
                 {
-                    endpoints[i] = ready.Connections[i].ToEndpoint();
+                    if (server.Type is CallServerTypeTelegramReflector telegramReflector)
+                    {
+                        endpoints.Add(new Endpoint
+                        {
+                            id = server.Id,
+                            ipv4 = server.IpAddress,
+                            ipv6 = server.Ipv6Address,
+                            peerTag = telegramReflector.PeerTag.ToArray(),
+                            port = (ushort)server.Port
+                        });
+                    }
                 }
 
                 _controller.SetEncryptionKey(ready.EncryptionKey.ToArray(), update.Call.IsOutgoing);
-                _controller.SetPublicEndpoints(endpoints, ready.Protocol.UdpP2p && ready.AllowP2p, ready.Protocol.MaxLayer);
+                _controller.SetPublicEndpoints(endpoints.ToArray(), ready.Protocol.UdpP2p && ready.AllowP2p, ready.Protocol.MaxLayer);
                 _controller.Start();
                 _controller.Connect();
             }

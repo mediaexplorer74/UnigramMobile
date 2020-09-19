@@ -538,7 +538,7 @@ namespace Unigram.Views
         {
             if (_call.IsOutgoing && _call.State is CallStateDiscarded discarded && discarded.Reason is CallDiscardReasonDeclined)
             {
-                _protoService.Send(new CreateCall(_call.UserId, new CallProtocol(true, true, 65, 74, new string[0])));
+                _protoService.Send(new CreateCall(_call.UserId, new CallProtocol(true, true, 65, 74, new string[0]), false));
             }
             else
             {
@@ -561,7 +561,7 @@ namespace Unigram.Views
             }
 
             var duration = _state == libtgvoip.CallState.Established ? DateTime.Now - _started : TimeSpan.Zero;
-            _protoService.Send(new DiscardCall(call.Id, false, (int)duration.TotalSeconds, relay));
+            _protoService.Send(new DiscardCall(call.Id, false, (int)duration.TotalSeconds, false, relay));
         }
 
         private void Routing_Click(object sender, RoutedEventArgs e)
