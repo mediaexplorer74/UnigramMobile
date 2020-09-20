@@ -879,7 +879,7 @@ namespace Unigram.Views
         private void Window_Activated(object sender, WindowActivatedEventArgs e)
         {
             if ((ApiInfo.IsUniversalApiContract5Present && Window.Current.CoreWindow.ActivationMode == CoreWindowActivationMode.ActivatedInForeground) ||
-                (!ApiInfo.IsUniversalApiContract5Present && e.WindowActivationState != CoreWindowActivationState.Deactivated))
+                (!ApiInfo.IsUniversalApiContract5Present && e.WindowActivationState == CoreWindowActivationState.PointerActivated))
             {
                 ViewVisibleMessages(false);
                 StickersPanel.LoadVisibleItems();
