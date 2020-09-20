@@ -248,11 +248,15 @@ namespace Unigram.Views
         private async void EditCamera_Click(object sender, RoutedEventArgs e)
         {
             var capture = new CameraCaptureUI();
-            capture.PhotoSettings.AllowCropping = false;
+            capture.VideoSettings.AllowTrimming = true;
+            capture.VideoSettings.Format = CameraCaptureUIVideoFormat.Mp4;
+            capture.VideoSettings.MaxResolution = CameraCaptureUIMaxVideoResolution.StandardDefinition;
+            capture.VideoSettings.MaxDurationInSeconds = 9f;
+            capture.PhotoSettings.AllowCropping = true;
             capture.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
             capture.PhotoSettings.MaxResolution = CameraCaptureUIMaxPhotoResolution.HighestAvailable;
 
-            var file = await capture.CaptureFileAsync(CameraCaptureUIMode.Photo);
+            var file = await capture.CaptureFileAsync(CameraCaptureUIMode.PhotoOrVideo);
             if (file != null)
             {
                 var media = await StorageMedia.CreateAsync(file);
