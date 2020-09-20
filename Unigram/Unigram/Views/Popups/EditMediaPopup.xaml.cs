@@ -72,7 +72,9 @@ namespace Unigram.Views.Popups
             {
                 FindName(nameof(TrimToolbar));
                 TrimToolbar.Visibility = Visibility.Visible;
-                //BasicToolbar.Visibility = Visibility.Collapsed;
+                BasicToolbar.Visibility = Visibility.Collapsed;
+                SeparatorLeft.Visibility = Visibility.Collapsed;
+                SeparatorRight.Visibility = Visibility.Collapsed;
 
                 InitializeVideo(media.File);
             }
@@ -163,7 +165,7 @@ namespace Unigram.Views.Popups
             var width = (int)(props.Width * ratio);
             var height = (int)(props.Height * ratio);
 
-            var count = Math.Ceiling(296d / width);
+            var count = Math.Ceiling(280d / width);
 
             var times = new List<TimeSpan>();
 
@@ -173,9 +175,12 @@ namespace Unigram.Views.Popups
             }
 
             TrimThumbnails.Children.Clear();
-
+#if MOBILE
+            var lumiaScaleFactor = 4; // prevents Catastrophic failure on Lumia 640 & probably others
+            var thumbnails = await composition.GetThumbnailsAsync(times, width * lumiaScaleFactor, height * lumiaScaleFactor, VideoFramePrecision.NearestKeyFrame);
+#else
             var thumbnails = await composition.GetThumbnailsAsync(times, width, height, VideoFramePrecision.NearestKeyFrame);
-
+#endif
             foreach (var thumb in thumbnails)
             {
                 var bitmap = new BitmapImage();
@@ -305,7 +310,7 @@ namespace Unigram.Views.Popups
             if (DrawSlider != null)
                 DrawSlider.Visibility = Visibility.Collapsed;
             if (TrimToolbar != null)
-                TrimToolbar.Visibility = Visibility.Collapsed;
+                TrimToolbar.Visibility = !_hasMessageContext && _media.IsVideo ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void Proportions_Click(object sender, RoutedEventArgs e)
@@ -751,7 +756,7 @@ namespace Unigram.Views.Popups
             Media.MediaPlayer.Play();
         }
 
-        #region Media Description Events
+#region Media Description Events
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Window.Current.CoreWindow.CharacterReceived += OnCharacterReceived;
@@ -807,7 +812,7 @@ namespace Unigram.Views.Popups
         {
             KeyboardPlaceholder.Height = new GridLength(1, GridUnitType.Auto);
         }
-        #endregion
+#endregion
     }
 
     public sealed class SmoothPathBuilder

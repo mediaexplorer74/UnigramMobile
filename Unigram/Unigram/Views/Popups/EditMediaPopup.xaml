@@ -56,7 +56,7 @@
         <Grid x:Name="Commands"
               Background="{ThemeResource SystemControlChromeMediumLowAcrylicElementMediumBrush}"
               HorizontalAlignment="Center"
-              Margin="24,8,24,2"
+              Margin="8,8,8,2"
               CornerRadius="15"
               Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -75,6 +75,7 @@
                 ToolTipService.ToolTip="{CustomResource Close}"/>
 
             <Rectangle
+                x:Name="SeparatorLeft"
                 Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
                 Margin="4,12,4,12"
                 Width="{ThemeResource MenuFlyoutSeparatorThemeHeight}"
@@ -228,17 +229,18 @@
                 <StackPanel
                     x:Name="TrimThumbnails"
                     Orientation="Horizontal"
-                    Width="296"
+                    Width="280"
                     CornerRadius="4"/>
                 <controls:VideoRangeSlider
                     x:Name="TrimRange"
                     MinimumChanged="TrimRange_MinimumChanged"
                     MaximumChanged="TrimRange_MaximumChanged"
                     Height="40"
-                    Width="296"/>
+                    Width="280"/>
             </Grid>
             
             <Rectangle
+                x:Name="SeparatorRight"
                 Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
                 Margin="4,12,4,12"
                 Width="{ThemeResource MenuFlyoutSeparatorThemeHeight}"
