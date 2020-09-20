@@ -258,9 +258,10 @@ namespace Unigram.Services
                     var temp = await StorageFile.GetFileFromPathAsync(update.DestinationPath);
 
                     var profile = await MediaEncodingProfile.CreateFromFileAsync(file);
-                    if (profile.Video.Width != conversion.Width || profile.Video.Height != conversion.Height)
+                    if ((profile.Video.Width != conversion.Width || profile.Video.Height != conversion.Height)
+                        && conversion.Width > 0 && conversion.Height > 0 && conversion.Bitrate > 0) // All zero for video profile
                     {
-                        profile.Video.Width = conversion.Width; //TODO: Why having OutputSize and these properties?
+                        profile.Video.Width = conversion.Width; //Note: OutputSize tells the video effect how to crop the video, and encoding profile tells the encoder how to encode the video
                         profile.Video.Height = conversion.Height;
                         profile.Video.Bitrate = conversion.Bitrate;
                     }

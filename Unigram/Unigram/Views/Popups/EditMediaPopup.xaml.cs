@@ -60,7 +60,7 @@ namespace Unigram.Views.Popups
                     await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle);
                     Cropper.SetProportions(_media.EditState.Proportions);
                 }
-                Cropper.IsCropEnabled = false;
+                Cropper.IsCropEnabled = !_hasMessageContext && _media.IsVideo;
             };
             Unloaded += (s, args) =>
             {
@@ -195,7 +195,8 @@ namespace Unigram.Views.Popups
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
+            if ((CropToolbar != null && CropToolbar.Visibility == Visibility.Visible) ||
+                (!_hasMessageContext && _media.IsVideo))
             {
                 var rect = Cropper.CropRectangle;
 
@@ -219,7 +220,9 @@ namespace Unigram.Views.Popups
                     es.TrimStopTime = trimStopTime;
                 }
                 Crop.IsChecked = IsCropped(rect);
-                ResetUiVisibility(); //Hide(ContentDialogResult.Primary);
+                ResetUiVisibility();
+                if (!_hasMessageContext && _media.IsVideo)
+                    Hide(ContentDialogResult.Primary);
             }
             else if (DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
             {
@@ -233,8 +236,11 @@ namespace Unigram.Views.Popups
             }
             else
             {
-                ResetUiVisibility();
-                _media.Caption = CaptionInput.GetFormattedText();
+                if (_hasMessageContext)
+                {
+                    ResetUiVisibility();
+                    _media.Caption = CaptionInput.GetFormattedText();
+                }
                 Hide(ContentDialogResult.Primary);
             }
         }
