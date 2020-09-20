@@ -570,7 +570,7 @@ namespace Unigram.Views.Popups
             {
                 if (Items[0] == media)
                     media.Caption = Caption;
-                Popup = new EditMediaPopup(media, IsTtlAvailable);
+                Popup = new EditMediaPopup(media, ttl: IsTtlAvailable);
 
                 var confirm = await Popup.ShowAsync();
                 if (confirm == ContentDialogResult.Primary)

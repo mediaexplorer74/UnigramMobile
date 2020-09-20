@@ -146,7 +146,7 @@
                         AutomationProperties.Name="{CustomResource EditMessageMedia}"
                         ToolTipService.ToolTip="{CustomResource EditMessageMedia}"  
                         Source="{x:Bind Preview, Mode=OneWay}"
-                        Stretch="UniformToFill"/>
+                        Stretch="Uniform"/>
 
                     <Grid
                         Visibility="{x:Bind IsPhoto, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=invert}"
@@ -338,7 +338,6 @@
                   ItemsSource="{x:Bind Items}"
                   ItemTemplate="{StaticResource MediaItemTemplate}"
                   ItemsPanel="{StaticResource AlbumPanelTemplate}"
-                  ContainerContentChanging="OnContainerContentChanging"
                   SelectionMode="None"
                   DragEnter="ListView_DragEnter"
                   Drop="ListView_Drop"

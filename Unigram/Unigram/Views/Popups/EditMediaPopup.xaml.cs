@@ -30,43 +30,31 @@ namespace Unigram.Views.Popups
         private bool _originalVideoIsMuted;
         private int _originalVideoCompression;
 
-        private readonly BitmapProportions _proportions;
         private BitmapRotation _rotation = BitmapRotation.None;
         private BitmapFlip _flip = BitmapFlip.None;
 
-        /// <summary>
-        /// Constructor for use without message context
-        /// </summary>
-        /// <param name="media"></param>
-        /// <param name="mask"></param>
-        public EditMediaPopup(StorageMedia media, ImageCropperMask mask = ImageCropperMask.Rectangle)
+        private bool _hasMessageContext = true;
+
+        public EditMediaPopup(StorageMedia media, ImageCropperMask mask = ImageCropperMask.Rectangle, bool ttl = false)
         {
             InitializeComponent();
 
-            CaptionInput.Visibility = Visibility.Collapsed;
-            Mute.Visibility = Visibility.Collapsed;
-            Compress.Visibility = media is StorageVideo video && video.CanCompress ? Visibility.Visible : Visibility.Collapsed;
-            Ttl.Visibility = Visibility.Collapsed;
-            Crop.IsChecked = false;
-            Draw.IsChecked = false;
-
             Canvas.Strokes = media.EditState.Strokes;
-
             Cropper.SetMask(mask);
-            _proportions = mask == ImageCropperMask.Ellipse ? BitmapProportions.Square : media.EditState.Proportions;
-
             if (mask == ImageCropperMask.Ellipse)
             {
-                Proportions.IsChecked = true;
-                Proportions.IsEnabled = false;
+                _hasMessageContext = false;
+                media.EditState.Proportions = BitmapProportions.Square;
             }
+            Cropper.SetProportions(media.EditState.Proportions);
 
             _file = media.File;
             _media = media;
+            _originalMediaEditState = CopyBitmapEditState(media.EditState);
 
             Loaded += async (s, args) =>
             {
-                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, mask == ImageCropperMask.Ellipse ? BitmapProportions.Square : media.EditState.Proportions, mask == ImageCropperMask.Ellipse ? new Rect?() : media.EditState.Rectangle);
+                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
                 Cropper.IsCropEnabled = false;
             };
             Unloaded += (s, args) =>
@@ -78,27 +66,10 @@ namespace Unigram.Views.Popups
             {
                 FindName(nameof(TrimToolbar));
                 TrimToolbar.Visibility = Visibility.Visible;
-                BasicToolbar.Visibility = Visibility.Collapsed;
+                //BasicToolbar.Visibility = Visibility.Collapsed;
 
                 InitializeVideo(media.File);
             }
-        }
-
-        public EditMediaPopup(StorageMedia media, bool ttl)
-        {
-            InitializeComponent();
-
-            Canvas.Strokes = media.EditState.Strokes;
-
-            _file = media.File;
-            _media = media;
-            _originalMediaEditState = CopyBitmapEditState(media.EditState);
-
-            Loaded += async (s, args) =>
-            {
-                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
-                Cropper.IsCropEnabled = false;
-            };
 
             if (_media is StorageVideo video)
             {
@@ -137,13 +108,20 @@ namespace Unigram.Views.Popups
                                     Math.Abs(editSate.Rectangle.Width - 1) > 0.1f || Math.Abs(editSate.Rectangle.Height - 1) > 0.1f));
 
                 Draw.IsChecked = editSate.Strokes != null && editSate.Strokes.Count > 0;
-            } else
+            }
+            else
             {
                 Crop.IsChecked = false;
                 Draw.IsChecked = false;
             }
-            if (!string.IsNullOrWhiteSpace(media.Caption?.Text))
-                CaptionInput.SetText(media.Caption);
+
+            if (_hasMessageContext)
+            {
+                if (!string.IsNullOrWhiteSpace(media.Caption?.Text))
+                    CaptionInput.SetText(media.Caption);
+            }
+            else
+                CaptionInput.Visibility = Visibility.Collapsed;
         }
 
         //public bool IsCropEnabled
@@ -208,14 +186,11 @@ namespace Unigram.Views.Popups
             TrimRange.SetOriginalDuration(clip.OriginalDuration);
         }
 
-        private void Accept_Click()
-        //private void Accept_Click(object sender, RoutedEventArgs e)
+        private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if (Cropper.IsCropEnabled)
+            if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
                 var rect = Cropper.CropRectangle;
-                //var w = Cropper.PixelWidth;
-                //var h = Cropper.PixelHeight;
 
                 TimeSpan trimStartTime;
                 TimeSpan trimStopTime;
@@ -226,40 +201,6 @@ namespace Unigram.Views.Popups
                     trimStopTime = TimeSpan.FromMilliseconds(TrimRange.Maximum * TrimRange.OriginalDuration.TotalMilliseconds);
                 }
 
-                _media.EditState = new BitmapEditState
-                {
-                    //Rectangle = new Rect(rect.X * w, rect.Y * h, rect.Width * w, rect.Height * h),
-                    Rectangle = rect,
-                    Proportions = Cropper.Proportions,
-                    Strokes = Canvas.Strokes,
-                    Flip = _flip,
-                    Rotation = _rotation,
-                    TrimStartTime = trimStartTime,
-                    TrimStopTime = trimStopTime,
-                };
-
-                Hide(ContentDialogResult.Primary);
-            }
-            else
-            {
-                Canvas.SaveState();
-
-                Cropper.IsCropEnabled = true;
-                Canvas.IsEnabled = false;
-
-                BasicToolbar.Visibility = Visibility.Visible;
-                DrawToolbar.Visibility = Visibility.Collapsed;
-                DrawSlider.Visibility = Visibility.Collapsed;
-
-                SettingsService.Current.Pencil = DrawSlider.GetDefault();
-            }
-        }
-
-        private void Accept_Click(object sender, RoutedEventArgs e)
-        {
-            if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
-            {
-                var rect = Cropper.CropRectangle;
                 if (_media?.EditState is BitmapEditState es)
                 {
                     es.Rectangle = rect;
@@ -267,6 +208,8 @@ namespace Unigram.Views.Popups
                     es.Strokes = Canvas.Strokes;
                     es.Flip = _flip;
                     es.Rotation = _rotation;
+                    es.TrimStartTime = trimStartTime;
+                    es.TrimStopTime = trimStopTime;
                 }
                 Crop.IsChecked = IsCropped(rect);
                 ResetUiVisibility(); //Hide(ContentDialogResult.Primary);
@@ -274,8 +217,7 @@ namespace Unigram.Views.Popups
             else if (DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
             {
                 Canvas.SaveState();
-                if (_media != null)
-                    _media.EditState.Strokes = Canvas.Strokes;
+                _media.EditState.Strokes = Canvas.Strokes;
 
                 Draw.IsChecked = Canvas.Strokes?.Count > 0;
                 ResetUiVisibility();
@@ -286,7 +228,7 @@ namespace Unigram.Views.Popups
             {
                 ResetUiVisibility();
                 _media.Caption = CaptionInput.GetFormattedText();
-                Accept_Click();
+                Hide(ContentDialogResult.Primary);
             }
         }
 
@@ -295,21 +237,10 @@ namespace Unigram.Views.Popups
             if (CropToolbar != null && CropToolbar.Visibility == Visibility.Visible)
             {
                 // Reset Cropper
-                if (_media == null)
-                {
-                    await Cropper.SetSourceAsync(_file, proportions: _proportions); //TODO: Reapply previous saved settings instead of resetting completely to have the same behaviour as with media
-                    Rotate.IsChecked = false;
-                    Flip.IsChecked = false;
-                    _rotation = BitmapRotation.None;
-                    _flip = BitmapFlip.None;
-                }
-                else
-                {
-                    await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle);
-                    _rotation = _media.EditState.Rotation;
-                    _flip = _media.EditState.Flip;
-                }
-                Crop.IsChecked = _media == null ? false : IsCropped(Cropper.CropRectangle);
+                await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle);
+                _rotation = _media.EditState.Rotation;
+                _flip = _media.EditState.Flip;
+                Crop.IsChecked = IsCropped(Cropper.CropRectangle);
                 ResetUiVisibility();
             }
             else if (DrawToolbar != null && DrawToolbar.Visibility == Visibility.Visible)
@@ -352,7 +283,7 @@ namespace Unigram.Views.Popups
         {
             Cropper.IsCropEnabled = false;
             Canvas.IsEnabled = false;
-            CaptionInput.Visibility = _media != null ? Visibility.Visible : Visibility.Collapsed;
+            CaptionInput.Visibility = _hasMessageContext ? Visibility.Visible : Visibility.Collapsed;
             BasicToolbar.Visibility = Visibility.Visible;
             if (CropToolbar != null)
                 CropToolbar.Visibility = Visibility.Collapsed;
@@ -360,6 +291,8 @@ namespace Unigram.Views.Popups
                 DrawToolbar.Visibility = Visibility.Collapsed;
             if (DrawSlider != null)
                 DrawSlider.Visibility = Visibility.Collapsed;
+            if (TrimToolbar != null)
+                TrimToolbar.Visibility = Visibility.Collapsed;
         }
 
         private void Proportions_Click(object sender, RoutedEventArgs e)
@@ -575,16 +508,10 @@ namespace Unigram.Views.Popups
                 FindName(nameof(CropToolbar));
             CropToolbar.Visibility = Visibility.Visible;
 
-            if (_media == null)
-            {
-                if (_proportions != BitmapProportions.Custom) Proportions.Visibility = Visibility.Collapsed;
-                return;
-            }
-
             if (_media.EditState.Proportions != BitmapProportions.Custom)
             {
                 Proportions.IsChecked = true;
-                Proportions.IsEnabled = true;
+                Proportions.IsEnabled = _hasMessageContext;
             }
 
             Rotate.IsChecked = _media.EditState.Rotation != BitmapRotation.None;

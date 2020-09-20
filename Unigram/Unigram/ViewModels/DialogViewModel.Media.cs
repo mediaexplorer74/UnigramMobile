@@ -1063,7 +1063,7 @@ namespace Unigram.ViewModels
             var formattedText = GetFormattedText(true);
             media.Caption = formattedText
                 .Substring(0, CacheService.Options.MessageCaptionLengthMax);
-            var dialog = new EditMediaPopup(media, false);
+            var dialog = new EditMediaPopup(media, ttl: false);
             var confirm = await dialog.ShowAsync();
 
             TextField?.Focus(FocusState.Programmatic);
