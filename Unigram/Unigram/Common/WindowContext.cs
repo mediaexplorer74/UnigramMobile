@@ -193,9 +193,9 @@ namespace Unigram.Common
 
         private void OnActivated(object sender, WindowActivatedEventArgs e)
         {
-            _activationMode = e.WindowActivationState == CoreWindowActivationState.PointerActivated
-                ? CoreWindowActivationMode.ActivatedInForeground
-                : CoreWindowActivationMode.Deactivated;
+            _activationMode = e.WindowActivationState == CoreWindowActivationState.Deactivated
+                ? CoreWindowActivationMode.Deactivated
+                : CoreWindowActivationMode.ActivatedInForeground;
         }
 
 

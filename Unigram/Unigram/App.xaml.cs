@@ -177,7 +177,7 @@ namespace Unigram
             if (ApiInfo.IsUniversalApiContract5Present)
                 HandleActivated(Window.Current.CoreWindow.ActivationMode == CoreWindowActivationMode.ActivatedInForeground);
             else
-                HandleActivated(e.WindowActivationState == CoreWindowActivationState.PointerActivated);
+                HandleActivated(e.WindowActivationState != CoreWindowActivationState.Deactivated);
             SettingsService.Current.Appearance.UpdateTimer();
         }
 
