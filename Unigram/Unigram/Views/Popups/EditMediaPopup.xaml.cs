@@ -55,6 +55,11 @@ namespace Unigram.Views.Popups
             Loaded += async (s, args) =>
             {
                 await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
+                if (!_hasMessageContext) //TODO: Fix mask bug, remove hack (#2017 references mask position)
+                {
+                    await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle);
+                    Cropper.SetProportions(_media.EditState.Proportions);
+                }
                 Cropper.IsCropEnabled = false;
             };
             Unloaded += (s, args) =>
@@ -62,6 +67,7 @@ namespace Unigram.Views.Popups
                 Media.Source = null;
             };
 
+            #region Init UI
             if (mask == ImageCropperMask.Ellipse && string.Equals(media.File.FileType, ".mp4", StringComparison.OrdinalIgnoreCase))
             {
                 FindName(nameof(TrimToolbar));
@@ -122,6 +128,7 @@ namespace Unigram.Views.Popups
             }
             else
                 CaptionInput.Visibility = Visibility.Collapsed;
+            #endregion
         }
 
         //public bool IsCropEnabled
