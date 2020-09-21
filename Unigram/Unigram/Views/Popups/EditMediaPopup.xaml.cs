@@ -90,8 +90,8 @@ namespace Unigram.Views.Popups
 
                 if (video.CanCompress)
                 {
-                    Compress.UncheckedGlyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
-                    Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                    Compress.Glyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                    Compress.CheckedGlyph = Compress.Glyph;
                     Compress.IsChecked = video.Compression != video.MaxCompression;
                 }
             }
@@ -508,8 +508,8 @@ namespace Unigram.Views.Popups
 
                 if (video.IsMuted)
                 {
-                    Compress.UncheckedGlyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
-                    Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                    Compress.Glyph = new CompressionToGlyphConverter().Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                    Compress.CheckedGlyph = Compress.Glyph;
                     Compress.IsChecked = video.Compression != video.MaxCompression;
                 }
             }
@@ -574,8 +574,8 @@ namespace Unigram.Views.Popups
             {
                 // Do not compress
                 video.Compression = video.MaxCompression;
-                Compress.UncheckedGlyph = compressionToGlyphConverter.Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
-                Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                Compress.Glyph = compressionToGlyphConverter.Convert(video.Compression, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                Compress.CheckedGlyph = Compress.Glyph;
                 Compress.IsChecked = false;
                 return;
             }
@@ -601,8 +601,8 @@ namespace Unigram.Views.Popups
                 var index = (int)args.NewValue;
                 slider.Header = compressionToGlyphConverter.Convert(index, typeof(string), string.Empty, video.MaxCompression.ToString());
                 video.Compression = index;
-                Compress.UncheckedGlyph = compressionToGlyphConverter.Convert(index, typeof(string), null, video.MaxCompression.ToString()).ToString();
-                Compress.CheckedGlyph = Compress.UncheckedGlyph;
+                Compress.Glyph = compressionToGlyphConverter.Convert(index, typeof(string), null, video.MaxCompression.ToString()).ToString();
+                Compress.CheckedGlyph = Compress.Glyph;
                 Compress.IsChecked = video.Compression != video.MaxCompression;
                 text.Text = video.ToString();
             };

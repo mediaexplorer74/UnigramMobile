@@ -305,7 +305,7 @@
                             </StackPanel>
                             <StackPanel x:Name="ContactsOptions" Orientation="Horizontal" Grid.Column="1">
                                 <controls:GlyphToggleButton
-                                    UncheckedGlyph="&#xE91B;"
+                                    Glyph="&#xE91B;"
                                     CheckedGlyph="&#xE91E;"
                                     IsChecked="{x:Bind ViewModel.Contacts.IsSortedByEpoch, Mode=TwoWay}"
                                     Style="{StaticResource HeaderGlyphToggleButtonStyle}"
@@ -327,7 +327,7 @@
                                 <controls:GlyphToggleButton
                                     x:Name="Lock"
                                     Visibility="Collapsed"
-                                    UncheckedGlyph="&#xE1F7;"
+                                    Glyph="&#xE1F7;"
                                     CheckedGlyph="&#xE1F6;"
                                     Click="Lock_Click"
                                     Style="{StaticResource HeaderGlyphToggleButtonStyle}"

@@ -262,7 +262,7 @@
 
                         <controls:GlyphToggleButton x:Name="ButtonExpand"
                                                     CheckedGlyph="&#xE011;"
-                                                    UncheckedGlyph="&#xE010;"
+                                                    Glyph="&#xE010;"
                                                     Click="ButtonExpand_Click"
                                                     AllowFocusOnInteraction="False"
                                                     Grid.Column="6"/>

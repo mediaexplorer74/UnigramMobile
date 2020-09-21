@@ -290,7 +290,7 @@
             <controls:GlyphToggleButton
                 x:Name="AlbumButton"
                 CheckedGlyph="&#xE90C;"
-                UncheckedGlyph="&#xE90C;"
+                Glyph="&#xE90C;"
                 CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                 Click="Album_Click"
                 AutomationProperties.Name="{CustomResource SendWithoutGrouping}"
@@ -385,7 +385,7 @@
             </ListView.ItemContainerTransitions>
         </ListView>
 
-            <controls:CaptionTextBox
+        <controls:CaptionTextBox
                 x:Name="CaptionInput"
                 Loaded="OnLoaded"
                 Unloaded="OnUnloaded"

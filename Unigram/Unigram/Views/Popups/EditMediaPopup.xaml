@@ -92,7 +92,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Mute"
                     Click="Mute_Click"
-                    UncheckedGlyph="&#xE906;"
+                    Glyph="&#xE906;"
                     CheckedGlyph="&#xE906;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontFamily="{StaticResource TelegramThemeFontFamily}"
@@ -101,7 +101,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Crop"
                     Click="Crop_Click"
-                    UncheckedGlyph="&#xE7A8;"
+                    Glyph="&#xE7A8;"
                     CheckedGlyph="&#xE7A8;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontSize="{StaticResource GlyphButtonFontSize}"
@@ -112,7 +112,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Draw"
                     Click="Draw_Click"
-                    UncheckedGlyph="&#xEE56;"
+                    Glyph="&#xEE56;"
                     CheckedGlyph="&#xEE56;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontSize="{StaticResource GlyphButtonFontSize}"
@@ -123,7 +123,7 @@
                 <controls:GlyphToggleButton 
                     x:Name="Compress"
                     Click="Compress_Click"
-                    UncheckedGlyph="&#xE900;"
+                    Glyph="&#xE900;"
                     CheckedGlyph="&#xE900;"
                     FontFamily="ms-appx:///Assets/Fonts/VideoResolution.ttf#VideoResolution"
                     FontSize="{StaticResource GlyphButtonFontSize}"
@@ -135,7 +135,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Ttl"
                     Click="Ttl_Click"
-                    UncheckedGlyph="&#xE916;"
+                    Glyph="&#xE916;"
                     CheckedGlyph="&#xE916;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontSize="{StaticResource GlyphButtonFontSize}"
@@ -154,7 +154,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Rotate"
                     Click="Rotate_Click"
-                    UncheckedGlyph="&#xE909;"
+                    Glyph="&#xE909;"
                     CheckedGlyph="&#xE909;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontFamily="{StaticResource TelegramThemeFontFamily}"
@@ -164,7 +164,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Flip"
                     Click="Flip_Click"
-                    UncheckedGlyph="&#xE908;"
+                    Glyph="&#xE908;"
                     CheckedGlyph="&#xE908;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontFamily="{StaticResource TelegramThemeFontFamily}"
@@ -181,7 +181,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Proportions"
                     Click="Proportions_Click"
-                    UncheckedGlyph="&#xE90A;"
+                    Glyph="&#xE90A;"
                     CheckedGlyph="&#xE90A;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     FontFamily="{StaticResource TelegramThemeFontFamily}"
@@ -211,7 +211,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Brush"
                     Click="Brush_Click"
-                    UncheckedGlyph="&#xEE56;"
+                    Glyph="&#xEE56;"
                     CheckedGlyph="&#xEE56;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     Grid.Column="2"/>
@@ -219,7 +219,7 @@
                 <controls:GlyphToggleButton
                     x:Name="Erase"
                     Click="Erase_Click"
-                    UncheckedGlyph="&#xE75C;"
+                    Glyph="&#xE75C;"
                     CheckedGlyph="&#xE75C;"
                     CheckedForeground="{ThemeResource TelegramBackgroundAccentBrush}"
                     Grid.Column="3"/>
