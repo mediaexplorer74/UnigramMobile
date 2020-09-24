@@ -39,7 +39,7 @@ namespace Unigram.Common
                 monthInLocal[i - 1] = cultureInLocal.DateTimeFormat.GetMonthName(i).ToLower();
             }
 
-            var split = query.ToLower().Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var split = query.ToLower().Trim().Split(new [] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // Split(char, StringSplitOptions) exists only in newer versions
 
             for (int i = 0; i < split.Length; i++)
             {
@@ -56,7 +56,7 @@ namespace Unigram.Common
                 }
             }
 
-            var text = string.Join(' ', split);
+            var text = string.Join(" ", split);
             var results = new List<DateRange>();
 
             foreach (var format in _formats)
