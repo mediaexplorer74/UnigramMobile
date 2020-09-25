@@ -168,7 +168,7 @@ namespace Unigram.Common
             if (ApiInfo.HasStatusBar)
             {
                 var statusBar = StatusBar.GetForCurrentView();
-                statusBar.BackgroundColor = background;
+                statusBar.BackgroundColor = Application.Current.Resources["PageTitleBackgroundBrush"] is SolidColorBrush pageTitleBackgroundBrush ? pageTitleBackgroundBrush.Color : background;
                 statusBar.ForegroundColor = foreground;
                 statusBar.BackgroundOpacity = 1;
             }
