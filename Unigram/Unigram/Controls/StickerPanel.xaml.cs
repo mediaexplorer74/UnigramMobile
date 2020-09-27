@@ -33,6 +33,8 @@ namespace Unigram.Controls
 
         public event EventHandler<bool> ToggleExpand;
 
+        public event EventHandler<TappedRoutedEventArgs> DeleteLast;
+
         private StickersPanelMode _widget;
 
         public StickerPanel()
@@ -248,6 +250,11 @@ namespace Unigram.Controls
         {
             ButtonExpand.IsChecked = !ButtonExpand.IsChecked;
             ToggleExpand?.Invoke(sender, ButtonExpand.IsChecked ?? false);
+        }
+
+        private void GlyphButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DeleteLast?.Invoke(sender, e);
         }
     }
 

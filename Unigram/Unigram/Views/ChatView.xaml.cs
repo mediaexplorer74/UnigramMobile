@@ -4420,6 +4420,12 @@ namespace Unigram.Views
                 Collapse_Click(StickersPanel, null);
             }
         }
+
+        private void StickersPanel_DeleteLast(object sender, TappedRoutedEventArgs e)
+        {
+            TextField.DeleteLast();
+            TextField.Focus(FocusState.Programmatic);
+        }
     }
 
     public enum StickersPanelMode

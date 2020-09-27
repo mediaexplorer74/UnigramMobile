@@ -219,10 +219,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="{ThemeResource AppBarThemeCompactHeight}"/>
                         </Grid.ColumnDefinitions>
-                        <!--<controls:GlyphButton Glyph="&#xE721;"
+                        <controls:GlyphButton Glyph="&#xE750;"
+                                              Tapped="GlyphButton_Tapped"
                                                 FontSize="{StaticResource GlyphButtonFontSize}"
                                                 Width="{ThemeResource AppBarThemeCompactHeight}"
-                                                Height="{ThemeResource AppBarThemeCompactHeight}"/>-->
+                                                Height="{ThemeResource AppBarThemeCompactHeight}"/>
 
                         <controls:PivotRadioButton
                             SelectedValue="{x:Bind Pivot.SelectedIndex, Mode=TwoWay}"

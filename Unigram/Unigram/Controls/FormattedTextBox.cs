@@ -533,6 +533,14 @@ namespace Unigram.Controls
             Document.Selection.SetText(TextSetOptions.None, string.Empty);
         }
 
+        protected void ContextDeleteLast()
+        {
+            Document.GetText(TextGetOptions.None, out string text);
+            var textParts = Emoji.EnumerateByComposedCharacterSequence(text); // Note: one emoji is one part
+            Document.Selection.SetRange(text.Length - textParts.Last(t => t != "\r").Length - 1, text.Length - 1);
+            ContextDelete_Click();
+        }
+
         private void ContextSelectAll_Click()
         {
             Document.Selection.Expand(TextRangeUnit.Paragraph);

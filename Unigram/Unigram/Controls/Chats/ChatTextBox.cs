@@ -159,6 +159,11 @@ namespace Unigram.Controls.Chats
         public ListView Messages { get; set; }
         public OrientableListView Autocomplete { get; set; }
 
+        public void DeleteLast()
+        {
+            ContextDeleteLast();
+        }
+
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space && Document.Selection.Length == 0)

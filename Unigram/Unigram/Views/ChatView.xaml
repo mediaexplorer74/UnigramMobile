@@ -920,7 +920,7 @@
 
         <Grid x:Name="KeyboardItems" Grid.Row="4">
             <controls:StickerPanel x:Name="StickersPanel" Visibility="Collapsed" Height="260" MaxHeight="360" MinHeight="260"
-                                   ToggleExpand="StickersPanel_ExpandButtonClicked"/>
+                                   ToggleExpand="StickersPanel_ExpandButtonClicked" DeleteLast="StickersPanel_DeleteLast"/>
         </Grid>
 
         <!-- Input pane -->
