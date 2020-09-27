@@ -117,6 +117,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="Overlay" Width="48" Height="48" CornerRadius="24" Background="{ThemeResource MessageMediaBackgroundBrush}" VerticalAlignment="Top">
                     <!--<controls:FileButton x:Name="Button" Style="{StaticResource InlineFileButtonStyle}"/>-->
@@ -133,6 +134,7 @@
                     <TextBlock x:Name="Title" Foreground="{ThemeResource MessageForegroundBrush}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Style="{StaticResource BaseTextBlockStyle}"/>
                     <TextBlock x:Name="Subtitle" Style="{StaticResource DisabledCaptionTextBlockStyle}"/>
                 </StackPanel>
+                <controls:GlyphButton Glyph="&#xE107;" Tapped="DeleteFile_Tapped" Grid.Column="2" />
             </Grid>
         </DataTemplate>
 

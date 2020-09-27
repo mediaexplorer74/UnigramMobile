@@ -689,6 +689,11 @@ namespace Unigram.Views.Popups
                 Items.Add(item);
             }
         }
+
+        private void DeleteFile_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Items.Remove((sender as FrameworkElement).DataContext as StorageMedia);
+        }
     }
 
     public class SendFilesAlbumPanel : Grid
