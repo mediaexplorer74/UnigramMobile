@@ -1091,6 +1091,12 @@ namespace Unigram.Views
                 args.Handled = true;
             }
 
+            if (StickersPanel.Visibility == Visibility.Visible)
+            {
+                Stickers_Click(null, null as RoutedEventArgs); //Close StickersPanel
+                args.Handled = true;
+            }
+
             if (ViewModel.SelectionMode != ListViewSelectionMode.None)
             {
                 ViewModel.SelectionMode = ListViewSelectionMode.None;
