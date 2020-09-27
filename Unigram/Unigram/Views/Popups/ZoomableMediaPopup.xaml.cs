@@ -22,6 +22,7 @@ namespace Unigram.Views.Popups
 
             _applicationView = ApplicationView.GetForCurrentView();
             _applicationView.VisibleBoundsChanged += OnVisibleBoundsChanged;
+            
             OnVisibleBoundsChanged(_applicationView, null);
         }
 
@@ -73,7 +74,7 @@ namespace Unigram.Views.Popups
         {
             _lastItem = sticker;
 
-            Title.Text = string.Empty;
+            Title.Text = sticker.Emoji;
             Aspect.MaxWidth = 200;
             Aspect.MaxHeight = 200;
             Aspect.Constraint = sticker;
