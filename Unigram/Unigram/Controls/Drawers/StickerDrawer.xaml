@@ -21,10 +21,10 @@
     <Grid x:Name="StickersRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1">
+        <Border Grid.Row="2" Margin="0,6,0,0">
             <TextBox x:Name="FieldStickers" PlaceholderText="{CustomResource SearchStickersHint}" TextChanged="FieldStickers_TextChanged" Margin="10,0" AllowFocusOnInteraction="True"/>
         </Border>
 
@@ -40,7 +40,7 @@
             ItemClick="Stickers_ItemClick"
             Loaded="Stickers_Loaded"
             Padding="2,0"
-            Grid.Row="2">
+            Grid.Row="1">
             <common:FluidGridView.Triggers>
                 <common:FluidGridViewTrigger RowsOrColumns="5"/>
             </common:FluidGridView.Triggers>

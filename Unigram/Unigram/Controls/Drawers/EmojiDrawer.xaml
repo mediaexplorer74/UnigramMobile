@@ -96,10 +96,10 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1">
+        <Border Grid.Row="2" Margin="0,6,0,0">
             <TextBox x:Name="FieldEmoji" PlaceholderText="{CustomResource SearchEmojiHint}" TextChanged="FieldEmoji_TextChanged" Margin="10,0" AllowFocusOnInteraction="True"/>
         </Border>
 
@@ -111,7 +111,7 @@
                   ItemClick="ListView_ItemClick"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  Grid.Row="2">
+                  Grid.Row="1">
             <common:FluidGridView.Triggers>
                 <common:FluidGridViewTrigger RowsOrColumns="7"/>
             </common:FluidGridView.Triggers>
@@ -323,6 +323,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="common:EmojiGroup">
                                 <Border
+                                    CornerRadius="{StaticResource GlyphButtonCornerRadius}"
                                     AutomationProperties.Name="{x:Bind Title}"
                                     ToolTipService.ToolTip="{x:Bind Title}"
                                     Background="Transparent">
