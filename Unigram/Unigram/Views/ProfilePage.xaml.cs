@@ -28,7 +28,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Unigram.Views
 {
-    public sealed partial class ProfilePage : HostedPage, IProfileDelegate
+    public sealed partial class ProfilePage : HostedPage, IProfileDelegate, Navigation.INavigablePage
     {
         public ProfileViewModel ViewModel => DataContext as ProfileViewModel;
 
@@ -956,6 +956,25 @@ namespace Unigram.Views
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             SharedMedia.Height = e.NewSize.Height - 16;
+        }
+
+        public void OnBackRequested(HandledRoutedEventArgs args)
+        {
+            if (_scrollingHostDisabled)
+            {
+                _scrollingHostDisabled = false;
+                SharedMedia.SetScrollMode(false);
+
+                //SetScrollMode(true);
+                ScrollingHost.VerticalScrollMode = ScrollMode.Auto;
+                ScrollingHost.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                ScrollingHost.ChangeView(null, 0, null, false);
+
+                ScrollingInfo.Visibility = Visibility.Visible;
+                InfoPanel.Visibility = Visibility.Collapsed;
+
+                args.Handled = true;
+            }
         }
     }
 }
