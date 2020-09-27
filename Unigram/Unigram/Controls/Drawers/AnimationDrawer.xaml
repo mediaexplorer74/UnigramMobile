@@ -37,7 +37,13 @@
             Height="48"
             Grid.Row="1"/>
 
-        <muxc:ItemsRepeaterScrollHost Grid.Row="1">
+        <TextBlock Grid.Row="1"
+            Text="{CustomResource NoGIFsFound}" Margin="10,8,10,0"
+            Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" 
+            Style="{StaticResource CaptionTextBlockStyle}"
+            Visibility="{x:Bind ViewModel.Items.Count, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverse }"/> <!-- TODO: Perfomance penalty -->
+        <muxc:ItemsRepeaterScrollHost Grid.Row="1"
+            Visibility="{x:Bind ViewModel.Items.Count, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter} }"> <!-- TODO: Perfomance penalty -->
             <ScrollViewer
                 x:Name="ScrollingHost"
                 VerticalScrollBarVisibility="Auto"

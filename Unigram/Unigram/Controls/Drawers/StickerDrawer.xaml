@@ -91,11 +91,13 @@
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
-            <!--<GridView.Header>
-                    <Border>
-                    <TextBox PlaceholderText="{CustomResource SearchStickersHint}" Margin="10,8,10,0"/>
-                    </Border>
-                    </GridView.Header>-->
+            <GridView.Header>
+                <TextBlock 
+                           Text="{CustomResource NoStickersFound}" Margin="10,8,10,0"
+                           Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" 
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Visibility="{x:Bind ViewModel.Stickers.Count, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverse }"/> <!-- TODO: Perfomance penalty -->
+            </GridView.Header>
             <GridView.Footer>
                 <Border Height="12"/>
             </GridView.Footer>
