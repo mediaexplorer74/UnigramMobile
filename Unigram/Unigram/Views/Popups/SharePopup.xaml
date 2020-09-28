@@ -54,7 +54,6 @@
                         <MenuFlyout x:Name="MenuFlyout">
                             <ToggleMenuFlyoutItem Text="{CustomResource Additional.ShareSendAsCopy}" IsChecked="{x:Bind ViewModel.SendAsCopy, Mode=TwoWay}"/>
                             <ToggleMenuFlyoutItem Text="{CustomResource Additional.ShareRemoveCaptions}" IsChecked="{x:Bind ViewModel.RemoveCaptions, Mode=TwoWay}"/>
-                            <ToggleMenuFlyoutItem Text="{CustomResource Additional.ShareSendAsAlbum}" IsChecked="{x:Bind ViewModel.SendAsAlbum, Mode=TwoWay}"/>
                         </MenuFlyout>
                     </controls:GlyphButton.Flyout>
                 </controls:GlyphButton>

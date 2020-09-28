@@ -264,7 +264,7 @@ namespace Unigram.ViewModels
 
             var self = CacheService.IsSavedMessages(_chat);
 
-            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, _type == DialogType.Normal, self);
+            var dialog = new SendFilesPopup(items, media, _chat.Type is ChatTypePrivate && !self, _type == DialogType.History, self);
             dialog.ViewModel = this;
             dialog.Caption = caption;
             dialog.Closing += SendFilesPopup_Closing;
@@ -693,7 +693,7 @@ namespace Unigram.ViewModels
                 options = new MessageSendOptions(false, false, null);
             }
 
-            var response = await ProtoService.SendAsync(new SendMessage(chat.Id, replyToMessageId, options, null, inputMessageContent));
+            var response = await ProtoService.SendAsync(new SendMessage(chat.Id, _threadId, replyToMessageId, options, null, inputMessageContent));
             if (response is Error error)
             {
                 if (error.TypeEquals(ErrorType.PEER_FLOOD))
@@ -862,7 +862,7 @@ namespace Unigram.ViewModels
                 }
             }
 
-            return await ProtoService.SendAsync(new SendMessageAlbum(chat.Id, reply, options, operations));
+            return await ProtoService.SendAsync(new SendMessageAlbum(chat.Id, _threadId, reply, options, operations));
         }
 
         private FormattedText GetFormattedText(string text)
