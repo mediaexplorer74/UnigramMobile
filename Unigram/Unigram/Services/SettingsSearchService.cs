@@ -193,7 +193,7 @@ namespace Unigram.Services
         {
             return new SettingsSearchPage(typeof(SettingsPrivacyAndSecurityPage), Strings.Resources.PrivacySettings, "\uE1F6", new SettingsSearchEntry[]
             {
-                new SettingsSearchPage(typeof(SettingsBlockedUsersPage), Strings.Resources.BlockedUsers),
+                new SettingsSearchPage(typeof(SettingsBlockedChatsPage), Strings.Resources.BlockedUsers),
                 new SettingsSearchPage(typeof(SettingsPrivacyShowPhonePage), Strings.Resources.PrivacyPhoneTitle),
                 new SettingsSearchPage(typeof(SettingsPrivacyShowStatusPage), Strings.Resources.PrivacyLastSeen),
                 new SettingsSearchPage(typeof(SettingsPrivacyShowPhotoPage), Strings.Resources.PrivacyProfilePhotoTitle, "\uE91B"),
