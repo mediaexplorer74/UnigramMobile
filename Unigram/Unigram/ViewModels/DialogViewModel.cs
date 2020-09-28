@@ -2626,11 +2626,7 @@ namespace Unigram.ViewModels
             }
             else if (chat.Type is ChatTypePrivate || chat.Type is ChatTypeSecret)
             {
-                var user = ProtoService.GetUser(chat);
-                if (user != null)
-                {
-                    ProtoService.Send(new BlockUser(user.Id));
-                }
+                ProtoService.Send(new ToggleChatIsBlocked(chat.Id, true));
             }
 
             ProtoService.Send(new DeleteChatHistory(chat.Id, true, false));
@@ -2686,7 +2682,7 @@ namespace Unigram.ViewModels
                 {
                     if (updated.Type is ChatTypePrivate privata && check)
                     {
-                        await ProtoService.SendAsync(new BlockUser(privata.UserId));
+                        await ProtoService.SendAsync(new ToggleChatIsBlocked(updated.Id, true));
                     }
 
                     ProtoService.Send(new DeleteChatHistory(updated.Id, true, false));
@@ -2856,7 +2852,7 @@ namespace Unigram.ViewModels
             var user = CacheService.GetUser(privata.UserId);
             if (user.Type is UserTypeBot)
             {
-                await ProtoService.SendAsync(new UnblockUser(user.Id));
+                await ProtoService.SendAsync(new ToggleChatIsBlocked(chat.Id, false));
                 StartExecute();
             }
             else
@@ -2867,7 +2863,7 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                ProtoService.Send(new UnblockUser(privata.UserId));
+                ProtoService.Send(new ToggleChatIsBlocked(chat.Id, false));
             }
         }
 
@@ -3225,7 +3221,7 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                if (fullInfo.IsBlocked)
+                if (chat.IsBlocked)
                 {
                     UnblockExecute();
                 }
