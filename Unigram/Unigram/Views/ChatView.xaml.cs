@@ -1442,12 +1442,17 @@ namespace Unigram.Views
                 return;
             }
 
-            if (chat.Type is ChatTypePrivate privata && privata.UserId == ViewModel.CacheService.Options.MyId)
+            if (ViewModel.CacheService.IsSavedMessages(chat))
             {
                 ViewModel.NavigationService.Navigate(typeof(ChatSharedMediaPage), chat.Id, infoOverride: ApiInfo.CanUseDirectComposition ? new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight } : null);
             }
             else
             {
+                if (ViewModel.CacheService.IsRepliesChat(chat))
+                {
+                    return;
+                }
+
                 ViewModel.NavigationService.Navigate(typeof(ProfilePage), chat.Id, infoOverride: ApiInfo.CanUseDirectComposition ? new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight } : null);
             }
         }
@@ -3892,7 +3897,11 @@ namespace Unigram.Views
 
         public void UpdateUserFullInfo(Chat chat, User user, UserFullInfo fullInfo, bool secret, bool accessToken)
         {
-            if (chat.IsBlocked)
+            if (ViewModel.ProtoService.IsRepliesChat(chat))
+            {
+                ShowAction(ViewModel.CacheService.GetNotificationSettingsMuteFor(chat) > 0 ? Strings.Resources.ChannelUnmute : Strings.Resources.ChannelMute, true);
+            }
+            else if (chat.IsBlocked)
             {
                 ShowAction(user.Type is UserTypeBot ? Strings.Resources.BotUnblock : Strings.Resources.Unblock, true);
             }
@@ -3917,6 +3926,10 @@ namespace Unigram.Views
         public void UpdateUserStatus(Chat chat, User user)
         {
             if (ViewModel.CacheService.IsSavedMessages(user))
+            {
+                ViewModel.LastSeen = null;
+            }
+            else if (ViewModel.CacheService.IsRepliesChat(chat))
             {
                 ViewModel.LastSeen = null;
             }
