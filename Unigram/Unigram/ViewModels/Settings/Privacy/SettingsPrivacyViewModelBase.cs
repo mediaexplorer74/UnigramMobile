@@ -330,6 +330,7 @@ namespace Unigram.ViewModels.Settings
                 case UserPrivacySettingShowProfilePhoto showProfilePhoto:
                 case UserPrivacySettingShowLinkInForwardedMessages showLinkInForwardedMessages:
                 default:
+                    dialog.ViewModel.AllowEmptySelection = true;
                     dialog.ViewModel.Title = Strings.Resources.NeverAllow;
                     break;
                 case UserPrivacySettingShowStatus showStatus:
