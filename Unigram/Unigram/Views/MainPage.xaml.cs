@@ -2369,7 +2369,7 @@ namespace Unigram.Views
             }
             else if (destination == RootDestination.News)
             {
-                MessageHelper.NavigateToUsername(ViewModel.ProtoService, MasterDetail.NavigationService, "UnigramMobileNews", null, null, null);
+                MessageHelper.NavigateToUsername(ViewModel.ProtoService, MasterDetail.NavigationService, "UnigramMobileNews", null, null, null, null);
             }
         }
 
