@@ -215,12 +215,13 @@ namespace Unigram.Common
         public static async void OpenTelegramScheme(IProtoService protoService, INavigationService navigation, Uri scheme)
         {
             string username = null;
+            string message = null;
             string group = null;
             string sticker = null;
             Dictionary<string, object> auth = null;
             string botUser = null;
             string botChat = null;
-            string message = null;
+            string comment = null;
             string phone = null;
             string game = null;
             string phoneHash = null;
@@ -264,6 +265,7 @@ namespace Unigram.Common
                     botChat = query.GetParameter("startgroup");
                     game = query.GetParameter("game");
                     post = query.GetParameter("post");
+                    comment = query.GetParameter("comment");
                 }
             }
             else if (scheme.AbsoluteUri.StartsWith("tg:join") || scheme.AbsoluteUri.StartsWith("tg://join"))
@@ -368,7 +370,7 @@ namespace Unigram.Common
             }
             else if (username != null)
             {
-                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, post, game);
+                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, post, comment, game);
             }
             else if (message != null)
             {
@@ -444,6 +446,7 @@ namespace Unigram.Common
                     var accessToken = GetAccessToken(query, out PageKind pageKind);
                     var post = query.GetParameter("post");
                     var game = query.GetParameter("game");
+                    var comment = query.GetParameter("comment");
                     var result = url.StartsWith("http") ? url : ("https://" + url);
 
                     if (uri.Segments.Length >= 2)
@@ -498,7 +501,7 @@ namespace Unigram.Common
                             }
                             else
                             {
-                                NavigateToUsername(protoService, navigation, username, accessToken, post, string.IsNullOrEmpty(game) ? null : game, pageKind);
+                                NavigateToUsername(protoService, navigation, username, accessToken, post, string.IsNullOrEmpty(comment) ? null : comment, string.IsNullOrEmpty(game) ? null : game, pageKind);
                             }
                         }
                     }
@@ -698,7 +701,7 @@ namespace Unigram.Common
             await StickerSetPopup.GetForCurrentView().ShowAsync(text);
         }
 
-        public static async void NavigateToUsername(IProtoService protoService, INavigationService navigation, string username, string accessToken, string post, string game, PageKind kind = PageKind.Dialog)
+        public static async void NavigateToUsername(IProtoService protoService, INavigationService navigation, string username, string accessToken, string post, string comment, string game, PageKind kind = PageKind.Dialog)
         {
             if (username.StartsWith("@"))
             {
@@ -735,7 +738,22 @@ namespace Unigram.Common
                 {
                     if (long.TryParse(post, out long message))
                     {
-                        navigation.NavigateToChat(chat, message: message << 20);
+                        if (long.TryParse(comment, out long threaded))
+                        {
+                            var info = await protoService.SendAsync(new GetMessageThread(chat.Id, message << 20)) as MessageThreadInfo;
+                            if (info != null)
+                            {
+                                navigation.NavigateToThread(info.ChatId, info.MessageThreadId, message: threaded << 20);
+                            }
+                            else
+                            {
+                                navigation.NavigateToChat(chat, message: message << 20);
+                            }
+                        }
+                        else
+                        {
+                            navigation.NavigateToChat(chat, message: message << 20);
+                        }
                     }
                     else
                     {
