@@ -899,7 +899,7 @@ namespace Unigram.ViewModels
                 Items.Insert(0, previous);
                 Items.Insert(0, _messageFactory.Create(this, new Message(0, previous.SenderUserId, previous.SenderChatId, previous.ChatId, null, null, previous.IsOutgoing, false, false, true, false, false, false, previous.IsChannelPost, false, previous.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
             }
-            else if(previous != null)
+            else if (previous != null)
             {
                 Items.Insert(0, _messageFactory.Create(this, new Message(0, previous.SenderUserId, previous.SenderChatId, previous.ChatId, null, null, previous.IsOutgoing, false, false, true, false, false, false, previous.IsChannelPost, false, previous.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
             }
@@ -1131,9 +1131,24 @@ namespace Unigram.ViewModels
                     var replied = messages.MessagesValue.OrderBy(x => x.Id).Select(x => _messageFactory.Create(this, x)).ToList();
                     await ProcessMessagesAsync(chat, replied);
 
+                    long lastReadMessageId;
+                    long lastMessageId;
+
+                    var thread = _thread;
+                    if (thread != null)
+                    {
+                        lastReadMessageId = _thread.Messages[0].InteractionInfo.LastReadInboxCommentMessageId;
+                        lastMessageId = _thread.Messages[0].InteractionInfo.LastCommentMessageId;
+                    }
+                    else
+                    {
+                        lastReadMessageId = chat.LastReadInboxMessageId;
+                        lastMessageId = chat.LastMessage?.Id ?? long.MaxValue;
+                    }
+
                     // If we're loading from the last read message
                     // then we want to skip it to align first unread message at top
-                    if (chat.LastReadInboxMessageId != chat.LastMessage?.Id)
+                    if (lastReadMessageId != lastMessageId)
                     {
                         var target = default(MessageViewModel);
                         var index = -1;
@@ -1141,7 +1156,7 @@ namespace Unigram.ViewModels
                         for (int i = 0; i < replied.Count; i++)
                         {
                             var current = replied[i];
-                            if (current.Id > chat.LastReadInboxMessageId)
+                            if (current.Id > lastReadMessageId)
                             {
                                 if (target == null && !current.IsOutgoing)
                                 {
@@ -1162,12 +1177,12 @@ namespace Unigram.ViewModels
                             {
                                 replied.Insert(index, _messageFactory.Create(this, new Message(0, target.SenderUserId, target.SenderChatId, target.ChatId, null, null, target.IsOutgoing, false, false, true, false, false, false, target.IsChannelPost, false, target.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderUnread(), null)));
                             }
-                            else if (maxId == chat.LastReadInboxMessageId)
+                            else if (maxId == lastReadMessageId)
                             {
                                 Logs.Logger.Debug(Logs.Target.Chat, "Looking for first unread message, can't find it");
                             }
 
-                            if (maxId == chat.LastReadInboxMessageId)
+                            if (maxId == lastReadMessageId)
                             {
                                 maxId = target.Id;
                                 pixel = 28 + 48 + 4;
@@ -1177,7 +1192,7 @@ namespace Unigram.ViewModels
 
                     // If we're loading the last message and it has been read already
                     // then we want to align it at bottom, as it might be taller than the window height
-                    if (maxId == chat.LastReadInboxMessageId && maxId == chat.LastMessage?.Id && alignment != VerticalAlignment.Center)
+                    if (maxId == lastReadMessageId && maxId == lastMessageId && alignment != VerticalAlignment.Center)
                     {
                         alignment = VerticalAlignment.Bottom;
                         pixel = null;
@@ -1694,7 +1709,7 @@ namespace Unigram.ViewModels
                             message.ReplyToMessageState = ReplyToMessageState.Deleted;
                         }
 
-                        BeginOnUIThread(() =>  Handle(message, bubble => bubble.UpdateMessageReply(message), service => service.UpdateMessage(message)));
+                        BeginOnUIThread(() => Handle(message, bubble => bubble.UpdateMessageReply(message), service => service.UpdateMessage(message)));
                     });
                 }
             }
@@ -1718,8 +1733,8 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                parameter = result1;
                 Thread = await ProtoService.SendAsync(new GetMessageThread(result1, result2)) as MessageThreadInfo;
+                parameter = _thread.ChatId;
             }
 
             var chat = ProtoService.GetChat((long)parameter);
@@ -1773,16 +1788,31 @@ namespace Unigram.ViewModels
             {
                 bool TryRemove(long chatId, out long v1, out long v2)
                 {
-                    var a = Settings.Chats.TryRemove(chat.Id, ChatSetting.ReadInboxMaxId, out v1);
-                    var b = Settings.Chats.TryRemove(chat.Id, ChatSetting.Index, out v2);
+                    var a = Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.ReadInboxMaxId, out v1);
+                    var b = Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Index, out v2);
                     return a && b;
                 }
 
-                if (TryRemove(chat.Id, out long readIndboxMaxId, out long start) &&
-                    readIndboxMaxId == chat.LastReadInboxMessageId &&
-                    start < chat.LastReadInboxMessageId)
+                long lastReadMessageId;
+                long lastMessageId;
+
+                var thread = _thread;
+                if (thread != null)
                 {
-                    if (Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel))
+                    lastReadMessageId = _thread.Messages[0].InteractionInfo.LastReadInboxCommentMessageId;
+                    lastMessageId = _thread.Messages[0].InteractionInfo.LastCommentMessageId;
+                }
+                else
+                {
+                    lastReadMessageId = chat.LastReadInboxMessageId;
+                    lastMessageId = chat.LastMessage?.Id ?? long.MaxValue;
+                }
+
+                if (TryRemove(chat.Id, out long readInboxMaxId, out long start) &&
+                    readInboxMaxId == lastReadMessageId &&
+                    start < lastReadMessageId)
+                {
+                    if (Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double pixel))
                     {
                         Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Loading messages from specific pixel", chat.Id));
 
@@ -1795,18 +1825,18 @@ namespace Unigram.ViewModels
                         LoadMessageSliceAsync(null, start, VerticalAlignment.Bottom);
                     }
                 }
-                else if (chat.UnreadCount > 0)
+                else /*if (chat.UnreadCount > 0)*/
                 {
                     Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Loading messages from LastReadInboxMessageId: {1}", chat.Id, chat.LastReadInboxMessageId));
 
-                    LoadMessageSliceAsync(null, chat.LastReadInboxMessageId, VerticalAlignment.Top);
+                    LoadMessageSliceAsync(null, lastReadMessageId, VerticalAlignment.Top);
                 }
-                else
-                {
-                    Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Loading messages from LastMessageId: {1}", chat.Id, chat.LastMessage?.Id));
+                //else
+                //{
+                //    Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Loading messages from LastMessageId: {1}", chat.Id, chat.LastMessage?.Id));
 
-                    LoadMessageSliceAsync(null, chat.LastMessage?.Id ?? long.MaxValue, VerticalAlignment.Bottom);
-                }
+                //    LoadMessageSliceAsync(null, chat.LastMessage?.Id ?? long.MaxValue, VerticalAlignment.Bottom);
+                //}
             }
 #pragma warning restore CS4014
 
@@ -1987,8 +2017,8 @@ namespace Unigram.ViewModels
                 var field = ListField;
                 if (field == null)
                 {
-                    Settings.Chats.TryRemove(chat.Id, ChatSetting.Index, out long index);
-                    Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel);
+                    Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Index, out long index);
+                    Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double pixel);
 
                     Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Removing scrolling position, generic reason", chat.Id));
 
@@ -2001,23 +2031,35 @@ namespace Unigram.ViewModels
                     var start = Items[panel.LastVisibleIndex].Id;
                     if (start != chat.LastMessage?.Id)
                     {
+                        long lastReadMessageId;
+
+                        var thread = _thread;
+                        if (thread != null)
+                        {
+                            lastReadMessageId = thread.Messages[0].InteractionInfo.LastReadInboxCommentMessageId;
+                        }
+                        else
+                        {
+                            lastReadMessageId = chat.LastReadInboxMessageId;
+                        }
+
                         var container = field.ContainerFromIndex(panel.LastVisibleIndex) as ListViewItem;
                         if (container != null)
                         {
                             var transform = container.TransformToVisual(field);
                             var position = transform.TransformPoint(new Point());
 
-                            Settings.Chats[chat.Id, ChatSetting.ReadInboxMaxId] = chat.LastReadInboxMessageId;
-                            Settings.Chats[chat.Id, ChatSetting.Index] = start;
-                            Settings.Chats[chat.Id, ChatSetting.Pixel] = field.ActualHeight - (position.Y + container.ActualHeight);
+                            Settings.Chats[chat.Id, _threadId, ChatSetting.ReadInboxMaxId] = lastReadMessageId;
+                            Settings.Chats[chat.Id, _threadId, ChatSetting.Index] = start;
+                            Settings.Chats[chat.Id, _threadId, ChatSetting.Pixel] = field.ActualHeight - (position.Y + container.ActualHeight);
 
                             Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Saving scrolling position, message: {1}, pixel: {2}", chat.Id, Items[panel.LastVisibleIndex].Id, field.ActualHeight - (position.Y + container.ActualHeight)));
                         }
                         else
                         {
-                            Settings.Chats[chat.Id, ChatSetting.ReadInboxMaxId] = chat.LastReadInboxMessageId;
-                            Settings.Chats[chat.Id, ChatSetting.Index] = start;
-                            Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel);
+                            Settings.Chats[chat.Id, _threadId, ChatSetting.ReadInboxMaxId] = lastReadMessageId;
+                            Settings.Chats[chat.Id, _threadId, ChatSetting.Index] = start;
+                            Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double pixel);
 
                             Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Saving scrolling position, message: {1}, pixel: none", chat.Id, Items[panel.LastVisibleIndex].Id));
                         }
@@ -2025,24 +2067,27 @@ namespace Unigram.ViewModels
                     }
                     else
                     {
-                        Settings.Chats.TryRemove(chat.Id, ChatSetting.Index, out long index);
-                        Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel);
+                        Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.ReadInboxMaxId, out long _);
+                        Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Index, out long _);
+                        Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double _);
 
                         Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Removing scrolling position, as last item is chat.LastMessage", chat.Id));
                     }
                 }
                 else
                 {
-                    Settings.Chats.TryRemove(chat.Id, ChatSetting.Index, out long index);
-                    Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel);
+                    Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.ReadInboxMaxId, out long _);
+                    Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Index, out long _);
+                    Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double _);
 
                     Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Removing scrolling position, generic reason", chat.Id));
                 }
             }
             catch
             {
-                Settings.Chats.TryRemove(chat.Id, ChatSetting.Index, out long index);
-                Settings.Chats.TryRemove(chat.Id, ChatSetting.Pixel, out double pixel);
+                Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.ReadInboxMaxId, out long _);
+                Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Index, out long _);
+                Settings.Chats.TryRemove(chat.Id, _threadId, ChatSetting.Pixel, out double _);
 
                 Logs.Logger.Debug(Logs.Target.Chat, string.Format("{0} - Removing scrolling position, exception", chat.Id));
             }
