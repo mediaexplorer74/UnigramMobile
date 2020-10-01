@@ -257,7 +257,7 @@ namespace Unigram.Entities
             {
                 profile.Video.Width = (uint)resultWidth;
                 profile.Video.Height = (uint)resultHeight;
-                profile.Video.Bitrate = (uint)bitrate;
+                profile.Video.Bitrate = Math.Min((uint)bitrate, profile.Video.Bitrate);
             }
 
             if (_isMuted)
