@@ -159,7 +159,7 @@ namespace Unigram.Views.Popups
 
             if (args.Phase == 0)
             {
-                var title = content.Children[1] as TextBlock;
+                var title = content.Children[content.Children.Count - 1] as TextBlock;
                 title.Text = sticker.Emoji;
             }
             else if (args.Phase == 1)
