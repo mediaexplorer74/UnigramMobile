@@ -88,8 +88,8 @@ namespace Unigram.Services.Factories
             //var thumbnail = await ImageHelper.GetVideoThumbnailAsync(file, videoProps, transform);
 
             var duration = (int)videoProps.Duration.TotalSeconds;
-            var videoWidth = (int)videoProps.GetWidth();
-            var videoHeight = (int)videoProps.GetHeight();
+            var videoWidth = videoProps.GetWidth();
+            var videoHeight = videoProps.GetHeight();
 
             //if (profile != null)
             //{
@@ -100,12 +100,12 @@ namespace Unigram.Services.Factories
             var conversion = new VideoConversion();
             if (profile != null)
             {
-                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Width : (int)profile.Video.Height;
-                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Height : (int)profile.Video.Width;
+                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? profile.Video.Width : profile.Video.Height;
+                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? profile.Video.Height : profile.Video.Width;
                 conversion.Transcode = true;
                 conversion.Mute = animated;
-                conversion.Width = profile.Video.Width;
-                conversion.Height = profile.Video.Height;
+                conversion.Width = videoWidth;
+                conversion.Height = videoHeight;
                 conversion.Bitrate = profile.Video.Bitrate;
 
                 if (transform != null)
@@ -137,7 +137,7 @@ namespace Unigram.Services.Factories
                 {
                     InputFile = generated,
                     Type = new FileTypeAnimation(),
-                    Delegate = (inputFile, caption) => new InputMessageAnimation(inputFile, thumbnail, new int[0], duration, videoWidth, videoHeight, caption)
+                    Delegate = (inputFile, caption) => new InputMessageAnimation(inputFile, thumbnail, new int[0], duration, (int)videoWidth, (int)videoHeight, caption)
                 };
             }
 
@@ -145,33 +145,33 @@ namespace Unigram.Services.Factories
             {
                 InputFile = generated,
                 Type = new FileTypeVideo(),
-                Delegate = (inputFile, caption) => new InputMessageVideo(inputFile, thumbnail, new int[0], duration, videoWidth, videoHeight, true, caption, ttl)
+                Delegate = (inputFile, caption) => new InputMessageVideo(inputFile, thumbnail, new int[0], duration, (int)videoWidth, (int)videoHeight, true, caption, ttl)
             };
         }
 
         public async Task<InputMessageFactory> CreateVideoNoteAsync(StorageFile file, MediaEncodingProfile profile = null, VideoTransformEffectDefinition transform = null)
         {
-            var basicProps = await file.GetBasicPropertiesAsync();
+            //var basicProps = await file.GetBasicPropertiesAsync();
             var videoProps = await file.Properties.GetVideoPropertiesAsync();
 
             //var thumbnail = await ImageHelper.GetVideoThumbnailAsync(file, videoProps, transform);
 
             var duration = (int)videoProps.Duration.TotalSeconds;
-            var videoWidth = (int)videoProps.GetWidth();
-            var videoHeight = (int)videoProps.GetHeight();
+            var videoWidth = videoProps.GetWidth();
+            var videoHeight = videoProps.GetHeight();
 
             if (profile != null)
             {
-                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Width : (int)profile.Video.Height;
-                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? (int)profile.Video.Height : (int)profile.Video.Width;
+                videoWidth = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? profile.Video.Width : profile.Video.Height;
+                videoHeight = videoProps.Orientation == VideoOrientation.Rotate180 || videoProps.Orientation == VideoOrientation.Normal ? profile.Video.Height : profile.Video.Width;
             }
 
             var conversion = new VideoConversion();
             if (profile != null)
             {
                 conversion.Transcode = true;
-                conversion.Width = profile.Video.Width;
-                conversion.Height = profile.Video.Height;
+                conversion.Width = videoWidth;
+                conversion.Height = videoHeight;
                 conversion.Bitrate = profile.Video.Bitrate;
 
                 if (transform != null)
@@ -191,7 +191,7 @@ namespace Unigram.Services.Factories
             {
                 InputFile = generated,
                 Type = new FileTypeVideoNote(),
-                Delegate = (inputFile, caption) => new InputMessageVideoNote(inputFile, thumbnail, duration, Math.Min(videoWidth, videoHeight))
+                Delegate = (inputFile, caption) => new InputMessageVideoNote(inputFile, thumbnail, duration, (int) Math.Min(videoWidth, videoHeight))
             };
         }
 
