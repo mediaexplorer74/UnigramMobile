@@ -1492,6 +1492,11 @@ namespace Unigram.Services
             else if (update is UpdateOption updateOption)
             {
                 _options.Handle(updateOption);
+
+                if (updateOption.Name == "my_id" && updateOption.Value is OptionValueInteger myId)
+                {
+                    _settings.UserId = (int)myId.Value;
+                }
             }
             else if (update is UpdateRecentStickers updateRecentStickers)
             {
