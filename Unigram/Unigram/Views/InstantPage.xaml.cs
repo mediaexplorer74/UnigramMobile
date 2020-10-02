@@ -1566,7 +1566,7 @@ namespace Unigram.Views
         {
         }
 
-        public void OpenChat(long chatId)
+        public void OpenChat(long chatId, bool profile = false)
         {
         }
 
