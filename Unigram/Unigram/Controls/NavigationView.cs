@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.Foundation;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Unigram.Controls
@@ -36,6 +37,8 @@ namespace Unigram.Controls
 
         private void OnPaneOpening(SplitView sender, object args)
         {
+            PaneOpening?.Invoke(sender, args);
+
             _previousTopPadding = TopPadding;
             TopPadding = new Thickness();
 
@@ -44,6 +47,8 @@ namespace Unigram.Controls
 
         private void OnPaneClosing(SplitView sender, SplitViewPaneClosingEventArgs args)
         {
+            PaneClosing?.Invoke(sender, args);
+
             if (_previousTopPadding != null)
             {
                 TopPadding = _previousTopPadding.Value;
@@ -52,6 +57,9 @@ namespace Unigram.Controls
 
             TogglePaneButton.RequestedTheme = ElementTheme.Default;
         }
+
+        public event TypedEventHandler<SplitView, object> PaneOpening;
+        public event TypedEventHandler<SplitView, SplitViewPaneClosingEventArgs> PaneClosing;
 
         #region IsPaneOpen
 
