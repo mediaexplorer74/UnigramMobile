@@ -1132,6 +1132,8 @@
                                 x:Name="ButtonScheduled"
                                 Glyph="&#xE81C;"
                                 Command="{x:Bind ViewModel.ScheduledCommand}"
+                                AutomationProperties.Name="{CustomResource ScheduledMessages}"
+                                ToolTipService.ToolTip="{CustomResource ScheduledMessages}"                  
                                 VerticalAlignment="Bottom"/>
                         </Border>
 
