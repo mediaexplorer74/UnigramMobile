@@ -525,6 +525,8 @@ namespace Unigram.Views
                 ? Visibility.Visible
                 : Visibility.Collapsed;
 
+            ContextMenu.Visibility = UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Touch ? Visibility.Visible : Visibility.Collapsed;
+
             //Hide Stickers on opening a chat on mobile
             if (!(ApiInfo.IsFullExperience || UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse)) {
                 Collapse_Click(null, null);
@@ -4435,6 +4437,39 @@ namespace Unigram.Views
         {
             TextField.DeleteLast();
             TextField.Focus(FocusState.Programmatic);
+        }
+
+        private void ContextMenu_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var flyout = new MenuFlyout();
+
+            flyout.CreateFlyoutItem(
+                new RelayCommand(() => {
+                    TextField.IsFormattingVisible = !TextField.IsFormattingVisible;
+                }),
+                TextField.IsFormattingVisible ? Strings.Additional.FormattingHide : Strings.Additional.FormattingShow,
+                new FontIcon { Glyph = "\uE8D2" }
+            );
+
+            // Ref: Send_ContextRequested
+            if (btnSendMessage.Visibility == Visibility.Visible && 
+                ViewModel.Chat != null && ViewModel.Type == DialogType.Normal)
+            {
+                flyout.Items.Add(new MenuFlyoutSeparator());
+                var self = ViewModel.CacheService.IsSavedMessages(ViewModel.Chat);
+
+                flyout.CreateFlyoutItem(new RelayCommand(async () => await TextField.SendAsync(true)), Strings.Resources.SendWithoutSound, new FontIcon { Glyph = Icons.Mute });
+                flyout.CreateFlyoutItem(new RelayCommand(async () => await TextField.ScheduleAsync()), self ? Strings.Resources.SetReminder : Strings.Resources.ScheduleMessage, new FontIcon { Glyph = Icons.Schedule });
+            }
+
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
+            {
+                flyout.ShowAt((FrameworkElement) sender, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
+            }
+            else
+            {
+                flyout.ShowAt(sender as FrameworkElement);
+            }
         }
     }
 

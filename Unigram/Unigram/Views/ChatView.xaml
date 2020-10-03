@@ -1182,6 +1182,8 @@
                         </Border>
                     </Grid>
 
+                    <StackPanel Orientation="Horizontal">
+                        <controls:GlyphButton x:Name="ContextMenu" Glyph="&#xE10C;" Tapped="ContextMenu_Tapped" />
                     <!-- Button to use stickers keyboard, all -->
                     <chats:ChatStickerButton
                         x:Name="ButtonStickers"
@@ -1192,7 +1194,8 @@
                         AutomationProperties.Name="{CustomResource AccDescrEmojiButton}"
                         Grid.Column="1"/>
                         <!--ToolTipService.ToolTip="{CustomResource AccDescrEmojiButton}"-->
-
+                    </StackPanel>
+                    
                     <Grid x:Name="ButtonRecord" VerticalAlignment="Bottom" Grid.Column="2" Canvas.ZIndex="1000">
                         <Ellipse x:Name="Ellipse" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Width="96" Height="96" Margin="-24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <chats:ChatRecordButton
