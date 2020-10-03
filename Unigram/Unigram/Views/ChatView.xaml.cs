@@ -1686,7 +1686,11 @@ namespace Unigram.Views
                 Focus(FocusState.Programmatic);
                 TextField.Focus(FocusState.Keyboard);
 
-                Collapse_Click(StickersPanel, null);
+                // Do not collapse if keyboard is shown:
+                if (UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse)
+                    Collapse_Click(StickersPanel, null);
+                else if (StickersPanel.Height.Equals(double.NaN))
+                    StickersPanel_ExpandButtonClicked(null, false); // regular size animation
             }
         }
 
