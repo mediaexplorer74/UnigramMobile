@@ -1791,6 +1791,9 @@
     <PRIResource Include="Strings\be\Resources.resw" />
     <Content Include="Assets\Animations\DiscussionGroupSetup.tgs" />
     <Content Include="Assets\Animations\Sun.tgs" />
+    <PRIResource Include="Strings\hi\Additional.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <None Include="Unigram_StoreKey.pfx" />
     <None Include="Unigram_TemporaryKey.pfx" />
   </ItemGroup>

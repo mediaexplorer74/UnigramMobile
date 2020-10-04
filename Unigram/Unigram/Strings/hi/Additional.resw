@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,187 +118,187 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>为宽屏准备的适应性布局</value>
+    <value>वाइड स्क्रीन के लिए अनुकूली लेआउट</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="CallSettingInput" xml:space="preserve">
-    <value>输入设备</value>
+    <value>इनपुट उपकरण</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingInputTitle" xml:space="preserve">
-    <value>麦克风</value>
+    <value>माइक्रोफोन</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutput" xml:space="preserve">
-    <value>输出设备</value>
+    <value>आउटपुट उपकरण</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingOutputTitle" xml:space="preserve">
-    <value>扬声器和耳机</value>
+    <value>स्पीकर्स और हेडफोन</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="CallSettingsTitle" xml:space="preserve">
-    <value>拨号设置</value>
+    <value>कॉल विकल्प</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="Chats" xml:space="preserve">
-    <value>聊天</value>
+    <value>वार्तालाप</value>
   </data>
   <data name="CopyImage" xml:space="preserve">
-    <value>复制图片</value>
+    <value>चित्र प्रतिलिपि</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>剪贴</value>
+    <value>कटौती</value>
   </data>
   <data name="DeletedMessage" xml:space="preserve">
-    <value>已删除消息</value>
+    <value>हटाए गए वार्तालाप</value>
   </data>
   <data name="EditLink" xml:space="preserve">
-    <value>修改链接</value>
+    <value>लिंक संपादन</value>
   </data>
   <data name="Formatting" xml:space="preserve">
-    <value>格式</value>
+    <value>स्वरूपण</value>
   </data>
   <data name="FormattingHide" xml:space="preserve">
-    <value>隐藏格式</value>
+    <value>स्वरूपण छुपाएँ</value>
   </data>
   <data name="FormattingShow" xml:space="preserve">
-    <value>显示格式</value>
+    <value>स्वरूपण दिखाएँ</value>
   </data>
   <data name="InputVolume" xml:space="preserve">
-    <value>输入音量</value>
+    <value>इनपुट आवाज</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>试图通过IPv6连接</value>
+    <value>IPv6 द्वारा जोड़ना प्रयास करें</value>
     <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
-    <value>新闻</value>
+    <value>समाचार</value>
   </data>
   <data name="OriginalMessage" xml:space="preserve">
-    <value>原消息</value>
+    <value>मूल</value>
     <comment>Original message date and time</comment>
   </data>
   <data name="OutputVolume" xml:space="preserve">
-    <value>输出音量</value>
+    <value>आउटपुट आवाज</value>
     <comment>SettingsVoIPPage</comment>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>粘贴</value>
+    <value>चिपकाएँ (पेस्ट)</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>撤销</value>
+    <value>दोहराएँ</value>
   </data>
   <data name="ReplaceEmoji" xml:space="preserve">
-    <value>替换表情</value>
+    <value>इमोजी प्रतिस्थापित करें</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>另存为…</value>
+    <value>इस तरह सहेजें....</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>选择</value>
+    <value>चुनें</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>全选</value>
+    <value>सभी चुनें</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
-    <value>显示格式按钮</value>
+    <value>स्वरूपण बटन दिखाएँ</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ShowInFolder" xml:space="preserve">
-    <value>打开文件夹</value>
+    <value>फ़ोल्डर में दिखाएँ</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
-    <value>系统主题</value>
+    <value>सिस्टम थीम</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>撤销</value>
+    <value>पूर्ववत्</value>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
-    <value>播放动画壁纸</value>
+    <value>एनिमेटेड स्टिकर प्ले करें</value>
     <comment>SettingStickersPage</comment>
   </data>
   <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
-    <value>聊天分类顶置</value>
+    <value>शीर्ष पर फ़ोल्डर्स</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
-    <value>聊天分类左置</value>
+    <value>बाईं ओर फ़ोल्डर्स</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabView" xml:space="preserve">
-    <value>游览分类</value>
+    <value>फ़ोल्डर दृश्य</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsFoldersTabViewHint" xml:space="preserve">
-    <value>如果你有过多的分类，尝试将他们移到左边</value>
+    <value>यदि आपके पास कई फ़ोल्डर हैं, तो उन्हें बाईं ओर ले जाने (मूव) का प्रयास करें।</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SettingsStorageOtherChats" xml:space="preserve">
-    <value>其他聊天</value>
+    <value>अन्य चैट</value>
     <comment>SettingsStoragePage</comment>
   </data>
   <data name="ShareRemoveCaptions" xml:space="preserve">
-    <value>复制时移除媒体文件</value>
+    <value>प्रतियों से मीडिया कैप्शन निकालें</value>
     <comment>SharePopup</comment>
   </data>
   <data name="ShareSendAsCopy" xml:space="preserve">
-    <value>以拷贝的形式发送</value>
+    <value>कॉपी के रूप में भेजना</value>
     <comment>SharePopup</comment>
   </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
-    <value>更改分类文件夹的大小</value>
+    <value>फ़ोल्डर मेनू का वजन</value>
     <comment>FoldersPage</comment>
   </data>
   <data name="SelectColorSystemAccent" xml:space="preserve">
-    <value>使用系统主题颜色</value>
+    <value>सिस्टम एक्सेंट रंग का उपयोग करें</value>
     <comment>SelectColorPopup</comment>
   </data>
   <data name="ConnectWithoutProxy" xml:space="preserve">
-    <value>不使用代理</value>
+    <value>प्रॉक्सी के बिना</value>
     <comment>SettingsProxiesPage</comment>
   </data>
   <data name="SettingsKeyboard" xml:space="preserve">
-    <value>打字</value>
+    <value>टाइपिंग</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsHighlightWords" xml:space="preserve">
-    <value>高亮拼写错误的单词</value>
+    <value>गलत वर्तनी वाले शब्दों को हाइलाइट करना</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsAutocorrectWords" xml:space="preserve">
-    <value>自动修正拼写错误的单词</value>
+    <value>गलत वर्तनी वाले शब्दों को स्वत: सही वर्तनी</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="PlayGifPreview" xml:space="preserve">
-    <value>选中gif时播放gif</value>
+    <value>जीआईएफ चयन पर जीआईएफ पूर्वावलोकन खेलें</value>
     <comment>DiagnosticsPage</comment>
   </data>
   <data name="SettingsEmojiSet" xml:space="preserve">
-    <value>表情包合集</value>
+    <value>इमोजी सेट</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="SettingsEmojiSetPopup" xml:space="preserve">
-    <value>选择表情包集</value>
+    <value>इमोजी सेट चयन</value>
     <comment>SettingsAppearancePage</comment>
   </data>
   <data name="Thumbnails" xml:space="preserve">
-    <value>预览</value>
+    <value>झलक</value>
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="SettingsThumbnailsGif" xml:space="preserve">
-    <value>预览gif动画</value>
+    <value>जीआईएफ एनिमेशन का पूर्वावलोकन करें</value>
     <comment>SettingsDataAndStoragePage</comment>
   </data>
   <data name="LoadAllMedia" xml:space="preserve">
-    <value>加载全部媒体</value>
+    <value>सभी मीडिया लोड करें</value>
     <comment>ChatSharedMediaView</comment>
   </data>
   <data name="AutoDownloadAudioTitle" xml:space="preserve">
-    <value>自动下载语音消息</value>
+    <value>वॉयस संदेश ऑटो-डाउनलोड करें</value>
     <comment>SettingsDataAutoView</comment>
   </data>
 </root>
