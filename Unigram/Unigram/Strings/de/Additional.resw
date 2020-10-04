@@ -294,10 +294,6 @@
     <value>Als Kopie senden</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Als Album senden</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Größe des Ordnermenüs</value>
     <comment>FoldersPage</comment>

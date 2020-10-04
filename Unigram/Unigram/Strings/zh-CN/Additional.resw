@@ -249,10 +249,6 @@
     <value>以拷贝的形式发送</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>以相册的形式发送</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>更改分类文件夹的大小</value>
     <comment>FoldersPage</comment>

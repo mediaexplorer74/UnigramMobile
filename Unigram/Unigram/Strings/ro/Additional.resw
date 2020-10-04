@@ -249,10 +249,6 @@
     <value>Trimiteți ca copie</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Trimiteți ca album</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Dimensiunea meniului de foldere</value>
     <comment>FoldersPage</comment>

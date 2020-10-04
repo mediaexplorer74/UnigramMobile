@@ -250,10 +250,6 @@
     <value>روانه به صورت رونوشت</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>روانه به صورت مجموعه</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>اندازه لیست پوشه ها</value>
     <comment>FoldersPage</comment>

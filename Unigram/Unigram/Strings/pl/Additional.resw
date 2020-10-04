@@ -249,10 +249,6 @@
     <value>Wyślij jako kopię</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Wyślij jako album</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Wielkość paska folderów</value>
     <comment>FoldersPage</comment>

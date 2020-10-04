@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/27/2020 21:02:11
+// 	Generated: 10/04/2020 02:45:12
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -585,17 +585,6 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("ShareSendAsCopy");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Send as album"
-        /// </summary>
-        public static string ShareSendAsAlbum
-        {
-            get
-            {
-                return Resource.GetString("ShareSendAsAlbum");
             }
         }
         

@@ -249,10 +249,6 @@
     <value>Отправить копию</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Отправить альбом</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Размер меню папок</value>
     <comment>FoldersPage</comment>

@@ -249,10 +249,6 @@
     <value>Ուղարկել որպես պատճեն</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Ուղարկել որպես հավաքածու</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Պանակների չափսը</value>
     <comment>FoldersPage</comment>

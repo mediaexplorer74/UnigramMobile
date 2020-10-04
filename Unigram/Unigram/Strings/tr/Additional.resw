@@ -249,10 +249,6 @@
     <value>Kopyayı Sadece Metin Olarak Gönder</value>
     <comment>SharePopup</comment>
   </data>
-  <data name="ShareSendAsAlbum" xml:space="preserve">
-    <value>Albüm Olarak Gönder</value>
-    <comment>SharePopup</comment>
-  </data>
   <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
     <value>Klasör Menüsünün Boyutunu Ayarla</value>
     <comment>FoldersPage</comment>
