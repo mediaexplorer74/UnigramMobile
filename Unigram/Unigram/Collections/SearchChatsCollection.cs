@@ -298,8 +298,8 @@ namespace Unigram.Collections
 
     public interface ISearchChatsFilter
     {
-        public string Text { get; }
-        public string Glyph { get; }
+        string Text { get; }
+        string Glyph { get; }
     }
 
     public class SearchChatsFilterContent : ISearchChatsFilter
