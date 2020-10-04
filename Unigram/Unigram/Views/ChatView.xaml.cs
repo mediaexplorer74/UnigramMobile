@@ -4427,7 +4427,7 @@ namespace Unigram.Views
 
             // Ref: Send_ContextRequested
             if (btnSendMessage.Visibility == Visibility.Visible && 
-                ViewModel.Chat != null && ViewModel.Type == DialogType.Normal)
+                ViewModel.Chat != null && ViewModel.Type == DialogType.History)
             {
                 flyout.Items.Add(new MenuFlyoutSeparator());
                 var self = ViewModel.CacheService.IsSavedMessages(ViewModel.Chat);
