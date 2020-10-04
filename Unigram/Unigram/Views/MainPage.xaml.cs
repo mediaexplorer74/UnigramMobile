@@ -1744,6 +1744,8 @@ namespace Unigram.Views
 
         #region Search
 
+        private bool _searchCollapsed = true;
+
         private void ShowHideSearch(bool show)
         {
             if ((show && DialogsPanel.Visibility == Visibility.Collapsed) || (!show && (DialogsPanel.Visibility == Visibility.Visible || _searchCollapsed)))

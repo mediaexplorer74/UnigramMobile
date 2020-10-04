@@ -781,7 +781,7 @@ namespace Unigram.ViewModels
         private async void MessageThreadExecute(MessageViewModel message)
         {
             var response = await ProtoService.SendAsync(new GetMessageThread(message.ChatId, message.Id));
-            if (response is MessageThreadInfo info)
+            if (response is MessageThreadInfo)
             {
                 NavigationService.NavigateToThread(message.ChatId, message.Id, message.Id);
             }
