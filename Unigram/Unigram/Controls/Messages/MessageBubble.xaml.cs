@@ -259,7 +259,7 @@ namespace Unigram.Controls.Messages
 
         public void UpdateMessageReply(MessageViewModel message)
         {
-            if (Reply == null && message.ReplyToMessageId != 0)
+            if (Reply == null && message.ReplyToMessageId != 0 && message.ReplyToMessageState != ReplyToMessageState.Hidden)
             {
                 FindName("Reply");
             }
@@ -541,7 +541,7 @@ namespace Unigram.Controls.Messages
                 }
 
                 paragraph.Visibility = Visibility.Collapsed;
-                parent.Visibility = message.ReplyToMessageId != 0 ? Visibility.Visible : Visibility.Collapsed;
+                parent.Visibility = (message.ReplyToMessageId != 0 && message.ReplyToMessageState != ReplyToMessageState.Hidden) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -707,7 +707,7 @@ namespace Unigram.Controls.Messages
                 {
                     top = 4;
                 }
-                if ((message.ForwardInfo != null && !message.IsSaved()) || message.ViaBotUserId != 0 || message.ReplyToMessageId != 0 || message.IsChannelPost)
+                if ((message.ForwardInfo != null && !message.IsSaved()) || message.ViaBotUserId != 0 || (message.ReplyToMessageId != 0 && message.ReplyToMessageState != ReplyToMessageState.Hidden) || message.IsChannelPost)
                 {
                     top = 4;
                 }
@@ -1179,7 +1179,7 @@ namespace Unigram.Controls.Messages
             if (AdjustEmojis(span, text))
             {
                 Message.FlowDirection = FlowDirection.LeftToRight;
-                adjust = message.ReplyToMessageId == 0 && message.Content is MessageText;
+                adjust = (message.ReplyToMessageId == 0 || message.ReplyToMessageState == ReplyToMessageState.Hidden) && message.Content is MessageText;
             }
             else if (ApiInfo.FlowDirection == FlowDirection.LeftToRight && MessageHelper.IsAnyCharacterRightToLeft(text))
             {

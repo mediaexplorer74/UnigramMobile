@@ -1689,7 +1689,7 @@ namespace Unigram.ViewModels
                 if (thread?.ChatId == message.ReplyInChatId &&
                     thread?.Messages[0].Id == message.ReplyToMessageId)
                 {
-                    message.ReplyToMessageId = 0;
+                    message.ReplyToMessageState = ReplyToMessageState.Hidden;
                     continue;
                 }
 
@@ -3643,13 +3643,6 @@ namespace Unigram.ViewModels
 
             return false;
         }
-    }
-
-    public enum ReplyToMessageState
-    {
-        None,
-        Loading,
-        Deleted
     }
 
     [Flags]
