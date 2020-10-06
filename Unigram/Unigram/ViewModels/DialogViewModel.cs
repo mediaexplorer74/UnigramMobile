@@ -416,6 +416,11 @@ namespace Unigram.ViewModels
         {
             get
             {
+                if (_type != DialogType.History)
+                {
+                    return 0;
+                }
+
                 return _chat?.UnreadCount ?? 0;
             }
         }
