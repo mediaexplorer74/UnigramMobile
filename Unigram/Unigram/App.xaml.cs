@@ -87,7 +87,7 @@ namespace Unigram
                 }
                 else
                 {
-                    Client.Execute(new AddLogMessage(0, "Unhandled exception:\n" + args.Exception.ToString()));
+                    Client.Execute(new AddLogMessage(1, "Unhandled exception:\n" + args.Exception.ToString()));
                 }
 
 #if !DEBUG
