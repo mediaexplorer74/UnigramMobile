@@ -1132,8 +1132,8 @@ namespace Unigram.ViewModels
                     var thread = _thread;
                     if (thread != null)
                     {
-                        lastReadMessageId = _thread.Messages[0].InteractionInfo.ReplyInfo.LastReadInboxMessageId;
-                        lastMessageId = _thread.Messages[0].InteractionInfo.ReplyInfo.LastMessageId;
+                        lastReadMessageId = _thread.Messages[_thread.Messages.Count - 1].InteractionInfo.ReplyInfo.LastReadInboxMessageId;
+                        lastMessageId = _thread.Messages[_thread.Messages.Count - 1].InteractionInfo.ReplyInfo.LastMessageId;
                     }
                     else
                     {
@@ -1687,7 +1687,7 @@ namespace Unigram.ViewModels
             {
                 var thread = _thread;
                 if (thread?.ChatId == message.ReplyInChatId &&
-                    thread?.Messages[0].Id == message.ReplyToMessageId)
+                    thread?.Messages[thread.Messages.Count - 1].Id == message.ReplyToMessageId)
                 {
                     message.ReplyToMessageState = ReplyToMessageState.Hidden;
                     continue;
@@ -1807,8 +1807,8 @@ namespace Unigram.ViewModels
                 var thread = _thread;
                 if (thread != null)
                 {
-                    lastReadMessageId = _thread.Messages[0].InteractionInfo?.ReplyInfo?.LastReadInboxMessageId ?? 0;
-                    lastMessageId = _thread.Messages[0].InteractionInfo?.ReplyInfo?.LastMessageId ?? long.MaxValue;
+                    lastReadMessageId = _thread.Messages[_thread.Messages.Count - 1].InteractionInfo.ReplyInfo.LastReadInboxMessageId;
+                    lastMessageId = _thread.Messages[_thread.Messages.Count - 1].InteractionInfo.ReplyInfo.LastMessageId;
                 }
                 else
                 {
@@ -2044,7 +2044,7 @@ namespace Unigram.ViewModels
                         var thread = _thread;
                         if (thread != null)
                         {
-                            lastReadMessageId = thread.Messages[0].InteractionInfo.ReplyInfo.LastReadInboxMessageId;
+                            lastReadMessageId = thread.Messages[thread.Messages.Count - 1].InteractionInfo.ReplyInfo.LastReadInboxMessageId;
                         }
                         else
                         {
