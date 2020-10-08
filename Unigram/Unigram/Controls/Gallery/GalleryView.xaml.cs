@@ -637,11 +637,6 @@ namespace Unigram.Controls.Gallery
                 _request.RequestRelease();
                 _request = null;
             }
-
-            if (ApiInfo.IsUniversalApiContract5Present) //if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.MediaTransportControls", "ShowAndHideAutomatically"))
-            {
-                Transport.ShowAndHideAutomatically = false;
-            }
         }
 
         private void ImageView_Click(object sender, RoutedEventArgs e)
