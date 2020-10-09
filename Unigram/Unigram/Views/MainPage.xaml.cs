@@ -168,6 +168,9 @@ namespace Unigram.Views
             TitleBarrr.Visibility = sender.IsVisible ? Visibility.Visible : Visibility.Collapsed;
             TitleBarrr.Height = sender.Height;
             TitleBarrr.ColumnDefinitions[0].Width = new GridLength(Math.Max(sender.SystemOverlayLeftInset, 6), GridUnitType.Pixel);
+            TitleBarrr.ColumnDefinitions[2].Width = new GridLength(Math.Max(sender.SystemOverlayRightInset, 6), GridUnitType.Pixel);
+
+            StateLabel.FlowDirection = sender.SystemOverlayLeftInset > 0 ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             sender.IsVisibleChanged += CoreTitleBar_LayoutMetricsChanged;
             sender.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged;
@@ -178,6 +181,9 @@ namespace Unigram.Views
             TitleBarrr.Visibility = sender.IsVisible ? Visibility.Visible : Visibility.Collapsed;
             TitleBarrr.Height = sender.Height;
             TitleBarrr.ColumnDefinitions[0].Width = new GridLength(Math.Max(sender.SystemOverlayLeftInset, 6), GridUnitType.Pixel);
+            TitleBarrr.ColumnDefinitions[2].Width = new GridLength(Math.Max(sender.SystemOverlayRightInset, 6), GridUnitType.Pixel);
+
+            StateLabel.FlowDirection = sender.SystemOverlayLeftInset > 0 ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         }
 
         private void InitializeLocalization()
@@ -488,18 +494,18 @@ namespace Unigram.Views
 
         private void ShowState(string text)
         {
-            Status.IsIndeterminate = true;
-            StatusLabel.Text = text;
+            State.IsIndeterminate = true;
+            StateLabel.Text = text;
 
-            var peer = FrameworkElementAutomationPeer.FromElement(StatusLabel);
+            var peer = FrameworkElementAutomationPeer.FromElement(StateLabel);
             peer.RaiseAutomationEvent(AutomationEvents.LiveRegionChanged);
         }
 
         private void HideStatus()
         {
-            Status.IsIndeterminate = false;
+            State.IsIndeterminate = false;
 #if DEBUG && !MOCKUP
-            StatusLabel.Text = Strings.Resources.AppName;
+            StateLabel.Text = Strings.Resources.AppName;
 #else
             StatusLabel.Text = "Unigram";
 #endif
@@ -1338,7 +1344,7 @@ namespace Unigram.Views
 
                 SetTitleBarVisibility(Visibility.Visible);
                 Header.Visibility = Visibility.Visible;
-                StatusLabel.Visibility = Visibility.Visible;
+                StateLabel.Visibility = Visibility.Visible;
             }
             else
             {
@@ -1358,7 +1364,7 @@ namespace Unigram.Views
 
                 SetTitleBarVisibility(MasterDetail.NavigationService.CurrentPageType == typeof(BlankPage) ? Visibility.Collapsed : Visibility.Visible);
                 Header.Visibility = MasterDetail.CurrentState == MasterDetailState.Expanded ? Visibility.Visible : Visibility.Collapsed;
-                StatusLabel.Visibility = MasterDetail.CurrentState == MasterDetailState.Expanded ? Visibility.Visible : Visibility.Collapsed;
+                StateLabel.Visibility = MasterDetail.CurrentState == MasterDetailState.Expanded ? Visibility.Visible : Visibility.Collapsed;
             }
 
             UpdatePaneToggleButtonVisibility();
