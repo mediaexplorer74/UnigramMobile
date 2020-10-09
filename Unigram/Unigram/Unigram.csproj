@@ -449,6 +449,7 @@
     <Compile Include="Controls\PollOptionControl.xaml.cs">
       <DependentUpon>PollOptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PrefixTextBox.cs" />
     <Compile Include="Controls\PrivacyRadioButton.cs" />
     <Compile Include="Controls\ProfilePicture.cs" />
     <Compile Include="Controls\ProxyStatusControl.xaml.cs">
