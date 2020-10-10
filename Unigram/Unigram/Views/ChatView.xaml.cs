@@ -26,6 +26,7 @@ using Unigram.ViewModels.Chats;
 using Unigram.ViewModels.Delegates;
 using Unigram.ViewModels.Users;
 using Unigram.Views.Chats;
+using Unigram.Views.Popups;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Devices.Input;
@@ -2143,8 +2144,8 @@ namespace Unigram.Views
                         return;
                     }
 
+                    ViewModel.ProtoService.CancelDownloadFile(file.Id);
                     ViewModel.ProtoService.Send(new DeleteFileW(file.Id));
-
                 }), message, "Delete from disk", new FontIcon { Glyph = Icons.Delete });
 #endif
             }
@@ -2932,6 +2933,28 @@ namespace Unigram.Views
             }
         }
 
+        private async void Date_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button.CommandParameter is int messageDate)
+            {
+                var date = BindConvert.Current.DateTime(messageDate);
+
+                var dialog = new CalendarPopup();
+                dialog.MaxDate = DateTimeOffset.Now.Date;
+                dialog.SelectedDates.Add(date);
+
+                var confirm = await dialog.ShowQueuedAsync();
+                if (confirm == ContentDialogResult.Primary && dialog.SelectedDates.Count > 0)
+                {
+                    var first = dialog.SelectedDates.FirstOrDefault();
+                    var offset = first.Date.ToTimestamp();
+
+                    await ViewModel.LoadDateSliceAsync(offset);
+                }
+            }
+        }
+
         private void StickersPanel_ExpandButtonClicked(object sender, bool expand)
         {
             if (expand)
@@ -3231,7 +3254,7 @@ namespace Unigram.Views
         {
             if (ViewModel.Type == DialogType.Thread)
             {
-                var message = ViewModel.Thread?.Messages.FirstOrDefault();
+                var message = ViewModel.Thread?.Messages.LastOrDefault();
                 if (message == null || message.InteractionInfo?.ReplyInfo == null)
                 {
                     return;
