@@ -258,7 +258,12 @@ namespace Unigram.Controls.Gallery
                     Transport.Focus(FocusState.Programmatic);
 
                     Loaded -= handler;
-                    await ViewModel?.OnNavigatedToAsync(parameter, NavigationMode.New, null);
+
+                    var viewModel = ViewModel;
+                    if (viewModel != null)
+                    {
+                        await viewModel.OnNavigatedToAsync(parameter, NavigationMode.New, null);
+                    }
                 });
 
                 Loaded += handler;
@@ -1019,7 +1024,7 @@ namespace Unigram.Controls.Gallery
 
         private async void Compact_Click(object sender, RoutedEventArgs e)
         {
-            var item = ViewModel.SelectedItem;
+            var item = ViewModel?.SelectedItem;
             if (item == null)
             {
                 return;
