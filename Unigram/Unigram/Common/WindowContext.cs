@@ -50,49 +50,28 @@ namespace Unigram.Common
 
             UpdateTitleBar();
 
-            var app = App.Current as App;
-            app.UISettings.ColorValuesChanged += UISettings_ColorValuesChanged;
+            window.Activated += OnActivated;
+        }
 
-            _window.CoreWindow.Closed += (s, e) =>
+        private static object _activeLock = new object();
+        public static TLWindowContext ActiveWindow { get; private set; }
+
+        private void OnActivated(object sender, WindowActivatedEventArgs e)
+        {
+            lock (_activeLock)
             {
-                try
+                if (e.WindowActivationState != CoreWindowActivationState.Deactivated)
                 {
-                    _placeholderHelper = null;
-                    app.UISettings.ColorValuesChanged -= UISettings_ColorValuesChanged;
+                    ActiveWindow = this;
                 }
-                catch { }
-            };
-            _window.Closed += (s, e) =>
-            {
-                try
+                else if (ActiveWindow == this)
                 {
-                    _placeholderHelper = null;
-                    app.UISettings.ColorValuesChanged -= UISettings_ColorValuesChanged;
+                    ActiveWindow = null;
                 }
-                catch { }
-            };
+            }
         }
 
         public int Id => _id;
-
-        public bool IsChatOpen(int session, long chatId)
-        {
-            return Dispatcher.Dispatch(() =>
-            {
-                var service = this.NavigationServices?.GetByFrameId("Main" + session);
-                if (service == null)
-                {
-                    return false;
-                }
-
-                if (ActivationMode == CoreWindowActivationMode.ActivatedInForeground && service.CurrentPageType == typeof(ChatPage) && (long)service.CurrentPageParam == chatId)
-                {
-                    return true;
-                }
-
-                return false;
-            });
-        }
 
         #region UI
 
@@ -377,8 +356,12 @@ namespace Unigram.Common
 
                 if (App.ShareOperation != null)
                 {
-                    App.ShareOperation.ReportCompleted();
-                    App.ShareOperation = null;
+                    try
+                    {
+                        App.ShareOperation.ReportCompleted();
+                        App.ShareOperation = null;
+                    }
+                    catch { }
                 }
 
                 if (App.ShareWindow != null)

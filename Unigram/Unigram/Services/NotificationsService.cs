@@ -14,6 +14,7 @@ using Unigram.Controls.Messages;
 using Unigram.Converters;
 using Unigram.Native.Tasks;
 using Unigram.Navigation;
+using Unigram.Views;
 using Windows.ApplicationModel.AppService;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -64,7 +65,7 @@ namespace Unigram.Services
         private readonly DisposableMutex _registrationLock;
         private bool _alreadyRegistered;
 
-        private bool _suppress;
+        private bool? _suppress;
 
         public NotificationsService(IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, ISessionService sessionService, IEventAggregator aggregator)
         {
@@ -311,11 +312,11 @@ namespace Unigram.Services
         {
             // We want to ignore both delayed and unreceived notifications,
             // as they're the result of update difference on sync.
-            if (update.HaveDelayedNotifications && update.HaveUnreceivedNotifications)
+            if (_suppress == null && update.HaveDelayedNotifications && update.HaveUnreceivedNotifications)
             {
                 _suppress = true;
             }
-            else if (_suppress && !update.HaveDelayedNotifications && !update.HaveUnreceivedNotifications)
+            else if (_suppress == true && !update.HaveDelayedNotifications && !update.HaveUnreceivedNotifications)
             {
                 _suppress = false;
             }
@@ -334,7 +335,7 @@ namespace Unigram.Services
 
         public async void Handle(UpdateNotificationGroup update)
         {
-            if (_suppress)
+            if (_suppress == true)
             {
                 // This is an unsynced message, we don't want to show a notification for it as it has been probably pushed already by WNS
                 return;
@@ -436,13 +437,33 @@ namespace Unigram.Services
 
         private void Update(Chat chat, Action action)
         {
-            var open = WindowContext.ActiveWrappers.Cast<TLWindowContext>().Any(x => x.IsChatOpen(_protoService.SessionId, chat.Id));
-            if (open)
+            try
             {
-                return;
-            }
+                var active = TLWindowContext.ActiveWindow;
+                if (active == null)
+                {
+                    action();
+                    return;
+                }
 
-            action();
+                var service = active.NavigationServices?.GetByFrameId($"Main{_protoService.SessionId}");
+                if (service == null)
+                {
+                    action();
+                    return;
+                }
+
+                if (service.CurrentPageType == typeof(ChatPage) && (long)service.CurrentPageParam == chat.Id)
+                {
+                    return;
+                }
+
+                action();
+            }
+            catch
+            {
+                action();
+            }
         }
 
         private ConcurrentDictionary<int, Message> _files = new ConcurrentDictionary<int, Message>();
