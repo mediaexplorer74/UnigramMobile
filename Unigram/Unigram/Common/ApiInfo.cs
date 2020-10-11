@@ -43,10 +43,7 @@ namespace Unigram.Common
 
         //private static bool? _canUseSplitViewPaneOpeningEvent;
         public static bool CanUseSplitViewPaneOpeningEvent => IsUniversalApiContract5Present;// (_canUseSplitViewPaneOpeningEvent = _canUseSplitViewPaneOpeningEvent ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.Controls.SplitView", "PaneOpening")) ?? false; //Note: 16299, UniversalApiContract v5
-
-        //private static bool? _canShareContacts;
-        public static bool CanShareContacts => IsUniversalApiContract5Present; // (_canShareContacts = _canShareContacts ?? ApiInformation.IsPropertyPresent("Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation", "Contacts")) ?? false; //Note: 16299, UniversalApiContract v5
-
+                
         public static bool IsUniversalApiContract7Present => CanUseAccelerators;
 
         private static bool? _isUniversalApiContract6Present;
@@ -54,10 +51,7 @@ namespace Unigram.Common
 
         private static bool? _isUniversalApiContract5Present;
         public static bool IsUniversalApiContract5Present => (_isUniversalApiContract5Present = _isUniversalApiContract5Present ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5)) ?? false;
-
-        private static bool? _canUseMaxLength;
-        public static bool CanUseMaxLength => (_canUseMaxLength = _canUseMaxLength ?? ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.RichEditBox", "MaxLength")) ?? false; //Note: 15063, UniversalApiContract v4
-
+                
         private static bool? _hasStatusBar;
         public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;
 

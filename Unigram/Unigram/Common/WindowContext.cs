@@ -14,7 +14,6 @@ using Windows.ApplicationModel.Contacts;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
-using Windows.Foundation.Metadata;
 using Windows.Media.SpeechRecognition;
 using Windows.UI;
 using Windows.UI.Core;
@@ -292,21 +291,14 @@ namespace Unigram.Common
 
                 var query = "tg://";
 
-                if (ApiInfo.CanShareContacts)
+                var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
+                if (contactId is int userId)
                 {
-                    var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
-                    if (contactId is int userId)
+                    var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
+                    if (response is Chat chat)
                     {
-                        var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
-                        if (response is Chat chat)
-                        {
-                            query = $"ms-contact-profile://meh?ContactRemoteIds=u" + userId;
-                            App.DataPackages[chat.Id] = package.GetView();
-                        }
-                        else
-                        {
-                            App.DataPackages[0] = package.GetView();
-                        }
+                        query = $"ms-contact-profile://meh?ContactRemoteIds=u" + userId;
+                        App.DataPackages[chat.Id] = package.GetView();
                     }
                     else
                     {
