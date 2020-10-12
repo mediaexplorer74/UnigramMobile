@@ -1337,8 +1337,8 @@ namespace Unigram.ViewModels
                 await ProcessEmojiAsync(chat, messages);
             }
 
-            ProcessReplies(chat, messages);
             ProcessAlbums(chat, messages);
+            ProcessReplies(chat, messages);
             ProcessFiles(chat, messages);
         }
 
