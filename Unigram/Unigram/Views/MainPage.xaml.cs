@@ -2028,7 +2028,7 @@ namespace Unigram.Views
                     var grid = content.Children[1] as Grid;
 
                     var title = grid.Children[0] as TextBlock;
-                    title.Style = App.Current.Resources[result.Chat.Type is ChatTypeSecret ? "SecretBodyTextBlockStyle" : "BodyTextBlockStyle"] as Style;
+                    title.Style = App.Current.Resources[result?.Chat?.Type is ChatTypeSecret ? "SecretBodyTextBlockStyle" : "BodyTextBlockStyle"] as Style;
 
                     if (result.Chat != null)
                     {
