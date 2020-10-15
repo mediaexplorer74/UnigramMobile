@@ -16,65 +16,16 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
-using Windows.Foundation.Metadata;
 using Windows.System;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 
 namespace Unigram.Common
 {
     public class MessageHelper
     {
-        #region Text
-        public static string GetText(DependencyObject obj)
-        {
-            return (string)obj.GetValue(TextProperty);
-        }
-
-        public static void SetText(DependencyObject obj, string value)
-        {
-            obj.SetValue(TextProperty, value);
-        }
-
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.RegisterAttached("Text", typeof(string), typeof(MessageHelper), new PropertyMetadata(null, OnTextChanged));
-
-        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var sender = d as FrameworkElement;
-            var newValue = e.NewValue as string;
-            var oldValue = e.OldValue as string;
-
-            //sender.IsTextSelectionEnabled = false;
-            sender.Visibility = string.IsNullOrWhiteSpace(newValue) ? Visibility.Collapsed : Visibility.Visible;
-
-            if (oldValue == newValue) return;
-
-            var foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x0f, 0x7d, 0xc7));
-            var paragraph = new Span();
-            paragraph.Inlines.Add(new Run { Text = newValue });
-            //ReplaceAll(null, newValue, paragraph, foreground, true);
-
-            if (sender is TextBlock textBlock)
-            {
-                textBlock.Inlines.Clear();
-                textBlock.Inlines.Add(paragraph);
-            }
-            else if (sender is RichTextBlock richBlock)
-            {
-                var block = new Paragraph();
-                block.Inlines.Add(paragraph);
-                richBlock.Blocks.Clear();
-                richBlock.Blocks.Add(block);
-            }
-        }
-        #endregion
-
         public static bool IsAnyCharacterRightToLeft(string s)
         {
             if (s == null)
@@ -346,6 +297,20 @@ namespace Unigram.Common
                 channel = query.GetParameter("channel");
                 post = query.GetParameter("post");
             }
+            else if (scheme.AbsoluteUri.StartsWith("tg:settings") || scheme.AbsoluteUri.StartsWith("tg://settings"))
+            {
+                if (scheme.Segments.Length == 2)
+                {
+                    switch (scheme.Segments[1])
+                    {
+                        case "themes":
+                        case "devices":
+                        case "folders":
+                        case "change_number":
+                            break;
+                    }
+                }
+            }
 
             if (message != null && message.StartsWith("@"))
             {
@@ -374,7 +339,7 @@ namespace Unigram.Common
             }
             else if (message != null)
             {
-                Logs.Logger.Warning(Logs.Target.API, "NavigateToShare does not exist anymore. ;(");
+                NavigateToShare(message, hasUrl);
             }
             else if (phoneCode != null)
             {
@@ -485,7 +450,31 @@ namespace Unigram.Common
                             }
                             else if (username.Equals("share"))
                             {
-                                Logs.Logger.Warning(Logs.Target.API, "NavigateToShare does not exist anymore. ;(");
+                                var hasUrl = false;
+                                var text = query.GetParameter("url");
+                                if (text == null)
+                                {
+                                    text = "";
+                                }
+                                if (query.GetParameter("text") != null)
+                                {
+                                    if (text.Length > 0)
+                                    {
+                                        hasUrl = true;
+                                        text += "\n";
+                                    }
+                                    text += query.GetParameter("text");
+                                }
+                                if (text.Length > 4096 * 4)
+                                {
+                                    text = text.Substring(0, 4096 * 4);
+                                }
+                                while (text.EndsWith("\n"))
+                                {
+                                    text = text.Substring(0, text.Length - 1);
+                                }
+
+                                NavigateToShare(text, hasUrl);
                             }
                             else if (username.Equals("setlanguage", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(post))
                             {
@@ -671,6 +660,11 @@ namespace Unigram.Common
 
                 await MessagePopup.ShowAsync(string.Format(Strings.Resources.OtherLoginCode, phoneCode), Strings.Resources.AppName, Strings.Resources.OK);
             }
+        }
+
+        public static async void NavigateToShare(string text, bool hasUrl)
+        {
+            await SharePopup.GetForCurrentView().ShowAsync(text, hasUrl);
         }
 
         public static async void NavigateToProxy(IProtoService protoService, string server, int port, string username, string password, string secret)
@@ -989,24 +983,18 @@ namespace Unigram.Common
                     if (type == null || type is TextEntityTypeUrl || type is TextEntityTypeTextUrl)
                     {
                         var open = new MenuFlyoutItem { Text = Strings.Resources.Open, DataContext = link, Icon = new FontIcon { Glyph = Icons.OpenInNewWindow } };
-                        open.Click += LinkOpen_Click;
-                        flyout.Items.Add(open);
-                    }
-                    else if (type is TextEntityTypeBankCardNumber)
-                    {
-                        var response = await message.ProtoService.SendAsync(new GetBankCardInfo(link));
-                        if (response is BankCardInfo info)
+                        
+                        var action = GetEntityAction(hyperlink);
+                        if (action != null)
                         {
-                            var title = new MenuFlyoutItem { Text = info.Title, IsEnabled = false, Icon = new FontIcon { Glyph = Icons.OpenInNewWindow } };
-                            flyout.Items.Add(title);
-
-                            foreach (var action in info.Actions)
-                            {
-                                var open = new MenuFlyoutItem { Text = action.Text, DataContext = link, Icon = new FontIcon { Glyph = Icons.OpenInNewWindow } };
-                                open.Click += LinkOpen_Click;
-                                flyout.Items.Add(open);
-                            }
+                            open.Click += (s, args) => action();
                         }
+                        else
+                        {
+                            open.Click += LinkOpen_Click;
+                        }
+
+                        flyout.Items.Add(open);
                     }
 
                     var copy = new MenuFlyoutItem { Text = Strings.Resources.Copy, DataContext = link, Icon = new FontIcon { Glyph = Icons.Copy } };
@@ -1015,7 +1003,7 @@ namespace Unigram.Common
 
                     if (ApiInfo.CanUseFlyoutShowOptions)
                     {
-                        // We don't want to unfocus the text are when the context menu gets opened
+                        // We don't want to unfocus the text when the context menu gets opened
                         flyout.ShowAt(sender, new FlyoutShowOptions { Position = point, ShowMode = FlyoutShowMode.Transient });
                     }
                     else
@@ -1085,6 +1073,25 @@ namespace Unigram.Common
             dataPackage.SetText(entity);
             ClipboardEx.TrySetContent(dataPackage);
         }
+
+
+
+        public static Action GetEntityAction(DependencyObject obj)
+        {
+            return (Action)obj.GetValue(EntityActionProperty);
+        }
+
+        public static void SetEntityAction(DependencyObject obj, Action value)
+        {
+            obj.SetValue(EntityActionProperty, value);
+        }
+
+        public static readonly DependencyProperty EntityActionProperty =
+            DependencyProperty.RegisterAttached("EntityAction", typeof(Action), typeof(MessageHelper), new PropertyMetadata(null));
+
+
+
+
 
         public static string GetEntityData(DependencyObject obj)
         {
