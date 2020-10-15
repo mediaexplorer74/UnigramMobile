@@ -38,7 +38,7 @@ namespace Unigram.Navigation
 
         public bool IsInMainView { get; }
 
-        public object Content => Dispatcher.Dispatch(() => Window.Content);
+        public UIElement Content => Window.Content;
 
         public readonly static List<WindowContext> ActiveWrappers = new List<WindowContext>();
 
@@ -48,12 +48,6 @@ namespace Unigram.Navigation
 
         public static WindowContext Current(INavigationService nav) => ActiveWrappers.FirstOrDefault(x => x.NavigationServices.Contains(nav));
 
-        public DisplayInformation DisplayInformation() => Dispatcher.Dispatch(() => Windows.Graphics.Display.DisplayInformation.GetForCurrentView());
-
-        public ApplicationView ApplicationView() => Dispatcher.Dispatch(() => Windows.UI.ViewManagement.ApplicationView.GetForCurrentView());
-
-        public UIViewSettings UIViewSettings() => Dispatcher.Dispatch(() => Windows.UI.ViewManagement.UIViewSettings.GetForCurrentView());
-
         public WindowContext(Window window)
         {
             if (Current(window) != null)
@@ -61,7 +55,7 @@ namespace Unigram.Navigation
                 throw new Exception("Windows already has a wrapper; use Current(window) to fetch.");
             }
             Window = window;
-            Dispatcher = new DispatcherWrapper(window.Dispatcher);
+            Dispatcher = new DispatcherContext(window.Dispatcher);
             IsInMainView = CoreApplication.MainView == CoreApplication.GetCurrentView();
             ActiveWrappers.Add(this);
             window.CoreWindow.Closed += (s, e) =>
@@ -78,7 +72,7 @@ namespace Unigram.Navigation
 
         public void Close() { Window.Close(); }
         public Window Window { get; }
-        public DispatcherWrapper Dispatcher { get; }
+        public DispatcherContext Dispatcher { get; }
         public NavigationServiceList NavigationServices { get; } = new NavigationServiceList();
 
         public event TypedEventHandler<CoreDispatcher, AcceleratorKeyEventArgs> AcceleratorKeyActivated;
