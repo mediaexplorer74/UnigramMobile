@@ -129,7 +129,11 @@ namespace Unigram.Entities
         {
             if (_bitmap == null)
             {
-                _bitmap = await ImageHelper.GetPreviewBitmapAsync(File);
+                try
+                {
+                    _bitmap = await ImageHelper.GetPreviewBitmapAsync(File);
+                }
+                catch { }
             }
 
             if (_bitmap == null)
@@ -139,7 +143,14 @@ namespace Unigram.Entities
 
             if (_editState is BitmapEditState editState && !editState.IsEmpty)
             {
-                _preview = await ImageHelper.CropAndPreviewAsync(File, editState);
+                try
+                {
+                    _preview = await ImageHelper.CropAndPreviewAsync(File, editState);
+                }
+                catch
+                {
+                    _preview = _bitmap;
+                }
             }
             else
             {
