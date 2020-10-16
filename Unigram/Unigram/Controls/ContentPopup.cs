@@ -62,7 +62,7 @@ namespace Unigram.Controls
 
         private void ApplicationView_VisibleBoundsChanged(ApplicationView sender, object args = null)
         {
-            if (Content is FrameworkElement element)
+            if (Content is FrameworkElement element && !IsFullWindow)
             {
                 element.MaxHeight = sender.VisibleBounds.Height - 32 - 32 - 48 - 48;
             }
@@ -88,6 +88,8 @@ namespace Unigram.Controls
         {
             RenderTransform = null;
         }
+
+        public bool IsFullWindow { get; set; } = false;
 
         public bool FocusPrimaryButton { get; set; } = true;
         public bool IsLightDismissEnabled { get; set; } = true;
