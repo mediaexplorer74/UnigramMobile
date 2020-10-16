@@ -482,9 +482,11 @@ namespace Unigram
         {
             Logs.Logger.Info(Logs.Target.Lifecycle, "OnResuming");
 
-            //#if DEBUG
-            //await VoIPConnection.Current.ConnectAsync();
-            //#endif
+            // #1225: Will this work? No one knows.
+            foreach (var network in TLContainer.Current.ResolveAll<INetworkService>())
+            {
+                network.Reconnect();
+            }
 
             base.OnResuming(s, e, previousExecutionState);
         }
