@@ -167,6 +167,8 @@ namespace Unigram.Views
             InitializeAutomation();
             InitializeStickers();
 
+            PinnedMessage.InitializeParent(Clipper);
+
             Messages.RegisterPropertyChangedCallback(ListViewBase.SelectionModeProperty, List_SelectionModeChanged);
 
             _messageVisual = ElementCompositionPreview.GetElementVisual(TextField);
@@ -408,7 +410,7 @@ namespace Unigram.Views
 
         private void StickersPanel_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+            if (e.Pointer.PointerDeviceType != PointerDeviceType.Touch)
             {
                 _stickersTimer.Start();
             }
@@ -3502,15 +3504,7 @@ namespace Unigram.Views
 
         public void UpdatePinnedMessage(Chat chat, MessageViewModel message, bool loading)
         {
-            if (message == null && !loading)
-            {
-                PinnedMessagePanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                PinnedMessagePanel.Visibility = Visibility.Visible;
-                PinnedMessage.UpdateMessage(chat, chat.PinnedMessageId, message, loading);
-            }
+            PinnedMessage.UpdateMessage(chat, chat.PinnedMessageId, message, loading);
         }
 
         public void UpdateCallbackQueryAnswer(Chat chat, MessageViewModel message)
