@@ -1021,7 +1021,19 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                await LoadMessageSliceAsync(null, chat.LastMessage?.Id ?? long.MaxValue, VerticalAlignment.Bottom, disableAnimation: false);
+                long lastMessageId;
+
+                var thread = _thread;
+                if (thread != null)
+                {
+                    lastMessageId = thread.ReplyInfo?.LastMessageId ?? long.MaxValue;
+                }
+                else
+                {
+                    lastMessageId = chat.LastMessage?.Id ?? long.MaxValue;
+                }
+
+                await LoadMessageSliceAsync(null, lastMessageId, VerticalAlignment.Bottom, disableAnimation: false);
             }
 
             TextField?.Focus(FocusState.Programmatic);
@@ -1139,8 +1151,8 @@ namespace Unigram.ViewModels
                     var thread = _thread;
                     if (thread != null)
                     {
-                        lastReadMessageId = _thread.ReplyInfo?.LastReadInboxMessageId ?? long.MaxValue;
-                        lastMessageId = _thread.ReplyInfo?.LastMessageId ?? long.MaxValue;
+                        lastReadMessageId = thread.ReplyInfo?.LastReadInboxMessageId ?? long.MaxValue;
+                        lastMessageId = thread.ReplyInfo?.LastMessageId ?? long.MaxValue;
                     }
                     else
                     {
@@ -1829,8 +1841,8 @@ namespace Unigram.ViewModels
                 var thread = _thread;
                 if (thread != null)
                 {
-                    lastReadMessageId = _thread.ReplyInfo?.LastReadInboxMessageId ?? long.MaxValue;
-                    lastMessageId = _thread.ReplyInfo?.LastMessageId ?? long.MaxValue;
+                    lastReadMessageId = thread.ReplyInfo?.LastReadInboxMessageId ?? long.MaxValue;
+                    lastMessageId = thread.ReplyInfo?.LastMessageId ?? long.MaxValue;
                 }
                 else
                 {
