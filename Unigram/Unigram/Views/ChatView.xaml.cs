@@ -191,8 +191,7 @@ namespace Unigram.Views
                 _dateHeaderTimer.Tick += (s, args) =>
                 {
                     _dateHeaderTimer.Stop();
-
-                    VisualUtilities.SetIsVisible(DateHeaderPanel, false);
+                    ShowHideDateHeader(false, true);
                 };
 
                 _dateHeaderPanel = ElementCompositionPreview.GetElementVisual(DateHeaderRelative);
@@ -1788,9 +1787,13 @@ namespace Unigram.Views
             {
                 ViewModel.OpenChat(message.ChatId);
             }
-            else
+            else if (message.Sender is MessageSenderChat senderChat)
             {
-                ViewModel.OpenUser(message.SenderUserId);
+                ViewModel.OpenChat(senderChat.ChatId, true);
+            }
+            else if (message.Sender is MessageSenderUser senderUser)
+            {
+                ViewModel.OpenUser(senderUser.UserId);
             }
         }
 
@@ -2281,7 +2284,12 @@ namespace Unigram.Views
             }
 
             var myId = ViewModel.CacheService.Options.MyId;
-            return message.SenderUserId != myId;
+            if (message.Sender is MessageSenderUser senderUser)
+            {
+                return senderUser.UserId != myId;
+            }
+
+            return true;
         }
 
         private bool MessageRetry_Loaded(MessageViewModel message)
@@ -3245,18 +3253,12 @@ namespace Unigram.Views
                     return;
                 }
 
-                if (message.SenderChatId == 0)
+                if (message.Sender is MessageSenderUser)
                 {
                     Title.Text = Locale.Declension("Replies", message.InteractionInfo.ReplyInfo.ReplyCount);
                 }
-                else
+                else if (ViewModel.CacheService.TryGetChat(message.Sender, out Chat senderChat))
                 {
-                    var senderChat = ViewModel.CacheService.GetChat(message.SenderChatId);
-                    if (senderChat == null)
-                    {
-                        return;
-                    }
-
                     if (senderChat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                     {
                         Title.Text = Locale.Declension("Comments", message.InteractionInfo.ReplyInfo.ReplyCount);
@@ -4354,21 +4356,13 @@ namespace Unigram.Views
                                     }
                                 }
                             }
-                            else if (message.SenderUserId != 0)
+                            else if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
                             {
-                                var user = message.GetSenderUser();
-                                if (user != null)
-                                {
-                                    photo.Source = PlaceholderHelper.GetUser(null, user, 30);
-                                }
+                                photo.Source = PlaceholderHelper.GetUser(null, senderUser, 30);
                             }
-                            else
+                            else if (message.ProtoService.TryGetChat(message.Sender, out Chat senderChat))
                             {
-                                var chat2 = message.GetChat();
-                                if (chat2 != null)
-                                {
-                                    photo.Source = PlaceholderHelper.GetChat(null, chat2, 30);
-                                }
+                                photo.Source = PlaceholderHelper.GetChat(null, senderChat, 30);
                             }
                         }
                     }
