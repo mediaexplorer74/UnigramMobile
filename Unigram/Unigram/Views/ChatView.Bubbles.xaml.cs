@@ -373,8 +373,7 @@ namespace Unigram.Views
 
         class LottieViewItem
         {
-            public File File { get; set; }
-            public LottieView Player { get; set; }
+            public IPlayerView Player { get; set; }
         }
 
         private Dictionary<long, MediaPlayerItem> _old = new Dictionary<long, MediaPlayerItem>();
@@ -756,8 +755,8 @@ namespace Unigram.Views
 
             foreach (var message in items)
             {
-                var animation = message.GetAnimatedSticker();
-                if (animation == null || !animation.Local.IsDownloadingCompleted)
+                var animation = message.IsAnimatedStickerDownloadCompleted();
+                if (animation == false)
                 {
                     continue;
                 }
@@ -806,11 +805,11 @@ namespace Unigram.Views
                     panel = media?.Child as FrameworkElement;
                 }
 
-                var lottie = panel?.FindName("Player") as LottieView;
+                var lottie = panel?.FindName("Player") as IPlayerView;
                 if (lottie != null)
                 {
                     lottie.Tag = message;
-                    news[message.GetHashCode()] = new LottieViewItem { File = animation, Player = lottie };
+                    news[message.GetHashCode()] = new LottieViewItem { Player = lottie };
                 }
             }
 
@@ -1146,5 +1145,15 @@ namespace Unigram.Views
     {
         void Play(MessageViewModel message);
         void Play(IEnumerable<MessageViewModel> items, bool auto);
+    }
+
+    public interface IPlayerView
+    {
+        void Play();
+        void Pause();
+
+        bool IsLoopingEnabled { get; }
+
+        object Tag { get; set; }
     }
 }
