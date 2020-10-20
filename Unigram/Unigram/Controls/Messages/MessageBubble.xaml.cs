@@ -108,8 +108,14 @@ namespace Unigram.Controls.Messages
 
             if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
             {
-                var sender = message.GetSenderUser();
-                title = sender?.GetFullName();
+                if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                {
+                    title = senderUser.GetFullName();
+                }
+                else if (message.ProtoService.TryGetChat(message.Sender, out Chat senderChat))
+                {
+                    title = message.ProtoService.GetTitle(senderChat);
+                }
             }
             else if (!light && message.IsChannelPost && chat.Type is ChatTypeSupergroup)
             {
@@ -128,10 +134,13 @@ namespace Unigram.Controls.Messages
 
             if (message.ReplyToMessage != null)
             {
-                var user = message.ProtoService.GetUser(message.ReplyToMessage.SenderUserId);
-                if (user != null)
+                if (message.ProtoService.TryGetUser(message.ReplyToMessage.Sender, out User replyUser))
                 {
-                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {user.GetFullName()}. ");
+                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {replyUser.GetFullName()}. ");
+                }
+                else if (message.ProtoService.TryGetChat(message.ReplyToMessage.Sender, out Chat replyChat))
+                {
+                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {message.ProtoService.GetTitle(replyChat)}. ");
                 }
             }
 
@@ -287,33 +296,29 @@ namespace Unigram.Controls.Messages
             var content = message.GeneratedContent ?? message.Content;
 
             var singleLargeEmoji = SettingsService.Current.IsLargeEmojiEnabled && content is MessageText mt && Emoji.TryCountEmojis(mt.Text.Text, out int emojiCount, 3) && emojiCount > 0;
-            var sticker = content is MessageSticker;
+            var sticker = content is MessageSticker || content is MessageDice;
             var light = singleLargeEmoji || sticker || content is MessageVideoNote;
             var shown = false;
 
             if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
             {
-                if (message.SenderUserId != 0)
+                if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
                 {
-                    var sender = message.GetSenderUser();
-
                     var hyperlink = new Hyperlink();
-                    hyperlink.Inlines.Add(new Run { Text = sender?.GetFullName() });
+                    hyperlink.Inlines.Add(new Run { Text = senderUser.GetFullName() });
                     hyperlink.UnderlineStyle = UnderlineStyle.None;
-                    hyperlink.Foreground = PlaceholderHelper.GetBrush(message.SenderUserId);
+                    hyperlink.Foreground = PlaceholderHelper.GetBrush(senderUser.Id);
                     hyperlink.Click += (s, args) => From_Click(message);
 
                     paragraph.Inlines.Add(hyperlink);
                     shown = true;
                 }
-                else if (message.SenderChatId != 0)
+                else if (message.ProtoService.TryGetChat(message.Sender, out Chat senderChat))
                 {
-                    var sender = message.GetSenderChat();
-
                     var hyperlink = new Hyperlink();
-                    hyperlink.Inlines.Add(new Run { Text = sender?.Title });
+                    hyperlink.Inlines.Add(new Run { Text = senderChat.Title });
                     hyperlink.UnderlineStyle = UnderlineStyle.None;
-                    hyperlink.Foreground = PlaceholderHelper.GetBrush(message.SenderChatId);
+                    hyperlink.Foreground = PlaceholderHelper.GetBrush(senderChat.Id);
                     hyperlink.Click += (s, args) => From_Click(message);
 
                     paragraph.Inlines.Add(hyperlink);
@@ -406,9 +411,9 @@ namespace Unigram.Controls.Messages
 
             if (shown)
             {
-                if (message.SenderUserId != 0)
+                if (message.Sender is MessageSenderUser senderUser)
                 {
-                    var title = message.Delegate.GetAdminTitle(message.SenderUserId);
+                    var title = message.Delegate.GetAdminTitle(senderUser.UserId);
                     if (admin != null && !message.IsOutgoing && message.Delegate != null && !string.IsNullOrEmpty(title))
                     {
                         paragraph.Inlines.Add(new Run { Text = " " + title, Foreground = null });
@@ -513,13 +518,13 @@ namespace Unigram.Controls.Messages
 
             if (paragraph.Inlines.Count > 0)
             {
-                var title = message.Delegate.GetAdminTitle(message.SenderUserId);
+                var title = message.Delegate.GetAdminTitle(message.Sender);
                 if (admin != null && shown && !message.IsOutgoing && message.Delegate != null && !string.IsNullOrEmpty(title))
                 {
                     admin.Visibility = Visibility.Visible;
                     admin.Text = title;
                 }
-                else if (admin != null && shown && !message.IsChannelPost && message.SenderUserId == 0 && message.ForwardInfo != null)
+                else if (admin != null && shown && !message.IsChannelPost && message.Sender is MessageSenderChat && message.ForwardInfo != null)
                 {
                     admin.Visibility = Visibility.Visible;
                     admin.Text = Strings.Resources.DiscussChannel;
@@ -578,9 +583,13 @@ namespace Unigram.Controls.Messages
             {
                 message.Delegate.OpenChat(message.ChatId);
             }
-            else
+            else if (message.Sender is MessageSenderChat senderChat)
             {
-                message.Delegate.OpenUser(message.SenderUserId);
+                message.Delegate.OpenChat(senderChat.ChatId, true);
+            }
+            else if (message.Sender is MessageSenderUser senderUser)
+            {
+                message.Delegate.OpenUser(senderUser.UserId);
             }
         }
 
@@ -626,19 +635,21 @@ namespace Unigram.Controls.Messages
 
                 RecentRepliers.Children.Clear();
 
-                foreach (var id in info.RecentReplierUserIds)
+                foreach (var sender in info.RecentRepliers)
                 {
-                    var user = message.ProtoService.GetUser(id);
-                    if (user == null)
-                    {
-                        continue;
-                    }
-
                     var picture = new ProfilePicture();
-                    picture.Source = PlaceholderHelper.GetUser(message.ProtoService, user, 24);
                     picture.Width = 24;
                     picture.Height = 24;
                     picture.IsEnabled = false;
+
+                    if (message.ProtoService.TryGetUser(sender, out User user))
+                    {
+                        picture.Source = PlaceholderHelper.GetUser(message.ProtoService, user, 24);
+                    }
+                    else if (message.ProtoService.TryGetChat(sender, out Chat chat))
+                    {
+                        picture.Source = PlaceholderHelper.GetChat(message.ProtoService, chat, 24);
+                    }
 
                     if (RecentRepliers.Children.Count > 0)
                     {
