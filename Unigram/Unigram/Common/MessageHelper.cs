@@ -989,7 +989,7 @@ namespace Unigram.Common
                         var action = GetEntityAction(hyperlink);
                         if (action != null)
                         {
-                            open.Click += (s, args) => action();
+                            open.Click += (s, clickArgs) => action();
                         }
                         else
                         {
