@@ -16,6 +16,12 @@ namespace Unigram.Controls
 
         public PlaybackNextButton()
         {
+            if (!Common.ApiInfo.IsFullExperience)
+            {
+                DefaultStyleKey = typeof(GlyphButton);
+                return;
+            }
+
             DefaultStyleKey = typeof(PlaybackNextButton);
             Click += OnClick;
         }
@@ -45,6 +51,12 @@ namespace Unigram.Controls
 
         protected override void OnApplyTemplate()
         {
+            if (!Common.ApiInfo.IsFullExperience)
+            {
+                base.OnApplyTemplate();
+                return;
+            }
+
             var w = 16;
             var h = 16;
 
