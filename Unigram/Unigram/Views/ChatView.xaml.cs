@@ -3479,6 +3479,7 @@ namespace Unigram.Views
                 ViewModel.ReplyToMessage(message);
 
                 ButtonMarkup.Visibility = Visibility.Collapsed;
+                ButtonCommands.Visibility = Visibility.Visible;
                 CollapseMarkup(false);
             }
             else
@@ -3487,11 +3488,13 @@ namespace Unigram.Views
                 if (updated)
                 {
                     ButtonMarkup.Visibility = Visibility.Visible;
+                    ButtonCommands.Visibility = Visibility.Collapsed;
                     ShowMarkup();
                 }
                 else
                 {
                     ButtonMarkup.Visibility = Visibility.Collapsed;
+                    ButtonCommands.Visibility = Visibility.Visible;
                     CollapseMarkup(false);
                 }
             }

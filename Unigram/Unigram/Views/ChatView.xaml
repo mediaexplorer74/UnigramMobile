@@ -1185,7 +1185,7 @@
                                 VerticalAlignment="Bottom"
                                 AutomationProperties.Name="{CustomResource AccDescrBotCommands}"
                                 ToolTipService.ToolTip="{CustomResource AccDescrBotCommands}"
-                                Grid.Column="1"/>
+                                />
                         </Border>
 
                         <!-- Button to use bot keyboard, bots/groups only -->
@@ -1199,11 +1199,11 @@
                                 VerticalAlignment="Bottom"
                                 AutomationProperties.Name="{CustomResource AccDescrBotKeyboard}"
                                 ToolTipService.ToolTip="{CustomResource AccDescrBotKeyboard}"
-                                Grid.Column="1"/>
+                                />
                         </Border>
                     </Grid>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <controls:GlyphButton x:Name="ContextMenu" Glyph="&#xE10C;" Tapped="ContextMenu_Tapped" />
                     <!-- Button to use stickers keyboard, all -->
                     <chats:ChatStickerButton
@@ -1212,8 +1212,7 @@
                         AllowFocusOnInteraction="False"
                         Glyph="&#xE76E;"
                         VerticalAlignment="Bottom"
-                        AutomationProperties.Name="{CustomResource AccDescrEmojiButton}"
-                        Grid.Column="1"/>
+                        AutomationProperties.Name="{CustomResource AccDescrEmojiButton}"/>
                         <!--ToolTipService.ToolTip="{CustomResource AccDescrEmojiButton}"-->
                     </StackPanel>
                     
