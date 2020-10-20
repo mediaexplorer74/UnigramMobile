@@ -68,6 +68,8 @@ namespace Unigram.Services
 
         bool CanPostMessages(Chat chat);
 
+        bool TryGetChat(long chatId, out Chat chat);
+        bool TryGetChat(MessageSender sender, out Chat value);
         bool TryGetChatFromUser(int userId, out Chat chat);
         bool TryGetChatFromSecret(int secretId, out Chat chat);
 
@@ -79,6 +81,7 @@ namespace Unigram.Services
         User GetUser(int id);
         bool TryGetUser(int id, out User value);
         bool TryGetUser(Chat chat, out User value);
+        bool TryGetUser(MessageSender sender, out User value);
 
         UserFullInfo GetUserFull(int id);
         UserFullInfo GetUserFull(Chat chat);
@@ -389,7 +392,7 @@ namespace Unigram.Services
                         }
                     }
 
-                    Send(new AddLocalMessage(chat.Id, 777000, 0, false, new InputMessageText(formattedText, false, false)));
+                    Send(new AddLocalMessage(chat.Id, new MessageSenderUser(777000), 0, false, new InputMessageText(formattedText, false, false)));
                 }
             }
 
@@ -405,7 +408,7 @@ namespace Unigram.Services
                 var message = title + Environment.NewLine + string.Join(Environment.NewLine, update.Strings);
                 var formattedText = new FormattedText(message, new[] { new TextEntity { Offset = 0, Length = title.Length, Type = new TextEntityTypeBold() } });
 
-                Send(new AddLocalMessage(chat.Id, 777000, 0, false, new InputMessageText(formattedText, true, false)));
+                Send(new AddLocalMessage(chat.Id, new MessageSenderUser(777000), 0, false, new InputMessageText(formattedText, true, false)));
             }
         }
 
@@ -771,6 +774,23 @@ namespace Unigram.Services
             return true;
         }
 
+        public bool TryGetChat(long chatId, out Chat chat)
+        {
+            chat = GetChat(chatId);
+            return chat != null;
+        }
+
+        public bool TryGetChat(MessageSender sender, out Chat value)
+        {
+            if (sender is MessageSenderChat senderChat)
+            {
+                return TryGetChat(senderChat.ChatId, out value);
+            }
+
+            value = null;
+            return false;
+        }
+
         public bool TryGetChatFromUser(int userId, out Chat chat)
         {
             chat = _chats.Values.FirstOrDefault(x => x.Type is ChatTypePrivate privata && privata.UserId == userId);
@@ -872,6 +892,17 @@ namespace Unigram.Services
         public bool TryGetUser(int id, out User value)
         {
             return _users.TryGetValue(id, out value);
+        }
+
+        public bool TryGetUser(MessageSender sender, out User value)
+        {
+            if (sender is MessageSenderUser senderUser)
+            {
+                return TryGetUser(senderUser.UserId, out value);
+            }
+
+            value = null;
+            return false;
         }
 
         public bool TryGetUser(Chat chat, out User value)
@@ -1462,7 +1493,7 @@ namespace Unigram.Services
             }
             else if (update is UpdateMessageInteractionInfo updateMessageInteractionInfo)
             {
-                
+
             }
             else if (update is UpdateMessageIsPinned updateMessageIsPinned)
             {
@@ -1519,6 +1550,10 @@ namespace Unigram.Services
                 if (updateOption.Name == "my_id" && updateOption.Value is OptionValueInteger myId)
                 {
                     _settings.UserId = (int)myId.Value;
+
+#if !DEBUG
+                    Microsoft.AppCenter.AppCenter.SetUserId($"uid={myId.Value}");
+#endif
                 }
             }
             else if (update is UpdateRecentStickers updateRecentStickers)
