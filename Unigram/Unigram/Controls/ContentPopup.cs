@@ -35,8 +35,11 @@ namespace Unigram.Controls
                 }
             }
 
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
+            if (ApiInfo.IsFullExperience)
+            {
+                Loaded += OnLoaded;
+                Unloaded += OnUnloaded;
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
