@@ -261,7 +261,7 @@ namespace Unigram.Controls.Chats
 
                 // If handwriting panel is open, the app would crash on send.
                 // Still, someone should fill a ticket to Microsoft about this.
-                if (send && HandwritingView.IsOpen)
+                if (send && ApiInfo.IsFullExperience && HandwritingView.IsOpen)
                 {
                     RoutedEventHandler handler = null;
                     handler = (s, args) =>
