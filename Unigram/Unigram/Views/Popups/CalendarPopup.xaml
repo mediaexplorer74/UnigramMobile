@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    MaxHeight="444"
     TitleTemplate="{x:Null}"
     PrimaryButtonText="OK"
     SecondaryButtonText="Cancel">
@@ -482,5 +483,5 @@
         </Style>
     </ContentDialog.Resources>
 
-    <CalendarView x:Name="View" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="0,0,0,1"/>
+    <CalendarView x:Name="View" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="0,0,0,1"/>
 </controls:ContentPopup>
