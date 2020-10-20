@@ -185,6 +185,7 @@ namespace Unigram.Common
             string phoneCode = null;
             string lang = null;
             string channel = null;
+            bool hasUrl = false;
 
             var query = scheme.Query.ParseQueryString();
             if (scheme.AbsoluteUri.StartsWith("tg:resolve") || scheme.AbsoluteUri.StartsWith("tg://resolve"))
@@ -238,6 +239,7 @@ namespace Unigram.Common
                 {
                     if (message.Length > 0)
                     {
+                        hasUrl = true;
                         message += "\n";
                     }
                     message += query.GetParameter("text");
