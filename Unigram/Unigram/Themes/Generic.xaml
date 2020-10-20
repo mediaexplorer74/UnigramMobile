@@ -3544,7 +3544,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:PlaybackSlider">
                     <Grid Background="Transparent">
-                        <VisualStateManager.VisualStateGroups>
+                        <contract7Present:VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="PointerOver" To="Normal">
@@ -3574,12 +3574,13 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        </contract7Present:VisualStateManager.VisualStateGroups>
                         <Grid x:Name="LayoutRoot" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
                             <Grid.RenderTransform>
                                 <CompositeTransform x:Name="HorizontalThumbTransform"
                                                         ScaleX="1.0"
-                                                        ScaleY="0.3333333333333333"
+                                                        contract7Present:ScaleY="0.3333333333333333"
+                                                        contract7NotPresent:ScaleY="1.0"
                                                         TranslateX="0"
                                                         TranslateY="4" />
                             </Grid.RenderTransform>
