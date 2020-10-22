@@ -283,7 +283,14 @@ namespace Unigram.Controls.Cells
             }
             else
             {
-                await Launcher.LaunchUriAsync(uri);
+                try
+                {
+                    await Launcher.LaunchUriAsync(uri);
+                }
+                catch
+                {
+                    // Invalid URI
+                }
             }
         }
     }
