@@ -2250,7 +2250,8 @@ namespace Telegram.Td.Api
                     }
                     else
                     {
-                        yield return Size.Empty;
+                        // We are returning a random size, it's still better than NaN.
+                        yield return new Size(1280, 1280);
                     }
                 }
             }
@@ -2265,8 +2266,10 @@ namespace Telegram.Td.Api
         {
             if (sizes == null || sizes.IsEmpty())
             {
-                return Size.Empty;
+                // We are returning a random size, it's still better than NaN.
+                return new Size(1280, 1280);
             }
+
             int lastSide = 0;
             PhotoSize closestObject = null;
             for (int a = 0; a < sizes.Count; a++)
