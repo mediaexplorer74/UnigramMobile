@@ -1337,6 +1337,7 @@ namespace Unigram.Views
                         var hyperlink = new Hyperlink { UnderlineStyle = UnderlineStyle.None };
                         span.Inlines.Add(hyperlink);
                         hyperlink.Click += (s, args) => Hyperlink_Click(anchorLinkText);
+                        ToolTipService.SetToolTip(hyperlink, anchorLinkText.Url);
                         MessageHelper.SetEntityData(hyperlink, anchorLinkText.Url);
                         MessageHelper.SetEntityAction(hyperlink, () => Hyperlink_Click(anchorLinkText));
                         ProcessRichText(anchorLinkText.Text, hyperlink, textBlock, effects, ref offset);
@@ -1353,6 +1354,7 @@ namespace Unigram.Views
                         var hyperlink = new Hyperlink { UnderlineStyle = UnderlineStyle.None };
                         span.Inlines.Add(hyperlink);
                         hyperlink.Click += (s, args) => Hyperlink_Click(urlText);
+                        ToolTipService.SetToolTip(hyperlink, urlText.Url);
                         MessageHelper.SetEntityData(hyperlink, urlText.Url);
                         MessageHelper.SetEntityAction(hyperlink, () => Hyperlink_Click(urlText));
                         ProcessRichText(urlText.Text, hyperlink, textBlock, effects, ref offset);
@@ -1650,6 +1652,11 @@ namespace Unigram.Views
         }
 
         public string GetAdminTitle(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetAdminTitle(MessageSender sender)
         {
             throw new NotImplementedException();
         }
