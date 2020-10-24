@@ -419,7 +419,7 @@ namespace Unigram.Controls.Chats
                     members = false;
                 }
 
-                autocomplete = new UsernameCollection(ViewModel.ProtoService, ViewModel.Chat.Id, username, index == 0, members);
+                autocomplete = new UsernameCollection(ViewModel.ProtoService, ViewModel.Chat.Id, ViewModel.ThreadId, username, index == 0, members);
                 return true;
             }
             else if (SearchByHashtag(query, out string hashtag, out int index2))
@@ -461,6 +461,7 @@ namespace Unigram.Controls.Chats
         {
             private readonly IProtoService _protoService;
             private readonly long _chatId;
+            private readonly long _threadId;
             private readonly string _query;
 
             private readonly bool _bots;
@@ -468,10 +469,11 @@ namespace Unigram.Controls.Chats
 
             private bool _hasMore = true;
 
-            public UsernameCollection(IProtoService protoService, long chatId, string query, bool bots, bool members)
+            public UsernameCollection(IProtoService protoService, long chatId, long threadId, string query, bool bots, bool members)
             {
                 _protoService = protoService;
                 _chatId = chatId;
+                _threadId = threadId;
                 _query = query;
 
                 _bots = bots;
@@ -504,7 +506,7 @@ namespace Unigram.Controls.Chats
 
                     if (_members)
                     {
-                        var response = await _protoService.SendAsync(new SearchChatMembers(_chatId, _query, 20, null));
+                        var response = await _protoService.SendAsync(new SearchChatMembers(_chatId, _query, 20, new ChatMembersFilterMention(_threadId)));
                         if (response is ChatMembers members)
                         {
                             foreach (var member in members.Members)
