@@ -6,7 +6,6 @@ using System.Linq;
 using System.Numerics;
 using Telegram.Td.Api;
 using Unigram.Controls.Cells;
-using Unigram.Services;
 using Unigram.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
@@ -125,7 +124,7 @@ namespace Unigram.Controls
             //}
         }
 
-        public void SetSelectedItems(IList<Chat> chats)
+        public void SetSelectedItems()
         {
             var panel = ItemsPanelRoot as ItemsStackPanel;
             if (panel == null)
