@@ -546,7 +546,7 @@ namespace Unigram.Views
         {
             PlayStickers(items);
 
-            var news = new Dictionary<long, MediaPlayerItem>();
+            var next = new Dictionary<long, MediaPlayerItem>();
 
             foreach (var message in items)
             {
@@ -639,11 +639,11 @@ namespace Unigram.Views
                 if (panel is Grid final)
                 {
                     final.Tag = message;
-                    news[message.GetHashCode()] = new MediaPlayerItem { File = animation, Container = final, Watermark = message.Content is MessageGame, Clip = target is VideoNote };
+                    next[message.AnimationHash()] = new MediaPlayerItem { File = animation, Container = final, Watermark = message.Content is MessageGame, Clip = target is VideoNote };
                 }
             }
 
-            foreach (var item in _old.Keys.Except(news.Keys).ToList())
+            foreach (var item in _old.Keys.Except(next.Keys).ToList())
             {
                 var presenter = _old[item].Presenter;
                 if (_old[item].MediaPlayerPresenter?.MediaPlayer != null)
@@ -670,14 +670,14 @@ namespace Unigram.Views
                 return;
             }
 
-            foreach (var item in news.Keys.Except(_old.Keys).ToList())
+            foreach (var item in next.Keys.Except(_old.Keys).ToList())
             {
                 if (_old.ContainsKey(item))
                 {
                     continue;
                 }
 
-                if (news.TryGetValue(item, out MediaPlayerItem data) && data.Container != null && data.Container.Children.Count < 5)
+                if (next.TryGetValue(item, out MediaPlayerItem data) && data.Container != null && data.Container.Children.Count < 5)
                 {
                     if (SettingsService.Current.Diagnostics.SoftwareDecoderEnabled)
                     {
@@ -735,14 +735,15 @@ namespace Unigram.Views
                     }
                 }
 
-                _old[item] = news[item];
+                _old[item] = next[item];
             }
         }
 
         public void PlayStickers(IEnumerable<MessageViewModel> items)
         {
             if (!SettingsService.Current.Stickers.PlayStickers) return;
-            var news = new Dictionary<long, LottieViewItem>();
+            var next = new Dictionary<long, LottieViewItem>();
+            var prev = new HashSet<long>();
 
             foreach (var message in items)
             {
@@ -760,6 +761,9 @@ namespace Unigram.Views
                     }
                     else
                     {
+                        // We don't want to start already played dices
+                        // but we don't even want to stop them if they're already playing.
+                        prev.Add(message.AnimationHash());
                         continue;
                     }
                 }
@@ -800,11 +804,12 @@ namespace Unigram.Views
                 if (lottie != null)
                 {
                     lottie.Tag = message;
-                    news[message.GetHashCode()] = new LottieViewItem { Player = lottie };
+                    next[message.AnimationHash()] = new LottieViewItem { Player = lottie };
+                    System.Diagnostics.Debug.WriteLine("Hash: " + message.AnimationHash());
                 }
             }
 
-            foreach (var item in _oldStickers.Keys.Except(news.Keys).ToList())
+            foreach (var item in _oldStickers.Keys.Except(next.Keys.Union(prev)).ToList())
             {
                 var presenter = _oldStickers[item].Player;
                 if (presenter != null && presenter.IsLoopingEnabled)
@@ -815,19 +820,19 @@ namespace Unigram.Views
                 _oldStickers.Remove(item);
             }
 
-            foreach (var item in news.Keys.Except(_oldStickers.Keys).ToList())
+            foreach (var item in next.Keys.Except(_oldStickers.Keys).ToList())
             {
                 if (_oldStickers.ContainsKey(item))
                 {
                     continue;
                 }
 
-                if (news.TryGetValue(item, out LottieViewItem data) && data.Player != null)
+                if (next.TryGetValue(item, out LottieViewItem data) && data.Player != null)
                 {
                     data.Player.Play();
                 }
 
-                _oldStickers[item] = news[item];
+                _oldStickers[item] = next[item];
             }
         }
 
