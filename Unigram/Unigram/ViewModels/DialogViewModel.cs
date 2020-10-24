@@ -1493,9 +1493,14 @@ namespace Unigram.ViewModels
                 await ProcessEmojiAsync(chat, messages);
             }
 
-            ProcessAlbums(chat, messages);
+            ProcessAlbums(chat, messages, out var albums);
             ProcessReplies(chat, messages);
             ProcessFiles(chat, messages);
+
+            if (albums != null)
+            {
+                ProcessFiles(chat, albums);
+            }
         }
 
         private async Task ProcessEmojiAsync(Chat chat, IList<MessageViewModel> messages)
@@ -1544,9 +1549,9 @@ namespace Unigram.ViewModels
                     {
                         message.GeneratedContentUnread = true;
                     }
-                    else
+                    else if (!message.GeneratedContentUnread)
                     {
-                        message.GeneratedContentUnread = message.SendingState is MessageSendingStatePending;
+                        message.GeneratedContentUnread = dice.IsInitialState();
                     }
                 }
 
@@ -1571,6 +1576,11 @@ namespace Unigram.ViewModels
                 {
                     if (diceMessage.InitialState is DiceStickersRegular initialRegular)
                     {
+                        if (initialRegular.Sticker.Thumbnail != null)
+                        {
+                            _filesMap[initialRegular.Sticker.Thumbnail.File.Id].Add(target);
+                        }
+
                         _filesMap[initialRegular.Sticker.StickerValue.Id].Add(target);
                     }
                     else if (diceMessage.InitialState is DiceStickersSlotMachine initialSlotMachine)
@@ -1584,6 +1594,11 @@ namespace Unigram.ViewModels
 
                     if (diceMessage.FinalState is DiceStickersRegular finalRegular)
                     {
+                        if (finalRegular.Sticker.Thumbnail != null)
+                        {
+                            _filesMap[finalRegular.Sticker.Thumbnail.File.Id].Add(target);
+                        }
+
                         _filesMap[finalRegular.Sticker.StickerValue.Id].Add(target);
                     }
                     else if (diceMessage.FinalState is DiceStickersSlotMachine finalSlotMachine)
@@ -1800,8 +1815,9 @@ namespace Unigram.ViewModels
             }
         }
 
-        private void ProcessAlbums(Chat chat, IList<MessageViewModel> slice)
+        private void ProcessAlbums(Chat chat, IList<MessageViewModel> slice, out IList<MessageViewModel> updated)
         {
+            updated = null;
             var groups = new Dictionary<long, Tuple<MessageViewModel, MessageAlbum>>();
             var newGroups = new Dictionary<long, long>();
 
@@ -1833,7 +1849,6 @@ namespace Unigram.ViewModels
                 }
                 else
                 {
-
                     slice.RemoveAt(i);
                     i--;
                 }
@@ -1860,6 +1875,13 @@ namespace Unigram.ViewModels
                 {
                     continue;
                 }
+
+                if (updated == null)
+                {
+                    updated = new List<MessageViewModel>();
+                }
+
+                updated.Add(group.Item1);
 
                 Handle(new UpdateMessageContent(chat.Id, group.Item1.Id, group.Item1.Content));
                 Handle(new UpdateMessageEdited(chat.Id, group.Item1.Id, group.Item1.EditDate, group.Item1.ReplyMarkup));
