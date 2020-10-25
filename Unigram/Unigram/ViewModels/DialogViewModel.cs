@@ -609,7 +609,9 @@ namespace Unigram.ViewModels
         protected bool _isLoadingNextSlice;
         protected bool _isLoadingPreviousSlice;
 
-        protected Stack<long> _goBackStack = new Stack<long>();
+        protected Stack<long> _repliesStack = new Stack<long>();
+
+        public Stack<long> RepliesStack => _repliesStack;
 
         public async virtual Task LoadNextSliceAsync(bool force = false, bool init = false)
         {
@@ -1008,9 +1010,9 @@ namespace Unigram.ViewModels
                     }
                 }
             }
-            else if (_goBackStack.Count > 0)
+            else if (_repliesStack.Count > 0)
             {
-                await LoadMessageSliceAsync(null, _goBackStack.Pop());
+                await LoadMessageSliceAsync(null, _repliesStack.Pop());
             }
             else
             {
@@ -1070,6 +1072,11 @@ namespace Unigram.ViewModels
                 if (field != null)
                 {
                     await field.ScrollToItem(already, alignment, alignment == VerticalAlignment.Center, pixel, direction ?? ScrollIntoViewAlignment.Leading, disableAnimation);
+                }
+
+                if (previousId.HasValue && !_repliesStack.Contains(previousId.Value))
+                {
+                    _repliesStack.Push(previousId.Value);
                 }
 
                 return;
@@ -1240,7 +1247,7 @@ namespace Unigram.ViewModels
                 IsLoading = false;
             }
 
-            await LoadMessageSliceAsync(null, maxId, alignment, pixel, direction, disableAnimation, true);
+            await LoadMessageSliceAsync(previousId, maxId, alignment, pixel, direction, disableAnimation, true);
         }
 
 

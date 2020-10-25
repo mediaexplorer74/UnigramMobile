@@ -872,6 +872,11 @@ namespace Unigram.Common
             EventHandler<object> layoutUpdated = (s1, e1) => tcs.TrySetResult(null);
             EventHandler<ScrollViewerViewChangedEventArgs> viewChanged = (s, e) =>
             {
+                if (e.IsIntermediate)
+                {
+                    return;
+                }
+
                 scrollViewer.LayoutUpdated += layoutUpdated;
                 scrollViewer.UpdateLayout();
             };
