@@ -162,7 +162,6 @@ namespace Unigram.ViewModels
             MessageFaveStickerCommand = new RelayCommand<MessageViewModel>(MessageFaveStickerExecute);
             MessageUnfaveStickerCommand = new RelayCommand<MessageViewModel>(MessageUnfaveStickerExecute);
             MessageSaveMediaCommand = new RelayCommand<MessageViewModel>(MessageSaveMediaExecute);
-            MessageSaveDownloadCommand = new RelayCommand<MessageViewModel>(MessageSaveDownloadExecute);
             MessageSaveAnimationCommand = new RelayCommand<MessageViewModel>(MessageSaveAnimationExecute);
             MessageOpenWithCommand = new RelayCommand<MessageViewModel>(MessageOpenWithExecute);
             MessageOpenWithVlcCommand = new RelayCommand<MessageViewModel>(MessageOpenWithVlcExecute);
@@ -2769,9 +2768,13 @@ namespace Unigram.ViewModels
             {
                 ProtoService.Send(new LeaveChat(chat.Id));
             }
-            else if (chat.Type is ChatTypePrivate || chat.Type is ChatTypeSecret)
+            else if (chat.Type is ChatTypePrivate privata)
             {
-                ProtoService.Send(new ToggleChatIsBlocked(chat.Id, true));
+                ProtoService.Send(new ToggleMessageSenderIsBlocked(new MessageSenderUser(privata.UserId), true));
+            }
+            else if (chat.Type is ChatTypeSecret secret)
+            {
+                ProtoService.Send(new ToggleMessageSenderIsBlocked(new MessageSenderUser(secret.UserId), true));
             }
 
             ProtoService.Send(new DeleteChatHistory(chat.Id, true, false));
@@ -2827,7 +2830,7 @@ namespace Unigram.ViewModels
                 {
                     if (updated.Type is ChatTypePrivate privata && check)
                     {
-                        await ProtoService.SendAsync(new ToggleChatIsBlocked(updated.Id, true));
+                        await ProtoService.SendAsync(new ToggleMessageSenderIsBlocked(new MessageSenderUser(privata.UserId), true));
                     }
 
                     ProtoService.Send(new DeleteChatHistory(updated.Id, true, false));
@@ -2977,7 +2980,7 @@ namespace Unigram.ViewModels
             var user = CacheService.GetUser(privata.UserId);
             if (user.Type is UserTypeBot)
             {
-                await ProtoService.SendAsync(new ToggleChatIsBlocked(chat.Id, false));
+                await ProtoService.SendAsync(new ToggleMessageSenderIsBlocked(new MessageSenderUser(user.Id), false));
                 StartExecute();
             }
             else
@@ -2988,7 +2991,7 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                ProtoService.Send(new ToggleChatIsBlocked(chat.Id, false));
+                ProtoService.Send(new ToggleMessageSenderIsBlocked(new MessageSenderUser(user.Id), false));
             }
         }
 
