@@ -941,8 +941,8 @@ namespace Unigram.Views
 
         private void OnAcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
         {
-            var commands = ViewModel.ShortcutService.Process(args);
-            foreach (var command in commands)
+            var invoked = ViewModel.ShortcutService.Process(args);
+            foreach (var command in invoked.Commands)
             {
 #if DEBUG
                 if (command == ShortcutCommand.Quit)
