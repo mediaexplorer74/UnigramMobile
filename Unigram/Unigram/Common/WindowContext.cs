@@ -295,7 +295,14 @@ namespace Unigram.Common
                 var options = new Windows.System.LauncherOptions();
                 options.TargetApplicationPackageFamilyName = Package.Current.Id.FamilyName;
 
-                await Windows.System.Launcher.LaunchUriAsync(new Uri(query), options);
+                try
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri(query), options);
+                }
+                catch
+                {
+                    // It's too early?
+                }
             }
             else if (args is VoiceCommandActivatedEventArgs voice)
             {
@@ -456,66 +463,6 @@ namespace Unigram.Common
             //    _service = WindowContext.GetForCurrentView().NavigationServices.GetByFrameId($"{session.Id}");
             //    UseActivatedArgs(_args, _service, update.AuthorizationState);
             //});
-        }
-
-        public void Handle(ISessionService session, UpdateConnectionState update)
-        {
-            if (!session.IsActive)
-            {
-                return;
-            }
-
-            Dispatcher.Dispatch(() =>
-            {
-                foreach (var service in NavigationServices)
-                {
-                    if (service.SessionId == session.Id && service.IsInMainView)
-                    {
-                        switch (update.State)
-                        {
-                            case ConnectionStateWaitingForNetwork waitingForNetwork:
-                                ShowStatus(Strings.Resources.WaitingForNetwork);
-                                break;
-                            case ConnectionStateConnecting connecting:
-                                ShowStatus(Strings.Resources.Connecting);
-                                break;
-                            case ConnectionStateConnectingToProxy connectingToProxy:
-                                ShowStatus(Strings.Resources.ConnectingToProxy);
-                                break;
-                            case ConnectionStateUpdating updating:
-                                ShowStatus(Strings.Resources.Updating);
-                                break;
-                            case ConnectionStateReady ready:
-                                HideStatus();
-                                return;
-                        }
-
-                        break;
-                    }
-                }
-            });
-        }
-
-        private async void ShowStatus(string text)
-        {
-            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = text;
-
-            if (ApiInfo.HasStatusBar)
-            {
-                StatusBar.GetForCurrentView().ProgressIndicator.Text = text;
-                await StatusBar.GetForCurrentView().ProgressIndicator.ShowAsync();
-            }
-        }
-
-        private async void HideStatus()
-        {
-            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = string.Empty;
-
-            if (ApiInfo.HasStatusBar)
-            {
-                StatusBar.GetForCurrentView().ProgressIndicator.Text = string.Empty;
-                await StatusBar.GetForCurrentView().ProgressIndicator.HideAsync();
-            }
         }
 
 
