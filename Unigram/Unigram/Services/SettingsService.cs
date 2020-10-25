@@ -198,7 +198,7 @@ namespace Unigram.Services
 
         //public const ulong CurrentVersion = (4UL << 48) | (0UL << 32) | (5072UL << 16);
         //public const string CurrentChangelog = "• Chat folders.\r\n• Stream Videos and Audio files.\r\n• Improved stickers, GIFs and emojis.\r\n\r\nRead more: https://telegra.ph/Unigram-40-05-28";
-        public static readonly string CurrentChangelog = $"• Set a profile video (up to 9 seconds) instead of a static picture.\r\n• See what media is in a message thanks to new mini-thumbnails in the chat list, message search and notifications.\r\n• Implemented more statistics for the large groups you own.\r\n• If you're getting too much attention, flip a switch in Privacy & Security settings to automatically archive and mute all new chats from non-contacts.\r\n• Improved file sender UI\r\n• Improved search emoji/GIF/sticker UI\r\n• Improved shared media navigation: Use back button to go to previous view";
+        public static readonly string CurrentChangelog = $"Beta Build {GetAppVersion().Build}. Thanks for taking the risk and time testing this beta release. Please use the beta group for any feedback: https://t.me/joinchat/E_I5AhukKgSSXf4Acp8nbA \r\n\r\n• Comment on posts in channels that have a discussion group.\r\n• Get notified about replies to your comments via the new \"Replies\" chat (if you are not a member in the discussion group).\r\n• Anonymous group admins: Turn on \"Remain Anonymous\" in an admin's permissions to let them post on behalf of the group and become invisible in the list of members.\r\n• Added a context menu button to the chat (in touch mode) for easier access to some context menus\r\n• Forwarded media are always sent as an album - so this option got removed.\r\n• Added in-app volume control.\r\n• Increased music player slider.";
 
         public int Session => _session;
 
@@ -626,6 +626,23 @@ namespace Unigram.Services
             }
         }
 
+        private static bool? _fullScreenGallery;
+        public bool FullScreenGallery
+        {
+            get
+            {
+                if (_fullScreenGallery == null)
+                    _fullScreenGallery = GetValueOrDefault(_local, "FullScreenGallery", false);
+
+                return _fullScreenGallery ?? false;
+            }
+            set
+            {
+                _fullScreenGallery = value;
+                AddOrUpdateValue(_local, "FullScreenGallery", value);
+            }
+        }
+
         private static bool? _autocorrectWords;
         public bool AutocorrectWords
         {
@@ -961,7 +978,7 @@ namespace Unigram.Services
             get
             {
                 if (_languagePackId == null)
-                    _languagePackId = GetValueOrDefault(_local, "LanguagePackId", ApplicationLanguages.Languages[0]);
+                    _languagePackId = GetValueOrDefault(_local, "LanguagePackId", ApplicationLanguages.Languages[0].Split('-').First());
 
                 return _languagePackId;
             }
@@ -978,7 +995,7 @@ namespace Unigram.Services
             get
             {
                 if (_languagePluralId == null)
-                    _languagePluralId = GetValueOrDefault(_local, "LanguagePluralId", ApplicationLanguages.Languages[0]);
+                    _languagePluralId = GetValueOrDefault(_local, "LanguagePluralId", ApplicationLanguages.Languages[0].Split('-').First());
 
                 return _languagePluralId;
             }
