@@ -121,7 +121,7 @@ namespace Unigram.Controls
 
                 if (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup supergroup && !supergroup.IsChannel)
                 {
-                    View.Autocomplete = new ChatTextBox.UsernameCollection(ViewModel.ProtoService, ViewModel.Chat.Id, username, false, true);
+                    View.Autocomplete = new ChatTextBox.UsernameCollection(viewModel.ProtoService, viewModel.Chat.Id, viewModel.ThreadId, username, false, true);
                 }
                 else
                 {

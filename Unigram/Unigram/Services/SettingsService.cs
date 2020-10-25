@@ -961,7 +961,7 @@ namespace Unigram.Services
             get
             {
                 if (_languagePackId == null)
-                    _languagePackId = GetValueOrDefault(_local, "LanguagePackId", ApplicationLanguages.Languages[0]);
+                    _languagePackId = GetValueOrDefault(_local, "LanguagePackId", ApplicationLanguages.Languages[0].Split('-').First());
 
                 return _languagePackId;
             }
@@ -978,7 +978,7 @@ namespace Unigram.Services
             get
             {
                 if (_languagePluralId == null)
-                    _languagePluralId = GetValueOrDefault(_local, "LanguagePluralId", ApplicationLanguages.Languages[0]);
+                    _languagePluralId = GetValueOrDefault(_local, "LanguagePluralId", ApplicationLanguages.Languages[0].Split('-').First());
 
                 return _languagePluralId;
             }
