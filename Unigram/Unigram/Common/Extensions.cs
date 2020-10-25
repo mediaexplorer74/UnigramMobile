@@ -909,7 +909,7 @@ namespace Unigram.Common
         public static WindowContext GetWindowWrapper(this INavigationService service)
             => WindowContext.ActiveWrappers.FirstOrDefault(x => x.NavigationServices.Contains(service));
 
-        public static IDispatcherWrapper GetDispatcherWrapper(this INavigationService service)
+        public static IDispatcherContext GetDispatcherWrapper(this INavigationService service)
             => service.GetWindowWrapper()?.Dispatcher;
     }
 
