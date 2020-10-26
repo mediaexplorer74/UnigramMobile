@@ -747,7 +747,7 @@ namespace Unigram.Common
                             && slotMachine.LeftReel.StickerValue.Local.IsDownloadingCompleted
                             && slotMachine.CenterReel.StickerValue.Local.IsDownloadingCompleted
                             && slotMachine.RightReel.StickerValue.Local.IsDownloadingCompleted
-                            && slotMachine.LeftReel.StickerValue.Local.IsDownloadingCompleted;
+                            && slotMachine.Lever.StickerValue.Local.IsDownloadingCompleted;
                     }
 
                     return false;
@@ -801,7 +801,7 @@ namespace Unigram.Common
                     && slotMachine.LeftReel.StickerValue.Local.IsDownloadingCompleted
                     && slotMachine.CenterReel.StickerValue.Local.IsDownloadingCompleted
                     && slotMachine.RightReel.StickerValue.Local.IsDownloadingCompleted
-                    && slotMachine.LeftReel.StickerValue.Local.IsDownloadingCompleted;
+                    && slotMachine.Lever.StickerValue.Local.IsDownloadingCompleted;
             }
 
             return false;
@@ -1929,7 +1929,7 @@ namespace Unigram.Common
                 var left = slotMachine.LeftReel.UpdateFile(file);
                 var center = slotMachine.CenterReel.UpdateFile(file);
                 var right = slotMachine.RightReel.UpdateFile(file);
-                var lever = slotMachine.LeftReel.UpdateFile(file);
+                var lever = slotMachine.Lever.UpdateFile(file);
 
                 return background || left || center || right || lever;
             }
