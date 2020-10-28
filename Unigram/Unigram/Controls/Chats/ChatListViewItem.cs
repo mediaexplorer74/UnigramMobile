@@ -232,7 +232,7 @@ namespace Unigram.Controls.Chats
                         return restricted.Permissions.CanSendMessages;
                     }
                 }
-                else
+                else if (chat != null)
                 {
                     return chat.Permissions.CanSendMessages;
                 }
@@ -334,7 +334,7 @@ namespace Unigram.Controls.Chats
 
         public void InteractingStateEntered(InteractionTracker sender, InteractionTrackerInteractingStateEnteredArgs args)
         {
-
+            ConfigureAnimations(_visual, null);
         }
 
         public void RequestIgnored(InteractionTracker sender, InteractionTrackerRequestIgnoredArgs args)

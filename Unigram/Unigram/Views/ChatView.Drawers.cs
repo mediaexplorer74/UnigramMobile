@@ -34,6 +34,11 @@ namespace Unigram.Views
             var element = sender as FrameworkElement;
             var sticker = element.Tag as StickerViewModel;
 
+            if (sticker == null)
+            {
+                return;
+            }
+
             if (sticker.StickerValue is File file && // Download for preview
                 !file.Local.IsDownloadingCompleted && 
                 file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
@@ -80,6 +85,11 @@ namespace Unigram.Views
         {
             var element = sender as FrameworkElement;
             var animation = element.DataContext as Animation;
+
+            if (animation == null)
+            {
+                return;
+            }
 
             var flyout = new MenuFlyout();
             flyout.Items.Add(new Controls.MenuFlyoutMediaItem(animation));

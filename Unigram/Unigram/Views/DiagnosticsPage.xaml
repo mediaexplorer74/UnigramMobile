@@ -29,8 +29,8 @@
                         Header="Bubble measure"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <ToggleSwitch
-                        IsOn="{x:Bind ViewModel.BubbleKnockout, Mode=TwoWay}"
-                        Header="Bubble knockout"
+                        IsOn="{x:Bind ViewModel.BubbleAnimations, Mode=TwoWay}"
+                        Header="Bubble animations"
                         Style="{StaticResource CheckButtonStyle}"/>
                     <!-- Attention: Copies the video to the default video folder. File "OpenWithVLCtmp.UnigramMobile" does not get deleted automatically! -->
                     <ToggleSwitch

@@ -1,4 +1,6 @@
-﻿namespace Unigram.Services.Settings
+﻿using Windows.ApplicationModel;
+
+namespace Unigram.Services.Settings
 {
     public class DiagnosticsSettings : SettingsServiceBase
     {
@@ -143,20 +145,20 @@
             }
         }
 
-        private bool? _bubbleKnockout;
-        public bool BubbleKnockout
+        private bool? _bubbleAnimations;
+        public bool BubbleAnimations
         {
             get
             {
-                if (_bubbleKnockout == null)
-                    _bubbleKnockout = GetValueOrDefault("BubbleKnockout", false);
+                if (_bubbleAnimations == null)
+                    _bubbleAnimations = GetValueOrDefault("BubbleAnimations", Package.Current.SignatureKind != PackageSignatureKind.Store);
 
-                return _bubbleKnockout ?? false;
+                return _bubbleAnimations ?? false;
             }
             set
             {
-                _bubbleKnockout = value;
-                AddOrUpdateValue("BubbleKnockout", value);
+                _bubbleAnimations = value;
+                AddOrUpdateValue("BubbleAnimations", value);
             }
         }
 
