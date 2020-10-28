@@ -1125,7 +1125,7 @@ namespace Unigram.ViewModels
 
             if (direction == VerticalAlignment.Center && LastPinnedMessage?.Id == maxId)
             {
-                offset = 0;
+                offset = -1;
                 limit = 100;
             }
 
