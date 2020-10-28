@@ -192,6 +192,7 @@ namespace Unigram
                 builder.RegisterType<ChatsViewModel>();
                 builder.RegisterType<DialogViewModel>(); //.WithParameter((a, b) => a.Name == "dispatcher", (a, b) => WindowWrapper.Current().Dispatcher);
                 builder.RegisterType<DialogThreadViewModel>();
+                builder.RegisterType<DialogPinnedViewModel>();
                 builder.RegisterType<DialogScheduledViewModel>();
                 builder.RegisterType<DialogEventLogViewModel>();
                 builder.RegisterType<AnimationDrawerViewModel>();
