@@ -510,7 +510,7 @@ namespace Unigram.Views
             }
             else if (ViewModel.Settings.IsAutoPlayAnimationsEnabled && (message.Content is MessageAnimation || (text?.WebPage != null && text.WebPage.Animation != null) || (message.Content is MessageGame game && game.Game.Animation != null)))
             {
-                if (_old.TryGetValue(message.Id, out MediaPlayerItem item))
+                if (_old.TryGetValue(message.AnimationHash(), out MediaPlayerItem item))
                 {
                     GalleryViewModelBase viewModel;
                     if (message.Content is MessageAnimation)
@@ -531,7 +531,7 @@ namespace Unigram.Views
             }
             else
             {
-                if (_old.ContainsKey(message.Id))
+                if (_old.ContainsKey(message.AnimationHash()))
                 {
                     Play(new MessageViewModel[0], false, false);
                 }
