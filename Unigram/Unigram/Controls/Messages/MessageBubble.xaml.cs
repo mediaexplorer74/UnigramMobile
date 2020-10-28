@@ -101,8 +101,8 @@ namespace Unigram.Controls.Messages
             var chat = message.GetChat();
             var content = message.GeneratedContent ?? message.Content;
 
-            var sticker = content is MessageSticker || content is MessageDice;
-            var light = sticker || content is MessageVideoNote;
+            var sticker = content is MessageSticker;
+            var light = sticker || content is MessageDice || content is MessageVideoNote;
 
             var title = string.Empty;
 
@@ -296,8 +296,8 @@ namespace Unigram.Controls.Messages
             var content = message.GeneratedContent ?? message.Content;
 
             var singleLargeEmoji = SettingsService.Current.IsLargeEmojiEnabled && content is MessageText mt && Emoji.TryCountEmojis(mt.Text.Text, out int emojiCount, 3) && emojiCount > 0;
-            var sticker = content is MessageSticker || content is MessageDice;
-            var light = singleLargeEmoji || sticker || content is MessageVideoNote;
+            var sticker = content is MessageSticker;
+            var light = singleLargeEmoji || sticker || content is MessageDice || content is MessageVideoNote;
             var shown = false;
 
             if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
