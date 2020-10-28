@@ -330,7 +330,7 @@ namespace Unigram.ViewModels
         //TODO: Here and many other places: because of StorageMedia.Caption, the parameter caption is superfluous
         private async Task SendStorageMediaAsync(StorageMedia storage, FormattedText caption, bool asFile, MessageSendOptions options)
         {
-            if (storage is StorageDocument)
+            if (storage is StorageDocument || storage is StorageAudio)
             {
                 await SendDocumentAsync(storage.File, caption ?? storage.Caption, options);
             }
@@ -842,13 +842,20 @@ namespace Unigram.ViewModels
             var reply = GetReply(true);
             var operations = new List<InputMessageContent>();
 
-            var firstCaption = caption;
+            var firstCaption = asFile ? null : caption;
+
+            var audio = items.All(x => x is StorageAudio);
 
             foreach (var item in items)
             {
-                if (item is StorageDocument && asFile)
+                if (asFile || audio)
                 {
-                    var factory = await _messageFactory.CreateDocumentAsync(item.File, asFile);
+                    if (item == items.Last())
+                    {
+                        firstCaption = caption; 
+                    }
+
+                    var factory = await _messageFactory.CreateDocumentAsync(item.File, !audio);
                     if (factory != null)
                     {
                         var input = factory.Delegate(factory.InputFile, firstCaption);
@@ -919,15 +926,6 @@ namespace Unigram.ViewModels
                     {
                         var text = await package.GetTextAsync();
                         captionElements.Add(text);
-                    }
-                    if (package.AvailableFormats.Contains(StandardDataFormats.WebLink))
-                    {
-                        try
-                        {
-                            var webLink = await package.GetWebLinkAsync();
-                            captionElements.Add(webLink.AbsoluteUri);
-                        }
-                        catch { }
                     }
 
                     FormattedText caption = null;
