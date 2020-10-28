@@ -595,6 +595,11 @@ namespace Unigram.Controls.Messages
             Markup.Update(message, message.ReplyMarkup);
         }
 
+        public void UpdateMessageIsPinned(MessageViewModel message)
+        {
+            Footer.UpdateMessageIsPinned(message);
+        }
+
         public void UpdateMessageInteractionInfo(MessageViewModel message)
         {
             var info = message.InteractionInfo?.ReplyInfo;

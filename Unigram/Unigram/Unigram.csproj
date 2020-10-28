@@ -365,6 +365,7 @@
     <Compile Include="Controls\Messages\MessagePinned.xaml.cs">
       <DependentUpon>MessagePinned.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Messages\MessageReferenceBase.cs" />
     <Compile Include="Controls\Messages\MessageService.cs" />
     <Compile Include="Controls\MediaPlayerView.cs" />
     <Compile Include="Controls\Messages\Content\AnimationContent.xaml.cs">
@@ -422,6 +423,7 @@
     <Compile Include="Controls\NavigationViewItem.cs" />
     <Compile Include="Controls\NavigationViewItemBase.cs" />
     <Compile Include="Controls\NavigationViewItemSeparator.cs" />
+    <Compile Include="Controls\NumericTextBlock.cs" />
     <Compile Include="Controls\OverlayPage.cs" />
     <Compile Include="Controls\PaddedListView.cs" />
     <Compile Include="Controls\PageHeader.cs" />
@@ -495,10 +497,14 @@
     <Compile Include="Services\ProtoService.ChatList.cs" />
     <Compile Include="Services\ThemeService.Defaults.cs" />
     <Compile Include="ViewModels\DialogEventLogViewModel.cs" />
+    <Compile Include="ViewModels\DialogPinnedViewModel.cs" />
     <Compile Include="ViewModels\DialogThreadViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsBlockedChatsViewModel.cs" />
     <Compile Include="Views\ChatEventLogPage.xaml.cs">
       <DependentUpon>ChatEventLogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChatPinnedPage.xaml.cs">
+      <DependentUpon>ChatPinnedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Chats\ChatSharedMediaPage.xaml.cs">
       <DependentUpon>ChatSharedMediaPage.xaml</DependentUpon>
@@ -2078,6 +2084,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ChatPinnedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Chats\ChatSharedMediaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2716,12 +2726,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="RLottie">
-      <HintPath>$(SolutionDir)\Libraries\rlottie\$(Platform)\RLottie.winmd</HintPath>
+      <HintPath>$(ProjectDir)\..\Libraries\rlottie\$(Platform)\RLottie.winmd</HintPath>
       <Implementation>RLottie.dll</Implementation>
     </Reference>
-    <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\rlottie\$(Platform)\RLottie.dll" />
-    <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\rlottie\$(Platform)\RLottie.pri" />
-    <ReferenceCopyLocalPaths Condition=" '$(Configuration)' == 'Debug' " Include="$(SolutionDir)\Libraries\rlottie\$(Platform)\zlib1.dll" />
+    <ReferenceCopyLocalPaths Include="$(ProjectDir)\..\Libraries\rlottie\$(Platform)\RLottie.dll" />
+    <ReferenceCopyLocalPaths Include="$(ProjectDir)\..\Libraries\rlottie\$(Platform)\RLottie.pri" />
+    <ReferenceCopyLocalPaths Condition=" '$(Configuration)' == 'Debug' " Include="$(ProjectDir)\..\Libraries\rlottie\$(Platform)\zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="libtgvoip">
@@ -2737,7 +2747,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -file "$(SolutionDir)\UpdateManifest.ps1" -path $(ProjectDir) -config $(ConfigurationName)</PreBuildEvent>
+    <PreBuildEvent>powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -file "$(ProjectDir)\..\UpdateManifest.ps1" -path $(ProjectDir) -config $(ConfigurationName)</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
