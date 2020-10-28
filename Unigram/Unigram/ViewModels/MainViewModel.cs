@@ -77,7 +77,7 @@ namespace Unigram.ViewModels
             ArchivedChats = new ChatsViewModel(protoService, cacheService, settingsService, aggregator, pushService, new ChatListArchive());
             Contacts = new ContactsViewModel(protoService, cacheService, settingsService, aggregator, contactsService);
             Calls = new CallsViewModel(protoService, cacheService, settingsService, aggregator);
-            Settings = new SettingsViewModel(protoService, cacheService, settingsService, aggregator, pushService, contactsService, settingsSearchService);
+            Settings = new SettingsViewModel(protoService, cacheService, settingsService, aggregator, settingsSearchService);
 
             // This must represent pivot tabs
             Children.Add(Chats);
@@ -129,6 +129,8 @@ namespace Unigram.ViewModels
         public IPlaybackService PlaybackService => _playbackService;
 
         public IShortcutsService ShortcutService => _shortcutService;
+
+        public IVoipService VoipService => _voipService;
 
         public RelayCommand ToggleArchiveCommand { get; }
         private void ToggleArchiveExecute()
