@@ -112,8 +112,11 @@ namespace Unigram.ViewModels
             Aggregator.Unsubscribe(Chats.Items);
             Aggregator.Unsubscribe(this);
 
-            ArchivedChats.Items.Clear();
-            Chats.Items.Clear();
+            if (Dispatcher.HasThreadAccess)
+            {
+                ArchivedChats.Items.Clear();
+                Chats.Items.Clear();
+            }
 
             Children.Clear();
         }
