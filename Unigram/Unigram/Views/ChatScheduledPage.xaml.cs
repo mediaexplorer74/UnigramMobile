@@ -17,11 +17,12 @@ namespace Unigram.Views
         {
             InitializeComponent();
 
+            Transitions = ApiInfo.CreateSlideTransition();
+
             Content = new ChatView(deleg => (DataContext = TLContainer.Current.Resolve<DialogScheduledViewModel, IDialogDelegate>(deleg)) as DialogScheduledViewModel);
             Header = View.Header;
             NavigationCacheMode = NavigationCacheMode.Required;
         }
-
 
         public void OnBackRequested(HandledRoutedEventArgs args)
         {
