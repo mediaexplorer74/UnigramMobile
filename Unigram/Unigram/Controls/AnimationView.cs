@@ -94,11 +94,11 @@ namespace Unigram.Controls
 
             _device = null;
 
-            _animation?.Dispose();
+            //_animation?.Dispose();
             _animation = null;
 
             //_bitmap?.Dispose();
-            _bitmap?.Dispose();
+            //_bitmap?.Dispose();
             _bitmap = null;
         }
 
@@ -168,7 +168,7 @@ namespace Unigram.Controls
             var x = 0d;
             var y = 0d;
 
-            if (width > sender.Size.Width || height > sender.Size.Height)
+            //if (width > sender.Size.Width || height > sender.Size.Height)
             {
                 double ratioX = (double)sender.Size.Width / width;
                 double ratioY = (double)sender.Size.Height / height;

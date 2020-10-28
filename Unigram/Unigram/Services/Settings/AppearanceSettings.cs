@@ -130,7 +130,7 @@ namespace Unigram.Services.Settings
             {
                 var theme = GetCalculatedElementTheme();
 
-                foreach (TLWindowContext window in WindowContext.ActiveWrappers)
+                foreach (TLWindowContext window in WindowContext.ActiveWrappers.ToArray())
                 {
                     await window.Dispatcher.DispatchAsync(() =>
                     {
