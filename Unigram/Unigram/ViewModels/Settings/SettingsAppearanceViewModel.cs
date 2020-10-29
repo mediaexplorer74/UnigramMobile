@@ -6,7 +6,6 @@ using Unigram.Navigation.Services;
 using Unigram.Services;
 using Unigram.Services.Updates;
 using Unigram.Views.Popups;
-using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -79,10 +78,10 @@ namespace Unigram.ViewModels.Settings
         {
             get
             {
-                var size = (int)Theme.Current.GetValueOrDefault("MessageFontSize", ApiInfo.IsUniversalApiContract7Present ? 14d : 15d);
+                var size = Theme.Current.MessageFontSize;
                 if (_sizeToIndex.TryGetValue(size, out int index))
                 {
-                    return (double)index;
+                    return index;
                 }
 
                 return 2d;
@@ -92,7 +91,7 @@ namespace Unigram.ViewModels.Settings
                 var index = (int)Math.Round(value);
                 if (_indexToSize.TryGetValue(index, out int size))
                 {
-                    Theme.Current.AddOrUpdateValue("MessageFontSize", (double)size);
+                    Theme.Current.MessageFontSize = size;
                 }
 
                 RaisePropertyChanged();
