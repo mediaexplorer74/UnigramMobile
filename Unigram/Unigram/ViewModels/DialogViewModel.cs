@@ -3717,6 +3717,15 @@ namespace Unigram.ViewModels
 
         private static bool AreTogether(MessageViewModel message1, MessageViewModel message2)
         {
+            if (message1.IsService())
+            {
+                return message2.IsService();
+            }
+            else if (message2.IsService())
+            {
+                return false;
+            }
+
             var saved1 = message1.IsSaved();
             var saved2 = message2.IsSaved();
 
