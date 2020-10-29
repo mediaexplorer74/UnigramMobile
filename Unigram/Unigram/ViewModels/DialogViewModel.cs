@@ -721,8 +721,6 @@ namespace Unigram.ViewModels
 
                     IsLastSliceLoaded = replied.IsEmpty();
 
-                    LoadPinnedMessagesSliceAsync(maxId.Value, VerticalAlignment.Top);
-
                     if (replied.IsEmpty())
                     {
                         await AddHeaderAsync();
@@ -731,6 +729,8 @@ namespace Unigram.ViewModels
 
                 _isLoadingNextSlice = false;
                 IsLoading = false;
+
+                LoadPinnedMessagesSliceAsync(maxId.Value, VerticalAlignment.Top);
             }
         }
 
@@ -841,12 +841,12 @@ namespace Unigram.ViewModels
                     }
 
                     IsFirstSliceLoaded = !added || IsEndReached();
-
-                    LoadPinnedMessagesSliceAsync(maxId.Value, VerticalAlignment.Bottom);
                 }
 
                 _isLoadingPreviousSlice = false;
                 IsLoading = false;
+
+                LoadPinnedMessagesSliceAsync(maxId.Value, VerticalAlignment.Bottom);
             }
         }
 
@@ -1237,8 +1237,6 @@ namespace Unigram.ViewModels
 
                 System.Diagnostics.Debug.WriteLine("DialogViewModel: LoadMessageSliceAsync");
 
-                LoadPinnedMessagesSliceAsync(maxId, VerticalAlignment.Center);
-
                 Function func;
                 if (_threadId != 0)
                 {
@@ -1368,6 +1366,8 @@ namespace Unigram.ViewModels
                 _isLoadingNextSlice = false;
                 _isLoadingPreviousSlice = false;
                 IsLoading = false;
+
+                LoadPinnedMessagesSliceAsync(maxId, VerticalAlignment.Center);
             }
 
             await LoadMessageSliceAsync(previousId, maxId, alignment, pixel, direction, disableAnimation, true);
