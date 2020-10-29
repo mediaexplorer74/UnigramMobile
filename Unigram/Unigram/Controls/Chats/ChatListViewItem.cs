@@ -120,7 +120,7 @@ namespace Unigram.Controls.Chats
             _tracker.Properties.InsertBoolean("CanReply", _reply);
             _tracker.Properties.InsertBoolean("CanForward", _forward);
 
-            ConfigureAnimations(_visual, null);
+            //ConfigureAnimations(_visual, null);
             ConfigureRestingPoints();
         }
 
