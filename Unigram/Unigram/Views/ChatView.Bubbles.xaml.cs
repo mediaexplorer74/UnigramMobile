@@ -160,7 +160,7 @@ namespace Unigram.Views
                 {
                     firstVisibleId = message.Id;
                 }
-                else if (message.Id != 0)
+                if (message.Id != 0)
                 {
                     lastVisibleId = message.Id;
                 }
