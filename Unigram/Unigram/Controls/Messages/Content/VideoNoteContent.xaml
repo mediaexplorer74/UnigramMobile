@@ -27,7 +27,7 @@
         <!-- Used to host the MediaPlayer -->
         <!-- TODO: future, remove this and use CompositionGeometricClip
          when most more desktop users will be on RS5 -->
-        <Grid x:Name="Presenter" CornerRadius="100" MaxWidth="200" />
+        <Border x:Name="Element" CornerRadius="100" MaxWidth="200" />
         <contract7NotPresent:Canvas MaxWidth="200">
             <Path Fill="{ThemeResource MessageBackgroundBrush}">
                 <Path.Data>
