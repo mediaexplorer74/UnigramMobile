@@ -140,7 +140,7 @@ namespace Unigram.Views
             var minDateIndex = panel.FirstVisibleIndex;
 
             var messages = new List<long>(panel.LastVisibleIndex - panel.FirstVisibleIndex);
-            var animations = new List<MessageViewModel>(panel.LastVisibleIndex - panel.FirstVisibleIndex);
+            var animations = new List<(SelectorItem, MessageViewModel)>(panel.LastVisibleIndex - panel.FirstVisibleIndex);
 
             for (int i = panel.FirstVisibleIndex; i <= panel.LastVisibleIndex; i++)
             {
@@ -244,7 +244,7 @@ namespace Unigram.Views
                 else
                 {
                     messages.Add(message.Id);
-                    animations.Add(message);
+                    animations.Add((container, message));
                 }
 
                 while (TryPeek(out long reply, ViewModel.RepliesStack) && reply == message.Id)
@@ -525,11 +525,17 @@ namespace Unigram.Views
             {
                 if (_old.ContainsKey(message.AnimationHash()))
                 {
-                    Play(new MessageViewModel[0], false, false);
+                    Play(new (SelectorItem, MessageViewModel)[0], false, false);
                 }
                 else
                 {
-                    Play(new[] { message }, true, true);
+                    var container = Messages.ContainerFromItem(message) as ListViewItem;
+                    if (container == null)
+                    {
+                        return;
+                    }
+
+                    Play(new (SelectorItem, MessageViewModel)[] { (container, message) }, true, true);
                 }
             }
         }
@@ -547,22 +553,19 @@ namespace Unigram.Views
             }
         }
 
-        public void Play(IEnumerable<MessageViewModel> items, bool auto, bool audio)
+        public void Play(IEnumerable<(SelectorItem Container, MessageViewModel Message)> items, bool auto, bool audio)
         {
             PlayStickers(items);
 
             var next = new Dictionary<long, MediaPlayerItem>();
 
-            foreach (var message in items)
+            foreach (var pair in items)
             {
+                var message = pair.Message;
+                var container = pair.Container;
+
                 var animation = message.GetAnimation();
                 if (animation == null || !animation.Local.IsDownloadingCompleted)
-                {
-                    continue;
-                }
-
-                var container = Messages.ContainerFromItem(message) as ListViewItem;
-                if (container == null)
                 {
                     continue;
                 }
@@ -688,14 +691,17 @@ namespace Unigram.Views
             }
         }
 
-        public void PlayStickers(IEnumerable<MessageViewModel> items)
+        public void PlayStickers(IEnumerable<(SelectorItem Container, MessageViewModel Message)> items)
         {
             if (!Services.SettingsService.Current.Stickers.PlayStickers) return;
             var next = new Dictionary<long, LottieViewItem>();
             var prev = new HashSet<long>();
 
-            foreach (var message in items)
+            foreach (var pair in items)
             {
+                var message = pair.Message;
+                var container = pair.Container;
+
                 var animation = message.IsAnimatedStickerDownloadCompleted();
                 if (animation == false)
                 {
@@ -715,12 +721,6 @@ namespace Unigram.Views
                         prev.Add(message.AnimationHash());
                         continue;
                     }
-                }
-
-                var container = Messages.ContainerFromItem(message) as ListViewItem;
-                if (container == null)
-                {
-                    continue;
                 }
 
                 var root = container.ContentTemplateRoot as FrameworkElement;
