@@ -2386,7 +2386,13 @@ namespace Telegram.Td.Api
                     }
                 }
             }
+
             return new Size(closestObject.Width, closestObject.Height);
+        }
+
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -2419,13 +2425,26 @@ namespace Telegram.Td.Api
             Date = chatEvent.Date;
             Id = chatEvent.Id;
         }
+
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MessageHeaderDate : MessageContent
     {
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MessageHeaderUnread : MessageContent
     {
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

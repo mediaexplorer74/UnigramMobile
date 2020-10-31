@@ -93,9 +93,9 @@ namespace Unigram.Controls.Chats
         {
             this.BeginOnUIThread(() =>
             {
-                if (update.ForDarkTheme == SettingsService.Current.Appearance.IsDarkTheme())
+                if (update.ForDarkTheme == (ActualTheme == ElementTheme.Dark)) //SettingsService.Current.Appearance.IsDarkTheme())
                 {
-                    Update(_session, _protoService.SelectedBackground, update.ForDarkTheme);
+                    Update(_session, update.Background /*_protoService.SelectedBackground*/, update.ForDarkTheme);
                 }
             });
         }
@@ -129,7 +129,8 @@ namespace Unigram.Controls.Chats
                 Background = null;
                 _colorBackground.Opacity = 1;
 
-                if (SettingsService.Current.Appearance.IsLightTheme())
+                //if (SettingsService.Current.Appearance.IsLightTheme())
+                if (ActualTheme == ElementTheme.Light)
                 {
                     _colorBackground.Fill = new TiledBrush { Source = new Uri("ms-appx:///Assets/Images/DefaultBackground.theme-light.png") };
                 }

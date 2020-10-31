@@ -54,7 +54,14 @@ namespace Unigram.Views.Popups
 
             Loaded += async (s, args) =>
             {
-                await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
+                if (mask == ImageCropperMask.Ellipse)
+                {
+                    await Cropper.SetSourceAsync(media.File, proportions: BitmapProportions.Square);
+                }
+                else
+                {
+                    await Cropper.SetSourceAsync(media.File, media.EditState.Rotation, media.EditState.Flip, media.EditState.Proportions, media.EditState.Rectangle);
+                }
                 if (!_hasMessageContext) //TODO: Fix mask bug, remove hack (#2017 references mask position)
                 {
                     await Cropper.SetSourceAsync(_media.File, _media.EditState.Rotation, _media.EditState.Flip, _media.EditState.Proportions, _media.EditState.Rectangle);

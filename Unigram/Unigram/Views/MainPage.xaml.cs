@@ -960,6 +960,17 @@ namespace Unigram.Views
             var commands = ViewModel.ShortcutService.Process(args);
             foreach (var command in commands)
             {
+#if DEBUG
+                if (command == ShortcutCommand.Quit)
+                {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+
+                    return;
+                }
+#endif
+
                 ProcessChatCommands(command, args);
                 ProcessFolderCommands(command, args);
                 ProcessAppCommands(command, args);

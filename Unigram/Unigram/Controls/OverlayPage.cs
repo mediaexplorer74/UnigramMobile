@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Unigram.Common;
 using Unigram.Navigation;
 using Unigram.Navigation.Services;
+using Unigram.Services;
+using Unigram.Services.Keyboard;
 using Unigram.Services.ViewService;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +30,8 @@ namespace Unigram.Controls
         private int _lastHide;
 
         private ApplicationView _applicationView;
+        private DisplayRegion _displayRegion;
+
         private Popup _popupHost;
 
         private bool _closing;
@@ -34,7 +41,7 @@ namespace Unigram.Controls
 
         protected Border Container;
         protected Border BackgroundElement;
-        //private AppViewBackButtonVisibility BackButtonVisibility;
+        private AppViewBackButtonVisibility BackButtonVisibility;
 
         public event EventHandler Closing;
 
@@ -49,7 +56,24 @@ namespace Unigram.Controls
             //Opened += OnOpened;
             //Closed += OnClosed;
         }
+        /*/TODO: Part of not yet merged new gallery Commit d0000b38 ...
+        protected override void OnPointerPressed(PointerRoutedEventArgs e)
+        {
+            var pointer = e.GetCurrentPoint(this);
+            if (!IsConstrainedToRootBounds && KeyboardHelper.IsPointerGoBackGesture(pointer.Properties))
+            {
+                var args = new HandledRoutedEventArgs();
+                OnBackRequested(args);
+                e.Handled = args.Handled;
+            }
+            else if (pointer.Properties.IsLeftButtonPressed && IsLightDismissEnabled)
+            {
+                OnBackRequestedOverride(this, new HandledRoutedEventArgs());
+            }
 
+            base.OnPointerPressed(e);
+        }
+        */
         private void OnVisibleBoundsChanged(ApplicationView sender, object args)
         {
             if (sender == null)
@@ -133,7 +157,34 @@ namespace Unigram.Controls
                 }
             }
         }
+        /*/TODO: Part of not yet merged new gallery Commit d0000b38 ...
+        public bool IsConstrainedToRootBounds => ApiInfo.CanUnconstrainFromBounds ? _popupHost?.IsConstrainedToRootBounds ?? true : true;
 
+        public bool CanUnconstrainFromRootBounds
+        {
+            get
+            {
+                if (ApiInfo.CanUseWindowManagement && ApiInfo.CanUnconstrainFromBounds && SettingsService.Current.FullScreenGallery)
+                {
+                    if (_displayRegion != null)
+                    {
+                        return true;
+                    }
+
+                    var regions = ApplicationView.GetForCurrentView().GetDisplayRegions();
+
+                    var region = regions.FirstOrDefault(x => x.WindowingEnvironment.Kind != WindowingEnvironmentKind.Unknown);
+                    if (region != null && region.WorkAreaSize.Width > 0 && region.WorkAreaSize.Height > 0)
+                    {
+                        _displayRegion = region;
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+        */
         public IAsyncOperation<ContentDialogResult> ShowAsync()
         {
             return AsyncInfo.Run(async (token) =>
@@ -161,10 +212,15 @@ namespace Unigram.Controls
                     _popupHost.Child = this;
                     _popupHost.IsLightDismissEnabled = false;
                     _popupHost.Loading += PopupHost_Loading;
-                    _popupHost.Loaded += PopupHostLoaded;
+                    _popupHost.Loaded += PopupHost_Loaded;
                     _popupHost.Opened += PopupHost_Opened;
                     _popupHost.Closed += PopupHost_Closed;
-
+                    /*/TODO: Part of not yet merged new gallery Commit d0000b38 ...
+                    if (CanUnconstrainFromRootBounds)
+                    {
+                        _popupHost.ShouldConstrainToRootBounds = false;
+                    }
+                    */
                     this.Unloaded += PopupHost_Unloaded;
                 }
 
@@ -192,10 +248,13 @@ namespace Unigram.Controls
 
         private void PopupHost_Loading(FrameworkElement sender, object args)
         {
-            OnVisibleBoundsChanged(_applicationView, null);
+            if (_applicationView != null)
+            {
+                OnVisibleBoundsChanged(_applicationView, null);
+            }
         }
 
-        private void PopupHostLoaded(object sender, RoutedEventArgs e)
+        private void PopupHost_Loaded(object sender, RoutedEventArgs e)
         {
             Focus(FocusState.Programmatic);
         }
@@ -204,12 +263,11 @@ namespace Unigram.Controls
         {
             MaskTitleAndStatusBar();
 
-            //BackButtonVisibility = SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility;
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            _applicationView.VisibleBoundsChanged += OnVisibleBoundsChanged;
-            //Window.Current.SizeChanged += OnSizeChanged;
-
-            OnVisibleBoundsChanged(_applicationView, null);
+            if (_applicationView != null)
+            {
+                _applicationView.VisibleBoundsChanged += OnVisibleBoundsChanged;
+                OnVisibleBoundsChanged(_applicationView, null);
+            }
         }
 
         private void PopupHost_Closed(object sender, object e)
@@ -218,8 +276,10 @@ namespace Unigram.Controls
 
             //_callback.TrySetResult(_result);
 
-            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = BackButtonVisibility;
-            _applicationView.VisibleBoundsChanged -= OnVisibleBoundsChanged;
+            if (_applicationView != null)
+            {
+                _applicationView.VisibleBoundsChanged -= OnVisibleBoundsChanged;
+            }
         }
 
         public void OnBackRequested(HandledRoutedEventArgs e)
@@ -282,21 +342,34 @@ namespace Unigram.Controls
             Container = (Border)GetTemplateChild("Container");
             BackgroundElement = (Border)GetTemplateChild("BackgroundElement");
 
-            OnVisibleBoundsChanged(_applicationView, null);
+            if (_applicationView != null)
+            {
+                OnVisibleBoundsChanged(_applicationView, null);
+            }
 
-            //Container.Tapped += Outside_Tapped;
-            //BackgroundElement.Tapped += Inside_Tapped;
+            Container.Tapped += Outside_Tapped;
+            BackgroundElement.Tapped += Inside_Tapped;
         }
 
-        //private void Inside_Tapped(object sender, TappedRoutedEventArgs e)
-        //{
-        //    e.Handled = true;
-        //}
+        private void Inside_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (e.OriginalSource == BackgroundElement && IsLightDismissEnabled)
+            {
+                Hide();
+            }
 
-        //private void Outside_Tapped(object sender, TappedRoutedEventArgs e)
-        //{
-        //    //Hide();
-        //}
+            e.Handled = true;
+        }
+
+        private void Outside_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (IsLightDismissEnabled)
+            {
+                Hide();
+            }
+        }
+
+        public bool IsLightDismissEnabled { get; set; }
 
         //private void OnSizeChanged(object sender, WindowSizeChangedEventArgs e)
         //{
@@ -325,9 +398,12 @@ namespace Unigram.Controls
 
         private void UpdateViewBase()
         {
-            var bounds = _applicationView.VisibleBounds;
-            Width = bounds.Width;
-            Height = bounds.Height;
+            if (_applicationView != null)
+            {
+                var bounds = _applicationView.VisibleBounds;
+                Width = bounds.Width;
+                Height = bounds.Height;
+            }
         }
 
         #region OverlayBrush
