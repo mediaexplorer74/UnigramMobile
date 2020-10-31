@@ -2187,6 +2187,10 @@ namespace Unigram.Views
                     return restricted.Permissions.CanSendMessages;
                 }
             }
+            else if (chat != null && chat.Id == ViewModel.CacheService.Options.RepliesBotChatId)
+            {
+                return false;
+            }
 
             return true;
         }
