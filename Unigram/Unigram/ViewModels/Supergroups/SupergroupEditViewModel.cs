@@ -20,6 +20,8 @@ namespace Unigram.ViewModels.Supergroups
 {
     public class SupergroupEditViewModel : TLViewModelBase,
         IDelegable<ISupergroupEditDelegate>,
+        IHandle<UpdateFile>,
+        IHandle<UpdateChatPhoto>,
         IHandle<UpdateSupergroup>,
         IHandle<UpdateSupergroupFullInfo>,
         IHandle<UpdateBasicGroup>,
@@ -54,9 +56,6 @@ namespace Unigram.ViewModels.Supergroups
             get { return _chat; }
             set { Set(ref _chat, value); }
         }
-
-        private StorageMedia _photo;
-        private bool _deletePhoto;
 
         private string _title;
         public string Title
@@ -143,6 +142,34 @@ namespace Unigram.ViewModels.Supergroups
         {
             Aggregator.Unsubscribe(this);
             return Task.CompletedTask;
+        }
+
+        public void Handle(UpdateFile update)
+        {
+            var chat = _chat;
+            if (chat?.Photo == null)
+            {
+                return;
+            }
+
+            if (update.File.Local.IsDownloadingCompleted && chat.Photo.UpdateFile(update.File))
+            {
+                BeginOnUIThread(() => Delegate?.UpdateChatPhoto(chat));
+            }
+        }
+
+        public void Handle(UpdateChatPhoto update)
+        {
+            var chat = _chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            if (chat.Id == update.ChatId)
+            {
+                BeginOnUIThread(() => Delegate?.UpdateChatPhoto(chat));
+            }
         }
 
         public void Handle(UpdateSupergroup update)
@@ -267,7 +294,43 @@ namespace Unigram.ViewModels.Supergroups
                 }
             }
 
-            if (_photo is StorageVideo media)
+            if (_isAllHistoryAvailable && chat.Type is ChatTypeBasicGroup)
+            {
+                var response = await ProtoService.SendAsync(new UpgradeBasicGroupChatToSupergroupChat(chat.Id));
+                if (response is Chat result && result.Type is ChatTypeSupergroup super)
+                {
+                    chat = result;
+                    supergroup = await ProtoService.SendAsync(new GetSupergroup(super.SupergroupId)) as Supergroup;
+                    fullInfo = await ProtoService.SendAsync(new GetSupergroupFullInfo(super.SupergroupId)) as SupergroupFullInfo;
+                }
+                else if (response is Error)
+                {
+                    // TODO:
+                }
+            }
+
+            if (supergroup != null && fullInfo != null && _isAllHistoryAvailable != fullInfo.IsAllHistoryAvailable)
+            {
+                var response = await ProtoService.SendAsync(new ToggleSupergroupIsAllHistoryAvailable(supergroup.Id, _isAllHistoryAvailable));
+                if (response is Error)
+                {
+                    // TODO:
+                }
+            }
+
+            NavigationService.GoBack();
+        }
+
+        public RelayCommand<StorageMedia> EditPhotoCommand { get; }
+        private async void EditPhotoExecute(StorageMedia file)
+        {
+            var chat = _chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            if (file is StorageVideo media)
             {
                 var props = await media.File.Properties.GetVideoPropertiesAsync();
 
@@ -298,59 +361,27 @@ namespace Unigram.ViewModels.Supergroups
                 var generated = await media.File.ToGeneratedAsync(ConversionType.Transcode, JsonConvert.SerializeObject(conversion));
                 var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, new InputChatPhotoAnimation(generated, 0)));
             }
-            else if (_photo is StoragePhoto photo)
+            else if (file is StoragePhoto photo)
             {
                 var generated = await photo.File.ToGeneratedAsync(ConversionType.Compress, JsonConvert.SerializeObject(photo.EditState));
                 var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, new InputChatPhotoStatic(generated)));
             }
-            else if (_deletePhoto)
-            {
-                var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, null));
-                if (response is Error)
-                {
-                    // TODO:
-                }
-            }
-
-            if (_isAllHistoryAvailable && chat.Type is ChatTypeBasicGroup)
-            {
-                var response = await ProtoService.SendAsync(new UpgradeBasicGroupChatToSupergroupChat(chat.Id));
-                if (response is Chat result && result.Type is ChatTypeSupergroup super)
-                {
-                    chat = result;
-                    supergroup = await ProtoService.SendAsync(new GetSupergroup(super.SupergroupId)) as Supergroup;
-                    fullInfo = await ProtoService.SendAsync(new GetSupergroupFullInfo(super.SupergroupId)) as SupergroupFullInfo;
-                }
-                else if (response is Error)
-                {
-                    // TODO:
-                }
-            }
-
-            if (supergroup != null && fullInfo != null && _isAllHistoryAvailable != fullInfo.IsAllHistoryAvailable)
-            {
-                var response = await ProtoService.SendAsync(new ToggleSupergroupIsAllHistoryAvailable(supergroup.Id, _isAllHistoryAvailable));
-                if (response is Error)
-                {
-                    // TODO:
-                }
-            }
-
-            NavigationService.GoBack();
-        }
-
-        public RelayCommand<StorageMedia> EditPhotoCommand { get; }
-        private void EditPhotoExecute(StorageMedia file)
-        {
-            _photo = file;
-            _deletePhoto = false;
         }
 
         public RelayCommand DeletePhotoCommand { get; }
-        private void DeletePhotoExecute()
+        private async void DeletePhotoExecute()
         {
-            _photo = null;
-            _deletePhoto = true;
+            var chat = _chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            var response = await ProtoService.SendAsync(new SetChatPhoto(chat.Id, null));
+            if (response is Error)
+            {
+                // TODO:
+            }
         }
 
         public RelayCommand EditTypeCommand { get; }
