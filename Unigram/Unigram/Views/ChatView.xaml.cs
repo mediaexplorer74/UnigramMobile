@@ -1796,13 +1796,16 @@ namespace Unigram.Views
                     //await MessagePopup.ShowAsync(Strings.Resources.HidAccount, Strings.Resources.AppName, Strings.Resources.OK);
                 }
             }
-            else if (message.IsChannelPost)
+            if (ViewModel.CacheService.TryGetChat(message.SenderId, out Chat senderChat))
             {
-                ViewModel.OpenChat(message.ChatId);
-            }
-            else if (message.SenderId is MessageSenderChat senderChat)
-            {
-                ViewModel.OpenChat(senderChat.ChatId, true);
+                if (senderChat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+                {
+                    ViewModel.OpenChat(senderChat.Id);
+                }
+                else
+                {
+                    ViewModel.OpenChat(senderChat.Id, true);
+                }
             }
             else if (message.SenderId is MessageSenderUser senderUser)
             {
