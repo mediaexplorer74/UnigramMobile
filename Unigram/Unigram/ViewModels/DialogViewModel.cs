@@ -422,6 +422,7 @@ namespace Unigram.ViewModels
 
         private bool _hasLoadedLastPinnedMessage = false;
 
+        public long LockedPinnedMessageId { get; set; }
         public MessageViewModel LastPinnedMessage { get; private set; }
         public IList<MessageViewModel> PinnedMessages { get; } = new List<MessageViewModel>();
 
