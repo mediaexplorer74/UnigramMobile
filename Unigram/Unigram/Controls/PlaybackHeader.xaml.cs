@@ -42,6 +42,12 @@ namespace Unigram.Controls
             Slider.AddHandler(PointerCanceledEvent, new PointerEventHandler(Slider_PointerCanceled), true);
             Slider.AddHandler(PointerCaptureLostEvent, new PointerEventHandler(Slider_PointerCaptureLost), true);
 
+            if (!ApiInfo.IsPhoneContractPresent)
+            {
+                Slider.Margin = new Thickness(0, -2, 0, 0);
+                Slider.Height = 6;
+            }
+
             _visual1 = ElementCompositionPreview.GetElementVisual(Label1);
             _visual2 = ElementCompositionPreview.GetElementVisual(Label2);
 

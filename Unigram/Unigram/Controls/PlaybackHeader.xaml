@@ -400,7 +400,7 @@
 
         <controls:PlaybackSlider
             x:Name="Slider"
-            Height="6"
-            Margin="0,-3,0,0"/>
+            Height="8"
+            Margin="0,-8,0,0"/>
     </StackPanel>
 </UserControl>
