@@ -3461,7 +3461,7 @@ namespace Unigram.Views
                 ViewModel.ReplyToMessage(message);
 
                 ButtonMarkup.Visibility = Visibility.Collapsed;
-                ButtonCommands.Visibility = Visibility.Visible;
+                ButtonCommands.Visibility = ViewModel.HasBotCommands ? Visibility.Visible : Visibility.Collapsed;
                 CollapseMarkup(false);
             }
             else
@@ -3476,7 +3476,7 @@ namespace Unigram.Views
                 else
                 {
                     ButtonMarkup.Visibility = Visibility.Collapsed;
-                    ButtonCommands.Visibility = Visibility.Visible;
+                    ButtonCommands.Visibility = ViewModel.HasBotCommands ? Visibility.Visible : Visibility.Collapsed;
                     CollapseMarkup(false);
                 }
             }
@@ -3484,7 +3484,7 @@ namespace Unigram.Views
 
         public void UpdatePinnedMessage(Chat chat, MessageViewModel message, bool loading)
         {
-            PinnedMessage.UpdateMessage(chat, chat.PinnedMessageId, message, loading, Strings.Resources.PinnedMessage);
+            PinnedMessage.UpdateMessage(chat, chat.PinnedMessageId, message, loading);
         }
 
         public void UpdateCallbackQueryAnswer(Chat chat, MessageViewModel message)

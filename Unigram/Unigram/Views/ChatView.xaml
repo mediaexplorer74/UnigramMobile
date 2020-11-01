@@ -1175,7 +1175,6 @@
                                 Click="Commands_Click"
                                 AllowFocusOnInteraction="False"
                                 Glyph="&#xE613;"
-                                Visibility="{x:Bind ViewModel.HasBotCommands, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 FontFamily="{StaticResource TelegramThemeFontFamily}"
                                 VerticalAlignment="Bottom"
                                 AutomationProperties.Name="{CustomResource AccDescrBotCommands}"
