@@ -123,6 +123,7 @@ namespace Unigram.ViewModels
             ChatClearCommand = new RelayCommand(ChatClearExecute);
             CallCommand = new RelayCommand(CallExecute);
             PinnedHideCommand = new RelayCommand(PinnedHideExecute);
+            PinnedShowCommand = new RelayCommand(PinnedShowExecute);
             PinnedListCommand = new RelayCommand(PinnedListExecute);
             UnblockCommand = new RelayCommand(UnblockExecute);
             ShareContactCommand = new RelayCommand(ShareContactExecute);
@@ -1124,7 +1125,7 @@ namespace Unigram.ViewModels
             var offset = direction == VerticalAlignment.Top ? 0 : direction == VerticalAlignment.Bottom ? -49 : -25;
             var limit = 50;
 
-            if (direction == VerticalAlignment.Center && LastPinnedMessage?.Id == maxId)
+            if (direction == VerticalAlignment.Center && (maxId == LastPinnedMessage?.Id || maxId == 0))
             {
                 offset = -1;
                 limit = 100;
@@ -3002,6 +3003,19 @@ namespace Unigram.ViewModels
                 Settings.SetChatPinnedMessage(chat.Id, message.Id);
                 Delegate?.UpdatePinnedMessage(chat, false);
             }
+        }
+
+        public RelayCommand PinnedShowCommand { get; }
+        private void PinnedShowExecute()
+        {
+            var chat = _chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            Settings.SetChatPinnedMessage(chat.Id, 0);
+            LoadPinnedMessagesSliceAsync(0, VerticalAlignment.Center);
         }
 
         public RelayCommand PinnedListCommand { get; }

@@ -1949,6 +1949,12 @@ namespace Unigram.Views
                 }
             }
 
+            var hidden = ViewModel.Settings.GetChatPinnedMessage(chat.Id);
+            if (hidden != 0)
+            {
+                flyout.CreateFlyoutItem(ViewModel.PinnedShowCommand, Strings.Resources.PinnedMessages, new FontIcon { Glyph = Icons.Pin });
+            }
+
             if (flyout.Items.Count > 0)
             {
                 if (ApiInfo.CanUseNewFlyoutPlacementMode)
