@@ -240,10 +240,40 @@ namespace Unigram.ViewModels
 
         public async void OpenThread(MessageViewModel message)
         {
-            var response = await ProtoService.SendAsync(new GetMessageThread(message.ChatId, message.Id));
+            long chatId = message.ChatId;
+            long threadId = message.Id;
+
+            long? messageId = null;
+
+            if (message.ChatId == CacheService.Options.RepliesBotChatId)
+            {
+                if (message.ForwardInfo?.Origin is MessageForwardOriginUser || message.ForwardInfo?.Origin is MessageForwardOriginChat)
+                {
+                    chatId = message.ForwardInfo.FromChatId;
+                    threadId = message.ForwardInfo.FromMessageId;
+
+                    messageId = threadId;
+                }
+                else if (message.ForwardInfo?.Origin is MessageForwardOriginChannel fromChannel)
+                {
+                    chatId = fromChannel.ChatId;
+                    threadId = fromChannel.MessageId;
+
+                    messageId = threadId;
+                }
+
+                var original = await ProtoService.SendAsync(new GetMessage(chatId, threadId)) as Message;
+                if (original == null || !original.CanGetMessageThread)
+                {
+                    NavigationService.NavigateToChat(chatId, threadId);
+                    return;
+                }
+            }
+
+            var response = await ProtoService.SendAsync(new GetMessageThread(chatId, threadId));
             if (response is MessageThreadInfo)
             {
-                NavigationService.NavigateToThread(message.ChatId, message.Id);
+                NavigationService.NavigateToThread(chatId, threadId, messageId);
             }
         }
 
