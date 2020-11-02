@@ -188,9 +188,9 @@ namespace Unigram
                 builder.RegisterType<SignInRecoveryViewModel>();
                 builder.RegisterType<MainViewModel>();
                 builder.RegisterType<ShareViewModel>();
-                builder.RegisterType<SendLocationViewModel>().SingleInstance();
-                builder.RegisterType<ChatsViewModel>();
-                builder.RegisterType<DialogViewModel>(); //.WithParameter((a, b) => a.Name == "dispatcher", (a, b) => WindowWrapper.Current().Dispatcher);
+                builder.RegisterType<SendLocationViewModel>();
+                builder.RegisterType<ChatListViewModel>();
+                builder.RegisterType<DialogViewModel>();
                 builder.RegisterType<DialogThreadViewModel>();
                 builder.RegisterType<DialogPinnedViewModel>();
                 builder.RegisterType<DialogScheduledViewModel>();

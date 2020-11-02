@@ -73,7 +73,7 @@ namespace Unigram.ViewModels
 
             Filters = new ChatFilterCollection();
 
-            Chats = new ChatsViewModel(protoService, cacheService, settingsService, aggregator, pushService, new ChatListMain());
+            Chats = new ChatListViewModel(protoService, cacheService, settingsService, aggregator, pushService, new ChatListMain());
             Contacts = new ContactsViewModel(protoService, cacheService, settingsService, aggregator, contactsService);
             Calls = new CallsViewModel(protoService, cacheService, settingsService, aggregator);
             Settings = new SettingsViewModel(protoService, cacheService, settingsService, aggregator, settingsSearchService);
@@ -401,7 +401,7 @@ namespace Unigram.ViewModels
             return base.OnNavigatedToAsync(parameter, mode, state);
         }
 
-        public ChatsViewModel Chats { get; private set; }
+        public ChatListViewModel Chats { get; private set; }
         public ContactsViewModel Contacts { get; private set; }
         public CallsViewModel Calls { get; private set; }
         public new SettingsViewModel Settings { get; private set; }

@@ -48,7 +48,7 @@ namespace Unigram.Views
     public sealed partial class MainPage : Page,
         IRootContentPage,
         INavigatingPage,
-        IChatsDelegate,
+        IChatListDelegate,
         IHandle<UpdateChatPosition>,
         IHandle<UpdateChatIsMarkedAsUnread>,
         IHandle<UpdateChatReadInbox>,
@@ -190,11 +190,11 @@ namespace Unigram.Views
             Lock.IsChecked = ViewModel.Passcode.IsLocked;
         }
 
-#region Handle
+        #region Handle
 
         public void UpdateChatLastMessage(Chat chat)
         {
-            Handle(chat.Id, (chatView, updateChat) =>
+            Handle(chat, (chatView, updateChat) =>
             {
                 chatView.UpdateChatReadInbox(updateChat);
                 chatView.UpdateChatLastMessage(updateChat);
@@ -205,7 +205,7 @@ namespace Unigram.Views
         {
             if (update.Position.List is ChatListArchive)
             {
-                this.BeginOnUIThread(() => ArchivedChats.UpdateChatList(ViewModel.ProtoService, ViewModel.Chats, new ChatListArchive()));
+                this.BeginOnUIThread(() => ArchivedChats.UpdateChatList(ViewModel.ProtoService, new ChatListArchive()));
             }
         }
 
@@ -283,7 +283,7 @@ namespace Unigram.Views
         {
             if (update.ChatList is ChatListArchive)
             {
-                this.BeginOnUIThread(() => ArchivedChats.UpdateChatList(ViewModel.ProtoService, ViewModel.Chats, update.ChatList));
+                this.BeginOnUIThread(() => ArchivedChats.UpdateChatList(ViewModel.ProtoService, update.ChatList));
             }
         }
 
@@ -297,15 +297,15 @@ namespace Unigram.Views
 
             update(chat);
 
+            //var position = chat.GetPosition(ViewModel.Chats.Items.ChatList);
+            //if (position == null)
+            //{
+            //    return;
+            //}
+
             this.BeginOnUIThread(() =>
             {
-                var chatList = GetChatListForChat(chat);
-                if (chatList == null)
-                {
-                    return;
-                }
-
-                var container = chatList.ContainerFromItem(chat) as ListViewItem;
+                var container = ChatsList.ContainerFromItem(chat) as ListViewItem;
                 if (container == null)
                 {
                     return;
@@ -322,20 +322,25 @@ namespace Unigram.Views
         private void Handle(long chatId, Action<ChatCell, Chat> action)
         {
             var chat = _cacheService.GetChat(chatId);
-            //if (chat.Positions.Any(x => x.List is ChatListArchive))
+            if (chat == null)
+            {
+                return;
+            }
+
+            //var position = chat.GetPosition(ViewModel.Chats.Items.ChatList);
+            //if (position == null)
             //{
-            //    ArchivedChats.UpdateChatList(ViewModel.ProtoService, ViewModel.Chats, new ChatListArchive());
+            //    return;
             //}
 
+            Handle(chat, action);
+        }
+
+        private void Handle(Chat chat, Action<ChatCell, Chat> action)
+        {
             this.BeginOnUIThread(() =>
             {
-                var chatList = GetChatListForChat(chat);
-                if (chatList == null)
-                {
-                    return;
-                }
-
-                var container = chatList.ContainerFromItem(chat) as ListViewItem;
+                var container = ChatsList.ContainerFromItem(chat) as ListViewItem;
                 if (container == null)
                 {
                     return;
@@ -770,16 +775,6 @@ namespace Unigram.Views
             }
         }
 
-        private ChatsPage GetChatListForChat(Chat chat)
-        {
-            if (chat.Positions.Any(x => x.List.ListEquals(ViewModel.Chats.Items.ChatList)))
-            {
-                return ChatsList;
-            }
-
-            return null;
-        }
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Playback.Update(ViewModel.ProtoService, ViewModel.PlaybackService, ViewModel.NavigationService, ViewModel.Aggregator);
@@ -1185,7 +1180,7 @@ namespace Unigram.Views
             ViewModel.Calls.NavigationService = MasterDetail.NavigationService;
             ViewModel.Settings.NavigationService = MasterDetail.NavigationService;
 
-            ArchivedChats.UpdateChatList(ViewModel.ProtoService, ViewModel.Chats, new ChatListArchive());
+            ArchivedChats.UpdateChatList(ViewModel.ProtoService, new ChatListArchive());
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -2103,7 +2098,7 @@ namespace Unigram.Views
                     return;
                 }
 
-                content.UpdateMessage(ViewModel.ProtoService, ViewModel.Chats, message);
+                content.UpdateMessage(ViewModel.ProtoService, message);
             }
 
             args.Handled = true;
@@ -2811,11 +2806,6 @@ namespace Unigram.Views
                     }
                 }
             }
-        }
-
-        public bool IsItemSelected(Chat chat)
-        {
-            return ViewModel.Chats.SelectedItems.Contains(chat);
         }
 
         private void UpdateManage()
