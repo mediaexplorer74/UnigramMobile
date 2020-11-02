@@ -803,7 +803,10 @@
                                                      Grid.Row="1">
                                         <ListView.Header>
                                             <Grid x:Name="ArchivedChatsPresenter">
-                                                <Border x:Name="ArchivedChatsPanel">
+                                                <Button
+                                                    x:Name="ArchivedChatsPanel"
+                                                    Click="ArchivedChats_Click"
+                                                    Style="{StaticResource EmptyButtonStyle}">
                                                     <cells:ChatCell
                                                         x:Name="ArchivedChats"
                                                         ContextRequested="ArchivedChats_ContextRequested"
@@ -811,14 +814,16 @@
                                                         Stroke="{ThemeResource ChatLastMessageStateBrush}"
                                                         SelectionStroke="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                                         Accent="{ThemeResource SystemAccentColor}" />
-                                                </Border>
+                                                </Button>
                                                 <Border VerticalAlignment="Bottom">
                                                     <Border x:Name="ArchivedChatsCompactPanel" Background="{ThemeResource PageBackgroundDarkBrush}">
-                                                        <!--<cells:ChatCell
+                                                        <Button
+                                                            Click="ArchivedChats_Click"
                                                             Content="{CustomResource ArchivedChats}"
                                                             ContextRequested="ArchivedChats_ContextRequested"
+                                                            Style="{StaticResource EmptyButtonStyle}"
                                                             Visibility="{x:Bind ArchivedChats.Visibility, Mode=OneWay}"
-                                                            Padding="12,6"/>-->
+                                                            Padding="12,6"/>
                                                     </Border>
                                                 </Border>
                                             </Grid>
@@ -826,17 +831,6 @@
                                     </local:ChatsPage>
                                 </Grid>
 
-                                <Grid x:Name="FolderPanel" Visibility="Collapsed" Grid.RowSpan="2">
-                                    <Border x:Name="FolderShadow" Background="{ThemeResource MessageOverlayBackgroundBrush}"/>
-                                    <local:ChatsPage
-                                        x:Name="FolderList"
-                                        AutomationProperties.LandmarkType="Main"
-                                        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                        Main="{x:Bind ViewModel}"
-                                        DataContext="{x:Bind ViewModel.Folder, Mode=OneWay}"
-                                        ItemsSource="{x:Bind ViewModel.Folder.Items, Mode=OneWay}"
-                                        SelectionMode="{x:Bind ViewModel.Folder.SelectionMode, Mode=TwoWay}"/>
-                                </Grid>
 <!--
                                 <Grid
                                     VerticalAlignment="Bottom"
