@@ -381,7 +381,7 @@ namespace Unigram.Services
             }
             else if (_callLifetime != null)
             {
-                _callLifetime = await _viewService.OpenAsync(() => _callPage = _callPage ?? new VoIPPage(ProtoService, CacheService, Aggregator, _call, _controller, _callStarted), _call.Id);
+                _callLifetime = await _viewService.OpenAsync(() => _callPage = new VoIPPage(ProtoService, CacheService, Aggregator, _call, _controller, _callStarted), _call.Id);
                 _callLifetime.WindowWrapper.ApplicationView().Consolidated -= ApplicationView_Consolidated;
                 _callLifetime.WindowWrapper.ApplicationView().Consolidated += ApplicationView_Consolidated;
             }
@@ -395,7 +395,7 @@ namespace Unigram.Services
             {
                 if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
                 {
-                    _callLifetime = await _viewService.OpenAsync(() => _callPage = _callPage ?? new VoIPPage(ProtoService, CacheService, Aggregator, _call, _controller, _callStarted), call.Id);
+                    _callLifetime = await _viewService.OpenAsync(() => _callPage = new VoIPPage(ProtoService, CacheService, Aggregator, _call, _controller, _callStarted), call.Id);
                     _callLifetime.WindowWrapper.ApplicationView().Consolidated -= ApplicationView_Consolidated;
                     _callLifetime.WindowWrapper.ApplicationView().Consolidated += ApplicationView_Consolidated;
                 }
@@ -469,5 +469,12 @@ namespace Unigram.Services
 
             Aggregator.Publish(new UpdateCallDialog(_call, false));
         }
+        //TODO: Commit d93908d6
+        //private void ApplicationView_Released(object sender, EventArgs e)
+        //{
+        //    _callPage = null;
+        //    _callLifetime = null;
+        //    Aggregator.Publish(new UpdateCallDialog(_call, false));
+        //}
     }
 }
