@@ -16,6 +16,7 @@ using Unigram.Navigation;
 using Unigram.ViewModels.Chats;
 using Unigram.ViewModels.Delegates;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
@@ -479,6 +480,14 @@ namespace Unigram.Views.Chats
             args.ItemContainer.Tag = args.Item;
 
             var message = args.Item as Message;
+            if (message == null)
+            {
+                return;
+            }
+
+            AutomationProperties.SetName(args.ItemContainer,
+                Automation.GetSummary(ViewModel.ProtoService, message));
+
             if (args.ItemContainer.ContentTemplateRoot is SimpleHyperlinkButton hyperlink)
             {
                 if (message.Content is MessagePhoto photoMessage)
