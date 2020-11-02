@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Unigram.Controls
 {
-    public class ChatListListView : ListView
+    public class ChatListListView : MultipleListView
     {
         public ChatListViewModel ViewModel => DataContext as ChatListViewModel;
 
@@ -77,7 +77,7 @@ namespace Unigram.Controls
 
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new ChatsListViewItem(this);
+            return new ChatListListViewItem(this);
         }
     }
 
@@ -85,10 +85,10 @@ namespace Unigram.Controls
     {
         private ChatListListView _list;
 
-        //public ChatsListViewItem()
-        //{
-
-        //}
+        public ChatListListViewItem()
+        {
+            DefaultStyleKey = typeof(ChatListListViewItem);
+        }
 
         protected override AutomationPeer OnCreateAutomationPeer()
         {
@@ -97,6 +97,8 @@ namespace Unigram.Controls
 
         public ChatListListViewItem(ChatListListView list)
         {
+            DefaultStyleKey = typeof(ChatListListViewItem);
+
             _list = list;
             RegisterPropertyChangedCallback(IsSelectedProperty, OnSelectedChanged);
         }
