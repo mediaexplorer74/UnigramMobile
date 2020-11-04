@@ -153,7 +153,6 @@ namespace Unigram.Navigation
         protected override sealed void OnSearchActivated(SearchActivatedEventArgs args) { DebugWrite(); CallInternalActivatedAsync(args); }
         protected override sealed void OnShareTargetActivated(ShareTargetActivatedEventArgs args) { DebugWrite(); CallInternalActivatedAsync(args); }
 
-        public IActivatedEventArgs OriginalActivatedArgs { get; private set; }
         public bool PrelaunchActivated { get; private set; }
 
         private async void CallInternalActivatedAsync(IActivatedEventArgs e)
@@ -171,8 +170,6 @@ namespace Unigram.Navigation
         private async Task InternalActivatedAsync(IActivatedEventArgs e)
         {
             DebugWrite();
-
-            OriginalActivatedArgs = e;
 
             // sometimes activate requires a frame to be built
             if (Window.Current.Content == null)
@@ -212,7 +209,6 @@ namespace Unigram.Navigation
         {
             DebugWrite($"Previous:{e.PreviousExecutionState}");
 
-            OriginalActivatedArgs = e;
             PrelaunchActivated = e.PrelaunchActivated;
 
             if (e.PreviousExecutionState != ApplicationExecutionState.Running || Window.Current.Content == null)
@@ -669,7 +665,7 @@ namespace Unigram.Navigation
                 // this could happen if app is activated before previous init completes
                 await Task.Delay(500);
             }
-            await OnStartAsync(startKind, OriginalActivatedArgs);
+            await OnStartAsync(startKind, args);
             CurrentState = States.AfterStart;
         }
 
@@ -682,40 +678,29 @@ namespace Unigram.Navigation
         public bool AutoSuspendAllFrames { get; set; } = true;
         LifecycleLogic _LifecycleLogic = new LifecycleLogic();
 
-        private async void CallResuming(object sender, object e)
+        private void CallResuming(object sender, object e)
         {
             DebugWrite(caller: nameof(Resuming));
 
             try
             {
-                var args = OriginalActivatedArgs as LaunchActivatedEventArgs;
-                if (args?.PrelaunchActivated ?? true)
-                {
-                    OnResuming(sender, e, AppExecutionState.Prelaunch);
-                    var kind = args?.PreviousExecutionState == ApplicationExecutionState.Running ? StartKind.Activate : StartKind.Launch;
-                    await CallOnStartAsync(args, false, kind);
-                    CallActivateWindow(WindowLogic.ActivateWindowSources.Resuming);
-                }
-                else
-                {
-                    OnResuming(sender, e, AppExecutionState.Suspended);
+                OnResuming(sender, e, AppExecutionState.Suspended);
 
-                    //var services = WindowContext.ActiveWrappers.SelectMany(x => x.NavigationServices).Where(x => x.IsInMainView);
-                    //foreach (INavigationService nav in services)
-                    //{
-                    //    try
-                    //    {
-                    //        // call view model suspend (OnNavigatedfrom)
-                    //        // date the cache (which marks the date/time it was suspended)
-                    //        DebugWrite($"Nav.FrameId:{nav.FrameFacade.FrameId}");
-                    //        await (nav as INavigationService).GetDispatcherWrapper().DispatchAsync(() => nav.Resuming());
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        DebugWrite($"FrameId: [{nav.FrameFacade.FrameId}] {ex} {ex.Message}", caller: nameof(Resuming));
-                    //    }
-                    //}
-                }
+                //var services = WindowContext.ActiveWrappers.SelectMany(x => x.NavigationServices).Where(x => x.IsInMainView);
+                //foreach (INavigationService nav in services)
+                //{
+                //    try
+                //    {
+                //        // call view model suspend (OnNavigatedfrom)
+                //        // date the cache (which marks the date/time it was suspended)
+                //        DebugWrite($"Nav.FrameId:{nav.FrameFacade.FrameId}");
+                //        await (nav as INavigationService).GetDispatcherWrapper().DispatchAsync(() => nav.Resuming());
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        DebugWrite($"FrameId: [{nav.FrameFacade.FrameId}] {ex} {ex.Message}", caller: nameof(Resuming));
+                //    }
+                //}
             }
             catch { }
         }
