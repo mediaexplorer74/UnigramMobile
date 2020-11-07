@@ -55,6 +55,8 @@ namespace Unigram.Services
         bool IsAllAccountsNotifications { get; set; }
         bool SaveCameraMediaInGallery { get; set; }
 
+        int[] AccountsSelectorOrder { get; set; }
+
         bool IsLeftTabsEnabled { get; set; }
 
         Vector2 Pencil { get; set; }
@@ -607,6 +609,33 @@ namespace Unigram.Services
             {
                 _isAccountsSelectorExpanded = value;
                 AddOrUpdateValue(_local, "IsAccountsSelectorExpanded", value);
+            }
+        }
+
+        private int[] _accountsSelectorOrder;
+        public int[] AccountsSelectorOrder
+        {
+            get
+            {
+                if (_accountsSelectorOrder == null)
+                {
+                    var value = GetValueOrDefault<string>(_local, "AccountsSelectorOrder", null);
+                    if (value == null)
+                    {
+                        _accountsSelectorOrder = new int[0];
+                    }
+                    else
+                    {
+                        _accountsSelectorOrder = value.Split(',').Select(x => int.Parse(x)).ToArray();
+                    }
+                }
+
+                return _accountsSelectorOrder;
+            }
+            set
+            {
+                _accountsSelectorOrder = value;
+                AddOrUpdateValue(_local, "AccountsSelectorOrder", value != null ? string.Join(",", value) : null);
             }
         }
 

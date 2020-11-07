@@ -11,6 +11,7 @@ using Unigram.Navigation.Services;
 using Unigram.Services;
 using Unigram.ViewModels;
 using Unigram.Views.SignIn;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
@@ -282,8 +283,9 @@ namespace Unigram.Views.Host
                     if (i < _navigationViewItems.Count && _navigationViewItems[i] is RootDestination destination && destination == RootDestination.Separator)
                     {
                         _navigationViewItems.RemoveAt(i);
-                        break;
                     }
+
+                    i--;
                 }
             }
 
@@ -292,9 +294,9 @@ namespace Unigram.Views.Host
                 _navigationViewItems.Insert(0, RootDestination.Separator);
                 _navigationViewItems.Insert(0, RootDestination.AddAccount);
 
-                for (int k = items.Count - 1; k >= 0; k--)
+                foreach (var item in items.OrderByDescending(x => { int index = Array.IndexOf(SettingsService.Current.AccountsSelectorOrder, x.Id); return index < 0 ? x.Id : index; }))
                 {
-                    _navigationViewItems.Insert(0, items[k]);
+                    _navigationViewItems.Insert(0, item);
                 }
             }
         }
@@ -556,6 +558,43 @@ namespace Unigram.Views.Host
 
             var view = ApplicationView.GetForCurrentView();
             view.TryResizeView(ApplicationView.PreferredLaunchViewSize);
+        }
+
+        private void OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
+        {
+            if (e.Items[0] is ISessionService session)
+            {
+                NavigationViewList.CanReorderItems = true;
+            }
+            else
+            {
+                NavigationViewList.CanReorderItems = false;
+                e.Cancel = true;
+            }
+        }
+
+        private void OnDragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            NavigationViewList.CanReorderItems = false;
+
+            if (args.DropResult == DataPackageOperation.Move && args.Items.Count == 1 && args.Items[0] is ISessionService session)
+            {
+                var items = _navigationViewItems;
+                var index = items.IndexOf(session);
+
+                var compare = items[index > 0 ? index - 1 : index + 1];
+                if (compare is ISessionService)
+                {
+                    var sessions = _navigationViewItems.OfType<ISessionService>();
+                    var ids = sessions.Select(x => x.Id);
+
+                    SettingsService.Current.AccountsSelectorOrder = ids.ToArray();
+                }
+                else
+                {
+                    InitializeSessions(SettingsService.Current.IsAccountsSelectorExpanded, _lifetime.Items);
+                }
+            }
         }
     }
 
