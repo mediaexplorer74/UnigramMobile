@@ -217,7 +217,7 @@ namespace Unigram.ViewModels
             }
         }
 
-        public bool UseTestDc
+        public bool UseTestDC
         {
             get => Settings.UseTestDC;
             set
