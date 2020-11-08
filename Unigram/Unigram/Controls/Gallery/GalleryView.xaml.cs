@@ -42,13 +42,18 @@ namespace Unigram.Controls.Gallery
 
         private Func<FrameworkElement> _closing;
 
+        private readonly DispatcherTimer _inactivityTimer;
+
         private DisplayRequest _request;
-        private MediaPlayerElement _mediaPlayerElement;
+        private readonly MediaPlayerElement _mediaPlayerElement;
         private MediaPlayer _mediaPlayer;
         private RemoteFileStream _streamingInterop;
         private Grid _surface;
 
-        private Visual _layer;
+        private readonly Visual _layout;
+
+        private readonly Visual _layer;
+        private readonly Visual _bottom;
 
         private bool _wasFullScreen;
 
@@ -215,7 +220,7 @@ namespace Unigram.Controls.Gallery
             sender.Volume = SettingsService.Current.VolumeLevel;
         }
 
-        private static Dictionary<int, WeakReference<GalleryView>> _windowContext = new Dictionary<int, WeakReference<GalleryView>>();
+        private static readonly Dictionary<int, WeakReference<GalleryView>> _windowContext = new Dictionary<int, WeakReference<GalleryView>>();
         public static GalleryView GetForCurrentView()
         {
             return new GalleryView();

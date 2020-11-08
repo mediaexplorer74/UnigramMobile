@@ -24,7 +24,7 @@ namespace Unigram.Views.Settings
 
         public SettingsThemePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {

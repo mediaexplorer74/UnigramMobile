@@ -27,7 +27,7 @@ namespace Unigram
 {
     public class ViewModelLocator
     {
-        private TLContainer _container;
+        private readonly TLContainer _container;
 
         public ViewModelLocator()
         {

@@ -34,11 +34,12 @@ namespace Unigram.Common
 
     public class MosaicMedia
     {
-        private IList _items;
+        private readonly IList _items;
 
-        private Dictionary<int, int> itemSpans = new Dictionary<int, int>();
-        private Dictionary<int, int> itemsToRow = new Dictionary<int, int>();
+        private readonly Dictionary<int, int> itemSpans = new Dictionary<int, int>();
+        private readonly Dictionary<int, int> itemsToRow = new Dictionary<int, int>();
         private List<List<int>> rows;
+        private readonly double lineHeight = 100;
 
         private MosaicMedia(IList items)
         {

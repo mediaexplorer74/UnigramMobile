@@ -66,13 +66,21 @@ namespace Unigram.Common
         {
             add
             {
-                if (_tick == null) _timerTick.Change(TimeSpan.Zero, _interval);
+                if (_tick == null)
+                {
+                    _timerTick.Change(TimeSpan.Zero, _interval);
+                }
+
                 _tick += value;
             }
             remove
             {
                 _tick -= value;
-                if (_tick == null) _timerTick.Change(Timeout.Infinite, Timeout.Infinite);
+
+                if (_tick == null)
+                {
+                    _timerTick.Change(Timeout.Infinite, Timeout.Infinite);
+                }
             }
         }
 
@@ -81,6 +89,11 @@ namespace Unigram.Common
         {
             add
             {
+                if (_invalidate == null)
+                {
+                    CompositionTarget.Rendering += OnInvalidate;
+                }
+
                 if (_invalidate == null) _timerInvalidate.Start();
                 _invalidate += value;
             }
@@ -88,6 +101,11 @@ namespace Unigram.Common
             {
                 _invalidate -= value;
                 if (_invalidate == null) _timerInvalidate.Stop();
+
+                if (_invalidate == null)
+                {
+                    CompositionTarget.Rendering -= OnInvalidate;
+                }
             }
         }
     }

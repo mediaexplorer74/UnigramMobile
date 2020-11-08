@@ -181,7 +181,7 @@ namespace Unigram.ViewModels.Settings
 
         public class InputViewModel : TLViewModelBase
         {
-            private SettingsPasswordViewModel _viewModel;
+            private readonly SettingsPasswordViewModel _viewModel;
 
             public InputViewModel(SettingsPasswordViewModel viewModel, IProtoService protoService, ICacheService cacheService, ISettingsService settingsService, IEventAggregator aggregator)
                 : base(protoService, cacheService, settingsService, aggregator)

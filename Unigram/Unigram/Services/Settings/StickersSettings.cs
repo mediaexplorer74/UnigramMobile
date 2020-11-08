@@ -31,7 +31,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_suggestionMode == null)
+                {
                     _suggestionMode = GetValueOrDefault("SuggestionMode", 0);
+                }
 
                 return (StickersSuggestionMode)(_suggestionMode ?? 0);
             }
@@ -65,7 +67,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_isLoopingEnabled == null)
+                {
                     _isLoopingEnabled = GetValueOrDefault("IsLoopingEnabled", true);
+                }
 
                 return _isLoopingEnabled ?? true;
             }
@@ -82,7 +86,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_selectedTab == null)
+                {
                     _selectedTab = GetValueOrDefault("SelectedTab", 2);
+                }
 
                 return (StickersTab)(_selectedTab ?? 2);
             }
@@ -99,7 +105,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_skinTone == null)
+                {
                     _skinTone = GetValueOrDefault("SkinTone", 0);
+                }
 
                 return (EmojiSkinTone)(_skinTone ?? 0);
             }
@@ -116,7 +124,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_isSidebarEnabled == null)
+                {
                     _isSidebarEnabled = GetValueOrDefault("IsSidebarEnabled", true);
+                }
 
                 return _isSidebarEnabled ?? true;
             }
@@ -133,7 +143,9 @@ namespace Unigram.Services.Settings
             get
             {
                 if (_isPointerOverEnabled == null)
+                {
                     _isPointerOverEnabled = GetValueOrDefault("IsPointerOverEnabled", true);
+                }
 
                 return _isPointerOverEnabled ?? true;
             }

@@ -22,7 +22,7 @@ namespace Unigram.Navigation
         public DispatcherWrapper(CoreDispatcher dispatcher)
         {
             DebugWrite(caller: "Constructor");
-            this.dispatcher = dispatcher;
+            _dispatcher = dispatcher;
         }
 
         public bool HasThreadAccess => dispatcher.HasThreadAccess;

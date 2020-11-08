@@ -63,7 +63,7 @@ namespace Unigram.Collections
 
         public bool EventsAreSuppressed
         {
-            get { return this._suppressEvents > 0; }
+            get { return _suppressEvents > 0; }
         }
 
         public void Dispose()
@@ -185,9 +185,13 @@ namespace Unigram.Collections
                 foreach (var item in items)
                 {
                     if (firstIndex <= lastIndex)
+                    {
                         SetItem(firstIndex++, item);
+                    }
                     else
+                    {
                         Insert(firstIndex++, item);
+                    }
                 }
             }
 
@@ -228,7 +232,7 @@ namespace Unigram.Collections
 
             while (count > itemIndex)
             {
-                this.RemoveAt(--count);
+                RemoveAt(--count);
             }
         }
 
@@ -300,17 +304,21 @@ namespace Unigram.Collections
         public virtual bool Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (object.Equals(storage, value))
+            {
                 return false;
+            }
 
             storage = value;
-            this.RaisePropertyChanged(propertyName);
+            RaisePropertyChanged(propertyName);
             return true;
         }
 
         public virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
                 return;
+            }
 
             try
             {
@@ -322,7 +330,9 @@ namespace Unigram.Collections
         public virtual bool Set<T>(Expression<Func<T>> propertyExpression, ref T field, T newValue)
         {
             if (object.Equals(field, newValue))
+            {
                 return false;
+            }
 
             field = newValue;
             RaisePropertyChanged(propertyExpression);
@@ -332,7 +342,9 @@ namespace Unigram.Collections
         public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
                 return;
+            }
 
             var propertyName = ExpressionUtils.GetPropertyName(propertyExpression);
             if (!object.Equals(propertyName, null))

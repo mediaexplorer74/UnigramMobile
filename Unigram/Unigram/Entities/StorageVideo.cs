@@ -12,7 +12,7 @@ namespace Unigram.Entities
 {
     public class StorageVideo : StorageMedia
     {
-        private BasicProperties _basic;
+        private readonly BasicProperties _basic;
 
         public StorageVideo(StorageFile file, BasicProperties basic, VideoProperties props, MediaEncodingProfile profile)
             : base(file, basic)
@@ -210,23 +210,23 @@ namespace Unigram.Entities
             //}
         }
 
-        private int originalWidth;
-        private int originalHeight;
+        private readonly int originalWidth;
+        private readonly int originalHeight;
 
-        private long originalSize;
-        private int originalBitrate;
+        private readonly long originalSize;
+        private readonly int originalBitrate;
 
         private int resultWidth;
         private int resultHeight;
 #pragma warning disable CS0649 // Never assigned field, always null
-        private int rotationValue;
+        private readonly int rotationValue;
 #pragma warning disable CS0649 // Never assigned field, always null
         private int bitrate;
 #pragma warning disable CS0649 // Never assigned field, always null
-        private long audioFramesSize;
+        private readonly long audioFramesSize;
 #pragma warning disable CS0649 // Never assigned field, always null
         private long videoFramesSize;
-        private double videoDuration;
+        private readonly double videoDuration;
 
         private int estimatedSize;
         private long estimatedDuration;

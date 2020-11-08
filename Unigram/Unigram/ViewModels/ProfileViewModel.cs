@@ -1352,7 +1352,7 @@ namespace Unigram.ViewModels
         private SupergroupMembersFilter _filter;
         private int _offset;
 
-        private bool _group;
+        private readonly bool _group;
 
         private bool _hasMore;
 

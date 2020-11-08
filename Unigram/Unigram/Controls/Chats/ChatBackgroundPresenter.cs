@@ -25,14 +25,14 @@ namespace Unigram.Controls.Chats
         private Background _oldBackground = new Background();
         private bool? _oldDark;
 
-        private Rectangle _imageBackground;
-        private Rectangle _colorBackground;
+        private readonly Rectangle _imageBackground;
+        private readonly Rectangle _colorBackground;
 
         private SpriteVisual _blurVisual;
         private CompositionEffectBrush _blurBrush;
 
         private Visual _motionVisual;
-        private Compositor _compositor;
+        private readonly Compositor _compositor;
 
         private BackgroundParallaxEffect _parallaxEffect;
 
