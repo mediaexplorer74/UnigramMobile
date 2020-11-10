@@ -297,7 +297,7 @@ namespace Unigram.Collections
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        public virtual bool Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        public virtual bool Set<P>(ref P storage, P value, [CallerMemberName] string propertyName = null)
         {
             if (object.Equals(storage, value))
                 return false;
@@ -319,7 +319,7 @@ namespace Unigram.Collections
             catch { }
         }
 
-        public virtual bool Set<T>(Expression<Func<T>> propertyExpression, ref T field, T newValue)
+        public virtual bool Set<P>(Expression<Func<P>> propertyExpression, ref P field, P newValue)
         {
             if (object.Equals(field, newValue))
                 return false;
@@ -329,7 +329,7 @@ namespace Unigram.Collections
             return true;
         }
 
-        public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        public virtual void RaisePropertyChanged<P>(Expression<Func<P>> propertyExpression)
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
                 return;
