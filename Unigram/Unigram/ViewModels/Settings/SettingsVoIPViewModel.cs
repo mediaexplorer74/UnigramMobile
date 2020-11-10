@@ -36,7 +36,7 @@ namespace Unigram.ViewModels.Settings
                 Input.ReplaceWith(input);
 
                 _selectedInput = input.FirstOrDefault(x => x.Id == _voipService.CurrentAudioInput) ?? input.FirstOrDefault(x => x.Id == MediaDevice.GetDefaultAudioCaptureId(AudioDeviceRole.Communications));
-                RaisePropertyChanged(() => SelectedInput);
+                RaisePropertyChanged(nameof(SelectedInput));
             }
 
             var output = await DeviceInformation.FindAllAsync(MediaDevice.GetAudioRenderSelector());
@@ -45,7 +45,7 @@ namespace Unigram.ViewModels.Settings
                 Output.ReplaceWith(output);
 
                 _selectedOutput = output.FirstOrDefault(x => x.Id == _voipService.CurrentAudioOutput) ?? output.FirstOrDefault(x => x.Id == MediaDevice.GetDefaultAudioRenderId(AudioDeviceRole.Communications));
-                RaisePropertyChanged(() => SelectedOutput);
+                RaisePropertyChanged(nameof(SelectedOutput));
             }
 
             _inputVolume = _voipService.CurrentVolumeInput;
@@ -53,6 +53,10 @@ namespace Unigram.ViewModels.Settings
 
             RaisePropertyChanged(() => InputVolume);
             RaisePropertyChanged(() => OutputVolume);
+            //TODO: Commit b08db31e
+                _selectedVideo = video.FirstOrDefault(x => x.Id == _voipService.CurrentVideoInput) ?? video.FirstOrDefault();
+                RaisePropertyChanged(nameof(SelectedVideo));
+            }
         }
 
         private DeviceInformation _selectedInput;

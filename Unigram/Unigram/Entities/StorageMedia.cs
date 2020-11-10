@@ -78,7 +78,7 @@ namespace Unigram.Entities
             set
             {
                 Set(ref _ttl, value);
-                RaisePropertyChanged(() => IsSecret);
+                RaisePropertyChanged(nameof(IsSecret));
             }
         }
 
@@ -100,7 +100,7 @@ namespace Unigram.Entities
             set
             {
                 Set(ref _editState, value);
-                RaisePropertyChanged(() => IsEdited);
+                RaisePropertyChanged(nameof(IsEdited));
             }
         }
 
@@ -125,7 +125,7 @@ namespace Unigram.Entities
                         }
                     }
 
-                    RaisePropertyChanged(() => Thumbnail);
+                    RaisePropertyChanged(nameof(Thumbnail));
                 }
             }
             catch { }
@@ -163,7 +163,7 @@ namespace Unigram.Entities
                 _preview = _bitmap;
             }
 
-            RaisePropertyChanged(() => Preview);
+            RaisePropertyChanged(nameof(Preview));
         }
 
         public static async Task<StorageMedia> CreateAsync(StorageFile file)

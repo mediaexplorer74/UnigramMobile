@@ -299,14 +299,14 @@ namespace Unigram.ViewModels
         public string LastSeen
         {
             get { return _type == DialogType.EventLog ? Strings.Resources.EventLog : _lastSeen; }
-            set { Set(ref _lastSeen, value); RaisePropertyChanged(() => Subtitle); }
+            set { Set(ref _lastSeen, value); RaisePropertyChanged(nameof(Subtitle)); }
         }
 
         private string _onlineCount;
         public string OnlineCount
         {
             get { return _onlineCount; }
-            set { Set(ref _onlineCount, value); RaisePropertyChanged(() => Subtitle); }
+            set { Set(ref _onlineCount, value); RaisePropertyChanged(nameof(Subtitle)); }
         }
 
         public virtual string Subtitle
@@ -367,7 +367,7 @@ namespace Unigram.ViewModels
             set
             {
                 Set(ref _accessToken, value);
-                RaisePropertyChanged(() => HasAccessToken);
+                RaisePropertyChanged(nameof(HasAccessToken));
             }
         }
 
@@ -604,7 +604,7 @@ namespace Unigram.ViewModels
             set
             {
                 Set(ref _isEmpty, value);
-                RaisePropertyChanged(() => HasAccessToken);
+                RaisePropertyChanged(nameof(HasAccessToken));
             }
         }
 
@@ -617,8 +617,8 @@ namespace Unigram.ViewModels
             set
             {
                 base.IsLoading = value;
-                RaisePropertyChanged(() => IsEmpty);
-                RaisePropertyChanged(() => HasAccessToken);
+                RaisePropertyChanged(nameof(IsEmpty));
+                RaisePropertyChanged(nameof(HasAccessToken));
             }
         }
 
@@ -2895,7 +2895,7 @@ namespace Unigram.ViewModels
         public RelayCommand OpenStickersCommand { get; }
         private void OpenStickersExecute()
         {
-            _stickers.SyncStickers(_chat);
+            _stickers.Update(_chat);
             _animations.Update();
         }
 
