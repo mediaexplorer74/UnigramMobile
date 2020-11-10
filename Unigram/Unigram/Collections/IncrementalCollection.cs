@@ -106,10 +106,5 @@ namespace Unigram.Collections
             if (result != null && result.Count > 0)
                 AddRange(result);
         }
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
