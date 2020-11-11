@@ -34,7 +34,6 @@ namespace Unigram.Services
         int VerbosityLevel { get; set; }
         bool UseTestDC { get; set; }
 
-        bool UseThreeLinesLayout { get; set; }
         bool CollapseArchivedChats { get; set; }
         bool IsAdaptiveWideEnabled { get; set; }
         bool ShowRecentFiles { get; set; }
@@ -582,25 +581,6 @@ namespace Unigram.Services
             {
                 _isLaunchMinimized = value;
                 AddOrUpdateValue(_local, "IsLaunchMinimized", value);
-            }
-        }
-
-        private static bool? _useThreeLinesLayout;
-        public bool UseThreeLinesLayout
-        {
-            get
-            {
-                if (_useThreeLinesLayout == null)
-                {
-                    _useThreeLinesLayout = GetValueOrDefault(_local, "UseThreeLinesLayout", false);
-                }
-
-                return _useThreeLinesLayout ?? false;
-            }
-            set
-            {
-                _useThreeLinesLayout = value;
-                AddOrUpdateValue(_local, "UseThreeLinesLayout", value);
             }
         }
 

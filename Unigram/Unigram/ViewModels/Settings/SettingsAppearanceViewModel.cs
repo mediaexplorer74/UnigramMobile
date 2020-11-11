@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Unigram.Common;
 using Unigram.Navigation.Services;
 using Unigram.Services;
-using Unigram.Services.Updates;
 using Unigram.Views.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -22,9 +21,6 @@ namespace Unigram.ViewModels.Settings
             : base(protoService, cacheService, settingsService, aggregator, themeService)
         {
             _emojiSetService = emojiSetService;
-
-            UseDefaultLayout = !Settings.UseThreeLinesLayout;
-            UseThreeLinesLayout = Settings.UseThreeLinesLayout;
 
             DistanceUnitsCommand = new RelayCommand(DistanceUnitsExecute);
             EmojiSetCommand = new RelayCommand(EmojiSetExecute);
@@ -47,17 +43,6 @@ namespace Unigram.ViewModels.Settings
             }
 
             await base.OnNavigatedToAsync(parameter, mode, state);
-        }
-
-        public override Task OnNavigatedFromAsync(IDictionary<string, object> pageState, bool suspending)
-        {
-            if (UseThreeLinesLayout != Settings.UseThreeLinesLayout)
-            {
-                Settings.UseThreeLinesLayout = UseThreeLinesLayout;
-                Aggregator.Publish(new UpdateChatListLayout(UseThreeLinesLayout));
-            }
-
-            return base.OnNavigatedFromAsync(pageState, suspending);
         }
 
         private string _emojiSet;
@@ -259,23 +244,5 @@ namespace Unigram.ViewModels.Settings
                     break;
             }
         }
-
-        #region Layouts
-
-        private bool _useDefaultLayout;
-        public bool UseDefaultLayout
-        {
-            get => _useDefaultLayout;
-            set => Set(ref _useDefaultLayout, value);
-        }
-
-        private bool _useThreeLinesLayout;
-        public bool UseThreeLinesLayout
-        {
-            get => _useThreeLinesLayout;
-            set => Set(ref _useThreeLinesLayout, value);
-        }
-
-        #endregion
     }
 }
