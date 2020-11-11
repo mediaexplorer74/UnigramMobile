@@ -158,10 +158,9 @@
                     </ListView.ItemContainerStyle>
                     <ListView.Header>
                         <controls:HeaderedControl x:Name="HeaderFiles">
-                            <controls:SearchTextBox
+                            <TextBox
                                 x:Name="SearchFiles"
                                 PlaceholderText="{CustomResource Search}"
-                                Style="{StaticResource QueryTextBoxStyle}"
                                 Margin="12,8"
                                 InputScope="Search"/>
                         </controls:HeaderedControl>
@@ -214,10 +213,9 @@
                     </ListView.ItemContainerStyle>
                     <ListView.Header>
                         <controls:HeaderedControl x:Name="HeaderLinks">
-                            <controls:SearchTextBox
+                            <TextBox
                                 x:Name="SearchLinks"
                                 PlaceholderText="{CustomResource Search}"
-                                Style="{StaticResource QueryTextBoxStyle}"
                                 Margin="12,8"
                                 InputScope="Search"/>
                         </controls:HeaderedControl>
@@ -270,10 +268,9 @@
                     </ListView.ItemContainerStyle>
                     <ListView.Header>
                         <controls:HeaderedControl x:Name="HeaderMusic">
-                            <controls:SearchTextBox
+                            <TextBox
                                 x:Name="SearchMusic"
                                 PlaceholderText="{CustomResource Search}"
-                                Style="{StaticResource QueryTextBoxStyle}"
                                 Margin="12,8"
                                 InputScope="Search"/>
                         </controls:HeaderedControl>
@@ -326,10 +323,9 @@
                     </ListView.ItemContainerStyle>
                     <ListView.Header>
                         <controls:HeaderedControl x:Name="HeaderVoice">
-                            <controls:SearchTextBox
+                            <TextBox
                                 x:Name="SearchVoice"
                                 PlaceholderText="{CustomResource Search}"
-                                Style="{StaticResource QueryTextBoxStyle}"
                                 Margin="12,8"
                                 InputScope="Search"/>
                         </controls:HeaderedControl>
