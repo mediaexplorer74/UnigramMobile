@@ -266,4 +266,6 @@ _Pvt_Extensions
 /Unigram/Unigram/Constants.Secret.cs
 /Unigram/Libraries/fluent-xaml-theme-editor/FluentEditorShared
 /Unigram/Libraries/ffmpeg/runtimes/ARM
+/Unigram/Unigram.Native.Calls/Generated Files
+/Unigram/Unigram.Native/Generated Files
 Unigram/Unigram/Unigram_StoreKey.pfx
