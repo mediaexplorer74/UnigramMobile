@@ -1191,7 +1191,7 @@ namespace Unigram.Views
 
     public interface IPlayerView
     {
-        void Play();
+        bool Play();
         void Pause();
 
         bool IsLoopingEnabled { get; }
