@@ -1163,7 +1163,7 @@ namespace Unigram.Services
             {
                 if (sticker.IsPinned)
                 {
-                    if (string.IsNullOrEmpty(sticker.Sticker.Emoji))
+                    if (string.IsNullOrEmpty(sticker.Sticker?.Emoji))
                     {
                         return FormatPinned(Strings.Resources.NotificationActionPinnedStickerChannel);
                     }
@@ -1171,7 +1171,7 @@ namespace Unigram.Services
                     return FormatPinned(string.Format(Strings.Resources.NotificationActionPinnedStickerEmojiChannel, "{0}", sticker.Emoji));
                 }
 
-                if (string.IsNullOrEmpty(sticker.Sticker.Emoji))
+                if (string.IsNullOrEmpty(sticker.Sticker?.Emoji))
                 {
                     return result + Strings.Resources.AttachSticker;
                 }
