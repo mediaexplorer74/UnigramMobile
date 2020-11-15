@@ -106,7 +106,7 @@ namespace Unigram.Views
                     animations.Add(message);
                 }
 
-                while (ViewModel.RepliesStack.TryPeek(out long reply) && reply == message.Id)
+                while (TryPeek(out long reply, ViewModel.RepliesStack) && reply == message.Id)
                 {
                     ViewModel.RepliesStack.Pop();
                 }
@@ -120,6 +120,20 @@ namespace Unigram.Views
             if (animations.Count > 0 && !intermediate)
             {
                 Play(animations, ViewModel.Settings.IsAutoPlayAnimationsEnabled, false);
+            }
+
+            bool TryPeek(out long result, Stack<long> stack)
+            {
+                try
+                {
+                    result = stack.Peek();
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                    result = 0;
+                    return false;
+                }
             }
         }
 
@@ -1077,9 +1091,9 @@ namespace Unigram.Views
 
                 if (ViewModel.Settings.Diagnostics.BubbleAnimations)
                 {
-                    args.RegisterUpdateCallback(2, (s, args) =>
+                    args.RegisterUpdateCallback(2, (s, argsInner) =>
                     {
-                        args.ItemContainer.SizeChanged += _sizeChangedHandler ??= new SizeChangedEventHandler(Item_SizeChanged);
+                        argsInner.ItemContainer.SizeChanged += _sizeChangedHandler = _sizeChangedHandler ?? new SizeChangedEventHandler(Item_SizeChanged);
                         bubble.RegisterEvents();
                     });
                 }
