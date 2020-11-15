@@ -180,36 +180,8 @@ namespace Unigram.ViewModels
         public RelayCommand<MessageViewModel> MessageForwardCommand { get; }
         private async void MessageForwardExecute(MessageViewModel message)
         {
-            //if (messageBase is TLMessage message)
-            //{
-            //    if (message.Media is TLMessageMediaGroup groupMedia)
-            //    {
-            //        ExpandSelection(new[] { message });
-            //        MessagesForwardExecute();
-            //        return;
-            //    }
-
-            //    Search = null;
-            //    SelectionMode = ListViewSelectionMode.None;
-
-            //    await ShareView.GetForCurrentView().ShowAsync(message);
-            //}
-
-            DisposeSearch();
             SelectionMode = ListViewSelectionMode.None;
 
-            await SharePopup.GetForCurrentView().ShowAsync(message.Get());
-
-            TextField?.Focus(FocusState.Programmatic);
-        }
-
-        #endregion
-
-        #region Share
-
-        public RelayCommand<MessageViewModel> MessageShareCommand { get; }
-        private async void MessageShareExecute(MessageViewModel message)
-        {
             if (message.Content is MessageAlbum album)
             {
                 await SharePopup.GetForCurrentView().ShowAsync(album.Messages.Select(x => x.Get()).ToList());
@@ -218,6 +190,8 @@ namespace Unigram.ViewModels
             {
                 await SharePopup.GetForCurrentView().ShowAsync(message.Get());
             }
+
+            TextField?.Focus(FocusState.Programmatic);
         }
 
         #endregion
@@ -259,11 +233,9 @@ namespace Unigram.ViewModels
             var messages = SelectedItems.Where(x => x.CanBeForwarded).OrderBy(x => x.Id).Select(x => x.Get()).ToList();
             if (messages.Count > 0)
             {
-                DisposeSearch();
                 SelectionMode = ListViewSelectionMode.None;
 
                 await SharePopup.GetForCurrentView().ShowAsync(messages);
-
                 TextField?.Focus(FocusState.Programmatic);
             }
         }
@@ -1317,13 +1289,13 @@ namespace Unigram.ViewModels
                 extension = ".dat";
             }
 
-            var picker = new FileSavePicker();
-            picker.FileTypeChoices.Add($"{extension.TrimStart('.').ToUpper()} File", new[] { extension });
-            picker.SuggestedStartLocation = PickerLocationId.Downloads;
-            picker.SuggestedFileName = fileName;
-
             try
             {
+                var picker = new FileSavePicker();
+                picker.FileTypeChoices.Add($"{extension.TrimStart('.').ToUpper()} File", new[] { extension });
+                picker.SuggestedStartLocation = PickerLocationId.Downloads;
+                picker.SuggestedFileName = fileName;
+
                 var picked = await picker.PickSaveFileAsync();
                 if (picked != null)
                 {

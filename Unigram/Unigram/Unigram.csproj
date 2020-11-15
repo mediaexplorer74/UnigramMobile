@@ -549,7 +549,6 @@
     <Compile Include="Services\Keyboard\KeyboardEventArgs.cs" />
     <Compile Include="Services\Keyboard\KeyboardHelper.cs" />
     <Compile Include="Services\Keyboard\KeyboardService.cs" />
-    <Compile Include="Services\Logging\LoggingService.cs" />
     <Compile Include="Services\SettingsSearchService.cs" />
     <Compile Include="Services\SettingsLegacy\IPropertyMapping.cs" />
     <Compile Include="Services\SettingsLegacy\ISettingsService.cs" />
@@ -1738,7 +1737,6 @@
       <SubType>Designer</SubType>
     </PRIResource>
     <Content Include="Assets\Mockup\theme_preview_image.jpg" />
-    <Content Include="Assets\secureid_ocr_nn.bin" />
     <PRIResource Include="Strings\tr\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
