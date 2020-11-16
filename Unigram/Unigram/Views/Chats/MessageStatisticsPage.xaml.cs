@@ -23,7 +23,7 @@ namespace Unigram.Views.Chats
             InitializeComponent();
             DataContext = TLContainer.Current.Resolve<MessageStatisticsViewModel, IChatDelegate>(this);
 
-            if (ApiInformation.IsEnumNamedValuePresent("Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode", "BottomEdgeAlignedRight"))
+            if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
                 MenuFlyout.Placement = FlyoutPlacementMode.BottomEdgeAlignedRight;
             }
