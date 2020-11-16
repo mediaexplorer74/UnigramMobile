@@ -503,6 +503,12 @@ namespace Unigram.Views
             try
             {
                 ApplicationView.GetForCurrentView().Title = text;
+
+                if (ApiInfo.HasStatusBar)
+                {
+                    StatusBar.GetForCurrentView().ProgressIndicator.Text = text;
+                    await StatusBar.GetForCurrentView().ProgressIndicator.ShowAsync();
+                }
             }
             catch { }
         }
@@ -519,6 +525,12 @@ namespace Unigram.Views
             try
             {
                 ApplicationView.GetForCurrentView().Title = string.Empty;
+
+                if (ApiInfo.HasStatusBar)
+                {
+                    StatusBar.GetForCurrentView().ProgressIndicator.Text = string.Empty;
+                    await StatusBar.GetForCurrentView().ProgressIndicator.HideAsync();
+                }
             }
             catch { }
         }
