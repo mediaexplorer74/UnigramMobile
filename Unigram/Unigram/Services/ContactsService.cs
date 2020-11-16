@@ -276,7 +276,7 @@ namespace Unigram.Services
             var remove = new List<int>();
 
             var prev = _contacts;
-            var next = result.UserIds.ToHashSet();
+            var next = new HashSet<int>(result.UserIds); //If I could do this...: var next = result.UserIds.ToHashSet();
 
             if (prev != null)
             {
