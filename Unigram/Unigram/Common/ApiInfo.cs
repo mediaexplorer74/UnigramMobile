@@ -1,5 +1,4 @@
 ﻿using Unigram.Native;
-using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
@@ -43,7 +42,7 @@ namespace Unigram.Common
 
         //private static bool? _canUseSplitViewPaneOpeningEvent;
         public static bool CanUseSplitViewPaneOpeningEvent => IsUniversalApiContract5Present;// (_canUseSplitViewPaneOpeningEvent = _canUseSplitViewPaneOpeningEvent ?? ApiInformation.IsEventPresent("Windows.UI.Xaml.Controls.SplitView", "PaneOpening")) ?? false; //Note: 16299, UniversalApiContract v5
-                
+
         public static bool IsUniversalApiContract7Present => CanUseAccelerators;
 
         private static bool? _isUniversalApiContract6Present;
@@ -51,7 +50,7 @@ namespace Unigram.Common
 
         private static bool? _isUniversalApiContract5Present;
         public static bool IsUniversalApiContract5Present => (_isUniversalApiContract5Present = _isUniversalApiContract5Present ?? ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5)) ?? false;
-                
+
         private static bool? _hasStatusBar;
         public static bool HasStatusBar => (_hasStatusBar = _hasStatusBar ?? ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) ?? false;
 

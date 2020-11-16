@@ -291,14 +291,21 @@ namespace Unigram.Common
 
                 var query = "tg://";
 
-                var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
-                if (contactId is int userId)
+                if (ApiInfo.IsUniversalApiContract5Present) //CanShareContacts? Mobile cannot!
                 {
-                    var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
-                    if (response is Chat chat)
+                    var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
+                    if (contactId is int userId)
                     {
-                        query = $"ms-contact-profile://meh?ContactRemoteIds=u" + userId;
-                        App.DataPackages[chat.Id] = package.GetView();
+                        var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
+                        if (response is Chat chat)
+                        {
+                            query = $"ms-contact-profile://meh?ContactRemoteIds=u" + userId;
+                            App.DataPackages[chat.Id] = package.GetView();
+                        }
+                        else
+                        {
+                            App.DataPackages[0] = package.GetView();
+                        }
                     }
                     else
                     {
