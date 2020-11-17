@@ -21,7 +21,7 @@ namespace Unigram.Charts
         }
 
         private static AnimatorLoopThread _current;
-        public static AnimatorLoopThread Current => _current ??= new AnimatorLoopThread();
+        public static AnimatorLoopThread Current => _current = _current ?? new AnimatorLoopThread();
 
         private void OnTick(object state)
         {
