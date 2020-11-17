@@ -43,9 +43,7 @@ namespace Unigram
         public static BackgroundTaskDeferral Deferral { get; private set; }
 
         private ExtendedExecutionSession _extendedSession;
-        private MediaExtensionManager _mediaExtensionManager;
-
-        public ViewModelLocator Locator { get; } = new ViewModelLocator();
+        private readonly MediaExtensionManager _mediaExtensionManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
@@ -54,7 +52,7 @@ namespace Unigram
         /// </summary>
         public App()
         {
-            Locator.Configure(/*session*/);
+            TLContainer.Current.Configure(/*session*/);
 
             if (SettingsService.Current.Appearance.RequestedTheme != ElementTheme.Default)
             {
@@ -134,7 +132,7 @@ namespace Unigram
         {
             WindowContext.Default().Dispatcher.Dispatch(() =>
             {
-                var passcode = TLContainer.Current.Resolve<IPasscodeService>();
+                var passcode = TLContainer.Current.Passcode;
                 if (passcode != null && UIViewSettings.GetForCurrentView().UserInteractionMode == UserInteractionMode.Mouse)
                 {
                     passcode.Lock();
