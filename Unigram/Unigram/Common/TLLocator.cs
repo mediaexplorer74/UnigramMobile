@@ -27,7 +27,9 @@ namespace Unigram.Views
 
         private Unigram.Services.ISettingsSearchService _settingsSearchService;
         private Unigram.Services.IEmojiSetService _emojiSetService;
+#if CLOUDUPDATES
         private Unigram.Services.ICloudUpdateService _cloudUpdateService;
+#endif
         private Unigram.Services.IShortcutsService _shortcutsService;
         private Unigram.Services.IVoipService _voipService;
         private Unigram.Services.IContactsService _contactsService;
@@ -130,7 +132,7 @@ namespace Unigram.Views
                     _settingsService,
                     _eventAggregator,
                     _notificationsService,
-                    _contactsService ??= new Unigram.Services.ContactsService(
+                    _contactsService = _contactsService ?? new Unigram.Services.ContactsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -138,26 +140,28 @@ namespace Unigram.Views
                     _passcodeService,
                     _lifetimeService,
                     _sessionService,
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
-                    _settingsSearchService ??= new Unigram.Services.SettingsSearchService(_protoService),
-                    _emojiSetService ??= new Unigram.Services.EmojiSetService(
+                        _viewService = _viewService  ?? new Unigram.Services.ViewService.ViewService()),
+                    _settingsSearchService = _settingsSearchService ?? new Unigram.Services.SettingsSearchService(_protoService),
+                    _emojiSetService = _emojiSetService ?? new Unigram.Services.EmojiSetService(
                         _protoService,
                         _settingsService,
                         _eventAggregator),
+#if CLOUDUPDATES
                     _cloudUpdateService ??= new Unigram.Services.CloudUpdateService(
                         _protoService,
                         _eventAggregator),
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+#endif
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _shortcutsService ??= new Unigram.Services.ShortcutsService(
+                    _shortcutsService = _shortcutsService ?? new Unigram.Services.ShortcutsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -170,9 +174,9 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -186,7 +190,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService)); 
             }
@@ -207,25 +211,25 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService),
                     _notificationsService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _networkService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -239,25 +243,25 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService),
                     _notificationsService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _networkService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -271,25 +275,25 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService),
                     _notificationsService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _networkService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -303,25 +307,25 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService),
                     _notificationsService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _networkService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -335,25 +339,25 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService),
                     _notificationsService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator),
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _networkService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -383,12 +387,12 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService()),
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()),
                     _notificationsService,
                     Resolve<Unigram.ViewModels.Chats.ChatSharedMediaViewModel>(),
                     Resolve<Unigram.ViewModels.Users.UserCommonChatsViewModel>(),
@@ -529,7 +533,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -581,9 +585,9 @@ namespace Unigram.Views
                     _protoService,
                     _cacheService,
                     _settingsService,
-                    _messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                    _messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                         _protoService,
-                        _playbackService ??= new Unigram.Services.PlaybackService(
+                        _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                             _protoService,
                             _cacheService,
                             _settingsService,
@@ -599,7 +603,7 @@ namespace Unigram.Views
                     _settingsService,
                     _eventAggregator,
                     _notificationsService,
-                    _contactsService ??= new Unigram.Services.ContactsService(
+                    _contactsService = _contactsService ?? new Unigram.Services.ContactsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -621,10 +625,11 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _settingsSearchService ??= new Unigram.Services.SettingsSearchService(_protoService)); 
+                    _settingsSearchService = _settingsSearchService ?? new Unigram.Services.SettingsSearchService(_protoService)); 
             }
             else if (type == typeof(Unigram.ViewModels.Settings.SettingsAdvancedViewModel))
             {
+#if CLOUDUPDATES
                 return (T)(object)new Unigram.ViewModels.Settings.SettingsAdvancedViewModel(
                     _protoService,
                     _cacheService,
@@ -632,7 +637,14 @@ namespace Unigram.Views
                     _eventAggregator,
                     _cloudUpdateService ??= new Unigram.Services.CloudUpdateService(
                         _protoService,
-                        _eventAggregator)); 
+                        _eventAggregator));
+#else
+                return (T)(object)new Unigram.ViewModels.Settings.SettingsAdvancedViewModel(
+                    _protoService,
+                    _cacheService,
+                    _settingsService,
+                    _eventAggregator);
+#endif
             }
             else if (type == typeof(Unigram.ViewModels.Settings.SettingsPhoneIntroViewModel))
             {
@@ -753,7 +765,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _contactsService ??= new Unigram.Services.ContactsService(
+                    _contactsService = _contactsService ?? new Unigram.Services.ContactsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -962,11 +974,11 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _themeService ??= new Unigram.Services.ThemeService(
+                    _themeService = _themeService ?? new Unigram.Services.ThemeService(
                         _protoService,
                         _settingsService,
                         _eventAggregator),
-                    _emojiSetService ??= new Unigram.Services.EmojiSetService(
+                    _emojiSetService = _emojiSetService ?? new Unigram.Services.EmojiSetService(
                         _protoService,
                         _settingsService,
                         _eventAggregator)); 
@@ -978,7 +990,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _themeService ??= new Unigram.Services.ThemeService(
+                    _themeService = _themeService ?? new Unigram.Services.ThemeService(
                         _protoService,
                         _settingsService,
                         _eventAggregator),
@@ -991,11 +1003,11 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _themeService ??= new Unigram.Services.ThemeService(
+                    _themeService = _themeService ?? new Unigram.Services.ThemeService(
                         _protoService,
                         _settingsService,
                         _eventAggregator),
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService)); 
             }
@@ -1014,12 +1026,12 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _voipService ??= new Unigram.Services.VoipService(
+                    _voipService = _voipService ?? new Unigram.Services.VoipService(
                         _protoService,
                         _cacheService,
                         _settingsService,
                         _eventAggregator,
-                        _viewService ??= new Unigram.Services.ViewService.ViewService())); 
+                        _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService())); 
             }
             else if (type == typeof(Unigram.ViewModels.Settings.SettingsShortcutsViewModel))
             {
@@ -1028,7 +1040,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _shortcutsService ??= new Unigram.Services.ShortcutsService(
+                    _shortcutsService = _shortcutsService ?? new Unigram.Services.ShortcutsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -1113,7 +1125,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _contactsService ??= new Unigram.Services.ContactsService(
+                    _contactsService = _contactsService ?? new Unigram.Services.ContactsService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -1126,7 +1138,7 @@ namespace Unigram.Views
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _locationService ??= new Unigram.Services.LocationService(
+                    _locationService = _locationService ?? new Unigram.Services.LocationService(
                         _protoService,
                         _cacheService)); 
             }
@@ -1184,24 +1196,26 @@ namespace Unigram.Views
             }
             else if (type == typeof(Unigram.Services.ISettingsSearchService))
             {
-                return (T)(_settingsSearchService ??= new Unigram.Services.SettingsSearchService(_protoService));
+                return (T)(_settingsSearchService = _settingsSearchService ?? new Unigram.Services.SettingsSearchService(_protoService));
             }
             else if (type == typeof(Unigram.Services.IEmojiSetService))
             {
-                return (T)(_emojiSetService ??= new Unigram.Services.EmojiSetService(
+                return (T)(_emojiSetService = _emojiSetService ?? new Unigram.Services.EmojiSetService(
                     _protoService,
                     _settingsService,
                     _eventAggregator));
             }
+#if CLOUDUPDATES
             else if (type == typeof(Unigram.Services.ICloudUpdateService))
             {
                 return (T)(_cloudUpdateService ??= new Unigram.Services.CloudUpdateService(
                     _protoService,
                     _eventAggregator));
             }
+#endif
             else if (type == typeof(Unigram.Services.IShortcutsService))
             {
-                return (T)(_shortcutsService ??= new Unigram.Services.ShortcutsService(
+                return (T)(_shortcutsService = _shortcutsService ?? new Unigram.Services.ShortcutsService(
                     _protoService,
                     _cacheService,
                     _settingsService,
@@ -1209,16 +1223,16 @@ namespace Unigram.Views
             }
             else if (type == typeof(Unigram.Services.IVoipService))
             {
-                return (T)(_voipService ??= new Unigram.Services.VoipService(
+                return (T)(_voipService = _voipService ?? new Unigram.Services.VoipService(
                     _protoService,
                     _cacheService,
                     _settingsService,
                     _eventAggregator,
-                    _viewService ??= new Unigram.Services.ViewService.ViewService()));
+                    _viewService = _viewService ?? new Unigram.Services.ViewService.ViewService()));
             }
             else if (type == typeof(Unigram.Services.IContactsService))
             {
-                return (T)(_contactsService ??= new Unigram.Services.ContactsService(
+                return (T)(_contactsService = _contactsService ?? new Unigram.Services.ContactsService(
                     _protoService,
                     _cacheService,
                     _settingsService,
@@ -1226,22 +1240,22 @@ namespace Unigram.Views
             }
             else if (type == typeof(Unigram.Services.ILocationService))
             {
-                return (T)(_locationService ??= new Unigram.Services.LocationService(
+                return (T)(_locationService = _locationService ?? new Unigram.Services.LocationService(
                     _protoService,
                     _cacheService));
             }
             else if (type == typeof(Unigram.Services.IThemeService))
             {
-                return (T)(_themeService ??= new Unigram.Services.ThemeService(
+                return (T)(_themeService = _themeService ?? new Unigram.Services.ThemeService(
                     _protoService,
                     _settingsService,
                     _eventAggregator));
             }
             else if (type == typeof(Unigram.Services.Factories.IMessageFactory))
             {
-                return (T)(_messageFactory ??= new Unigram.Services.Factories.MessageFactory(
+                return (T)(_messageFactory = _messageFactory ?? new Unigram.Services.Factories.MessageFactory(
                     _protoService,
-                    _playbackService ??= new Unigram.Services.PlaybackService(
+                    _playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                         _protoService,
                         _cacheService,
                         _settingsService,
@@ -1250,7 +1264,7 @@ namespace Unigram.Views
             }
             else if (type == typeof(Unigram.Services.IPlaybackService))
             {
-                return (T)(_playbackService ??= new Unigram.Services.PlaybackService(
+                return (T)(_playbackService = _playbackService ?? new Unigram.Services.PlaybackService(
                     _protoService,
                     _cacheService,
                     _settingsService,
@@ -1258,7 +1272,7 @@ namespace Unigram.Views
             }
             else if (type == typeof(Unigram.Services.ViewService.IViewService))
             {
-                return (T)(_viewService ??= new Unigram.Services.ViewService.ViewService());
+                return (T)(_viewService = _viewService ?? new Unigram.Services.ViewService.ViewService());
             }
 
             return default;
