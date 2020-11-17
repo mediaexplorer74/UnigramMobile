@@ -412,85 +412,88 @@ namespace Unigram.Services
 
         public static unsafe string EncodeToBase64(string id, string accessHash, string fileReferenceBase64)
         {
-            using var bufferWriter = new ArrayPoolBufferWriter<byte>();
-
-            int fileType = 3 | (1 << 25);
-            int dcId = 2;
-            long id_ = long.Parse(id);
-            long access_hash_ = long.Parse(accessHash);
-
-            bufferWriter.Write(fileType);
-            bufferWriter.Write(dcId);
-
-            var maxUtf8Length = Encoding.UTF8.GetMaxByteCount(fileReferenceBase64.Length);
-
-            using (var utf8Buffer = SpanOwner<byte>.Allocate(maxUtf8Length))
+            using (var bufferWriter = new ArrayPoolBufferWriter<byte>())
             {
-                int utf8BytesCount;
 
-                fixed (char* pSource = fileReferenceBase64)
-                fixed (byte* pDestination = &utf8Buffer.DangerousGetReference())
+                int fileType = 3 | (1 << 25);
+                int dcId = 2;
+                long id_ = long.Parse(id);
+                long access_hash_ = long.Parse(accessHash);
+
+                bufferWriter.Write(fileType);
+                bufferWriter.Write(dcId);
+
+                var maxUtf8Length = Encoding.UTF8.GetMaxByteCount(fileReferenceBase64.Length);
+
+                using (var utf8Buffer = SpanOwner<byte>.Allocate(maxUtf8Length))
                 {
-                    utf8BytesCount = Encoding.UTF8.GetBytes(pSource, fileReferenceBase64.Length, pDestination, utf8Buffer.Length);
-                }
+                    int utf8BytesCount;
 
-                if (utf8BytesCount <= 253)
-                {
-                    bufferWriter.Write((byte)utf8BytesCount);
-                }
-                else
-                {
-                    bufferWriter.Write((byte)254);
-                    bufferWriter.Write((byte)utf8BytesCount);
-                    bufferWriter.Write((byte)(utf8BytesCount >> 8));
-                    bufferWriter.Write((byte)(utf8BytesCount >> 16));
-                }
-
-                bufferWriter.Write<byte>(utf8Buffer.Span.Slice(0, utf8BytesCount));
-
-                int j = utf8BytesCount <= 253 ? 1 : 4;
-                while ((utf8BytesCount + j) % 4 != 0)
-                {
-                    bufferWriter.Write((byte)0);
-                    j++;
-                }
-            }
-
-            bufferWriter.Write(id_);
-            bufferWriter.Write(access_hash_);
-
-            bufferWriter.Write((byte)30);
-            bufferWriter.Write((byte)4);
-
-            var bytes = bufferWriter.WrittenSpan;
-            using var resultBuffer = new ArrayPoolBufferWriter<byte>(bytes.Length);
-
-            for (int n = bytes.Length, i = 0; i < n; i++)
-            {
-                resultBuffer.Write(bytes[i]);
-                if (bytes[i] == 0)
-                {
-                    byte cnt = 1;
-                    while (cnt < 250 && i + cnt < n && bytes[i + cnt] == bytes[i])
+                    fixed (char* pSource = fileReferenceBase64)
+                    fixed (byte* pDestination = &utf8Buffer.DangerousGetReference())
                     {
-                        cnt++;
+                        utf8BytesCount = Encoding.UTF8.GetBytes(pSource, fileReferenceBase64.Length, pDestination, utf8Buffer.Length);
                     }
 
-                    resultBuffer.Write(cnt);
-                    i += cnt - 1;
+                    if (utf8BytesCount <= 253)
+                    {
+                        bufferWriter.Write((byte)utf8BytesCount);
+                    }
+                    else
+                    {
+                        bufferWriter.Write((byte)254);
+                        bufferWriter.Write((byte)utf8BytesCount);
+                        bufferWriter.Write((byte)(utf8BytesCount >> 8));
+                        bufferWriter.Write((byte)(utf8BytesCount >> 16));
+                    }
+
+                    bufferWriter.Write<byte>(utf8Buffer.Span.Slice(0, utf8BytesCount));
+
+                    int j = utf8BytesCount <= 253 ? 1 : 4;
+                    while ((utf8BytesCount + j) % 4 != 0)
+                    {
+                        bufferWriter.Write((byte)0);
+                        j++;
+                    }
                 }
-            }
 
-            var maxBase64Length = Base64.GetMaxEncodedToUtf8Length(resultBuffer.WrittenCount);
+                bufferWriter.Write(id_);
+                bufferWriter.Write(access_hash_);
 
-            using (var utf8Buffer = SpanOwner<byte>.Allocate(maxBase64Length))
-            {
-                Base64.EncodeToUtf8(resultBuffer.WrittenSpan, utf8Buffer.Span, out _, out int bytesWritten);
+                bufferWriter.Write((byte)30);
+                bufferWriter.Write((byte)4);
 
-                fixed (byte* p = utf8Buffer.Span)
+                var bytes = bufferWriter.WrittenSpan;
+                using (var resultBuffer = new ArrayPoolBufferWriter<byte>(bytes.Length))
                 {
-                    return Encoding.UTF8.GetString(p, bytesWritten)
-                        .TrimEnd('=').Replace('+', '-').Replace('/', '_');
+                    for (int n = bytes.Length, i = 0; i < n; i++)
+                    {
+                        resultBuffer.Write(bytes[i]);
+                        if (bytes[i] == 0)
+                        {
+                            byte cnt = 1;
+                            while (cnt < 250 && i + cnt < n && bytes[i + cnt] == bytes[i])
+                            {
+                                cnt++;
+                            }
+
+                            resultBuffer.Write(cnt);
+                            i += cnt - 1;
+                        }
+                    }
+
+                    var maxBase64Length = Base64.GetMaxEncodedToUtf8Length(resultBuffer.WrittenCount);
+
+                    using (var utf8Buffer = SpanOwner<byte>.Allocate(maxBase64Length))
+                    {
+                        Base64.EncodeToUtf8(resultBuffer.WrittenSpan, utf8Buffer.Span, out _, out int bytesWritten);
+
+                        fixed (byte* p = utf8Buffer.Span)
+                        {
+                            return Encoding.UTF8.GetString(p, bytesWritten)
+                                .TrimEnd('=').Replace('+', '-').Replace('/', '_');
+                        }
+                    }
                 }
             }
         }
