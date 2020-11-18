@@ -1568,8 +1568,8 @@ namespace Unigram.Views
 
         private void InitializeSearch()
         {
-            var observable = Observable.FromEventPattern<TextChangedEventArgs>(SearchField, "TextChanged");
-            var throttled = observable.Throttle(TimeSpan.FromMilliseconds(Constants.TypingTimeout)).ObserveOnDispatcher().Subscribe(async x =>
+            var throttler = new EventThrottler<TextChangedEventArgs>(Constants.TypingTimeout, handler => SearchField.TextChanged += new TextChangedEventHandler(handler));
+            throttler.Invoked += async (s, args) =>
             {
                 if (rpMasterTitlebar.SelectedIndex == 0)
                 {
@@ -1599,7 +1599,7 @@ namespace Unigram.Views
                         await items.LoadMoreItemsAsync(2);
                     }
                 }
-            });
+            };
         }
 
 #region Context menu
