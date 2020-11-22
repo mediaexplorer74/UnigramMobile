@@ -31,6 +31,7 @@ namespace Unigram.ViewModels.Chats
 
             TopSendersCommand = new RelayCommand(TopSendersExecute);
             OpenProfileCommand = new RelayCommand<int>(OpenProfileExecute);
+            OpenPostCommand = new RelayCommand<Message>(OpenPostExecute);
         }
 
         private Chat _chat;
@@ -90,6 +91,12 @@ namespace Unigram.ViewModels.Chats
             }
         }
 
+        public RelayCommand<Message> OpenPostCommand { get; }
+        private void OpenPostExecute(Message message)
+        {
+            NavigationService.NavigateToChat(message.ChatId, message.Id);
+        }
+
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             var chatId = (long)parameter;
@@ -132,11 +139,6 @@ namespace Unigram.ViewModels.Chats
 
                     foreach (var message in messages.MessagesValue)
                     {
-                        if (message == null)
-                        {
-                            continue;
-                        }
-
                         var counters = channelStats.RecentMessageInteractions.FirstOrDefault(x => x.MessageId == message.Id);
                         interactions.Add(new MessageInteractionCounters(message, counters.ForwardCount, counters.ViewCount));
                     }
@@ -161,6 +163,11 @@ namespace Unigram.ViewModels.Chats
                     stats.Add(ChartViewData.create(groupStats.DayGraph, Strings.Resources.TopHoursChartTitle, /*0*/5));
                     stats.Add(ChartViewData.create(groupStats.WeekGraph, Strings.Resources.TopDaysOfWeekChartTitle, 4));
 
+                    if (stats[7] != null)
+                    {
+                        stats[7].useWeekFormat = true;
+                    }
+
                     Interactions.Clear();
                     TopInviters.ReplaceWith(groupStats.TopInviters);
                     TopAdministrators.ReplaceWith(groupStats.TopAdministrators);
@@ -181,30 +188,14 @@ namespace Unigram.ViewModels.Chats
                     stats = null;
                 }
 
-                for (int i = 0; i < stats.Count; i++)
+                if (stats != null)
                 {
-                    if (i == Views.Chats.ChatStatisticsPage._loadIndex && stats[i].token != null)
-                    {
-                        var resp = await ProtoService.SendAsync(new GetStatisticsGraph(chatId, stats[i].token, 0));
-                        if (resp is StatisticsGraphData data)
-                        {
-                            if (stats[i].title == Strings.Resources.LanguagesChartTitle)
-                            {
-                                System.Diagnostics.Debugger.Break();
-                            }
-
-                            stats[i] = ChartViewData.create(data, stats[i].title, stats[i].graphType);
-                        }
-                    }
+                    Items.ReplaceWith(stats.Where(x => x != null));
                 }
-
-                Items.ReplaceWith(stats);
-
-
-                //foreach (var item in stats)
-                //{
-                //    var model =
-                //}
+                else
+                {
+                    Items.Clear();
+                }
             }
 
             IsLoading = false;
@@ -233,30 +224,32 @@ namespace Unigram.ViewModels.Chats
         public long activeZoom;
         public bool viewShowed;
         public ChartData chartData;
-        ChartData childChartData;
+        public ChartData childChartData;
         public String token;
-        String zoomToken;
+        public String zoomToken;
 
         public readonly int graphType;
         public readonly String title;
 
-        bool loading;
-        bool isEmpty;
+        public bool loading;
+        public bool isEmpty;
+        public bool isLanguages;
+        public bool useWeekFormat;
 
         public ChartViewData(String title, int grahType)
         {
             this.title = title;
-            this.graphType = grahType;
+            graphType = grahType;
         }
 
-        public static ChartViewData create(StatisticsGraph graph, String title, int graphType)
+        public static ChartViewData create(StatisticalGraph graph, String title, int graphType)
         {
-            if (graph == null || graph is StatisticsGraphError)
+            if (graph == null || graph is StatisticalGraphError)
             {
                 return null;
             }
             ChartViewData viewData = new ChartViewData(title, graphType);
-            if (graph is StatisticsGraphData data)
+            if (graph is StatisticalGraphData data)
             {
                 String json = data.JsonData;
                 try
@@ -276,12 +269,11 @@ namespace Unigram.ViewModels.Chats
                 }
                 catch (Exception e)
                 {
-                    Logs.Logger.Error(Logs.Target.Chat, e.Message, "ChatStatisticsViewModel");
                     //e.printStackTrace();
                     return null;
                 }
             }
-            else if (graph is StatisticsGraphAsync async)
+            else if (graph is StatisticalGraphAsync async)
             {
                 viewData.token = async.Token;
             }
@@ -310,16 +302,16 @@ namespace Unigram.ViewModels.Chats
             return null;
         }
 
-        public async Task LoadAsync(IProtoService protoService, long chatId)
+        public async Task<bool> LoadAsync(IProtoService protoService, long chatId)
         {
-            var graph = await protoService.SendAsync(new GetStatisticsGraph(chatId, token, 0)) as StatisticsGraph;
+            var graph = await protoService.SendAsync(new GetStatisticalGraph(chatId, token, 0)) as StatisticalGraph;
             var viewData = this;
 
-            if (graph == null || graph is StatisticsGraphError)
+            if (graph == null || graph is StatisticalGraphError)
             {
-                return;
+                return false;
             }
-            if (graph is StatisticsGraphData data)
+            else if (graph is StatisticalGraphData data)
             {
                 String json = data.JsonData;
                 try
@@ -336,13 +328,16 @@ namespace Unigram.ViewModels.Chats
                         viewData.childChartData = new StackLinearChartData(viewData.chartData, x);
                         viewData.activeZoom = x;
                     }
+
+                    return true;
                 }
                 catch (Exception e)
                 {
-                    Logs.Logger.Error(Logs.Target.Chat, e.Message, "ChatStatisticsViewModel");
                     //e.printStackTrace();
                 }
             }
+
+            return false;
         }
 
         //public void load(int accountId, int classGuid, int dc, RecyclerListView recyclerListView, Adapter adapter, DiffUtilsCallback difCallback)
