@@ -18,14 +18,27 @@ namespace Unigram.Controls
             set => TitleLabel.Text = value;
         }
 
-        private StatisticsValue _value;
-        public StatisticsValue Value
+        private double _percentage;
+        public double Percentage
+        {
+            get => _percentage;
+            set => SetPercentage(value);
+        }
+
+        private void SetPercentage(double value)
+        {
+            _percentage = value;
+            ValueLabel.Text = string.Format("{0:0.0}%", value);
+        }
+
+        private StatisticalValue _value;
+        public StatisticalValue Value
         {
             get => _value;
             set => Set(value);
         }
 
-        private void Set(StatisticsValue value)
+        private void Set(StatisticalValue value)
         {
             _value = value;
 
