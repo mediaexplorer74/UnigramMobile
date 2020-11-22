@@ -144,7 +144,7 @@ namespace Unigram.Controls.Messages
                 }
             }
 
-            builder.Append(Automation.GetSummary(message.ProtoService, message.Get()));
+            builder.Append(Automation.GetSummary(message.ProtoService, message.Get(), true));
 
             if (message.AuthorSignature.Length > 0)
             {
@@ -250,7 +250,7 @@ namespace Unigram.Controls.Messages
             var content = message.GeneratedContent ?? message.Content;
             if (message.ReplyMarkup is ReplyMarkupInlineKeyboard)
             {
-                if (content is MessageSticker || content is MessageDice || content is MessageVideoNote)
+                if (content is MessageSticker || content is MessageDice || content is MessageVideoNote || content is MessageBigEmoji)
                 {
                     ContentPanel.CornerRadius = new CornerRadius();
                 }
@@ -259,9 +259,12 @@ namespace Unigram.Controls.Messages
                     ContentPanel.CornerRadius = new CornerRadius(topLeft, topRight, small, small);
                 }
 
-                Markup.CornerRadius = new CornerRadius(small, small, bottomRight, bottomLeft);
+                if (Markup != null)
+                {
+                    Markup.CornerRadius = new CornerRadius(small, small, bottomRight, bottomLeft);
+                }
             }
-            else if (content is MessageSticker || content is MessageDice || content is MessageVideoNote)
+            else if (content is MessageSticker || content is MessageDice || content is MessageVideoNote || content is MessageBigEmoji)
             {
                 ContentPanel.CornerRadius = new CornerRadius();
             }
@@ -307,7 +310,7 @@ namespace Unigram.Controls.Messages
 
             var singleLargeEmoji = SettingsService.Current.IsLargeEmojiEnabled && content is MessageText mt && Emoji.TryCountEmojis(mt.Text.Text, out int emojiCount, 3) && emojiCount > 0;
             var sticker = content is MessageSticker;
-            var light = singleLargeEmoji || sticker || content is MessageDice || content is MessageVideoNote;
+            var light = singleLargeEmoji || sticker || content is MessageDice || content is MessageVideoNote || content is MessageBigEmoji;
             var shown = false;
 
             if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
@@ -705,6 +708,7 @@ namespace Unigram.Controls.Messages
         public void UpdateMessageContent(MessageViewModel message, bool padding = false)
         {
             string display = null;
+            Panel.Content = message?.GeneratedContent ?? message?.Content;
 
             //if (message == null || message.Media == null || message.Media is TLMessageMediaEmpty || empty)
             var content = message.GeneratedContent ?? message.Content;
@@ -763,8 +767,26 @@ namespace Unigram.Controls.Messages
                 Grid.SetRow(Footer, caption ? 4 : 3);
                 Grid.SetRow(Message, caption ? 4 : 2);
             }
-            else if (content is MessageSticker || content is MessageDice || content is MessageVideoNote)
-            {
+            else if (content is MessageSticker || content is MessageDice || content is MessageVideoNote || content is MessageBigEmoji)
+            { //TODO: Test new stuff => I left out the XAML-changes of this commit!
+            //    ContentPanel.Padding = new Thickness(0);
+            //    Media.Margin = new Thickness(0);
+
+            //    if (message.IsOutgoing && !message.IsChannelPost)
+            //    {
+            //        FooterToLightMedia(true);
+            //        Grid.SetRow(Footer, 3);
+            //        Grid.SetRow(Message, 2);
+            //        Panel.Placeholder = false;
+            //    }
+            //    else
+            //    {
+            //        FooterToLightMedia(false);
+            //        Grid.SetRow(Footer, content is MessageBigEmoji ? 2 : 3);
+            //        Grid.SetRow(Message, 2);
+            //        Panel.Placeholder = content is MessageBigEmoji;
+            //    }
+            //}
                 Media.Margin = new Thickness(-10, -4, -10, -6);
                 _placeholder = false;
                 FooterToLightMedia(message.IsOutgoing && !message.IsChannelPost);
@@ -1013,6 +1035,11 @@ namespace Unigram.Controls.Messages
                 Span.Inlines.Add(new Run { Text = venue.Venue.Address });
                 result = true;
             }
+            else if (content is MessageBigEmoji bigEmoji)
+            {
+                Span.Inlines.Add(new Run { Text = bigEmoji.Text.Text, FontSize = 32 });
+                result = true;
+            }
 
             Message.Visibility = result ? Visibility.Visible : Visibility.Collapsed;
             //Footer.HorizontalAlignment = adjust ? HorizontalAlignment.Left : HorizontalAlignment.Right;
@@ -1086,7 +1113,15 @@ namespace Unigram.Controls.Messages
 
                 if (entity.HasFlag(TextStyle.Monospace))
                 {
-                    span.Inlines.Add(new Run { Text = text.Substring(entity.Offset, entity.Length), FontFamily = new FontFamily("Consolas") });
+                    var data = text.Substring(entity.Offset, entity.Length);
+                    var hyperlink = new Hyperlink();
+                    hyperlink.Click += (s, args) => Entity_Click(message, entity.Type, data);
+                    hyperlink.Foreground = GetBrush("MessageForegroundBrush");
+                    hyperlink.UnderlineStyle = UnderlineStyle.None;
+                    //hyperlink.Foreground = foreground;
+
+                    span.Inlines.Add(hyperlink);
+                    hyperlink.Inlines.Add(new Run { Text = data, FontFamily = new FontFamily("Consolas") });
                 }
                 else
                 {
@@ -1211,6 +1246,30 @@ namespace Unigram.Controls.Messages
                 span.Inlines.Add(new Run { Text = text.Substring(previous) });
             }
 
+            if (string.IsNullOrWhiteSpace(_query))
+            {
+                Message.TextHighlighters.Clear();
+            }
+            else
+            {
+                var find = text.IndexOf(_query, StringComparison.OrdinalIgnoreCase);
+                if (find != -1)
+                {
+                    var highligher = new TextHighlighter();
+                    highligher.Foreground = new SolidColorBrush(Colors.White);
+                    highligher.Background = new SolidColorBrush(Colors.Orange);
+                    highligher.Ranges.Add(new TextRange { StartIndex = find, Length = _query.Length });
+
+                    Message.TextHighlighters.Add(highligher);
+                }
+                else
+                {
+                    Message.TextHighlighters.Clear();
+                }
+            }
+
+            span.FontSize = Theme.Current.MessageFontSize;
+
             if (AdjustEmojis(span, text))
             {
                 Message.FlowDirection = FlowDirection.LeftToRight;
@@ -1289,7 +1348,7 @@ namespace Unigram.Controls.Messages
             {
                 message.Delegate.OpenUrl("tel:" + data, false);
             }
-            else if (type is TextEntityTypeHashtag || type is TextEntityTypeCashtag)
+            else if (type is TextEntityTypeHashtag or TextEntityTypeCashtag)
             {
                 message.Delegate.OpenHashtag(data);
             }
@@ -1312,6 +1371,10 @@ namespace Unigram.Controls.Messages
             else if (type is TextEntityTypeBankCardNumber)
             {
                 message.Delegate.OpenBankCardNumber(data);
+            }
+            else if (type is TextEntityTypeCode or TextEntityTypePre or TextEntityTypePreCode)
+            {
+                MessageHelper.CopyText(data);
             }
         }
 
@@ -1362,7 +1425,8 @@ namespace Unigram.Controls.Messages
                 return;
             }
 
-            if (_placeholder)
+            var content = message.GeneratedContent ?? message.Content;
+            if (content is MessageSticker || content is MessageDice || content is MessageVideoNote || content is MessageBigEmoji || _placeholder) //TODO: check & also ignored changes...
             {
                 var footerWidth = Footer.ActualWidth - 5;
 
