@@ -208,7 +208,7 @@
     <Compile Include="Common\Expressions\ReferenceNodes\VisualReferenceNode.cs" />
     <Compile Include="Common\ExpressionUtils.cs" />
     <Compile Include="Common\HandledRoutedEventArgs.cs" />
-    <Compile Include="Common\EventThrottler.cs" />
+    <Compile Include="Common\EventDebouncer.cs" />
     <Compile Include="Common\ImageHelper.cs" />
     <Compile Include="Common\LoopThread.cs" />
     <Compile Include="Common\LoopThreadPool.cs" />
