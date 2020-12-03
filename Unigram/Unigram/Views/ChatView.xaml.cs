@@ -1,4 +1,5 @@
 ﻿using LinqToVisualTree;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -79,14 +80,13 @@ namespace Unigram.Views
         private const double SIDEBAR_MIN_WIDTH = 380 + 320;      
 #endif
 
-        private DispatcherTimer _elapsedTimer;
-        private Visual _messageVisual;
-        private Visual _ellipseVisual;
-        private Visual _elapsedVisual;
-        private Visual _slideVisual;
-        private Visual _recordVisual;
-        private Visual _rootVisual;
-        private Visual _textShadowVisual;
+        private readonly DispatcherTimer _elapsedTimer;
+        private readonly Visual _ellipseVisual;
+        private readonly Visual _elapsedVisual;
+        private readonly Visual _slideVisual;
+        private readonly Visual _recordVisual;
+        private readonly Visual _rootVisual;
+        private readonly Visual _textShadowVisual;
 
         private DispatcherTimer _dateHeaderTimer;
         private Visual _dateHeaderPanel;
@@ -172,11 +172,10 @@ namespace Unigram.Views
 
             Messages.RegisterPropertyChangedCallback(ListViewBase.SelectionModeProperty, List_SelectionModeChanged);
 
-             _messageVisual = ElementCompositionPreview.GetElementVisual(TextField);
             _ellipseVisual = ElementCompositionPreview.GetElementVisual(Ellipse);
             _elapsedVisual = ElementCompositionPreview.GetElementVisual(ElapsedPanel);
             _slideVisual = ElementCompositionPreview.GetElementVisual(SlidePanel);
-            _recordVisual = ElementCompositionPreview.GetElementVisual(Ellipse);
+            _recordVisual = ElementCompositionPreview.GetElementVisual(ChatRecord);
             _rootVisual = ElementCompositionPreview.GetElementVisual(TextArea);
             _compositor = _slideVisual.Compositor;
 
@@ -255,6 +254,8 @@ namespace Unigram.Views
             _textShadowVisual.IsVisible = false;
 
             //TextField.Language = Native.NativeUtils.GetCurrentCulture();
+            _drawable ??= new AvatarWavesDrawable(true, true);
+            _drawable.Update((Color)App.Current.Resources["SystemAccentColor"], true);
         }
 
         private void InitializeAutomation()
@@ -994,7 +995,7 @@ namespace Unigram.Views
             }
             else if (args.VirtualKey == Windows.System.VirtualKey.D && ctrl && !alt && !shift)
             {
-                btnVoiceMessage.CancelRecording();
+                btnVoiceMessage.StopRecording(true);
                 args.Handled = true;
             }
             else if (args.VirtualKey == Windows.System.VirtualKey.Escape && !ctrl && !alt && !shift)
@@ -2623,6 +2624,12 @@ namespace Unigram.Views
 
         private void VoiceButton_RecordingStarted(object sender, EventArgs e)
         {
+            // TODO: video message
+            ChatRecord.Visibility = Visibility.Visible;
+
+            ChatRecordPopup.IsOpen = true;
+            ChatRecordGlyph.Text = Icons.MicOnFilled;
+
             var slideWidth = (float)SlidePanel.ActualWidth;
             var elapsedWidth = (float)ElapsedPanel.ActualWidth;
 
@@ -2634,13 +2641,16 @@ namespace Unigram.Views
             _slideVisual.Opacity = 1;
 
             var batch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+            batch.Completed += (s, args) =>
+            {
+                _elapsedTimer.Start();
+                AttachExpression();
+            };
 
             var messageAnimation = _compositor.CreateScalarKeyFrameAnimation();
             messageAnimation.InsertKeyFrame(0, 0);
             messageAnimation.InsertKeyFrame(1, TextField.IsFormattingVisible ? 96 : 48);
             messageAnimation.Duration = TimeSpan.FromMilliseconds(300);
-
-            AttachTextAreaExpression();
 
             var slideAnimation = _compositor.CreateScalarKeyFrameAnimation();
             slideAnimation.InsertKeyFrame(0, slideWidth + 36);
@@ -2652,23 +2662,20 @@ namespace Unigram.Views
             elapsedAnimation.InsertKeyFrame(1, 0);
             elapsedAnimation.Duration = TimeSpan.FromMilliseconds(300);
 
+            var visibleAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            visibleAnimation.InsertKeyFrame(0, 0);
+            visibleAnimation.InsertKeyFrame(1, 1);
+
             var ellipseAnimation = _compositor.CreateVector3KeyFrameAnimation();
             ellipseAnimation.InsertKeyFrame(0, new Vector3(56f / 96f));
             ellipseAnimation.InsertKeyFrame(1, new Vector3(1));
             ellipseAnimation.Duration = TimeSpan.FromMilliseconds(200);
 
-            _messageVisual.StartAnimation("Offset.Y", messageAnimation);
             _slideVisual.StartAnimation("Offset.X", slideAnimation);
             _elapsedVisual.StartAnimation("Offset.X", elapsedAnimation);
+            _recordVisual.StartAnimation("Opacity", visibleAnimation);
             _ellipseVisual.StartAnimation("Scale", ellipseAnimation);
 
-            batch.Completed += (s, args) =>
-            {
-                _elapsedTimer.Start();
-
-                AttachExpression();
-                //DetachTextAreaExpression();
-            };
             batch.End();
 
             ViewModel.ChatActionManager.SetTyping(btnVoiceMessage.IsChecked.Value ? (ChatAction)new ChatActionRecordingVideoNote() : new ChatActionRecordingVoiceNote());
@@ -2679,34 +2686,29 @@ namespace Unigram.Views
 
         private void VoiceButton_RecordingStopped(object sender, EventArgs e)
         {
+            //if (btnVoiceMessage.IsLocked)
+            //{
+            //    Poggers.Visibility = Visibility.Visible;
+            //    Poggers.UpdateWaveform(btnVoiceMessage.GetWaveform());
+            //    return;
+            //}
+
             AttachExpression();
-            AttachTextAreaExpression();
 
             var slidePosition = (float)(LayoutRoot.ActualWidth - 48 - 36);
             var difference = (float)(slidePosition - ElapsedPanel.ActualWidth);
 
             var batch = _compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
 
-            var slideAnimation = _compositor.CreateScalarKeyFrameAnimation();
-            slideAnimation.InsertKeyFrame(0, _slideVisual.Offset.X);
-            slideAnimation.InsertKeyFrame(1, -slidePosition);
-            slideAnimation.Duration = TimeSpan.FromMilliseconds(200);
-
-            var messageAnimation = _compositor.CreateScalarKeyFrameAnimation();
-            messageAnimation.InsertKeyFrame(0, TextField.IsFormattingVisible ? 96 : 48);
-            messageAnimation.InsertKeyFrame(1, 0);
-            messageAnimation.Duration = TimeSpan.FromMilliseconds(200);
-
-            _slideVisual.StartAnimation("Offset.X", slideAnimation);
-            _messageVisual.StartAnimation("Offset.Y", messageAnimation);
-
             batch.Completed += (s, args) =>
             {
                 _elapsedTimer.Stop();
 
                 DetachExpression();
-                //DetachTextAreaExpression();
 
+                ChatRecordPopup.IsOpen = false;
+
+                ChatRecord.Visibility = Visibility.Collapsed;
                 ButtonCancelRecording.Visibility = Visibility.Collapsed;
                 ElapsedLabel.Text = "0:00,0";
 
@@ -2721,11 +2723,24 @@ namespace Unigram.Views
 
                 _elapsedVisual.Offset = point;
 
-                point = _recordVisual.Offset;
+                _ellipseVisual.Properties.TryGetVector3("Offset", out point);
                 point.Y = 0;
 
-                _recordVisual.Offset = point;
+                _ellipseVisual.Properties.InsertVector3("Offset", point);
             };
+
+            var slideAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            slideAnimation.InsertKeyFrame(0, _slideVisual.Offset.X);
+            slideAnimation.InsertKeyFrame(1, -slidePosition);
+            slideAnimation.Duration = TimeSpan.FromMilliseconds(200);
+
+            var visibleAnimation = _compositor.CreateScalarKeyFrameAnimation();
+            visibleAnimation.InsertKeyFrame(0, 1);
+            visibleAnimation.InsertKeyFrame(1, 0);
+
+            _slideVisual.StartAnimation("Offset.X", slideAnimation);
+            _recordVisual.StartAnimation("Opacity", visibleAnimation);
+
             batch.End();
 
             PositionRecordingUI(TextField.IsFormattingVisible);
@@ -2745,7 +2760,7 @@ namespace Unigram.Views
             ellipseAnimation.InsertKeyFrame(0, -57);
             ellipseAnimation.InsertKeyFrame(1, 0);
 
-            _recordVisual.StartAnimation("Offset.Y", ellipseAnimation);
+            _ellipseVisual.StartAnimation("Offset.Y", ellipseAnimation);
 
             ButtonCancelRecording.Visibility = Visibility.Visible;
             btnVoiceMessage.Focus(FocusState.Programmatic);
@@ -2771,10 +2786,10 @@ namespace Unigram.Views
 
                 _slideVisual.Offset = point;
 
-                point = _recordVisual.Offset;
+                _ellipseVisual.Properties.TryGetVector3("Offset", out point);
                 point.Y = 0;
 
-                _recordVisual.Offset = point;
+                _ellipseVisual.Properties.InsertVector3("Offset", point);
 
                 return;
             }
@@ -2788,14 +2803,14 @@ namespace Unigram.Views
             if (point.X < -80)
             {
                 e.Complete();
-                btnVoiceMessage.CancelRecording();
+                btnVoiceMessage.StopRecording(true);
                 return;
             }
 
-            point = _recordVisual.Offset;
+            _ellipseVisual.Properties.TryGetVector3("Offset", out point);
             point.Y = Math.Min(0, cumulative.Y);
 
-            _recordVisual.Offset = point;
+            _ellipseVisual.Properties.InsertVector3("Offset", point);
 
             if (point.Y < -120)
             {
@@ -2806,7 +2821,7 @@ namespace Unigram.Views
 
         private void ButtonCancelRecording_Click(object sender, RoutedEventArgs e)
         {
-            btnVoiceMessage.CancelRecording();
+            btnVoiceMessage.StopRecording(true);
         }
 
         private void AttachExpression()
@@ -2816,7 +2831,7 @@ namespace Unigram.Views
             elapsedExpression.SetReferenceParameter("elapsed", _elapsedVisual);
             elapsedExpression.SetReferenceParameter("root", _rootVisual);
 
-            var ellipseExpression = _compositor.CreateExpressionAnimation("Vector3(max(0, 1 + slide.Offset.X / (root.Size.X - 48 - 36)), max(0, 1 + slide.Offset.X / (root.Size.X - 48 - 36)), 1)");
+            var ellipseExpression = _compositor.CreateExpressionAnimation("Vector3(max(0, min(1, 1 + slide.Offset.X / (root.Size.X - 48 - 36))), max(0, min(1, 1 + slide.Offset.X / (root.Size.X - 48 - 36))), 1)");
             ellipseExpression.SetReferenceParameter("slide", _slideVisual);
             ellipseExpression.SetReferenceParameter("elapsed", _elapsedVisual);
             ellipseExpression.SetReferenceParameter("root", _rootVisual);
@@ -2832,27 +2847,6 @@ namespace Unigram.Views
         {
             _elapsedVisual.StopAnimation("Offset.X");
             _ellipseVisual.StopAnimation("Scale");
-        }
-
-        private void AttachTextAreaExpression()
-        {
-            AttachTextAreaExpression(ButtonAttach);
-            AttachTextAreaExpression(FormattingViewer);
-            AttachTextAreaExpression(SecondaryButtonsPanel);
-            AttachTextAreaExpression(ContextMenu);
-            AttachTextAreaExpression(ButtonStickers);
-            AttachTextAreaExpression(btnSendMessage);
-        }
-
-        private void AttachTextAreaExpression(FrameworkElement element)
-        {
-            var visual = ElementCompositionPreview.GetElementVisual(element);
-
-            var expression = _compositor.CreateExpressionAnimation("visual.Offset.Y");
-            expression.SetReferenceParameter("visual", _messageVisual);
-
-            visual.StopAnimation("Offset.Y");
-            visual.StartAnimation("Offset.Y", expression);
         }
 
         private void Autocomplete_ItemClick(object sender, ItemClickEventArgs e)
@@ -4127,7 +4121,7 @@ namespace Unigram.Views
             btnEdit.Radius = new CornerRadius(4, max, min, 4);
 
             ComposerHeaderCancel.Radius = new CornerRadius(4, min, 4, 4);
-            TextRoot.CornerRadius = ChatFooter.CornerRadius = new CornerRadius(radius);
+            TextRoot.CornerRadius = ChatFooter.CornerRadius = ChatRecord.CornerRadius = new CornerRadius(radius);
 
             // It would be cool to have shadow to respect text field corner radius
             //Separator.CornerRadius = new CornerRadius(radius);
@@ -4755,6 +4749,24 @@ namespace Unigram.Views
             }
         }
 
+        private AvatarWavesDrawable _drawable;
+
+        private void VoiceButton_QuantumProcessed(object sender, float amplitude)
+        {
+            _drawable ??= new AvatarWavesDrawable(true, true);
+            _drawable.SetAmplitude(amplitude * 100, ChatRecordCanvas);
+        }
+
+        private void ChatRecordCanvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
+        {
+            _drawable.Draw(args.DrawingSession, 60, 60, sender);
+        }
+
+        private void ChatRecordLocked_Click(object sender, RoutedEventArgs e)
+        {
+            btnVoiceMessage.Release();
+        }
+
         private void StickersPanel_DeleteLast(object sender, TappedRoutedEventArgs e)
         {
             TextField.DeleteLast();
@@ -4774,7 +4786,7 @@ namespace Unigram.Views
             );
 
             // Ref: Send_ContextRequested
-            if (btnSendMessage.Visibility == Visibility.Visible && 
+            if (btnSendMessage.Visibility == Visibility.Visible &&
                 ViewModel.Chat != null && ViewModel.Type == DialogType.History)
             {
                 flyout.Items.Add(new MenuFlyoutSeparator());
@@ -4786,7 +4798,7 @@ namespace Unigram.Views
 
             if (ApiInfo.CanUseNewFlyoutPlacementMode)
             {
-                flyout.ShowAt((FrameworkElement) sender, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
+                flyout.ShowAt((FrameworkElement)sender, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedRight });
             }
             else
             {
@@ -4870,5 +4882,332 @@ namespace Unigram.Views
         Collapsed,
         Overlay,
         Sidebar
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public class AvatarWavesDrawable
+    {
+        float amplitude;
+        float animateAmplitudeDiff;
+        float animateToAmplitude;
+        private BlobDrawable buttonDrawable = new BlobDrawable(4);
+        private BlobDrawable blobDrawable = new BlobDrawable(6);
+        private BlobDrawable blobDrawable2 = new BlobDrawable(8);
+        bool showWaves = true;
+        float wavesEnter = 0.0f;
+
+        public AvatarWavesDrawable(bool large, bool button)
+        {
+            if (button)
+            {
+                this.buttonDrawable.minRadius = large ? 36 : 20; // 22.0f;
+                this.buttonDrawable.maxRadius = large ? 40 : 24; //28.0f;
+                this.buttonDrawable.GenerateBlob();
+            }
+
+            this.blobDrawable.minRadius = large ? 56 : 32; // 22.0f;
+            this.blobDrawable.maxRadius = large ? 64 : 36; //28.0f;
+            this.blobDrawable2.minRadius = large ? 52 : 30; // 22.0f;
+            this.blobDrawable2.maxRadius = large ? 60 : 34; // 28.0f;
+            this.blobDrawable.GenerateBlob();
+            this.blobDrawable2.GenerateBlob();
+            //this.blobDrawable.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
+            //this.blobDrawable2.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
+            blobDrawable.paint.A = large ? 38 : 61;
+            blobDrawable2.paint.A = large ? 38 : 61;
+        }
+
+        public void Update(Color color, bool large)
+        {
+            if (buttonDrawable != null)
+            {
+                buttonDrawable.paint = color;
+            }
+
+            blobDrawable.paint = color;
+            blobDrawable2.paint = color;
+
+            blobDrawable.paint.A = large ? 38 : 61;
+            blobDrawable2.paint.A = large ? 38 : 61;
+        }
+
+        public void Draw(CanvasDrawingSession canvas, float x, float y, CanvasControl view)
+        {
+            float f3 = this.animateToAmplitude;
+            float f4 = this.amplitude;
+            if (f3 != f4)
+            {
+                float f5 = this.animateAmplitudeDiff;
+                float f6 = f4 + (16.0f * f5);
+                this.amplitude = f6;
+                if (f5 > 0.0f)
+                {
+                    if (f6 > f3)
+                    {
+                        this.amplitude = f3;
+                    }
+                }
+                else if (f6 < f3)
+                {
+                    this.amplitude = f3;
+                }
+                view.Invalidate();
+            }
+            float f7 = (this.amplitude * 0.2f) + 0.8f;
+            if (this.showWaves || this.wavesEnter != 0.0f)
+            {
+                //canvas.save();
+                bool z = this.showWaves;
+                if (z)
+                {
+                    float f8 = this.wavesEnter;
+                    if (f8 != 1.0f)
+                    {
+                        float f9 = f8 + 0.064f;
+                        this.wavesEnter = f9;
+                        if (f9 > 1.0f)
+                        {
+                            this.wavesEnter = 1.0f;
+                        }
+                        float interpolation = f7 * CubicBezierInterpolator.EASE_OUT.getInterpolation(this.wavesEnter);
+                        //canvas.scale(interpolation, interpolation, f, f2);
+                        canvas.Transform = Matrix3x2.CreateScale(interpolation, interpolation, new Vector2(x, y));
+                        this.blobDrawable.Update(this.amplitude, 1.0f);
+                        this.blobDrawable.Draw(canvas, x, y);
+                        this.blobDrawable2.Update(this.amplitude, 1.0f);
+                        this.blobDrawable2.Draw(canvas, x, y);
+                        canvas.Transform = Matrix3x2.Identity;
+                        if (buttonDrawable != null)
+                        {
+                            this.buttonDrawable.Update(this.amplitude, 1.0f);
+                            this.buttonDrawable.Draw(canvas, x, y);
+                        }
+                        view.Invalidate();
+                        //canvas.restore();
+                    }
+                }
+                if (!z)
+                {
+                    float f10 = this.wavesEnter;
+                    if (f10 != 0.0f)
+                    {
+                        float f11 = f10 - 0.064f;
+                        this.wavesEnter = f11;
+                        if (f11 < 0.0f)
+                        {
+                            this.wavesEnter = 0.0f;
+                        }
+                    }
+                }
+                float interpolation2 = f7 * CubicBezierInterpolator.EASE_OUT.getInterpolation(this.wavesEnter);
+                //canvas.scale(interpolation2, interpolation2, f, f2);
+                canvas.Transform = Matrix3x2.CreateScale(interpolation2, interpolation2, new Vector2(x, y));
+                this.blobDrawable.Update(this.amplitude, 1.0f);
+                this.blobDrawable.Draw(canvas, x, y);
+                this.blobDrawable2.Update(this.amplitude, 1.0f);
+                this.blobDrawable2.Draw(canvas, x, y);
+                canvas.Transform = Matrix3x2.Identity;
+                if (buttonDrawable != null)
+                {
+                    this.buttonDrawable.Update(this.amplitude, 1.0f);
+                    this.buttonDrawable.Draw(canvas, x, y);
+                }
+                view.Invalidate();
+                //canvas.restore();
+            }
+        }
+
+        public float AvatarScale
+        {
+            get
+            {
+                float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.wavesEnter);
+                return (((this.amplitude * 0.2f) + 0.8f) * interpolation) + ((1.0f - interpolation) * 1.0f);
+            }
+        }
+
+        public void SetShowWaves(bool z)
+        {
+            this.showWaves = z;
+        }
+
+        public void SetAmplitude(double d, CanvasControl view)
+        {
+            float f = ((float)d) / 100.0f;
+            float f2 = 0.0f;
+            if (!this.showWaves)
+            {
+                f = 0.0f;
+            }
+            if (f > 1.0f)
+            {
+                f2 = 1.0f;
+            }
+            else if (f >= 0.0f)
+            {
+                f2 = f;
+            }
+            this.animateToAmplitude = f2;
+            this.animateAmplitudeDiff = (f2 - this.amplitude) / 150.0f;
+            view.Invalidate();
+        }
+    }
+
+    public class BlobDrawable
+    {
+        public static float AMPLITUDE_SPEED = 0.33f;
+        public static float FORM_BIG_MAX = 0.6f;
+        public static float FORM_BUTTON_MAX = 0.0f;
+        public static float FORM_SMALL_MAX = 0.6f;
+        public static float GLOBAL_SCALE = 1.0f;
+        public static float GRADIENT_SPEED_MAX = 0.01f;
+        public static float GRADIENT_SPEED_MIN = 0.5f;
+        public static float LIGHT_GRADIENT_SIZE = 0.5f;
+        public static float MAX_SPEED = 8.2f;
+        public static float MIN_SPEED = 0.8f;
+        public static float SCALE_BIG = 0.807f;
+        public static float SCALE_BIG_MIN = 0.878f;
+        public static float SCALE_SMALL = 0.704f;
+        public static float SCALE_SMALL_MIN = 0.926f;
+        private readonly float L;
+        private readonly float N;
+        private float[] angle;
+        private float[] angleNext;
+        public float cubicBezierK = 1.0f;
+        private Matrix3x2 m;
+        public float maxRadius;
+        public float minRadius;
+        public Color paint = Colors.Red;
+        private Vector2[] pointEnd = new Vector2[2];
+        private Vector2[] pointStart = new Vector2[2];
+        private float[] progress;
+        private float[] radius;
+        private float[] radiusNext;
+        readonly Random random = new Random();
+        private float[] speed;
+
+        public BlobDrawable(int i)
+        {
+            float f = (float)i;
+            this.N = f;
+            float d = (float)(f * 2.0f);
+            //Double.isNaN(d);
+            this.L = (float)(MathF.Tan(3.141592653589793f / d) * 1.3333333333333333f);
+            this.radius = new float[i];
+            this.angle = new float[i];
+            this.radiusNext = new float[i];
+            this.angleNext = new float[i];
+            this.progress = new float[i];
+            this.speed = new float[i];
+            for (int i2 = 0; ((float)i2) < this.N; i2++)
+            {
+                generateBlob(this.radius, this.angle, i2);
+                generateBlob(this.radiusNext, this.angleNext, i2);
+                this.progress[i2] = 0.0f;
+            }
+        }
+
+        private void generateBlob(float[] fArr, float[] fArr2, int i)
+        {
+            fArr[i] = minRadius + (MathF.Abs((((float)this.random.Next()) % 100.0f) / 100.0f) * (maxRadius - minRadius));
+            fArr2[i] = ((360.0f / this.N) * ((float)i)) + (((((float)this.random.Next()) % 100.0f) / 100.0f) * (360.0f / this.N) * 0.05f);
+            double abs = (double)(MathF.Abs(((float)this.random.Next()) % 100.0f) / 100.0f);
+            Double.IsNaN(abs);
+            speed[i] = (float)((abs * 0.003d) + 0.017d);
+        }
+
+        public void Update(float f, float f2)
+        {
+            for (int i = 0; ((float)i) < this.N; i++)
+            {
+                float f3 = progress[i];
+                progress[i] = f3 + (speed[i] * MIN_SPEED) + (speed[i] * f * MAX_SPEED * f2);
+                if (progress[i] >= 1.0f)
+                {
+                    progress[i] = 0.0f;
+                    radius[i] = radiusNext[i];
+                    angle[i] = angleNext[i];
+                    generateBlob(radiusNext, angleNext, i);
+                }
+            }
+        }
+
+        public void Draw(CanvasDrawingSession canvas, float x, float y)
+        {
+            var path = new CanvasPathBuilder(canvas);
+            int i = 0;
+            while (true)
+            {
+                float f5 = this.N;
+                if (((float)i) < f5)
+                {
+                    float[] fArr = this.progress;
+                    float f6 = fArr[i];
+                    int i2 = i + 1;
+                    int i3 = ((float)i2) < f5 ? i2 : 0;
+                    float f7 = fArr[i3];
+                    float f8 = 1.0f - f6;
+                    float f9 = (radius[i] * f8) + (radiusNext[i] * f6);
+                    float f10 = 1.0f - f7;
+                    float f11 = (radius[i3] * f10) + (radiusNext[i3] * f7);
+                    float f12 = angle[i] * f8;
+                    float f13 = (angle[i3] * f10) + (angleNext[i3] * f7);
+                    float min = this.L * (MathF.Min(f9, f11) + ((Math.Max(f9, f11) - Math.Min(f9, f11)) / 2.0f)) * this.cubicBezierK;
+                    pointStart[0].X = x;
+                    pointStart[0].Y = y - f9;
+                    pointStart[1].X = x + min;
+                    pointStart[1].Y = y - f9;
+                    m = SetRotate(f12 + (angleNext[i] * f6), x, y);
+                    pointStart[0] = Vector2.Transform(pointStart[0], m);
+                    pointStart[1] = Vector2.Transform(pointStart[1], m);
+                    pointEnd[0].X = x;
+                    pointEnd[0].Y = y - f11;
+                    pointEnd[1].X = x - min;
+                    pointEnd[1].Y = y - f11;
+                    m = SetRotate(f13, x, y);
+                    pointEnd[0] = Vector2.Transform(pointEnd[0], m);
+                    pointEnd[1] = Vector2.Transform(pointEnd[1], m);
+                    if (i == 0)
+                    {
+                        path.BeginFigure(pointStart[0]);
+                    }
+                    path.AddCubicBezier(pointStart[1], pointEnd[1], pointEnd[0]);
+                    i = i2;
+                }
+                else
+                {
+                    //canvas.save();
+                    //canvas.drawPath(this.path, paint2);
+                    //canvas.restore();
+                    path.EndFigure(CanvasFigureLoop.Closed);
+                    canvas.FillGeometry(CanvasGeometry.CreatePath(path), paint);
+                    return;
+                }
+            }
+        }
+
+        private Matrix3x2 SetRotate(float degree, float px, float py)
+        {
+            return Matrix3x2.CreateRotation(MathFEx.ToRadians(degree), new Vector2(px, py));
+        }
+
+        public void GenerateBlob()
+        {
+            for (int i = 0; ((float)i) < this.N; i++)
+            {
+                generateBlob(this.radius, this.angle, i);
+                generateBlob(this.radiusNext, this.angleNext, i);
+                this.progress[i] = 0.0f;
+            }
+        }
     }
 }
