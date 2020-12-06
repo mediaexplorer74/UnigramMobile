@@ -119,8 +119,20 @@ namespace Unigram.Converters
         public const string Statistics = "\uE9D9";
 
         public const string Add = "\uE710";
+        public const string Person = "\uE77B"; 
+        public const string PersonAdd = "\uE8FA"; 
 
         public const string Block = "\uF140";
+        //public const string Search = "\uE721";
+        //public const string Settings = "\uE713";
+        public const string Phone = "\uE717";
+        public const string Video = "\uE714";
+        //public const string Camera = "\uE722";
+        public const string MusicNote = "\uE8D6";
+        public const string MicOn = "\uE720";
+        public const string MicOff = "\uE610";
+        public const string MicOnFilled = "\uF12E";
+        public const string DataUsage = "\uE9D9";
         public const string Star = "\uE734";
         public const string LockClosed = "\uE72E";
 
@@ -133,6 +145,30 @@ namespace Unigram.Converters
         public const string Emoji6 = "\uE925";
         public const string Emoji7 = "\uE926";
         public const string Emoji8 = "\uE927";
+
+        public const string Calendar = "\uE787"; 
+        public const string TextFont = "\uE8D2"; 
+        public const string StarFilled = "\uE735"; 
+        //public const string Folder = "\uF12B";
+        public const string DataPie = "\uEB05"; 
+        public const string FolderMove = "\uE92B"; 
+        public const string FolderAdd = "\uE929"; 
+        public const string Emoji = "\uE76E"; 
+        public const string ChevronUp = "\uE0E4"; 
+        public const string ChevronDown = "\uE0E5"; 
+        public const string ShieldCheckmark = "\uEA1A"; 
+        public const string Bug = "\uE825"; 
+        public const string Bookmark = "\uE907"; 
+        public const string ArrowRight = "\uE72A";
+        //public const string Channel = "\uEC42";
+        public const string Speaker = "\uE995";
+        public const string Speaker1 = "\uE993";
+        public const string SpeakerNone = "\uE74F";
+        public const string SendFilled = "\uE919";
+
+        public const string AppFolder = "\uF122";
+
+        public const string ChatBubblesQuestion = "\uE783";
 
         public static readonly ChatFilterIcon[] Filters = new ChatFilterIcon[]
         {
