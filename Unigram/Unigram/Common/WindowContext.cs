@@ -43,7 +43,7 @@ namespace Unigram.Common
 
             _lifetime = TLContainer.Current.Lifetime;
 
-            _placeholderHelper = PlaceholderImageHelper.GetForCurrentView();
+            //_placeholderHelper = PlaceholderImageHelper.GetForCurrentView();
 
             Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 500));
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
@@ -57,7 +57,7 @@ namespace Unigram.Common
             {
                 try
                 {
-                    _placeholderHelper = null;
+                    //_placeholderHelper = null;
                     app.UISettings.ColorValuesChanged -= UISettings_ColorValuesChanged;
                 }
                 catch { }
@@ -66,7 +66,7 @@ namespace Unigram.Common
             {
                 try
                 {
-                    _placeholderHelper = null;
+                    //_placeholderHelper = null;
                     app.UISettings.ColorValuesChanged -= UISettings_ColorValuesChanged;
                 }
                 catch { }
