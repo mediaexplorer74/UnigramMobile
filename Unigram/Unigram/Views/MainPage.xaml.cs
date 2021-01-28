@@ -1539,6 +1539,37 @@ namespace Unigram.Views
                 MasterDetail.NavigationService.NavigateToChat(chat, force: false);
                 MasterDetail.NavigationService.GoBackAt(0, false);
             }
+#if !STORE
+            // Check for updates after 14 days of installation (performance impact! - I do not want to introduce a static variable)
+            if ((DateTime.Now - Windows.ApplicationModel.Package.Current.InstalledDate).TotalDays > 0
+                // Get the last message from the update channel and compare the dates with the installation date.
+                && await UpdateAvailableAsync() is string updateText)
+            {
+                await MessagePopup.ShowAsync(updateText, Windows.ApplicationModel.Package.Current.DisplayName, Strings.Resources.OK);
+            }
+
+            async Task<string> UpdateAvailableAsync()
+            {
+                if (await ViewModel.ProtoService.SendAsync(new SearchPublicChat(Constants.AppUpdateChannel)) is Chat channel)
+                {
+                    await ViewModel.ProtoService.SendAsync(new OpenChat(channel.Id));
+
+                    var response = await ViewModel.ProtoService.SendAsync(new GetChatHistory(channel.Id, 0, 0, 1, false)) as Messages;
+                    ViewModel.ProtoService.Send(new CloseChat(channel.Id));
+                    foreach (var msg in response?.MessagesValue)
+                    {
+                        if (msg.Date > Windows.ApplicationModel.Package.Current.InstalledDate.ToUnixTimeSeconds())
+                        {
+                            if (msg.Content is MessageText text)
+                                return text.Text.Text;
+                            return "Your installed beta version is outdated. Please update.";
+                        }
+                    }
+                }
+
+                return null;
+            }
+#endif
         }
 
         private async void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

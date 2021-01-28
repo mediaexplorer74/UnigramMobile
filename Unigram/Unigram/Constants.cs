@@ -6,6 +6,7 @@
         public static readonly string ApiHash;
 
         public static readonly string AppChannel;
+        public static readonly string AppUpdateChannel;
 
         public static readonly string AppCenterId;
 
