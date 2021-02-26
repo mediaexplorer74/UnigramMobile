@@ -282,6 +282,10 @@ namespace Unigram.ViewModels
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatAddMembers(new[] { memberInvited.UserId });
                         break;
+                    case ChatEventMemberJoinedByInviteLink memberJoinedByInviteLink:
+                        message = GetMessage(_chat.Id, channel, item);
+                        message.Content = new MessageChatAddMembers(new[] { item.UserId });
+                        break;
                     case ChatEventSlowModeDelayChanged slowModeDelayChanged:
                     case ChatEventPermissionsChanged permissionsChanged:
                     case ChatEventMemberRestricted memberRestricted:
@@ -295,8 +299,17 @@ namespace Unigram.ViewModels
                     case ChatEventInvitesToggled invitesToggled:
                     case ChatEventIsAllHistoryAvailableToggled isAllHistoryAvailableToggled:
                     case ChatEventMessageUnpinned messageUnpinned:
+                    case ChatEventMessageTtlSettingChanged messageTtlSettingChanged:
                     case ChatEventLinkedChatChanged linkedChatChanged:
                     case ChatEventLocationChanged locationChanged:
+                    case ChatEventVoiceChatCreated voiceChatCreated:
+                    case ChatEventVoiceChatDiscarded voiceChatDiscarded:
+                    case ChatEventVoiceChatMuteNewParticipantsToggled voiceChatMuteNewParticipantsToggled:
+                    case ChatEventVoiceChatParticipantIsMutedToggled voiceChatParticipantIsMutedToggled:
+                    case ChatEventVoiceChatParticipantVolumeLevelChanged voiceChatParticipantVolumeLevelChanged:
+                    case ChatEventInviteLinkDeleted inviteLinkDeleted:
+                    case ChatEventInviteLinkEdited inviteLinkEdited:
+                    case ChatEventInviteLinkRevoked inviteLinkRevoked:
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatEvent(item);
                         break;
