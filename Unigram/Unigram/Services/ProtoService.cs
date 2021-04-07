@@ -23,6 +23,8 @@ namespace Unigram.Services
         void Send(Function function, Action<BaseObject> handler = null);
         Task<BaseObject> SendAsync(Function function);
 
+        Task<BaseObject> CheckChatInviteLinkAsync(string inviteLink);
+
         Task<StorageFile> GetFileAsync(File file);
 
         void DownloadFile(int fileId, int priority, int offset = 0, int limit = 0, bool synchronous = false);
@@ -66,6 +68,8 @@ namespace Unigram.Services
 
         bool IsRepliesChat(Chat chat);
 
+        bool IsChatAccessible(Chat chat);
+
         bool CanPostMessages(Chat chat);
 
         BaseObject GetMessageSender(MessageSender sender);
@@ -96,6 +100,8 @@ namespace Unigram.Services
 
         BasicGroupFullInfo GetBasicGroupFull(long id);
         BasicGroupFullInfo GetBasicGroupFull(Chat chat);
+        bool TryGetBasicGroupFull(int id, out BasicGroupFullInfo value);
+        bool TryGetBasicGroupFull(Chat chat, out BasicGroupFullInfo value);
 
         Supergroup GetSupergroup(long id);
         Supergroup GetSupergroup(Chat chat);
@@ -484,7 +490,34 @@ namespace Unigram.Services
 
 
 
-        private ConcurrentBag<int> _canceledDownloads = new ConcurrentBag<int>();
+        private readonly Dictionary<long, DateTime> _chatAccessibleUntil = new Dictionary<long, DateTime>();
+
+        public async Task<BaseObject> CheckChatInviteLinkAsync(string inviteLink)
+        {
+            if (!inviteLink.StartsWith("http"))
+            {
+                inviteLink = "https://t.me/joinchat/" + inviteLink;
+            }
+
+            var response = await SendAsync(new CheckChatInviteLink(inviteLink));
+            if (response is ChatInviteLinkInfo info)
+            {
+                if (info.ChatId != 0 && info.AccessibleFor != 0)
+                {
+                    _chatAccessibleUntil[info.ChatId] = DateTime.Now.AddSeconds(info.AccessibleFor);
+                }
+                else
+                {
+                    _chatAccessibleUntil.Remove(info.ChatId);
+                }
+            }
+
+            return response;
+        }
+
+
+
+        private readonly ConcurrentBag<int> _canceledDownloads = new ConcurrentBag<int>();
 
         public async Task<StorageFile> GetFileAsync(File file)
         {
@@ -758,6 +791,17 @@ namespace Unigram.Services
         public bool IsRepliesChat(Chat chat)
         {
             return chat.Id == _options.RepliesBotChatId;
+        }
+
+        public bool IsChatAccessible(Chat chat)
+        {
+            // This method is definitely misleading, and it should probably cover more cases
+            if (_chatAccessibleUntil.TryGetValue(chat.Id, out DateTime until))
+            {
+                return until > DateTime.Now;
+            }
+
+            return false;
         }
 
         public bool CanPostMessages(Chat chat)
@@ -1034,7 +1078,23 @@ namespace Unigram.Services
             return null;
         }
 
+        public bool TryGetBasicGroupFull(long id, out BasicGroupFullInfo value)
+        {
+            return _basicGroupsFull.TryGetValue(id, out value);
+        }
 
+        public bool TryGetBasicGroupFull(Chat chat, out BasicGroupFullInfo value)
+        {
+            if (chat?.Type is ChatTypeBasicGroup basicGroup)
+            {
+                return TryGetBasicGroupFull(basicGroup.BasicGroupId, out value);
+            }
+
+            value = null;
+            return false;
+        }
+
+        
 
         public Supergroup GetSupergroup(long id)
         {
