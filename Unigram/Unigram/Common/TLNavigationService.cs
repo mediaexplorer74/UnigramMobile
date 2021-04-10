@@ -67,7 +67,23 @@ namespace Unigram.Common
             }
         }
 
-        public async void NavigateToChat(Chat chat, long? message = null, long? thread = null, string accessToken = null, IDictionary<string, object> state = null, bool scheduled = false, bool force = true)
+        public async void NavigateToSender(MessageSender sender)
+        {
+            if (sender is MessageSenderUser user)
+            {
+                var response = await ProtoService.SendAsync(new CreatePrivateChat(user.UserId, false));
+                if (response is Chat chat)
+                {
+                    Navigate(typeof(ProfilePage), chat.Id);
+                }
+            }
+            else if (sender is MessageSenderChat chat)
+            {
+                Navigate(typeof(ProfilePage), chat.ChatId);
+            }
+        }
+
+        public async void NavigateToChat(Chat chat, long? message = null, long? thread = null, string accessToken = null, NavigationState state = null, bool scheduled = false, bool force = true)
         {
             if (chat == null)
             {

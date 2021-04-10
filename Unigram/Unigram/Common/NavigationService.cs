@@ -129,7 +129,15 @@ namespace Unigram.Common
             }
         }
 
-        public static void NavigateToThread(this INavigationService service, Chat chat, long thread, long? message = null, IDictionary<string, object> state = null)
+        public static void NavigateToSender(this INavigationService service, MessageSender sender)
+        {
+            if (service is TLNavigationService serviceEx)
+            {
+                serviceEx.NavigateToSender(sender);
+            }
+        }
+
+        public static void NavigateToThread(this INavigationService service, Chat chat, long thread, long? message = null, NavigationState state = null)
         {
             if (service is TLNavigationService serviceEx)
             {

@@ -1146,7 +1146,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            NavigationService.Navigate(typeof(SupergroupEditAdministratorPage), state: NavigationState.GetChatMember(chat.Id, member.UserId));
+            NavigationService.Navigate(typeof(SupergroupEditAdministratorPage), state: NavigationState.GetChatMember(chat.Id, member.MemberId));
         }
 
         public RelayCommand<ChatMember> MemberRestrictCommand { get; }
@@ -1158,7 +1158,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            NavigationService.Navigate(typeof(SupergroupEditRestrictedPage), state: NavigationState.GetChatMember(chat.Id, member.UserId));
+            NavigationService.Navigate(typeof(SupergroupEditRestrictedPage), state: NavigationState.GetChatMember(chat.Id, member.MemberId));
         }
 
         public RelayCommand<ChatMember> MemberRemoveCommand { get; }
@@ -1174,7 +1174,7 @@ namespace Unigram.ViewModels
 
             _members.Remove(member);
 
-            var response = await ProtoService.SendAsync(new SetChatMemberStatus(chat.Id, member.UserId, new ChatMemberStatusBanned()));
+            var response = await ProtoService.SendAsync(new SetChatMemberStatus(chat.Id, member.MemberId, new ChatMemberStatusBanned()));
             if (response is Error)
             {
                 _members.Insert(index, member);
@@ -1407,7 +1407,7 @@ namespace Unigram.ViewModels
 
                         for (int i = 0; i < items.Count; i++)
                         {
-                            var already = this.OfType<ChatMember>().FirstOrDefault(x => x.UserId == items[i].UserId);
+                            var already = this.OfType<ChatMember>().FirstOrDefault(x => x.MemberId.IsEqual(items[i].MemberId));
                             if (already != null)
                             {
                                 items.RemoveAt(i);
@@ -1513,8 +1513,8 @@ namespace Unigram.ViewModels
 
         public int Compare(ChatMember x, ChatMember y)
         {
-            var xUser = _protoService.GetUser(x.UserId);
-            var yUser = _protoService.GetUser(y.UserId);
+            _protoService.TryGetUser(x.MemberId, out User xUser);
+            _protoService.TryGetUser(y.MemberId, out User yUser);
 
             if (xUser == null || yUser == null)
             {

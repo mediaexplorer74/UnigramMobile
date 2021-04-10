@@ -295,7 +295,7 @@ namespace Unigram.ViewModels.Chats
 
             if (dialog.BanUser && sameUser)
             {
-                ProtoService.Send(new SetChatMemberStatus(chat.Id, first.SenderId, new ChatMemberStatusBanned()));
+                ProtoService.Send(new SetChatMemberStatus(chat.Id, firstSender, new ChatMemberStatusBanned()));
             }
 
             if (dialog.ReportSpam && sameUser && chat.Type is ChatTypeSupergroup supertype)
