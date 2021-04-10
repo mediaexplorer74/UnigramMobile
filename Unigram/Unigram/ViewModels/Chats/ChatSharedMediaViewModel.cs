@@ -483,12 +483,7 @@ namespace Unigram.ViewModels.Chats
         {
         }
 
-        public bool IsAdmin(int userId)
-        {
-            return false;
-        }
-
-        public void Call(MessageViewModel message)
+        public void Call(MessageViewModel message, bool video)
         {
             throw new NotImplementedException();
         }
@@ -498,12 +493,7 @@ namespace Unigram.ViewModels.Chats
             throw new NotImplementedException();
         }
 
-        public string GetAdminTitle(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetAdminTitle(MessageSender sender)
+        public string GetAdminTitle(MessageViewModel message)
         {
             throw new NotImplementedException();
         }

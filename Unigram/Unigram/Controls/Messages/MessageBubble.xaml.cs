@@ -406,10 +406,10 @@ namespace Unigram.Controls.Messages
 
             if (shown)
             {
-                if (message.SenderUserId != 0)
+                var title = message.Delegate.GetAdminTitle(message);
+                if (title != null)
                 {
-                    var title = message.Delegate.GetAdminTitle(message.SenderUserId);
-                    if (admin != null && !message.IsOutgoing && message.Delegate != null && !string.IsNullOrEmpty(title))
+                    if (admin != null && !message.IsOutgoing)
                     {
                         paragraph.Inlines.Add(new Run { Text = " " + title, Foreground = null });
                     }
@@ -513,7 +513,7 @@ namespace Unigram.Controls.Messages
 
             if (paragraph.Inlines.Count > 0)
             {
-                var title = message.Delegate.GetAdminTitle(message.SenderUserId);
+                var title = message.Delegate.GetAdminTitle(message);
                 if (admin != null && shown && !message.IsOutgoing && message.Delegate != null && !string.IsNullOrEmpty(title))
                 {
                     admin.Visibility = Visibility.Visible;
