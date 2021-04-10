@@ -228,10 +228,17 @@ namespace Unigram.Controls.Messages
                 case MessageContactRegistered contactRegistered:
                 case MessageCustomServiceAction customServiceAction:
                 case MessageGameScore gameScore:
+                //case MessageInviteVoiceChatParticipants newTodo0:
+                case MessageProximityAlertTriggered newTodo1:
+                case MessagePassportDataSent newTodo2:
                 case MessagePaymentSuccessful paymentSuccessful:
                 case MessagePinMessage pinMessage:
                 case MessageScreenshotTaken screenshotTaken:
                 case MessageSupergroupChatCreate supergroupChatCreate:
+                //case MessageVoiceChatEnded newTodo3:
+                //case MessageVoiceChatScheduled newTodo4:
+                //case MessageVoiceChatStarted newTodo5:
+                case MessageWebsiteConnected newTodo6:
                     return SetServiceTextTemplate(message, title);
                 case MessageExpiredPhoto expiredPhoto:
                 case MessageExpiredVideo expiredVideo:
