@@ -748,7 +748,7 @@ namespace Unigram.Controls.Chats
             get => _isMenuExpanded;
             set
             {
-                if (ViewModel?.Chat?.Type is not ChatTypePrivate)
+                if (!(ViewModel?.Chat?.Type is ChatTypePrivate))
                 {
                     return;
                 }
