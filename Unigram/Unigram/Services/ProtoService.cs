@@ -495,11 +495,6 @@ namespace Unigram.Services
 
         public async Task<BaseObject> CheckChatInviteLinkAsync(string inviteLink)
         {
-            if (!inviteLink.StartsWith("http"))
-            {
-                inviteLink = "https://t.me/joinchat/" + inviteLink;
-            }
-
             var response = await SendAsync(new CheckChatInviteLink(inviteLink));
             if (response is ChatInviteLinkInfo info)
             {
