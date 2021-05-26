@@ -2545,7 +2545,17 @@ namespace Unigram.ViewModels
 
         public void SaveDraft()
         {
+            SaveDraft(false);
+        }
+
+        public void SaveDraft(bool clear = false)
+        {
             if (_currentInlineBot != null || (_type != DialogType.History && _type != DialogType.Thread))
+            {
+                return;
+            }
+
+            if (_selectionMode != ListViewSelectionMode.None && !clear)
             {
                 return;
             }
@@ -2571,7 +2581,7 @@ namespace Unigram.ViewModels
                 }
             }
 
-            var formattedText = GetFormattedText();
+            var formattedText = GetFormattedText(clear);
             if (formattedText == null)
             {
                 return;
