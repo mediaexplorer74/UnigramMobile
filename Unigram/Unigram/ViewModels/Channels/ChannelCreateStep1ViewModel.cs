@@ -65,8 +65,7 @@ namespace Unigram.ViewModels.Channels
                 // TODO: photo
 
                 NavigationService.Navigate(typeof(ChannelCreateStep2Page), chat.Id);
-                NavigationService.RemoveLast();
-                NavigationService.RemoveLast();
+                NavigationService.GoBackAt(0, false);
             }
         }
 
