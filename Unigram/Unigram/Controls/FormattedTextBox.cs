@@ -465,19 +465,29 @@ namespace Unigram.Controls
         {
             link = link.Trim('"');
 
-            if (Uri.TryCreate(link, UriKind.Absolute, out Uri result))
+            if (IsUrlValid(link))
             {
-                if (string.Equals(result.Scheme, "tg-user") && long.TryParse(result.Host, out long userId))
-                {
-                    type = new TextEntityTypeMentionName(userId);
-                    return true;
-                }
-
                 type = new TextEntityTypeTextUrl(link);
+                return true;
+            }
+            else if (link.StartsWith("tg-user://") && long.TryParse(link.Substring("tg-user://".Length), out long userId))
+            {
+                type = new TextEntityTypeMentionName(userId);
                 return true;
             }
 
             type = null;
+            return false;
+        }
+
+        private bool IsUrlValid(string url)
+        {
+            var response = Client.Execute(new GetTextEntities(url));
+            if (response is TextEntities entities)
+            {
+                return entities.Entities.Count == 1 && entities.Entities[0].Offset == 0 && entities.Entities[0].Length == url.Length && entities.Entities[0].Type is TextEntityTypeUrl;
+            }
+
             return false;
         }
 
