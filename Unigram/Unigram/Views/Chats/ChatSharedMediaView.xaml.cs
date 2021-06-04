@@ -563,12 +563,8 @@ namespace Unigram.Views.Chats
                     message.UpdateFile(file);
 
                     var container = ScrollingMedia.ContainerFromItem(message) as GridViewItem;
-                    if (container == null)
-                    {
-                        continue;
-                    }
+                    var content = container?.ContentTemplateRoot as HyperlinkButton;
 
-                    var content = container.ContentTemplateRoot as SimpleHyperlinkButton;
                     if (content == null)
                     {
                         continue;
@@ -608,23 +604,14 @@ namespace Unigram.Views.Chats
                     message.UpdateFile(file);
 
                     var container = ScrollingFiles.ContainerFromItem(message) as ListViewItem;
+                    var content = container?.ContentTemplateRoot as SharedFileCell;
+
                     if (container == null)
                     {
                         continue;
                     }
 
-                    var document = message.GetFile();
-                    var content = container.ContentTemplateRoot as SharedFileCell;
-
-                    if (document == null || content == null)
-                    {
-                        continue;
-                    }
-
-                    if (file.Id == document.Id)
-                    {
-                        content.UpdateFile(message, file);
-                    }
+                    content.UpdateFile(message, file);
                 }
             }
 
@@ -635,23 +622,14 @@ namespace Unigram.Views.Chats
                     message.UpdateFile(file);
 
                     var container = ScrollingMusic.ContainerFromItem(message) as ListViewItem;
-                    if (container == null)
+                    var content = container?.ContentTemplateRoot as SharedFileCell;
+
+                    if (content == null)
                     {
                         continue;
                     }
 
-                    var document = message.GetFile();
-                    var content = container.ContentTemplateRoot as SharedFileCell;
-
-                    if (document == null || content == null)
-                    {
-                        continue;
-                    }
-
-                    if (file.Id == document.Id)
-                    {
-                        content.UpdateFile(message, file);
-                    }
+                    content.UpdateFile(message, file);
                 }
             }
 
@@ -662,23 +640,14 @@ namespace Unigram.Views.Chats
                     message.UpdateFile(file);
 
                     var container = ScrollingVoice.ContainerFromItem(message) as ListViewItem;
-                    if (container == null)
+                    var content = container?.ContentTemplateRoot as SharedFileCell;
+
+                    if (content == null)
                     {
                         continue;
                     }
 
-                    var document = message.GetFile();
-                    var content = container.ContentTemplateRoot as SharedFileCell;
-
-                    if (document == null || content == null)
-                    {
-                        continue;
-                    }
-
-                    if (file.Id == document.Id)
-                    {
-                        content.UpdateFile(message, file);
-                    }
+                    content.UpdateFile(message, file);
                 }
             }
         }
