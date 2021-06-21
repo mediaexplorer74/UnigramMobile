@@ -20,7 +20,7 @@ namespace Unigram.ViewModels
         IHandle<UpdateChatUnreadMentionCount>,
         IHandle<UpdateChatReadOutbox>,
         IHandle<UpdateChatReadInbox>,
-        //IHandle<UpdateChatDraftMessage>,
+        IHandle<UpdateChatDraftMessage>,
         IHandle<UpdateChatDefaultDisableNotification>,
         IHandle<UpdateChatMessageSender>,
         IHandle<UpdateChatActionBar>,
@@ -348,7 +348,7 @@ namespace Unigram.ViewModels
                     return;
                 }
 
-                BeginOnUIThread(() => ShowDraftMessage(_chat));
+                BeginOnUIThread(() => ShowDraftMessage(_chat, false));
             }
         }
 
