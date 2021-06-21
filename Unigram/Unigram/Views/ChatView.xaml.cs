@@ -3704,6 +3704,8 @@ namespace Unigram.Views
 
         private bool _composerHeaderCollapsed = false;
         private bool _textFormattingCollapsed = false;
+        private bool _botCommandsCollapsed = true;
+        private bool _autocompleteCollapsed = true;
 
         private void ShowHideComposerHeader(bool show)
         {
@@ -3958,6 +3960,92 @@ namespace Unigram.Views
             PositionRecordingUI(show);
         }
 
+        private void ShowHideBotCommands(bool show)
+        {
+            if ((show && ButtonMore.Visibility == Visibility.Visible) || (!show && (ButtonMore.Visibility == Visibility.Collapsed || _botCommandsCollapsed)))
+            {
+                return;
+            }
+
+            _botCommandsCollapsed = !show;
+            ButtonMore.Visibility = Visibility.Visible;
+
+            var more = ElementCompositionPreview.GetElementVisual(ButtonMore);
+            var field = ElementCompositionPreview.GetElementVisual(TextFieldPanel);
+            var attach = ElementCompositionPreview.GetElementVisual(btnAttach);
+
+            var batch = Window.Current.Compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+            batch.Completed += (s, args) =>
+            {
+                field.Properties.InsertVector3("Translation", Vector3.Zero);
+                attach.Properties.InsertVector3("Translation", Vector3.Zero);
+
+                if (show)
+                {
+                    _botCommandsCollapsed = false;
+                }
+                else
+                {
+                    ButtonMore.IsChecked = false;
+                    ButtonMore.Visibility = Visibility.Collapsed;
+                }
+
+                UpdateTextAreaRadius();
+            };
+
+            var offset = Window.Current.Compositor.CreateVector3KeyFrameAnimation();
+            offset.InsertKeyFrame(show ? 0 : 1, new Vector3(-44, 0, 0));
+            offset.InsertKeyFrame(show ? 1 : 0, new Vector3());
+            offset.Duration = TimeSpan.FromMilliseconds(150);
+
+            more.StartAnimation("Translation", offset);
+            field.StartAnimation("Translation", offset);
+            attach.StartAnimation("Translation", offset);
+
+            batch.End();
+        }
+
+        private async void ShowHideAutocomplete(bool show)
+        {
+            if ((show && ListAutocomplete.Visibility == Visibility.Visible) || (!show && (ListAutocomplete.Visibility == Visibility.Collapsed || _autocompleteCollapsed)))
+            {
+                return;
+            }
+
+            _autocompleteCollapsed = !show;
+            ListAutocomplete.Visibility = Visibility.Visible;
+
+            await ListAutocomplete.UpdateLayoutAsync();
+
+            var list = ElementCompositionPreview.GetElementVisual(ListAutocomplete);
+
+            var batch = Window.Current.Compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+            batch.Completed += (s, args) =>
+            {
+                list.Properties.InsertVector3("Translation", Vector3.Zero);
+
+                if (show)
+                {
+                    _autocompleteCollapsed = false;
+                }
+                else
+                {
+                    ListAutocomplete.ItemsSource = null;
+                    ListAutocomplete.Visibility = Visibility.Collapsed;
+                }
+            };
+
+            var offset = Window.Current.Compositor.CreateVector3KeyFrameAnimation();
+            offset.InsertKeyFrame(show ? 0 : 1, new Vector3(0, (float)ListAutocomplete.ActualHeight, 0));
+            offset.InsertKeyFrame(show ? 1 : 0, new Vector3());
+            offset.Duration = TimeSpan.FromMilliseconds(150);
+
+            list.StartAnimation("Translation", offset);
+
+            batch.End();
+        }
+
+
         private void UpdateTextAreaRadius()
         {
             var radius = SettingsService.Current.Appearance.BubbleRadius;
@@ -3965,7 +4053,7 @@ namespace Unigram.Views
             var max = ComposerHeader.Visibility == Visibility.Visible
                 || TextFormatting.Visibility == Visibility.Visible ? 4 : min;
 
-            ButtonAttach.Radius = new CornerRadius(max, 4, 4, min);
+            ButtonAttach.CornerRadius = new CornerRadius(_botCommandsCollapsed ? max : 4, 4, 4, _botCommandsCollapsed ? min : 4);
             btnVoiceMessage.Radius = new CornerRadius(4, max, min, 4);
             btnSendMessage.Radius = new CornerRadius(4, max, min, 4);
             btnEdit.Radius = new CornerRadius(4, max, min, 4);
@@ -3973,7 +4061,9 @@ namespace Unigram.Views
             ComposerHeaderCancel.Radius = new CornerRadius(4, min, 4, 4);
             TextRoot.CornerRadius = ChatFooter.CornerRadius = new CornerRadius(radius);
 
-            InlinePanel.CornerRadius = new CornerRadius(radius, radius, 0, 0);
+            // It would be cool to have shadow to respect text field corner radius
+            //Separator.CornerRadius = new CornerRadius(radius);
+            ListAutocomplete.CornerRadius = ListInline.CornerRadius = new CornerRadius(radius, radius, 0, 0);
             ListAutocomplete.Padding = new Thickness(0, 0, 0, radius);
             ListInline.UpdateCornerRadius(radius);
 
@@ -4002,12 +4092,11 @@ namespace Unigram.Views
             {
                 ListAutocomplete.ItemsSource = collection;
                 ListAutocomplete.Orientation = collection.Orientation;
-                ListAutocomplete.Visibility = Visibility.Visible;
+                ShowHideAutocomplete(true);
             }
             else
             {
-                ListAutocomplete.Visibility = Visibility.Collapsed;
-                ListAutocomplete.ItemsSource = null;
+                ShowHideAutocomplete(false);
 
                 //var diff = (float)ListAutocomplete.ActualHeight;
                 //var visual = ElementCompositionPreview.GetElementVisual(ListAutocomplete);
@@ -4067,13 +4156,14 @@ namespace Unigram.Views
             if (fullInfo.Commands.Count > 0)
             {
                 ViewModel.BotCommands = fullInfo.Commands.Select(x => new UserCommand(user.Id, x)).ToList();
-                ViewModel.HasBotCommands = ViewModel.BotCommands.Count > 0;
-                ///ShowHideBotCommands(true); //TODO: Test
+                ViewModel.HasBotCommands = false;
+                ShowHideBotCommands(true);
             }
             else
             {
                 ViewModel.BotCommands = null;
                 ViewModel.HasBotCommands = false;
+                ShowHideBotCommands(false);
             }
 
             Call.Visibility = /*!secret &&*/ fullInfo.CanBeCalled ? Visibility.Visible : Visibility.Collapsed;
@@ -4171,6 +4261,7 @@ namespace Unigram.Views
 
             ViewModel.BotCommands = commands;
             ViewModel.HasBotCommands = commands.Count > 0;
+            ShowHideBotCommands(false);
         }
 
 

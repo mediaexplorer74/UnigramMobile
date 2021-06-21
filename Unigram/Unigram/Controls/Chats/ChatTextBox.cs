@@ -185,7 +185,7 @@ namespace Unigram.Controls.Chats
                 var ctrl = Window.Current.CoreWindow.GetKeyState(VirtualKey.Control).HasFlag(CoreVirtualKeyStates.Down);
                 var shift = Window.Current.CoreWindow.GetKeyState(VirtualKey.Shift).HasFlag(CoreVirtualKeyStates.Down);
 
-                if (e.Key == VirtualKey.Up && !alt && !ctrl && !shift && IsEmpty)
+                if (e.Key == VirtualKey.Up && !alt && !ctrl && !shift && IsEmpty && ViewModel.Autocomplete == null)
                 {
                     ViewModel.MessageEditLastCommand.Execute();
                     e.Handled = true;
@@ -347,6 +347,17 @@ namespace Unigram.Controls.Chats
 
         private async void OnSelectionChanged(object sender, RoutedEventArgs e)
         {
+            if (_isMenuExpanded)
+            {
+                if (ViewModel.Autocomplete is AutocompleteList<UserCommand> == false)
+                {
+                    ClearInlineBotResults();
+                    ViewModel.Autocomplete = GetCommands(string.Empty);
+                }
+
+                return;
+            }
+
             Document.GetText(TextGetOptions.NoHidden, out string text);
 
             // This needs to run before text empty check as it cleans up
@@ -719,6 +730,17 @@ namespace Unigram.Controls.Chats
         protected override void OnSettingText()
         {
             UpdateInlinePlaceholder(null, null);
+        }
+
+        private bool _isMenuExpanded;
+        public bool? IsMenuExpanded
+        {
+            get => _isMenuExpanded;
+            set
+            {
+                _isMenuExpanded = value ?? false;
+                OnSelectionChanged(null, null);
+            }
         }
 
         #region Username
