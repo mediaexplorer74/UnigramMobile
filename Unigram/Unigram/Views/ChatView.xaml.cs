@@ -1938,12 +1938,12 @@ namespace Unigram.Views
                 var fullInfo = ViewModel.ProtoService.GetUserFull(user.Id);
                 if (fullInfo != null)
                 {
-                    if (fullInfo.BotInfo.Commands.Any(x => x.Command.Equals("Settings")))
+                    if (fullInfo.Commands.Any(x => x.Command.Equals("Settings")))
                     {
                         flyout.CreateFlyoutItem(null, Strings.Resources.BotSettings);
                     }
 
-                    if (fullInfo.BotInfo.Commands.Any(x => x.Command.Equals("help")))
+                    if (fullInfo.Commands.Any(x => x.Command.Equals("help")))
                     {
                         flyout.CreateFlyoutItem(null, Strings.Resources.BotHelp);
                     }
@@ -3505,21 +3505,53 @@ namespace Unigram.Views
             {
                 ViewModel.ReplyToMessage(message);
 
+                TextField.PlaceholderText = forceReply.InputFieldPlaceholder;
+
                 ButtonMarkup.Visibility = Visibility.Collapsed;
                 ButtonCommands.Visibility = ViewModel.HasBotCommands ? Visibility.Visible : Visibility.Collapsed;
                 CollapseMarkup(false);
             }
             else
             {
+                string GetPlaceholder()
+                {
+                    if (ViewModel.CacheService.TryGetSupergroup(chat, out Supergroup supergroup))
+                    {
+                        if (supergroup.IsChannel)
+                        {
+                            return chat.DefaultDisableNotification
+                                ? Strings.Resources.ChannelSilentBroadcast
+                                : Strings.Resources.ChannelBroadcast;
+                        }
+                        else if (supergroup.Status is ChatMemberStatusCreator creator && creator.IsAnonymous || supergroup.Status is ChatMemberStatusAdministrator administrator && administrator.IsAnonymous)
+                        {
+                            return Strings.Resources.SendAnonymously;
+                        }
+                    }
+
+                    return Strings.Resources.TypeMessage;
+                }
+
                 var updated = ReplyMarkup.Update(message, message?.ReplyMarkup, false);
                 if (updated)
                 {
+                    if (message.ReplyMarkup is ReplyMarkupShowKeyboard showKeyboard)
+                    {
+                        TextField.PlaceholderText = showKeyboard.InputFieldPlaceholder;
+                    }
+                    else
+                    {
+                        TextField.PlaceholderText = GetPlaceholder();
+                    }
+
                     ButtonMarkup.Visibility = Visibility.Visible;
                     ButtonCommands.Visibility = Visibility.Collapsed;
                     ShowMarkup();
                 }
                 else
                 {
+                    TextField.PlaceholderText = GetPlaceholder();
+
                     ButtonMarkup.Visibility = Visibility.Collapsed;
                     ButtonCommands.Visibility = ViewModel.HasBotCommands ? Visibility.Visible : Visibility.Collapsed;
                     CollapseMarkup(false);
@@ -4041,10 +4073,11 @@ namespace Unigram.Views
                 ShowArea();
             }
 
-            if (fullInfo.BotInfo != null)
+            if (fullInfo.Commands.Count > 0)
             {
-                ViewModel.BotCommands = fullInfo.BotInfo.Commands.Select(x => new UserCommand(user.Id, x)).ToList();
-                ViewModel.HasBotCommands = fullInfo.BotInfo.Commands.Count > 0;
+                ViewModel.BotCommands = fullInfo.Commands.Select(x => new UserCommand(user.Id, x)).ToList();
+                ViewModel.HasBotCommands = false;
+                ShowHideBotCommands(true);
             }
             else
             {
@@ -4140,12 +4173,9 @@ namespace Unigram.Views
 
             var commands = new List<UserCommand>();
 
-            foreach (var member in fullInfo.Members)
+            foreach (var command in fullInfo.BotCommands)
             {
-                if (member.BotInfo != null)
-                {
-                    commands.AddRange(member.BotInfo.Commands.Select(x => new UserCommand(member.UserId, x)).ToList());
-                }
+                commands.AddRange(command.Commands.Select(x => new UserCommand(command.BotUserId, x)));
             }
 
             ViewModel.BotCommands = commands;
@@ -4274,26 +4304,6 @@ namespace Unigram.Views
                 return;
             }
 
-            var response = await ViewModel.ProtoService.SendAsync(new GetSupergroupMembers(group.Id, new SupergroupMembersFilterBots(), 0, 200));
-            if (response is ChatMembers members)
-            {
-                var commands = new List<UserCommand>();
-
-                foreach (var member in members.Members)
-                {
-                    if (member.BotInfo != null)
-                    {
-                        commands.AddRange(member.BotInfo.Commands.Select(x => new UserCommand(member.UserId, x)).ToList());
-                    }
-                }
-
-                if (StillValid(chat))
-                {
-                    ViewModel.BotCommands = commands;
-                    ViewModel.HasBotCommands = commands.Count > 0;
-                }
-            }
-
             UpdateComposerHeader(chat, ViewModel.ComposerHeader);
             UpdateChatPermissions(chat);
         }
@@ -4321,6 +4331,17 @@ namespace Unigram.Views
             {
                 _slowModeTimer.Stop();
             }
+
+            var commands = new List<UserCommand>();
+
+            foreach (var command in fullInfo.BotCommands)
+            {
+                commands.AddRange(command.Commands.Select(x => new UserCommand(command.BotUserId, x)));
+            }
+
+            ViewModel.BotCommands = commands;
+            ViewModel.HasBotCommands = commands.Count > 0;
+            ShowHideBotCommands(false);
         }
 
 
