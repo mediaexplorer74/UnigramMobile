@@ -2827,14 +2827,13 @@ namespace Unigram.Views
                 return;
             }
 
-            TextField.Document.GetText(TextGetOptions.None, out string hidden);
-            TextField.Document.GetText(TextGetOptions.NoHidden, out string text);
+            TextField.Document.GetText(TextGetOptions.None, out string text);
 
             if (e.ClickedItem is User user && ChatTextBox.SearchByUsername(text.Substring(0, Math.Min(TextField.Document.Selection.EndPosition, text.Length)), out string username, out int index))
             {
-                var insert = string.Empty;
                 var adjust = 0;
 
+                string insert;
                 if (string.IsNullOrEmpty(user.Username))
                 {
                     insert = string.IsNullOrEmpty(user.FirstName) ? user.LastName : user.FirstName;
@@ -2863,18 +2862,29 @@ namespace Unigram.Views
             }
             else if (e.ClickedItem is UserCommand command)
             {
-                var insert = $"/{command.Item.Command}";
-                if (chat.Type is ChatTypeSupergroup || chat.Type is ChatTypeBasicGroup)
+                var input = text.Substring(0, Math.Min(TextField.Document.Selection.EndPosition, text.Length));
+                if (string.IsNullOrEmpty(input))
                 {
-                    var bot = ViewModel.ProtoService.GetUser(command.UserId);
-                    if (bot != null && bot.Username.Length > 0)
-                    {
-                        insert += $"@{bot.Username}";
-                    }
+                    input = "/";
                 }
 
-                TextField.SetText(null, null);
-                ViewModel.SendCommand.Execute(insert);
+                if (ChatTextBox.SearchByCommand(input, out string initialCommand))
+                {
+                    var insert = $"/{command.Item.Command}";
+                    if (chat.Type is ChatTypeSupergroup || chat.Type is ChatTypeBasicGroup)
+                    {
+                        var bot = ViewModel.ProtoService.GetUser(command.UserId);
+                        if (bot != null && bot.Username.Length > 0)
+                        {
+                            insert += $"@{bot.Username}";
+                        }
+                    }
+
+                    TextField.SetText(null, null);
+                    ViewModel.SendCommand.Execute(insert);
+                }
+
+                ButtonMore.IsChecked = false;
             }
             else if (e.ClickedItem is string hashtag && ChatTextBox.SearchByHashtag(text.Substring(0, Math.Min(TextField.Document.Selection.EndPosition, text.Length)), out string initial, out int index2))
             {
