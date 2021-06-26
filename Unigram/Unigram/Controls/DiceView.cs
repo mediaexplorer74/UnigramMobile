@@ -244,7 +244,7 @@ namespace Unigram.Controls
 
             for (int i = 0; i < animations.Length; i++)
             {
-                if (_bitmaps[i] == null)
+                if (_bitmaps[i] == null || animations[i] == null)
                 {
                     if (animations[i] != null)
                     {
