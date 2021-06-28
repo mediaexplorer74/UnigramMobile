@@ -1124,6 +1124,12 @@ namespace Unigram.Views
                 args.Handled = true;
             }
 
+            if (ViewModel.Autocomplete != null)
+            {
+                ViewModel.Autocomplete = null;
+                args.Handled = true;
+            }
+
             if (args.Handled)
             {
                 Focus(FocusState.Programmatic);
