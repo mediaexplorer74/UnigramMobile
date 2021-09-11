@@ -23,7 +23,7 @@ namespace Unigram.Collections
         private readonly SearchChatsType _type;
 
         private readonly List<long> _chats = new List<long>();
-        private readonly List<int> _users = new List<int>();
+        private readonly List<long> _users = new List<long>();
 
         private IList<ISearchChatsFilter> _internal;
         private MvxObservableCollection<ISearchChatsFilter> _filters;

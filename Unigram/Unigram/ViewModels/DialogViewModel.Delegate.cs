@@ -394,7 +394,7 @@ namespace Unigram.ViewModels
             }
         }
 
-        public async void OpenUser(int userId)
+        public async void OpenUser(long userId)
         {
             var response = await ProtoService.SendAsync(new CreatePrivateChat(userId, false));
             if (response is Chat chat)
@@ -411,7 +411,7 @@ namespace Unigram.ViewModels
             }
         }
 
-        public void OpenViaBot(int viaBotUserId)
+        public void OpenViaBot(long viaBotUserId)
         {
             var chat = Chat;
             if (chat != null && chat.Type is ChatTypeSupergroup super && super.IsChannel)
@@ -619,7 +619,7 @@ namespace Unigram.ViewModels
             return null;
         }
 
-        public string GetAdminTitle(int userId)
+        public string GetAdminTitle(long userId)
         {
             var chat = _chat;
             if (chat == null)

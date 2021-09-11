@@ -459,7 +459,7 @@ namespace Unigram.ViewModels.Chats
         {
         }
 
-        public void OpenUser(int userId)
+        public void OpenUser(long userId)
         {
         }
 
@@ -471,7 +471,7 @@ namespace Unigram.ViewModels.Chats
         {
         }
 
-        public void OpenViaBot(int viaBotUserId)
+        public void OpenViaBot(long viaBotUserId)
         {
         }
 

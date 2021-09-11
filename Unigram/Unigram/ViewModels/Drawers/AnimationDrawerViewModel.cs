@@ -184,7 +184,7 @@ namespace Unigram.ViewModels.Drawers
         private readonly IEventAggregator _aggregator;
         private readonly string _query;
 
-        private int? _userId;
+        private long? _userId;
         private string _offset = string.Empty;
         private bool _hasMoreItems = true;
 

@@ -217,7 +217,7 @@ namespace Unigram.ViewModels
 
         private readonly Dictionary<InlineQueryResult, long> _queryIds;
 
-        private readonly int _botUserId;
+        private readonly long _botUserId;
         private readonly long _chatId;
         private readonly Location _location;
         private readonly string _query;
@@ -225,7 +225,7 @@ namespace Unigram.ViewModels
         private InlineQueryResults _results;
         private string _nextOffset;
 
-        public BotResultsCollection(IProtoService protoService, int botUserId, long chatId, Location location, string query)
+        public BotResultsCollection(IProtoService protoService, long botUserId, long chatId, Location location, string query)
         {
             _protoService = protoService;
 

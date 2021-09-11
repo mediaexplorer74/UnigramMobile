@@ -16,7 +16,7 @@ namespace Unigram.Collections
         private readonly ChatMembersFilter _filter;
         private readonly string _query;
 
-        private readonly List<int> _users = new List<int>();
+        private readonly List<long> _users = new List<long>();
 
         private KeyedList<string, object> _chat;
         private KeyedList<string, object> _local;
