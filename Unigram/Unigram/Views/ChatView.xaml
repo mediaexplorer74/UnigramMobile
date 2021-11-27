@@ -980,23 +980,32 @@
                     <controls:GlyphButton x:Name="ComposerHeaderCancel" Command="{x:Bind ViewModel.ClearReplyCommand}" Height="{StaticResource TelegramToolBarHeight}" AllowFocusOnInteraction="False" Glyph="&#xE10A;" Grid.Column="2"/>
                 </Grid>
 
-                <Border Grid.ColumnSpan="5" Grid.Row="2">
-                    <Border
-                        x:Name="TextBackground"
-                        Background="{ThemeResource PageBackgroundDarkBrush}"
-                        Visibility="Collapsed"/>
+                <Border Grid.ColumnSpan="5"
+                        Grid.Row="2">
+                    <Border x:Name="TextBackground"
+                            Background="{ThemeResource PageBackgroundDarkBrush}"
+                            Visibility="Collapsed" />
                 </Border>
 
-                <controls:MenuButton
-                    x:Name="ButtonMore"
-                    AutomationProperties.Name="{CustomResource AccDescrBotCommands}"
-                    ToolTipService.ToolTip="{CustomResource AccDescrBotCommands}"
-                    Visibility="Collapsed"
-                    Margin="8,0,0,0"
-                    Grid.Row="1"/>
+                <controls:MenuButton x:Name="ButtonMore"
+                                     Checked="ButtonMore_Checked"
+                                     AutomationProperties.Name="{CustomResource AccDescrBotCommands}"
+                                     ToolTipService.ToolTip="{CustomResource AccDescrBotCommands}"
+                                     Visibility="Collapsed"
+                                     Margin="8,0,0,0"
+                                     Grid.Row="1">
+                    <Image x:Name="PhotoMore"
+                           Width="32"
+                           Height="32"
+                           Margin="-8" />
+                </controls:MenuButton>
 
-                <Border x:Name="TextFieldPanel" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1">
-                    <chats:ChatTextBox
+
+                <Border x:Name="TextFieldPanel"
+                        Grid.ColumnSpan="2"
+                        Grid.Column="1"
+                        Grid.Row="1">
+                    <chats:ChatTextBox 
                         x:Name="TextField"
                         FontFamily="{ThemeResource EmojiThemeFontFamily}"
                         Background="Transparent"

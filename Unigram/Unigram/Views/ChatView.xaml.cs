@@ -1802,7 +1802,7 @@ namespace Unigram.Views
                     //await MessagePopup.ShowAsync(Strings.Resources.HidAccount, Strings.Resources.AppName, Strings.Resources.OK);
                 }
             }
-            if (ViewModel.CacheService.TryGetChat(message.SenderId, out Chat senderChat))
+            else if (ViewModel.CacheService.TryGetChat(message.SenderId, out Chat senderChat))
             {
                 if (senderChat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                 {
@@ -3296,7 +3296,22 @@ namespace Unigram.Views
 
             Call.Visibility = Visibility.Collapsed;
 
+            UpdateChatDefaultMessageSenderId(chat, chat.DefaultMessageSenderId);
             UpdateChatPermissions(chat);
+        }
+
+        public void UpdateChatDefaultMessageSenderId(Chat chat, MessageSender defaultMessageSenderId)
+        {
+            if (defaultMessageSenderId == null)
+            {
+                PhotoMore.Source = null;
+                ShowHideBotCommands(false);
+            }
+            else
+            {
+                PhotoMore.Source = PlaceholderHelper.GetMessageSender(ViewModel.ProtoService, defaultMessageSenderId, 32);
+                ShowHideBotCommands(true);
+            }
         }
 
         public void UpdateChatPermissions(Chat chat)
@@ -4280,7 +4295,7 @@ namespace Unigram.Views
 
             ViewModel.BotCommands = commands;
             ViewModel.HasBotCommands = commands.Count > 0;
-            ShowHideBotCommands(false);
+            //ShowHideBotCommands(false);
         }
 
 
@@ -4442,7 +4457,7 @@ namespace Unigram.Views
 
             ViewModel.BotCommands = commands;
             ViewModel.HasBotCommands = commands.Count > 0;
-            ShowHideBotCommands(false);
+            //ShowHideBotCommands(false);
         }
 
 
@@ -4742,6 +4757,55 @@ namespace Unigram.Views
             {
                 flyout.ShowAt(sender as FrameworkElement);
             }
+        }
+
+        private async void ButtonMore_Checked(object sender, RoutedEventArgs e)
+        {
+            var chat = ViewModel.Chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            var flyout = new MenuFlyout();
+            flyout.Closing += (s, args) =>
+            {
+                ButtonMore.IsChecked = false;
+            };
+
+            var response = await ViewModel.ProtoService.SendAsync(new GetChatAvailableMessageSenders(chat.Id));
+            if (response is MessageSenders senders)
+            {
+                foreach (var messageSender in senders.Senders)
+                {
+                    var picture = new ProfilePicture();
+                    picture.Width = 24;
+                    picture.Height = 24;
+                    picture.IsEnabled = false;
+                    picture.Margin = new Thickness(-4, -2, 0, -2);
+
+                    if (ViewModel.ProtoService.TryGetUser(messageSender, out User senderUser))
+                    {
+                        picture.Source = PlaceholderHelper.GetUser(ViewModel.ProtoService, senderUser, 24);
+
+                        var item = flyout.CreateFlyoutItem(ViewModel.SetDefaultSenderCommand, messageSender, senderUser.GetFullName());
+                        item.Style = App.Current.Resources["ProfilePictureMenuFlyoutItemStyle"] as Style;
+                        item.Icon = new FontIcon();
+                        item.Tag = picture;
+                    }
+                    else if (ViewModel.ProtoService.TryGetChat(messageSender, out Chat senderChat))
+                    {
+                        picture.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, senderChat, 24);
+
+                        var item = flyout.CreateFlyoutItem(ViewModel.SetDefaultSenderCommand, messageSender, senderChat.Title);
+                        item.Style = App.Current.Resources["ProfilePictureMenuFlyoutItemStyle"] as Style;
+                        item.Icon = new FontIcon();
+                        item.Tag = picture;
+                    }
+                }
+            }
+
+            flyout.ShowAt(ButtonMore, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedLeft });
         }
     }
 

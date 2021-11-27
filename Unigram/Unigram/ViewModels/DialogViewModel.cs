@@ -138,6 +138,7 @@ namespace Unigram.ViewModels
             ActionCommand = new RelayCommand(ActionExecuteAsync);
             OpenMessageCommand = new RelayCommand<Message>(OpenMessageExecute);
             ScheduledCommand = new RelayCommand(ScheduledExecute);
+            SetDefaultSenderCommand = new RelayCommand<MessageSender>(SetDefaultSenderExecute);
 
             MessagesForwardCommand = new RelayCommand(MessagesForwardExecute, MessagesForwardCanExecute);
             MessagesDeleteCommand = new RelayCommand(MessagesDeleteExecute, MessagesDeleteCanExecute);
@@ -2818,6 +2819,22 @@ namespace Unigram.ViewModels
 */
             //ProtoService.Send(new SendMessage())
         }
+
+        #region Set default message sender
+
+        public RelayCommand<MessageSender> SetDefaultSenderCommand;
+        public void SetDefaultSenderExecute(MessageSender messageSender)
+        {
+            var chat = _chat;
+            if (chat == null)
+            {
+                return;
+            }
+
+            ProtoService.Send(new SetChatDefaultMessageSender(chat.Id, messageSender));
+        }
+
+        #endregion
 
         #region Join channel
 

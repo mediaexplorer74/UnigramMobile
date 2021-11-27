@@ -360,6 +360,14 @@ namespace Unigram.ViewModels
             }
         }
 
+        public void Handle(UpdateChatDefaultMessageSenderId update)
+        {
+            if (update.ChatId == _chat?.Id)
+            {
+                BeginOnUIThread(() => Delegate?.UpdateChatDefaultMessageSenderId(_chat, update.DefaultMessageSenderId));
+            }
+        }
+
 
 
         public void Handle(UpdateChatLastMessage update)

@@ -2057,7 +2057,7 @@
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
         <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForeground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ToggleButtonBorderBrushChecked}" />
-        <Setter Property="Padding" Value="10,8" />
+        <Setter Property="Padding" Value="8,8" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
@@ -2069,14 +2069,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MenuButton">
-                    <Border x:Name="ContentPresenter"
-                                          Background="{TemplateBinding Background}"
-                                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          Padding="{TemplateBinding Padding}"
-                                          AutomationProperties.AccessibilityView="Raw">
+                    <Grid x:Name="ContentPresenter"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}"
+                            AutomationProperties.AccessibilityView="Raw">
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -2225,8 +2225,12 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <Border x:Name="LayoutRoot" Width="16" Height="16"/>
-                    </Border>
 
+                        <ContentPresenter
+                            x:Name="Presenter"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
