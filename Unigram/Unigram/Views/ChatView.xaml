@@ -1051,21 +1051,11 @@
                                         </ControlTemplate>
                                     </MenuFlyoutSeparator.Template>
                                 </MenuFlyoutSeparator>
-                                <MenuFlyoutSeparator x:Name="AttachRestriction">
-                                    <MenuFlyoutSeparator.Template>
-                                        <ControlTemplate TargetType="MenuFlyoutSeparator">
-                                            <TextBlock
-                                                Text="{TemplateBinding Tag}"
-                                                Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"
-                                                Style="{StaticResource CaptionTextBlockStyle}"
-                                                Margin="12,4,12,8"/>
-                                        </ControlTemplate>
-                                    </MenuFlyoutSeparator.Template>
-                                </MenuFlyoutSeparator>
+                                <controls:MenuFlyoutLabel x:Name="AttachRestriction" />
                                 <MenuFlyoutItem
                                     x:Name="AttachMedia"
-                                    Text="{CustomResource ChatGallery}"
-                                    Command="{x:Bind ViewModel.SendMediaCommand}">
+                                                Text="{CustomResource ChatGallery}"
+                                                Command="{x:Bind ViewModel.SendMediaCommand}">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xEB9F;"/>
                                     </MenuFlyoutItem.Icon>

@@ -1549,6 +1549,8 @@ namespace Unigram.Services
                         _usersMap.Remove(updateFile.File.Id);
                     }
                 }
+
+                _files[updateFile.File.Id] = updateFile.File;
             }
             else if (update is UpdateFileGenerationStart updateFileGenerationStart)
             {
