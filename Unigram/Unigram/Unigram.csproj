@@ -339,6 +339,7 @@
     <Compile Include="Controls\MenuFlyoutMediaItem.cs" />
     <Compile Include="Controls\MenuButton.cs" />
     <Compile Include="Controls\MenuFlyoutLabel.cs" />
+    <Compile Include="Controls\MenuFlyoutProfile.cs" />
     <Compile Include="Controls\MessagePopup.xaml.cs">
       <DependentUpon>MessagePopup.xaml</DependentUpon>
     </Compile>
