@@ -130,8 +130,6 @@ namespace Unigram.ViewModels
 
         public IShortcutsService ShortcutService => _shortcutService;
 
-        public IVoipService VoipService => _voipService;
-
         public RelayCommand ToggleArchiveCommand { get; }
         private void ToggleArchiveExecute()
         {
