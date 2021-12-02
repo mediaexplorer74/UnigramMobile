@@ -198,7 +198,7 @@ namespace Unigram.Services
 
         //public const ulong CurrentVersion = (4UL << 48) | (0UL << 32) | (5072UL << 16);
         //public const string CurrentChangelog = "• Chat folders.\r\n• Stream Videos and Audio files.\r\n• Improved stickers, GIFs and emojis.\r\n\r\nRead more: https://telegra.ph/Unigram-40-05-28";
-        public static readonly string CurrentChangelog = $"• Set a profile video (up to 9 seconds) instead of a static picture.\r\n• See what media is in a message thanks to new mini-thumbnails in the chat list, message search and notifications.\r\n• Implemented more statistics for the large groups you own.\r\n• If you're getting too much attention, flip a switch in Privacy & Security settings to automatically archive and mute all new chats from non-contacts.\r\n• Improved file sender UI\r\n• Improved search emoji/GIF/sticker UI\r\n• Improved shared media navigation: Use back button to go to previous view";
+        public static readonly string CurrentChangelog = $"• Pinned Messages 2.0: Pin multiple messages in any chat and see them all on a separate page\r\n• Set a profile video (up to 9 seconds) instead of a static picture.\r\n• See what media is in a message thanks to new mini-thumbnails in the chat list, message search and notifications.\r\n• Implemented more statistics for the large groups you own.\r\n• If you're getting too much attention, flip a switch in Privacy & Security settings to automatically archive and mute all new chats from non-contacts.\r\n• Improved file sender UI\r\n• Improved search emoji/GIF/sticker UI\r\n• Improved shared media navigation: Use back button to go to previous view";
 
         public int Session => _session;
 
