@@ -16,7 +16,7 @@ namespace Unigram.Views.Popups
         private ICacheService _cacheService;
 
         public ChatEventLogFilters Filters { get; private set; }
-        public IList<int> UserIds { get; private set; }
+        public IList<long> UserIds { get; private set; }
 
         public SupergroupEventLogFiltersPopup()
         {
@@ -27,14 +27,14 @@ namespace Unigram.Views.Popups
             SecondaryButtonText = Strings.Resources.Cancel;
         }
 
-        public Task<ContentDialogResult> ShowAsync(IProtoService protoService, int supergroupId, ChatEventLogFilters filters, IList<int> userIds)
+        public Task<ContentDialogResult> ShowAsync(IProtoService protoService, long supergroupId, ChatEventLogFilters filters, IList<long> userIds)
         {
             _protoService = protoService;
             _cacheService = protoService;
 
             if (filters == null)
             {
-                filters = new ChatEventLogFilters(true, true, true, true, true, true, true, true, true, true);
+                filters = new ChatEventLogFilters(true, true, true, true, true, true, true, true, true, true, true, true);
             }
 
             MemberRestrictions.IsChecked = filters.MemberRestrictions;
@@ -58,11 +58,14 @@ namespace Unigram.Views.Popups
 
                         foreach (var item in members.Members)
                         {
-                            List.Items.Add(item);
-
-                            if (userIds.Contains(item.UserId))
+                            if (item.MemberId is MessageSenderUser senderUser)
                             {
-                                List.SelectedItems.Add(item);
+                                List.Items.Add(item);
+
+                                if (userIds.Contains(senderUser.UserId))
+                                {
+                                    List.SelectedItems.Add(item);
+                                }
                             }
                         }
 
@@ -159,7 +162,7 @@ namespace Unigram.Views.Popups
             };
 
             var areAllAdministratorsSelected = List.Items.All(x => List.SelectedItems.Contains(x));
-            UserIds = areAllAdministratorsSelected ? new int[0] : List.SelectedItems.OfType<ChatMember>().Select(x => x.UserId).ToArray();
+            UserIds = areAllAdministratorsSelected ? new long[0] : List.SelectedItems.OfType<ChatMember>().Select(x => x.MemberId).OfType<MessageSenderUser>().Select(x => x.UserId).ToArray();
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -178,7 +181,7 @@ namespace Unigram.Views.Popups
             var content = args.ItemContainer.ContentTemplateRoot as Grid;
             var member = args.Item as ChatMember;
 
-            var user = _cacheService.GetUser(member.UserId);
+            var user = _cacheService.GetMessageSender(member.MemberId) as User;
             if (user == null)
             {
                 return;

@@ -26,7 +26,7 @@ namespace Unigram.Services
 
         DiagnosticsSettings Diagnostics { get; }
 
-        int UserId { get; set; }
+        long UserId { get; set; }
 
         string FilesDirectory { get; set; }
 
@@ -405,8 +405,8 @@ namespace Unigram.Services
             }
         }
 
-        private int? _userId;
-        public int UserId
+        private long? _userId;
+        public long UserId
         {
             get
             {

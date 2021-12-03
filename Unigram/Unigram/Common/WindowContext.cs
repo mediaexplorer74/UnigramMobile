@@ -294,7 +294,7 @@ namespace Unigram.Common
                 if (ApiInfo.IsUniversalApiContract5Present) //CanShareContacts? Mobile cannot!
                 {
                     var contactId = await ContactsService.GetContactIdAsync(share.ShareOperation.Contacts.FirstOrDefault());
-                    if (contactId is int userId)
+                    if (contactId is long userId)
                     {
                         var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
                         if (response is Chat chat)
@@ -354,7 +354,7 @@ namespace Unigram.Common
                 }
 
                 var contactId = await ContactsService.GetContactIdAsync(contact.Contact.Id);
-                if (contactId is int userId)
+                if (contactId is long userId)
                 {
                     var response = await _lifetime.ActiveItem.ProtoService.SendAsync(new CreatePrivateChat(userId, false));
                     if (response is Chat chat)
