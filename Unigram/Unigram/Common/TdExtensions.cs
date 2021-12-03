@@ -378,7 +378,7 @@ namespace Unigram.Common
             return x.Id == y.Id && x.ChatId == y.ChatId;
         }
 
-        public static IEnumerable<FormattedText> Split(this FormattedText text, int maxLength)
+        public static IEnumerable<FormattedText> Split(this FormattedText text, long maxLength)
         {
             int count = (int)Math.Ceiling(text.Text.Length / (double)maxLength);
             for (int a = 0; a < count; a++)
@@ -387,14 +387,14 @@ namespace Unigram.Common
             }
         }
 
-        public static FormattedText Substring(this FormattedText text, int startIndex, int length)
+        public static FormattedText Substring(this FormattedText text, long startIndex, long length)
         {
             if (text.Text.Length < length)
             {
                 return text;
             }
 
-            var message = text.Text.Substring(startIndex, Math.Min(text.Text.Length - startIndex, length));
+            var message = text.Text.Substring((int)startIndex, Math.Min(text.Text.Length - (int)startIndex, (int)length));
             var sub = new List<TextEntity>();
 
             foreach (var entity in text.Entities)
@@ -402,21 +402,21 @@ namespace Unigram.Common
                 // Included, Included
                 if (entity.Offset >= startIndex && entity.Offset + entity.Length <= startIndex + length)
                 {
-                    var replace = new TextEntity { Offset = entity.Offset - startIndex, Length = entity.Length };
+                    var replace = new TextEntity { Offset = entity.Offset - (int)startIndex, Length = entity.Length };
                     sub.Add(replace);
                 }
                 // Before, Included
                 else if (entity.Offset < startIndex && entity.Offset + entity.Length > startIndex && entity.Offset + entity.Length <= startIndex + length)
                 {
-                    var replace = new TextEntity { Offset = 0, Length = entity.Length - (startIndex - entity.Offset) };
+                    var replace = new TextEntity { Offset = 0, Length = entity.Length - ((int)startIndex - entity.Offset) };
                     sub.Add(replace);
                 }
                 // Included, After
                 else if (entity.Offset >= startIndex && entity.Offset < startIndex + length && entity.Offset + entity.Length > startIndex + length)
                 {
-                    var difference = (entity.Offset + entity.Length) - startIndex + length;
+                    var difference = entity.Offset + entity.Length - startIndex + length;
 
-                    var replace = new TextEntity { Offset = entity.Offset - startIndex, Length = entity.Length - difference };
+                    var replace = new TextEntity { Offset = entity.Offset - (int)startIndex, Length = entity.Length - (int)difference };
                     sub.Add(replace);
                 }
                 // Before, After

@@ -452,7 +452,7 @@ namespace Unigram.Controls.Messages
             var content = string.Empty;
             var entities = active ? new List<TextEntity>() : null;
 
-            int singleUserId = 0;
+            long singleUserId = 0;
             if (singleUserId == 0 && chatAddMembers.MemberUserIds.Count == 1)
             {
                 singleUserId = chatAddMembers.MemberUserIds[0];
@@ -1126,7 +1126,7 @@ namespace Unigram.Controls.Messages
             return source;
         }
 
-        private static string ReplaceWithLink(string source, string param, IList<int> uids, IProtoService cacheService, ref List<TextEntity> entities)
+        private static string ReplaceWithLink(string source, string param, IList<long> uids, IProtoService cacheService, ref List<TextEntity> entities)
         {
             var index = 0;
             int start = index = source.IndexOf(param);

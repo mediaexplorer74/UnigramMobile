@@ -192,7 +192,7 @@ namespace Unigram.Controls
 
             var clone = Document.Selection.GetClone();
             clone.StartOf(TextRangeUnit.Link, true);
-            var mention = TryGetUserId(clone, out int userId);
+            var mention = TryGetUserId(clone, out long userId);
 
             var formatting = new MenuFlyoutSubItem { Text = Strings.Additional.Formatting, Icon = new FontIcon { Glyph = "\uE8D3" } }; // Icons.Fontcolor
             CreateFlyoutItem(formatting.Items, length && format.Bold == FormatEffect.Off, ContextBold_Click, Strings.Resources.Bold, new FontIcon { Glyph = Icons.Bold }, VirtualKey.B);
@@ -449,10 +449,10 @@ namespace Unigram.Controls
                 document.Weight == format.Weight;
         }
 
-        protected bool TryGetUserId(ITextRange range, out int userId)
+        protected bool TryGetUserId(ITextRange range, out long userId)
         {
             var link = range.Link.Trim('"');
-            if (link.StartsWith("tg-user://") && int.TryParse(link.Substring("tg-user://".Length), out userId))
+            if (link.StartsWith("tg-user://") && long.TryParse(link.Substring("tg-user://".Length), out userId))
             {
                 return true;
             }
@@ -467,7 +467,7 @@ namespace Unigram.Controls
 
             if (Uri.TryCreate(link, UriKind.Absolute, out Uri result))
             {
-                if (string.Equals(result.Scheme, "tg-user") && int.TryParse(result.Host, out int userId))
+                if (string.Equals(result.Scheme, "tg-user") && long.TryParse(result.Host, out long userId))
                 {
                     type = new TextEntityTypeMentionName(userId);
                     return true;

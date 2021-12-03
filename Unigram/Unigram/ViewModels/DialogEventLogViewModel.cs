@@ -27,15 +27,15 @@ namespace Unigram.ViewModels
 
         private long _minEventId = long.MaxValue;
 
-        private ChatEventLogFilters _filters = new ChatEventLogFilters(true, true, true, true, true, true, true, true, true, true);
+        private ChatEventLogFilters _filters = new ChatEventLogFilters(true, true, true, true, true, true, true, true, true, true, true, true);
         public ChatEventLogFilters Filters
         {
             get => _filters;
             set => Set(ref _filters, value);
         }
 
-        private IList<int> _userIds = new int[0];
-        public IList<int> UserIds
+        private IList<long> _userIds = new long[0];
+        public IList<long> UserIds
         {
             get => _userIds;
             set => Set(ref _userIds, value);
@@ -144,7 +144,7 @@ namespace Unigram.ViewModels
                     var target = replied.FirstOrDefault();
                     if (target != null)
                     {
-                        replied.Insert(0, _messageFactory.Create(this, new Message(0, target.Sender, target.ChatId, null, target.SchedulingState, target.IsOutgoing, false, false, false, true, false, false, false, target.IsChannelPost, false, target.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
+                        replied.Insert(0, _messageFactory.Create(this, new Message(0, target.Sender, target.ChatId, null, target.SchedulingState, target.IsOutgoing, false, false, false, true, false, false, false, false, false, false, target.IsChannelPost, false, target.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
                     }
 
                     Items.ReplaceWith(replied);
@@ -254,7 +254,7 @@ namespace Unigram.ViewModels
                 }
             }
 
-            return new Message(chatEvent.Id, sender, chatId, null, null, false, false, false, false, false, false, false, false, isChannel, false, chatEvent.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, null, null);
+            return new Message(chatEvent.Id, sender, chatId, null, null, false, false, false, false, false, false, false, false, false, false, false, isChannel, false, chatEvent.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, null, null);
         }
 
         private MessageViewModel GetMessage(long chatId, bool isChannel, ChatEvent chatEvent, bool child = false)
@@ -329,7 +329,7 @@ namespace Unigram.ViewModels
                         break;
                     case ChatEventMemberJoined memberJoined:
                         message = GetMessage(_chat.Id, channel, item);
-                        message.Content = new MessageChatAddMembers(new int[] { item.UserId });
+                        message.Content = new MessageChatAddMembers(new long[] { item.UserId });
                         break;
                     case ChatEventTitleChanged titleChanged:
                         message = GetMessage(_chat.Id, channel, item);
@@ -448,7 +448,7 @@ namespace Unigram.ViewModels
                 var text = string.Empty;
                 var entities = new List<TextEntity>();
 
-                var whoUser = CacheService.GetUser(memberRestricted.UserId);
+                var whoUser = CacheService.GetMessageSender(memberRestricted.MemberId);
                 ChatMemberStatusRestricted o = null;
                 ChatMemberStatusRestricted n = null;
 
@@ -766,34 +766,39 @@ namespace Unigram.ViewModels
             return new MessageChatEvent(item);
         }
 
-        private string GetUserName(User user, List<TextEntity> entities, int offset)
+        private string GetUserName(BaseObject sender, List<TextEntity> entities, int offset)
         {
-            string name;
-            if (user == null)
+            if (sender is User user)
             {
-                name = string.Empty;
-            }
-            else
-            {
-                name = user.GetFullName();
-            }
+                var name = user.GetFullName();
 
-            if (offset >= 0)
-            {
-                entities.Add(new TextEntity(offset, name.Length, new TextEntityTypeMentionName(user.Id)));
-            }
+                if (offset >= 0)
+                {
+                    entities.Add(new TextEntity(offset, name.Length, new TextEntityTypeMentionName(user.Id)));
+                }
 
-            if (string.IsNullOrEmpty(user.Username))
+                if (string.IsNullOrEmpty(user.Username))
+                {
+                    return name;
+                }
+
+                if (offset >= 0)
+                {
+                    entities.Add(new TextEntity(name.Length + offset + 2, user.Username.Length + 1, new TextEntityTypeMentionName(user.Id)));
+                }
+
+                return string.Format("{0} (@{1})", name, user.Username);
+            }
+            else if (sender is Chat chat)
             {
+                var name = CacheService.GetTitle(chat);
+
+                // Make it clickable
+
                 return name;
             }
 
-            if (offset >= 0)
-            {
-                entities.Add(new TextEntity((name.Length + offset) + 2, user.Username.Length + 1, new TextEntityTypeMentionName(user.Id)));
-            }
-
-            return string.Format("{0} (@{1})", name, user.Username);
+            return string.Empty;
         }
     }
 }
