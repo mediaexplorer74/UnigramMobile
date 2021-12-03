@@ -236,12 +236,12 @@ namespace Unigram.Common
             return defaultValue;
         }
 
-        public static double GetNamedNumber(this JsonValueObject json, string key, double defaultValue)
+        public static float GetNamedNumber(this JsonValueObject json, string key, float defaultValue)
         {
             var member = json.GetNamedValue(key);
             if (member?.Value is JsonValueNumber value)
             {
-                return value.Value;
+                return (float)value.Value;
             }
 
             return defaultValue;
@@ -1221,6 +1221,10 @@ namespace Unigram.Common
             {
                 return message.ForwardInfo.FromChatId != 0;
             }
+            else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport)
+            {
+                return true;
+            }
             else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
             {
                 return message.ChatId == savedMessagesId;
@@ -1529,6 +1533,16 @@ namespace Unigram.Common
             return supergroup.Status is ChatMemberStatusCreator || supergroup.Status is ChatMemberStatusAdministrator administrator && administrator.CanPinMessages;
         }
 
+        public static bool CanDeleteMessages(this Supergroup supergroup)
+        {
+            if (supergroup.Status == null)
+            {
+                return false;
+            }
+
+            return supergroup.Status is ChatMemberStatusCreator || supergroup.Status is ChatMemberStatusAdministrator administrator && administrator.CanDeleteMessages;
+        }
+
         public static bool CanPinMessages(this BasicGroup basicGroup)
         {
             if (basicGroup.Status == null)
@@ -1537,6 +1551,16 @@ namespace Unigram.Common
             }
 
             return basicGroup.Status is ChatMemberStatusCreator || basicGroup.Status is ChatMemberStatusAdministrator administrator && administrator.CanPinMessages;
+        }
+
+        public static bool CanDeleteMessages(this BasicGroup basicGroup)
+        {
+            if (basicGroup.Status == null)
+            {
+                return false;
+            }
+
+            return basicGroup.Status is ChatMemberStatusCreator || basicGroup.Status is ChatMemberStatusAdministrator administrator && administrator.CanDeleteMessages;
         }
 
         public static bool CanChangeInfo(this Supergroup supergroup)
