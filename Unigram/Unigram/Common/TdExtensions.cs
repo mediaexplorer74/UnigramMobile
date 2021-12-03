@@ -62,7 +62,7 @@ namespace Unigram.Common
                     query.TryGetValue("intensity", out string intensityKey);
                     int.TryParse(intensityKey, out int intensity);
 
-                    return new BackgroundTypePattern(fill, intensity, modeSplit.Contains("motion"));
+                    return new BackgroundTypePattern(fill, Math.Abs(intensity), intensity < 0, modeSplit.Contains("motion"));
                 }
                 else
                 {
@@ -970,6 +970,7 @@ namespace Unigram.Common
                 case MessageChatAddMembers chatAddMembers:
                 case MessageChatChangePhoto chatChangePhoto:
                 case MessageChatChangeTitle chatChangeTitle:
+                case MessageChatSetTheme newTodo:
                 case MessageChatDeleteMember chatDeleteMember:
                 case MessageChatDeletePhoto chatDeletePhoto:
                 case MessageChatJoinByLink chatJoinByLink:
@@ -979,12 +980,16 @@ namespace Unigram.Common
                 case MessageContactRegistered contactRegistered:
                 case MessageCustomServiceAction customServiceAction:
                 case MessageGameScore gameScore:
-                case MessageLiveLocationApproached liveLocationApproached:
+                case MessageInviteVideoChatParticipants newTodo0:
+                case MessageProximityAlertTriggered liveLocationApproached:
                 case MessagePassportDataSent passportDataSent:
                 case MessagePaymentSuccessful paymentSuccessful:
                 case MessagePinMessage pinMessage:
                 case MessageScreenshotTaken screenshotTaken:
                 case MessageSupergroupChatCreate supergroupChatCreate:
+                case MessageVideoChatEnded newTodo1:
+                case MessageVideoChatScheduled newTodo2:
+                case MessageVideoChatStarted newTodo3:
                 case MessageWebsiteConnected websiteConnected:
                     return true;
                 case MessageExpiredPhoto expiredPhoto:
@@ -2290,6 +2295,11 @@ namespace Telegram.Td.Api
             }
             return new Size(closestObject.Width, closestObject.Height);
         }
+
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MessageChatEvent : MessageContent
@@ -2302,7 +2312,7 @@ namespace Telegram.Td.Api
         /// <summary>
         /// Identifier of the user who performed the action that triggered the event.
         /// </summary>
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         /// <summary>
         /// Point in time (Unix timestamp) when the event happened.
@@ -2321,13 +2331,26 @@ namespace Telegram.Td.Api
             Date = chatEvent.Date;
             Id = chatEvent.Id;
         }
+
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MessageHeaderDate : MessageContent
     {
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MessageHeaderUnread : MessageContent
     {
+        public NativeObject ToUnmanaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
