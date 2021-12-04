@@ -4771,6 +4771,7 @@ namespace Unigram.Views
             flyout.Closing += (s, args) =>
             {
                 ButtonMore.IsChecked = false;
+                TextField.Focus(FocusState.Programmatic);
             };
 
             var response = await ViewModel.ProtoService.SendAsync(new GetChatAvailableMessageSenders(chat.Id));
