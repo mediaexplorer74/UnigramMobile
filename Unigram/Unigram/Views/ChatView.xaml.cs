@@ -4076,8 +4076,8 @@ namespace Unigram.Views
             if (fullInfo.Commands.Count > 0)
             {
                 ViewModel.BotCommands = fullInfo.Commands.Select(x => new UserCommand(user.Id, x)).ToList();
-                ViewModel.HasBotCommands = false;
-                ShowHideBotCommands(true);
+                ViewModel.HasBotCommands = ViewModel.BotCommands.Count > 0;
+                ///ShowHideBotCommands(true); //TODO: Test
             }
             else
             {
@@ -4341,7 +4341,7 @@ namespace Unigram.Views
 
             ViewModel.BotCommands = commands;
             ViewModel.HasBotCommands = commands.Count > 0;
-            ShowHideBotCommands(false);
+            //ShowHideBotCommands(false); //TODO. Test
         }
 
 
