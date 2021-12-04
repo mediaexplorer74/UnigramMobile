@@ -23,7 +23,7 @@ namespace Unigram.Views
             NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        public void OnBackRequested(HandledEventArgs args)
+        public void OnBackRequested(HandledRoutedEventArgs args)
         {
             View.OnBackRequested(args);
         }
