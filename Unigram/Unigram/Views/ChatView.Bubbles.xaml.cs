@@ -649,7 +649,7 @@ namespace Unigram.Views
                 if (panel is Grid final)
                 {
                     final.Tag = message;
-                    news[message.Id] = new MediaPlayerItem { File = animation, Container = final, Watermark = message.Content is MessageGame, Clip = target is VideoNote };
+                    news[message.GetHashCode()] = new MediaPlayerItem { File = animation, Container = final, Watermark = message.Content is MessageGame, Clip = target is VideoNote };
                 }
             }
 
@@ -810,7 +810,7 @@ namespace Unigram.Views
                 if (lottie != null)
                 {
                     lottie.Tag = message;
-                    news[message.Id] = new LottieViewItem { File = animation, Player = lottie };
+                    news[message.GetHashCode()] = new LottieViewItem { File = animation, Player = lottie };
                 }
             }
 
