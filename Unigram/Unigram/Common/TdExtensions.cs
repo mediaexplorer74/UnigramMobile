@@ -1316,7 +1316,7 @@ namespace Unigram.Common
             {
                 return message.ForwardInfo.FromChatId != 0;
             }
-            else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport)
+            else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport fromImport)
             {
                 return true;
             }
