@@ -139,9 +139,9 @@ namespace Unigram.ViewModels
                 }
             }
 
-            var firstSender = first.Sender as MessageSenderUser;
+            var firstSender = first.SenderId as MessageSenderUser;
 
-            var sameUser = firstSender != null && messages.All(x => x.Sender is MessageSenderUser senderUser && senderUser.UserId == firstSender.UserId);
+            var sameUser = firstSender != null && messages.All(x => x.SenderId is MessageSenderUser senderUser && senderUser.UserId == firstSender.UserId);
             var dialog = new DeleteMessagesPopup(CacheService, items.Where(x => x != null).ToArray());
 
             var confirm = await dialog.ShowQueuedAsync();
@@ -290,11 +290,11 @@ namespace Unigram.ViewModels
                     var chat = message.GetChat();
                     var title = chat.Title;
 
-                    if (CacheService.TryGetUser(message.Sender, out Telegram.Td.Api.User senderUser))
+                    if (CacheService.TryGetUser(message.SenderId, out Telegram.Td.Api.User senderUser))
                     {
                         title = senderUser.GetFullName();
                     }
-                    else if (CacheService.TryGetChat(message.Sender, out Chat senderChat))
+                    else if (CacheService.TryGetChat(message.SenderId, out Chat senderChat))
                     {
                         title = ProtoService.GetTitle(senderChat);
                     }
@@ -328,11 +328,11 @@ namespace Unigram.ViewModels
 
                     if (message.ReplyToMessage != null)
                     {
-                        if (CacheService.TryGetUser(message.ReplyToMessage.Sender, out Telegram.Td.Api.User replyUser))
+                        if (CacheService.TryGetUser(message.ReplyToMessage.SenderId, out Telegram.Td.Api.User replyUser))
                         {
                             builder.AppendLine($"[In reply to {replyUser.GetFullName()}]");
                         }
-                        else if (CacheService.TryGetChat(message.ReplyToMessage.Sender, out Chat replyChat))
+                        else if (CacheService.TryGetChat(message.ReplyToMessage.SenderId, out Chat replyChat))
                         {
                             builder.AppendLine($"[In reply to {replyChat.Title}]");
                         }
@@ -467,7 +467,7 @@ namespace Unigram.ViewModels
 
             var myId = CacheService.Options.MyId;
             var messages = SelectedItems
-                .Where(x => x.Sender is MessageSenderChat || (x.Sender is MessageSenderUser senderUser && senderUser.UserId != myId))
+                .Where(x => x.SenderId is MessageSenderChat || (x.SenderId is MessageSenderUser senderUser && senderUser.UserId != myId))
                 .OrderBy(x => x.Id).Select(x => x.Id).ToList();
             if (messages.Count < 1)
             {
@@ -534,7 +534,7 @@ namespace Unigram.ViewModels
 
             var myId = CacheService.Options.MyId;
             return chat.CanBeReported && SelectedItems.Count > 0
-                && SelectedItems.All(x => x.Sender is MessageSenderChat || (x.Sender is MessageSenderUser senderUser && senderUser.UserId != myId));
+                && SelectedItems.All(x => x.SenderId is MessageSenderChat || (x.SenderId is MessageSenderUser senderUser && senderUser.UserId != myId));
         }
 
         #endregion

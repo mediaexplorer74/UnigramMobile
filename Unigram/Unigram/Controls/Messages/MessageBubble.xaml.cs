@@ -575,13 +575,20 @@ namespace Unigram.Controls.Messages
 
         private void From_Click(MessageViewModel message)
         {
-            if (message.IsChannelPost)
+            if (message.ProtoService.TryGetChat(message.SenderId, out Chat senderChat))
             {
-                message.Delegate.OpenChat(message.ChatId);
+                if (senderChat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+                {
+                    message.Delegate.OpenChat(senderChat.Id);
+                }
+                else
+                {
+                    message.Delegate.OpenChat(senderChat.Id, true);
+                }
             }
-            else
+            else if (message.SenderId is MessageSenderUser senderUser)
             {
-                message.Delegate.OpenUser(message.SenderUserId);
+                message.Delegate.OpenUser(senderUser.UserId);
             }
         }
 
@@ -620,19 +627,21 @@ namespace Unigram.Controls.Messages
 
                 RecentRepliers.Children.Clear();
 
-                foreach (var id in info.RecentReplierUserIds)
+                foreach (var sender in info.RecentReplierIds)
                 {
-                    var user = message.ProtoService.GetUser(id);
-                    if (user == null)
-                    {
-                        continue;
-                    }
-
                     var picture = new ProfilePicture();
-                    picture.Source = PlaceholderHelper.GetUser(message.ProtoService, user, 24);
                     picture.Width = 24;
                     picture.Height = 24;
                     picture.IsEnabled = false;
+
+                    if (message.ProtoService.TryGetUser(sender, out User user))
+                    {
+                        picture.Source = PlaceholderHelper.GetUser(message.ProtoService, user, 24);
+                    }
+                    else if (message.ProtoService.TryGetChat(sender, out Chat chat))
+                    {
+                        picture.Source = PlaceholderHelper.GetChat(message.ProtoService, chat, 24);
+                    }
 
                     if (RecentRepliers.Children.Count > 0)
                     {

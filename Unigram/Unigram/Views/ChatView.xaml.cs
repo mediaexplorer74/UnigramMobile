@@ -1800,11 +1800,11 @@ namespace Unigram.Views
             {
                 ViewModel.OpenChat(message.ChatId);
             }
-            else if (message.Sender is MessageSenderChat senderChat)
+            else if (message.SenderId is MessageSenderChat senderChat)
             {
                 ViewModel.OpenChat(senderChat.ChatId, true);
             }
-            else if (message.Sender is MessageSenderUser senderUser)
+            else if (message.SenderId is MessageSenderUser senderUser)
             {
                 ViewModel.OpenUser(senderUser.UserId);
             }
@@ -2327,7 +2327,7 @@ namespace Unigram.Views
             }
 
             var myId = ViewModel.CacheService.Options.MyId;
-            if (message.Sender is MessageSenderUser senderUser)
+            if (message.SenderId is MessageSenderUser senderUser)
             {
                 return senderUser.UserId != myId;
             }
@@ -4459,11 +4459,11 @@ namespace Unigram.Views
                                     }
                                 }
                             }
-                            else if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                            else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
                             {
                                 photo.Source = PlaceholderHelper.GetUser(null, senderUser, 30);
                             }
-                            else if (message.ProtoService.TryGetChat(message.Sender, out Chat senderChat))
+                            else if (message.ProtoService.TryGetChat(message.SenderId, out Chat senderChat))
                             {
                                 photo.Source = PlaceholderHelper.GetChat(null, senderChat, 30);
                             }
