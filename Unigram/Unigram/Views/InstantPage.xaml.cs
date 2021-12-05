@@ -1461,11 +1461,11 @@ namespace Unigram.Views
 
         private async void Hyperlink_Click(RichTextAnchorLink anchorLinkText)
         {
-            if (string.IsNullOrEmpty(anchorLinkText.Name))
+            if (string.IsNullOrEmpty(anchorLinkText.AnchorName))
             {
                 ScrollingHost.GetScrollViewer().ChangeView(null, 0, null);
             }
-            else if (_anchors.TryGetValue(anchorLinkText.Name, out Border anchor))
+            else if (_anchors.TryGetValue(anchorLinkText.AnchorName, out Border anchor))
             {
                 await ScrollingHost.ScrollToItem2(anchor, VerticalAlignment.Top, false);
             }
