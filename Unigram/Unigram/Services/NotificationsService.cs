@@ -14,6 +14,7 @@ using Unigram.Controls.Messages;
 using Unigram.Converters;
 using Unigram.Native.Tasks;
 using Unigram.Navigation;
+using Unigram.Views;
 using Windows.ApplicationModel.AppService;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation.Collections;
@@ -435,7 +436,7 @@ namespace Unigram.Services
         }
 
         private async Task UpdateAsync(Chat chat, Func<Task> action)
-        {
+        { //TODO: Simplified active chat logic?
             var open = WindowContext.ActiveWrappers.Cast<TLWindowContext>().Any(x => x.IsChatOpen(_protoService.SessionId, chat.Id));
             if (open)
             {
@@ -547,7 +548,7 @@ namespace Unigram.Services
                     var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
                     if (channel.Uri != _settings.PushToken)
                     {
-                        var ids = new List<int>();
+                        var ids = new List<long>();
 
                         foreach (var settings in TLContainer.Current.ResolveAll<ISettingsService>())
                         {
