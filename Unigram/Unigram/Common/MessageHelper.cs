@@ -341,7 +341,7 @@ namespace Unigram.Common
             }
             else if (username != null && username.StartsWith("+"))
             {
-                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, voiceChat, post, comment, game);
+                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, post, comment, game);
             }
             else if (message != null)
             {
@@ -374,7 +374,7 @@ namespace Unigram.Common
         }
 
         public static void OpenTelegramUrl(IProtoService protoService, INavigationService navigation, Uri uri)
-        {
+        { //TODO: Refactor / use new TDlib functions, see "Rewritten links parsing"
             if (IsTelegramScheme(uri))
             {
                 OpenTelegramScheme(protoService, navigation, uri);

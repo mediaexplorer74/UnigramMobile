@@ -1487,7 +1487,7 @@ namespace Unigram.ViewModels
 
         protected async Task ProcessMessagesAsync(Chat chat, IList<MessageViewModel> messages)
         {
-            if (Settings.IsLargeEmojiEnabled)
+            if (!ProtoService.Options.DisableAnimatedEmoji && Settings.IsLargeEmojiEnabled)
             {
                 await ProcessEmojiAsync(chat, messages);
             }
@@ -1514,6 +1514,7 @@ namespace Unigram.ViewModels
                         if (set == null)
                         {
                             set = await ProtoService.GetAnimatedSetAsync(AnimatedSetType.Emoji);
+                            //message.GeneratedContent = new MessageBigEmoji(text.Text, count);
                         }
 
                         if (set == null)
@@ -1533,6 +1534,10 @@ namespace Unigram.ViewModels
                                 continue;
                             }
                         }
+                    }
+                    else if (message.Content is MessageAnimatedEmoji animatedEmoji)
+                    {
+                        message.GeneratedContent = new MessageSticker(animatedEmoji.AnimatedEmoji.Sticker);
                     }
                 }
             }
@@ -1555,7 +1560,7 @@ namespace Unigram.ViewModels
                 }
 
                 var target = parent ?? message;
-                var content = message.GeneratedContent ?? message.Content as object;
+                var content = message.Content as object;
 
                 if (content is MessageAlbum albumMessage)
                 {
@@ -1570,6 +1575,15 @@ namespace Unigram.ViewModels
                 else if (content is MessageAudio audioMessage)
                 {
                     content = audioMessage.Audio;
+                }
+                else if (content is MessageAnimatedEmoji animatedEmojiMessage)
+                {
+                    _filesMap[animatedEmojiMessage.AnimatedEmoji.Sticker.StickerValue.Id].Add(target);
+
+                    if (animatedEmojiMessage.AnimatedEmoji.Sound != null)
+                    {
+                        _filesMap[animatedEmojiMessage.AnimatedEmoji.Sound.Id].Add(target);
+                    }
                 }
                 else if (content is MessageDice diceMessage)
                 {
