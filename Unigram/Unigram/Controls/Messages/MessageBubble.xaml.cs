@@ -294,33 +294,7 @@ namespace Unigram.Controls.Messages
 
             if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
             {
-                if (message.SenderUserId != 0)
-                {
-                    var sender = message.GetSenderUser();
-
-                    var hyperlink = new Hyperlink();
-                    hyperlink.Inlines.Add(new Run { Text = sender?.GetFullName() });
-                    hyperlink.UnderlineStyle = UnderlineStyle.None;
-                    hyperlink.Foreground = PlaceholderHelper.GetBrush(message.SenderUserId);
-                    hyperlink.Click += (s, args) => From_Click(message);
-
-                    paragraph.Inlines.Add(hyperlink);
-                    shown = true;
-                }
-                else if (message.SenderChatId != 0)
-                {
-                    var sender = message.GetSenderChat();
-
-                    var hyperlink = new Hyperlink();
-                    hyperlink.Inlines.Add(new Run { Text = sender?.Title });
-                    hyperlink.UnderlineStyle = UnderlineStyle.None;
-                    hyperlink.Foreground = PlaceholderHelper.GetBrush(message.SenderChatId);
-                    hyperlink.Click += (s, args) => From_Click(message);
-
-                    paragraph.Inlines.Add(hyperlink);
-                    shown = true;
-                }
-                else if (message.IsSaved())
+                if (message.IsSaved())
                 {
                     var title = string.Empty;
                     var foreground = default(SolidColorBrush);
@@ -338,6 +312,10 @@ namespace Unigram.Controls.Messages
                     {
                         title = message.ProtoService.GetTitle(message.ProtoService.GetChat(fromChannel.ChatId));
                     }
+                    else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport fromImport)
+                    {
+                        title = fromImport.SenderName;
+                    }
                     else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
                     {
                         title = fromHiddenUser.SenderName;
@@ -352,6 +330,28 @@ namespace Unigram.Controls.Messages
                     {
                         hyperlink.Foreground = foreground;
                     }
+
+                    paragraph.Inlines.Add(hyperlink);
+                    shown = true;
+                }
+                else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
+                {
+                    var hyperlink = new Hyperlink();
+                    hyperlink.Inlines.Add(new Run { Text = senderUser.GetFullName() });
+                    hyperlink.UnderlineStyle = UnderlineStyle.None;
+                    hyperlink.Foreground = PlaceholderHelper.GetBrush(senderUser.Id);
+                    hyperlink.Click += (s, args) => From_Click(message);
+
+                    paragraph.Inlines.Add(hyperlink);
+                    shown = true;
+                }
+                else if (message.ProtoService.TryGetChat(message.SenderId, out Chat senderChat))
+                {
+                    var hyperlink = new Hyperlink();
+                    hyperlink.Inlines.Add(new Run { Text = senderChat.Title });
+                    hyperlink.UnderlineStyle = UnderlineStyle.None;
+                    hyperlink.Foreground = PlaceholderHelper.GetBrush(senderChat.Id);
+                    hyperlink.Click += (s, args) => From_Click(message);
 
                     paragraph.Inlines.Add(hyperlink);
                     shown = true;
@@ -385,6 +385,10 @@ namespace Unigram.Controls.Messages
                 else if (message.ForwardInfo?.Origin is MessageForwardOriginChannel fromChannel)
                 {
                     title = message.ProtoService.GetTitle(message.ProtoService.GetChat(fromChannel.ChatId));
+                }
+                else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport fromImport)
+                {
+                    title = fromImport.SenderName;
                 }
                 else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
                 {
@@ -426,7 +430,9 @@ namespace Unigram.Controls.Messages
             if (message.ForwardInfo != null && !sticker && !message.IsSaved())
             {
                 if (paragraph.Inlines.Count > 0)
+                {
                     paragraph.Inlines.Add(new LineBreak());
+                }
 
                 if (message.ForwardInfo.PublicServiceAnnouncementType.Length > 0)
                 {
@@ -471,6 +477,10 @@ namespace Unigram.Controls.Messages
                 {
                     title = message.ProtoService.GetTitle(message.ProtoService.GetChat(fromChannel.ChatId));
                 }
+                else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport fromImport)
+                {
+                    title = fromImport.SenderName;
+                }
                 else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
                 {
                     title = fromHiddenUser.SenderName;
@@ -496,7 +506,7 @@ namespace Unigram.Controls.Messages
             if (viaBot != null && viaBot.Type is UserTypeBot && !string.IsNullOrEmpty(viaBot.Username))
             {
                 var hyperlink = new Hyperlink();
-                hyperlink.Inlines.Add(new Run { Text = (paragraph.Inlines.Count > 0 ? " via @" : "via @"), FontWeight = FontWeights.Normal });
+                hyperlink.Inlines.Add(new Run { Text = paragraph.Inlines.Count > 0 ? " via @" : "via @", FontWeight = FontWeights.Normal });
                 hyperlink.Inlines.Add(new Run { Text = viaBot.Username });
                 hyperlink.UnderlineStyle = UnderlineStyle.None;
                 hyperlink.Foreground = light ? new SolidColorBrush(Colors.White) : GetBrush("MessageHeaderForegroundBrush");
@@ -520,7 +530,7 @@ namespace Unigram.Controls.Messages
                     admin.Visibility = Visibility.Visible;
                     admin.Text = title;
                 }
-                else if (admin != null && shown && !message.IsChannelPost && message.SenderUserId == 0 && message.ForwardInfo != null)
+                else if (admin != null && shown && !message.IsChannelPost && message.SenderId is MessageSenderChat && message.ForwardInfo != null)
                 {
                     admin.Visibility = Visibility.Visible;
                     admin.Text = Strings.Resources.DiscussChannel;
