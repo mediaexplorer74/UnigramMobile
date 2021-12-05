@@ -285,15 +285,16 @@ namespace Unigram.Views
             ShowHideDateHeader(minDateIndex > 0, minDateIndex > 0 && minDateIndex < int.MaxValue);
 
             // Read and play messages logic:
-            if (messages.Count > 0 && _windowContext.ActivationMode == CoreWindowActivationMode.ActivatedInForeground)
-            {
-                ViewModel.ProtoService.Send(new ViewMessages(chat.Id, ViewModel.ThreadId, messages, false));
-            }
+            //TODO:
+            //if (messages.Count > 0 && _windowContext.ActivationMode == CoreWindowActivationMode.ActivatedInForeground)
+            //{
+            //    ViewModel.ProtoService.Send(new ViewMessages(chat.Id, ViewModel.ThreadId, messages, false));
+            //}
 
-            if (animations.Count > 0 && !intermediate)
-            {
-                Play(animations, ViewModel.Settings.IsAutoPlayAnimationsEnabled, false);
-            }
+            //if (animations.Count > 0 && !intermediate)
+            //{
+            //    Play(animations, ViewModel.Settings.IsAutoPlayAnimationsEnabled, false);
+            //}
 
             // Pinned banner
             if (firstVisibleId == 0 || lastVisibleId == 0)
@@ -1088,6 +1089,7 @@ namespace Unigram.Views
 
             if (content is MessageBubble bubble)
             {
+                bubble.UpdateQuery(ViewModel.Search?.Query);
                 bubble.UpdateMessage(args.Item as MessageViewModel);
                 args.Handled = true;
             }

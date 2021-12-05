@@ -32,9 +32,15 @@ namespace Unigram.Controls.Messages
         private bool _placeholderVertical;
         private double _maxWidth;
 
+        private string _query;
+
         public MessageBubble()
         {
             InitializeComponent();
+        }
+        public void UpdateQuery(string text)
+        {
+            _query = text;
         }
 
         public void UpdateKnockout(double top, double bottom)
@@ -708,7 +714,6 @@ namespace Unigram.Controls.Messages
         public void UpdateMessageContent(MessageViewModel message, bool padding = false)
         {
             string display = null;
-            Panel.Content = message?.GeneratedContent ?? message?.Content;
 
             //if (message == null || message.Media == null || message.Media is TLMessageMediaEmpty || empty)
             var content = message.GeneratedContent ?? message.Content;
@@ -1268,8 +1273,6 @@ namespace Unigram.Controls.Messages
                 }
             }
 
-            span.FontSize = Theme.Current.MessageFontSize;
-
             if (AdjustEmojis(span, text))
             {
                 Message.FlowDirection = FlowDirection.LeftToRight;
@@ -1348,7 +1351,7 @@ namespace Unigram.Controls.Messages
             {
                 message.Delegate.OpenUrl("tel:" + data, false);
             }
-            else if (type is TextEntityTypeHashtag or TextEntityTypeCashtag)
+            else if (type is TextEntityTypeHashtag || type is TextEntityTypeCashtag)
             {
                 message.Delegate.OpenHashtag(data);
             }
@@ -1372,7 +1375,7 @@ namespace Unigram.Controls.Messages
             {
                 message.Delegate.OpenBankCardNumber(data);
             }
-            else if (type is TextEntityTypeCode or TextEntityTypePre or TextEntityTypePreCode)
+            else if (type is TextEntityTypeCode || type is TextEntityTypePre || type is TextEntityTypePreCode)
             {
                 MessageHelper.CopyText(data);
             }
@@ -1421,6 +1424,12 @@ namespace Unigram.Controls.Messages
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (!SettingsService.Current.Diagnostics.BubbleMeasureAlpha)
+            {
+                return;
+            }
+
+            var message = _message;
+            if (message == null || e.PreviousSize.Width < 1 || e.PreviousSize.Height < 1)
             {
                 return;
             }
