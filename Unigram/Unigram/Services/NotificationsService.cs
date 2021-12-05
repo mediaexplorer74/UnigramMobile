@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Td;
 using Telegram.Td.Api;
@@ -465,7 +466,7 @@ namespace Unigram.Services
             var user = _protoService.GetUser(_protoService.Options.MyId);
             var attribution = user?.GetFullName() ?? string.Empty;
 
-            if (TLContainer.Current.Passcode.IsLockscreenRequired)
+            if (chat.Type is ChatTypeSecret || TLContainer.Current.Passcode.IsLockscreenRequired)
             {
                 caption = Strings.Resources.AppName;
                 content = Strings.Resources.YouHaveNewMessage;
@@ -494,34 +495,6 @@ namespace Unigram.Services
             }
 
             await action();
-        }
-
-        private ConcurrentDictionary<int, Message> _files = new ConcurrentDictionary<int, Message>();
-
-        private string GetPhoto(Message message)
-        {
-            if (message.Content is MessagePhoto photo)
-            {
-                var small = photo.Photo.GetBig();
-                if (small == null || !small.Photo.Local.IsDownloadingCompleted)
-                {
-                    _files[small.Photo.Id] = message;
-                    _protoService.DownloadFile(small.Photo.Id, 1, 0);
-                    return string.Empty;
-                }
-
-                var file = new Uri(small.Photo.Local.Path);
-                var folder = new Uri(ApplicationData.Current.LocalFolder.Path + "\\");
-
-                var relativePath = Uri.UnescapeDataString(
-                                        folder.MakeRelativeUri(file)
-                                              .ToString()
-                                        );
-
-                return "ms-appdata:///local/" + relativePath;
-            }
-
-            return string.Empty;
         }
 
         private async Task UpdateToast(string caption, string message, string account, string sound, string launch, string tag, string group, string picture, string date, bool canReply)
@@ -819,7 +792,7 @@ namespace Unigram.Services
             }
         }
 
-        private TaskCompletionSource<AuthorizationState> _authorizationStateTask = new TaskCompletionSource<AuthorizationState>();
+        private readonly TaskCompletionSource<AuthorizationState> _authorizationStateTask = new TaskCompletionSource<AuthorizationState>();
 
         public void Handle(UpdateAuthorizationState update)
         {
@@ -1121,10 +1094,7 @@ namespace Unigram.Services
             }
             else if (message.Content is MessageCall call)
             {
-                var outgoing = message.IsOutgoing;
-                var missed = call.DiscardReason is CallDiscardReasonMissed || call.DiscardReason is CallDiscardReasonDeclined;
-
-                return result + (missed ? (outgoing ? Strings.Resources.CallMessageOutgoingMissed : Strings.Resources.CallMessageIncomingMissed) : (outgoing ? Strings.Resources.CallMessageOutgoing : Strings.Resources.CallMessageIncoming));
+                return result + call.ToOutcomeText(message.IsOutgoing);
             }
             else if (message.Content is MessageUnsupported)
             {
@@ -1143,7 +1113,7 @@ namespace Unigram.Services
 
             var result = string.Empty;
 
-            if (_protoService.TryGetUser(message.Sender, out User senderUser))
+            if (_protoService.TryGetUser(message.SenderId, out User senderUser))
             {
                 if (ShowFrom(chat))
                 {
@@ -1406,18 +1376,18 @@ namespace Unigram.Services
 
             if (message.IsOutgoing)
             {
-                return cacheService.TryGetUser(message.Sender, out senderUser);
+                return cacheService.TryGetUser(message.SenderId, out senderUser);
             }
 
             if (chat.Type is ChatTypeBasicGroup)
             {
-                return cacheService.TryGetUser(message.Sender, out senderUser);
+                return cacheService.TryGetUser(message.SenderId, out senderUser);
             }
 
             if (chat.Type is ChatTypeSupergroup supergroup)
             {
                 senderUser = null;
-                return !supergroup.IsChannel && cacheService.TryGetUser(message.Sender, out senderUser);
+                return !supergroup.IsChannel && cacheService.TryGetUser(message.SenderId, out senderUser);
             }
 
             senderUser = null;
