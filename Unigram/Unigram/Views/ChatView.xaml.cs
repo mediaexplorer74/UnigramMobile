@@ -3422,7 +3422,7 @@ namespace Unigram.Views
             }
         }
 
-        public void UpdateChatActions(Chat chat, IDictionary<long, ChatAction> actions)
+        public void UpdateChatActions(Chat chat, IDictionary<MessageSender, ChatAction> actions)
         {
             if (chat.Type is ChatTypePrivate privata && privata.UserId == ViewModel.CacheService.Options.MyId)
             {
@@ -3434,7 +3434,7 @@ namespace Unigram.Views
 
             if (actions != null && actions.Count > 0)
             {
-                ChatActionLabel.Text = InputChatActionManager.GetTypingString(chat, actions, ViewModel.CacheService.GetUser, out ChatAction commonAction);
+                ChatActionLabel.Text = InputChatActionManager.GetTypingString(chat, actions, ViewModel.CacheService.GetUser, ViewModel.CacheService.GetChat, out ChatAction commonAction);
                 ChatActionIndicator.UpdateAction(commonAction);
                 ChatActionPanel.Visibility = Visibility.Visible;
                 Subtitle.Opacity = 0;
