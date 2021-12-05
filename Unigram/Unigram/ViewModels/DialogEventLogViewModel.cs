@@ -144,7 +144,7 @@ namespace Unigram.ViewModels
                     var target = replied.FirstOrDefault();
                     if (target != null)
                     {
-                        replied.Insert(0, _messageFactory.Create(this, new Message(0, target.Sender, target.ChatId, null, target.SchedulingState, target.IsOutgoing, false, false, false, true, false, false, false, false, false, false, target.IsChannelPost, false, target.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
+                        replied.Insert(0, _messageFactory.Create(this, new Message(0, target.SenderId, target.ChatId, null, target.SchedulingState, target.IsOutgoing, false, false, false, true, false, false, false, false, false, false, target.IsChannelPost, false, target.Date, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageHeaderDate(), null)));
                     }
 
                     Items.ReplaceWith(replied);

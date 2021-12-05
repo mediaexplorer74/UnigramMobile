@@ -463,7 +463,7 @@ namespace Unigram.Controls.Messages
             if (singleUserId != 0)
             {
                 var whoUser = message.ProtoService.GetUser(singleUserId);
-                if (message.Sender is MessageSenderUser senderUser && singleUserId == senderUser.UserId)
+                if (message.SenderId is MessageSenderUser senderUser && singleUserId == senderUser.UserId)
                 {
                     var chat = message.GetChat();
                     if (chat == null)
@@ -618,7 +618,7 @@ namespace Unigram.Controls.Messages
 
             var fromUser = message.GetSender();
 
-            if (message.Sender is MessageSenderUser senderUser && chatDeleteMember.UserId == senderUser.UserId)
+            if (message.SenderId is MessageSenderUser senderUser && chatDeleteMember.UserId == senderUser.UserId)
             {
                 if (message.IsOutgoing)
                 {
@@ -673,7 +673,7 @@ namespace Unigram.Controls.Messages
                 {
                     content = Strings.Resources.ActionYouRemovedPhoto;
                 }
-                else if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
                 {
                     content = ReplaceWithLink(Strings.Resources.ActionRemovedPhoto, "un1", senderUser, ref entities);
                 }
@@ -691,7 +691,7 @@ namespace Unigram.Controls.Messages
             {
                 content = Strings.Resources.ActionInviteYou;
             }
-            else if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+            else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
             {
                 content = ReplaceWithLink(Strings.Resources.ActionInviteUser, "un1", senderUser, ref entities);
             }
@@ -742,7 +742,7 @@ namespace Unigram.Controls.Messages
 
         private static (string, IList<TextEntity>) UpdateContactRegistered(MessageViewModel message, MessageContactRegistered contactRegistered, bool active)
         {
-            if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+            if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
             {
                 return (string.Format(Strings.Resources.NotificationContactJoined, senderUser.GetFullName()), null);
             }
@@ -763,7 +763,7 @@ namespace Unigram.Controls.Messages
             var game = GetGame(message);
             if (game == null)
             {
-                if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
                 {
                     if (senderUser.Id == message.ProtoService.Options.MyId)
                     {
@@ -777,7 +777,7 @@ namespace Unigram.Controls.Messages
             }
             else
             {
-                if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
                 {
                     if (senderUser.Id == message.ProtoService.Options.MyId)
                     {

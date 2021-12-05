@@ -987,11 +987,11 @@ namespace Unigram.Views
                             photo.Source = PlaceholderHelper.GetNameForUser(fromHiddenUser.SenderName, 30);
                         }
                     }
-                    else if (message.ProtoService.TryGetUser(message.Sender, out User senderUser))
+                    else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
                     {
                         photo.Source = PlaceholderHelper.GetUser(ViewModel.ProtoService, senderUser, 30);
                     }
-                    else if (message.ProtoService.TryGetChat(message.Sender, out Chat senderChat))
+                    else if (message.ProtoService.TryGetChat(message.SenderId, out Chat senderChat))
                     {
                         photo.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, senderChat, 30);
                     }

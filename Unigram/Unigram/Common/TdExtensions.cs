@@ -1274,7 +1274,7 @@ namespace Unigram.Common
             return TdNetworkType.Other;
         }
 
-        public static bool IsSaved(this Message message, int savedMessagesId)
+        public static bool IsSaved(this Message message, long savedMessagesId)
         {
             if (message.ForwardInfo?.Origin is MessageForwardOriginUser fromUser)
             {
