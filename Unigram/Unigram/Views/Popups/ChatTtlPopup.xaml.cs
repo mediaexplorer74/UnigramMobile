@@ -5,21 +5,28 @@ namespace Unigram.Views.Popups
 {
     public sealed partial class ChatTtlPopup : ContentPopup
     {
-        public ChatTtlPopup()
+        public ChatTtlPopup(bool secret)
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             Title = Strings.Resources.MessageLifetime;
             PrimaryButtonText = Strings.Resources.OK;
             SecondaryButtonText = Strings.Resources.Cancel;
 
-            var seconds = new int[21];
-            for (int i = 0; i < seconds.Length; i++)
+            if (secret)
             {
-                seconds[i] = i;
-            }
+                var seconds = new int[21];
+                for (int i = 0; i < seconds.Length; i++)
+                {
+                    seconds[i] = i;
+                }
 
-            FieldSeconds.ItemsSource = seconds;
+                FieldSeconds.ItemsSource = seconds;
+            }
+            else
+            {
+                FieldSeconds.ItemsSource = new int[] { 0, 19, 20 };
+            }
         }
 
         public int Value { get; set; }

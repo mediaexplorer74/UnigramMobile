@@ -1903,7 +1903,7 @@ namespace Unigram.Views
                     }
                 }
             }
-            if (secret)
+            //if (secret)
             {
                 flyout.CreateFlyoutItem(ViewModel.SetTimerCommand, Strings.Resources.SetTimer, new FontIcon { Glyph = Icons.Timer });
             }
