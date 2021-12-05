@@ -65,7 +65,7 @@ namespace Unigram.Services
                 Monitor.Exit(_chatList);
 
                 var response = await _client.SendAsync(new LoadChats(chatList, count - sorted.Count));
-                if (response is Ok or Error)
+                if (response is Ok || response is Error)
                 {
                     if (response is Error error && error.Code == 404)
                     {

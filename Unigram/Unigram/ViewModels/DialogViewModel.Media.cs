@@ -348,7 +348,7 @@ namespace Unigram.ViewModels
 
         private async Task SendDocumentAsync(Chat chat, StorageFile file, FormattedText caption = null, MessageSendOptions options = null)
         {
-            var factory = await _messageFactory.CreateDocumentAsync(file);
+            var factory = await _messageFactory.CreateDocumentAsync(file, true);
             if (factory != null)
             {
                 var reply = GetReply(true);
@@ -499,9 +499,15 @@ namespace Unigram.ViewModels
                 return;
             }
 
+            var chat = _chat; //TODO: Use Cache?
+            if (chat == null)
+            {
+                return;
+            }
+
             if (dialog.Items.Count == 1)
             {
-                await SendStorageMediaAsync(dialog.Items[0], dialog.Caption, dialog.IsFilesSelected, options);
+                await SendStorageMediaAsync(chat, dialog.Items[0], dialog.Caption, dialog.IsFilesSelected, options);
             }
             else if (dialog.Items.Count > 1 && dialog.IsAlbum && dialog.IsAlbumAvailable)
             {
@@ -532,7 +538,7 @@ namespace Unigram.ViewModels
 
                 foreach (var file in dialog.Items)
                 {
-                    await SendStorageMediaAsync(file, null, dialog.IsFilesSelected, options);
+                    await SendStorageMediaAsync(chat, file, null, dialog.IsFilesSelected, options);
                 }
             }
             Collections.MediaLibraryCollection.ResetForCurrentView(); //Reset probably edited media items //TODO: Update (reset) only those item that got sent
@@ -1023,7 +1029,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var factory = await _messageFactory.CreateDocumentAsync(file);
+            var factory = await _messageFactory.CreateDocumentAsync(file, true);
             if (factory != null)
             {
                 header.EditingMessageMedia = factory;
