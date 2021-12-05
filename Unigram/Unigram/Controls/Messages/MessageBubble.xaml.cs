@@ -101,24 +101,29 @@ namespace Unigram.Controls.Messages
         {
             var chat = message.GetChat();
             var content = message.GeneratedContent ?? message.Content;
-
-            var sticker = content is MessageSticker;
-            var light = sticker || content is MessageDice || content is MessageVideoNote;
-
+            
             var title = string.Empty;
+            var senderBot = false;
 
-            if (!light && message.IsFirst && !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
-            {
-                var sender = message.GetSenderUser();
-                title = sender?.GetFullName();
-            }
-            else if (!light && message.IsChannelPost && chat.Type is ChatTypeSupergroup)
-            {
-                title = message.ProtoService.GetTitle(chat);
-            }
-            else if (!light && message.IsFirst && message.IsSaved())
+            if (message.IsSaved())
             {
                 title = message.ProtoService.GetTitle(message.ForwardInfo);
+            }
+            else if (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup supergroup && !supergroup.IsChannel)
+            {
+                if (message.IsOutgoing)
+                {
+                    title = null;
+                }
+                else if (message.ProtoService.TryGetUser(message.SenderId, out User senderUser))
+                {
+                    senderBot = senderUser.Type is UserTypeBot;
+                    title = senderUser.GetFullName();
+                }
+                else if (message.ProtoService.TryGetChat(message.SenderId, out Chat senderChat))
+                {
+                    title = message.ProtoService.GetTitle(senderChat);
+                }
             }
 
             var builder = new StringBuilder();
@@ -129,14 +134,27 @@ namespace Unigram.Controls.Messages
 
             if (message.ReplyToMessage != null)
             {
-                var user = message.ProtoService.GetUser(message.ReplyToMessage.SenderUserId);
-                if (user != null)
+                if (message.ProtoService.TryGetUser(message.ReplyToMessage.SenderId, out User replyUser))
                 {
-                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {user.GetFullName()}. ");
+                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {replyUser.GetFullName()}. ");
+                }
+                else if (message.ProtoService.TryGetChat(message.ReplyToMessage.SenderId, out Chat replyChat))
+                {
+                    builder.AppendLine($"{Strings.Resources.AccDescrReplying} {message.ProtoService.GetTitle(replyChat)}. ");
                 }
             }
 
             builder.Append(Automation.GetSummary(message.ProtoService, message.Get()));
+
+            if (message.AuthorSignature.Length > 0)
+            {
+                builder.Append($"{message.AuthorSignature}, ");
+            }
+
+            if (message.EditDate != 0 && message.ViaBotUserId == 0 && !senderBot && !(message.ReplyMarkup is ReplyMarkupInlineKeyboard))
+            {
+                builder.Append($"{Strings.Resources.EditedMessage}, ");
+            }
 
             var date = string.Format(Strings.Resources.TodayAtFormatted, BindConvert.Current.ShortTime.Format(Utils.UnixTimestampToDateTime(message.Date)));
             if (message.IsOutgoing)

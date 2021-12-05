@@ -270,6 +270,20 @@ namespace Unigram.Common
 
         #endregion
 
+        public static string ToOutcomeText(this MessageCall call, bool outgoing)
+        {
+            var missed = call.DiscardReason is CallDiscardReasonMissed || call.DiscardReason is CallDiscardReasonDeclined;
+
+            if (call.IsVideo)
+            {
+                return missed ? (outgoing ? Strings.Resources.CallMessageVideoOutgoingMissed : Strings.Resources.CallMessageVideoIncomingMissed) : (outgoing ? Strings.Resources.CallMessageVideoOutgoing : Strings.Resources.CallMessageVideoIncoming);
+            }
+            else
+            {
+                return missed ? (outgoing ? Strings.Resources.CallMessageOutgoingMissed : Strings.Resources.CallMessageIncomingMissed) : (outgoing ? Strings.Resources.CallMessageOutgoing : Strings.Resources.CallMessageIncoming);
+            }
+        }
+
         public static bool IsMoving(this Background background)
         {
             if (background?.Type is BackgroundTypePattern pattern)

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using Telegram.Td.Api;
 using Unigram.Controls.Messages;
 using Unigram.Converters;
@@ -129,14 +130,37 @@ namespace Unigram.Common
 
             return builder.ToString();
         }
-
-        public static string GetSummary(IProtoService protoService, Message message)
+        
+        public static string GetSummary(IProtoService protoService, Message message, bool details = false)
         {
             if (message.IsService())
             {
                 return MessageService.GetText(new ViewModels.MessageViewModel(protoService, null, null, message)) + ", ";
             }
 
+            if (message.Content is MessageAlbum album)
+            {
+                if (album.IsMedia)
+                {
+                    var photos = album.Messages.Count(x => x.Content is MessagePhoto);
+                    var videos = album.Messages.Count - photos;
+
+                    if (album.Messages.Count > 0 && album.Messages[0].Content is MessageVideo)
+                    {
+                        return Locale.Declension("Videos", videos) + ", " + Locale.Declension("Photos", photos) + ", ";
+                    }
+
+                    return Locale.Declension("Photos", photos) + ", " + Locale.Declension("Videos", videos) + ", ";
+                }
+                else if (album.Messages.Count > 0 && album.Messages[0].Content is MessageAudio)
+                {
+                    return Locale.Declension("MusicFiles", album.Messages.Count) + ", ";
+                }
+                else
+                {
+                    return Locale.Declension("Files", album.Messages.Count) + ", ";
+                }
+            }
             if (message.Content is MessageText text)
             {
                 return text.Text.Text + ", ";
@@ -178,38 +202,86 @@ namespace Unigram.Common
 
             if (message.Content is MessageVoiceNote voiceNote)
             {
-                return Strings.Resources.AttachAudio + GetCaption(voiceNote.Caption.Text) + ", " + (voiceNote.IsListened ? "" : Strings.Resources.AccDescrMsgNotPlayed + ", ");
+                var result = Strings.Resources.AttachAudio + GetCaption(voiceNote.Caption.Text) + ", " + (voiceNote.IsListened ? "" : Strings.Resources.AccDescrMsgNotPlayed + ", ");
+
+                if (details)
+                {
+                    result += voiceNote.VoiceNote.GetDuration() + ", ";
+                }
+
+                return result;
             }
             else if (message.Content is MessageVideo video)
             {
-                return (video.IsSecret ? Strings.Resources.AttachDestructingVideo : Strings.Resources.AttachVideo) + GetCaption(video.Caption.Text) + ", ";
+                var result = (video.IsSecret ? Strings.Resources.AttachDestructingVideo : Strings.Resources.AttachVideo) + GetCaption(video.Caption.Text) + ", ";
+
+                if (details)
+                {
+                    result += video.Video.GetDuration() + ", ";
+                }
+
+                if (details && !video.Video.VideoValue.Local.IsDownloadingCompleted)
+                {
+                    result += FileSizeConverter.Convert(video.Video.VideoValue.Size) + ", ";
+                }
+
+                return result;
             }
             else if (message.Content is MessageAnimation animation)
             {
-                return Strings.Resources.AttachGif + GetCaption(animation.Caption.Text) + ", ";
+                var result = Strings.Resources.AttachGif + GetCaption(animation.Caption.Text) + ", ";
+                if (details)
+                {
+                    result += FileSizeConverter.Convert(animation.Animation.AnimationValue.Size) + ", ";
+                }
+
+                return result;
             }
             else if (message.Content is MessageAudio audio)
             {
                 var performer = string.IsNullOrEmpty(audio.Audio.Performer) ? null : audio.Audio.Performer;
                 var title = string.IsNullOrEmpty(audio.Audio.Title) ? null : audio.Audio.Title;
 
+                string result;
                 if (performer == null && title == null)
                 {
-                    return Strings.Resources.AttachMusic + GetCaption(audio.Caption.Text) + ", ";
+                    result = Strings.Resources.AttachMusic + GetCaption(audio.Caption.Text) + ", ";
                 }
                 else
                 {
-                    return $"{performer ?? Strings.Resources.AudioUnknownArtist} - {title ?? Strings.Resources.AudioUnknownTitle}" + GetCaption(audio.Caption.Text) + ", ";
+                    result = $"{performer ?? Strings.Resources.AudioUnknownArtist} - {title ?? Strings.Resources.AudioUnknownTitle}" + GetCaption(audio.Caption.Text) + ", ";
                 }
+
+                if (details)
+                {
+                    result += audio.Audio.GetDuration() + ", ";
+                }
+
+                if (details && !audio.Audio.AudioValue.Local.IsDownloadingCompleted)
+                {
+                    result += FileSizeConverter.Convert(audio.Audio.AudioValue.Size) + ", ";
+                }
+
+                return result;
             }
             else if (message.Content is MessageDocument document)
             {
+                string result;
                 if (string.IsNullOrEmpty(document.Document.FileName))
                 {
-                    return Strings.Resources.AttachDocument + GetCaption(document.Caption.Text) + ", ";
+                    result = Strings.Resources.AttachDocument + GetCaption(document.Caption.Text) + ", ";
+                }
+                else
+                {
+                    result = document.Document.FileName + GetCaption(document.Caption.Text) + ", ";
                 }
 
-                return document.Document.FileName + GetCaption(document.Caption.Text) + ", ";
+                if (details)
+                {
+                    result += FileSizeConverter.Convert(document.Document.DocumentValue.Size) + ", ";
+                }
+
+                return result;
             }
             else if (message.Content is MessageInvoice invoice)
             {
@@ -223,7 +295,7 @@ namespace Unigram.Common
             {
                 return (location.LivePeriod > 0 ? Strings.Resources.AttachLiveLocation : Strings.Resources.AttachLocation) + ", ";
             }
-            else if (message.Content is MessageVenue vanue)
+            else if (message.Content is MessageVenue)
             {
                 return Strings.Resources.AttachLocation + ", ";
             }
@@ -233,14 +305,29 @@ namespace Unigram.Common
             }
             else if (message.Content is MessagePoll poll)
             {
+                if (details)
+                {
+                    string type = null;
+                    if (poll.Poll.Type is PollTypeRegular)
+                    {
+                        type = poll.Poll.IsClosed ? Strings.Resources.FinalResults : poll.Poll.IsAnonymous ? Strings.Resources.AnonymousPoll : Strings.Resources.PublicPoll;
+                    }
+                    else if (poll.Poll.Type is PollTypeQuiz)
+                    {
+                        type = poll.Poll.IsClosed ? Strings.Resources.FinalResults : poll.Poll.IsAnonymous ? Strings.Resources.AnonymousQuizPoll : Strings.Resources.QuizPoll;
+                    }
+
+                    if (type != null)
+                    {
+                        return type + ", " + poll.Poll.Question + ", ";
+                    }
+                }
+
                 return Strings.Resources.Poll + ", " + poll.Poll.Question + ", ";
             }
             else if (message.Content is MessageCall call)
             {
-                var outgoing = message.IsOutgoing;
-                var missed = call.DiscardReason is CallDiscardReasonMissed || call.DiscardReason is CallDiscardReasonDeclined;
-
-                return (missed ? (outgoing ? Strings.Resources.CallMessageOutgoingMissed : Strings.Resources.CallMessageIncomingMissed) : (outgoing ? Strings.Resources.CallMessageOutgoing : Strings.Resources.CallMessageIncoming)) + ", ";
+                return call.ToOutcomeText(message.IsOutgoing) + ", ";
             }
             else if (message.Content is MessageUnsupported)
             {
@@ -262,11 +349,11 @@ namespace Unigram.Common
 
             if (!light && /*message.IsFirst &&*/ !message.IsOutgoing && !message.IsChannelPost && (chat.Type is ChatTypeBasicGroup || chat.Type is ChatTypeSupergroup))
             {
-                if (cacheService.TryGetUser(message.Sender, out User senderUser))
+                if (cacheService.TryGetUser(message.SenderId, out User senderUser))
                 {
                     title = senderUser.GetFullName();
                 }
-                else if (cacheService.TryGetChat(message.Sender, out Chat senderChat))
+                else if (cacheService.TryGetChat(message.SenderId, out Chat senderChat))
                 {
                     title = senderChat.Title;
                 }
