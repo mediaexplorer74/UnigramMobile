@@ -982,6 +982,10 @@ namespace Unigram.Views
                                 photo.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, chat, 30);
                             }
                         }
+                        else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport fromImport)
+                        {
+                            photo.Source = PlaceholderHelper.GetNameForUser(fromImport.SenderName, 30);
+                        }
                         else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser fromHiddenUser)
                         {
                             photo.Source = PlaceholderHelper.GetNameForUser(fromHiddenUser.SenderName, 30);
@@ -1005,7 +1009,7 @@ namespace Unigram.Views
 
                     if (message.IsSaved())
                     {
-                        if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser)
+                        if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport || message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser)
                         {
                             action.Visibility = Visibility.Collapsed;
                         }
