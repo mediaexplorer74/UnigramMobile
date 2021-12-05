@@ -155,7 +155,7 @@ namespace Unigram.ViewModels.Supergroups
                 return;
             }
 
-            var response = await ProtoService.SendAsync(new AddChatMember(chat.Id, user.Id, CacheService.Options.ForwardedMessageCountMax));
+            var response = await ProtoService.SendAsync(new AddChatMember(chat.Id, user.Id, (int)CacheService.Options.ForwardedMessageCountMax));
             if (response is Error error)
             {
 
