@@ -1577,7 +1577,7 @@ namespace Unigram.ViewModels
                             }
                         }
 
-                        message.GeneratedContent ??= new MessageBigEmoji(text.Text, count);
+                        message.GeneratedContent = message.GeneratedContent ?? new MessageBigEmoji(text.Text, count);
                     }
                     else if (message.Content is MessageAnimatedEmoji animatedEmoji)
                     {
