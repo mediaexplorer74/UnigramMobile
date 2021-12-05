@@ -149,8 +149,6 @@ namespace Unigram.Services
 
         private readonly Dictionary<int, ChatListUnreadCount> _unreadCounts = new Dictionary<int, ChatListUnreadCount>();
 
-        private readonly Dictionary<int, File> _files = new Dictionary<int, File>();
-
         private readonly FlatFileContext<long> _chatsMap = new FlatFileContext<long>();
         private readonly FlatFileContext<long> _usersMap = new FlatFileContext<long>();
 
@@ -418,8 +416,6 @@ namespace Unigram.Services
         public void CleanUp()
         {
             _options.Clear();
-            
-            _files.Clear();
 
             _chats.Clear();
             _chatActions.Clear();
@@ -1287,6 +1283,13 @@ namespace Unigram.Services
                 if (_chats.TryGetValue(updateChatActionBar.ChatId, out Chat value))
                 {
                     value.ActionBar = updateChatActionBar.ActionBar;
+                }
+            }
+            else if (update is UpdateChatAllowSavingContent updateChatAllowSavingContent)
+            {
+                if (_chats.TryGetValue(updateChatAllowSavingContent.ChatId, out Chat value))
+                {
+                    value.AllowSavingContent = updateChatAllowSavingContent.AllowSavingContent;
                 }
             }
             else if (update is UpdateChatDefaultDisableNotification updateChatDefaultDisableNotification)
