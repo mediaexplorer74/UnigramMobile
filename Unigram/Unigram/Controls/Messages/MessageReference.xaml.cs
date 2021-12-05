@@ -854,6 +854,10 @@ namespace Unigram.Controls.Messages
             {
                 return (video.IsSecret ? Strings.Resources.AttachDestructingVideo : Strings.Resources.AttachVideo) + GetCaption(video.Caption.Text);
             }
+            else if (message.Content is MessageAnimatedEmoji animatedEmoji)
+            {
+                return animatedEmoji.Emoji;
+            }
             else if (message.Content is MessageAnimation animation)
             {
                 return Strings.Resources.AttachGif + GetCaption(animation.Caption.Text);
@@ -907,10 +911,7 @@ namespace Unigram.Controls.Messages
             }
             else if (message.Content is MessageCall call)
             {
-                var outgoing = message.IsOutgoing;
-                var missed = call.DiscardReason is CallDiscardReasonMissed || call.DiscardReason is CallDiscardReasonDeclined;
-
-                return (missed ? (outgoing ? Strings.Resources.CallMessageOutgoingMissed : Strings.Resources.CallMessageIncomingMissed) : (outgoing ? Strings.Resources.CallMessageOutgoing : Strings.Resources.CallMessageIncoming));
+                return call.ToOutcomeText(message.IsOutgoing);
             }
             else if (message.Content is MessageUnsupported)
             {

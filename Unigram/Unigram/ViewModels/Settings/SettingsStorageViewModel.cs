@@ -47,20 +47,22 @@ namespace Unigram.ViewModels.Settings
 
         private static string[] ExcludedFileNames = new[] { Constants.WallpaperFileName };
 
-        public int FilesTtl
+        public int FilesTtl //TODO: KeepMedia
         {
             get
             {
                 var enabled = CacheService.Options.UseStorageOptimizer;
-                var ttl = CacheService.Options.StorageMaxTimeFromLastAccess;
+                var ttl = (int)CacheService.Options.StorageMaxTimeFromLastAccess;
 
-                return CacheService.Options.UseStorageOptimizer ? ttl / 60 / 60 / 24 : 0;
+                return enabled ? ttl / 60 / 60 / 24 : 0;
             }
-            //set
-            //{
-            //    Settings.FilesTtl = value;
-            //    RaisePropertyChanged();
-            //}
+            set
+            {
+                CacheService.Options.StorageMaxTimeFromLastAccess = value * 60 * 60 * 24;
+                CacheService.Options.UseStorageOptimizer = value > 0;
+
+                RaisePropertyChanged();
+            }
         }
 
         private StorageStatisticsFast _statisticsFast;

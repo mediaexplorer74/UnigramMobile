@@ -695,7 +695,7 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var response = await ProtoService.SendAsync(new GetMessageLink(chat.Id, message.Id, false, _threadId != 0));
+            var response = await ProtoService.SendAsync(new GetMessageLink(chat.Id, message.Id, 0, false, _threadId != 0));
             if (response is MessageLink link)
             {
                 var dataPackage = new DataPackage();
@@ -1016,7 +1016,7 @@ namespace Unigram.ViewModels
                             return;
                         }
 
-                        response = await ProtoService.SendAsync(new GetLoginUrl(chat.Id, message.Id, (int)loginUrl.Id, dialog.HasWriteAccess));
+                        response = await ProtoService.SendAsync(new GetLoginUrl(chat.Id, message.Id, loginUrl.Id, dialog.HasWriteAccess));
                         if (response is HttpUrl httpUrl)
                         {
                             if (MessageHelper.TryCreateUri(httpUrl.Url, out Uri uri))

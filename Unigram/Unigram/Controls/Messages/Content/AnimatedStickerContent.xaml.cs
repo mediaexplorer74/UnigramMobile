@@ -29,11 +29,18 @@ namespace Unigram.Controls.Messages.Content
                 return;
             }
 
-            if (message.Content is MessageText text)
+            if (message.Content is MessageAnimatedEmoji animatedEmoji)
             {
                 Width = Player.Width = 200 * message.ProtoService.Config.GetNamedNumber("emojies_animated_zoom", 0.625f);
                 Height = Player.Height = 200 * message.ProtoService.Config.GetNamedNumber("emojies_animated_zoom", 0.625f);
-                Player.ColorReplacements = Emoji.GetColorReplacements(text.Text.Text);
+                //Player.ColorReplacements = animatedEmoji.AnimatedEmoji.ColorReplacements.ToDictionary(x => x.OldColor, x => x.NewColor);
+
+                //TODO: Implement animated stickers
+                //var sound = animatedEmoji.AnimatedEmoji.Sound;
+                //if (sound != null && sound.Local.CanBeDownloaded && !sound.Local.IsDownloadingActive)
+                //{
+                //    message.ProtoService.DownloadFile(sound.Id, 1);
+                //}
             }
             else
             {
@@ -41,7 +48,12 @@ namespace Unigram.Controls.Messages.Content
                 Height = Player.Height = 200;
                 Player.ColorReplacements = null;
             }
-
+            
+            //TODO: Implement animated stickers... & outlines!
+            //if (!sticker.StickerValue.Local.IsDownloadingCompleted)
+            //{
+            //    UpdateThumbnail(message, sticker.Outline);
+            //}
             if (sticker.Thumbnail != null && !sticker.StickerValue.Local.IsDownloadingCompleted)
             {
                 UpdateThumbnail(message, sticker.Thumbnail.File);
