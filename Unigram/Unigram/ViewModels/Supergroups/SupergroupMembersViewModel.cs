@@ -143,7 +143,7 @@ namespace Unigram.ViewModels.Supergroups
 
             var selected = await SharePopup.PickChatAsync(Strings.Resources.SelectContact);
             var user = CacheService.GetUser(selected);
-            
+
             if (user == null)
             {
                 return;
@@ -160,8 +160,6 @@ namespace Unigram.ViewModels.Supergroups
             {
 
             }
-            else
-                Members.Add(new ChatMember(user.Id, -1, DateTime.Now.ToTimestamp(), null, null)); //TODO: Hacky
         }
 
         #region Context menu
