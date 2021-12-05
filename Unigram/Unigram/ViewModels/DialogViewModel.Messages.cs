@@ -1126,7 +1126,7 @@ namespace Unigram.ViewModels
                         }
                     }
                 }
-                else if (inline.Type is InlineKeyboardButtonTypeCallbackGame callbackGame)
+                else if (inline.Type is InlineKeyboardButtonTypeCallbackGame)
                 {
                     var game = message.Content as MessageGame;
                     if (game == null)
@@ -1156,12 +1156,12 @@ namespace Unigram.ViewModels
             }
             else if (button is KeyboardButton keyboardButton)
             {
-                if (keyboardButton.Type is KeyboardButtonTypeRequestPhoneNumber requestPhoneNumber)
+                if (keyboardButton.Type is KeyboardButtonTypeRequestPhoneNumber)
                 {
                     var response = await ProtoService.SendAsync(new GetMe());
                     if (response is Telegram.Td.Api.User cached)
                     {
-                        var chat = Chat;
+                        var chat = CacheService.GetChat(message?.ChatId ?? _chat?.Id ?? 0);
                         if (chat == null)
                         {
                             return;
@@ -1180,11 +1180,11 @@ namespace Unigram.ViewModels
                         var confirm = await MessagePopup.ShowAsync(content, Strings.Resources.ShareYouPhoneNumberTitle, Strings.Resources.OK, Strings.Resources.Cancel);
                         if (confirm == ContentDialogResult.Primary)
                         {
-                            await SendContactAsync(new Contact(cached.PhoneNumber, cached.FirstName, cached.LastName, string.Empty, cached.Id), null);
+                            await SendContactAsync(chat, new Contact(cached.PhoneNumber, cached.FirstName, cached.LastName, string.Empty, cached.Id), null);
                         }
                     }
                 }
-                else if (keyboardButton.Type is KeyboardButtonTypeRequestLocation requestLocation)
+                else if (keyboardButton.Type is KeyboardButtonTypeRequestLocation)
                 {
                     var confirm = await MessagePopup.ShowAsync(Strings.Resources.ShareYouLocationInfo, Strings.Resources.ShareYouLocationTitle, Strings.Resources.OK, Strings.Resources.Cancel);
                     if (confirm == ContentDialogResult.Primary)
@@ -1206,7 +1206,7 @@ namespace Unigram.ViewModels
                 {
                     await SendPollAsync(requestPoll.ForceQuiz, requestPoll.ForceRegular, _chat?.Type is ChatTypeSupergroup super && super.IsChannel);
                 }
-                else if (keyboardButton.Type is KeyboardButtonTypeText textButton)
+                else if (keyboardButton.Type is KeyboardButtonTypeText)
                 {
                     await SendMessageAsync(keyboardButton.Text);
                 }
