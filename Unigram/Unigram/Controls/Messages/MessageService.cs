@@ -804,8 +804,8 @@ namespace Unigram.Controls.Messages
             User traveler;
             User watcher;
 
-            message.ProtoService.TryGetUser(proximityAlertTriggered.Traveler, out traveler);
-            message.ProtoService.TryGetUser(proximityAlertTriggered.Watcher, out watcher);
+            message.ProtoService.TryGetUser(proximityAlertTriggered.TravelerId, out traveler);
+            message.ProtoService.TryGetUser(proximityAlertTriggered.WatcherId, out watcher);
 
             if (traveler != null && watcher != null)
             {
