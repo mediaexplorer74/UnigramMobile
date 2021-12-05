@@ -1288,6 +1288,20 @@ namespace Unigram.Common
             return TdNetworkType.Other;
         }
 
+        public static bool IsEqual(this MessageSender sender, MessageSender compare)
+        {
+            if (sender is MessageSenderUser user1 && compare is MessageSenderUser user2)
+            {
+                return user1.UserId == user2.UserId;
+            }
+            else if (sender is MessageSenderChat chat1 && compare is MessageSenderChat chat2)
+            {
+                return chat1.ChatId == chat2.ChatId;
+            }
+
+            return false;
+        }
+
         public static bool IsSaved(this Message message, long savedMessagesId)
         {
             if (message.ForwardInfo?.Origin is MessageForwardOriginUser fromUser)
