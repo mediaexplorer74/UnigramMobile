@@ -1192,7 +1192,13 @@ namespace Unigram.ViewModels
                         var location = await _locationService.GetPositionAsync();
                         if (location != null)
                         {
-                            await SendMessageAsync(0, new InputMessageLocation(location, 0, 0), null);
+                            var chat = _chat; // CacheService.GetChat(message.ChatId);
+                            if (chat == null)
+                            {
+                                return;
+                            }
+
+                            await SendMessageAsync(chat, 0, new InputMessageLocation(location, 0, 0, 0), null);
                         }
                     }
                 }
