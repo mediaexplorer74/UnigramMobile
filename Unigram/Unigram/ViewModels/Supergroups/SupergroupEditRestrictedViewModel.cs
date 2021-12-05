@@ -51,7 +51,7 @@ namespace Unigram.ViewModels.Supergroups
             }
         }
 
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, NavigationState state)
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             state.TryGet("chatId", out long chatId);
             state.TryGet("senderUserId", out long userId);

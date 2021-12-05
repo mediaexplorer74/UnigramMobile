@@ -100,7 +100,7 @@ namespace Unigram.Services
 
         BasicGroupFullInfo GetBasicGroupFull(long id);
         BasicGroupFullInfo GetBasicGroupFull(Chat chat);
-        bool TryGetBasicGroupFull(int id, out BasicGroupFullInfo value);
+        bool TryGetBasicGroupFull(long id, out BasicGroupFullInfo value);
         bool TryGetBasicGroupFull(Chat chat, out BasicGroupFullInfo value);
 
         Supergroup GetSupergroup(long id);
