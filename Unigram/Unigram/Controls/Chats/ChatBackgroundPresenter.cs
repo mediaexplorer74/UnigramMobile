@@ -5,6 +5,7 @@ using Telegram.Td.Api;
 using Unigram.Common;
 using Unigram.Controls.Brushes;
 using Unigram.Services;
+using Unigram.Views;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -30,18 +31,62 @@ namespace Unigram.Controls.Chats
         private SpriteVisual _blurVisual;
         private CompositionEffectBrush _blurBrush;
 
+        private Visual _motionVisual;
         private Compositor _compositor;
+
+        private BackgroundParallaxEffect _parallaxEffect;
 
         public ChatBackgroundPresenter()
         {
+            _parallaxEffect = new BackgroundParallaxEffect();
             _imageBackground = new Rectangle();
             _colorBackground = new Rectangle();
+            _colorBackground.SizeChanged += OnSizeChanged;
 
             Children.Add(_colorBackground);
             Children.Add(_imageBackground);
 
-            _compositor = Window.Current.Compositor;
+            RegisterPropertyChangedCallback(OpacityProperty, OnOpacityChanged);
+
+
+
+            _motionVisual = ElementCompositionPreview.GetElementVisual(_colorBackground);
+            _compositor = _motionVisual.Compositor;
+
             ElementCompositionPreview.GetElementVisual(this).Clip = _compositor.CreateInsetClip();
+        }
+
+        private async void OnOpacityChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            if (Opacity > 0 && (_protoService?.SelectedBackground?.IsMoving() ?? false) && await _parallaxEffect.IsSupportedAsync())
+            {
+                await _parallaxEffect.RegisterAsync(OnParallaxChanged);
+            }
+            else
+            {
+                await _parallaxEffect.UnregisterAsync(OnParallaxChanged);
+            }
+        }
+
+        private void OnParallaxChanged(object sender, (int x, int y) e)
+        {
+            _motionVisual.Offset = new Vector3(e.x, e.y, 0);
+        }
+
+        private async void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _motionVisual.Size = e.NewSize.ToVector2();
+
+            if ((_protoService?.SelectedBackground?.IsMoving() ?? false) && await _parallaxEffect.IsSupportedAsync())
+            {
+                _motionVisual.CenterPoint = new Vector3((float)e.NewSize.Width / 2, (float)e.NewSize.Height / 2, 0);
+                _motionVisual.Scale = new Vector3(_parallaxEffect.getScale(e.NewSize.Width, e.NewSize.Height));
+            }
+            else
+            {
+                _motionVisual.CenterPoint = new Vector3(0);
+                _motionVisual.Scale = new Vector3(1);
+            }
         }
 
         public void Handle(UpdateSelectedBackground update)
@@ -78,6 +123,7 @@ namespace Unigram.Controls.Chats
 
             if (background == null)
             {
+                UpdateMotion(false);
                 UpdateBlurred(false);
 
                 Background = null;
@@ -94,6 +140,7 @@ namespace Unigram.Controls.Chats
             }
             else if (background.Type is BackgroundTypeFill typeFill)
             {
+                UpdateMotion(false);
                 UpdateBlurred(false);
 
                 Background = typeFill.ToBrush();
@@ -102,6 +149,7 @@ namespace Unigram.Controls.Chats
             }
             else if (background.Type is BackgroundTypePattern typePattern)
             {
+                UpdateMotion(typePattern.IsMoving);
                 UpdateBlurred(false);
 
                 Background = typePattern.ToBrush();
@@ -122,6 +170,7 @@ namespace Unigram.Controls.Chats
             }
             else if (background.Type is BackgroundTypeWallpaper typeWallpaper)
             {
+                UpdateMotion(typeWallpaper.IsMoving);
                 UpdateBlurred(typeWallpaper.IsBlurred);
 
                 Background = null;
@@ -155,6 +204,24 @@ namespace Unigram.Controls.Chats
             else if (prev.Type is BackgroundTypeWallpaper prevWallpaper && next.Type is BackgroundTypeWallpaper nextWallpaper)
             {
 
+            }
+        }
+
+        private async void UpdateMotion(bool enabled)
+        {
+            if (enabled && await _parallaxEffect.IsSupportedAsync())
+            {
+                _motionVisual.CenterPoint = new Vector3((float)ActualWidth / 2, (float)ActualHeight / 2, 0);
+                _motionVisual.Scale = new Vector3(_parallaxEffect.getScale(ActualWidth, ActualHeight));
+
+                await _parallaxEffect.RegisterAsync(OnParallaxChanged);
+            }
+            else
+            {
+                _motionVisual.CenterPoint = new Vector3(0);
+                _motionVisual.Scale = new Vector3(1);
+
+                await _parallaxEffect.UnregisterAsync(OnParallaxChanged);
             }
         }
 
