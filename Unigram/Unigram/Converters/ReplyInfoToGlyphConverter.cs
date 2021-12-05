@@ -21,6 +21,9 @@ namespace Unigram.Converters
 
     public class Icons
     {
+        public const string Expand = "\uF164";
+        public const string Collapse = "\uF166";
+
         public const string Download = "\uE118";
         public const string DownloadSmall = "\uE92A";
         public const string Cancel = "\uE10A";

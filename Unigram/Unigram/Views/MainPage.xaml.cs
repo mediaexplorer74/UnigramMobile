@@ -468,7 +468,7 @@ namespace Unigram.Views
             }
         }
 
-        private void SetProxyVisibility(bool expectBlocking, int proxyId, ConnectionState connectionState)
+        private void SetProxyVisibility(bool expectBlocking, long proxyId, ConnectionState connectionState)
         {
             if (expectBlocking || proxyId != 0)
             {
@@ -1083,7 +1083,7 @@ namespace Unigram.Views
 
                 var index = command - ShortcutCommand.ChatPinned1;
 
-                var response = await ViewModel.ProtoService.GetChatListAsync(new ChatListMain(), 0, ViewModel.CacheService.Options.PinnedChatCountMax * 2 + 1);
+                var response = await ViewModel.ProtoService.GetChatListAsync(new ChatListMain(), 0, (int)ViewModel.CacheService.Options.PinnedChatCountMax * 2 + 1);
                 if (response is Telegram.Td.Api.Chats chats && index >= 0 && index < chats.ChatIds.Count)
                 {
                     for (int i = 0; i < chats.ChatIds.Count; i++)
