@@ -3288,7 +3288,7 @@ namespace Unigram.Views
             StickersPanel.UpdateChatPermissions(ViewModel.CacheService, chat);
             ListInline.UpdateChatPermissions(chat);
         }
-
+        
         public void UpdateChatTitle(Chat chat)
         {
             if (ViewModel.Type == DialogType.Thread)
@@ -3299,11 +3299,11 @@ namespace Unigram.Views
                     return;
                 }
 
-                if (message.Sender is MessageSenderUser)
+                if (message.SenderId is MessageSenderUser)
                 {
                     Title.Text = Locale.Declension("Replies", message.InteractionInfo.ReplyInfo.ReplyCount);
                 }
-                else if (ViewModel.CacheService.TryGetChat(message.Sender, out Chat senderChat))
+                else if (ViewModel.CacheService.TryGetChat(message.SenderId, out Chat senderChat))
                 {
                     if (senderChat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                     {
