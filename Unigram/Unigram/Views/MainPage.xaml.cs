@@ -56,7 +56,7 @@ namespace Unigram.Views
         IHandle<UpdateChatUnreadMentionCount>,
         IHandle<UpdateChatTitle>,
         IHandle<UpdateChatPhoto>,
-        IHandle<UpdateUserChatAction>,
+        IHandle<UpdateChatAction>,
         IHandle<UpdateUserStatus>,
         IHandle<UpdateMessageMentionRead>,
         IHandle<UpdateUnreadChatCount>,
@@ -246,7 +246,7 @@ namespace Unigram.Views
             Handle(update.ChatId, (chatView, chat) => chatView.UpdateChatPhoto(chat));
         }
 
-        public void Handle(UpdateUserChatAction update)
+        public void Handle(UpdateChatAction update)
         {
             Handle(update.ChatId, (chatView, chat) => chatView.UpdateChatActions(chat, ViewModel.ProtoService.GetChatActions(chat.Id)));
         }

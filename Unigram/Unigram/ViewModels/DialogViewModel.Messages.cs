@@ -139,9 +139,7 @@ namespace Unigram.ViewModels
                 }
             }
 
-            var firstSender = first.SenderId as MessageSenderUser;
-
-            var sameUser = firstSender != null && messages.All(x => x.SenderId is MessageSenderUser senderUser && senderUser.UserId == firstSender.UserId);
+            var sameUser = messages.All(x => x.SenderId.IsEqual(first.SenderId));
             var dialog = new DeleteMessagesPopup(CacheService, items.Where(x => x != null).ToArray());
 
             var confirm = await dialog.ShowQueuedAsync();
@@ -154,7 +152,7 @@ namespace Unigram.ViewModels
 
             if (dialog.DeleteAll && sameUser)
             {
-                ProtoService.Send(new DeleteChatMessagesFromUser(chat.Id, firstSender.UserId));
+                ProtoService.Send(new DeleteChatMessagesBySender(chat.Id, first.SenderId));
             }
             else
             {
@@ -163,12 +161,12 @@ namespace Unigram.ViewModels
 
             if (dialog.BanUser && sameUser)
             {
-                ProtoService.Send(new SetChatMemberStatus(chat.Id, firstSender.UserId, new ChatMemberStatusBanned()));
+                ProtoService.Send(new SetChatMemberStatus(chat.Id, first.SenderId, new ChatMemberStatusBanned()));
             }
 
             if (dialog.ReportSpam && sameUser && chat.Type is ChatTypeSupergroup supertype)
             {
-                ProtoService.Send(new ReportSupergroupSpam(supertype.SupergroupId, firstSender.UserId, messages.Select(x => x.Id).ToList()));
+                ProtoService.Send(new ReportSupergroupSpam(supertype.SupergroupId, messages.Select(x => x.Id).ToList()));
             }
         }
 
@@ -319,6 +317,11 @@ namespace Unigram.ViewModels
                         var from = ProtoService.GetUser(forwardedFromUser.SenderUserId);
                         builder.AppendLine($"[{Strings.Resources.ForwardedMessage}]");
                         builder.AppendLine($"[{Strings.Resources.From} {from.GetFullName()}]");
+                    }
+                    else if (message.ForwardInfo?.Origin is MessageForwardOriginMessageImport forwardedFromImport)
+                    {
+                        builder.AppendLine($"[{Strings.Resources.ForwardedMessage}]");
+                        builder.AppendLine($"[{Strings.Resources.From} {forwardedFromImport.SenderName}]");
                     }
                     else if (message.ForwardInfo?.Origin is MessageForwardOriginHiddenUser forwardedFromHiddenUser)
                     {
@@ -500,28 +503,26 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            if (reason is ChatReportReasonCustom other)
-            {
-                var input = new InputDialog();
-                input.Title = Strings.Resources.ReportChat;
-                input.PlaceholderText = Strings.Resources.ReportChatDescription;
-                input.IsPrimaryButtonEnabled = true;
-                input.IsSecondaryButtonEnabled = true;
-                input.PrimaryButtonText = Strings.Resources.OK;
-                input.SecondaryButtonText = Strings.Resources.Cancel;
+            var text = string.Empty;
+            var input = new InputDialog();
+            input.Title = Strings.Resources.ReportChat;
+            input.PlaceholderText = Strings.Resources.ReportChatDescription;
+            input.IsPrimaryButtonEnabled = true;
+            input.IsSecondaryButtonEnabled = true;
+            input.PrimaryButtonText = Strings.Resources.OK;
+            input.SecondaryButtonText = Strings.Resources.Cancel;
 
-                var inputResult = await input.ShowQueuedAsync();
-                if (inputResult == ContentDialogResult.Primary)
-                {
-                    other.Text = input.Text;
-                }
-                else
-                {
-                    return;
-                }
+            var inputResult = await input.ShowQueuedAsync();
+            if (inputResult == ContentDialogResult.Primary)
+            {
+                text = input.Text;
+            }
+            else
+            {
+                return;
             }
 
-            ProtoService.Send(new ReportChat(chat.Id, reason, messages));
+            ProtoService.Send(new ReportChat(chat.Id, messages, reason, text));
         }
 
         private bool MessagesReportCanExecute()
@@ -912,28 +913,26 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            if (reason is ChatReportReasonCustom other)
-            {
-                var input = new InputDialog();
-                input.Title = Strings.Resources.ReportChat;
-                input.PlaceholderText = Strings.Resources.ReportChatDescription;
-                input.IsPrimaryButtonEnabled = true;
-                input.IsSecondaryButtonEnabled = true;
-                input.PrimaryButtonText = Strings.Resources.OK;
-                input.SecondaryButtonText = Strings.Resources.Cancel;
+            var text = string.Empty;
+            var input = new InputDialog();
+            input.Title = Strings.Resources.ReportChat;
+            input.PlaceholderText = Strings.Resources.ReportChatDescription;
+            input.IsPrimaryButtonEnabled = true;
+            input.IsSecondaryButtonEnabled = true;
+            input.PrimaryButtonText = Strings.Resources.OK;
+            input.SecondaryButtonText = Strings.Resources.Cancel;
 
-                var inputResult = await input.ShowQueuedAsync();
-                if (inputResult == ContentDialogResult.Primary)
-                {
-                    other.Text = input.Text;
-                }
-                else
-                {
-                    return;
-                }
+            var inputResult = await input.ShowQueuedAsync();
+            if (inputResult == ContentDialogResult.Primary)
+            {
+                text = input.Text;
+            }
+            else
+            {
+                return;
             }
 
-            ProtoService.Send(new ReportChat(chat.Id, reason, new[] { message.Id }));
+            ProtoService.Send(new ReportChat(chat.Id, new[] { message.Id }, reason, text));
         }
 
         #endregion
@@ -1077,7 +1076,7 @@ namespace Unigram.ViewModels
                     var bot = message.GetViaBotUser();
                     if (bot != null)
                     {
-                        InformativeMessage = _messageFactory.Create(this, new Message(0, new MessageSenderUser(bot.Id), 0, null, null, false, false, false, false, true, false, false, false, false, false, false, false, false, 0, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageText(new FormattedText(Strings.Resources.Loading, new TextEntity[0]), null), null));
+                        InformativeMessage = _messageFactory.Create(this, new Message(0, new MessageSenderUser(bot.Id), 0, null, null, false, false, false, false, false, true, false, false, false, false, false, false, false, false, 0, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageText(new FormattedText(Strings.Resources.Loading, new TextEntity[0]), null), null));
                     }
 
                     var response = await ProtoService.SendAsync(new GetCallbackQueryAnswer(chat.Id, message.Id, new CallbackQueryPayloadData(callback.Data)));
@@ -1098,7 +1097,7 @@ namespace Unigram.ViewModels
                                     return;
                                 }
 
-                                InformativeMessage = _messageFactory.Create(this, new Message(0, new MessageSenderUser(bot.Id), 0, null, null, false, false, false, false, true, false, false, false, false, false, false, false, false, 0, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageText(new FormattedText(answer.Text, new TextEntity[0]), null), null));
+                                InformativeMessage = _messageFactory.Create(this, new Message(0, new MessageSenderUser(bot.Id), 0, null, null, false, false, false, false, false, true, false, false, false, false, false, false, false, false, 0, 0, null, null, 0, 0, 0, 0, 0, 0, string.Empty, 0, string.Empty, new MessageText(new FormattedText(answer.Text, new TextEntity[0]), null), null));
                             }
                         }
                         else if (!string.IsNullOrEmpty(answer.Url))
