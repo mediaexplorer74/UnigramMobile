@@ -135,7 +135,7 @@ namespace Unigram.ViewModels
             SendCommand = new RelayCommand<string>(SendMessage);
             SwitchCommand = new RelayCommand<string>(SwitchExecute);
             SetTimerCommand = new RelayCommand(SetTimerExecute);
-            ActionCommand = new RelayCommand(ActionExecute);
+            ActionCommand = new RelayCommand(ActionExecuteAsync);
             OpenMessageCommand = new RelayCommand<Message>(OpenMessageExecute);
             ScheduledCommand = new RelayCommand(ScheduledExecute);
 
@@ -3518,7 +3518,7 @@ namespace Unigram.ViewModels
         }
 
         public RelayCommand ActionCommand { get; }
-        private void ActionExecute()
+        private async void ActionExecuteAsync()
         {
             var chat = _chat;
             if (chat == null)
@@ -3529,6 +3529,31 @@ namespace Unigram.ViewModels
             if (_type == DialogType.EventLog)
             {
                 FilterExecute();
+            }
+            else if (_type == DialogType.Pinned)
+            {
+                var supergroupType = chat.Type as ChatTypeSupergroup;
+                var basicGroupType = chat.Type as ChatTypeBasicGroup;
+
+                var supergroup = supergroupType != null ? CacheService.GetSupergroup(supergroupType.SupergroupId) : null;
+                var basicGroup = basicGroupType != null ? CacheService.GetBasicGroup(basicGroupType.BasicGroupId) : null;
+
+                if (supergroup != null && supergroup.CanPinMessages() ||
+                    basicGroup != null && basicGroup.CanPinMessages() ||
+                    chat.Type is ChatTypePrivate privata)
+                {
+                    var confirm = await MessagePopup.ShowAsync(Strings.Resources.UnpinMessageAlert, Strings.Resources.AppName, Strings.Resources.OK, Strings.Resources.Cancel);
+                    if (confirm == ContentDialogResult.Primary)
+                    {
+                        ProtoService.Send(new UnpinAllChatMessages(chat.Id));
+                        Delegate?.UpdatePinnedMessage(chat, false);
+                    }
+                }
+                else
+                {
+                    Settings.SetChatPinnedMessage(chat.Id, int.MaxValue);
+                    Delegate?.UpdatePinnedMessage(chat, false);
+                }
             }
             else if (chat.Type is ChatTypePrivate privata)
             {
