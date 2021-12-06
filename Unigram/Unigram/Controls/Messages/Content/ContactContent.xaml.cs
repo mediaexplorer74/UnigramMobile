@@ -6,6 +6,7 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Point = Windows.Foundation.Point;
 
 namespace Unigram.Controls.Messages.Content
 {
