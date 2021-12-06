@@ -384,6 +384,7 @@ namespace Unigram.Services
                 {
                     Windows.ApplicationModel.PackageVersion version = SettingsService.GetAppVersion();
                     var title = $"**{Windows.ApplicationModel.Package.Current.DisplayName} Version {version.Major}.{version.Minor}**";
+                    title += Environment.NewLine + Environment.NewLine + $"Beta Build {version.Revision}. Thanks for taking the risk and time testing this beta release. Please use the beta group for any feedback.";
                     var message = title + Environment.NewLine + Environment.NewLine + SettingsService.CurrentChangelog;
 
                     var entities = Client.Execute(new GetTextEntities(message)) as TextEntities;

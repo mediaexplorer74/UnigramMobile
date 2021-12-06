@@ -56,7 +56,7 @@ $displayName.InnerText = $h[$config]
 
 $h = @{}
 $h["DEBUG"] = "Unigram Mobile Experimental"
-$h["RELEASE"] = "Unigram Mobile Messenger"
+$h["RELEASE"] = "Unigram Mobile Messenger Beta"
 
 $visualElements = $document.GetElementsByTagName("uap:VisualElements")[0]
 $visualElements.Attributes["DisplayName"].Value = $h[$config]
