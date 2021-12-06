@@ -129,7 +129,7 @@ namespace Unigram.Controls.Messages
 
                 if (_queue.Count > 1)
                 {
-                    _queue.TryDequeue(out var _);
+                    _queue.Dequeue(); // Why did Fela use TryDequeue if he checks already if it is not empty?
                 }
 
                 return;
@@ -162,9 +162,10 @@ namespace Unigram.Controls.Messages
             batch.Completed += (s, args) =>
             {
                 _playing = false;
-
-                if (_queue.TryDequeue(out var auto))
+                //https://github.com/dotnet/runtime/issues/15619
+                if (_queue.Count > 0)
                 {
+                    var auto = _queue.Dequeue();
                     UpdateMessage(auto.Item1, auto.Item2, auto.Item3, auto.Item4, auto.Item5, false);
                 }
             };
@@ -594,8 +595,9 @@ namespace Unigram.Controls.Messages
             {
                 _playing = false;
 
-                if (_queue.TryDequeue(out var auto))
+                if (_queue.Count > 0)
                 {
+                    var auto = _queue.Dequeue();
                     UpdateIndex(auto.Item1, auto.Item2, auto.Item3);
                 }
             };
@@ -635,7 +637,7 @@ namespace Unigram.Controls.Messages
 
             if (_queue.Count > 1)
             {
-                _queue.TryDequeue(out var _);
+                _queue.Dequeue();
             }
         }
 
