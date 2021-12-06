@@ -340,7 +340,7 @@ namespace Unigram.ViewModels
                 }
                 else if (wallpaper.Type is BackgroundTypePattern)
                 {
-                    type = new BackgroundTypePattern(GetFill(), _intensity, _isMotionEnabled);
+                    type = new BackgroundTypePattern(GetFill(), Math.Abs(_intensity), _intensity < 0, _isMotionEnabled);
                 }
                 else if (wallpaper.Type is BackgroundTypeWallpaper)
                 {
