@@ -3413,7 +3413,7 @@ namespace Unigram.Views
 
         public void UpdateChatDefaultDisableNotification(Chat chat, bool defaultDisableNotification)
         {
-            if (chat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+            if (chat?.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
             {
                 ButtonSilent.IsChecked = defaultDisableNotification;
                 Automation.SetToolTip(ButtonSilent, defaultDisableNotification ? Strings.Resources.AccDescrChanSilentOn : Strings.Resources.AccDescrChanSilentOff);

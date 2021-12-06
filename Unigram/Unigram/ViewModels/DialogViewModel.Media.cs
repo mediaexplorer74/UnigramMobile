@@ -230,16 +230,20 @@ namespace Unigram.ViewModels
             var header = _composerHeader;
             if (header?.EditingMessage == null)
             {
-                var picker = new FileOpenPicker();
-                picker.ViewMode = PickerViewMode.Thumbnail;
-                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-                picker.FileTypeFilter.Add("*");
-
-                var files = await picker.PickMultipleFilesAsync();
-                if (files != null && files.Count > 0)
+                try
                 {
-                    SendFileExecute(files, media: false);
+                    var picker = new FileOpenPicker();
+                    picker.ViewMode = PickerViewMode.Thumbnail;
+                    picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                    picker.FileTypeFilter.Add("*");
+
+                    var files = await picker.PickMultipleFilesAsync();
+                    if (files != null && files.Count > 0)
+                    {
+                        SendFileExecute(files, media: false);
+                    }
                 }
+                catch { }
             }
             else
             {
@@ -436,16 +440,20 @@ namespace Unigram.ViewModels
         {
             if (_composerHeader?.EditingMessage == null)
             {
-            var picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.AddRange(Constants.MediaTypes);
+                try
+                {
+                    var picker = new FileOpenPicker();
+                    picker.ViewMode = PickerViewMode.Thumbnail;
+                    picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                    picker.FileTypeFilter.AddRange(Constants.MediaTypes);
 
-            var files = await picker.PickMultipleFilesAsync();
-            if (files != null && files.Count > 0)
-            {
-                SendFileExecute(files);
-            }
+                    var files = await picker.PickMultipleFilesAsync();
+                    if (files != null && files.Count > 0)
+                    {
+                        SendFileExecute(files);
+                    }
+                }
+                catch { }
             } else
             {
                 EditMediaExecute();
@@ -1018,22 +1026,26 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            picker.FileTypeFilter.Add("*");
-
-            var file = await picker.PickSingleFileAsync();
-            if (file == null)
+            try
             {
-                return;
-            }
+                var picker = new FileOpenPicker();
+                picker.ViewMode = PickerViewMode.Thumbnail;
+                picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                picker.FileTypeFilter.Add("*");
 
-            var factory = await _messageFactory.CreateDocumentAsync(file, true);
-            if (factory != null)
-            {
-                header.EditingMessageMedia = factory;
+                var file = await picker.PickSingleFileAsync();
+                if (file == null)
+                {
+                    return;
+                }
+
+                var factory = await _messageFactory.CreateDocumentAsync(file, true);
+                if (factory != null)
+                {
+                    header.EditingMessageMedia = factory;
+                }
             }
+            catch { }
         }
 
         public RelayCommand EditMediaCommand { get; }
@@ -1045,18 +1057,22 @@ namespace Unigram.ViewModels
                 return;
             }
 
-            var picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.AddRange(Constants.MediaTypes);
-
-            var file = await picker.PickSingleFileAsync();
-            if (file == null)
+            try
             {
-                return;
-            }
+                var picker = new FileOpenPicker();
+                picker.ViewMode = PickerViewMode.Thumbnail;
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.FileTypeFilter.AddRange(Constants.MediaTypes);
 
-            await EditMediaAsync(file);
+                var file = await picker.PickSingleFileAsync();
+                if (file == null)
+                {
+                    return;
+                }
+
+                await EditMediaAsync(file);
+            }
+            catch { }
         }
 
         public RelayCommand EditCurrentCommand { get; }
