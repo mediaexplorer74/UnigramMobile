@@ -1146,7 +1146,7 @@ namespace Unigram.Services
 
             string FormatPinned(string key)
             {
-                if (chat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+                if (chat?.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                 {
                     return string.Format(key, string.Empty).Trim(' ');
                 }
@@ -1313,7 +1313,7 @@ namespace Unigram.Services
             }
             else if (message.Content is PushMessageContentChatChangePhoto)
             {
-                if (chat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+                if (chat?.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                 {
                     return Strings.Resources.ActionChannelChangedPhoto;
                 }
@@ -1323,7 +1323,7 @@ namespace Unigram.Services
             }
             else if (message.Content is PushMessageContentChatChangeTitle chatChangeTitle)
             {
-                if (chat.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
+                if (chat?.Type is ChatTypeSupergroup supergroup && supergroup.IsChannel)
                 {
                     return Strings.Resources.ActionChannelChangedTitle.Replace("un2", chatChangeTitle.Title);
                 }
