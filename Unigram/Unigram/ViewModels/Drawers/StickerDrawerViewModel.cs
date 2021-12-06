@@ -839,8 +839,8 @@ namespace Unigram.ViewModels.Drawers
                         if (response is Stickers stickers && stickers.StickersValue.Count > 0)
                         {
                             Add(new StickerSetViewModel(_protoService, _aggregator,
-                                new StickerSetInfo(0, _query, "emoji", null, false, false, false, false, false, false, stickers.StickersValue.Count, stickers.StickersValue),
-                                new StickerSet(0, _query, "emoji", null, false, false, false, false, false, false, stickers.StickersValue, new Emojis[0])));
+                                new StickerSetInfo(0, _query, "emoji", null, new ClosedVectorPath[0], false, false, false, false, false, false, stickers.StickersValue.Count, stickers.StickersValue),
+                                new StickerSet(0, _query, "emoji", null, new ClosedVectorPath[0], false, false, false, false, false, false, stickers.StickersValue, new Emojis[0])));
                         }
                     }
                     else
@@ -854,8 +854,8 @@ namespace Unigram.ViewModels.Drawers
                                 if (response is Stickers stickers && stickers.StickersValue.Count > 0)
                                 {
                                     Add(new StickerSetViewModel(_protoService, _aggregator,
-                                        new StickerSetInfo(0, emojis.EmojisValue[i], "emoji", null, false, false, false, false, false, false, stickers.StickersValue.Count, stickers.StickersValue),
-                                        new StickerSet(0, emojis.EmojisValue[i], "emoji", null, false, false, false, false, false, false, stickers.StickersValue, new Emojis[0])));
+                                        new StickerSetInfo(0, emojis.EmojisValue[i], "emoji", null, new ClosedVectorPath[0], false, false, false, false, false, false, stickers.StickersValue.Count, stickers.StickersValue),
+                                        new StickerSet(0, emojis.EmojisValue[i], "emoji", null, new ClosedVectorPath[0], false, false, false, false, false, false, stickers.StickersValue, new Emojis[0])));
                                 }
                             }
                         }
