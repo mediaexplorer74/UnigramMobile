@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Unigram.Controls;
 using Unigram.Navigation.Services;
@@ -83,7 +84,7 @@ namespace Unigram.Common
             }
         }
 
-        public async void NavigateToChat(Chat chat, long? message = null, long? thread = null, string accessToken = null, NavigationState state = null, bool scheduled = false, bool force = true)
+        public async void NavigateToChat(Chat chat, long? message = null, long? thread = null, string accessToken = null, IDictionary<string, object> state = null, bool scheduled = false, bool force = true)
         {
             if (chat == null)
             {
