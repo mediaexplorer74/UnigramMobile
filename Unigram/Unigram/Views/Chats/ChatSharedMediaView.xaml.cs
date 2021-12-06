@@ -62,31 +62,31 @@ namespace Unigram.Views.Chats
 
         public void UpdateSharedCount(Chat chat)
         {
-            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterPhotoAndVideo(), 0), result =>
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, null, 0, 0, 1, new SearchMessagesFilterPhotoAndVideo(), 0), result =>
             {
                 if (result is Messages messages)
                     _mediaHeader.Subtitle = messages.TotalCount.ToString();
             });
 
-            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterDocument(), 0), result =>
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, null, 0, 0, 1, new SearchMessagesFilterDocument(), 0), result =>
             {
                 if (result is Messages messages)
                     _filesHeader.Subtitle = messages.TotalCount.ToString();
             });
 
-            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterUrl(), 0), result =>
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, null, 0, 0, 1, new SearchMessagesFilterUrl(), 0), result =>
             {
                 if (result is Messages messages)
                     _linksHeader.Subtitle = messages.TotalCount.ToString();
             });
 
-            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterAudio(), 0), result =>
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, null, 0, 0, 1, new SearchMessagesFilterAudio(), 0), result =>
             {
                 if (result is Messages messages)
                     _musicHeader.Subtitle = messages.TotalCount.ToString();
             });
 
-            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, 0, 0, 0, 1, new SearchMessagesFilterVoiceNote(), 0), result =>
+            ViewModel.ProtoService.Send(new SearchChatMessages(chat.Id, string.Empty, null, 0, 0, 1, new SearchMessagesFilterVoiceNote(), 0), result =>
             {
                 if (result is Messages messages)
                     _voiceHeader.Subtitle = messages.TotalCount.ToString();
@@ -255,31 +255,31 @@ namespace Unigram.Views.Chats
 
         private IEnumerable<ScrollViewer> GetScrollViewers()
         {
-            var viewer1 = ScrollingMedia.GetScrollViewer();
+            var viewer1 = ScrollingMedia?.GetScrollViewer();
             if (viewer1 != null)
             {
                 yield return viewer1;
             }
 
-            var viewer2 = ScrollingFiles.GetScrollViewer();
+            var viewer2 = ScrollingFiles?.GetScrollViewer();
             if (viewer2 != null)
             {
                 yield return viewer2;
             }
 
-            var viewer3 = ScrollingLinks.GetScrollViewer();
+            var viewer3 = ScrollingLinks?.GetScrollViewer();
             if (viewer3 != null)
             {
                 yield return viewer3;
             }
 
-            var viewer4 = ScrollingMusic.GetScrollViewer();
+            var viewer4 = ScrollingMusic?.GetScrollViewer();
             if (viewer4 != null)
             {
                 yield return viewer4;
             }
 
-            var viewer5 = ScrollingVoice.GetScrollViewer();
+            var viewer5 = ScrollingVoice?.GetScrollViewer();
             if (viewer5 != null)
             {
                 yield return viewer5;
@@ -412,12 +412,31 @@ namespace Unigram.Views.Chats
             var element = sender as FrameworkElement;
             var message = element.Tag as Message;
 
-            flyout.CreateFlyoutItem(MessageView_Loaded, ViewModel.MessageViewCommand, message, Strings.Resources.ShowInChat, new FontIcon { Glyph = Icons.Message });
-            flyout.CreateFlyoutItem(MessageDelete_Loaded, ViewModel.MessageDeleteCommand, message, Strings.Resources.Delete, new FontIcon { Glyph = Icons.Delete });
-            flyout.CreateFlyoutItem(MessageForward_Loaded, ViewModel.MessageForwardCommand, message, Strings.Resources.Forward, new FontIcon { Glyph = Icons.Forward });
-            flyout.CreateFlyoutItem(MessageSelect_Loaded, ViewModel.MessageSelectCommand, message, Strings.Additional.Select, new FontIcon { Glyph = Icons.Select });
-            flyout.CreateFlyoutItem(MessageSave_Loaded, ViewModel.MessageSaveCommand, message, Strings.Additional.SaveAs, new FontIcon { Glyph = Icons.SaveAs });
+            var selected = ViewModel.SelectedItems;
+            if (selected.Count > 0)
+            {
+                if (selected.Contains(message))
+                {
+                    //TODO: New feature for later. ;) Needs Translation (Beta guys)
+                    //flyout.CreateFlyoutItem(ViewModel.MessagesForwardCommand, "Forward Selected", new FontIcon { Glyph = Icons.Share });
+                    //flyout.CreateFlyoutItem(ViewModel.MessagesDeleteCommand, "Delete Selected", new FontIcon { Glyph = Icons.Delete });
+                    //flyout.CreateFlyoutItem(ViewModel.MessagesUnselectCommand, "Clear Selection");
+                }
+                else
+                {
+                    flyout.CreateFlyoutItem(MessageSelect_Loaded, ViewModel.MessageSelectCommand, message, Strings.Additional.Select, new FontIcon { Glyph = Icons.Select });
+                }
+            }
+            else
+            {
 
+                flyout.CreateFlyoutItem(MessageView_Loaded, ViewModel.MessageViewCommand, message, Strings.Resources.ShowInChat, new FontIcon { Glyph = Icons.Message });
+                flyout.CreateFlyoutItem(MessageDelete_Loaded, ViewModel.MessageDeleteCommand, message, Strings.Resources.Delete, new FontIcon { Glyph = Icons.Delete });
+                flyout.CreateFlyoutItem(MessageForward_Loaded, ViewModel.MessageForwardCommand, message, Strings.Resources.Forward, new FontIcon { Glyph = Icons.Forward });
+                flyout.CreateFlyoutItem(MessageSelect_Loaded, ViewModel.MessageSelectCommand, message, Strings.Additional.Select, new FontIcon { Glyph = Icons.Select });
+                flyout.CreateFlyoutItem(MessageSave_Loaded, ViewModel.MessageSaveCommand, message, Strings.Additional.SaveAs, new FontIcon { Glyph = Icons.SaveAs });
+            }
+            
             args.ShowAt(flyout, element);
         }
 
@@ -479,6 +498,10 @@ namespace Unigram.Views.Chats
             args.ItemContainer.Tag = args.Item;
 
             var message = args.Item as Message;
+            if (message == null)
+            {
+                return;
+            }
             if (args.ItemContainer.ContentTemplateRoot is SimpleHyperlinkButton hyperlink)
             {
                 if (message.Content is MessagePhoto photoMessage)
@@ -752,35 +775,36 @@ namespace Unigram.Views.Chats
                 return;
             }
 
-            if (ScrollingMedia.ItemsPanelRoot != null)
+            if (ScrollingMedia?.ItemsPanelRoot != null)
             {
                 ScrollingMedia.ItemsPanelRoot.MinHeight = e.NewSize.Height + 12;
                 ScrollingMedia.GetScrollViewer().ChangeView(null, 12, null, true);
             }
 
-            if (ScrollingFiles.ItemsPanelRoot != null)
+            if (ScrollingFiles?.ItemsPanelRoot != null)
             {
                 ScrollingFiles.ItemsPanelRoot.MinHeight = e.NewSize.Height + 12;
                 ScrollingFiles.GetScrollViewer().ChangeView(null, 12, null, true);
             }
 
-            if (ScrollingLinks.ItemsPanelRoot != null)
+            if (ScrollingLinks?.ItemsPanelRoot != null)
             {
                 ScrollingLinks.ItemsPanelRoot.MinHeight = e.NewSize.Height + 12;
                 ScrollingLinks.GetScrollViewer().ChangeView(null, 12, null, true);
             }
 
-            if (ScrollingMusic.ItemsPanelRoot != null)
+            if (ScrollingMusic?.ItemsPanelRoot != null)
             {
                 ScrollingMusic.ItemsPanelRoot.MinHeight = e.NewSize.Height + 12;
                 ScrollingMusic.GetScrollViewer().ChangeView(null, 12, null, true);
             }
 
-            if (ScrollingVoice.ItemsPanelRoot != null)
+            if (ScrollingVoice?.ItemsPanelRoot != null)
             {
                 ScrollingVoice.ItemsPanelRoot.MinHeight = e.NewSize.Height + 12;
                 ScrollingVoice.GetScrollViewer().ChangeView(null, 12, null, true);
             }
+            //TODO: Animations...
         }
 
         private void Tab_SizeChanged(object sender, SizeChangedEventArgs e)

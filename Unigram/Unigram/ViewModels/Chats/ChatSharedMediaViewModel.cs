@@ -379,6 +379,16 @@ namespace Unigram.ViewModels.Chats
 
         #endregion
 
+        #region Unselect
+
+        public RelayCommand MessagesUnselectCommand { get; }
+        private void MessagesUnselectExecute()
+        {
+            SelectionMode = ListViewSelectionMode.None;
+        }
+
+        #endregion
+
         #region Delegate
 
         public bool CanBeDownloaded(MessageViewModel message)
