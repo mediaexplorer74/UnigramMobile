@@ -226,7 +226,7 @@ namespace Unigram.Services.Factories
                     {
                         InputFile = generated,
                         Type = new FileTypeSticker(),
-                        Delegate = (inputFile, caption) => new InputMessageSticker(inputFile, null, width, height)
+                        Delegate = (inputFile, caption) => new InputMessageSticker(inputFile, null, width, height, string.Empty)
                     };
                 }
                 catch
@@ -243,11 +243,14 @@ namespace Unigram.Services.Factories
                 var props = await file.Properties.GetMusicPropertiesAsync();
                 var duration = (int)props.Duration.TotalSeconds;
 
+                var title = props.Title;
+                var performer = string.IsNullOrEmpty(props.AlbumArtist) ? props.Artist : props.AlbumArtist;
+
                 return new InputMessageFactory
                 {
                     InputFile = generated,
                     Type = new FileTypeAudio(),
-                    Delegate = (inputFile, caption) => new InputMessageAudio(inputFile, thumbnail, duration, props.Title, props.AlbumArtist, caption)
+                    Delegate = (inputFile, caption) => new InputMessageAudio(inputFile, thumbnail, duration, title, performer, caption)
                 };
             }
 
