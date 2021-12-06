@@ -194,7 +194,7 @@ namespace Unigram.Common
 
                 if (ApiInfo.HasStatusBar)
                 {
-                    TLWindowContext.GetForCurrentView().UpdateTitleBar();
+                    TLWindowContext.GetForCurrentView()?.UpdateTitleBar();
                 }
             }
             catch { }
