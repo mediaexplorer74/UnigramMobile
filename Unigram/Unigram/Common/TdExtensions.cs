@@ -1305,6 +1305,16 @@ namespace Unigram.Common
             return false;
         }
 
+        public static bool IsUser(this MessageSender sender, long userId)
+        {
+            return sender is MessageSenderUser user && user.UserId == userId;
+        }
+
+        public static bool IsChat(this MessageSender sender, long chatId)
+        {
+            return sender is MessageSenderChat chat && chat.ChatId == chatId;
+        }
+
         public static bool IsSaved(this Message message, long savedMessagesId)
         {
             if (message.ForwardInfo?.Origin is MessageForwardOriginUser fromUser)
