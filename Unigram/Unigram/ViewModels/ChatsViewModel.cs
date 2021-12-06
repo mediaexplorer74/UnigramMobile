@@ -390,9 +390,9 @@ namespace Unigram.ViewModels
                     }
                     else
                     {
-                        if (delete.Type is ChatTypePrivate && check)
+                        if (delete.Type is ChatTypePrivate privata && check)
                         {
-                            await ProtoService.SendAsync(new ToggleChatIsBlocked(delete.Id, true));
+                            await ProtoService.SendAsync(new ToggleMessageSenderIsBlocked(new MessageSenderUser(privata.UserId), true));
                         }
 
                         ProtoService.Send(new DeleteChatHistory(delete.Id, true, false));
