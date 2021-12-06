@@ -174,10 +174,10 @@ namespace Unigram
                 dialog.Closing -= handler;
 
                 // This is a rare case, but it can happen.
-                var content = Window.Current.Content;
-                if (content != null)
+                var contentInner = Window.Current.Content;
+                if (contentInner != null)
                 {
-                    content.Visibility = Visibility.Visible;
+                    contentInner.Visibility = Visibility.Visible;
                 }
             };
 
