@@ -136,20 +136,20 @@ namespace Unigram.Converters
 
                 if (dateDay == day && year == dateYear)
                 {
-                    return string.Format(Strings.Resources.LastSeenFormatted, string.Format(Strings.Resources.TodayAtFormatted, Converter.ShortTime.Format(online)));
+                    return string.Format(Strings.Resources.LastSeenFormatted, string.Format(Strings.Resources.TodayAtFormatted, BindConvert.Current.ShortTime.Format(online)));
                 }
                 else if (dateDay + 1 == day && year == dateYear)
                 {
-                    return string.Format(Strings.Resources.LastSeenFormatted, string.Format(Strings.Resources.YesterdayAtFormatted, Converter.ShortTime.Format(online)));
+                    return string.Format(Strings.Resources.LastSeenFormatted, string.Format(Strings.Resources.YesterdayAtFormatted, BindConvert.Current.ShortTime.Format(online)));
                 }
                 else if (Math.Abs(DateTime.Now.ToTimestamp() / 1000 - date) < 31536000000L)
                 {
-                    string format = string.Format(Strings.Resources.formatDateAtTime, online.ToString(Strings.Resources.formatterMonth), Converter.ShortTime.Format(online));
+                    string format = string.Format(Strings.Resources.formatDateAtTime, online.ToString(Strings.Resources.formatterMonth), BindConvert.Current.ShortTime.Format(online));
                     return string.Format(Strings.Resources.LastSeenDateFormatted, format);
                 }
                 else
                 {
-                    string format = string.Format(Strings.Resources.formatDateAtTime, online.ToString(Strings.Resources.formatterYear), Converter.ShortTime.Format(online));
+                    string format = string.Format(Strings.Resources.formatDateAtTime, online.ToString(Strings.Resources.formatterYear), BindConvert.Current.ShortTime.Format(online));
                     return string.Format(Strings.Resources.LastSeenDateFormatted, format);
                 }
             }

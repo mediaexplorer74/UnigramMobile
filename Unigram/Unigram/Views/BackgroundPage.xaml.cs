@@ -235,7 +235,7 @@ namespace Unigram.Views
 
         #region Delegates
 
-        public void UpdateBackground(Background wallpaper)
+        public async void UpdateBackground(Background wallpaper)
         {
             if (wallpaper == null)
             {
