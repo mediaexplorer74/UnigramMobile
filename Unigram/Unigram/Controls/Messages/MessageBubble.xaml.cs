@@ -1251,27 +1251,27 @@ namespace Unigram.Controls.Messages
                 span.Inlines.Add(new Run { Text = text.Substring(previous) });
             }
 
-            if (string.IsNullOrWhiteSpace(_query))
-            {
-                Message.TextHighlighters.Clear();
-            }
-            else
-            {
-                var find = text.IndexOf(_query, StringComparison.OrdinalIgnoreCase);
-                if (find != -1)
-                {
-                    var highligher = new TextHighlighter();
-                    highligher.Foreground = new SolidColorBrush(Colors.White);
-                    highligher.Background = new SolidColorBrush(Colors.Orange);
-                    highligher.Ranges.Add(new TextRange { StartIndex = find, Length = _query.Length });
+            //if (string.IsNullOrWhiteSpace(_query))
+            //{
+            //    Message.TextHighlighters.Clear();
+            //}
+            //else
+            //{
+            //    var find = text.IndexOf(_query, StringComparison.OrdinalIgnoreCase);
+            //    if (find != -1)
+            //    {
+            //        var highligher = new TextHighlighter();
+            //        highligher.Foreground = new SolidColorBrush(Colors.White);
+            //        highligher.Background = new SolidColorBrush(Colors.Orange);
+            //        highligher.Ranges.Add(new TextRange { StartIndex = find, Length = _query.Length });
 
-                    Message.TextHighlighters.Add(highligher);
-                }
-                else
-                {
-                    Message.TextHighlighters.Clear();
-                }
-            }
+            //        Message.TextHighlighters.Add(highligher);
+            //    }
+            //    else
+            //    {
+            //        Message.TextHighlighters.Clear();
+            //    }
+            //}
 
             if (AdjustEmojis(span, text))
             {
