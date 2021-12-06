@@ -575,6 +575,6 @@ namespace Unigram.Controls
         public event EventHandler<double> PositionChanged;
         public event EventHandler<int> IndexChanged;
 
-        public IReadOnlyDictionary<int, int> ColorReplacements { get; set; }
+        public IReadOnlyDictionary<uint, uint> ColorReplacements { get; set; }
     }
 }
