@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices;
+//using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Unigram.Common;
@@ -12,7 +12,7 @@ using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Media;
 using Windows.Media.Capture;
-using Windows.Media.Capture.Frames;
+//using Windows.Media.Capture.Frames;
 using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
@@ -465,7 +465,7 @@ namespace Unigram.Controls.Chats
             public event EventHandler RecordingStopped;
             public event EventHandler RecordingTooShort;
 
-            public event EventHandler<float[]> QuantumProcessed;
+            //public event EventHandler<float[]> QuantumProcessed;
 
             [ThreadStatic]
             private static Recorder _current;
@@ -479,7 +479,7 @@ namespace Unigram.Controls.Chats
             private Chat _chat;
             private DateTime _start;
 
-            private MediaFrameReader _reader;
+            //private MediaFrameReader _reader;
 
             public Recorder()
             {
@@ -558,13 +558,13 @@ namespace Unigram.Controls.Chats
                     {
                         Logger.Debug(Target.Recording, "Failed to initialize devices, abort: " + ex);
 
-                        if (_reader != null)
-                        {
-                            _reader.FrameArrived -= OnAudioFrameArrived;
+                        //if (_reader != null)
+                        //{
+                        //    _reader.FrameArrived -= OnAudioFrameArrived;
 
-                            _reader.Dispose();
-                            _reader = null;
-                        }
+                        //    _reader.Dispose();
+                        //    _reader = null;
+                        //}
 
                         _recorder?.Dispose();
                         _recorder = null;
@@ -578,152 +578,159 @@ namespace Unigram.Controls.Chats
                     RecordingStarted?.Invoke(this, EventArgs.Empty);
                 });
             }
-
-            public async Task InitializeQuantumAsync()
+            private async void RotationHelper_OrientationChanged(object sender, bool updatePreview)
             {
-                var test = _recorder.m_mediaCapture.FrameSources.ToArray();
-
-                var frameSource = _recorder.m_mediaCapture.FrameSources.FirstOrDefault(x => x.Value.Info.MediaStreamType == MediaStreamType.Audio);
-                if (frameSource.Value == null)
+                if (updatePreview)
                 {
-                    Logger.Info("No audio frame source was found.");
-                    return;
+                    await _recorder.SetPreviewRotationAsync();
                 }
-
-                var format = frameSource.Value.CurrentFormat;
-                if (format.Subtype != MediaEncodingSubtypes.Float)
-                {
-                    Logger.Info("No audio frame source was found.");
-                    return;
-                }
-
-                if (/*format.AudioEncodingProperties.ChannelCount != 1 ||*/ format.AudioEncodingProperties.SampleRate != 48000)
-                {
-                    Logger.Info("No audio frame source was found.");
-                    return;
-                }
-
-                var mediaFrameReader = await _recorder.m_mediaCapture.CreateFrameReaderAsync(frameSource.Value);
-
-                // Optionally set acquisition mode. Buffered is the default mode for audio.
-                mediaFrameReader.AcquisitionMode = MediaFrameReaderAcquisitionMode.Realtime;
-                mediaFrameReader.FrameArrived += OnAudioFrameArrived;
-
-                var status = await mediaFrameReader.StartAsync();
-                if (status != MediaFrameReaderStartStatus.Success)
-                {
-                    Logger.Info("The MediaFrameReader couldn't start.");
-                }
-
-                _reader = mediaFrameReader;
             }
 
-            private const int BUFFER_SIZE = 1024;
-            private const int MAX_BUFFER_SIZE = BUFFER_SIZE * 8;
-            private readonly FastFourierTransform _fft = new FastFourierTransform(BUFFER_SIZE, 48000);
-            private int _lastUpdateTime;
+            //public async Task InitializeQuantumAsync()
+            //{
+            //    var test = _recorder.m_mediaCapture.FrameSources.ToArray();
 
-            [ComImport]
-            [Guid("5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D")]
-            [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-            unsafe interface IMemoryBufferByteAccess
-            {
-                void GetBuffer(out byte* buffer, out uint capacity);
-            }
+            //    var frameSource = _recorder.m_mediaCapture.FrameSources.FirstOrDefault(x => x.Value.Info.MediaStreamType == MediaStreamType.Audio);
+            //    if (frameSource.Value == null)
+            //    {
+            //        Logger.Info("No audio frame source was found.");
+            //        return;
+            //    }
 
-            private unsafe void OnAudioFrameArrived(MediaFrameReader sender, MediaFrameArrivedEventArgs args)
-            {
-                using var reference = sender.TryAcquireLatestFrame();
-                if (reference == null)
-                {
-                    return;
-                }
+            //    var format = frameSource.Value.CurrentFormat;
+            //    if (format.Subtype != MediaEncodingSubtypes.Float)
+            //    {
+            //        Logger.Info("No audio frame source was found.");
+            //        return;
+            //    }
 
-                if (Environment.TickCount - _lastUpdateTime < 64)
-                {
-                    return;
-                }
+            //    if (/*format.AudioEncodingProperties.ChannelCount != 1 ||*/ format.AudioEncodingProperties.SampleRate != 48000)
+            //    {
+            //        Logger.Info("No audio frame source was found.");
+            //        return;
+            //    }
 
-                _lastUpdateTime = Environment.TickCount;
+            //    var mediaFrameReader = await _recorder.m_mediaCapture.CreateFrameReaderAsync(frameSource.Value);
 
-                using var frame = reference.AudioMediaFrame.GetAudioFrame();
+            //    // Optionally set acquisition mode. Buffered is the default mode for audio.
+            //    mediaFrameReader.AcquisitionMode = MediaFrameReaderAcquisitionMode.Realtime;
+            //    mediaFrameReader.FrameArrived += OnAudioFrameArrived;
 
-                using var audioBuffer = frame.LockBuffer(AudioBufferAccessMode.Read);
-                using var bufferReference = audioBuffer.CreateReference();
+            //    var status = await mediaFrameReader.StartAsync();
+            //    if (status != MediaFrameReaderStartStatus.Success)
+            //    {
+            //        Logger.Info("The MediaFrameReader couldn't start.");
+            //    }
 
-                // Get the buffer from the AudioFrame
-                ((IMemoryBufferByteAccess)bufferReference).GetBuffer(out byte* buffer, out uint capacity);
+            //    _reader = mediaFrameReader;
+            //}
 
-                if (capacity < BUFFER_SIZE /*> MAX_BUFFER_SIZE || len == 0*/)
-                {
-                    //audioUpdateHandler.removeCallbacksAndMessages(null);
-                    //audioVisualizerDelegate.onVisualizerUpdate(false, true, null);
-                    return;
-                    //                len = MAX_BUFFER_SIZE;
-                    //                byte[] bytes = new byte[BUFFER_SIZE];
-                    //                buffer.get(bytes);
-                    //                byteBuffer.put(bytes, 0, BUFFER_SIZE);
-                }
-                else
-                {
-                    //byteBuffer.put(buffer);
-                }
+            //private const int BUFFER_SIZE = 1024;
+            //private const int MAX_BUFFER_SIZE = BUFFER_SIZE * 8;
+            //private readonly FastFourierTransform _fft = new FastFourierTransform(BUFFER_SIZE, 48000);
+            //private int _lastUpdateTime;
 
-                capacity = BUFFER_SIZE;
+            //[ComImport]
+            //[Guid("5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D")]
+            //[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+            //unsafe interface IMemoryBufferByteAccess
+            //{
+            //    void GetBuffer(out byte* buffer, out uint capacity);
+            //}
 
-                _fft.Forward((short*)buffer, BUFFER_SIZE);
+            //private unsafe void OnAudioFrameArrived(MediaFrameReader sender, MediaFrameArrivedEventArgs args)
+            //{
+            //    using var reference = sender.TryAcquireLatestFrame();
+            //    if (reference == null)
+            //    {
+            //        return;
+            //    }
 
-                float sum = 0;
-                for (int i = 0; i < capacity; i++)
-                {
-                    float r = _fft.SpectrumReal[i];
-                    float img = _fft.SpectrumImaginary[i];
-                    float peak = (float)MathF.Sqrt(r * r + img * img) / 30f;
-                    if (peak > 1f)
-                    {
-                        peak = 1f;
-                    }
-                    else if (peak < 0)
-                    {
-                        peak = 0;
-                    }
-                    sum += peak * peak;
-                }
-                float amplitude = MathF.Sqrt(sum / capacity);
+            //    if (Environment.TickCount - _lastUpdateTime < 64)
+            //    {
+            //        return;
+            //    }
 
-                float[] partsAmplitude = new float[7];
-                partsAmplitude[6] = amplitude;
-                if (amplitude < 0.4f)
-                {
-                    for (int k = 0; k < 7; k++)
-                    {
-                        partsAmplitude[k] = 0;
-                    }
-                }
-                else
-                {
-                    int part = (int)capacity / 6;
+            //    _lastUpdateTime = Environment.TickCount;
 
-                    for (int k = 0; k < 6; k++)
-                    {
-                        int start = part * k;
-                        float r = _fft.SpectrumReal[start];
-                        float img = _fft.SpectrumImaginary[start];
-                        partsAmplitude[k] = MathF.Sqrt(r * r + img * img) / 30f;
+            //    using var frame = reference.AudioMediaFrame.GetAudioFrame();
 
-                        if (partsAmplitude[k] > 1f)
-                        {
-                            partsAmplitude[k] = 1f;
-                        }
-                        else if (partsAmplitude[k] < 0)
-                        {
-                            partsAmplitude[k] = 0;
-                        }
-                    }
-                }
+            //    using var audioBuffer = frame.LockBuffer(AudioBufferAccessMode.Read);
+            //    using var bufferReference = audioBuffer.CreateReference();
 
-                QuantumProcessed?.Invoke(this, partsAmplitude);
-            }
+            //    // Get the buffer from the AudioFrame
+            //    ((IMemoryBufferByteAccess)bufferReference).GetBuffer(out byte* buffer, out uint capacity);
+
+            //    if (capacity < BUFFER_SIZE /*> MAX_BUFFER_SIZE || len == 0*/)
+            //    {
+            //        //audioUpdateHandler.removeCallbacksAndMessages(null);
+            //        //audioVisualizerDelegate.onVisualizerUpdate(false, true, null);
+            //        return;
+            //        //                len = MAX_BUFFER_SIZE;
+            //        //                byte[] bytes = new byte[BUFFER_SIZE];
+            //        //                buffer.get(bytes);
+            //        //                byteBuffer.put(bytes, 0, BUFFER_SIZE);
+            //    }
+            //    else
+            //    {
+            //        //byteBuffer.put(buffer);
+            //    }
+
+            //    capacity = BUFFER_SIZE;
+
+            //    _fft.Forward((short*)buffer, BUFFER_SIZE);
+
+            //    float sum = 0;
+            //    for (int i = 0; i < capacity; i++)
+            //    {
+            //        float r = _fft.SpectrumReal[i];
+            //        float img = _fft.SpectrumImaginary[i];
+            //        float peak = (float)MathF.Sqrt(r * r + img * img) / 30f;
+            //        if (peak > 1f)
+            //        {
+            //            peak = 1f;
+            //        }
+            //        else if (peak < 0)
+            //        {
+            //            peak = 0;
+            //        }
+            //        sum += peak * peak;
+            //    }
+            //    float amplitude = MathF.Sqrt(sum / capacity);
+
+            //    float[] partsAmplitude = new float[7];
+            //    partsAmplitude[6] = amplitude;
+            //    if (amplitude < 0.4f)
+            //    {
+            //        for (int k = 0; k < 7; k++)
+            //        {
+            //            partsAmplitude[k] = 0;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        int part = (int)capacity / 6;
+
+            //        for (int k = 0; k < 6; k++)
+            //        {
+            //            int start = part * k;
+            //            float r = _fft.SpectrumReal[start];
+            //            float img = _fft.SpectrumImaginary[start];
+            //            partsAmplitude[k] = MathF.Sqrt(r * r + img * img) / 30f;
+
+            //            if (partsAmplitude[k] > 1f)
+            //            {
+            //                partsAmplitude[k] = 1f;
+            //            }
+            //            else if (partsAmplitude[k] < 0)
+            //            {
+            //                partsAmplitude[k] = 0;
+            //            }
+            //        }
+            //    }
+
+            //    QuantumProcessed?.Invoke(this, partsAmplitude);
+            //}
 
             public async void Stop(DialogViewModel viewModel, bool cancel)
             {
@@ -738,7 +745,7 @@ namespace Unigram.Controls.Chats
                     var mode = _mode;
                     var chat = _chat;
 
-                    var reader = _reader;
+                    //var reader = _reader;
 
                     if (recorder == null || file == null || chat == null)
                     {
@@ -751,17 +758,17 @@ namespace Unigram.Controls.Chats
                     var now = DateTime.Now;
                     var elapsed = now - _start;
 
-                    Logger.Debug(LogTarget.Recording, "stopping reader");
+                    //Logger.Debug(LogTarget.Recording, "stopping reader");
 
-                    if (reader != null)
-                    {
-                        reader.FrameArrived -= OnAudioFrameArrived;
-                        reader.Dispose();
+                    //if (reader != null)
+                    //{
+                    //    reader.FrameArrived -= OnAudioFrameArrived;
+                    //    reader.Dispose();
 
-                        QuantumProcessed?.Invoke(this, null);
-                    }
+                    //    QuantumProcessed?.Invoke(this, null);
+                    //}
 
-                    Logger.Debug(LogTarget.Recording, "stopping recorder, elapsed " + elapsed);
+                    Logger.Debug(Target.Recording, "stopping recorder, elapsed " + elapsed);
 
                     await recorder.StopAsync();
 
@@ -792,7 +799,7 @@ namespace Unigram.Controls.Chats
                     _recorder = null;
                     _file = null;
 
-                    _reader = null;
+                    //_reader = null;
                 });
             }
 
