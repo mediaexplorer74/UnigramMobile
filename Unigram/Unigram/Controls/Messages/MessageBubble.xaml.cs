@@ -1429,7 +1429,7 @@ namespace Unigram.Controls.Messages
             }
 
             var message = _message;
-            if (message == null || e.PreviousSize.Width < 1 || e.PreviousSize.Height < 1)
+            if (message == null)
             {
                 return;
             }
