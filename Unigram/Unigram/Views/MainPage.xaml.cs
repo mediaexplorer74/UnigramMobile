@@ -1542,7 +1542,7 @@ namespace Unigram.Views
             }
 #if !STORE
             // Check for updates after 14 days of installation (performance impact! - I do not want to introduce a static variable)
-            if ((DateTime.Now - Windows.ApplicationModel.Package.Current.InstalledDate).TotalDays > 0
+            if ((DateTime.Now - Windows.ApplicationModel.Package.Current.InstalledDate).TotalDays > 14
                 // Get the last message from the update channel and compare the dates with the installation date.
                 && await UpdateAvailableAsync() is string updateText)
             {
