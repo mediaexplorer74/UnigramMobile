@@ -1349,11 +1349,11 @@ namespace Unigram.Services
                     value.ActionBar = updateChatActionBar.ActionBar;
                 }
             }
-            else if (update is UpdateChatAllowSavingContent updateChatAllowSavingContent)
+            else if (update is UpdateChatHasProtectedContent updateChatHasProtectedContent)
             {
-                if (_chats.TryGetValue(updateChatAllowSavingContent.ChatId, out Chat value))
+                if (_chats.TryGetValue(updateChatHasProtectedContent.ChatId, out Chat value))
                 {
-                    value.AllowSavingContent = updateChatAllowSavingContent.AllowSavingContent;
+                    value.HasProtectedContent = updateChatHasProtectedContent.HasProtectedContent;
                 }
             }
             else if (update is UpdateChatDefaultDisableNotification updateChatDefaultDisableNotification)
