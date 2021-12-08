@@ -81,6 +81,7 @@ namespace Unigram.ViewModels.Chats
 
         public void Handle(UpdateDeleteMessages update)
         {
+            //TODO: Does not work (yet)
             if (update.ChatId == _chat?.Id && !update.FromCache)
             {
                 var table = update.MessageIds.ToImmutableHashSet();
