@@ -40,11 +40,11 @@ namespace Unigram.Controls.Cells
 
             if (string.IsNullOrEmpty(data.FileName))
             {
-                if (_protoService.TryGetUser(message.Sender, out User user))
+                if (_protoService.TryGetUser(message.SenderId, out User user))
                 {
                     Title.Text = user.GetFullName();
                 }
-                else if (_protoService.TryGetChat(message.Sender, out Chat chat))
+                else if (_protoService.TryGetChat(message.SenderId, out Chat chat))
                 {
                     Title.Text = chat.Title;
                 }
@@ -65,7 +65,7 @@ namespace Unigram.Controls.Cells
             else
             {
                 Texture.Background = null;
-                Button.Style = BootStrapper.Current.Resources["InlineFileButtonStyle"] as Style;
+                Button.Style = App.Current.Resources["InlineFileButtonStyle"] as Style;
             }
 
             UpdateFile(message, data.File);
@@ -137,13 +137,13 @@ namespace Unigram.Controls.Cells
 
                 try
                 {
-                    Texture.Background = new ImageBrush { ImageSource = new BitmapImage(UriEx.ToLocal(file.Local.Path)) { DecodePixelWidth = width, DecodePixelHeight = height }, Stretch = Stretch.UniformToFill, AlignmentX = AlignmentX.Center, AlignmentY = AlignmentY.Center };
-                    Button.Style = BootStrapper.Current.Resources["ImmersiveFileButtonStyle"] as Style;
+                    Texture.Background = new ImageBrush { ImageSource = new BitmapImage(UriEx.GetLocal(file.Local.Path)) { DecodePixelWidth = width, DecodePixelHeight = height }, Stretch = Stretch.UniformToFill, AlignmentX = AlignmentX.Center, AlignmentY = AlignmentY.Center };
+                    Button.Style = App.Current.Resources["ImmersiveFileButtonStyle"] as Style;
                 }
                 catch
                 {
                     Texture.Background = null;
-                    Button.Style = BootStrapper.Current.Resources["InlineFileButtonStyle"] as Style;
+                    Button.Style = App.Current.Resources["InlineFileButtonStyle"] as Style;
                 }
             }
             else if (file.Local.CanBeDownloaded && !file.Local.IsDownloadingActive)
@@ -151,7 +151,7 @@ namespace Unigram.Controls.Cells
                 _protoService.DownloadFile(file.Id, 1);
 
                 Texture.Background = null;
-                Button.Style = BootStrapper.Current.Resources["InlineFileButtonStyle"] as Style;
+                Button.Style = App.Current.Resources["InlineFileButtonStyle"] as Style;
             }
         }
 
@@ -216,13 +216,12 @@ namespace Unigram.Controls.Cells
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var data = _message.GetFileAndName(false);
-            if (data.File == null)
+            var file = _message.GetFile();
+            if (file == null)
             {
                 return;
             }
 
-            var file = data.File;
             if (file.Local.IsDownloadingActive)
             {
                 _protoService.Send(new CancelDownloadFile(file.Id, false));

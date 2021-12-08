@@ -1291,11 +1291,13 @@ namespace Unigram.Views
 
             MasterDetail.BackgroundOpacity =
                 e.SourcePageType == typeof(ChatPage) ||
+                e.SourcePageType == typeof(ChatPinnedPage) ||
                 e.SourcePageType == typeof(ChatThreadPage) ||
                 e.SourcePageType == typeof(ChatScheduledPage) ||
                 e.SourcePageType == typeof(ChatEventLogPage) ||
                 e.SourcePageType == typeof(BlankPage) ||
                 frame.CurrentSourcePageType == typeof(ChatPage) ||
+                frame.CurrentSourcePageType == typeof(ChatPinnedPage) ||
                 frame.CurrentSourcePageType == typeof(ChatThreadPage) ||
                 frame.CurrentSourcePageType == typeof(ChatScheduledPage) ||
                 frame.CurrentSourcePageType == typeof(ChatEventLogPage) ||
