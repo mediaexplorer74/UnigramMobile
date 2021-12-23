@@ -232,7 +232,7 @@ namespace Unigram.ViewModels
 
         private Message CreateMessage(long chatId, bool isChannel, ChatEvent chatEvent, bool child = false)
         {
-            MessageSender sender = new MessageSenderUser(chatEvent.UserId);
+            MessageSender sender = chatEvent.MemberId;
 
             if (child)
             {
@@ -282,9 +282,12 @@ namespace Unigram.ViewModels
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatAddMembers(new[] { memberInvited.UserId });
                         break;
-                    case ChatEventMemberJoinedByInviteLink memberJoinedByInviteLink:
-                        message = GetMessage(_chat.Id, channel, item);
-                        message.Content = new MessageChatAddMembers(new[] { item.UserId });
+                    case ChatEventMemberJoinedByInviteLink:
+                        if (item.MemberId is MessageSenderUser invitedUser)
+                        {
+                            message = GetMessage(_chat.Id, channel, item);
+                            message.Content = new MessageChatAddMembers(new[] { invitedUser.UserId });
+                        }
                         break;
                     case ChatEventSlowModeDelayChanged slowModeDelayChanged:
                     case ChatEventPermissionsChanged permissionsChanged:
@@ -294,6 +297,7 @@ namespace Unigram.ViewModels
                         //message.Content = new MessageChatEvent(item, true);
                         message.Content = GetMessageContent(item, channel);
                         break;
+                    case ChatEventHasProtectedContentToggled hasProtectedContentToggled:
                     case ChatEventSignMessagesToggled signMessagesToggled:
                     case ChatEventStickerSetChanged stickerSetChanged:
                     case ChatEventInvitesToggled invitesToggled:
@@ -313,9 +317,12 @@ namespace Unigram.ViewModels
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatEvent(item);
                         break;
-                    case ChatEventMemberLeft memberLeft:
-                        message = GetMessage(_chat.Id, channel, item);
-                        message.Content = new MessageChatDeleteMember(item.UserId);
+                    case ChatEventMemberLeft:
+                        if (item.MemberId is MessageSenderUser leftUser)
+                        {
+                            message = GetMessage(_chat.Id, channel, item);
+                            message.Content = new MessageChatDeleteMember(leftUser.UserId);
+                        }
                         break;
                     case ChatEventDescriptionChanged descriptionChanged:
                     case ChatEventUsernameChanged usernameChanged:
@@ -340,9 +347,12 @@ namespace Unigram.ViewModels
 
                         message.Content = new MessageChatChangePhoto(photoChanged.NewPhoto);
                         break;
-                    case ChatEventMemberJoined memberJoined:
-                        message = GetMessage(_chat.Id, channel, item);
-                        message.Content = new MessageChatAddMembers(new long[] { item.UserId });
+                    case ChatEventMemberJoined:
+                        if (item.MemberId is MessageSenderUser joinedUser)
+                        {
+                            message = GetMessage(_chat.Id, channel, item);
+                            message.Content = new MessageChatAddMembers(new long[] { joinedUser.UserId });
+                        }
                         break;
                     case ChatEventTitleChanged titleChanged:
                         message = GetMessage(_chat.Id, channel, item);

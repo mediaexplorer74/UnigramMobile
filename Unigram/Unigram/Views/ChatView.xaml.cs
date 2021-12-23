@@ -3296,11 +3296,11 @@ namespace Unigram.Views
 
             Call.Visibility = Visibility.Collapsed;
 
-            UpdateChatDefaultMessageSenderId(chat, chat.DefaultMessageSenderId);
+            UpdateChatMessageSender(chat, chat.DefaultMessageSenderId);
             UpdateChatPermissions(chat);
         }
 
-        public void UpdateChatDefaultMessageSenderId(Chat chat, MessageSender defaultMessageSenderId)
+        public void UpdateChatMessageSender(Chat chat, MessageSender defaultMessageSenderId)
         {
             if (defaultMessageSenderId == null)
             {

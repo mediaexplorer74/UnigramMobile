@@ -1359,11 +1359,11 @@ namespace Unigram.Services
                     value.DefaultDisableNotification = updateChatDefaultDisableNotification.DefaultDisableNotification;
                 }
             }
-            else if (update is UpdateChatDefaultMessageSenderId updateChatDefaultMessageSenderId)
+            else if (update is UpdateChatMessageSender updateChatMessageSender)
             {
-                if (_chats.TryGetValue(updateChatDefaultMessageSenderId.ChatId, out Chat value))
+                if (_chats.TryGetValue(updateChatMessageSender.ChatId, out Chat value))
                 {
-                    value.DefaultMessageSenderId = updateChatDefaultMessageSenderId.DefaultMessageSenderId;
+                    value.MessageSenderId = updateChatMessageSender.MessageSenderId;
                 }
             }
             else if (update is UpdateChatDraftMessage updateChatDraftMessage)

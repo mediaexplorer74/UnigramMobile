@@ -22,7 +22,7 @@ namespace Unigram.ViewModels
         IHandle<UpdateChatReadInbox>,
         //IHandle<UpdateChatDraftMessage>,
         IHandle<UpdateChatDefaultDisableNotification>,
-        //IHandle<UpdateChatDefaultMessageSenderId>, //TODO: Cool stuff for the future. ;)
+        IHandle<UpdateChatMessageSender>,
         IHandle<UpdateChatActionBar>,
         IHandle<UpdateChatHasScheduledMessages>,
 
@@ -360,11 +360,11 @@ namespace Unigram.ViewModels
             }
         }
 
-        public void Handle(UpdateChatDefaultMessageSenderId update)
+        public void Handle(UpdateChatMessageSender update)
         {
             if (update.ChatId == _chat?.Id)
             {
-                BeginOnUIThread(() => Delegate?.UpdateChatDefaultMessageSenderId(_chat, update.DefaultMessageSenderId));
+                BeginOnUIThread(() => Delegate?.UpdateChatMessageSender(_chat, update.MessageSenderId));
             }
         }
 
