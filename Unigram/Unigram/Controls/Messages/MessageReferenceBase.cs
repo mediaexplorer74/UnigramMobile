@@ -689,7 +689,7 @@ namespace Unigram.Controls.Messages
             HideThumbnail();
 
             SetTitle(string.Empty);
-            SetService(message == null ? Strings.Additional.DeletedMessage : string.Empty);
+            SetService(message == null ? Strings.Resources.lng_deleted_message : string.Empty);
             SetMessage(string.Empty);
             return true;
         }

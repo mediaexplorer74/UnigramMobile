@@ -545,7 +545,7 @@
 
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsReplaceEmojiEnabled, Mode=TwoWay}"
-                        Header="{CustomResource Additional.ReplaceEmoji}"
+                        Header="{CustomResource lng_settings_replace_emojis}"
                         Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
 

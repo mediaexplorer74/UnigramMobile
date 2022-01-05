@@ -2111,14 +2111,14 @@ namespace Unigram.Views
                 flyout.CreateFlyoutItem(MessageForward_Loaded, ViewModel.MessageForwardCommand, message, Strings.Resources.Forward, new FontIcon { Glyph = Icons.Forward });
                 flyout.CreateFlyoutItem(MessageReport_Loaded, ViewModel.MessageReportCommand, message, Strings.Resources.ReportChat, new FontIcon { Glyph = Icons.Report });
                 flyout.CreateFlyoutItem(MessageDelete_Loaded, ViewModel.MessageDeleteCommand, message, Strings.Resources.Delete, new FontIcon { Glyph = Icons.Delete });
-                flyout.CreateFlyoutItem(MessageSelect_Loaded, ViewModel.MessageSelectCommand, message, Strings.Additional.Select, new FontIcon { Glyph = Icons.Select });
+                flyout.CreateFlyoutItem(MessageSelect_Loaded, ViewModel.MessageSelectCommand, message, Strings.Resources.lng_context_select_msg, new FontIcon { Glyph = Icons.Select });
 
                 flyout.CreateFlyoutSeparator();
 
                 // Copy
                 flyout.CreateFlyoutItem(MessageCopy_Loaded, ViewModel.MessageCopyCommand, message, Strings.Resources.Copy, new FontIcon { Glyph = Icons.Copy });
                 flyout.CreateFlyoutItem(MessageCopyLink_Loaded, ViewModel.MessageCopyLinkCommand, message, Strings.Resources.CopyLink, new FontIcon { Glyph = Icons.CopyLink });
-                flyout.CreateFlyoutItem(MessageCopyMedia_Loaded, ViewModel.MessageCopyMediaCommand, message, Strings.Additional.CopyImage, new FontIcon { Glyph = Icons.CopyImage });
+                flyout.CreateFlyoutItem(MessageCopyMedia_Loaded, ViewModel.MessageCopyMediaCommand, message, Strings.Resources.lng_context_copy_image, new FontIcon { Glyph = Icons.CopyImage });
 
                 flyout.CreateFlyoutSeparator();
 
@@ -2131,12 +2131,12 @@ namespace Unigram.Views
 
                 // Files
                 flyout.CreateFlyoutItem(MessageSaveAnimation_Loaded, ViewModel.MessageSaveAnimationCommand, message, Strings.Resources.SaveToGIFs, new FontIcon { Glyph = Icons.Animations, FontFamily = Constants.SymbolThemeFontFamily });
-                flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageSaveMediaCommand, message, Strings.Additional.SaveAs, new FontIcon { Glyph = Icons.SaveAs });
+                flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageSaveMediaCommand, message, Strings.Resources.lng_mediaview_save_as, new FontIcon { Glyph = Icons.SaveAs });
                 flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenWithCommand, message, Strings.Resources.OpenInExternalApp, new FontIcon { Glyph = Icons.OpenIn });
                 if (SettingsService.Current.Diagnostics.ShowOpenWithVlc && message?.Content is MessageVideo)
                     flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenWithVlcCommand, message, Strings.Resources.OpenInExternalApp + " VLC", new FontIcon { Glyph = Icons.Play });
                 if (SettingsService.Current.Diagnostics.ShowFilesInFolder)
-                flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenFolderCommand, message, Strings.Additional.ShowInFolder, new FontIcon { Glyph = Icons.Folder });
+                flyout.CreateFlyoutItem(MessageSaveMedia_Loaded, ViewModel.MessageOpenFolderCommand, message, Strings.Resources.lng_context_show_in_folder, new FontIcon { Glyph = Icons.Folder });
 
                 // Contacts
                 flyout.CreateFlyoutItem(MessageAddContact_Loaded, ViewModel.MessageAddContactCommand, message, Strings.Resources.AddContactTitle, new FontIcon { Glyph = Icons.Contact });
@@ -2157,9 +2157,9 @@ namespace Unigram.Views
                         return;
                     }
 
-                    ViewModel.ProtoService.CancelDownloadFile(file.Id);
-                    ViewModel.ProtoService.Send(new DeleteFileW(file.Id));
-                }), message, "Delete from disk", new FontIcon { Glyph = Icons.Delete });
+                        ViewModel.ProtoService.CancelDownloadFile(file.Id);
+                        ViewModel.ProtoService.Send(new DeleteFileW(file.Id));
+                    }), message, "Delete from disk", new FontIcon { Glyph = Icons.Delete });
 #endif
 
                 if (message.CanBeSaved is false)

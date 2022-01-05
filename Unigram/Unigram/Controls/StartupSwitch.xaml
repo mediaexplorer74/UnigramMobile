@@ -13,7 +13,7 @@
         <ToggleSwitch
             x:Name="Toggle"
             x:Uid="StartupSwitch_Toggle"
-            Header="Launch Unigram when system starts"
+            Content="{CustomResource lng_settings_auto_start}"
             Style="{StaticResource CheckButtonStyle}"/>
         <ToggleSwitch
             x:Name="ToggleMinimized"

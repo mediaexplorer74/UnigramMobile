@@ -28,19 +28,19 @@
                 <controls:HeaderedControl>
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.IsAdaptiveWideEnabled, Mode=TwoWay}"
-                        Header="{CustomResource Additional.AdaptiveWideSetting}"
+                        Header="{CustomResource lng_settings_adaptive_wide}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch
                         IsOn="{x:Bind ViewModel.PreferIpv6, Mode=TwoWay}"
-                        Header="{CustomResource Additional.IPv6ToggleSetting}"
+                        Header="{CustomResource lng_connection_try_ipv6}"
                         Style="{StaticResource CheckButtonStyle}"/>
 
                     <ToggleSwitch
                         x:Name="TraySwitch"
                         x:Load="False"
                         IsOn="{x:Bind ViewModel.IsTrayVisible, Mode=TwoWay}"
-                        Header="Show Tray Icon"
+                        Header="{CustomResource lng_settings_workmode_tray}"
                         Style="{StaticResource CheckButtonStyle}"/>
                 </controls:HeaderedControl>
                 
