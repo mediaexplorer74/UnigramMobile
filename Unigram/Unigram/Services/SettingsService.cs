@@ -198,7 +198,7 @@ namespace Unigram.Services
 
         //public const ulong CurrentVersion = (4UL << 48) | (0UL << 32) | (5072UL << 16);
         //public const string CurrentChangelog = "• Chat folders.\r\n• Stream Videos and Audio files.\r\n• Improved stickers, GIFs and emojis.\r\n\r\nRead more: https://telegra.ph/Unigram-40-05-28";
-        public static readonly string CurrentChangelog = $"• Pinned Messages 2.0: Pin multiple messages in any chat and see them all on a separate page\r\n• Comment on posts in channels that have a discussion group.\r\n• Get notified about replies to your comments via the new \"Replies\" chat (if you are not a member in the discussion group).\r\n• Anonymous group admins: Turn on \"Remain Anonymous\" in an admin's permissions (edit group -> admins -> tap on an admin) to let them post on behalf of the group and become invisible in the list of members.\r\n• Added a context menu button to the chat (in touch mode) for easier access to some context menus\r\n• Added in-app volume control.\r\n• Increased music player slider.\r\n• Send music playlists\r\n• Improved live locations";
+        public static readonly string CurrentChangelog = $"• New context menu for multiple selected media items in shared media view.";
 
         public int Session => _session;
 
