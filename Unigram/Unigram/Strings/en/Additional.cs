@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 10/04/2020 02:45:12
+// 	Generated: 02/12/2022 16:54:16
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -640,6 +640,39 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("AutoDownloadAudioTitle");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Forward Selected"
+        /// </summary>
+        public static string SelectionForward
+        {
+            get
+            {
+                return Resource.GetString("SelectionForward");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Clear Selection"
+        /// </summary>
+        public static string SelectionClear
+        {
+            get
+            {
+                return Resource.GetString("SelectionClear");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Selete Selected"
+        /// </summary>
+        public static string SelectionDelete
+        {
+            get
+            {
+                return Resource.GetString("SelectionDelete");
             }
         }
         

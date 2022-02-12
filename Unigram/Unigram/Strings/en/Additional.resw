@@ -314,4 +314,16 @@
     <value>Auto-download voice messages</value>
     <comment>SettingsDataAutoView</comment>
   </data>
+  <data name="SelectionForward" xml:space="preserve">
+    <value>Forward Selected</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
+  <data name="SelectionClear" xml:space="preserve">
+    <value>Clear Selection</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
+  <data name="SelectionDelete" xml:space="preserve">
+    <value>Selete Selected</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
 </root>
