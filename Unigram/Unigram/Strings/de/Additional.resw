@@ -314,4 +314,16 @@
     <value>Auto-Download (Sprachnachrichten)</value>
     <comment>SettingsDataAutoView</comment>
   </data>
+  <data name="SelectionClear" xml:space="preserve">
+    <value>Auswahl aufheben</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
+  <data name="SelectionDelete" xml:space="preserve">
+    <value>Auswahl löschen</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
+  <data name="SelectionForward" xml:space="preserve">
+    <value>Auswahl weiterleiten</value>
+    <comment>Context menu if multiple messages are selected</comment>
+  </data>
 </root>

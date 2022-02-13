@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 02/12/2022 16:54:16
+// 	Generated: 02/13/2022 16:51:14
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -666,7 +666,7 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Selete Selected"
+        /// Localized resource similar to "Delete Selected"
         /// </summary>
         public static string SelectionDelete
         {
