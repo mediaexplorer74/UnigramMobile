@@ -832,9 +832,9 @@ namespace Unigram.Common
             switch (content)
             {
                 case MessageSticker sticker:
-                    return sticker.Sticker.IsAnimated ? sticker.Sticker.StickerValue.Local.IsDownloadingCompleted : false;
+                    return (sticker.Sticker.Type is StickerTypeAnimated || sticker.Sticker.Type is StickerTypeVideo) ? sticker.Sticker.StickerValue.Local.IsDownloadingCompleted : false;
                 case MessageText text:
-                    return text.WebPage?.Sticker?.IsAnimated ?? false ? text.WebPage.Sticker.StickerValue.Local.IsDownloadingCompleted : false;
+                    return (text.WebPage?.Sticker is Sticker myStick && (myStick.Type is StickerTypeAnimated || myStick.Type is StickerTypeVideo)) ? text.WebPage.Sticker.StickerValue.Local.IsDownloadingCompleted : false;
                 case MessageDice dice:
                     var state = dice.InitialState;
                     if (state is DiceStickersRegular regular)
@@ -912,9 +912,9 @@ namespace Unigram.Common
             switch (message.Content)
             {
                 case MessageSticker sticker:
-                    return sticker.Sticker.IsAnimated ? sticker.Sticker.StickerValue : null;
+                    return (sticker.Sticker.Type is StickerTypeAnimated || sticker.Sticker.Type is StickerTypeVideo) ? sticker.Sticker.StickerValue : null;
                 case MessageText text:
-                    return text.WebPage?.Sticker?.IsAnimated ?? false ? text.WebPage?.Sticker?.StickerValue : null;
+                    return (text.WebPage?.Sticker is Sticker myStick && (myStick.Type is StickerTypeAnimated || myStick.Type is StickerTypeVideo)) ? text.WebPage?.Sticker?.StickerValue : null;
                 default:
                     return null;
             }

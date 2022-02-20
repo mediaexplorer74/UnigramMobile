@@ -115,11 +115,11 @@ namespace Unigram.Controls.Messages.Content
 
             if (content is MessageSticker sticker)
             {
-                return sticker.Sticker.IsAnimated;
+                return (sticker.Sticker.Type is StickerTypeAnimated || sticker.Sticker.Type is StickerTypeVideo);
             }
             else if (content is MessageText text && text.WebPage != null && !primary)
             {
-                return text.WebPage.Sticker != null && text.WebPage.Sticker.IsAnimated;
+                return text.WebPage.Sticker != null && (text.WebPage.Sticker.Type is StickerTypeAnimated || text.WebPage.Sticker.Type is StickerTypeVideo);
             }
 
             return false;

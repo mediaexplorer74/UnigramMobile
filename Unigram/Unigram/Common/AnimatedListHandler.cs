@@ -141,11 +141,11 @@ namespace Unigram.Common
                 {
                     animations.Add((container, (T)(object)setViewModel));
                 }
-                else if (item is Sticker sticker && sticker.IsAnimated)
+                else if (item is Sticker sticker && (sticker.Type is StickerTypeAnimated || sticker.Type is StickerTypeVideo))
                 {
                     animations.Add((container, (T)(object)sticker));
                 }
-                else if (item is StickerSetInfo set && set.IsAnimated)
+                else if (item is StickerSetInfo set && (set.StickerType is StickerTypeAnimated || set.StickerType is StickerTypeVideo))
                 {
                     animations.Add((container, (T)(object)set));
                 }

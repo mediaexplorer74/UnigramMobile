@@ -144,7 +144,7 @@ namespace Unigram.Views.Popups
         {
             if (file.Local.IsDownloadingCompleted)
             {
-                if (sticker.IsAnimated)
+                if ((sticker.Type is StickerTypeAnimated || sticker.Type is StickerTypeVideo))
                 {
                     Thumbnail.Opacity = 0;
                     Texture.Source = null;

@@ -90,7 +90,7 @@ namespace Unigram.Controls.Messages.Content
                 }
                 else if (webPage.Sticker != null)
                 {
-                    if (webPage.Sticker.IsAnimated)
+                    if (webPage.Sticker.Type is StickerTypeAnimated || webPage.Sticker.Type is StickerTypeVideo)
                     {
                         Media.Child = new AnimatedStickerContent(message);
                     }
