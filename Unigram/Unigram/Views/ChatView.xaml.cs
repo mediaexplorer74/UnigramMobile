@@ -4423,7 +4423,7 @@ namespace Unigram.Views
 
             ViewModel.BotCommands = commands;
             ViewModel.HasBotCommands = commands.Count > 0;
-            //ShowHideBotCommands(false); //TODO. Test
+            ShowHideBotCommands(false);
         }
 
 
