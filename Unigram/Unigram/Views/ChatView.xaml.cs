@@ -4109,7 +4109,7 @@ namespace Unigram.Views
             var max = ComposerHeader.Visibility == Visibility.Visible
                 || TextFormatting.Visibility == Visibility.Visible ? 4 : min;
 
-            ButtonAttach.CornerRadius = new CornerRadius(_botCommandsCollapsed ? max : 4, 4, 4, _botCommandsCollapsed ? min : 4);
+            ButtonAttach.Radius = new CornerRadius(_botCommandsCollapsed ? max : 4, 4, 4, _botCommandsCollapsed ? min : 4); // CornerRadius on newer Win
             btnVoiceMessage.Radius = new CornerRadius(4, max, min, 4);
             btnSendMessage.Radius = new CornerRadius(4, max, min, 4);
             btnEdit.Radius = new CornerRadius(4, max, min, 4);
@@ -4119,7 +4119,8 @@ namespace Unigram.Views
 
             // It would be cool to have shadow to respect text field corner radius
             //Separator.CornerRadius = new CornerRadius(radius);
-            ListAutocomplete.CornerRadius = ListInline.CornerRadius = new CornerRadius(radius, radius, 0, 0);
+            InlinePanel.CornerRadius = new CornerRadius(radius, radius, 0, 0);
+            //ListAutocomplete.CornerRadius = ListInline.CornerRadius = new CornerRadius(radius, radius, 0, 0); // for newer Win
             ListAutocomplete.Padding = new Thickness(0, 0, 0, radius);
             ListInline.UpdateCornerRadius(radius);
 
