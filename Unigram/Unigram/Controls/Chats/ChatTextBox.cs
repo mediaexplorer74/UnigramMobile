@@ -220,7 +220,7 @@ namespace Unigram.Controls.Chats
             }
             else if ((e.Key == VirtualKey.Tab || e.Key == VirtualKey.Enter) && Autocomplete != null && Autocomplete.Items.Count > 0 && ViewModel.Autocomplete != null
                 && ((ViewModel.Autocomplete is EmojiCollection emojiCollection && (emojiCollection.HasColumn || Autocomplete.SelectedItem != null))
-                || (ViewModel.Autocomplete is SearchStickersCollection && Autocomplete.SelectedItem != null) || ViewModel.Autocomplete is not SearchStickersCollection and not EmojiCollection))
+                || (ViewModel.Autocomplete is SearchStickersCollection && Autocomplete.SelectedItem != null) || (ViewModel.Autocomplete is SearchStickersCollection == false && ViewModel.Autocomplete is EmojiCollection == false)))
             {
                 var shift = Window.Current.CoreWindow.GetKeyState(VirtualKey.Shift).HasFlag(CoreVirtualKeyStates.Down);
                 if (shift)
