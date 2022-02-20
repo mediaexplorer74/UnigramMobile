@@ -3979,16 +3979,16 @@ namespace Unigram.Views
 
             if (radius > 0)
             {
-                TextArea.MaxWidth = ChatRecord.MaxWidth = ChatFooter.MaxWidth = InlinePanel.MaxWidth = Separator.MaxWidth =
+                TextArea.MaxWidth = ChatFooter.MaxWidth = InlinePanel.MaxWidth = Separator.MaxWidth =
                     SettingsService.Current.IsAdaptiveWideEnabled ? 640 : double.PositiveInfinity;
-                TextArea.Margin = ChatRecord.Margin = ChatFooter.Margin = new Thickness(12, 0, 12, 8);
+                TextArea.Margin = ChatFooter.Margin = new Thickness(12, 0, 12, 8);
                 InlinePanel.Margin = new Thickness(12, 0, 12, -radius);
             }
             else
             {
-                TextArea.MaxWidth = ChatRecord.MaxWidth = ChatFooter.MaxWidth = InlinePanel.MaxWidth = Separator.MaxWidth =
+                TextArea.MaxWidth = ChatFooter.MaxWidth = InlinePanel.MaxWidth = Separator.MaxWidth =
                     SettingsService.Current.IsAdaptiveWideEnabled ? 664 : double.PositiveInfinity;
-                TextArea.Margin = ChatRecord.Margin = ChatFooter.Margin = new Thickness();
+                TextArea.Margin = ChatFooter.Margin = new Thickness();
                 InlinePanel.Margin = new Thickness();
             }
 
