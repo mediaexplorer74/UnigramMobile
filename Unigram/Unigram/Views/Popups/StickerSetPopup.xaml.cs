@@ -198,12 +198,14 @@ namespace Unigram.Views.Popups
 
         #region Binding
 
-        private string ConvertIsInstalled(bool installed, bool archived, bool official, bool masks)
+        private string ConvertIsInstalled(bool installed, bool archived, bool official, StickerType type)
         {
             if (ViewModel == null || ViewModel.StickerSet == null || ViewModel.StickerSet.Stickers == null)
             {
                 return string.Empty;
             }
+
+            var masks = type is StickerTypeMask;
 
             if (installed && !archived)
             {

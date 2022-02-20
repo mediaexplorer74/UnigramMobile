@@ -155,6 +155,8 @@ namespace Unigram.Services
 
         private readonly Dictionary<int, ChatListUnreadCount> _unreadCounts = new Dictionary<int, ChatListUnreadCount>();
 
+        private readonly Dictionary<int, File> _files = new Dictionary<int, File>();
+
         private readonly FlatFileContext<long> _chatsMap = new FlatFileContext<long>();
         private readonly FlatFileContext<long> _usersMap = new FlatFileContext<long>();
 
@@ -423,6 +425,8 @@ namespace Unigram.Services
         public void CleanUp()
         {
             _options.Clear();
+
+            _files.Clear();
 
             _chats.Clear();
             _chatActions.Clear();
