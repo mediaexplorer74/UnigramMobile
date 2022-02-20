@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>वाइड स्क्रीन के लिए अनुकूली लेआउट</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>इनपुट उपकरण</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>वार्तालाप</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>चित्र प्रतिलिपि</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>कटौती</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>हटाए गए वार्तालाप</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>लिंक संपादन</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>इनपुट आवाज</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>IPv6 द्वारा जोड़ना प्रयास करें</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>समाचार</value>
@@ -190,25 +176,12 @@
   <data name="Redo" xml:space="preserve">
     <value>दोहराएँ</value>
   </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>इमोजी प्रतिस्थापित करें</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>इस तरह सहेजें....</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>चुनें</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>सभी चुनें</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>स्वरूपण बटन दिखाएँ</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>फ़ोल्डर में दिखाएँ</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>सिस्टम थीम</value>

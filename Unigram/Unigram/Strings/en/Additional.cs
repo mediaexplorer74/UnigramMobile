@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 02/13/2022 16:51:14
+// 	Generated: 02/20/2022 21:42:17
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -57,17 +57,6 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("PlayGifPreview");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Adaptive Layout for Wide Screens"
-        /// </summary>
-        public static string AdaptiveWideSetting
-        {
-            get
-            {
-                return Resource.GetString("AdaptiveWideSetting");
             }
         }
         
@@ -138,17 +127,6 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Copy Image"
-        /// </summary>
-        public static string CopyImage
-        {
-            get
-            {
-                return Resource.GetString("CopyImage");
-            }
-        }
-        
-        /// <summary>
         /// Localized resource similar to "Cut"
         /// </summary>
         public static string Cut
@@ -156,17 +134,6 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("Cut");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Deleted message"
-        /// </summary>
-        public static string DeletedMessage
-        {
-            get
-            {
-                return Resource.GetString("DeletedMessage");
             }
         }
         
@@ -270,17 +237,6 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Try connecting through IPv6"
-        /// </summary>
-        public static string IPv6ToggleSetting
-        {
-            get
-            {
-                return Resource.GetString("IPv6ToggleSetting");
-            }
-        }
-        
-        /// <summary>
         /// Localized resource similar to "News"
         /// </summary>
         public static string News
@@ -347,28 +303,6 @@ namespace Unigram.Strings
         }
         
         /// <summary>
-        /// Localized resource similar to "Save as..."
-        /// </summary>
-        public static string SaveAs
-        {
-            get
-            {
-                return Resource.GetString("SaveAs");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Select"
-        /// </summary>
-        public static string Select
-        {
-            get
-            {
-                return Resource.GetString("Select");
-            }
-        }
-        
-        /// <summary>
         /// Localized resource similar to "Select All"
         /// </summary>
         public static string SelectAll
@@ -431,17 +365,6 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SettingIsTextFormattingVisible");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Show in Folder"
-        /// </summary>
-        public static string ShowInFolder
-        {
-            get
-            {
-                return Resource.GetString("ShowInFolder");
             }
         }
         

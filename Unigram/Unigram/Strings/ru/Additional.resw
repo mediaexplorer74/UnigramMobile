@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Адаптировать для широкого экрана</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Входное устройство</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Чаты</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Копировать рисунок</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Вырезать</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Удалить сообщение</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Редактировать ссылку</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>Входная громкость</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Соединиться через IPv6 по возможности</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новости</value>
@@ -190,25 +176,12 @@
   <data name="Redo" xml:space="preserve">
     <value>Повторить</value>
   </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>Автозамена эмодзи</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Сохранить как...</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Выбрать</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Выбрать все</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Кнопки форматирования</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Открыть папку с файлом</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Системная тема</value>

@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Համաչափ դիտարկիչ (լայն)</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Մուտքային սարք</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Ուղերձներ</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Պատճենել նկարը</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Կտրել</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Ջնջված ուղերձ</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Խմբագրել հղումը</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>Մուտքային ձայնի չափը</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Փորձել միանալ ipv6-ով</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>Լուրեր</value>
@@ -190,25 +176,12 @@
   <data name="Redo" xml:space="preserve">
     <value>Վերակայել</value>
   </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>Փոխարինել կպչուկը</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Պահել որպես</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Ընտրել</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Ընտրել բոլորը</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Ցուցադրել տառատեսակի կոճակը</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Ցուցադրել պանակում</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Համակարգի ոճը</value>

@@ -121,10 +121,6 @@
     <value>Play GIF previews on GIF selection</value>
     <comment>DiagnosticsPage</comment>
   </data>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Adaptive Layout for Wide Screens</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Input device</value>
     <comment>SettingsVoIPPage</comment>
@@ -148,14 +144,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Chats</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Copy Image</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Cut</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Deleted message</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Edit Link</value>
@@ -186,10 +176,6 @@
     <value>Input volume</value>
     <comment>SettingsVoIPPage</comment>
   </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Try connecting through IPv6</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
@@ -210,12 +196,6 @@
   <data name="ReplaceEmoji" xml:space="preserve">
     <value>Replace Emoji</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Save as...</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
@@ -239,9 +219,6 @@
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Show Formatting Buttons</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Show in Folder</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>System Theme</value>

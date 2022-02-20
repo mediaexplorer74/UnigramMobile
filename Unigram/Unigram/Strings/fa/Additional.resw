@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>حالت قابل تنظیم برای صفحه های عریض</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>ابزار ورودی</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>گفتگوها</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>رونوشت عکس</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>جدا کردن</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>پیام های حذف شده</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>ویرایش آدرس</value>
@@ -169,10 +159,6 @@
     <value>مقدار صدای ورودی</value>
     <comment>SettingsVoIPPage</comment>
   </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>تلاش برای اتصال از طریق IPv6</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="News" xml:space="preserve">
     <value>رویدادها</value>
   </data>
@@ -189,16 +175,6 @@
   </data>
   <data name="Redo" xml:space="preserve">
     <value>تکرار مجدد</value>
- </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>جایگذاری صورتک</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>ذخیره به صورت ...</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>گزینش</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>گزینش همه</value>
@@ -206,9 +182,6 @@
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>نمایش دکمه های قالب بندی</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>نمایش داخل پوشه</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>قالب سیستم</value>

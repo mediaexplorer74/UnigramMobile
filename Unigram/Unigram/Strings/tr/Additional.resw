@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Geniş Ekranlara Göre Düzeni Uyarla</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Giriş aygıtını seçin</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Sohbetler</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Resmi Kopyala</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Kes</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Mesaj Silindi</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Bağlantıyı Düzenle</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>Mikrofon ses düzeyi</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>IPv6 üzerinden bağlan</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>Duyurular</value>
@@ -190,25 +176,12 @@
   <data name="Redo" xml:space="preserve">
     <value>Yinele</value>
   </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>İfadeleri emojiye dönüştür</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Farklı Kaydet...</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Seç</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Tümünü Seç</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Biçimlendirme seçeneklerini göster</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Klasörde Göster</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standart</value>

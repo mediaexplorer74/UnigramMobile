@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Adaptacyjny układ dla szerokich ekranów</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Urządzenie wejściowe</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Czaty</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Kopiuj obraz</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Wytnij</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Usunięte wiadomości</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Edytuj link</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>Głośność</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Staraj się łączyć przez IPv6</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
@@ -194,21 +180,12 @@
     <value>Zastąp emoji</value>
     <comment>SettingsAppearancePage</comment>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Zapisz jako...</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Wybierz</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Wybierz wszystkie</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>Pokaż przyciski formatowania tekstu</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Pokaż w folderze</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Motyw systemowy</value>

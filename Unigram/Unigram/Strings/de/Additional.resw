@@ -120,14 +120,8 @@
   <data name="Chats" xml:space="preserve">
     <value>Chats</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>Bild kopieren</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>Ausschneiden</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>Gelöschte Nachricht</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Link bearbeiten</value>
@@ -163,17 +157,8 @@
   <data name="Redo" xml:space="preserve">
     <value>Wiederholen</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Speichern unter…</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Auswählen</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Alles auswählen</value>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>Im Ordner anzeigen</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>
@@ -181,10 +166,6 @@
   <data name="PlayGifPreview" xml:space="preserve">
     <value>Animierte GIF in GIF-Auswahl</value>
     <comment>DiagnosticsPage</comment>
-  </data>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>Optimiertes Layout für breite Bildschirme</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>Eingabegerät wählen</value>
@@ -205,10 +186,6 @@
   <data name="OutputVolume" xml:space="preserve">
     <value>Ausgangslautstärke</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>Emoji ersetzen</value>
-    <comment>SettingsAppearancePage</comment>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standard</value>
@@ -245,10 +222,6 @@
   <data name="FormatGlyphFontSize" xml:space="preserve">
     <value>22</value>
     <comment>Font Size corresponding chosen Symbol</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>Über IPv6 verbinden</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="SettingPlayStickers" xml:space="preserve">
     <value>Sticker-Animationen abspielen</value>

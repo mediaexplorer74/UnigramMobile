@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdaptiveWideSetting" xml:space="preserve">
-    <value>为宽屏准备的适应性布局</value>
-    <comment>SettingsAdvancedPage</comment>
-  </data>
   <data name="CallSettingInput" xml:space="preserve">
     <value>输入设备</value>
     <comment>SettingsVoIPPage</comment>
@@ -144,14 +140,8 @@
   <data name="Chats" xml:space="preserve">
     <value>聊天</value>
   </data>
-  <data name="CopyImage" xml:space="preserve">
-    <value>复制图片</value>
-  </data>
   <data name="Cut" xml:space="preserve">
     <value>剪贴</value>
-  </data>
-  <data name="DeletedMessage" xml:space="preserve">
-    <value>已删除消息</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>修改链接</value>
@@ -168,10 +158,6 @@
   <data name="InputVolume" xml:space="preserve">
     <value>输入音量</value>
     <comment>SettingsVoIPPage</comment>
-  </data>
-  <data name="IPv6ToggleSetting" xml:space="preserve">
-    <value>试图通过IPv6连接</value>
-    <comment>SettingsAdvancedPage</comment>
   </data>
   <data name="News" xml:space="preserve">
     <value>新闻</value>
@@ -190,25 +176,12 @@
   <data name="Redo" xml:space="preserve">
     <value>撤销</value>
   </data>
-  <data name="ReplaceEmoji" xml:space="preserve">
-    <value>替换表情</value>
-    <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为…</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>选择</value>
-  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>全选</value>
   </data>
   <data name="SettingIsTextFormattingVisible" xml:space="preserve">
     <value>显示格式按钮</value>
     <comment>SettingsAppearancePage</comment>
-  </data>
-  <data name="ShowInFolder" xml:space="preserve">
-    <value>打开文件夹</value>
   </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>系统主题</value>
