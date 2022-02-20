@@ -282,7 +282,7 @@ namespace Unigram.ViewModels
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatAddMembers(new[] { memberInvited.UserId });
                         break;
-                    case ChatEventMemberJoinedByInviteLink:
+                    case ChatEventMemberJoinedByInviteLink memberJoinedByInviteLink:
                         if (item.MemberId is MessageSenderUser invitedUser)
                         {
                             message = GetMessage(_chat.Id, channel, item);
@@ -303,21 +303,21 @@ namespace Unigram.ViewModels
                     case ChatEventInvitesToggled invitesToggled:
                     case ChatEventIsAllHistoryAvailableToggled isAllHistoryAvailableToggled:
                     case ChatEventMessageUnpinned messageUnpinned:
-                    case ChatEventMessageTtlSettingChanged messageTtlSettingChanged:
+                    case ChatEventMessageTtlChanged messageTtlSettingChanged:
                     case ChatEventLinkedChatChanged linkedChatChanged:
                     case ChatEventLocationChanged locationChanged:
-                    case ChatEventVoiceChatCreated voiceChatCreated:
-                    case ChatEventVoiceChatDiscarded voiceChatDiscarded:
-                    case ChatEventVoiceChatMuteNewParticipantsToggled voiceChatMuteNewParticipantsToggled:
-                    case ChatEventVoiceChatParticipantIsMutedToggled voiceChatParticipantIsMutedToggled:
-                    case ChatEventVoiceChatParticipantVolumeLevelChanged voiceChatParticipantVolumeLevelChanged:
+                    //case ChatEventVoiceChatCreated voiceChatCreated:
+                    //case ChatEventVoiceChatDiscarded voiceChatDiscarded:
+                    //case ChatEventVoiceChatMuteNewParticipantsToggled voiceChatMuteNewParticipantsToggled:
+                    //case ChatEventVoiceChatParticipantIsMutedToggled voiceChatParticipantIsMutedToggled:
+                    //case ChatEventVoiceChatParticipantVolumeLevelChanged voiceChatParticipantVolumeLevelChanged:
                     case ChatEventInviteLinkDeleted inviteLinkDeleted:
                     case ChatEventInviteLinkEdited inviteLinkEdited:
                     case ChatEventInviteLinkRevoked inviteLinkRevoked:
                         message = GetMessage(_chat.Id, channel, item);
                         message.Content = new MessageChatEvent(item);
                         break;
-                    case ChatEventMemberLeft:
+                    case ChatEventMemberLeft memberLeft:
                         if (item.MemberId is MessageSenderUser leftUser)
                         {
                             message = GetMessage(_chat.Id, channel, item);
@@ -347,7 +347,7 @@ namespace Unigram.ViewModels
 
                         message.Content = new MessageChatChangePhoto(photoChanged.NewPhoto);
                         break;
-                    case ChatEventMemberJoined:
+                    case ChatEventMemberJoined memberJoined:
                         if (item.MemberId is MessageSenderUser joinedUser)
                         {
                             message = GetMessage(_chat.Id, channel, item);

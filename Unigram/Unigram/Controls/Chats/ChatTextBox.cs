@@ -943,7 +943,7 @@ namespace Unigram.Controls.Chats
                     return false;
                 }
 
-                command = text.StartsWith(c);
+                command = text.StartsWith(c.ToString());
                 searchText = text.Substring(index).TrimStart(c);
             }
 
@@ -1011,10 +1011,7 @@ namespace Unigram.Controls.Chats
             var flag = false;
             searchText = string.Empty;
 
-            if (text.EndsWith('\r'))
-            {
-                text = text.Substring(0, text.Length - 1);
-            }
+            text = text.TrimEnd();
 
             if (ViewModel.CurrentInlineBot != null)
             {
