@@ -2177,7 +2177,7 @@ namespace Unigram.Views
 
             //sender.ContextFlyout = menu;
 
-            if (flyout.Items.Count > 0 && flyout.Items[flyout.Items.Count - 1] is MenuFlyoutSeparator and not MenuFlyoutLabel)
+            if (flyout.Items.Count > 0 && flyout.Items[flyout.Items.Count - 1] is MenuFlyoutSeparator && !(flyout.Items[flyout.Items.Count - 1] is MenuFlyoutLabel))
             {
                 flyout.Items.RemoveAt(flyout.Items.Count - 1);
             }
@@ -3318,7 +3318,7 @@ namespace Unigram.Views
 
             Call.Visibility = Visibility.Collapsed;
 
-            UpdateChatMessageSender(chat, chat.DefaultMessageSenderId);
+            UpdateChatMessageSender(chat, chat.MessageSenderId);
             UpdateChatPermissions(chat);
         }
 
@@ -4784,7 +4784,7 @@ namespace Unigram.Views
         private async void ButtonMore_Checked(object sender, RoutedEventArgs e)
         {
             var chat = ViewModel.Chat;
-            if (chat == null)
+            if (chat == null || chat.Type is ChatTypePrivate || chat.Type is ChatTypeSecret)
             {
                 return;
             }
@@ -4803,29 +4803,38 @@ namespace Unigram.Views
                 foreach (var messageSender in senders.Senders)
                 {
                     var picture = new ProfilePicture();
-                    picture.Width = 24;
-                    picture.Height = 24;
+                    picture.Width = 36;
+                    picture.Height = 36;
                     picture.IsEnabled = false;
                     picture.Margin = new Thickness(-4, -2, 0, -2);
 
+                    var item = new MenuFlyoutProfile();
+                    item.CommandParameter = messageSender;
+                    item.Command = ViewModel.SetSenderCommand;
+                    item.Style = App.Current.Resources["SendAsMenuFlyoutItemStyle"] as Style;
+                    item.Icon = new FontIcon();
+                    item.Tag = picture;
+
                     if (ViewModel.ProtoService.TryGetUser(messageSender, out User senderUser))
                     {
-                        picture.Source = PlaceholderHelper.GetUser(ViewModel.ProtoService, senderUser, 24);
+                        picture.SetUser(ViewModel.ProtoService, senderUser, 36);
 
-                        var item = flyout.CreateFlyoutItem(ViewModel.SetDefaultSenderCommand, messageSender, senderUser.GetFullName());
-                        item.Style = App.Current.Resources["ProfilePictureMenuFlyoutItemStyle"] as Style;
-                        item.Icon = new FontIcon();
-                        item.Tag = picture;
+                        item.Text = senderUser.GetFullName();
+                        item.Info = Strings.Resources.VoipGroupPersonalAccount;
                     }
                     else if (ViewModel.ProtoService.TryGetChat(messageSender, out Chat senderChat))
                     {
-                        picture.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, senderChat, 24);
+                        picture.SetChat(ViewModel.ProtoService, senderChat, 36);
 
-                        var item = flyout.CreateFlyoutItem(ViewModel.SetDefaultSenderCommand, messageSender, senderChat.Title);
-                        item.Style = App.Current.Resources["ProfilePictureMenuFlyoutItemStyle"] as Style;
-                        item.Icon = new FontIcon();
-                        item.Tag = picture;
+                        item.Text = senderChat.Title;
+
+                        if (ViewModel.CacheService.TryGetSupergroup(senderChat, out Supergroup supergroup))
+                        {
+                            item.Info = Locale.Declension("Subscribers", supergroup.MemberCount);
+                        }
                     }
+
+                    flyout.Items.Add(item);
                 }
             }
 

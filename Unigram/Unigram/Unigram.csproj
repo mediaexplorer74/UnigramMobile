@@ -982,9 +982,6 @@
     <Compile Include="Views\Settings\Phone\SettingsPhoneSentCodePage.xaml.cs">
       <DependentUpon>SettingsPhoneSentCodePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings\Popups\SettingsSessionPopup.xaml.cs">
-      <DependentUpon>SettingsSessionPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Settings\Privacy\SettingsPrivacyAllowCallsPage.xaml.cs">
       <DependentUpon>SettingsPrivacyAllowCallsPage.xaml</DependentUpon>
     </Compile>
@@ -2407,10 +2404,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Settings\Popups\SettingsSessionPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Settings\Privacy\SettingsPrivacyAllowCallsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2725,7 +2718,9 @@
     <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\libtgvoip\$(Platform)\libtgvoip.dll" />
     <ReferenceCopyLocalPaths Include="$(SolutionDir)\Libraries\libtgvoip\$(Platform)\libtgvoip.pri" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Settings\Popups\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
