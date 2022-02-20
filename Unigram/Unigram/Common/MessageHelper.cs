@@ -20,6 +20,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Point = Windows.Foundation.Point;
 
 namespace Unigram.Common
@@ -337,7 +338,7 @@ namespace Unigram.Common
             }
             else if (username != null)
             {
-                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, voiceChat, post, comment, game);
+                NavigateToUsername(protoService, navigation, username, botUser ?? botChat, post, comment, game);
             }
             else if (username != null && username.StartsWith("+"))
             {
@@ -1044,7 +1045,7 @@ namespace Unigram.Common
             {
                 var link = text.SelectedText;
 
-                var copy = new MenuFlyoutItem { Text = Strings.Resources.Copy, DataContext = link, Icon = new FontIcon { Glyph = Icons.DocumentCopy, FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily } };
+                var copy = new MenuFlyoutItem { Text = Strings.Resources.Copy, DataContext = link, Icon = new FontIcon { Glyph = Icons.Copy, FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily } };
                 copy.Click += LinkCopy_Click;
 
                 items.Add(copy);
@@ -1081,7 +1082,7 @@ namespace Unigram.Common
                     items.Add(open);
                 }
 
-                var copy = new MenuFlyoutItem { Text = Strings.Resources.Copy, DataContext = link, Icon = new FontIcon { Glyph = Icons.DocumentCopy, FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily } };
+                var copy = new MenuFlyoutItem { Text = Strings.Resources.Copy, DataContext = link, Icon = new FontIcon { Glyph = Icons.Copy, FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily } };
                 copy.Click += LinkCopy_Click;
                 items.Add(copy);
             }

@@ -250,7 +250,7 @@ namespace Unigram.Views
         {
             if (secretChat.State is SecretChatStateReady ready)
             {
-                SecretLifetime.Badge = chat.MessageTtlSetting > 0 ? Locale.FormatTtl(chat.MessageTtlSetting) : Strings.Resources.ShortMessageLifetimeForever;
+                SecretLifetime.Badge = chat.MessageTtl > 0 ? Locale.FormatTtl(chat.MessageTtl) : Strings.Resources.ShortMessageLifetimeForever;
                 //SecretIdenticon.Source = PlaceholderHelper.GetIdenticon(secretChat.KeyHash, 24);
 
                 MiscPanel.Visibility = Visibility.Visible;
