@@ -971,7 +971,7 @@ namespace Unigram.Controls.Gallery
 
             flyout.CreateFlyoutItem(x => item.CanView, viewModel.ViewCommand, item, Strings.Resources.ShowInChat, new FontIcon { Glyph = Icons.Message });
             flyout.CreateFlyoutItem(x => item.CanCopy, viewModel.CopyCommand, item, Strings.Resources.Copy, new FontIcon { Glyph = Icons.Copy }, Windows.System.VirtualKey.C);
-            flyout.CreateFlyoutItem(x => item.CanSave, viewModel.SaveCommand, item, Strings.Additional.SaveAs, new FontIcon { Glyph = Icons.SaveAs }, Windows.System.VirtualKey.S);
+            flyout.CreateFlyoutItem(x => item.CanSave, viewModel.SaveCommand, item, Strings.Resources.lng_mediaview_save_as, new FontIcon { Glyph = Icons.SaveAs }, Windows.System.VirtualKey.S);
             flyout.CreateFlyoutItem(x => viewModel.CanOpenWith, viewModel.OpenWithCommand, item, Strings.Resources.OpenInExternalApp, new FontIcon { Glyph = Icons.OpenIn });
             if (SettingsService.Current.Diagnostics.ShowOpenWithVlc && item.IsVideo)
                 flyout.CreateFlyoutItem(viewModel.OpenWithVlcCommand, item, Strings.Resources.OpenInExternalApp + " VLC", new FontIcon { Glyph = Icons.Play });

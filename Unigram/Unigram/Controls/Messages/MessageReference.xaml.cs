@@ -764,7 +764,7 @@ namespace Unigram.Controls.Messages
                 ThumbRoot.Visibility = Visibility.Collapsed;
 
             TitleLabel.Text = string.Empty;
-            ServiceLabel.Text = message == null ? Strings.Additional.DeletedMessage : string.Empty;
+            ServiceLabel.Text = message == null ? Strings.Resources.lng_deleted_message : string.Empty;
             MessageLabel.Text = string.Empty;
             return true;
         }
