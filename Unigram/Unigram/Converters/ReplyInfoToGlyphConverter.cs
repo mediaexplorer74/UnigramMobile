@@ -120,6 +120,10 @@ namespace Unigram.Converters
 
         public const string Add = "\uE710";
 
+        public const string Block = "\uF140";
+        public const string Star = "\uE734";
+        public const string LockClosed = "\uE72E";
+
         public const string EmojiRecents = "\uE911";
         public const string Emoji1 = "\uE920";
         public const string Emoji2 = "\uE921";
