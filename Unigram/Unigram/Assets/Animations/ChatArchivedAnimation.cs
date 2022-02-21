@@ -158,8 +158,10 @@ namespace Unigram.Assets.Animations
                 var result = _root = _c.CreateContainerVisual();
                 var propertySet = result.Properties;
                 propertySet.InsertScalar("Progress", 0);
+                if (Common.ApiInfo.CanUseDirectComposition) { //TODO: Find / Add an animation for Mobile?
                 var children = result.Children;
                 children.InsertAtTop(ShapeVisual());
+                }
                 return result;
             }
 

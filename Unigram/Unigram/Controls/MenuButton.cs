@@ -25,7 +25,7 @@ namespace Unigram.Controls
         public MenuButton()
         {
             DefaultStyleKey = typeof(MenuButton);
-
+            if (!Common.ApiInfo.CanUseDirectComposition) return;
             Checked += OnToggle;
             Unchecked += OnToggle;
 
@@ -55,6 +55,7 @@ namespace Unigram.Controls
 
         protected override void OnApplyTemplate()
         {
+            if (Common.ApiInfo.CanUseDirectComposition) {
             var line1 = Window.Current.Compositor.CreateLineGeometry();
             var line2 = Window.Current.Compositor.CreateLineGeometry();
             var line3 = Window.Current.Compositor.CreateLineGeometry();
@@ -104,7 +105,7 @@ namespace Unigram.Controls
             {
                 ElementCompositionPreview.SetElementChildVisual(layoutRoot, visual1);
             }
-
+            } //TODO: Test if still showing something...
             var presenter = GetTemplateChild("Presenter") as UIElement;
             if (presenter != null)
             {

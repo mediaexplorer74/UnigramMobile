@@ -2054,7 +2054,9 @@
 
     <Style TargetType="local:MenuButton">
         <Setter Property="Background" Value="{ThemeResource ToggleButtonBackgroundChecked}" />
+        <!-- Not supported by WinUI 2.4
         <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+        -->
         <Setter Property="Foreground" Value="{ThemeResource ToggleButtonForeground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ToggleButtonBorderBrushChecked}" />
         <Setter Property="Padding" Value="8,8" />
@@ -2071,12 +2073,12 @@
                 <ControlTemplate TargetType="local:MenuButton">
                     <Grid x:Name="ContentPresenter"
                             Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Padding="{TemplateBinding Padding}"
                             AutomationProperties.AccessibilityView="Raw">
+                        <!-- Removed: BackgroundSizing="{TemplateBinding BackgroundSizing}"-->
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
