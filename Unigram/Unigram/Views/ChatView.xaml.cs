@@ -4818,14 +4818,16 @@ namespace Unigram.Views
 
                     if (ViewModel.ProtoService.TryGetUser(messageSender, out User senderUser))
                     {
-                        picture.SetUser(ViewModel.ProtoService, senderUser, 36);
+                        //picture.SetUser(ViewModel.ProtoService, senderUser, 36);
+                        picture.Source = PlaceholderHelper.GetUser(ViewModel.ProtoService, senderUser, 36); //TODO: use above; Fully rewritten download/upload management
 
                         item.Text = senderUser.GetFullName();
                         item.Info = Strings.Resources.VoipGroupPersonalAccount;
                     }
                     else if (ViewModel.ProtoService.TryGetChat(messageSender, out Chat senderChat))
                     {
-                        picture.SetChat(ViewModel.ProtoService, senderChat, 36);
+                        //picture.SetChat(ViewModel.ProtoService, senderChat, 36);
+                        picture.Source = PlaceholderHelper.GetChat(ViewModel.ProtoService, senderChat, 36); //TODO: use above; Fully rewritten download/upload management
 
                         item.Text = senderChat.Title;
 
@@ -4839,7 +4841,14 @@ namespace Unigram.Views
                 }
             }
 
-            flyout.ShowAt(ButtonMore, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedLeft });
+            if (ApiInfo.CanUseFlyoutShowOptions)
+            {
+                flyout.ShowAt(ButtonMore, new FlyoutShowOptions { Placement = FlyoutPlacementMode.TopEdgeAlignedLeft });
+            }
+            else
+            {
+                flyout.ShowAt(ButtonMore);
+            }
         }
     }
 

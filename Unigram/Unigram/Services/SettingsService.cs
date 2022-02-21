@@ -198,7 +198,10 @@ namespace Unigram.Services
 
         //public const ulong CurrentVersion = (4UL << 48) | (0UL << 32) | (5072UL << 16);
         //public const string CurrentChangelog = "• Chat folders.\r\n• Stream Videos and Audio files.\r\n• Improved stickers, GIFs and emojis.\r\n\r\nRead more: https://telegra.ph/Unigram-40-05-28";
-        public static readonly string CurrentChangelog = $"• New context menu for multiple selected media items in shared media view.";
+        public static readonly string CurrentChangelog = @"• New context menu for multiple selected media items in shared media view.
+**Anonymous Posting in Public Groups**
+• Comment as one of your channels in public groups and channel comments.
+• Tap the profile picture next to the message bar to choose which channel you will appear as when you send the message.";
 
         public int Session => _session;
 

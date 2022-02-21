@@ -197,6 +197,22 @@
         </Setter>
     </Style>
 
+    <Style TargetType="local:MenuFlyoutLabel">
+        <Setter Property="Padding"
+                Value="12,4,12,8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MenuFlyoutLabel">
+                    <TextBlock Text="{TemplateBinding Text}"
+                               TextWrapping="Wrap"
+                               Foreground="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Margin="{TemplateBinding Padding}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="local:LottieView">
         <Setter Property="Template">
             <Setter.Value>

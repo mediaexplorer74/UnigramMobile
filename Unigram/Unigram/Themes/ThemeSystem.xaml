@@ -5,6 +5,8 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
+            <Thickness x:Key="MenuFlyoutItemMargin">0,0,0,0</Thickness>
+            
             <!-- Common -->
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FF000000"/>
             <StaticResource x:Key="ChatPageBackgroundBrush" ResourceKey="ApplicationPageBackgroundThemeBrush"/>
@@ -82,6 +84,9 @@
 
             <Color x:Key="MessageCallMissedForegroundColor">Red</Color>
             <Color x:Key="MessageCallMissedForegroundOutColor">Red</Color>
+
+            <Color x:Key="SubtleFillColorTransparent">#00FFFFFF</Color>
+            <SolidColorBrush x:Key="SubtleFillColorTransparentBrush" Color="{StaticResource SubtleFillColorTransparent}" />
 
             <SolidColorBrush x:Key="MessageForegroundBrush" Color="{ThemeResource MessageForegroundColor}" />
             <SolidColorBrush x:Key="MessageForegroundLinkBrush" Color="{ThemeResource MessageForegroundLinkColor}" />
@@ -792,6 +797,7 @@
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundPointerOver" ResourceKey="SystemControlHighlightListLowBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundPressed" ResourceKey="SystemControlHighlightListMediumBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackgroundBrush" ResourceKey="SubtleFillColorTransparentBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForegroundPointerOver" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForegroundPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
@@ -916,6 +922,7 @@
             <Color x:Key="SystemRevealChromeGrayColor">#F2767676</Color>
             <Color x:Key="SystemRevealListLowColor">#18FFFFFF</Color>
             <Color x:Key="SystemRevealListMediumColor">#30FFFFFF</Color>
+            <Thickness x:Key="MenuFlyoutItemBorderThickness">0</Thickness>
             <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="SystemControlTransientBackgroundBrush" />
             <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="SystemControlTransientBorderBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="SystemControlTransparentBrush" />
@@ -1233,6 +1240,8 @@
             <StaticResource x:Key="AppBarButtonSubItemChevronForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
+            <Thickness x:Key="MenuFlyoutItemMargin">0,0,0,0</Thickness>
+            
             <!-- Common -->
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFFFFFFF"/>
             <StaticResource x:Key="ChatPageBackgroundBrush" ResourceKey="ApplicationPageBackgroundThemeBrush"/>
@@ -1310,6 +1319,9 @@
 
             <Color x:Key="MessageCallMissedForegroundColor">Red</Color>
             <Color x:Key="MessageCallMissedForegroundOutColor">Red</Color>
+
+            <Color x:Key="SubtleFillColorTransparent">#00FFFFFF</Color>
+            <SolidColorBrush x:Key="SubtleFillColorTransparentBrush" Color="{StaticResource SubtleFillColorTransparent}" />
 
             <SolidColorBrush x:Key="MessageForegroundBrush" Color="{ThemeResource MessageForegroundColor}" />
             <SolidColorBrush x:Key="MessageForegroundLinkBrush" Color="{ThemeResource MessageForegroundLinkColor}" />
@@ -2020,6 +2032,7 @@
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundPointerOver" ResourceKey="SystemControlHighlightListLowBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundPressed" ResourceKey="SystemControlHighlightListMediumBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />
+            <StaticResource x:Key="MenuFlyoutItemBackgroundBrush" ResourceKey="SubtleFillColorTransparentBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForeground" ResourceKey="SystemControlForegroundBaseHighBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForegroundPointerOver" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="ToggleMenuFlyoutItemForegroundPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
@@ -2142,6 +2155,7 @@
             <Color x:Key="SystemRevealChromeGrayColor">#E6767676</Color>
             <Color x:Key="SystemRevealListLowColor">#17000000</Color>
             <Color x:Key="SystemRevealListMediumColor">#2E000000</Color>
+            <Thickness x:Key="MenuFlyoutItemBorderThickness">0</Thickness>
             <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="SystemControlTransientBackgroundBrush" />
             <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="SystemControlTransientBorderBrush" />
             <StaticResource x:Key="MenuFlyoutItemBackground" ResourceKey="SystemControlTransparentBrush" />

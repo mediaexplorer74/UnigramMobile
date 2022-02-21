@@ -33,10 +33,12 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!--
         <Setter Property="KeyboardAcceleratorPlacementMode"
                 Value="Hidden" />
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -194,8 +196,10 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="True" />
+        <!--
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleMenuFlyoutItem">
@@ -366,8 +370,10 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!--
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutSubItem">
@@ -535,10 +541,12 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!--
         <Setter Property="KeyboardAcceleratorPlacementMode"
                 Value="Hidden" />
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:MenuFlyoutProfile">
@@ -714,10 +722,12 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!--
         <Setter Property="KeyboardAcceleratorPlacementMode"
                 Value="Hidden" />
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -875,8 +885,10 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!--
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutItem">
@@ -1043,8 +1055,10 @@
                 Value="Center" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="{StaticResource UseSystemFocusVisuals}" />
+        <!-- Not supported, needs contract7Present
         <Setter Property="CornerRadius"
                 Value="{ThemeResource ControlCornerRadius}" />
+        -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuFlyoutSubItem">
