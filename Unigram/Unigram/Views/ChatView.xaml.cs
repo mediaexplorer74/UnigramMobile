@@ -4030,8 +4030,8 @@ namespace Unigram.Views
             var batch = Window.Current.Compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
             batch.Completed += (s, args) =>
             {
-                field.Properties.InsertVector3("Translation", Vector3.Zero);
-                attach.Properties.InsertVector3("Translation", Vector3.Zero);
+                field.Properties.InsertVector3("Offset", Vector3.Zero);
+                attach.Properties.InsertVector3("Offset", Vector3.Zero);
 
                 if (show)
                 {
@@ -4051,9 +4051,9 @@ namespace Unigram.Views
             offset.InsertKeyFrame(show ? 1 : 0, new Vector3());
             offset.Duration = TimeSpan.FromMilliseconds(150);
 
-            more.StartAnimation("Translation", offset);
-            field.StartAnimation("Translation", offset);
-            attach.StartAnimation("Translation", offset);
+            more.StartAnimation("Offset", offset);
+            field.StartAnimation("Offset", offset);
+            attach.StartAnimation("Offset", offset);
 
             batch.End();
         }
@@ -4071,14 +4071,14 @@ namespace Unigram.Views
             var source = ListAutocomplete.ItemsSource;
 
             var list = ElementCompositionPreview.GetElementVisual(ListAutocomplete);
-            list.StopAnimation("Translation");
+            list.StopAnimation("Offset");
 
             await ListAutocomplete.UpdateLayoutAsync();
 
             var batch = Window.Current.Compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
             batch.Completed += (s, args) =>
             {
-                list.Properties.InsertVector3("Translation", Vector3.Zero);
+                list.Properties.InsertVector3("Offset", Vector3.Zero);
 
                 if (show)
                 {
@@ -4096,7 +4096,7 @@ namespace Unigram.Views
             offset.InsertKeyFrame(show ? 1 : 0, new Vector3());
             offset.Duration = TimeSpan.FromMilliseconds(150);
 
-            list.StartAnimation("Translation", offset);
+            list.StartAnimation("Offset", offset);
 
             batch.End();
         }
