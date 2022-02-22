@@ -992,12 +992,19 @@
                                      AutomationProperties.Name="{CustomResource AccDescrBotCommands}"
                                      ToolTipService.ToolTip="{CustomResource AccDescrBotCommands}"
                                      Visibility="Collapsed"
-                                     Margin="8,0,0,0"
+                                     VerticalAlignment="Bottom"
+                                     Background="{ThemeResource ContentDialogBackground}"
+                                     Margin="8,0,0,8"
                                      Grid.Row="1">
-                    <Image x:Name="PhotoMore"
+
+                    <Ellipse FlowDirection="LeftToRight"
                            Width="32"
                            Height="32"
-                           Margin="-8" />
+                           Margin="-8" >
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="PhotoMore" AlignmentY="Center" AlignmentX="Center" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
                 </controls:MenuButton>
 
 
@@ -1208,7 +1215,7 @@
                     </Grid>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <controls:GlyphButton x:Name="ContextMenu" Glyph="&#xE10C;" Tapped="ContextMenu_Tapped" />
+                        <controls:GlyphButton x:Name="ContextMenu" Glyph="&#xE10C;" Tapped="ContextMenu_Tapped" VerticalAlignment="Bottom" />
                     <!-- Button to use stickers keyboard, all -->
                     <chats:ChatStickerButton
                         x:Name="ButtonStickers"

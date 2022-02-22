@@ -2668,7 +2668,8 @@ namespace Unigram.Views
 
             ViewModel.ChatActionManager.SetTyping(btnVoiceMessage.IsChecked.Value ? (ChatAction)new ChatActionRecordingVideoNote() : new ChatActionRecordingVoiceNote());
             PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, 4);
+            Grid.SetColumnSpan(TextFieldPanel, 6);
+            Grid.SetColumn(TextFieldPanel, 0);
         }
 
         private void VoiceButton_RecordingStopped(object sender, EventArgs e)
@@ -2723,7 +2724,8 @@ namespace Unigram.Views
             batch.End();
 
             PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, TextField.IsFormattingVisible ? 4 : 2);
+            Grid.SetColumnSpan(TextFieldPanel, TextField.IsFormattingVisible ? 6 : 2);
+            Grid.SetColumn(TextFieldPanel, TextField.IsFormattingVisible ? 0 : 1);
 
             ViewModel.ChatActionManager.CancelTyping();
 
@@ -3326,12 +3328,12 @@ namespace Unigram.Views
         {
             if (defaultMessageSenderId == null)
             {
-                PhotoMore.Source = null;
+                PhotoMore.ImageSource = null;
                 ShowHideBotCommands(false);
             }
             else
             {
-                PhotoMore.Source = PlaceholderHelper.GetMessageSender(ViewModel.ProtoService, defaultMessageSenderId, 32);
+                PhotoMore.ImageSource = PlaceholderHelper.GetMessageSender(ViewModel.ProtoService, defaultMessageSenderId, 32);
                 ShowHideBotCommands(true);
             }
         }
@@ -3960,9 +3962,11 @@ namespace Unigram.Views
                     TextFormatting.Visibility = Visibility.Collapsed;
                     TextBackground.Visibility = Visibility.Collapsed;
 
+                    Grid.SetRow(ButtonMore, 1);
                     Grid.SetRow(btnAttach, 1);
                     Grid.SetRow(ButtonsPanel, 1);
                     Grid.SetColumnSpan(TextFieldPanel, 2);
+                    Grid.SetColumn(TextFieldPanel, 1);
                     TextField.Padding = new Thickness(48, 4, 0, 6);
                 }
 
@@ -4002,9 +4006,11 @@ namespace Unigram.Views
                 TextFormatting.Visibility = Visibility.Visible;
                 TextBackground.Visibility = Visibility.Visible;
 
+                Grid.SetRow(ButtonMore, 2);
                 Grid.SetRow(btnAttach, 2);
                 Grid.SetRow(ButtonsPanel, 2);
-                Grid.SetColumnSpan(TextFieldPanel, 4);
+                Grid.SetColumnSpan(TextFieldPanel, 6);
+                Grid.SetColumn(TextFieldPanel, 0);
             }
             else
             {
