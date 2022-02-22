@@ -355,7 +355,7 @@
         <Setter Property="Background"
                 Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderBrush"
-                Value="{ThemeResource MenuFlyoutSubItemBackgroundBrush}" />
+                Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource MenuFlyoutSubItemBorderThickness}" />
         <Setter Property="Foreground"
@@ -870,7 +870,7 @@
         <Setter Property="Background"
                 Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderBrush"
-                Value="{ThemeResource MenuFlyoutSubItemBackgroundBrush}" />
+                Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource MenuFlyoutSubItemBorderThickness}" />
         <Setter Property="Foreground"
@@ -1040,7 +1040,7 @@
         <Setter Property="Background"
                 Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderBrush"
-                Value="{ThemeResource MenuFlyoutSubItemBackgroundBrush}" />
+                Value="{ThemeResource MenuFlyoutSubItemBackground}" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource MenuFlyoutSubItemBorderThickness}" />
         <Setter Property="Foreground"

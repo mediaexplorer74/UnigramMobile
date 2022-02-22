@@ -942,6 +942,7 @@
             <StaticResource x:Key="MenuFlyoutSubItemForegroundPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemForegroundSubMenuOpened" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <Thickness x:Key="MenuFlyoutSubItemBorderThickness">0</Thickness>
             <StaticResource x:Key="MenuFlyoutSubItemChevron" ResourceKey="SystemControlForegroundBaseMediumHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemChevronPointerOver" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemChevronPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
@@ -2176,6 +2177,7 @@
             <StaticResource x:Key="MenuFlyoutSubItemForegroundPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemForegroundSubMenuOpened" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemForegroundDisabled" ResourceKey="SystemControlDisabledBaseMediumLowBrush" />
+            <Thickness x:Key="MenuFlyoutSubItemBorderThickness">0</Thickness>
             <StaticResource x:Key="MenuFlyoutSubItemChevron" ResourceKey="SystemControlForegroundBaseMediumHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemChevronPointerOver" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
             <StaticResource x:Key="MenuFlyoutSubItemChevronPressed" ResourceKey="SystemControlHighlightAltBaseHighBrush" />
