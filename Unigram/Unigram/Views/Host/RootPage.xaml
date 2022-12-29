@@ -167,7 +167,7 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="32"/>
+                <RowDefinition Height="1"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border x:Name="ThemeShadow" Grid.RowSpan="2"/>
