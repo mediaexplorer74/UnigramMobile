@@ -183,6 +183,9 @@
     <value>Mostrar botões de formatação</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Mostrar na Pasta</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Tema do sistema</value>
     <comment>SettingsAppearancePage</comment>

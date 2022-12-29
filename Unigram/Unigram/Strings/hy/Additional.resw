@@ -183,6 +183,9 @@
     <value>Ցուցադրել տառատեսակի կոճակը</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Ցուցադրել պանակում</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Համակարգի ոճը</value>
     <comment>SettingsAppearancePage</comment>

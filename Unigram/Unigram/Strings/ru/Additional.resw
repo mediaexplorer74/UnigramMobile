@@ -183,6 +183,9 @@
     <value>Кнопки форматирования</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Открыть папку с файлом</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Системная тема</value>
     <comment>SettingsAppearancePage</comment>

@@ -183,6 +183,9 @@
     <value>स्वरूपण बटन दिखाएँ</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>फ़ोल्डर में दिखाएँ</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>सिस्टम थीम</value>
     <comment>SettingsAppearancePage</comment>

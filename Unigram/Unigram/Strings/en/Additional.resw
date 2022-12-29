@@ -303,4 +303,8 @@
     <value>Delete Selected</value>
     <comment>Context menu if multiple messages are selected</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Show in Folder</value>
+    <comment>DiagnosticsPage</comment>
+  </data>
 </root>

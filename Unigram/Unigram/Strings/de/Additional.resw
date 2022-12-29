@@ -299,4 +299,8 @@
     <value>Auswahl weiterleiten</value>
     <comment>Context menu if multiple messages are selected</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Im Ordner anzeigen</value>
+    <comment>DiagnosticsPage</comment>
+  </data>
 </root>

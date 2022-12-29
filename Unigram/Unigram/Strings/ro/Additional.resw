@@ -183,6 +183,9 @@
     <value>Afișați butoanele de formatare</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Arată în dosar</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Tema sistemului</value>
     <comment>SettingsAppearancePage</comment>

@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 02/20/2022 21:42:17
+// 	Generated: 12/29/2022 17:24:01
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Unigram.Strings
@@ -596,6 +596,17 @@ namespace Unigram.Strings
             get
             {
                 return Resource.GetString("SelectionDelete");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Show in Folder"
+        /// </summary>
+        public static string ShowInFolder
+        {
+            get
+            {
+                return Resource.GetString("ShowInFolder");
             }
         }
         

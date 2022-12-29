@@ -183,6 +183,9 @@
     <value>نمایش دکمه های قالب بندی</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>نمایش داخل پوشه</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>قالب سیستم</value>
     <comment>SettingsAppearancePage</comment>

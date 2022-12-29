@@ -183,6 +183,9 @@
     <value>Biçimlendirme seçeneklerini göster</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Klasörde Göster</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Windows-Standart</value>
     <comment>SettingsAppearancePage</comment>

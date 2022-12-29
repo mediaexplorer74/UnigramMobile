@@ -183,6 +183,9 @@
     <value>显示格式按钮</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Klasörde Göster</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>系统主题</value>
     <comment>SettingsAppearancePage</comment>

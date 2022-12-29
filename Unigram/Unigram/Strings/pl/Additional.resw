@@ -187,6 +187,9 @@
     <value>Pokaż przyciski formatowania tekstu</value>
     <comment>SettingsAppearancePage</comment>
   </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Pokaż w folderze</value>
+  </data>
   <data name="ThemeSystemTheme" xml:space="preserve">
     <value>Motyw systemowy</value>
     <comment>SettingsAppearancePage</comment>
