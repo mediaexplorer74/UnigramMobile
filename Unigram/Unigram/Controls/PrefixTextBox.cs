@@ -11,8 +11,24 @@ namespace Unigram.Controls
         {
             DefaultStyleKey = typeof(PrefixTextBox);
 
-            BeforeTextChanging += OnBeforeTextChanging;
+            if (Common.ApiInfo.IsFullExperience)
+            {
+                BeforeTextChanging += OnBeforeTextChanging;
+            }
+            else
+            {
+                TextChanging += PrefixTextBox_TextChanging;
+            }
             TextChanged += OnTextChanged;
+        }
+
+        private void PrefixTextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(sender.Text) || !sender.Text.StartsWith(Prefix))
+            {
+                Text = Prefix;
+                SelectionStart = Prefix.Length;
+            }
         }
 
         private void OnBeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
