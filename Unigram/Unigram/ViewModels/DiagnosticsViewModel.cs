@@ -197,16 +197,6 @@ namespace Unigram.ViewModels
             }
         }
 
-        public bool BubbleKnockout
-        {
-            get => Settings.Diagnostics.BubbleKnockout;
-            set
-            {
-                Settings.Diagnostics.BubbleKnockout = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public VerbosityLevel Verbosity
         {
             get => (VerbosityLevel)Settings.VerbosityLevel;
