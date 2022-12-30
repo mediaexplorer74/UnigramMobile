@@ -541,9 +541,12 @@ namespace Unigram.Controls.Chats
                             }
 
                             _recorder.settings.VideoDeviceId = cameraDevice.Id;
+                            await _recorder.m_mediaCapture.InitializeAsync(_recorder.settings);
                         }
-
-                        await _recorder.m_mediaCapture.InitializeAsync(_recorder.settings);
+                        else
+                        {
+                            await _recorder.m_mediaCapture.InitializeAsync();
+                        }
 
                         Logger.Debug(Target.Recording, "Devices initialized, starting");
 
