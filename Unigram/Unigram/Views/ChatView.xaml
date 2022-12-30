@@ -10,6 +10,7 @@
     xmlns:selectors="using:Unigram.Selectors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Microsoft.Graphics.Canvas.UI.Xaml"
     mc:Ignorable="d"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
@@ -1204,9 +1205,8 @@
                         AutomationProperties.Name="{CustomResource AccDescrEmojiButton}"/>
                         <!--ToolTipService.ToolTip="{CustomResource AccDescrEmojiButton}"-->
                     </StackPanel>
-                    
+
                     <Grid x:Name="ButtonRecord" VerticalAlignment="Bottom" Grid.Column="2" Canvas.ZIndex="1000">
-                        <Ellipse x:Name="Ellipse" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Width="96" Height="96" Margin="-24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <chats:ChatRecordButton
                             x:Name="btnVoiceMessage"
                             AllowFocusOnInteraction="False"
@@ -1275,7 +1275,7 @@
                     </Grid>
                 </Border>
 
-                <Border HorizontalAlignment="Right" Margin="0,0,84,0" Grid.ColumnSpan="4" Grid.Row="1">
+                <Border HorizontalAlignment="Right" Margin="0,0,94,0" Grid.ColumnSpan="4" Grid.Row="1">
                     <StackPanel x:Name="SlidePanel" SizeChanged="SlidePanel_SizeChanged" Orientation="Horizontal">
                         <FontIcon Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" Glyph="&#xE0E2;" FontSize="12" Margin="0,1,4,0"/>
                         <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" Text="{CustomResource SlideToCancel}" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
@@ -1291,7 +1291,7 @@
                     Grid.ColumnSpan="4"
                     Grid.Row="1"/>
 
-                <controls:ProgressVoice x:Name="Poggers" x:Load="False" Visibility="Collapsed">
+                <!--<controls:ProgressVoice x:Name="Poggers" x:Load="False" Visibility="Collapsed">
                     <controls:ProgressVoice.Style>
                         <Style TargetType="controls:ProgressVoice">
                             <Setter Property="Foreground" Value="{ThemeResource MessageHeaderBorderBrush}" />
@@ -1302,7 +1302,7 @@
                             <Setter Property="MinHeight" Value="{ThemeResource ProgressBarThemeMinHeight}" />
                             <Setter Property="IsTabStop" Value="False" />
                             <Setter Property="VerticalAlignment" Value="Stretch" />
-                            <!--<Setter Property="Width" Value="209"/>-->
+                            --><!--<Setter Property="Width" Value="209"/>--><!--
                             <Setter Property="MinWidth" Value="142"/>
                             <Setter Property="Margin" Value="0,0,0,2"/>
                             <Setter Property="Template">
@@ -1327,17 +1327,17 @@
                             </Setter>
                         </Style>
                     </controls:ProgressVoice.Style>
-                </controls:ProgressVoice>
+                </controls:ProgressVoice>-->
             </Grid>
-            <Border Width="120" Height="240" Margin="-36,-156,-36,-36" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Popup x:Name="ChatRecordPopup" contract8Present:ShouldConstrainToRootBounds="False">
-                    <Border Height="240">
-                        <Grid x:Name="Ellipse" Width="120" Height="120" VerticalAlignment="Bottom">
+            <Border Width="96" Height="96" Margin="-36,-126,-36,-36" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Popup x:Name="ChatRecordPopup">
+                    <Border Height="96">
+                        <Grid x:Name="Ellipse" Width="96" Height="96" VerticalAlignment="Bottom">
                             <xaml:CanvasControl
                                 x:Name="ChatRecordCanvas"
                                 Draw="ChatRecordCanvas_Draw"
-                                Width="120"
-                                Height="120"/>
+                                Width="96"
+                                Height="96"/>
                             <Grid
                                 CornerRadius="40"
                                 Width="80"
@@ -1345,7 +1345,7 @@
                                 <TextBlock
                                     x:Name="ChatRecordGlyph"
                                     FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                    FontSize="{StaticResource GlyphLargeFontSize}"
+                                    FontSize="{StaticResource GlyphButtonFontSize}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Foreground="White"/>

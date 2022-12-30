@@ -83,6 +83,8 @@ namespace Unigram.Logs
     [Flags]
     public enum Target
     {
+        None,
+
         Lifecycle,
         API,
         Chat,

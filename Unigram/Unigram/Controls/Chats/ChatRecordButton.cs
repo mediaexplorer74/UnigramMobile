@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-//using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Telegram.Td.Api;
 using Unigram.Common;
@@ -706,73 +706,79 @@ namespace Unigram.Controls.Chats
 
             private unsafe void OnAudioFrameArrived(MediaFrameReader sender, MediaFrameArrivedEventArgs args)
             {
-                using var reference = sender.TryAcquireLatestFrame();
-                if (reference == null)
+                using (var reference = sender.TryAcquireLatestFrame())
                 {
-                    return;
-                }
-
-                if (Environment.TickCount - _lastUpdateTime < 64)
-                {
-                    return;
-                }
-
-                _lastUpdateTime = Environment.TickCount;
-
-                using var frame = reference.AudioMediaFrame.GetAudioFrame();
-
-                using var audioBuffer = frame.LockBuffer(AudioBufferAccessMode.Read);
-                using var bufferReference = audioBuffer.CreateReference();
-
-                // Get the buffer from the AudioFrame
-                ((IMemoryBufferByteAccess)bufferReference).GetBuffer(out byte* buffer, out uint capacity);
-
-                var samples = (float*)buffer;
-                var count = capacity / 4;
-
-                for (int i = 0; i < count; i++)
-                {
-                    var sample = samples[i];
-                    if (sample < 0)
+                    if (reference == null)
                     {
-                        sample = Math.Abs(sample);
+                        return;
                     }
 
-                    _currentPeak = Math.Max(_currentPeak, sample);
-                    _currentPeakCount++;
-
-                    if (_currentPeakCount == _peakCompressionFactor)
+                    if (Environment.TickCount - _lastUpdateTime < 64)
                     {
-                        _compressedWaveformSamples[_compressedWaveformPosition++] = _currentPeak;
+                        return;
+                    }
 
-                        _currentPeakCount = 0;
+                    _lastUpdateTime = Environment.TickCount;
 
-                        if (_compressedWaveformPosition == _compressedWaveformSamples.Length)
+                    using (var frame = reference.AudioMediaFrame.GetAudioFrame())
+                    {
+                        using (var audioBuffer = frame.LockBuffer(AudioBufferAccessMode.Read))
                         {
-                            for (int j = 0; j < _compressedWaveformSamples.Length / 2; j++)
+                            using (var bufferReference = audioBuffer.CreateReference())
                             {
-                                _compressedWaveformSamples[j] = Math.Max(_compressedWaveformSamples[j * 2 + 0], _compressedWaveformSamples[j * 2 + 1]);
+                                // Get the buffer from the AudioFrame
+                                ((IMemoryBufferByteAccess)bufferReference).GetBuffer(out byte* buffer, out uint capacity);
+
+                                var samples = (float*)buffer;
+                                var count = capacity / 4;
+
+                                for (int i = 0; i < count; i++)
+                                {
+                                    var sample = samples[i];
+                                    if (sample < 0)
+                                    {
+                                        sample = Math.Abs(sample);
+                                    }
+
+                                    _currentPeak = Math.Max(_currentPeak, sample);
+                                    _currentPeakCount++;
+
+                                    if (_currentPeakCount == _peakCompressionFactor)
+                                    {
+                                        _compressedWaveformSamples[_compressedWaveformPosition++] = _currentPeak;
+
+                                        _currentPeakCount = 0;
+
+                                        if (_compressedWaveformPosition == _compressedWaveformSamples.Length)
+                                        {
+                                            for (int j = 0; j < _compressedWaveformSamples.Length / 2; j++)
+                                            {
+                                                _compressedWaveformSamples[j] = Math.Max(_compressedWaveformSamples[j * 2 + 0], _compressedWaveformSamples[j * 2 + 1]);
+                                            }
+
+                                            _compressedWaveformPosition = _compressedWaveformSamples.Length / 2;
+                                            _peakCompressionFactor *= 2;
+                                        }
+
+                                    }
+
+                                    if (_micLevelPeak < sample)
+                                    {
+                                        _micLevelPeak = sample;
+                                    }
+
+                                    _micLevelPeakCount += 1;
+
+                                    if (_micLevelPeakCount >= 1200)
+                                    {
+                                        QuantumProcessed?.Invoke(_micLevelPeak);
+
+                                        _micLevelPeak = 0;
+                                        _micLevelPeakCount = 0;
+                                    }
+                                }
                             }
-
-                            _compressedWaveformPosition = _compressedWaveformSamples.Length / 2;
-                            _peakCompressionFactor *= 2;
                         }
-
-                    }
-
-                    if (_micLevelPeak < sample)
-                    {
-                        _micLevelPeak = sample;
-                    }
-
-                    _micLevelPeakCount += 1;
-
-                    if (_micLevelPeakCount >= 1200)
-                    {
-                        QuantumProcessed?.Invoke(_micLevelPeak);
-
-                        _micLevelPeak = 0;
-                        _micLevelPeakCount = 0;
                     }
                 }
             }
@@ -823,7 +829,7 @@ namespace Unigram.Controls.Chats
 
                 fixed (byte* data = result)
                 {
-                    static void set_bits(byte* bytes, int bitOffset, int value)
+                    /*static*/ void set_bits(byte* bytes, int bitOffset, int value)
                     {
                         bytes += bitOffset / 8;
                         bitOffset %= 8;

@@ -1,4 +1,6 @@
 ﻿using LinqToVisualTree;
+using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Telegram.Td;
 using Telegram.Td.Api;
+using Unigram.Charts;
 using Unigram.Common;
 using Unigram.Common.Chats;
 using Unigram.Controls;
@@ -33,6 +36,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Text;
@@ -254,7 +258,7 @@ namespace Unigram.Views
             _textShadowVisual.IsVisible = false;
 
             //TextField.Language = Native.NativeUtils.GetCurrentCulture();
-            _drawable ??= new AvatarWavesDrawable(true, true);
+            _drawable = _drawable ?? new AvatarWavesDrawable(true, true);
             _drawable.Update((Color)App.Current.Resources["SystemAccentColor"], true);
         }
 
@@ -468,9 +472,7 @@ namespace Unigram.Views
             _stickersPanel.Clip.StartAnimation("TopInset", clip);
         }
 
-#pragma warning disable CA1063 // Implement IDisposable Correctly
         public void Dispose()
-#pragma warning restore CA1063 // Implement IDisposable Correctly
         {
             if (ViewModel != null)
             {
@@ -2613,15 +2615,6 @@ namespace Unigram.Views
             _slideVisual.Size = e.NewSize.ToVector2();
         }
 
-        private void PositionRecordingUI(bool isFormattingVisible)
-        {
-            if (SlidePanel.Parent is Border slidePanelBorder)
-                Grid.SetRow(slidePanelBorder, isFormattingVisible ? 2 : 1);
-            Grid.SetRow(ButtonCancelRecording, isFormattingVisible ? 2 : 1);
-            if (ElapsedPanel.Parent is Border elapsedBorder)
-                elapsedBorder.Margin = new Thickness(0, 0, isFormattingVisible ? 0 : 48, 0);
-        }
-
         private void VoiceButton_RecordingStarted(object sender, EventArgs e)
         {
             // TODO: video message
@@ -2629,13 +2622,14 @@ namespace Unigram.Views
 
             ChatRecordPopup.IsOpen = true;
             ChatRecordGlyph.Text = Icons.MicOnFilled;
+            ChatRecordGlyph.FontFamily = App.Current.Resources["SymbolThemeFontFamily"] as FontFamily;
 
             var slideWidth = (float)SlidePanel.ActualWidth;
             var elapsedWidth = (float)ElapsedPanel.ActualWidth;
 
-            if (CurrentPanelMode == StickersPanelMode.Mobile)
+            if (StickersPanel.Visibility == Visibility.Visible && CurrentPanelMode == StickersPanelMode.Mobile)
             {
-                ShowHideDockedStickersPanel(false);
+                ShowHideDockedStickersPanel(false, false);
             }
 
             _slideVisual.Opacity = 1;
@@ -2646,11 +2640,6 @@ namespace Unigram.Views
                 _elapsedTimer.Start();
                 AttachExpression();
             };
-
-            var messageAnimation = _compositor.CreateScalarKeyFrameAnimation();
-            messageAnimation.InsertKeyFrame(0, 0);
-            messageAnimation.InsertKeyFrame(1, TextField.IsFormattingVisible ? 96 : 48);
-            messageAnimation.Duration = TimeSpan.FromMilliseconds(300);
 
             var slideAnimation = _compositor.CreateScalarKeyFrameAnimation();
             slideAnimation.InsertKeyFrame(0, slideWidth + 36);
@@ -2679,9 +2668,6 @@ namespace Unigram.Views
             batch.End();
 
             ViewModel.ChatActionManager.SetTyping(btnVoiceMessage.IsChecked.Value ? (ChatAction)new ChatActionRecordingVideoNote() : new ChatActionRecordingVoiceNote());
-            PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, 5);
-            Grid.SetColumn(TextFieldPanel, 0);
         }
 
         private void VoiceButton_RecordingStopped(object sender, EventArgs e)
@@ -2743,10 +2729,7 @@ namespace Unigram.Views
 
             batch.End();
 
-            PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, TextField.IsFormattingVisible ? 5 : 2);
-            Grid.SetColumn(TextFieldPanel, TextField.IsFormattingVisible ? 0 : 1);
-
+            
             ViewModel.ChatActionManager.CancelTyping();
 
             TextField.Focus(FocusState.Programmatic);
@@ -2754,6 +2737,9 @@ namespace Unigram.Views
 
         private void VoiceButton_RecordingLocked(object sender, EventArgs e)
         {
+            ChatRecordGlyph.Text = Icons.Send;
+            ChatRecordGlyph.FontFamily = App.Current.Resources["TelegramThemeFontFamily"] as FontFamily;
+
             DetachExpression();
 
             var ellipseAnimation = _compositor.CreateScalarKeyFrameAnimation();
@@ -2812,7 +2798,7 @@ namespace Unigram.Views
 
             _ellipseVisual.Properties.InsertVector3("Offset", point);
 
-            if (point.Y < -120)
+            if (point.Y < -80)
             {
                 e.Complete();
                 btnVoiceMessage.LockRecording();
@@ -3024,7 +3010,7 @@ namespace Unigram.Views
                 if (confirm == ContentDialogResult.Primary && dialog.SelectedDates.Count > 0)
                 {
                     var first = dialog.SelectedDates.FirstOrDefault();
-                    var offset = first.Date.ToTimestamp();
+                    var offset = Common.Extensions.ToTimestamp(first.Date);
 
                     await ViewModel.LoadDateSliceAsync(offset);
                 }
@@ -3971,7 +3957,6 @@ namespace Unigram.Views
                 }
 
                 UpdateTextAreaRadius();
-                PositionRecordingUI(show);
             };
 
             var animClip2 = textArea.Compositor.CreateScalarKeyFrameAnimation();
@@ -4016,7 +4001,6 @@ namespace Unigram.Views
             {
                 _textFormattingCollapsed = true;
             }
-            PositionRecordingUI(show);
         }
 
         private void ShowHideBotCommands(bool show)
@@ -4753,7 +4737,7 @@ namespace Unigram.Views
 
         private void VoiceButton_QuantumProcessed(object sender, float amplitude)
         {
-            _drawable ??= new AvatarWavesDrawable(true, true);
+            _drawable = _drawable ?? new AvatarWavesDrawable(true, true);
             _drawable.SetAmplitude(amplitude * 100, ChatRecordCanvas);
         }
 
@@ -4922,8 +4906,8 @@ namespace Unigram.Views
             this.blobDrawable2.GenerateBlob();
             //this.blobDrawable.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
             //this.blobDrawable2.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
-            blobDrawable.paint.A = large ? 38 : 61;
-            blobDrawable2.paint.A = large ? 38 : 61;
+            blobDrawable.paint.A = large ? (byte)38 : (byte)61;
+            blobDrawable2.paint.A = large ? (byte)38 : (byte)61;
         }
 
         public void Update(Color color, bool large)
@@ -4936,8 +4920,8 @@ namespace Unigram.Views
             blobDrawable.paint = color;
             blobDrawable2.paint = color;
 
-            blobDrawable.paint.A = large ? 38 : 61;
-            blobDrawable2.paint.A = large ? 38 : 61;
+            blobDrawable.paint.A = large ? (byte)38 : (byte)61;
+            blobDrawable2.paint.A = large ? (byte)38 : (byte)61;
         }
 
         public void Draw(CanvasDrawingSession canvas, float x, float y, CanvasControl view)
@@ -5101,7 +5085,7 @@ namespace Unigram.Views
             this.N = f;
             float d = (float)(f * 2.0f);
             //Double.isNaN(d);
-            this.L = (float)(MathF.Tan(3.141592653589793f / d) * 1.3333333333333333f);
+            this.L = Convert.ToSingle(Math.Tan(3.141592653589793f / d) * 1.3333333333333333f);
             this.radius = new float[i];
             this.angle = new float[i];
             this.radiusNext = new float[i];
@@ -5118,9 +5102,9 @@ namespace Unigram.Views
 
         private void generateBlob(float[] fArr, float[] fArr2, int i)
         {
-            fArr[i] = minRadius + (MathF.Abs((((float)this.random.Next()) % 100.0f) / 100.0f) * (maxRadius - minRadius));
+            fArr[i] = minRadius + (Math.Abs((((float)this.random.Next()) % 100.0f) / 100.0f) * (maxRadius - minRadius));
             fArr2[i] = ((360.0f / this.N) * ((float)i)) + (((((float)this.random.Next()) % 100.0f) / 100.0f) * (360.0f / this.N) * 0.05f);
-            double abs = (double)(MathF.Abs(((float)this.random.Next()) % 100.0f) / 100.0f);
+            double abs = (double)(Math.Abs(((float)this.random.Next()) % 100.0f) / 100.0f);
             Double.IsNaN(abs);
             speed[i] = (float)((abs * 0.003d) + 0.017d);
         }
@@ -5161,7 +5145,7 @@ namespace Unigram.Views
                     float f11 = (radius[i3] * f10) + (radiusNext[i3] * f7);
                     float f12 = angle[i] * f8;
                     float f13 = (angle[i3] * f10) + (angleNext[i3] * f7);
-                    float min = this.L * (MathF.Min(f9, f11) + ((Math.Max(f9, f11) - Math.Min(f9, f11)) / 2.0f)) * this.cubicBezierK;
+                    float min = this.L * (Math.Min(f9, f11) + ((Math.Max(f9, f11) - Math.Min(f9, f11)) / 2.0f)) * this.cubicBezierK;
                     pointStart[0].X = x;
                     pointStart[0].Y = y - f9;
                     pointStart[1].X = x + min;
