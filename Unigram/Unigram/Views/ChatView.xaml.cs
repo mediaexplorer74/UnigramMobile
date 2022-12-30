@@ -2834,6 +2834,7 @@ namespace Unigram.Views
             AttachTextAreaExpression(ButtonAttach);
             AttachTextAreaExpression(FormattingViewer);
             AttachTextAreaExpression(SecondaryButtonsPanel);
+            AttachTextAreaExpression(ContextMenu);
             AttachTextAreaExpression(ButtonStickers);
             AttachTextAreaExpression(btnSendMessage);
         }
