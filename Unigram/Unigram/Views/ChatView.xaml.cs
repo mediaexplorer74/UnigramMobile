@@ -172,7 +172,7 @@ namespace Unigram.Views
 
             Messages.RegisterPropertyChangedCallback(ListViewBase.SelectionModeProperty, List_SelectionModeChanged);
 
-            _messageVisual = ElementCompositionPreview.GetElementVisual(TextField);
+             _messageVisual = ElementCompositionPreview.GetElementVisual(TextField);
             _ellipseVisual = ElementCompositionPreview.GetElementVisual(Ellipse);
             _elapsedVisual = ElementCompositionPreview.GetElementVisual(ElapsedPanel);
             _slideVisual = ElementCompositionPreview.GetElementVisual(SlidePanel);
@@ -2625,6 +2625,11 @@ namespace Unigram.Views
         {
             var slideWidth = (float)SlidePanel.ActualWidth;
             var elapsedWidth = (float)ElapsedPanel.ActualWidth;
+
+            if (CurrentPanelMode == StickersPanelMode.Mobile)
+            {
+                ShowHideDockedStickersPanel(false);
+            }
 
             _slideVisual.Opacity = 1;
 
