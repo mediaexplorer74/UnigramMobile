@@ -2639,7 +2639,7 @@ namespace Unigram.Views
 
             var slideAnimation = _compositor.CreateScalarKeyFrameAnimation();
             slideAnimation.InsertKeyFrame(0, slideWidth + 36);
-            slideAnimation.InsertKeyFrame(1, 0);
+            slideAnimation.InsertKeyFrame(1, 36);
             slideAnimation.Duration = TimeSpan.FromMilliseconds(300);
 
             var elapsedAnimation = _compositor.CreateScalarKeyFrameAnimation();
@@ -2668,7 +2668,7 @@ namespace Unigram.Views
 
             ViewModel.ChatActionManager.SetTyping(btnVoiceMessage.IsChecked.Value ? (ChatAction)new ChatActionRecordingVideoNote() : new ChatActionRecordingVoiceNote());
             PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, 6);
+            Grid.SetColumnSpan(TextFieldPanel, 5);
             Grid.SetColumn(TextFieldPanel, 0);
         }
 
@@ -2724,7 +2724,7 @@ namespace Unigram.Views
             batch.End();
 
             PositionRecordingUI(TextField.IsFormattingVisible);
-            Grid.SetColumnSpan(TextFieldPanel, TextField.IsFormattingVisible ? 6 : 2);
+            Grid.SetColumnSpan(TextFieldPanel, TextField.IsFormattingVisible ? 5 : 2);
             Grid.SetColumn(TextFieldPanel, TextField.IsFormattingVisible ? 0 : 1);
 
             ViewModel.ChatActionManager.CancelTyping();
@@ -4010,7 +4010,7 @@ namespace Unigram.Views
                 Grid.SetRow(ButtonMore, 2);
                 Grid.SetRow(btnAttach, 2);
                 Grid.SetRow(ButtonsPanel, 2);
-                Grid.SetColumnSpan(TextFieldPanel, 6);
+                Grid.SetColumnSpan(TextFieldPanel, 5);
                 Grid.SetColumn(TextFieldPanel, 0);
             }
             else
