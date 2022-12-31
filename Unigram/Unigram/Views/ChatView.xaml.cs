@@ -2596,24 +2596,24 @@ namespace Unigram.Views
             _rootVisual.Size = e.NewSize.ToVector2();
         }
 
-        private void ElapsedPanel_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            var point = _elapsedVisual.Offset;
-            point.X = (float)-e.NewSize.Width;
+        //private void ElapsedPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    var point = _elapsedVisual.Offset;
+        //    point.X = (float)-e.NewSize.Width;
 
-            _elapsedVisual.Offset = point;
-            _elapsedVisual.Size = e.NewSize.ToVector2();
-        }
+        //    _elapsedVisual.Offset = point;
+        //    _elapsedVisual.Size = e.NewSize.ToVector2();
+        //}
 
-        private void SlidePanel_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            var point = _slideVisual.Offset;
-            point.X = (float)e.NewSize.Width + 36;
+        //private void SlidePanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    var point = _slideVisual.Offset;
+        //    point.X = (float)e.NewSize.Width + 36;
 
-            _slideVisual.Opacity = 0;
-            _slideVisual.Offset = point;
-            _slideVisual.Size = e.NewSize.ToVector2();
-        }
+        //    _slideVisual.Opacity = 0;
+        //    _slideVisual.Offset = point;
+        //    _slideVisual.Size = e.NewSize.ToVector2();
+        //}
 
         private void VoiceButton_RecordingStarted(object sender, EventArgs e)
         {

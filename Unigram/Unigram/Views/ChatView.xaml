@@ -1265,7 +1265,7 @@
             <Grid VerticalAlignment="Bottom" Height="{StaticResource TelegramToolBarHeight}">
 
                 <Border HorizontalAlignment="Left" Margin="0,0,48,0" Grid.ColumnSpan="4" Grid.Row="1">
-                    <Grid x:Name="ElapsedPanel" SizeChanged="ElapsedPanel_SizeChanged">
+                    <Grid x:Name="ElapsedPanel">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="48"/>
                             <ColumnDefinition/>
@@ -1276,7 +1276,7 @@
                 </Border>
 
                 <Border HorizontalAlignment="Right" Margin="0,0,94,0" Grid.ColumnSpan="4" Grid.Row="1">
-                    <StackPanel x:Name="SlidePanel" SizeChanged="SlidePanel_SizeChanged" Orientation="Horizontal">
+                    <StackPanel x:Name="SlidePanel" Orientation="Horizontal">
                         <FontIcon Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" Glyph="&#xE0E2;" FontSize="12" Margin="0,1,4,0"/>
                         <TextBlock Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" Text="{CustomResource SlideToCancel}" VerticalAlignment="Center" Margin="0,0,0,0" Style="{StaticResource CaptionTextBlockStyle}"/>
                     </StackPanel>
