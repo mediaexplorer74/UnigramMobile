@@ -2798,7 +2798,7 @@ namespace Unigram.Views
 
             _ellipseVisual.Properties.InsertVector3("Offset", point);
 
-            if (point.Y < -80)
+            if (point.Y < -120)
             {
                 e.Complete();
                 btnVoiceMessage.LockRecording();
