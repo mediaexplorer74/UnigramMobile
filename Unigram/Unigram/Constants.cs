@@ -1,0 +1,40 @@
+﻿namespace Unigram
+{
+    public static partial class Constants
+    {
+        public static readonly int ApiId = 1537800;
+        public static readonly string ApiHash = "c8286429c0a97ae3645ff5341499f1a0";
+
+        public static readonly string AppChannel;
+
+        public static readonly string AppCenterId;
+
+
+        public const int TypingTimeout = 300;
+        public const int HoldingThrottle = 500;
+        public const int AnimatedThrottle = 200;
+
+        public static readonly string[] MediaTypes = new[] { ".jpg", ".jpeg", ".png", ".gif", ".mp4" };
+        public static readonly string[] PhotoTypes = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+
+        public const string WallpaperFileName = "wallpaper.jpg";
+        public const string WallpaperLocalFileName = "wallpaper.local.jpg";
+        public const string WallpaperColorFileName = "wallpaper.color.jpg";
+        public const int WallpaperLocalId = -1;
+
+        public const int ChatListMain = 0;
+        public const int ChatListArchive = 1;
+
+        public static readonly string[] TelegramHosts = new string[]
+        {
+            "telegram.me",
+            "telegram.dog",
+            "t.me",
+            "telegra.ph"
+            /*"telesco.pe"*/
+        };
+
+        public static readonly Windows.UI.Xaml.Media.FontFamily SymbolThemeFontFamily = new Windows.UI.Xaml.Media.FontFamily("ms-appx:///Assets/Fonts/SEGMDL2.TTF#Segoe MDL2 Assets"); // see App.xaml
+        public static readonly Windows.UI.Xaml.Media.FontFamily TelegramThemeFontFamily = new Windows.UI.Xaml.Media.FontFamily("ms-appx:///Assets/Fonts/Telegram.ttf#Telegram"); // see App.xaml
+    }
+}

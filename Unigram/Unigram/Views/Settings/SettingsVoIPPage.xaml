@@ -1,0 +1,49 @@
+﻿<local:HostedPage
+    x:Class="Unigram.Views.Settings.SettingsVoIPPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Unigram.Views"
+    xmlns:controls="using:Unigram.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <local:HostedPage.Header>
+        <controls:PageHeader Text="{CustomResource Additional.CallSettingsTitle}"/>
+    </local:HostedPage.Header>
+    
+    <Grid Background="{ThemeResource PageBackgroundDarkBrush}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      VerticalScrollMode="Auto">
+            <StackPanel>
+                <controls:HeaderedControl
+                    Header="{CustomResource Additional.CallSettingOutputTitle}">
+                    <ComboBox Header="{CustomResource Additional.CallSettingOutput}"
+                              ItemsSource="{x:Bind ViewModel.Output}"
+                              SelectedItem="{x:Bind ViewModel.SelectedOutput, Mode=TwoWay}"
+                              DisplayMemberPath="Name"
+                              Margin="12,0"/>
+
+                    <Slider Header="{x:Bind ConvertVolumeLabel(ViewModel.OutputVolume, x:True), Mode=OneWay}"
+                            Value="{x:Bind ConvertVolume(ViewModel.OutputVolume), BindBack=ConvertVolumeOutput, Mode=TwoWay}"
+                            Margin="12,16,12,8"/>
+                </controls:HeaderedControl>
+
+                <controls:HeaderedControl
+                    Header="{CustomResource Additional.CallSettingInputTitle}">
+                    <ComboBox Header="{CustomResource Additional.CallSettingInput}"
+                              ItemsSource="{x:Bind ViewModel.Input}"
+                              SelectedItem="{x:Bind ViewModel.SelectedInput, Mode=TwoWay}"
+                              DisplayMemberPath="Name"
+                              Margin="12,0"/>
+
+                    <Slider Header="{x:Bind ConvertVolumeLabel(ViewModel.InputVolume, x:False), Mode=OneWay}"
+                            Value="{x:Bind ConvertVolume(ViewModel.InputVolume), BindBack=ConvertVolumeInput, Mode=TwoWay}"
+                            Margin="12,16,12,8"/>
+                </controls:HeaderedControl>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</local:HostedPage>

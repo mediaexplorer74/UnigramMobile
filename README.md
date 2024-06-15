@@ -1,61 +1,46 @@
-# UnigramMobile 1.1.1-pre-pre-pre-alpha
+# Unigram Mobile Messenger - "c62" ("commit62" codename)
 
-![](Images/logo.png)
-
-# About
-This is my own UnigramMobile "remake" (or RnD) for Windows 10 Mobile os. 
+## About 
+The Telegram client optimised for the Windows 10 Mobile platform. Draft.
 
 ## Screenshot
 
 ![](Images/shot01.png)
-   
+
+* [Download from the Microsoft Store](https://www.microsoft.com/store/apps/9NSD4T15QLFX)
+* [Telegram Group](https://t.me/UnigramMobile)
+
+Thanks to the [Universal Windows Platform](https://docs.microsoft.com/en-us/windows/uwp/get-started/whats-a-uwp), Unigram can run on any Windows 10 device (PC, smartphone, Xbox One, Holo Lens and Surface Hub), integrated with almost all the new Windows features, it provides a seamless and consistent user experience.
+In agreement with the Unigram author, this fork continues to support Windows 10 Mobile smartphones, whereas the original Unigram stopped supporting them at the end of 2019. However, official Unigram Mobile releases in the Microsoft Store are exclusive to the mobile platform. Please use for other platforms the [original Unigram](https://github.com/UnigramDev/Unigram).
+
 ## Features
-- Based on more fresh [TDLib](https://github.com/tdlib/td) (Jan, 2024)
+- Based on [TDLib](https://github.com/tdlib/td)
 - Secret chats
-- Instant view (now updated with the most recent 2.0)
+- Instant view
 - Multi-account
-- Filter chats (users, bots, groups, channels, unread chats and unmuted chats)
+- Folders (e.g. unread chats) synced with other Telegram clients
 - Calls
-- Videos and photos editor (easily crop photos, set video resultion or remove some parts of the videos before sending them)
-- Drag&drop files to chats to send them quickly
-- Open chats in separated windows (Shift+click)
+- Photo editor (easily crop photos, rotate, flip, draw on images before sending them)
 - Replace sent media content
-- Polls 2.0
+- Polls 2.0 and Quizzes
 - Backgrounds 2.0 (blurred and motion options available)
 - Built-in app lock with support for Windows Hello authentication (fingerprint, face and iris recognition)
 - Advanced markdown editor for messages
 - In-app music player
 - Animated stickers and emojis
 - Scheduled and silent messages
+- Channel statistics for big channels
 - Full support of Windows 10 notifications and Action Centre (reply to a message or mark it as read without opening the app)
-- Accessibility for visually impaired people
+- Continuum support
 
-## Tech. details
-- C# & C++ codebase
-- Win. os build 19041
-- Min. Win. os bild 14393
+## Supported Languages
+Unigram Mobile has 18 built-in languages. But you can create your own translation or use a translation others created.
 
-## Main goal (point of my interest)
-- Fix some/main API changes
-- Background tasks
-- (System) Timer(s)
-- Notif. system (Push, etc.)
+Unigram Mobile has access to unlimited translation packs utilizing the Telegram translations platform.
 
-## Status
-- More "fresh" TDLib assembled as VS Extension (not provided - DIY) and used for this project.
-- Code refactoring started (main goal is to do all code compatible with changed tdlib!).
-- Draft / Early bird / Not ready yet.
+If you wish to translate it to your language, you can do that [here](https://translations.telegram.org/en/android/), since Unigram Mobile uses the same translations as the official Telegram app for Android.
 
-## How to build your own Unigram
-- Use VS 2022 Preview ore higher.
-- Assemble your own fresh TDLib.vsix and install it in(to) VS.
-- Open unigram.sln and try to build&test your solution.
-
-## Known bugs
-- No SMS when you entered your phone number (on attempt to auth). 
-
-## Wiki
-For additional information (keyboard shortcuts, other contact information, FAQ, missing features, build instructions and other stuff) you can check [Unigram wiki](https://github.com/mediaexplorer74/UnigramMobile/wiki).
+However, Unigram Mobile specific terms do not utilize the Telegram translation platform and may be translated on another platform [here](https://poeditor.com/join/project/Mes6DA3bhK).
 
 ## References
 - https://github.com/UnigramDev/Unigram/ Original Unigram (UWP) for Windows 11, XBox, etc.
@@ -66,3 +51,4 @@ As is. RnD only. For educational purposes. DIY.
 
 ## .
 [m][e] 2024
+

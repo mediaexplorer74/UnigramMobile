@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CallSettingInput" xml:space="preserve">
+    <value>输入设备</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingInputTitle" xml:space="preserve">
+    <value>麦克风</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutput" xml:space="preserve">
+    <value>输出设备</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingOutputTitle" xml:space="preserve">
+    <value>扬声器和耳机</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="CallSettingsTitle" xml:space="preserve">
+    <value>拨号设置</value>
+    <comment>SettingsAdvancedPage</comment>
+  </data>
+  <data name="Chats" xml:space="preserve">
+    <value>聊天</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>剪贴</value>
+  </data>
+  <data name="EditLink" xml:space="preserve">
+    <value>修改链接</value>
+  </data>
+  <data name="Formatting" xml:space="preserve">
+    <value>格式</value>
+  </data>
+  <data name="FormattingHide" xml:space="preserve">
+    <value>隐藏格式</value>
+  </data>
+  <data name="FormattingShow" xml:space="preserve">
+    <value>显示格式</value>
+  </data>
+  <data name="InputVolume" xml:space="preserve">
+    <value>输入音量</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>新闻</value>
+  </data>
+  <data name="OriginalMessage" xml:space="preserve">
+    <value>原消息</value>
+    <comment>Original message date and time</comment>
+  </data>
+  <data name="OutputVolume" xml:space="preserve">
+    <value>输出音量</value>
+    <comment>SettingsVoIPPage</comment>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="SettingIsTextFormattingVisible" xml:space="preserve">
+    <value>显示格式按钮</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="ShowInFolder" xml:space="preserve">
+    <value>Klasörde Göster</value>
+  </data>
+  <data name="ThemeSystemTheme" xml:space="preserve">
+    <value>系统主题</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="SettingPlayStickers" xml:space="preserve">
+    <value>播放动画壁纸</value>
+    <comment>SettingStickersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsAtTheTop" xml:space="preserve">
+    <value>聊天分类顶置</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabsOnTheLeft" xml:space="preserve">
+    <value>聊天分类左置</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabView" xml:space="preserve">
+    <value>游览分类</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsFoldersTabViewHint" xml:space="preserve">
+    <value>如果你有过多的分类，尝试将他们移到左边</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SettingsStorageOtherChats" xml:space="preserve">
+    <value>其他聊天</value>
+    <comment>SettingsStoragePage</comment>
+  </data>
+  <data name="ShareRemoveCaptions" xml:space="preserve">
+    <value>复制时移除媒体文件</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="ShareSendAsCopy" xml:space="preserve">
+    <value>以拷贝的形式发送</value>
+    <comment>SharePopup</comment>
+  </data>
+  <data name="SettingsFoldersLeftLayoutScale" xml:space="preserve">
+    <value>更改分类文件夹的大小</value>
+    <comment>FoldersPage</comment>
+  </data>
+  <data name="SelectColorSystemAccent" xml:space="preserve">
+    <value>使用系统主题颜色</value>
+    <comment>SelectColorPopup</comment>
+  </data>
+  <data name="ConnectWithoutProxy" xml:space="preserve">
+    <value>不使用代理</value>
+    <comment>SettingsProxiesPage</comment>
+  </data>
+  <data name="SettingsKeyboard" xml:space="preserve">
+    <value>打字</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsHighlightWords" xml:space="preserve">
+    <value>高亮拼写错误的单词</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsAutocorrectWords" xml:space="preserve">
+    <value>自动修正拼写错误的单词</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="PlayGifPreview" xml:space="preserve">
+    <value>选中gif时播放gif</value>
+    <comment>DiagnosticsPage</comment>
+  </data>
+  <data name="SettingsEmojiSet" xml:space="preserve">
+    <value>表情包合集</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="SettingsEmojiSetPopup" xml:space="preserve">
+    <value>选择表情包集</value>
+    <comment>SettingsAppearancePage</comment>
+  </data>
+  <data name="Thumbnails" xml:space="preserve">
+    <value>预览</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="SettingsThumbnailsGif" xml:space="preserve">
+    <value>预览gif动画</value>
+    <comment>SettingsDataAndStoragePage</comment>
+  </data>
+  <data name="LoadAllMedia" xml:space="preserve">
+    <value>加载全部媒体</value>
+    <comment>ChatSharedMediaView</comment>
+  </data>
+  <data name="AutoDownloadAudioTitle" xml:space="preserve">
+    <value>自动下载语音消息</value>
+    <comment>SettingsDataAutoView</comment>
+  </data>
+</root>
