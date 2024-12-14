@@ -15,8 +15,6 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-[Pp]review/
-[Pp]roduction/
 x64/
 x86/
 bld/
@@ -252,18 +250,3 @@ _Pvt_Extensions
 /Unigram/Unigram/Views/testPage.xaml
 /Unigram/Unigram/Views/testPage.xaml.cs
 /Unigram/Unigram/Views/Vandamme.mp3
-/Unigram/PreviewTest
-/Unigram/PreviewTest
-/Unigram/PreviewTest
-/Unigram/UnigramHost/Generated Files
-/Unigram/Telegram.Api.Native/Telegram.Api.Native.h
-/Unigram/Telegram.Api.Native.Test/Constants.Secret.cs
-/Unigram/Unigram/Themes/CustomTheme.xaml
-/Unigram/Unigram/Themes/Themes.zip
-/Unigram/Telegram.Api.Native.Test/Assets/GIFs
-/Unigram/Unigram/Microsoft.UI.Xaml/Libraries/ARM
-/Unigram/Telegram.Api.Native/Telegram.Api.Native_p.h
-/Unigram/Unigram/Constants.Secret.cs
-/Unigram/Libraries/fluent-xaml-theme-editor/FluentEditorShared
-/Unigram/Libraries/ffmpeg/runtimes/ARM
-Unigram/Unigram/Unigram_StoreKey.pfx

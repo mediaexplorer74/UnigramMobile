@@ -1,4 +1,4 @@
-## Using the issue tracker
+ ## Using the issue tracker
 The [issue tracker](https://github.com/UnigramDev/Unigram/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following rules:
 
 * Please **do not** derail or troll issues. Keep the discussion on topic and respect the opinions of others.
